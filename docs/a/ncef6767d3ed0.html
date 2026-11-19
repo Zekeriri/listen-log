@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口散文：比这更重要的是注意交通事故</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2021-12-21 08:23</p>
+  <h1>一口散文：比这更重要的是注意交通事故</h1>
+  <p class="ja-title">一口エッセイ:それより交通事故に気をつけろ</p>
+</header>
+<main>
+  <article class="body">「寄生獣」のラストでは、残った寄生生物との接触を恐れるシンイチに対して、ミギーは「それより交通事故に気をつけろ」と注意する。この冷静な態度がミギーらしくてたまらない。
+ まず出会う方が確率的に珍しい寄生生物より、年中人間のそばを走る巨大な鉄の塊の方が危険なわけだ。いちいち街で異常者に襲われないか気にしても仕方ない。現実で人間が人間と顔を合わせる回数なんて限られているわけで、その中に殺人犯級の異常者が混ざる可能性は何十万分の一である。
+ しかし、それは現実世界の話であり、無限の人数と接続されるネットにおいては、もの凄く近距離に、本来なら自分と交差することない人間たちが待ち構えておりまして、最早SNSは毎日が事故状態！
+ 例えば、僕は何度か「ネットに慣れてないゆえに、迂闊な発言で隙を見せてしまう女性」を演じてツイートしたことがある。「えーん」「（ ; ; ）」をつけるだけですけど。もちろん、こんな悪ふざけ9割の方が気にも留めないのですが、RTを通して拡散されていくと、みるみるうちに「隙を見せた弱者へ説教したい捨て垢集団」に狙われます。
+ 次々と「お前が悪い」「こいつバカ」など罵詈雑言を送信する捨て垢たち。一歩フォロワー外へ飛び出すと、大量の寄生生物が自分を狙っている覚悟で臨まなければSNSでは生き残れない！ が、よくよく考えると他人に説教するのが生き甲斐の捨て垢よりも、わざわざ無意味に隙のある女性を演じる僕の趣味の方が意味不明で怖いとも言える。
+ ひょっとすると、SNSに潜む異常な「寄生生物」側は僕の方なのかもしれない。
+
+boothにて、毎日のエッセイをまとめた同人誌を販売中です。読むと人間のことがわかります。
+
+明後日には、商業エッセイ集もついに発売！ 寄生生物だって飛び跳ねる面白さ。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-21 08:23\n一口散文：比这更重要的是注意交通事故\n一口エッセイ:それより交通事故に気をつけろ\n\n「寄生獣」のラストでは、残った寄生生物との接触を恐れるシンイチに対して、ミギーは「それより交通事故に気をつけろ」と注意する。この冷静な態度がミギーらしくてたまらない。\n まず出会う方が確率的に珍しい寄生生物より、年中人間のそばを走る巨大な鉄の塊の方が危険なわけだ。いちいち街で異常者に襲われないか気にしても仕方ない。現実で人間が人間と顔を合わせる回数なんて限られているわけで、その中に殺人犯級の異常者が混ざる可能性は何十万分の一である。\n しかし、それは現実世界の話であり、無限の人数と接続されるネットにおいては、もの凄く近距離に、本来なら自分と交差することない人間たちが待ち構えておりまして、最早SNSは毎日が事故状態！\n 例えば、僕は何度か「ネットに慣れてないゆえに、迂闊な発言で隙を見せてしまう女性」を演じてツイートしたことがある。「えーん」「（ ; ; ）」をつけるだけですけど。もちろん、こんな悪ふざけ9割の方が気にも留めないのですが、RTを通して拡散されていくと、みるみるうちに「隙を見せた弱者へ説教したい捨て垢集団」に狙われます。\n 次々と「お前が悪い」「こいつバカ」など罵詈雑言を送信する捨て垢たち。一歩フォロワー外へ飛び出すと、大量の寄生生物が自分を狙っている覚悟で臨まなければSNSでは生き残れない！ が、よくよく考えると他人に説教するのが生き甲斐の捨て垢よりも、わざわざ無意味に隙のある女性を演じる僕の趣味の方が意味不明で怖いとも言える。\n ひょっとすると、SNSに潜む異常な「寄生生物」側は僕の方なのかもしれない。\n\nboothにて、毎日のエッセイをまとめた同人誌を販売中です。読むと人間のことがわかります。\n\n明後日には、商業エッセイ集もついに発売！ 寄生生物だって飛び跳ねる面白さ。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

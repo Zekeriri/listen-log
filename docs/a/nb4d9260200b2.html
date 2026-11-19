@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>以普通女性为形象的包</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2024-11-02 08:37</p>
+  <h1>以普通女性为形象的包</h1>
+  <p class="ja-title">一般女性をイメージしたカバン</p>
+</header>
+<main>
+  <article class="body">あめちゃんのカバン。すごい。早くみんなにも手にとってもらいたいぜ。
+
+超てんちゃんは配信者だから自身をイメージしたカバンも出るだろうし、記念に本人も使うことでしょう。でも、あめちゃんは一般女性だ。一般女性は残念ながら自分のカバンは出ない。
+ あめちゃんをイメージした黒と赤のカラーリング、スカートの金刺繍。ただの一般人である自分のファッションがモチーフになった商品が出たら、怖い！
+ 仮に偶然あまりにも自分の服装に近いアイテムが登場したとて、それを普段使いするのだろうか。あめちゃん自体は、ここまで自分を重ねられたカバンを使いたいと思うのだろうか。
+
+細かいこと気にしなければ、黒と赤でかっこいいアイテムでしかないのだし全然オーケーかな。でかいリボンがかわいいし。どうだろう。斜に構えて買わないかもな。
+ でも、やっぱり十字架のチェーンを気に入って手に取るかもな。
+ なんにせよ、一般女性の概念をモチーフにしたグッズってなんだよって、あめちゃんイメージのアイテムを監修するたびに思う。外さない色使いだからだいぶ使い易いし全然いいんだけど。これは「あめちゃんが使っているカバン」ではないんだし。
+ 「黒髪の一般女性をイメージにしたカバン」。すごいことだ。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-11-02 08:37\n以普通女性为形象的包\n一般女性をイメージしたカバン\n\nあめちゃんのカバン。すごい。早くみんなにも手にとってもらいたいぜ。\n\n超てんちゃんは配信者だから自身をイメージしたカバンも出るだろうし、記念に本人も使うことでしょう。でも、あめちゃんは一般女性だ。一般女性は残念ながら自分のカバンは出ない。\n あめちゃんをイメージした黒と赤のカラーリング、スカートの金刺繍。ただの一般人である自分のファッションがモチーフになった商品が出たら、怖い！\n 仮に偶然あまりにも自分の服装に近いアイテムが登場したとて、それを普段使いするのだろうか。あめちゃん自体は、ここまで自分を重ねられたカバンを使いたいと思うのだろうか。\n\n細かいこと気にしなければ、黒と赤でかっこいいアイテムでしかないのだし全然オーケーかな。でかいリボンがかわいいし。どうだろう。斜に構えて買わないかもな。\n でも、やっぱり十字架のチェーンを気に入って手に取るかもな。\n なんにせよ、一般女性の概念をモチーフにしたグッズってなんだよって、あめちゃんイメージのアイテムを監修するたびに思う。外さない色使いだからだいぶ使い易いし全然いいんだけど。これは「あめちゃんが使っているカバン」ではないんだし。\n 「黒髪の一般女性をイメージにしたカバン」。すごいことだ。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

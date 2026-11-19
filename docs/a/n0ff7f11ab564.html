@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Turn X的设计</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-04-08 15:21</p>
+  <h1>Turn X的设计</h1>
+  <p class="ja-title">ターンXのデザイン</p>
+</header>
+<main>
+  <article class="body">「一番好きなガンダムは？」と訊かれると悩んでしまいます。F91やエクシアのシュッとしたスマートなデザインと武装は、ロボットでありながら女性的な美しさすら感じるし、ターンエーガンダムの丸みを帯びた優しい形と月光蝶の美麗さも素晴らしい。
+ その点、「一番好きなモビルスーツは？」とガンダムの名を冠さない機体まで含めた場合は、ターンXと即答できる。それくらい、この左右非対称の無慈悲で悪魔的なデザインに魅力を覚えます。鋭いつり目のアンチヒーローらしさが良い。
+
+シド・ミード氏によるモビルスーツデザイン画集「ミードガンダム」は、大好きな画集の一冊です。シド・ミード氏による尖ったデザインと、それを受け止めていく富野監督のやり取りの一部始終が収録されており、ターンエーに登場するモビルスーツたちが、いかなる想いが込められて生まれたかが分かる。
+ ミード氏と富野監督が意思疎通していくたびに、その非常に繊細で工学的な線がターンエーやターンXへと収束してく過程がたまらない。
+ ターンエーのデザインは紆余曲折した中、このターンXは初期案時点でほぼ完成されており、そのスタイリッシュさでスタッフたちを驚かさでおります。こんな逸脱なデザインの機体が、ギンガナムという豪快な人物の操作によって、画面狭しとふんだんにギミックを使って暴れ回るのだ。それはもう、とんでもなく衝撃的な映像です。
+ 僕も将来はターンXみたいに、全身を武器に敵を蹂躙できるような男になりたいぜ。
+
+毎日のエッセイをまとめた同人誌を販売中です。ごくたまにガンダムの話があります。
+
+昔のエピソードをまとめた商業エッセイ集もよろしくお願いします。黒歴史！</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-04-08 15:21\nTurn X的设计\nターンXのデザイン\n\n「一番好きなガンダムは？」と訊かれると悩んでしまいます。F91やエクシアのシュッとしたスマートなデザインと武装は、ロボットでありながら女性的な美しさすら感じるし、ターンエーガンダムの丸みを帯びた優しい形と月光蝶の美麗さも素晴らしい。\n その点、「一番好きなモビルスーツは？」とガンダムの名を冠さない機体まで含めた場合は、ターンXと即答できる。それくらい、この左右非対称の無慈悲で悪魔的なデザインに魅力を覚えます。鋭いつり目のアンチヒーローらしさが良い。\n\nシド・ミード氏によるモビルスーツデザイン画集「ミードガンダム」は、大好きな画集の一冊です。シド・ミード氏による尖ったデザインと、それを受け止めていく富野監督のやり取りの一部始終が収録されており、ターンエーに登場するモビルスーツたちが、いかなる想いが込められて生まれたかが分かる。\n ミード氏と富野監督が意思疎通していくたびに、その非常に繊細で工学的な線がターンエーやターンXへと収束してく過程がたまらない。\n ターンエーのデザインは紆余曲折した中、このターンXは初期案時点でほぼ完成されており、そのスタイリッシュさでスタッフたちを驚かさでおります。こんな逸脱なデザインの機体が、ギンガナムという豪快な人物の操作によって、画面狭しとふんだんにギミックを使って暴れ回るのだ。それはもう、とんでもなく衝撃的な映像です。\n 僕も将来はターンXみたいに、全身を武器に敵を蹂躙できるような男になりたいぜ。\n\n毎日のエッセイをまとめた同人誌を販売中です。ごくたまにガンダムの話があります。\n\n昔のエピソードをまとめた商業エッセイ集もよろしくお願いします。黒歴史！"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

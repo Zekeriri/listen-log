@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anime Expo 登台</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2026-07-04 07:02</p>
+  <h1>Anime Expo 登台</h1>
+  <p class="ja-title">Anime Expo 登壇</p>
+</header>
+<main>
+  <article class="body">ロサンゼルス、Anime Expoにて登壇。
+
+全席が埋まったよ、嬉しいなあ。
+ みんなからの質問に答えたりなんなり、新作ゲームとかアニメなどの話を色々。前回のマレーシアと同様に時折、英語できちんとウケを狙えたりと、度胸がつく。
+
+怪しいセミナーみたい。
+ コスプレ度の高さが海外ですね。
+
+†昇天†
+
+I LOVE Dan Salvato!
+ ドキドキ文芸部があるから、今の自分があります。
+
+EN好きの仲間と簡単に繋がれる。英語圏なら。
+
+新作ノベルゲームの色々が詰まっているボックス。サイン会の時にたくさんサインをした。
+ 妹のランドセル柄が洒落ているでしょう。海外限定です。
+
+可愛い妹ちゃん。
+
+Ameeeeeeeeeeee.
+
+その後のサイン会。すっごい疲れたけれど、ファンと直接交流できるとやはり楽しい。
+ どんなものを持ってくるかで個性がわかるね。この方はねんどろいど。それどころじゃない目立ちかたですが。
+
+クロロは、『神の宣告』にサインして欲しいとのこと。
+ そんなことある？ 一体どんな念の発動条件なんだよ。
+
+と思ったら、差し入れで遊戯王カードが2枚きた。
+ 僕に遊戯王カード渡すの流行っているのか？
+
+楽しかったです。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-07-04 07:02\nAnime Expo 登台\nAnime Expo 登壇\n\nロサンゼルス、Anime Expoにて登壇。\n\n全席が埋まったよ、嬉しいなあ。\n みんなからの質問に答えたりなんなり、新作ゲームとかアニメなどの話を色々。前回のマレーシアと同様に時折、英語できちんとウケを狙えたりと、度胸がつく。\n\n怪しいセミナーみたい。\n コスプレ度の高さが海外ですね。\n\n†昇天†\n\nI LOVE Dan Salvato!\n ドキドキ文芸部があるから、今の自分があります。\n\nEN好きの仲間と簡単に繋がれる。英語圏なら。\n\n新作ノベルゲームの色々が詰まっているボックス。サイン会の時にたくさんサインをした。\n 妹のランドセル柄が洒落ているでしょう。海外限定です。\n\n可愛い妹ちゃん。\n\nAmeeeeeeeeeeee.\n\nその後のサイン会。すっごい疲れたけれど、ファンと直接交流できるとやはり楽しい。\n どんなものを持ってくるかで個性がわかるね。この方はねんどろいど。それどころじゃない目立ちかたですが。\n\nクロロは、『神の宣告』にサインして欲しいとのこと。\n そんなことある？ 一体どんな念の発動条件なんだよ。\n\nと思ったら、差し入れで遊戯王カードが2枚きた。\n 僕に遊戯王カード渡すの流行っているのか？\n\n楽しかったです。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

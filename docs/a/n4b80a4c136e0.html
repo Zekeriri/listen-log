@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>精选一口短文：尊重自我解读</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-04-15 13:04</p>
+  <h1>精选一口短文：尊重自我解读</h1>
+  <p class="ja-title">選り抜き一口エッセイ: 自己の解釈の尊重</p>
+</header>
+<main>
+  <article class="body">僕の沖縄時代の友人には、いっさいSNSをやらない男が居て、その理由は「ネットで他人の意見を目にした時、それに影響されて、自分の意見や解釈に混じってしまうのが怖いから」だそう。
+ というのも、彼は学生の時に、僕と一緒に「少女革命ウテナ」を視聴したのですが、僕らは一度観ただけでは物語の全体像を把握しきれなかった。そこで、何度も観返したり、関連書籍を漁って、自分なりの解釈をまとめて納得をしました。この納得までの過程の間に、身内以外の人間の意見が目に入ることが怖くて仕方なかったらしい。「納得」が全てに勝るのは、みなさんもスティール・ボール・ランを通してご存知だと思います。自分の感情がブレるのが恐怖であるわけです。
+ そのような経験からか、彼は「自己と他者」の感覚の違いに興味を持った。具体的には、ウィトゲンシュタイン（主に物の見え方について）やクオリアについて勉強した。他の人間たちが、自分の意見や解釈をどこまで大切にしているのかや、自己と他者での見え方と価値観の差異が気になるとのこと。なので、僕が自分の気に入ったフィギュアや本を「これは素晴らしい物」と直感で信じて集めまくり、それを飾ることに拘る自我や感性は、友人として尊敬しているらしい。これは、単純に僕も褒められて嬉しいことです。
+ とはいえ、この同調圧力やエコーチェンバー効果塗れなSNS時代に、ネットを介さず自分の感情や個性、自我をなにより大切にする姿勢は、僕も尊敬している。互いが互いをリスペクトする様子は、「自己と他者」の関係として面白いと思う。
+
+毎日の日記をまとめた同人誌を販売中です。少なくとも、僕の思考はただ漏れ。
+
+商業エッセイ集もよろしくね。わりと面白い筈ですよ。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-04-15 13:04\n精选一口短文：尊重自我解读\n選り抜き一口エッセイ: 自己の解釈の尊重\n\n僕の沖縄時代の友人には、いっさいSNSをやらない男が居て、その理由は「ネットで他人の意見を目にした時、それに影響されて、自分の意見や解釈に混じってしまうのが怖いから」だそう。\n というのも、彼は学生の時に、僕と一緒に「少女革命ウテナ」を視聴したのですが、僕らは一度観ただけでは物語の全体像を把握しきれなかった。そこで、何度も観返したり、関連書籍を漁って、自分なりの解釈をまとめて納得をしました。この納得までの過程の間に、身内以外の人間の意見が目に入ることが怖くて仕方なかったらしい。「納得」が全てに勝るのは、みなさんもスティール・ボール・ランを通してご存知だと思います。自分の感情がブレるのが恐怖であるわけです。\n そのような経験からか、彼は「自己と他者」の感覚の違いに興味を持った。具体的には、ウィトゲンシュタイン（主に物の見え方について）やクオリアについて勉強した。他の人間たちが、自分の意見や解釈をどこまで大切にしているのかや、自己と他者での見え方と価値観の差異が気になるとのこと。なので、僕が自分の気に入ったフィギュアや本を「これは素晴らしい物」と直感で信じて集めまくり、それを飾ることに拘る自我や感性は、友人として尊敬しているらしい。これは、単純に僕も褒められて嬉しいことです。\n とはいえ、この同調圧力やエコーチェンバー効果塗れなSNS時代に、ネットを介さず自分の感情や個性、自我をなにより大切にする姿勢は、僕も尊敬している。互いが互いをリスペクトする様子は、「自己と他者」の関係として面白いと思う。\n\n毎日の日記をまとめた同人誌を販売中です。少なくとも、僕の思考はただ漏れ。\n\n商業エッセイ集もよろしくね。わりと面白い筈ですよ。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：巨大的灵梦</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2023-07-07 06:52</p>
+  <h1>一口随笔：巨大的灵梦</h1>
+  <p class="ja-title">一口エッセイ:でっかい霊夢</p>
+</header>
+<main>
+  <article class="body">家にどでかい霊夢が来てくれました。拙作のゲームが100万本を突破した記念に、プロデューサーへねだったら買ってもらえた。嬉しいね。
+
+デカい。そしてかわいい。めちゃくちゃに巨大なリボンが可愛さを引き立てている。fumo。
+ ここまで巨大だと、まるで家に誰か居てくれるような気配すらある。視界の端に人の気配がした際、「何者だ！？」と警戒して確認するたび、「なんだ霊夢が見守ってくれているのか……」と安心する。ありがとう博麗の巫女。
+ なんで、巨大なぬいぐるみが欲しくなったかと言えば、眠る際に抱き枕が欲しかったからです。なぜか最近ベッドの上に枕と毛布しかない状況が手持ち無沙汰な感覚があり、なんだか就寝の際、妙に寂しくなる。そこで大きなぬいぐるみがそばにいると安心する……と考えたものの、
+
+でかすぎる！
+ あまりに大きくてベッドに設置すると僕が眠れない！ 完全に霊夢が眠るためのスペースとなってしまう。いや、でも霊夢は毎回幻想郷の安寧のために頑張っているわけだし、眠れるだけ眠ってもらい、なんなら僕が床で寝るくらいの漢気を見せればいいのだ。
+ そう考えると、むしろあの博麗霊夢の休息に、僕が一役買っていることが名誉すぎる。嬉しいよ。しがないおっさんなんか床でいいから、霊夢さんはたくさんゆっくりしていってねぇ。
+
+いつか魔理沙とも合わせてやりたい。魔理沙が幻想郷中を飛び回って仕入れたどうでもいい知識を披露し、お茶を飲みながら「はいはい」と聞き流す霊夢。勝手に満足した魔理沙が帰ろうとする際、面倒くさそうに相手してたわりに彼女は「またね、魔理沙」と微笑むのだ。
+
+100万本のおいわいに、プロデューサーからでっかい霊夢をもらったよ♪ pic.twitter.com/BgC8oMfuuZ— にゃるら (@nyalra) July 6, 2023</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-07-07 06:52\n一口随笔：巨大的灵梦\n一口エッセイ:でっかい霊夢\n\n家にどでかい霊夢が来てくれました。拙作のゲームが100万本を突破した記念に、プロデューサーへねだったら買ってもらえた。嬉しいね。\n\nデカい。そしてかわいい。めちゃくちゃに巨大なリボンが可愛さを引き立てている。fumo。\n ここまで巨大だと、まるで家に誰か居てくれるような気配すらある。視界の端に人の気配がした際、「何者だ！？」と警戒して確認するたび、「なんだ霊夢が見守ってくれているのか……」と安心する。ありがとう博麗の巫女。\n なんで、巨大なぬいぐるみが欲しくなったかと言えば、眠る際に抱き枕が欲しかったからです。なぜか最近ベッドの上に枕と毛布しかない状況が手持ち無沙汰な感覚があり、なんだか就寝の際、妙に寂しくなる。そこで大きなぬいぐるみがそばにいると安心する……と考えたものの、\n\nでかすぎる！\n あまりに大きくてベッドに設置すると僕が眠れない！ 完全に霊夢が眠るためのスペースとなってしまう。いや、でも霊夢は毎回幻想郷の安寧のために頑張っているわけだし、眠れるだけ眠ってもらい、なんなら僕が床で寝るくらいの漢気を見せればいいのだ。\n そう考えると、むしろあの博麗霊夢の休息に、僕が一役買っていることが名誉すぎる。嬉しいよ。しがないおっさんなんか床でいいから、霊夢さんはたくさんゆっくりしていってねぇ。\n\nいつか魔理沙とも合わせてやりたい。魔理沙が幻想郷中を飛び回って仕入れたどうでもいい知識を披露し、お茶を飲みながら「はいはい」と聞き流す霊夢。勝手に満足した魔理沙が帰ろうとする際、面倒くさそうに相手してたわりに彼女は「またね、魔理沙」と微笑むのだ。\n\n100万本のおいわいに、プロデューサーからでっかい霊夢をもらったよ♪ pic.twitter.com/BgC8oMfuuZ— にゃるら (@nyalra) July 6, 2023"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

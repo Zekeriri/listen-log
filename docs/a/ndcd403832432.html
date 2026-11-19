@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>夏季同人展宣传单录像带</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2026-08-09 14:47</p>
+  <h1>夏季同人展宣传单录像带</h1>
+  <p class="ja-title">夏コミおしながき ビデオテープ</p>
+</header>
+<main>
+  <article class="body">夏コミお品書きです。 なんと同日にSteamにてリリースする『妹・他者・パラノイア』のVHS版（！？）です。もちろん再生できるよ。テープを用意するのが大変だった記念品。 ゲームDLカードが入っているので、もちろんPCで本編もプレイできます。 シャッター前なので遊びに来やすいです。 どうぞよろしくお願い致します♫
+
+個数には余裕があるので、お気軽な感じでどうぞ。
+ 現代でVHSを用意したため、値は張っちゃっているので無理せず。どうせSteam上では1000円くらいで遊べますので。リリース記念品だと思っていただけたら。ちなみに映像も入っているよ。
+ 当日は、自分もそのまま売り子しているはずなので、見かけたら適当によろしくお願い致します。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-08-09 14:47\n夏季同人展宣传单录像带\n夏コミおしながき ビデオテープ\n\n夏コミお品書きです。 なんと同日にSteamにてリリースする『妹・他者・パラノイア』のVHS版（！？）です。もちろん再生できるよ。テープを用意するのが大変だった記念品。 ゲームDLカードが入っているので、もちろんPCで本編もプレイできます。 シャッター前なので遊びに来やすいです。 どうぞよろしくお願い致します♫\n\n個数には余裕があるので、お気軽な感じでどうぞ。\n 現代でVHSを用意したため、値は張っちゃっているので無理せず。どうせSteam上では1000円くらいで遊べますので。リリース記念品だと思っていただけたら。ちなみに映像も入っているよ。\n 当日は、自分もそのまま売り子しているはずなので、見かけたら適当によろしくお願い致します。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

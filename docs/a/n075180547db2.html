@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔: PS版lain临摹</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-07-22 05:18</p>
+  <h1>一口随笔: PS版lain临摹</h1>
+  <p class="ja-title">一口エッセイ:PS版lain写経</p>
+</header>
+<main>
+  <article class="body">写経を行いました。
+ 写経とは、仏教の経典を書き写す行為ですが、あいにく僕は仏教徒ではないので、般若心経ではなく今回はPS版lainの全テキスト書き起こしを行いました。ちまちま行って合計20時間くらいですかね。修行としては、まだまだ甘い方ですが、これを行うことで見えてくることはたくさんある。
+
+そもそも、僕はこうして毎日の日記を書いているので他人の日記やエッセイが好きな身ですから、こうして玲音の感情の一喜一憂をなぞるのは楽しい。
+
+ご存知lainのPS版のジャケットですが、安倍吉俊自選画展でのタイトルが「ここにいたしるし」なんですね。それでジャケットには指で血をつけているわけですが、CDケースを開くとディスクの盤面に指紋がついているんですよ。つまり、玲音がここに居た印が、ジャケットとディスク盤面につけた血と指紋なのですね。実在性がこの指先に詰まっているんです。もちろん、ゲーム内のテキストの一つ一つも彼女が生きた証なんですけど。こういうことが写経を続けていくと分かってくる。
+ 写経とは、言葉を写してお経の教えを他者へと広める修行です。こうしてlain製作者の意思を伝えることで、僕の修行が完成するわけですね。いずれ、僕の意思を継ぐものが現れたとき、この写経したエクセルファイルを渡すのだ。僕がここにいたあかしとして。
+
+毎日の日記をまとめた同人誌や商業エッセイ集買ってね。僕がここにいた証、受け取ってください。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-07-22 05:18\n一口随笔: PS版lain临摹\n一口エッセイ:PS版lain写経\n\n写経を行いました。\n 写経とは、仏教の経典を書き写す行為ですが、あいにく僕は仏教徒ではないので、般若心経ではなく今回はPS版lainの全テキスト書き起こしを行いました。ちまちま行って合計20時間くらいですかね。修行としては、まだまだ甘い方ですが、これを行うことで見えてくることはたくさんある。\n\nそもそも、僕はこうして毎日の日記を書いているので他人の日記やエッセイが好きな身ですから、こうして玲音の感情の一喜一憂をなぞるのは楽しい。\n\nご存知lainのPS版のジャケットですが、安倍吉俊自選画展でのタイトルが「ここにいたしるし」なんですね。それでジャケットには指で血をつけているわけですが、CDケースを開くとディスクの盤面に指紋がついているんですよ。つまり、玲音がここに居た印が、ジャケットとディスク盤面につけた血と指紋なのですね。実在性がこの指先に詰まっているんです。もちろん、ゲーム内のテキストの一つ一つも彼女が生きた証なんですけど。こういうことが写経を続けていくと分かってくる。\n 写経とは、言葉を写してお経の教えを他者へと広める修行です。こうしてlain製作者の意思を伝えることで、僕の修行が完成するわけですね。いずれ、僕の意思を継ぐものが現れたとき、この写経したエクセルファイルを渡すのだ。僕がここにいたあかしとして。\n\n毎日の日記をまとめた同人誌や商業エッセイ集買ってね。僕がここにいた証、受け取ってください。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

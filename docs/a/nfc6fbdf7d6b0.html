@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：教堂巡礼</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-06-09 12:19</p>
+  <h1>一口随笔：教堂巡礼</h1>
+  <p class="ja-title">一口エッセイ:教会巡り</p>
+</header>
+<main>
+  <article class="body">ウェスレアン・ホーリネス教団淀橋教会へ行きました。チャリティーイベントが開催されていたので、それに参加する形で中へ入ったのです。100年に1人の声によるオペラも聴きました。なんと文化的な日なのだ。
+
+教会や宗教建築巡りは、どんどんやっていきたいと考えておりましたので、足掛かりに都内でも有数の巨大な施設の迫力を体験できたのは嬉しい。ほんのり青みがかっている聖堂の厳かな美しさが綺麗で、天井は十字の形に窓が取り付けられており、陽の光が入ると自然光での十字架が出現する。残念ながら夜に訪れたため、その宗教的象徴の姿を見ることは叶いませんでしたが。
+ 宗教建築という概念は、神に近づくために荘厳に作られているのが堪らない。音楽にしろ建築にしろ、元は宗教と信仰によって発展していったことが視覚で理解できる。天に昇るように広い天井に、神々しく輝くステンドグラス。そして敬虔な信者たちの所作。この存在の「美」こそが、なによりの布教であったことが分かります。
+ とはいえ、場所的には大久保の駅前ですので、教会の向かいにはドンキや焼肉屋がケバケバしい光を放ち、道は若者とくたびれたサラリーマンで溢れている。無料のイベントでもチャリティーであるので、出口にてお気持ちとして数千円払うことが前提（それだけの経験なので問題ありませんが）であり、一歩外に出ると現実感に溢れているギャップも含めて貴重な体験でした。
+
+最近でた新刊よろしくね。買ってもらえると、1人の人間の精神が救われます。
+
+商業エッセイ集もよろしくお願いします。レビューや評価まで押してもらえると、なお救われていく。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-09 12:19\n一口随笔：教堂巡礼\n一口エッセイ:教会巡り\n\nウェスレアン・ホーリネス教団淀橋教会へ行きました。チャリティーイベントが開催されていたので、それに参加する形で中へ入ったのです。100年に1人の声によるオペラも聴きました。なんと文化的な日なのだ。\n\n教会や宗教建築巡りは、どんどんやっていきたいと考えておりましたので、足掛かりに都内でも有数の巨大な施設の迫力を体験できたのは嬉しい。ほんのり青みがかっている聖堂の厳かな美しさが綺麗で、天井は十字の形に窓が取り付けられており、陽の光が入ると自然光での十字架が出現する。残念ながら夜に訪れたため、その宗教的象徴の姿を見ることは叶いませんでしたが。\n 宗教建築という概念は、神に近づくために荘厳に作られているのが堪らない。音楽にしろ建築にしろ、元は宗教と信仰によって発展していったことが視覚で理解できる。天に昇るように広い天井に、神々しく輝くステンドグラス。そして敬虔な信者たちの所作。この存在の「美」こそが、なによりの布教であったことが分かります。\n とはいえ、場所的には大久保の駅前ですので、教会の向かいにはドンキや焼肉屋がケバケバしい光を放ち、道は若者とくたびれたサラリーマンで溢れている。無料のイベントでもチャリティーであるので、出口にてお気持ちとして数千円払うことが前提（それだけの経験なので問題ありませんが）であり、一歩外に出ると現実感に溢れているギャップも含めて貴重な体験でした。\n\n最近でた新刊よろしくね。買ってもらえると、1人の人間の精神が救われます。\n\n商業エッセイ集もよろしくお願いします。レビューや評価まで押してもらえると、なお救われていく。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

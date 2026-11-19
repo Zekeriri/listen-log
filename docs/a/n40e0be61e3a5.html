@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>“不好按钮”是不好的</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2020-12-04 03:15</p>
+  <h1>“不好按钮”是不好的</h1>
+  <p class="ja-title">「よくないねボタン」はよくない</p>
+</header>
+<main>
+  <article class="body">今更ですが、少し前に話題になった「よくないねボタン」について、ずっと考えています。実装されたら辞めるぞとか死人がでるぞというツイートも流れてきましたが、僕もそう思います。インターネットに強く依存しているので、自分は辞めはしないですけど……。せめて「興味ないね」ボタンにしてくれればクラウドっぽくて可愛いのに。
+ 広大なインターネットでは、現実の範囲であれば決して交わらない層と交差する関係上、どうしても自分の意図しない受け取られ方や反応をされます。今は「いいね」だけなので、リプライや引用RTでしか可視化されづらいですが、それが「よくないね」でわかりやすく数値化された場合、わかっていても悪意が流れ込んでくる錯覚がしそうで怖いです。我々はか弱い……だからあまりいじめるな。
+ もし、本当にそんなものが実装された場合、デュエリストキングダム編の海馬のように、「これ以上ダメージを与えると俺は死ぬぞ！」と宣言しながらTwitterすることになるでしょう。常に崖っぷちからスマホを構えることとなります。それはそれで面白そうですけど。
+ と言っても、流れてくるデマ情報や荒らしに対する対策を考えてくれるのは嬉しいですけどね。それは確かにとも思いますが、些細なことでいつインターネットの悪意にさらされるかわからない現代において、果たして正しいことだけに使われるか疑問です。我々人類は今、よくないね機能をうまく使えるほど、お互いを信頼してはいませんから……。
+ ↑今回の記事は、これで締めたかっただけです。
+
+にはは……。もういっそのことインターネットの人間全員でゴールして、本当にTwitter2（だれも社会や政治の話をせず、毎日みんなでアニメを観たりゲームをしたりして1日がおわるマジで楽しいSNS）に行く時かもしれません。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2020-12-04 03:15\n“不好按钮”是不好的\n「よくないねボタン」はよくない\n\n今更ですが、少し前に話題になった「よくないねボタン」について、ずっと考えています。実装されたら辞めるぞとか死人がでるぞというツイートも流れてきましたが、僕もそう思います。インターネットに強く依存しているので、自分は辞めはしないですけど……。せめて「興味ないね」ボタンにしてくれればクラウドっぽくて可愛いのに。\n 広大なインターネットでは、現実の範囲であれば決して交わらない層と交差する関係上、どうしても自分の意図しない受け取られ方や反応をされます。今は「いいね」だけなので、リプライや引用RTでしか可視化されづらいですが、それが「よくないね」でわかりやすく数値化された場合、わかっていても悪意が流れ込んでくる錯覚がしそうで怖いです。我々はか弱い……だからあまりいじめるな。\n もし、本当にそんなものが実装された場合、デュエリストキングダム編の海馬のように、「これ以上ダメージを与えると俺は死ぬぞ！」と宣言しながらTwitterすることになるでしょう。常に崖っぷちからスマホを構えることとなります。それはそれで面白そうですけど。\n と言っても、流れてくるデマ情報や荒らしに対する対策を考えてくれるのは嬉しいですけどね。それは確かにとも思いますが、些細なことでいつインターネットの悪意にさらされるかわからない現代において、果たして正しいことだけに使われるか疑問です。我々人類は今、よくないね機能をうまく使えるほど、お互いを信頼してはいませんから……。\n ↑今回の記事は、これで締めたかっただけです。\n\nにはは……。もういっそのことインターネットの人間全員でゴールして、本当にTwitter2（だれも社会や政治の話をせず、毎日みんなでアニメを観たりゲームをしたりして1日がおわるマジで楽しいSNS）に行く時かもしれません。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

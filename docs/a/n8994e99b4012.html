@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>连载的专栏集已出版</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-06-21 02:21</p>
+  <h1>连载的专栏集已出版</h1>
+  <p class="ja-title">連載していたコラム集が出版されました</p>
+</header>
+<main>
+  <article class="body">講談社で連載していたコラムのまとめ本が出ました。
+
+今回も、装丁は小説『蜘蛛』と同じくハマさん。シンプルかつスマートなまとまりが素晴らしい。
+
+開いても、またいい。
+
+このページは電子で読んでも、とても良かった。
+
+なんだ、この本。
+
+うむうむ。毎週頑張って書いていたなあ。1年間。何かを連載している期間って、締め切りに追われて苦しい代わりに、妙な高揚感がある。編集だって嫌でも構ってくれるし。あの緊張感が忘れられないから連載を求める人もいるわけだ。
+ それはそれとして、今の自分はアニメの脚本を書き終えちゃって、少し達観気味であったが、この頃は今より人間味がある。毎日日記を書いているおかげで、自身の変化が読み取れるのはえらいことだよ。
+
+回の終わりに、毎回僕の部屋にある自慢のグッズを紹介するコーナーがあった。普段のnoteとも違う、「コラムっぽさ」があるよねと気に入っていましたが、書籍になるとなおさら「本」っぽくて嬉しい。
+
+ちなみに、こちらはコラムをまとめた本ですが、毎日の日記をまとめた傑作選のような本も、おそらく年内には刊行予定。KADOKAWAからだぜ。これで、僕のエッセイまとめは3冊になる。順に追っていくと、僕の心境変化もより見えるのかもしれない。もはや僕のエッセイを細かに追っている者は、僕より僕に詳しい。
+ そういうこともあるのさ。僕も中高生の頃は、同じ作家の本ばかり追っていた。僕より僕の外観部分を纏える。それで何が良いかはわからないけれど。
+ 気が向いたらどうぞ。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-06-21 02:21\n连载的专栏集已出版\n連載していたコラム集が出版されました\n\n講談社で連載していたコラムのまとめ本が出ました。\n\n今回も、装丁は小説『蜘蛛』と同じくハマさん。シンプルかつスマートなまとまりが素晴らしい。\n\n開いても、またいい。\n\nこのページは電子で読んでも、とても良かった。\n\nなんだ、この本。\n\nうむうむ。毎週頑張って書いていたなあ。1年間。何かを連載している期間って、締め切りに追われて苦しい代わりに、妙な高揚感がある。編集だって嫌でも構ってくれるし。あの緊張感が忘れられないから連載を求める人もいるわけだ。\n それはそれとして、今の自分はアニメの脚本を書き終えちゃって、少し達観気味であったが、この頃は今より人間味がある。毎日日記を書いているおかげで、自身の変化が読み取れるのはえらいことだよ。\n\n回の終わりに、毎回僕の部屋にある自慢のグッズを紹介するコーナーがあった。普段のnoteとも違う、「コラムっぽさ」があるよねと気に入っていましたが、書籍になるとなおさら「本」っぽくて嬉しい。\n\nちなみに、こちらはコラムをまとめた本ですが、毎日の日記をまとめた傑作選のような本も、おそらく年内には刊行予定。KADOKAWAからだぜ。これで、僕のエッセイまとめは3冊になる。順に追っていくと、僕の心境変化もより見えるのかもしれない。もはや僕のエッセイを細かに追っている者は、僕より僕に詳しい。\n そういうこともあるのさ。僕も中高生の頃は、同じ作家の本ばかり追っていた。僕より僕の外観部分を纏える。それで何が良いかはわからないけれど。\n 気が向いたらどうぞ。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

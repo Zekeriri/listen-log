@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>精选一口随笔：「犯罪」本身令人厌恶吗？</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-04-02 13:06</p>
+  <h1>精选一口随笔：「犯罪」本身令人厌恶吗？</h1>
+  <p class="ja-title">選り抜き一口エッセイ: 「犯罪」自体に嫌悪感があるのか？</p>
+</header>
+<main>
+  <article class="body">殺傷レベルまでエアガンを改造した70歳のYoutuber老人が捕まりました。銃刀法違反です。
+ その記事を眺めていたら、「前から好きだったのにこんな人だったとは！ 最低です！」と怒っている方を見つけた。これが少し引っかかった。
+ というのも、このおじいちゃんはYouTube上に改造エアガンの動画を堂々とアップしていたから捕まったわけで、世代だけにガンマンへの憧れが止まらなかったゆえの犯行ですし、元からこういう人です。もちろん、改造は犯罪行為なので相応の罰を与えられるべきですが、自分が銃を撃っている姿をみんなに見せたいという欲求が暴走したことは伝わる。前からこうなので、本当にこの老人が好きであれば、犯罪者になった瞬間に突然嫌いになるか？ と単純な疑問が生じる。
+
+芥川賞を受賞した「推し、燃ゆ」では、推しのアイドルがファンの女性を殴って炎上した際の、複雑な女子高生の心境が描かれる。信じていた人が捕まった際、理由や背景を知って納得したいでしょう。その結果、相手を憎んだり、愛想尽かすことも当然ですし、それでも応援や擁護を選ぶこともある。物語は急な炎上ですが、この老人の犯罪はそれまでの筋は通っているように思える。
+ 好きだった人が犯罪をおかしてしまった際、犯罪者になった瞬間に嫌いになるのは、「犯罪」自体を憎んでいるわけだ。そう考えると、僕の嫌悪感は犯罪の理由や種類・規模などによるので、犯罪そのものは嫌ってないなと感じる。だからなんだと言う話でも、擁護したいわけでもないが、とにかく自分はそう思った。
+
+こちらの新刊エッセイ集から、お気に入りを投稿です。良かったら買ってあげてね。どれから読んでも大丈夫です！</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-04-02 13:06\n精选一口随笔：「犯罪」本身令人厌恶吗？\n選り抜き一口エッセイ: 「犯罪」自体に嫌悪感があるのか？\n\n殺傷レベルまでエアガンを改造した70歳のYoutuber老人が捕まりました。銃刀法違反です。\n その記事を眺めていたら、「前から好きだったのにこんな人だったとは！ 最低です！」と怒っている方を見つけた。これが少し引っかかった。\n というのも、このおじいちゃんはYouTube上に改造エアガンの動画を堂々とアップしていたから捕まったわけで、世代だけにガンマンへの憧れが止まらなかったゆえの犯行ですし、元からこういう人です。もちろん、改造は犯罪行為なので相応の罰を与えられるべきですが、自分が銃を撃っている姿をみんなに見せたいという欲求が暴走したことは伝わる。前からこうなので、本当にこの老人が好きであれば、犯罪者になった瞬間に突然嫌いになるか？ と単純な疑問が生じる。\n\n芥川賞を受賞した「推し、燃ゆ」では、推しのアイドルがファンの女性を殴って炎上した際の、複雑な女子高生の心境が描かれる。信じていた人が捕まった際、理由や背景を知って納得したいでしょう。その結果、相手を憎んだり、愛想尽かすことも当然ですし、それでも応援や擁護を選ぶこともある。物語は急な炎上ですが、この老人の犯罪はそれまでの筋は通っているように思える。\n 好きだった人が犯罪をおかしてしまった際、犯罪者になった瞬間に嫌いになるのは、「犯罪」自体を憎んでいるわけだ。そう考えると、僕の嫌悪感は犯罪の理由や種類・規模などによるので、犯罪そのものは嫌ってないなと感じる。だからなんだと言う話でも、擁護したいわけでもないが、とにかく自分はそう思った。\n\nこちらの新刊エッセイ集から、お気に入りを投稿です。良かったら買ってあげてね。どれから読んでも大丈夫です！"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

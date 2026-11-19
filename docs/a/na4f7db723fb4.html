@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：睡觉也需要体力</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-05-07 06:41</p>
+  <h1>一口随笔：睡觉也需要体力</h1>
+  <p class="ja-title">一口エッセイ:眠るのにも体力がいる</p>
+</header>
+<main>
+  <article class="body">いつもそれ言ってるなって思われるでしょうが、5月からずっと不眠に悩まされております。
+ 「眠るのにも体力が居る」と誰かが言っていた記憶がありまして、身をもって実感する日々。いちど眠れなくなったことで体力が尽き、つねにフラフラしていて脳味噌が半分も機能していない感覚があり、その半端な頭で寝ようとしてもなかなか寝つけない上に、どうにか入眠できても1.2時間で起きてしまう。再び眠りにつこうにも上手くいかず、結果起きざるを得ないものの、寝不足なので頭も働かず何もできずに息切れする。この状態で布団に入っても、またまた眠れず苦しむだけ。体力回復のための睡眠なのに、眠るために体力が必要なのはバランス調整ミスではないか。
+ 気力があれば、寝つけやすいように入浴したり、軽めの運動を行ったり、適度な食事ができたりするのですが、ぼけっとした曖昧な頭ではどれも実行できない。でも、眠れないまま布団で「無」を過ごすと精神がやられていくので、どうにかそれを誤魔化すために動けるフリをする。フリしているだけだから、もちろん実があることは何もない。終わりだけが続いていく。
+ 睡眠薬による強制シャットダウンが可能なら楽になれるものの、睡眠薬をもらいにいくには、それなりに健常な生活リズムが必要で、さらには電話や予約を完遂できる正常な判断力まで求められる。これはもう八方塞がりだ。
+ こうなるともう、ただただ時が解決するのを待つしかない。急に長時間眠れるタイミングが来ることを願う。毎回そうしていたし。しかし、いつかはそれも来ないまま、数ヶ月……もしかしたら数年このままが続く時が訪れるのかもしれませんね。
+
+毎日の日記をまとめたエッセイ集をよろしくお願いします。ここ数日、寝不足でイマイチな感じを自覚しており申し訳ない。
+
+商業エッセイ集の方も、買ってあげてね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-05-07 06:41\n一口随笔：睡觉也需要体力\n一口エッセイ:眠るのにも体力がいる\n\nいつもそれ言ってるなって思われるでしょうが、5月からずっと不眠に悩まされております。\n 「眠るのにも体力が居る」と誰かが言っていた記憶がありまして、身をもって実感する日々。いちど眠れなくなったことで体力が尽き、つねにフラフラしていて脳味噌が半分も機能していない感覚があり、その半端な頭で寝ようとしてもなかなか寝つけない上に、どうにか入眠できても1.2時間で起きてしまう。再び眠りにつこうにも上手くいかず、結果起きざるを得ないものの、寝不足なので頭も働かず何もできずに息切れする。この状態で布団に入っても、またまた眠れず苦しむだけ。体力回復のための睡眠なのに、眠るために体力が必要なのはバランス調整ミスではないか。\n 気力があれば、寝つけやすいように入浴したり、軽めの運動を行ったり、適度な食事ができたりするのですが、ぼけっとした曖昧な頭ではどれも実行できない。でも、眠れないまま布団で「無」を過ごすと精神がやられていくので、どうにかそれを誤魔化すために動けるフリをする。フリしているだけだから、もちろん実があることは何もない。終わりだけが続いていく。\n 睡眠薬による強制シャットダウンが可能なら楽になれるものの、睡眠薬をもらいにいくには、それなりに健常な生活リズムが必要で、さらには電話や予約を完遂できる正常な判断力まで求められる。これはもう八方塞がりだ。\n こうなるともう、ただただ時が解決するのを待つしかない。急に長時間眠れるタイミングが来ることを願う。毎回そうしていたし。しかし、いつかはそれも来ないまま、数ヶ月……もしかしたら数年このままが続く時が訪れるのかもしれませんね。\n\n毎日の日記をまとめたエッセイ集をよろしくお願いします。ここ数日、寝不足でイマイチな感じを自覚しており申し訳ない。\n\n商業エッセイ集の方も、買ってあげてね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：d动画商店</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-08-21 03:15</p>
+  <h1>一口随笔：d动画商店</h1>
+  <p class="ja-title">一口エッセイ:dアニメストア</p>
+</header>
+<main>
+  <article class="body">dアニメストアでアニメを観ようとログインしたら、二重認証でSMSを経由してインすることになったのですが、dアニメストアもアカウントの乗っ取りを行われる可能性があると想像して笑ってしまいました。
+ dアニメストアのアカウントが乗っ取られてしまったら、月500円支払っている自分の代わりにアニメを見放題されてしまう。しかも、履歴に入っている視聴済みアニメ履歴も参照される。これはまぁまぁ恥ずかしい。僕が定期的に気に入った過去のプリキュア回を見返しているのがバレる。そう考えるとセキリュティが強固であって良かったなと思います。普通にクレカ情報も見られることが最も危ないか。クレカ情報に比べたら、アニメ視聴履歴なんて遥かにどうでもいいもんな。
+ それはともかく、これは友人とよく話しているのですが、dアニメストアのUIは端的で素晴らしい。アニメのタイトルとサムネのみが並び、そこにユーザーからの評価や感想のような、余計な情報を一切表示しない。とにかく自分が観たいから観るのであって、他者の意思なんて関係ないのだ。単純明快でカッコいい。
+
+最近は、『夢のクレヨン王国』を、ちびちび視聴しております。月500円でシルバー王女の笑顔に会わせてくれてありがとう。セキリュティを厳重にして、僕のアニメ視聴履歴を守ってくれてありがとう。スッキリしたUIを保ってくれてありがとう。dアニメストア、ありがとう。
+
+毎日の日記をまとめた同人誌や商業エッセイ集、よろしくね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-08-21 03:15\n一口随笔：d动画商店\n一口エッセイ:dアニメストア\n\ndアニメストアでアニメを観ようとログインしたら、二重認証でSMSを経由してインすることになったのですが、dアニメストアもアカウントの乗っ取りを行われる可能性があると想像して笑ってしまいました。\n dアニメストアのアカウントが乗っ取られてしまったら、月500円支払っている自分の代わりにアニメを見放題されてしまう。しかも、履歴に入っている視聴済みアニメ履歴も参照される。これはまぁまぁ恥ずかしい。僕が定期的に気に入った過去のプリキュア回を見返しているのがバレる。そう考えるとセキリュティが強固であって良かったなと思います。普通にクレカ情報も見られることが最も危ないか。クレカ情報に比べたら、アニメ視聴履歴なんて遥かにどうでもいいもんな。\n それはともかく、これは友人とよく話しているのですが、dアニメストアのUIは端的で素晴らしい。アニメのタイトルとサムネのみが並び、そこにユーザーからの評価や感想のような、余計な情報を一切表示しない。とにかく自分が観たいから観るのであって、他者の意思なんて関係ないのだ。単純明快でカッコいい。\n\n最近は、『夢のクレヨン王国』を、ちびちび視聴しております。月500円でシルバー王女の笑顔に会わせてくれてありがとう。セキリュティを厳重にして、僕のアニメ視聴履歴を守ってくれてありがとう。スッキリしたUIを保ってくれてありがとう。dアニメストア、ありがとう。\n\n毎日の日記をまとめた同人誌や商業エッセイ集、よろしくね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作品的纯洁、同志</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-10-23 05:48</p>
+  <h1>作品的纯洁、同志</h1>
+  <p class="ja-title">作品の純、同志</p>
+</header>
+<main>
+  <article class="body">結局、人生とは信頼できる仲間を見つけてより大きなものへ挑戦していくことの連続でしかなく、そのために芸術がある。
+ 芸術とは文脈の塊だ。多くの文脈を辿った先に作品がある。芸術品の鑑賞とは、文脈を紐解く作業だ。
+ さまざまな方法で「自分」を知り、より多くの文脈を辿って、己が真に信ずる美術・芸術品を見極めていく。気づけば、自分だけの美術を学び、それらを芸術へ転用できる。
+ らぁら。
+ らぁらが言っていた。「好きなものがおんなじなら、その瞬間から親友」だと。
+ 僕の好きな映画や絵画が複数個被っていたなら、僕は無条件で相手を信頼することでしょう。己が好きな作品とは、要するに自分を構成する文脈なのだ。構成された遺伝子が共通していればいるほど、言葉も時間も要らない。より詳細に趣味嗜好を一致するために、「真に自分が好きなものとは何か」の芯をはっきりと知っていく。
+ 識ることをやめなければいい。
+ 知識と知識が結びつき、新たな発想が生まれる。それが連続すると文脈となり、より詳細に己の趣味嗜好へ気づく。
+ 好きなものが同じ、魂が同様な同志を、ものづくりを通してかき集めていく。時に、相手の趣味嗜好へ興味を持ち、同化してく。目指す先、目線が同じものが集まれば集まるほど、作品の純度が増す。漫画やイラストはともかく、アニメやゲームはどうしても大人数が必須で、人数の目線がバラバラであるほど純度が薄まる。いい作品とは、純度を濃度で測られる。
+ より、純でなければならない。
+ 我々は、日々、新たな興味へ向かって走り続けなければならない。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-10-23 05:48\n作品的纯洁、同志\n作品の純、同志\n\n結局、人生とは信頼できる仲間を見つけてより大きなものへ挑戦していくことの連続でしかなく、そのために芸術がある。\n 芸術とは文脈の塊だ。多くの文脈を辿った先に作品がある。芸術品の鑑賞とは、文脈を紐解く作業だ。\n さまざまな方法で「自分」を知り、より多くの文脈を辿って、己が真に信ずる美術・芸術品を見極めていく。気づけば、自分だけの美術を学び、それらを芸術へ転用できる。\n らぁら。\n らぁらが言っていた。「好きなものがおんなじなら、その瞬間から親友」だと。\n 僕の好きな映画や絵画が複数個被っていたなら、僕は無条件で相手を信頼することでしょう。己が好きな作品とは、要するに自分を構成する文脈なのだ。構成された遺伝子が共通していればいるほど、言葉も時間も要らない。より詳細に趣味嗜好を一致するために、「真に自分が好きなものとは何か」の芯をはっきりと知っていく。\n 識ることをやめなければいい。\n 知識と知識が結びつき、新たな発想が生まれる。それが連続すると文脈となり、より詳細に己の趣味嗜好へ気づく。\n 好きなものが同じ、魂が同様な同志を、ものづくりを通してかき集めていく。時に、相手の趣味嗜好へ興味を持ち、同化してく。目指す先、目線が同じものが集まれば集まるほど、作品の純度が増す。漫画やイラストはともかく、アニメやゲームはどうしても大人数が必須で、人数の目線がバラバラであるほど純度が薄まる。いい作品とは、純度を濃度で測られる。\n より、純でなければならない。\n 我々は、日々、新たな興味へ向かって走り続けなければならない。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

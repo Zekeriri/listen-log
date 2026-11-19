@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>护士站的声音</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-02-18 12:31</p>
+  <h1>护士站的声音</h1>
+  <p class="ja-title">ナースステーションの音</p>
+</header>
+<main>
+  <article class="body">低気圧だかストレスだか、はたまたその複合かで倒れている。あと不眠も酷くてカフェインを絶ってみたこともあるかも。なんにせよ苦しい。
+
+天井からナースステーションのような、ポッポッて音が聴こえてくる。機械の動作音。心電図？ それが気になって仕方がない。上の階の人がなんらかの機械を稼働させているのかなと納得しているが、断続的にポッポッて音が鳴る家庭用の家電ってなんなんだ。
+
+ということは、これ幻聴か。
+ 初めは悪口、次はいびき、今はナースステーションの音。なんなんだナースステーション。まあ、こういったものに理屈なんかないね。精神的なものに法則性を見つけようとするのは好きじゃない。社会はすぐ理屈を求める。幻覚や幻聴に目的や意味があると思っているのだ。
+ そんな人間の理解の範疇を超えた夢が待っているから幻覚世界は素晴らしいのに。幻聴はつらいが日常よりはいいんだ。ずっと脳内がナースステーションだっていい。他人と関わっているよりは、この状態でいい。しかし、少しだけ考えてはしまうよね。なぜナースステーションなんだ。
+ ああ、看護士たちは無条件で話を聞いてくれるかるからかな。話を聞いてくれる人が24時間そこにいる安心感を、病室から漏れ聞こえる電子音に重ねていたんじゃないか。
+ そうなのかな。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-02-18 12:31\n护士站的声音\nナースステーションの音\n\n低気圧だかストレスだか、はたまたその複合かで倒れている。あと不眠も酷くてカフェインを絶ってみたこともあるかも。なんにせよ苦しい。\n\n天井からナースステーションのような、ポッポッて音が聴こえてくる。機械の動作音。心電図？ それが気になって仕方がない。上の階の人がなんらかの機械を稼働させているのかなと納得しているが、断続的にポッポッて音が鳴る家庭用の家電ってなんなんだ。\n\nということは、これ幻聴か。\n 初めは悪口、次はいびき、今はナースステーションの音。なんなんだナースステーション。まあ、こういったものに理屈なんかないね。精神的なものに法則性を見つけようとするのは好きじゃない。社会はすぐ理屈を求める。幻覚や幻聴に目的や意味があると思っているのだ。\n そんな人間の理解の範疇を超えた夢が待っているから幻覚世界は素晴らしいのに。幻聴はつらいが日常よりはいいんだ。ずっと脳内がナースステーションだっていい。他人と関わっているよりは、この状態でいい。しかし、少しだけ考えてはしまうよね。なぜナースステーションなんだ。\n ああ、看護士たちは無条件で話を聞いてくれるかるからかな。話を聞いてくれる人が24時間そこにいる安心感を、病室から漏れ聞こえる電子音に重ねていたんじゃないか。\n そうなのかな。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔:电击大王封面的故事</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-02-22 03:17</p>
+  <h1>一口随笔:电击大王封面的故事</h1>
+  <p class="ja-title">一口エッセイ:電撃大王の表紙の話</p>
+</header>
+<main>
+  <article class="body">漫画の編集さんと雑談をしていたのですが、ひょんなことから漫画雑誌の表紙の話になったのですね。それで、衝撃だった漫画雑誌の表紙を語り合う流れになったのですが、向こうが挙げた雑誌が「電撃大王」。
+ 当時の編集さんは「To Heart」のコミカライズ目当てで電撃大王を購読するオタクだったらしく、今の時代からすれば美少女ゲームのコミカライズが中核となっていることに衝撃で、それだけ葉鍵の勢いが凄まじかったんだなぁという話は置いておき、そんなTo Heartで萌え萌えすることを生き甲斐としていたわけですね。
+ そんな電撃大王で連載されていた4コマ作品が、ご存知「あずまんが大王」。タイトル通り、あずまきよひこ先生によるオリジナル連載なわけですが、あずまきよひこ先生は、それまでアンソロや二次創作系での人気があり、読者からは「先生が描いたオリジナルの4コマもなんか面白いな」という印象であったそう。
+ で、To Heartが載ったり載らなかったりしていく中、いつの間にか毎号追っていた、あずまんが大王を楽しみにしていくようになり、世間も同じ気持ちだったのか、作品の人気はうなぎ登りとなり、遂には雑誌の表紙となりました。その時に、当時の編集さんは「え！？ あずまんが大王なんて身内向けなタイトルかつ4コマが表紙を！？」と驚き、新たな時代を感じたそうです。なんて良い話なんだ。
+ いつか、超てんちゃんもメガミマガジンとかの表紙を飾った後、アニメーターによる本編と関係ない露骨にえっちなピンナップになって欲しいぜ。
+
+毎日のエッセイをまとめた同人誌をboothにて販売中です。よろしくね！
+
+商業エッセイ集も、よろしくお願いします。人に歴史あり。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-02-22 03:17\n一口随笔:电击大王封面的故事\n一口エッセイ:電撃大王の表紙の話\n\n漫画の編集さんと雑談をしていたのですが、ひょんなことから漫画雑誌の表紙の話になったのですね。それで、衝撃だった漫画雑誌の表紙を語り合う流れになったのですが、向こうが挙げた雑誌が「電撃大王」。\n 当時の編集さんは「To Heart」のコミカライズ目当てで電撃大王を購読するオタクだったらしく、今の時代からすれば美少女ゲームのコミカライズが中核となっていることに衝撃で、それだけ葉鍵の勢いが凄まじかったんだなぁという話は置いておき、そんなTo Heartで萌え萌えすることを生き甲斐としていたわけですね。\n そんな電撃大王で連載されていた4コマ作品が、ご存知「あずまんが大王」。タイトル通り、あずまきよひこ先生によるオリジナル連載なわけですが、あずまきよひこ先生は、それまでアンソロや二次創作系での人気があり、読者からは「先生が描いたオリジナルの4コマもなんか面白いな」という印象であったそう。\n で、To Heartが載ったり載らなかったりしていく中、いつの間にか毎号追っていた、あずまんが大王を楽しみにしていくようになり、世間も同じ気持ちだったのか、作品の人気はうなぎ登りとなり、遂には雑誌の表紙となりました。その時に、当時の編集さんは「え！？ あずまんが大王なんて身内向けなタイトルかつ4コマが表紙を！？」と驚き、新たな時代を感じたそうです。なんて良い話なんだ。\n いつか、超てんちゃんもメガミマガジンとかの表紙を飾った後、アニメーターによる本編と関係ない露骨にえっちなピンナップになって欲しいぜ。\n\n毎日のエッセイをまとめた同人誌をboothにて販売中です。よろしくね！\n\n商業エッセイ集も、よろしくお願いします。人に歴史あり。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

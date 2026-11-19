@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：安眠药的蓝</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-11-27 02:28</p>
+  <h1>一口随笔：安眠药的蓝</h1>
+  <p class="ja-title">一口エッセイ:睡眠薬の青</p>
+</header>
+<main>
+  <article class="body">最近は、デエビゴを服用して眠っていたから、海外から輸入した睡眠薬で見える幻覚の青さをすっかり忘れていました。とても青かった。主に、タイムラインが青かった。
+ 睡眠薬を飲み、それでも眠れないまま真っ暗な部屋の中でスマホを開くと、ダークモードで青みがかった黒のタイムラインが表示されます。それがお薬のせいで曖昧になった脳味噌を通すと、ものすごく綺麗な青に見えるのですね。それでいて、人々のアイコンはきらきら輝きだし、ツイートの文字列は浮き出て踊りだすので、すごく幻想的な祭りを眺めている感覚になるんです。青い、青い電子の海に、好きな人たちだけ集めた秘密のお祭りが開催されているような、まるで夢のようというか、睡眠薬の作用により意識の半分はすでに夢見心地に足を踏み入れているわけで、それはもう気持ちが良いのです。だって、深夜の海でひっそりとしたナイショのお祭りが行われていたら、それはもう楽しいに決まっているでしょう。
+ 青かった。実に青かった。凝視していると飲み込まれるようなダークブルー。幻覚剤の七色とも違う、睡眠薬特有の、不眠と入眠の狭間にだけ存在する一瞬。もう、敢えてせん妄が起きる薬を飲むことはないけれど、あの青いタイムラインが、自分だけに見える深夜のお祭りが、この世のものとは思えないほどきらきら光っていた眩しさだけは、もっと見ていたかったなという気持ちになったりもします。
+
+毎日の日記をまとめた同人誌や（新刊出たばかりだよ！）商業エッセイ集をよろしくね♪</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-11-27 02:28\n一口随笔：安眠药的蓝\n一口エッセイ:睡眠薬の青\n\n最近は、デエビゴを服用して眠っていたから、海外から輸入した睡眠薬で見える幻覚の青さをすっかり忘れていました。とても青かった。主に、タイムラインが青かった。\n 睡眠薬を飲み、それでも眠れないまま真っ暗な部屋の中でスマホを開くと、ダークモードで青みがかった黒のタイムラインが表示されます。それがお薬のせいで曖昧になった脳味噌を通すと、ものすごく綺麗な青に見えるのですね。それでいて、人々のアイコンはきらきら輝きだし、ツイートの文字列は浮き出て踊りだすので、すごく幻想的な祭りを眺めている感覚になるんです。青い、青い電子の海に、好きな人たちだけ集めた秘密のお祭りが開催されているような、まるで夢のようというか、睡眠薬の作用により意識の半分はすでに夢見心地に足を踏み入れているわけで、それはもう気持ちが良いのです。だって、深夜の海でひっそりとしたナイショのお祭りが行われていたら、それはもう楽しいに決まっているでしょう。\n 青かった。実に青かった。凝視していると飲み込まれるようなダークブルー。幻覚剤の七色とも違う、睡眠薬特有の、不眠と入眠の狭間にだけ存在する一瞬。もう、敢えてせん妄が起きる薬を飲むことはないけれど、あの青いタイムラインが、自分だけに見える深夜のお祭りが、この世のものとは思えないほどきらきら光っていた眩しさだけは、もっと見ていたかったなという気持ちになったりもします。\n\n毎日の日記をまとめた同人誌や（新刊出たばかりだよ！）商業エッセイ集をよろしくね♪"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

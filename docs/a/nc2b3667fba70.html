@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>精选一口随笔：疯狂东</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-05-12 17:31</p>
+  <h1>精选一口随笔：疯狂东</h1>
+  <p class="ja-title">選り抜き一口エッセイ:クレージーゴン</p>
+</header>
+<main>
+  <article class="body">あまりウルトラマンに明るくない人は、この「クレージーゴン」を見たことがないでしょう。ウルトラセブンに登場する怪獣ですが、セブンには超有名ロボットであるキングジョーが存在します。キングジョーは、その圧倒的な強さとデザインから、後の作品にも引っ張りだこで、ウルトラマンZでは味方機にもなりました。対して、同じウルトラセブンのロボットであるクレージーゴンが現代で話題になることは極稀。
+
+それでも、僕はこのクレージーゴンが大好きなのだ。なんと、この怪獣の別名は一時期「きちがいロボット」であった。今ではロボット怪獣なる捻りのない別名に変更されましたが、昭和の頃は完全な「きちがい」扱いだったわけです。
+ ウルトラセブンには「被爆星人」と名付けられたせいで、登場回ごと欠番になった怪獣もいる。実相寺昭雄回なのに！ さらに、本編内できちがいを連呼する怪奇大作戦の「狂鬼人間」も一向に収録されない。しかし、クレージーゴンはこっそり別名が変更された上でのうのうと存在している。もちろん、喜ばしいことではあるのですが、コイツの地味さが分かるエピソードでもあると思う。
+ でも、このジャンクな見た目が良い。愛嬌があるし、実際こんなチグハグな巨大ロボットが街に現れたらと想像すると、怪獣とはまた違った迫力があると思う。何より名前がいいね、クレージー。せっかくこの文章を読んだのだから、あなたもこの「狂い」を名に冠した、イカれたロボットのことを覚えておいてあげて欲しい。
+
+毎日の日記をまとめた同人誌をboothにて販売中です。よろしくね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-05-12 17:31\n精选一口随笔：疯狂东\n選り抜き一口エッセイ:クレージーゴン\n\nあまりウルトラマンに明るくない人は、この「クレージーゴン」を見たことがないでしょう。ウルトラセブンに登場する怪獣ですが、セブンには超有名ロボットであるキングジョーが存在します。キングジョーは、その圧倒的な強さとデザインから、後の作品にも引っ張りだこで、ウルトラマンZでは味方機にもなりました。対して、同じウルトラセブンのロボットであるクレージーゴンが現代で話題になることは極稀。\n\nそれでも、僕はこのクレージーゴンが大好きなのだ。なんと、この怪獣の別名は一時期「きちがいロボット」であった。今ではロボット怪獣なる捻りのない別名に変更されましたが、昭和の頃は完全な「きちがい」扱いだったわけです。\n ウルトラセブンには「被爆星人」と名付けられたせいで、登場回ごと欠番になった怪獣もいる。実相寺昭雄回なのに！ さらに、本編内できちがいを連呼する怪奇大作戦の「狂鬼人間」も一向に収録されない。しかし、クレージーゴンはこっそり別名が変更された上でのうのうと存在している。もちろん、喜ばしいことではあるのですが、コイツの地味さが分かるエピソードでもあると思う。\n でも、このジャンクな見た目が良い。愛嬌があるし、実際こんなチグハグな巨大ロボットが街に現れたらと想像すると、怪獣とはまた違った迫力があると思う。何より名前がいいね、クレージー。せっかくこの文章を読んだのだから、あなたもこの「狂い」を名に冠した、イカれたロボットのことを覚えておいてあげて欲しい。\n\n毎日の日記をまとめた同人誌をboothにて販売中です。よろしくね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

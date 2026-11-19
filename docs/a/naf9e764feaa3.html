@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：人生中最毫无意义的景象</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-09-11 03:32</p>
+  <h1>一口随笔：人生中最毫无意义的景象</h1>
+  <p class="ja-title">一口エッセイ:人生で最も意味☆不明な光景</p>
+</header>
+<main>
+  <article class="body">僕が中学の頃はニコニコ全盛期でして、特にフタエノキワミの大流行は教室中のオタクたちに強い影響を及ばし、誰も彼もが「オニワバンスタイル……」「ガトチュ☆エロスタイム！」と叫んでおりました。
+ そんな中、オタクAがふざけてオタクBに肩パンするタイミングがあり、その際に「二重の極み！ てやぁぁぁあ！！」の空耳、「不快な黄ばみ！ ペヤァァアング！！」を真似たのですが、口に出すと長いので前半を省略して「ペヤァァアング！！」とだけ叫んだ。
+ そしたら、たまたまそれを眺めていたヤンキーが爆笑して、もう文字通り腹を抱えて笑って泣きそうになっているレベルなんです。
+ そう、ヤンキーがニコニコネタなんて理解している筈もなく、彼視点では急にオタクがオタクに向かって「ペヤァァアング！！」と叫びながら殴りかかっている意味不明な様子に見えるのです。そんな異常な光景、笑うに決まっている。チートバグとか、日本語のようなものだけ共通する並行世界レベルで理解不能ですからね。突然目の前がボーボボになったようものでしょう。
+ 彼の中学人生で（瞬間的には）一番笑った出来事ではないのでしょうか。それくらい爆笑していた。僕も十年以上経った今も、あの「ペヤァァアング！！」が忘れられないのだから、きっとヤンキーも「中学で最も意味不明だった瞬間」として記憶していると良いなと思いました。
+
+毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-09-11 03:32\n一口随笔：人生中最毫无意义的景象\n一口エッセイ:人生で最も意味☆不明な光景\n\n僕が中学の頃はニコニコ全盛期でして、特にフタエノキワミの大流行は教室中のオタクたちに強い影響を及ばし、誰も彼もが「オニワバンスタイル……」「ガトチュ☆エロスタイム！」と叫んでおりました。\n そんな中、オタクAがふざけてオタクBに肩パンするタイミングがあり、その際に「二重の極み！ てやぁぁぁあ！！」の空耳、「不快な黄ばみ！ ペヤァァアング！！」を真似たのですが、口に出すと長いので前半を省略して「ペヤァァアング！！」とだけ叫んだ。\n そしたら、たまたまそれを眺めていたヤンキーが爆笑して、もう文字通り腹を抱えて笑って泣きそうになっているレベルなんです。\n そう、ヤンキーがニコニコネタなんて理解している筈もなく、彼視点では急にオタクがオタクに向かって「ペヤァァアング！！」と叫びながら殴りかかっている意味不明な様子に見えるのです。そんな異常な光景、笑うに決まっている。チートバグとか、日本語のようなものだけ共通する並行世界レベルで理解不能ですからね。突然目の前がボーボボになったようものでしょう。\n 彼の中学人生で（瞬間的には）一番笑った出来事ではないのでしょうか。それくらい爆笑していた。僕も十年以上経った今も、あの「ペヤァァアング！！」が忘れられないのだから、きっとヤンキーも「中学で最も意味不明だった瞬間」として記憶していると良いなと思いました。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

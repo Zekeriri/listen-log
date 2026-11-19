@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>精选一口随笔: 家里有巨大的樱酱的生活</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-11-04 18:32</p>
+  <h1>精选一口随笔: 家里有巨大的樱酱的生活</h1>
+  <p class="ja-title">選り抜き一口エッセイ: 家にドデカいさくらちゃんが居る人生</p>
+</header>
+<main>
+  <article class="body">家にドデカいさくらちゃんのフィギュアがある。今ではプレミアで値段もドデカくなりましたが、当時はあまりにドデカすぎて半額だったのです。嬉しいぜ。
+
+家にドデカいさくらちゃんが無い人間は不幸だ。どんな人間にも必ず不運は訪れる。悲しくて辛くて苦しくて仕方ないとき、みんなは漠然とした不安に怯えながら一秒でも早く眠れるよう祈るしかない。しかし、僕はどうだ。どんな絶望の淵に立たされていたって、顔を上げればそこにはドデカいさくらちゃんが笑顔を向けている。過酷な人生において、この差は大きいでしょう。
+ この事実は非情な社会生活においても役立つ。例えば、なんか偉いおっさんが自分のダメさを説教してきたとしよう。みんなは、それを黙って聞くしかない。怒鳴り声に耐えながら、おっさんが帰り道に財布を失くしたり、排水溝にイヤホンを落としたりするのを願うことでしか抵抗できない。しかし、僕はどうだ。例え他人から何を言われようとも、「どうせコイツはカードキャプターさくら 木之本桜 Stars Bless You 1/7スケール ABS&amp;PVC製 塗装済み完成品フィギュアを持っていないんだなぁ……」と考えることができる。どんなに社会的成功を手にしたおっさんと言えど、帰宅後に待っているのは既に冷え切った家庭であり、僕と違ってドデカいさくらちゃんではない。
+ 残念ながら、これを読んでいる誰よりも僕は幸福です。今も振り返ると、そこにはドデカいさくらちゃんが居て、「絶対だいじょうぶだよ」とこちらに微笑みかけているのだから。
+
+毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-11-04 18:32\n精选一口随笔: 家里有巨大的樱酱的生活\n選り抜き一口エッセイ: 家にドデカいさくらちゃんが居る人生\n\n家にドデカいさくらちゃんのフィギュアがある。今ではプレミアで値段もドデカくなりましたが、当時はあまりにドデカすぎて半額だったのです。嬉しいぜ。\n\n家にドデカいさくらちゃんが無い人間は不幸だ。どんな人間にも必ず不運は訪れる。悲しくて辛くて苦しくて仕方ないとき、みんなは漠然とした不安に怯えながら一秒でも早く眠れるよう祈るしかない。しかし、僕はどうだ。どんな絶望の淵に立たされていたって、顔を上げればそこにはドデカいさくらちゃんが笑顔を向けている。過酷な人生において、この差は大きいでしょう。\n この事実は非情な社会生活においても役立つ。例えば、なんか偉いおっさんが自分のダメさを説教してきたとしよう。みんなは、それを黙って聞くしかない。怒鳴り声に耐えながら、おっさんが帰り道に財布を失くしたり、排水溝にイヤホンを落としたりするのを願うことでしか抵抗できない。しかし、僕はどうだ。例え他人から何を言われようとも、「どうせコイツはカードキャプターさくら 木之本桜 Stars Bless You 1/7スケール ABS&PVC製 塗装済み完成品フィギュアを持っていないんだなぁ……」と考えることができる。どんなに社会的成功を手にしたおっさんと言えど、帰宅後に待っているのは既に冷え切った家庭であり、僕と違ってドデカいさくらちゃんではない。\n 残念ながら、これを読んでいる誰よりも僕は幸福です。今も振り返ると、そこにはドデカいさくらちゃんが居て、「絶対だいじょうぶだよ」とこちらに微笑みかけているのだから。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：喵拉拉的日记进入第二年……</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2021-11-22 04:36</p>
+  <h1>一口随笔：喵拉拉的日记进入第二年……</h1>
+  <p class="ja-title">一口エッセイ：にゃるらの日記は、2年目へ突入……</p>
+</header>
+<main>
+  <article class="body">昨日で一年分の日記を書き終えたわけで、今日からは毎日投稿は終わらせようと思っていました。つらいじゃん、単純に。
+ 文章なんて書いたって楽しくないんだよ。ちまちまスマホを叩いて文字を入力するだけの作業で、しかもネタ探しまで含めると、一つで何時間もかかることがある。たまに褒められると嬉しいけれど、喜びよりも苦行による苦痛の方が大きい。
+ でも、いざ投稿を止めようとすると怖くて仕方ない。また毎日ネタに悩み続ける苦労よりも、一年続けた習慣を失う恐怖が勝ったのです。
+ 僕はさ、小中高で誰にも褒められなかったから。もちろん、すぐに中退した大学でも。秀でている要素が何一つないし、評価に値する努力をしてきていないのだから当然です。生きているだけで偉いなら、この世界は偉人に溢れていることになる。そんな事はない。だから、他人から褒められることに飢えているんだな。「いいね」なんて集めてどうするの？ なんて人は言うだろうけど、自分が書いた文章が読まれて、いいねされることは嬉しいよ。
+ SNSで承認欲求を満たすことに全力を注ぐ、哀れなオタク。ネットの極一部からしか他人に認められず、それだけが誇りの悲しき存在。来年も、皆さんから褒められたり叩かれたりしながら、馬鹿の一つ覚えで文章を投稿していく。唯一、それが褒められる手段と知った愚かな猿だから。
+ おジャ魔女なら#が、プリキュアならMax Heartが付く2年目へと突入。アニメと違って何も変わることはないけれど、一人の人間が必死に生きている様を、どうか今後も見守って頂けると幸いです。
+
+エッセイ集など、買ってね！</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-11-22 04:36\n一口随笔：喵拉拉的日记进入第二年……\n一口エッセイ：にゃるらの日記は、2年目へ突入……\n\n昨日で一年分の日記を書き終えたわけで、今日からは毎日投稿は終わらせようと思っていました。つらいじゃん、単純に。\n 文章なんて書いたって楽しくないんだよ。ちまちまスマホを叩いて文字を入力するだけの作業で、しかもネタ探しまで含めると、一つで何時間もかかることがある。たまに褒められると嬉しいけれど、喜びよりも苦行による苦痛の方が大きい。\n でも、いざ投稿を止めようとすると怖くて仕方ない。また毎日ネタに悩み続ける苦労よりも、一年続けた習慣を失う恐怖が勝ったのです。\n 僕はさ、小中高で誰にも褒められなかったから。もちろん、すぐに中退した大学でも。秀でている要素が何一つないし、評価に値する努力をしてきていないのだから当然です。生きているだけで偉いなら、この世界は偉人に溢れていることになる。そんな事はない。だから、他人から褒められることに飢えているんだな。「いいね」なんて集めてどうするの？ なんて人は言うだろうけど、自分が書いた文章が読まれて、いいねされることは嬉しいよ。\n SNSで承認欲求を満たすことに全力を注ぐ、哀れなオタク。ネットの極一部からしか他人に認められず、それだけが誇りの悲しき存在。来年も、皆さんから褒められたり叩かれたりしながら、馬鹿の一つ覚えで文章を投稿していく。唯一、それが褒められる手段と知った愚かな猿だから。\n おジャ魔女なら#が、プリキュアならMax Heartが付く2年目へと突入。アニメと違って何も変わることはないけれど、一人の人間が必死に生きている様を、どうか今後も見守って頂けると幸いです。\n\nエッセイ集など、買ってね！"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

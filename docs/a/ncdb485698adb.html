@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：“魔境”与沉浸于药物的神</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2021-11-27 06:17</p>
+  <h1>一口随笔：“魔境”与沉浸于药物的神</h1>
+  <p class="ja-title">一口エッセイ:「魔境」と薬物漬けの神</p>
+</header>
+<main>
+  <article class="body">時に、人は幻覚剤やオーバードーズなどで、神秘的な体験をします。上位存在やアカシックレコードを感じ、「真理」に触れるわけですね。脳内麻薬が過剰に分泌された状態で霊的な感覚を得るのは、さぞかし上質な体験であるでしょう。しかし、果たしてそう簡単に神へ近づけるものでしょうか？
+ 普段から熱心に神を信じる純粋な信徒ならともかく、試しに幻覚へトライしてみただけの一般人のもとへ訪れるほど、神は安い存在では無いはずです。それは脳内物質が生み出した薬物漬けの偽物の神だ。それを真理だと誤認してしまうから、人は道を誤るのかもしれません。
+ よくラリった人間が、「神が仏が」と言いだすので、僕も気になって調べてみたんです。このまやかしには理屈があるはずだと。そこで知った、最も近い概念が「魔境」。
+ この現象に対しては、「瞑想により仏陀や如来が現れたときは槍で突き刺せ」「仏見たなら仏を殺せ」という教えがある。瞑想中に神格を持つものと一体化してエゴが肥大化し「魔境に入る」のを防ぐためですね。つまり、ヤク中たちがトリップ中に「神」を語った場合、それは仏教だと魔境に入っている状態な訳です。仏に逢うては仏を斬る、修羅の気持ちが大切です。詳しくは京極夏彦の「鉄鼠の檻」を読んでみてね。
+ シャーマンたちが儀式で使用するわけですから、薬物で神に近づくこともあるかもしれない。でも、それは普段の信仰心の賜物。神のフリして近づく悪魔に、惑わされるような人間であってはいけない。
+本当の真理は、そんなところで見つからないぞ。
+
+このような毎日のエッセイを纏めた同人誌をboothにて販売しております。最近、2巻が出ました。良ければ読んでみてくださいね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-11-27 06:17\n一口随笔：“魔境”与沉浸于药物的神\n一口エッセイ:「魔境」と薬物漬けの神\n\n時に、人は幻覚剤やオーバードーズなどで、神秘的な体験をします。上位存在やアカシックレコードを感じ、「真理」に触れるわけですね。脳内麻薬が過剰に分泌された状態で霊的な感覚を得るのは、さぞかし上質な体験であるでしょう。しかし、果たしてそう簡単に神へ近づけるものでしょうか？\n 普段から熱心に神を信じる純粋な信徒ならともかく、試しに幻覚へトライしてみただけの一般人のもとへ訪れるほど、神は安い存在では無いはずです。それは脳内物質が生み出した薬物漬けの偽物の神だ。それを真理だと誤認してしまうから、人は道を誤るのかもしれません。\n よくラリった人間が、「神が仏が」と言いだすので、僕も気になって調べてみたんです。このまやかしには理屈があるはずだと。そこで知った、最も近い概念が「魔境」。\n この現象に対しては、「瞑想により仏陀や如来が現れたときは槍で突き刺せ」「仏見たなら仏を殺せ」という教えがある。瞑想中に神格を持つものと一体化してエゴが肥大化し「魔境に入る」のを防ぐためですね。つまり、ヤク中たちがトリップ中に「神」を語った場合、それは仏教だと魔境に入っている状態な訳です。仏に逢うては仏を斬る、修羅の気持ちが大切です。詳しくは京極夏彦の「鉄鼠の檻」を読んでみてね。\n シャーマンたちが儀式で使用するわけですから、薬物で神に近づくこともあるかもしれない。でも、それは普段の信仰心の賜物。神のフリして近づく悪魔に、惑わされるような人間であってはいけない。\n本当の真理は、そんなところで見つからないぞ。\n\nこのような毎日のエッセイを纏めた同人誌をboothにて販売しております。最近、2巻が出ました。良ければ読んでみてくださいね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

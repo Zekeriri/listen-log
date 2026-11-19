@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>精选短篇随笔：与平行世界的交流</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2021-09-27 19:50</p>
+  <h1>精选短篇随笔：与平行世界的交流</h1>
+  <p class="ja-title">選り抜き一口エッセイ：パラレルワールドとの交信</p>
+</header>
+<main>
+  <article class="body">月刊ムーの自己啓発的なコーナーによると、明確な目標を持つためには「パラレルワールドの自分からアドバイスをもらう」と良いそうです。僕もはじめはパラレルワールドの自分と交信するのは難しいのではないか？ と思ったのですが、ムーには「案外、簡単にできます」と書いてあったので自信が持てました。
+ 早速、左手を耳にあてて未来の自分に電波を飛ばしてみます。ツーツー……と発信音が響いた後、数秒後に未来の自分が「もしもし？」と応対してくれる。どういう未来の自分なのかを訊いてみると、どうやら他人と関わらずにひたすら孤独のままフリーターを続けている40歳らしい。何かアドバイスがないかと続けて尋ねると、「うるさい！ とにかく人間なんか信じるな」と怒鳴られ、通話を切られてしまいました。
+ もう一度、次は別の未来の自分へ飛ばしてみましょう。2回目に取った相手は、精神を殺してひたすら零細企業の平社員として働いている僕でした。アドバイスを訊いてみると、「労働するくらいなら死を選んだ方が絶対にいいぞ。僕はもう死ぬ気力すら失った……」と消え入りそうな声で答えてくれます。
+ そうこうしているうちに、過去の自分から電波が届いてきました。受信機となった左腕が小刻みに震えます。今度は僕が自分にアドバイスをする番に。「インターネットはやめとけ。それと人間を信じるのもやめろ。労働もやめた方がいい」とまとめて伝えました。真に受けた彼は一体どんな未来を歩むのでしょうか。
+
+※Twitterに連載していたエッセイからの抜粋です。↑で購入できますので、エッセイ集をぜひ読んでみてね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-09-27 19:50\n精选短篇随笔：与平行世界的交流\n選り抜き一口エッセイ：パラレルワールドとの交信\n\n月刊ムーの自己啓発的なコーナーによると、明確な目標を持つためには「パラレルワールドの自分からアドバイスをもらう」と良いそうです。僕もはじめはパラレルワールドの自分と交信するのは難しいのではないか？ と思ったのですが、ムーには「案外、簡単にできます」と書いてあったので自信が持てました。\n 早速、左手を耳にあてて未来の自分に電波を飛ばしてみます。ツーツー……と発信音が響いた後、数秒後に未来の自分が「もしもし？」と応対してくれる。どういう未来の自分なのかを訊いてみると、どうやら他人と関わらずにひたすら孤独のままフリーターを続けている40歳らしい。何かアドバイスがないかと続けて尋ねると、「うるさい！ とにかく人間なんか信じるな」と怒鳴られ、通話を切られてしまいました。\n もう一度、次は別の未来の自分へ飛ばしてみましょう。2回目に取った相手は、精神を殺してひたすら零細企業の平社員として働いている僕でした。アドバイスを訊いてみると、「労働するくらいなら死を選んだ方が絶対にいいぞ。僕はもう死ぬ気力すら失った……」と消え入りそうな声で答えてくれます。\n そうこうしているうちに、過去の自分から電波が届いてきました。受信機となった左腕が小刻みに震えます。今度は僕が自分にアドバイスをする番に。「インターネットはやめとけ。それと人間を信じるのもやめろ。労働もやめた方がいい」とまとめて伝えました。真に受けた彼は一体どんな未来を歩むのでしょうか。\n\n※Twitterに連載していたエッセイからの抜粋です。↑で購入できますので、エッセイ集をぜひ読んでみてね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

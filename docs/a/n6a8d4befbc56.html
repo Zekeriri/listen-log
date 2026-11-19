@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>人类的终结</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2026-09-23 12:53</p>
+  <h1>人类的终结</h1>
+  <p class="ja-title">人間が終わる</p>
+</header>
+<main>
+  <article class="body">今回も日記としては短めに。
+ 色々な打ち合わせを経て、あらゆることがゆっくりと進んでいきます。
+ 人に求められると心は安定します。存在価値を感じます。こんな自分でも、この世に生存していてまだいいんだと安心をします。悲しいくらいに人間は集団の動物で、役割が与えられていない時の不安は果てしなく、なおかつ現実は非情で一度発生した遅れはそう簡単に復帰できるものでもありません。
+ あまりに残酷で嫌にもなります。
+ 9月の雨はたいへん厳しく、気圧がじっと怠さを与え続けます。何度か折れかけましたが、ここで折れていたら本当に全部終わるんだなと見えて恐怖しました。なぜ人は急激にダメになっていくのかの一端を体験し、人間の仕組みに驚きます。人とは継続の習慣化以外に生き続ける手段が少なく、継続を怠ってなあなあになると簡単に「終わる」ことができます。
+ 自殺とはまた別の選択肢です。
+ 諦めることを受け入れるというか、自分の人生の立ち位置に線引きするような。死にもしない。ただただ「終わっていく」だけのルートがある。
+ 社会の仕組みは恐ろしい。自分から終わっていった者を救う術はない。人は、時に「助けて」すら言う気力もなくなる。カウンセリングを無言で過ごして以来、「救われにいくこと」の難しさをひしひしと感じる。
+ 東京では、まだまだ雨が続きます。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-09-23 12:53\n人类的终结\n人間が終わる\n\n今回も日記としては短めに。\n 色々な打ち合わせを経て、あらゆることがゆっくりと進んでいきます。\n 人に求められると心は安定します。存在価値を感じます。こんな自分でも、この世に生存していてまだいいんだと安心をします。悲しいくらいに人間は集団の動物で、役割が与えられていない時の不安は果てしなく、なおかつ現実は非情で一度発生した遅れはそう簡単に復帰できるものでもありません。\n あまりに残酷で嫌にもなります。\n 9月の雨はたいへん厳しく、気圧がじっと怠さを与え続けます。何度か折れかけましたが、ここで折れていたら本当に全部終わるんだなと見えて恐怖しました。なぜ人は急激にダメになっていくのかの一端を体験し、人間の仕組みに驚きます。人とは継続の習慣化以外に生き続ける手段が少なく、継続を怠ってなあなあになると簡単に「終わる」ことができます。\n 自殺とはまた別の選択肢です。\n 諦めることを受け入れるというか、自分の人生の立ち位置に線引きするような。死にもしない。ただただ「終わっていく」だけのルートがある。\n 社会の仕組みは恐ろしい。自分から終わっていった者を救う術はない。人は、時に「助けて」すら言う気力もなくなる。カウンセリングを無言で過ごして以来、「救われにいくこと」の難しさをひしひしと感じる。\n 東京では、まだまだ雨が続きます。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

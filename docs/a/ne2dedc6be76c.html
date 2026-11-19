@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>残酷</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2026-10-26 23:49</p>
+  <h1>残酷</h1>
+  <p class="ja-title">残酷</p>
+</header>
+<main>
+  <article class="body">人間は裏切る。様々な｢俺は悪くない｣という理由を添えて。
+ この人間が裏切らないかどうかを確かめるには過去の実績か若さを見るしかない。つまり、30を越えて大した実績がない人間の大半は社会において弾かれる。それに対抗するに20代に負けない勢いを見せるしかないし、そんな野心のある人間はすでに20代の頃に信頼に足る実績を残している。
+ インターネット時代では、目立つ10代20代がたくさん登場しているので残酷なことに思えるが、現実世界とはつねに残酷なものである。
+ この世は残酷なものだ。
+ 残酷な世界でどう生きていくかを人間は選ばねばらならない。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-10-26 23:49\n残酷\n残酷\n\n人間は裏切る。様々な｢俺は悪くない｣という理由を添えて。\n この人間が裏切らないかどうかを確かめるには過去の実績か若さを見るしかない。つまり、30を越えて大した実績がない人間の大半は社会において弾かれる。それに対抗するに20代に負けない勢いを見せるしかないし、そんな野心のある人間はすでに20代の頃に信頼に足る実績を残している。\n インターネット時代では、目立つ10代20代がたくさん登場しているので残酷なことに思えるが、現実世界とはつねに残酷なものである。\n この世は残酷なものだ。\n 残酷な世界でどう生きていくかを人間は選ばねばらならない。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

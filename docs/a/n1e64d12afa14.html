@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>现场</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-09-24 11:19</p>
+  <h1>现场</h1>
+  <p class="ja-title">現場</p>
+</header>
+<main>
+  <article class="body">ものすごく頭の容量を使う作業が無事に終わり、一気に楽になる。その勢いでアニメのインタビューを受けた。放送前の意気込み的なものだね。正式発表時に掲載されることでしょう。少しずつ嬉しいことも起こってきた。
+ 結局、誰よりも手を動かし、その足で駆け回っているなら問題ない。頑張っているやつは文句を言われない。それを否定して、作品やお金を奪ってくる人間の方が周囲も辟易して人は離れていく。誰だって不当なことが嫌いなのだ。ここまでやって、まだ僕が権力者に虐げられていくなら、きっと関係者たちが更に声を上げてくれるだろうと今は信じられる。
+ 逆もまた然りなことでもある。
+ 何もやってないヤツが好かれることはない。しかし、人は偉くなればなるほど現場にすら来ない。分からないのだ。みんなが何をやっているのか。それで勉強もサボっているのだからできることが無くなる。現場に来ても居場所がないのでオンライン上で偉そうな態度取るだけ。それでも立場上お金は入ってくるのだからふんぞり返る他なく、みるみる嫌われる。中年とは不思議なもので、若い頃に敵視していた「なんもしない偉そうなヤツ」に自分がなっていることを認められないらしい。
+ 前述したように、この問題の対策は簡単で、つねに自分が手を動かして現場やイベントに参加しまくっていたら良い。日本のいいところは、ものづくりにおいて頑張っている人間は立場を越えて評価されるところだ。まあ、会社勤めなら色々あるけどね。
+ なんにせよ、今後も僕は手を動かさない人間を心から憎み続けていくことでしょう。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-09-24 11:19\n现场\n現場\n\nものすごく頭の容量を使う作業が無事に終わり、一気に楽になる。その勢いでアニメのインタビューを受けた。放送前の意気込み的なものだね。正式発表時に掲載されることでしょう。少しずつ嬉しいことも起こってきた。\n 結局、誰よりも手を動かし、その足で駆け回っているなら問題ない。頑張っているやつは文句を言われない。それを否定して、作品やお金を奪ってくる人間の方が周囲も辟易して人は離れていく。誰だって不当なことが嫌いなのだ。ここまでやって、まだ僕が権力者に虐げられていくなら、きっと関係者たちが更に声を上げてくれるだろうと今は信じられる。\n 逆もまた然りなことでもある。\n 何もやってないヤツが好かれることはない。しかし、人は偉くなればなるほど現場にすら来ない。分からないのだ。みんなが何をやっているのか。それで勉強もサボっているのだからできることが無くなる。現場に来ても居場所がないのでオンライン上で偉そうな態度取るだけ。それでも立場上お金は入ってくるのだからふんぞり返る他なく、みるみる嫌われる。中年とは不思議なもので、若い頃に敵視していた「なんもしない偉そうなヤツ」に自分がなっていることを認められないらしい。\n 前述したように、この問題の対策は簡単で、つねに自分が手を動かして現場やイベントに参加しまくっていたら良い。日本のいいところは、ものづくりにおいて頑張っている人間は立場を越えて評価されるところだ。まあ、会社勤めなら色々あるけどね。\n なんにせよ、今後も僕は手を動かさない人間を心から憎み続けていくことでしょう。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

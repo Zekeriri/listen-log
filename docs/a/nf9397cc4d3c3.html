@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口散文：不要原谅我 即使憎恨也请记住我</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2023-01-09 06:35</p>
+  <h1>一口散文：不要原谅我 即使憎恨也请记住我</h1>
+  <p class="ja-title">一口エッセイ: 私を許さないで 憎んでも覚えてて</p>
+</header>
+<main>
+  <article class="body">中島みゆき『空と君のあいだに』の「憎むことでいつまでも あいつに縛られないで」という歌詞が好きです。中島みゆきの詞はどれも素晴らしいけれど、この歌詞は特に良い。「縛られないで」の切なさが胸を打つ。憎しみゆえに意識し続けるから前に進めない。あなたの価値は、あいつ程度に縛られていいものではない。わかってはいても縛られてしまうから執着なのでしょう。
+ さて、中島みゆきの話をしたならば、とうぜん松任谷由実の話もしなければなりません。ユーミンの『青春のリグレット』は、憎むことで縛られている方と、偶然にも対となるような歌詞となっておりまして、サビのフレーズが「私を許さないで 憎んでも覚えてて」。憎まれてもいい。むしろ、憎んで、許さないでいてほしい。それは相手が自分に囚われ続けている証だから。
+ 恋焦がれた相手の消えない傷になれたら、いつまでも忘れられない記憶の一部になれたら。例えそれが憎悪の感情だとしても、ずっと自分を思っていて欲しい。そんな歪な愛情を、端的に、詩的に表現したなんと美しい詞でしょうか。憎まれることで一生相手を自分へ縛りつけていたい。これも間違いなく愛だ。サビは、「今では痛みだけが 真心のシルエット」と続く。愛憎入り混じった二人の関係を、痛みだけが繋ぎとめる。
+ 「憎しみ」の裏にある感情を表現した二人の女王。この偶然が、どこまでも愛おしい。
+
+毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくお願いします♪</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-01-09 06:35\n一口散文：不要原谅我 即使憎恨也请记住我\n一口エッセイ: 私を許さないで 憎んでも覚えてて\n\n中島みゆき『空と君のあいだに』の「憎むことでいつまでも あいつに縛られないで」という歌詞が好きです。中島みゆきの詞はどれも素晴らしいけれど、この歌詞は特に良い。「縛られないで」の切なさが胸を打つ。憎しみゆえに意識し続けるから前に進めない。あなたの価値は、あいつ程度に縛られていいものではない。わかってはいても縛られてしまうから執着なのでしょう。\n さて、中島みゆきの話をしたならば、とうぜん松任谷由実の話もしなければなりません。ユーミンの『青春のリグレット』は、憎むことで縛られている方と、偶然にも対となるような歌詞となっておりまして、サビのフレーズが「私を許さないで 憎んでも覚えてて」。憎まれてもいい。むしろ、憎んで、許さないでいてほしい。それは相手が自分に囚われ続けている証だから。\n 恋焦がれた相手の消えない傷になれたら、いつまでも忘れられない記憶の一部になれたら。例えそれが憎悪の感情だとしても、ずっと自分を思っていて欲しい。そんな歪な愛情を、端的に、詩的に表現したなんと美しい詞でしょうか。憎まれることで一生相手を自分へ縛りつけていたい。これも間違いなく愛だ。サビは、「今では痛みだけが 真心のシルエット」と続く。愛憎入り混じった二人の関係を、痛みだけが繋ぎとめる。\n 「憎しみ」の裏にある感情を表現した二人の女王。この偶然が、どこまでも愛おしい。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくお願いします♪"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

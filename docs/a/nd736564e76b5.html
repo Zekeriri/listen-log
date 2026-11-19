@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>电子流行音乐风格的人们</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2026-09-14 04:42</p>
+  <h1>电子流行音乐风格的人们</h1>
+  <p class="ja-title">テクノポップなひとびと</p>
+</header>
+<main>
+  <article class="body">ちゃんと教育的に、きちんと世に役立つこともたまにはあります。
+ シンセちゃんができるかぎり毎週Youtube投稿するようになりました。コーナー第一弾は『テクノポップなひとびと』で、ともにシンセちゃんを頑張っている原口さんに答えていただいております。原口さんがみるみるうちにメジャーの階段を駆け上がっていく様子や、幼少期から音楽の英才教育が行き届いていることがわかります。
+ 原口さんは今も若いのに、さらに輪をかけて若い頃からテレビ仕事もしているので、収録中も細かいアクセントまで気にしていて、NHKで鍛えられているなあと感心したものです。
+ 8月末から9月頭は、シンセちゃんの活動の準備に注力していました。音楽以外のYoutube面も含めてゆっくり愛してもらえたら嬉しいです。年末にDJイベント開けるようにまた頑張っていますので、みんなが遊びに来てくれたら嬉しいなあ。
+
+久々にゆるく楽しいものが作れたのも嬉しいなあ。
+ 原口さん、改めてありがとうございました。これからもよろしくね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-09-14 04:42\n电子流行音乐风格的人们\nテクノポップなひとびと\n\nちゃんと教育的に、きちんと世に役立つこともたまにはあります。\n シンセちゃんができるかぎり毎週Youtube投稿するようになりました。コーナー第一弾は『テクノポップなひとびと』で、ともにシンセちゃんを頑張っている原口さんに答えていただいております。原口さんがみるみるうちにメジャーの階段を駆け上がっていく様子や、幼少期から音楽の英才教育が行き届いていることがわかります。\n 原口さんは今も若いのに、さらに輪をかけて若い頃からテレビ仕事もしているので、収録中も細かいアクセントまで気にしていて、NHKで鍛えられているなあと感心したものです。\n 8月末から9月頭は、シンセちゃんの活動の準備に注力していました。音楽以外のYoutube面も含めてゆっくり愛してもらえたら嬉しいです。年末にDJイベント開けるようにまた頑張っていますので、みんなが遊びに来てくれたら嬉しいなあ。\n\n久々にゆるく楽しいものが作れたのも嬉しいなあ。\n 原口さん、改めてありがとうございました。これからもよろしくね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>上海 人太多</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-11-01 02:41</p>
+  <h1>上海 人太多</h1>
+  <p class="ja-title">上海 人大杉</p>
+</header>
+<main>
+  <article class="body">上海へ来た。人生でもトップクラスのハードスケジュール。何をしたか、誰となぜ海を渡ったかは、また後日。
+
+静安。
+ 上海の中でも、比較的観光客の少ないのどかな街。適当に入ったデパートが問屋だらけで、その人数と物量に圧倒される。
+
+こんなに大量の布を見たことがない。
+ 10億人なる人口のスケールを改めて考えさせられる。この国だからこそ成り立ち、この国でないと成り立たないことがある。
+
+歩いていると、何度も怪しげなオッサンに話しかけられる。
+ ｢偽物のバッグあるよ!｣
+ なんで偽物と明言されたものをわざわざ買いに行くんだよと思いつつ、そんなやからが大勢存在するということは、偽物を大量に仕入れてどこかの国へ持って帰るバイヤーが頻繁に来るわけだ。すごいことだなあ。
+
+にゃるらの旅は続く。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-11-01 02:41\n上海 人太多\n上海 人大杉\n\n上海へ来た。人生でもトップクラスのハードスケジュール。何をしたか、誰となぜ海を渡ったかは、また後日。\n\n静安。\n 上海の中でも、比較的観光客の少ないのどかな街。適当に入ったデパートが問屋だらけで、その人数と物量に圧倒される。\n\nこんなに大量の布を見たことがない。\n 10億人なる人口のスケールを改めて考えさせられる。この国だからこそ成り立ち、この国でないと成り立たないことがある。\n\n歩いていると、何度も怪しげなオッサンに話しかけられる。\n ｢偽物のバッグあるよ!｣\n なんで偽物と明言されたものをわざわざ買いに行くんだよと思いつつ、そんなやからが大勢存在するということは、偽物を大量に仕入れてどこかの国へ持って帰るバイヤーが頻繁に来るわけだ。すごいことだなあ。\n\nにゃるらの旅は続く。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第一次的太阳</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-03-08 03:26</p>
+  <h1>第一次的太阳</h1>
+  <p class="ja-title">初めての太陽</p>
+</header>
+<main>
+  <article class="body">今まで本当に休みたいと言ってきたけれども、今回はすごかった。太陽に感動した。驚いた。
+ 昨晩も音楽収録、それから1時まで打ち合わせ。そのまま原稿で朝6時を迎える。原稿が提出できたので11時に起きてスタジオへ。５時間も眠れていないが、その前日は４時間に満たなかった。
+ スタジオ収録の関係で久々に午前中から活動したなーと、もはや回っていない頭で現場を目指している間、太陽にあてられた心身がどくどく脈打つ感覚が。どうしたんだ。吸血鬼的な生活すぎて遂に日光で死ぬ時が来たか。
+ ……逆だ！
+ 僕の身体は喜んでいる！ 日差しを浴びたことで健康なセロトニンが発生し、人間らしさが僅かに戻ったことを全身が喜んで歓迎しているんだ！
+ ああ、たしかに最近は外に出るのも久々で、出かけたとしても夕方以降。思えば太陽なんていつぶりだろうか。もしかしたら一ヶ月は太陽浴びてなかったんじゃない？ そりゃ心も弱っていくわな。
+ そして、やはり人間なのだから日差しが気持ちいいわな。生まれて初めて、「日光浴がしたいな」と、道の端でただただ佇んでいた。結構寒いのに。通行人からすれば非常に恐ろしいだろう。が、もはや限界だった僕は体面なんて気にしてられなかった。
+ ぜんぶ放っておいてくれ。
+ いま、僕は生まれて初めてギラギラに光って眩しい太陽のクソったれが心地よいと感じているんだ。
+ 今だけは、あなたと同じ、人間なのだよ。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-03-08 03:26\n第一次的太阳\n初めての太陽\n\n今まで本当に休みたいと言ってきたけれども、今回はすごかった。太陽に感動した。驚いた。\n 昨晩も音楽収録、それから1時まで打ち合わせ。そのまま原稿で朝6時を迎える。原稿が提出できたので11時に起きてスタジオへ。５時間も眠れていないが、その前日は４時間に満たなかった。\n スタジオ収録の関係で久々に午前中から活動したなーと、もはや回っていない頭で現場を目指している間、太陽にあてられた心身がどくどく脈打つ感覚が。どうしたんだ。吸血鬼的な生活すぎて遂に日光で死ぬ時が来たか。\n ……逆だ！\n 僕の身体は喜んでいる！ 日差しを浴びたことで健康なセロトニンが発生し、人間らしさが僅かに戻ったことを全身が喜んで歓迎しているんだ！\n ああ、たしかに最近は外に出るのも久々で、出かけたとしても夕方以降。思えば太陽なんていつぶりだろうか。もしかしたら一ヶ月は太陽浴びてなかったんじゃない？ そりゃ心も弱っていくわな。\n そして、やはり人間なのだから日差しが気持ちいいわな。生まれて初めて、「日光浴がしたいな」と、道の端でただただ佇んでいた。結構寒いのに。通行人からすれば非常に恐ろしいだろう。が、もはや限界だった僕は体面なんて気にしてられなかった。\n ぜんぶ放っておいてくれ。\n いま、僕は生まれて初めてギラギラに光って眩しい太陽のクソったれが心地よいと感じているんだ。\n 今だけは、あなたと同じ、人間なのだよ。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

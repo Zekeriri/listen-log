@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>没有什么特别值得一提的照片 马来西亚篇</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2024-10-14 12:50</p>
+  <h1>没有什么特别值得一提的照片 马来西亚篇</h1>
+  <p class="ja-title">特筆するほどでもない写真 マレーシア編</p>
+</header>
+<main>
+  <article class="body">せっかくなので個々を書くほどではない、今回の旅の気になったものたちを。マレーシア編。
+
+今夜の犠牲者は誰だよ？ケレン味がいい。
+
+敵か味方か。謎の七色メタルカメレオン。
+
+マレーシアの地元的なショッピングモールはガチャガチャでとても良い。生命力を感じる。
+
+ちょっと人気が少ない場所から見下ろす静かさもまた良い。マレーシアのショッピングモールには必ず行くべきだ。
+
+おもちゃガーデン。
+ 海外では、とりあえずフィギュアを売る店に日本風の名前をつける。中身はマーベル系などアメトイの方が多かったりするのはご愛嬌。
+ だいたいプライズ景品のフィギュア、ジャンプ系などが独占し、秋葉原や中野ブロードウェイの最初に目に入る観光客向けショーケースと大差がない。
+ 残念ながら、こういう場所にレアモノがあるという夢の可能性はゼロに等しい。だいたい日本でプライズを爆買いして観光地価格にしているだけだから。それより、先ほどの地元マーケットなどの方が謎のパチモノなどがあったりする。それでもだいぶパチモノは減った。
+
+これはなかなかうまく撮れて気に入っている写真。
+ 巨大ワシVS猿。
+ それにしたってここに住む猿は、遊び回るための崖や自然も、遊び相手の猿仲間も、なぜか食糧を勝手に運んでくる人間も勢揃いしていて、めちゃくちゃ楽しく生きているだろうと羨ましくなる。猿にとってもっとも住みやすい国なんじゃないか、マレーシア。
+ いつか巨大ワシを倒す日を夢見て。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-10-14 12:50\n没有什么特别值得一提的照片 马来西亚篇\n特筆するほどでもない写真 マレーシア編\n\nせっかくなので個々を書くほどではない、今回の旅の気になったものたちを。マレーシア編。\n\n今夜の犠牲者は誰だよ？ケレン味がいい。\n\n敵か味方か。謎の七色メタルカメレオン。\n\nマレーシアの地元的なショッピングモールはガチャガチャでとても良い。生命力を感じる。\n\nちょっと人気が少ない場所から見下ろす静かさもまた良い。マレーシアのショッピングモールには必ず行くべきだ。\n\nおもちゃガーデン。\n 海外では、とりあえずフィギュアを売る店に日本風の名前をつける。中身はマーベル系などアメトイの方が多かったりするのはご愛嬌。\n だいたいプライズ景品のフィギュア、ジャンプ系などが独占し、秋葉原や中野ブロードウェイの最初に目に入る観光客向けショーケースと大差がない。\n 残念ながら、こういう場所にレアモノがあるという夢の可能性はゼロに等しい。だいたい日本でプライズを爆買いして観光地価格にしているだけだから。それより、先ほどの地元マーケットなどの方が謎のパチモノなどがあったりする。それでもだいぶパチモノは減った。\n\nこれはなかなかうまく撮れて気に入っている写真。\n 巨大ワシVS猿。\n それにしたってここに住む猿は、遊び回るための崖や自然も、遊び相手の猿仲間も、なぜか食糧を勝手に運んでくる人間も勢揃いしていて、めちゃくちゃ楽しく生きているだろうと羨ましくなる。猿にとってもっとも住みやすい国なんじゃないか、マレーシア。\n いつか巨大ワシを倒す日を夢見て。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

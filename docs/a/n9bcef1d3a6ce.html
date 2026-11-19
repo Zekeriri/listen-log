@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口散文：理解他的男朋友太厉害了！</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2021-12-14 07:05</p>
+  <h1>一口散文：理解他的男朋友太厉害了！</h1>
+  <p class="ja-title">一口エッセイ:理解のある彼くんが凄すぎる！</p>
+</header>
+<main>
+  <article class="body">「理解のある彼くん」については、相当ネット上でネタにされ尽くされたので、理屈としては認識していたのですが、いざ自分がそのような存在と巡り合ったことで、その寛容さの有り難みと泥沼っぷりを言葉でなく心で理解したのですね。
+ というのも、ゲーム製作陣の伝手から税理士を紹介して頂いたのですが、何度もオタク企業と取引していただけはあり、僕の今の活動内容どころか「にゃるら」を認識してくれていました。ゲームも楽しみにしてもらっており、好きな実況者が実況してくれるのを期待しているとのこと。嬉しすぎる……。
+ こうなるともう、己のダメさや税への無理解を一切隠す必要がない。「何もわからない！ でも税金で損したくないです！」と自信満々に伝えると、「では分かりやすく説明してオススメの節税方法を教えますね」と返される。凄すぎ！ その上で「もう悩むことありませんよ！ なんでもLINEしてください！」とまで言ってくる。もちろん、職業柄本人の身なりも清潔感のある爽やかな男性です。そのような人物が、こちらの人格や生活を把握し親身に接してくれる。こんなの自慢するに決まっている。
+ とうぜん、その好意も、事務手数料や身内の繋がりのおかげであるのですが、自分の何倍も立派な人間が優しく接してくれる事実に変わりはない。こんなのダメだ。ここまで都合の良い人間に出会ってしまったら、逆におかしくなりそうで怖い。
+ 「理解のある彼くん」の本質を、税理士を通してようやく理解しました。もし、これが異性の恋人関係で、その後に捨てられたり別れたりしたら気が狂っちゃうね。「理解」ってこんなに恐ろしいのか。
+
+毎日のエッセイをまとめた同人誌などを販売中です。買ってもらえると、僕が税金を払えます。
+
+今月末には、商業エッセイ集もでます。印税、最高！</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-14 07:05\n一口散文：理解他的男朋友太厉害了！\n一口エッセイ:理解のある彼くんが凄すぎる！\n\n「理解のある彼くん」については、相当ネット上でネタにされ尽くされたので、理屈としては認識していたのですが、いざ自分がそのような存在と巡り合ったことで、その寛容さの有り難みと泥沼っぷりを言葉でなく心で理解したのですね。\n というのも、ゲーム製作陣の伝手から税理士を紹介して頂いたのですが、何度もオタク企業と取引していただけはあり、僕の今の活動内容どころか「にゃるら」を認識してくれていました。ゲームも楽しみにしてもらっており、好きな実況者が実況してくれるのを期待しているとのこと。嬉しすぎる……。\n こうなるともう、己のダメさや税への無理解を一切隠す必要がない。「何もわからない！ でも税金で損したくないです！」と自信満々に伝えると、「では分かりやすく説明してオススメの節税方法を教えますね」と返される。凄すぎ！ その上で「もう悩むことありませんよ！ なんでもLINEしてください！」とまで言ってくる。もちろん、職業柄本人の身なりも清潔感のある爽やかな男性です。そのような人物が、こちらの人格や生活を把握し親身に接してくれる。こんなの自慢するに決まっている。\n とうぜん、その好意も、事務手数料や身内の繋がりのおかげであるのですが、自分の何倍も立派な人間が優しく接してくれる事実に変わりはない。こんなのダメだ。ここまで都合の良い人間に出会ってしまったら、逆におかしくなりそうで怖い。\n 「理解のある彼くん」の本質を、税理士を通してようやく理解しました。もし、これが異性の恋人関係で、その後に捨てられたり別れたりしたら気が狂っちゃうね。「理解」ってこんなに恐ろしいのか。\n\n毎日のエッセイをまとめた同人誌などを販売中です。買ってもらえると、僕が税金を払えます。\n\n今月末には、商業エッセイ集もでます。印税、最高！"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

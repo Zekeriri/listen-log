@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>温度</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-11-10 12:21</p>
+  <h1>温度</h1>
+  <p class="ja-title">温度</p>
+</header>
+<main>
+  <article class="body">どういう仕組みで身体が危険信号を出すか調べ、ある程度の原理を頭に入れたところで付け焼き刃。やはり脳の本気、生命活動や本能には敵わない。
+ 騙し騙しで気を張り続けても、脳みそは「あまりに強大な眠気」なる切り札を持っている。今回、それを切られたね。2日くらいひたすらに眠るしかなかった。驚くほど全身から「休め」と怒られた。
+ あれだけ眠った今もまだまだ眠い。気だるい。感覚として、ここで気を抜いたら精神の病がぶり返すタイミングです。というか、そんな心配をしている時点ですでに、ですが。流石に客観的に見て酷いことが起きすぎた。平気なフリを十分に頑張ったよ。
+ 身体を暖かくする。
+ 今年でようやく学んだ。熱は無敵だ。温かい飲み物、毛布、浴槽。体の暖かさは副交感神経を優位にし、安らぎを得る。まずは落ち着いてからだ、すべては。暖かささえ忘れなければ、ギリギリで死にはしない。
+ となると、やはり雪山での凍死は生命と真逆なんだ。冷たさにすべて奪われる。その瞬間、最後の生命の炎が灯り、これまでにない幻覚体験へ誘う。
+ 生命は温度に支配されている。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-11-10 12:21\n温度\n温度\n\nどういう仕組みで身体が危険信号を出すか調べ、ある程度の原理を頭に入れたところで付け焼き刃。やはり脳の本気、生命活動や本能には敵わない。\n 騙し騙しで気を張り続けても、脳みそは「あまりに強大な眠気」なる切り札を持っている。今回、それを切られたね。2日くらいひたすらに眠るしかなかった。驚くほど全身から「休め」と怒られた。\n あれだけ眠った今もまだまだ眠い。気だるい。感覚として、ここで気を抜いたら精神の病がぶり返すタイミングです。というか、そんな心配をしている時点ですでに、ですが。流石に客観的に見て酷いことが起きすぎた。平気なフリを十分に頑張ったよ。\n 身体を暖かくする。\n 今年でようやく学んだ。熱は無敵だ。温かい飲み物、毛布、浴槽。体の暖かさは副交感神経を優位にし、安らぎを得る。まずは落ち着いてからだ、すべては。暖かささえ忘れなければ、ギリギリで死にはしない。\n となると、やはり雪山での凍死は生命と真逆なんだ。冷たさにすべて奪われる。その瞬間、最後の生命の炎が灯り、これまでにない幻覚体験へ誘う。\n 生命は温度に支配されている。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

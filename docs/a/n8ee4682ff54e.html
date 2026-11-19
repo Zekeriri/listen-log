@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>精选一口随笔: 哲学的幸福</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-06-25 14:43</p>
+  <h1>精选一口随笔: 哲学的幸福</h1>
+  <p class="ja-title">選り抜き一口エッセイ:哲学的な幸福</p>
+</header>
+<main>
+  <article class="body">↑上の続きのような内容。
+
+人間は生きている限り、つねになんらかの悩みがあるもので、なんだか自分だけ一年中悩みっぱなしじゃないかと心配になると思いますが、むしろそれが正常な状態であるわけですね。
+
+そう考えると、前にも日記で引用したエピクロスの哲学にある「幸福と祝福は、財産がたくさんあるとか、地位が高いとか、何か権勢や権力だのがあるとか、こんなことに属するのではなくて、悩みのないこと、感情の穏やかなこと、自然にかなった限度を定める霊魂の状態、こうしたことに属するのである」という解釈が言い得て妙となり、人は悩み続けながら、極力悩みのないような、感情が穏やかな状態を目指し続けることが、正解となるわけです。吉良吉影だ。
+ しかし、悩むという行為は人間の特権です。悩み続けるからこそ人間であるわけで、哲学者ジョン・スチュアート・ミルは「悩まぬ豚より悩めるソクラテスであれ」と言いました。迷いがないまま本能で生きるのであれば、それは動物と同じですから。この考えも含めるとさらに話は面白くなり、「悩みがないことこそが幸福だが、悩みがあるからこそ人間である」となりますね。
+ となると、悩みがない環境を幸福のゴールとしながら、そこに辿り着けないからこそ苦悩することで人間として成立している状態を永遠に過ごし続けるのです。僕らは悩めば悩むほど人間となり、僅かながらもゴールを目指して歩いているとも言えるのかもしれません。ここに「幸福に生きよ！」も混ぜるとさらに大変なことになる。みんなでいっぱい悩んで幸せになろうね。
+
+毎日の日記をまとめた同人誌をBOOTHにて販売中！ 気に入ってくれたらよろしくね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-25 14:43\n精选一口随笔: 哲学的幸福\n選り抜き一口エッセイ:哲学的な幸福\n\n↑上の続きのような内容。\n\n人間は生きている限り、つねになんらかの悩みがあるもので、なんだか自分だけ一年中悩みっぱなしじゃないかと心配になると思いますが、むしろそれが正常な状態であるわけですね。\n\nそう考えると、前にも日記で引用したエピクロスの哲学にある「幸福と祝福は、財産がたくさんあるとか、地位が高いとか、何か権勢や権力だのがあるとか、こんなことに属するのではなくて、悩みのないこと、感情の穏やかなこと、自然にかなった限度を定める霊魂の状態、こうしたことに属するのである」という解釈が言い得て妙となり、人は悩み続けながら、極力悩みのないような、感情が穏やかな状態を目指し続けることが、正解となるわけです。吉良吉影だ。\n しかし、悩むという行為は人間の特権です。悩み続けるからこそ人間であるわけで、哲学者ジョン・スチュアート・ミルは「悩まぬ豚より悩めるソクラテスであれ」と言いました。迷いがないまま本能で生きるのであれば、それは動物と同じですから。この考えも含めるとさらに話は面白くなり、「悩みがないことこそが幸福だが、悩みがあるからこそ人間である」となりますね。\n となると、悩みがない環境を幸福のゴールとしながら、そこに辿り着けないからこそ苦悩することで人間として成立している状態を永遠に過ごし続けるのです。僕らは悩めば悩むほど人間となり、僅かながらもゴールを目指して歩いているとも言えるのかもしれません。ここに「幸福に生きよ！」も混ぜるとさらに大変なことになる。みんなでいっぱい悩んで幸せになろうね。\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中！ 気に入ってくれたらよろしくね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

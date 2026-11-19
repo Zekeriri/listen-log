@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔: 无论如何都想挖掘男朋友的女性</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-07-09 03:30</p>
+  <h1>一口随笔: 无论如何都想挖掘男朋友的女性</h1>
+  <p class="ja-title">一口エッセイ:どうしても彼氏を掘りたい女性</p>
+</header>
+<main>
+  <article class="body">これまた面白い連絡が来た。
+
+「中学の頃、好きなキャラのモブ攻めを読んでからモブおじに憧れ、ペニバンで男を掘りたい欲があるものの、元カレと違って今の彼氏は性行為が淡白で言い出せない」とのこと。
+ それでも彼氏なのだから、素直に「掘りたい」と言うしかないのではと返すと、「そもそも今の彼氏は可愛くない」らしい。こうなると付き合っている意味も薄そうなので、もはや別れた方がいいのではと提案してみた。僕は恐らく美少女ゲームの影響で、「恋人は互いを本気で好きであり続けるべき」と認識しており、自分の恋人が可愛く見えないならば、それは無理している状態と感じたのです。すると彼女は、「かわいい男と将来安定している男」で悩み、後者を選んでしまいました……と吐露する。
+ 僕からすれば正解は前者に見えます。僕の倫理観や人生観は、かなり藤子・F・不二雄先生の短編集に影響されているので、その中の一つ「値ぶみカメラ」を参考にすると分かりやすい。この話は、そのカメラで撮影すると「自分にとっての相手の価値」がわかる道具で、ヒロインはこのカメラを使って、求婚してきた金持ちと貧乏人のどちらが自分を真に愛しているかを知る……という内容。たしかに金持ちの資産価値は高かったのですが、肝心な主観での価値は貧乏でも本気な男の方が大きかったのだ。
+
+今回も同じケースかもなとF先生への尊敬の念を再確認していたところ、彼女は「今の彼氏と付き合いつつ、ペニバン買って元彼に連絡することにしました！」と。まさかの浮気という最適解。僕は関係ないので、それで幸せなら別に良いが、事実は小説よりも奇なりとはこのことですね。
+
+毎日の日記をまとめた同人誌をBOOTHにて販売中！
+
+商業エッセイ集もよろしくね！</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-07-09 03:30\n一口随笔: 无论如何都想挖掘男朋友的女性\n一口エッセイ:どうしても彼氏を掘りたい女性\n\nこれまた面白い連絡が来た。\n\n「中学の頃、好きなキャラのモブ攻めを読んでからモブおじに憧れ、ペニバンで男を掘りたい欲があるものの、元カレと違って今の彼氏は性行為が淡白で言い出せない」とのこと。\n それでも彼氏なのだから、素直に「掘りたい」と言うしかないのではと返すと、「そもそも今の彼氏は可愛くない」らしい。こうなると付き合っている意味も薄そうなので、もはや別れた方がいいのではと提案してみた。僕は恐らく美少女ゲームの影響で、「恋人は互いを本気で好きであり続けるべき」と認識しており、自分の恋人が可愛く見えないならば、それは無理している状態と感じたのです。すると彼女は、「かわいい男と将来安定している男」で悩み、後者を選んでしまいました……と吐露する。\n 僕からすれば正解は前者に見えます。僕の倫理観や人生観は、かなり藤子・F・不二雄先生の短編集に影響されているので、その中の一つ「値ぶみカメラ」を参考にすると分かりやすい。この話は、そのカメラで撮影すると「自分にとっての相手の価値」がわかる道具で、ヒロインはこのカメラを使って、求婚してきた金持ちと貧乏人のどちらが自分を真に愛しているかを知る……という内容。たしかに金持ちの資産価値は高かったのですが、肝心な主観での価値は貧乏でも本気な男の方が大きかったのだ。\n\n今回も同じケースかもなとF先生への尊敬の念を再確認していたところ、彼女は「今の彼氏と付き合いつつ、ペニバン買って元彼に連絡することにしました！」と。まさかの浮気という最適解。僕は関係ないので、それで幸せなら別に良いが、事実は小説よりも奇なりとはこのことですね。\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中！\n\n商業エッセイ集もよろしくね！"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

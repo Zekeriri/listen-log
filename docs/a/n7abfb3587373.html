@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：随身带三部手机的无业者</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-08-02 06:22</p>
+  <h1>一口随笔：随身带三部手机的无业者</h1>
+  <p class="ja-title">一口エッセイ:スマホを３つ持ち歩く無職</p>
+</header>
+<main>
+  <article class="body">今までずっとアルバイトのみだった友人が、このたび生活保護を申請する決意ができたようで、まずは申請を通し易くするため米青ネ申禾斗で診断をもらいにいくそうです。というわけで、米青ネ申禾斗で社会に馴染めないことを診断ではっきりさせるため、一般人と違う点を教えてくれと言われたので、まっさきに「無職なのにスマホを3台持ち歩いているところだよ！」と指摘した。
+
+彼は、なぜか常日頃からスマホを３つ携帯しており、それぞれネット用・連絡用・音楽用である。懸命な読者はお気づきの通り、ネットも連絡も音楽も本来は一台あれば全て事足りる。しかし、彼はあまりに「スマホが便利すぎて」用途を制限させないと混乱してしまうのです。医者も驚くほどのシングルタスクであるため、なんでもできてしまうと、かえってパニックになって何もできない。なので、こうして３つ持ち歩く。
+ しかも、それを指摘されるまで変なことだと認識していなかった。これは確実に米青ネ申禾斗で話すべき事柄です。度を超えて極端すぎる。
+ が、これはこれで良い点がひとつだけあり、連絡用のスマホだけにLINEを入れているので、ネットサーフィンや音楽鑑賞中は絶対に他人から連絡がこないこと。そのおかげで、彼は決められたごく短い時間にしか他人と連絡しないし、そのおかげか人間関係の悩みが薄い。ここまで徹底する必要かはともかく、ここまで強引な方法で生活している人もいるんだなぁと参考にどうぞ。
+
+毎日の日記をまとめた同人誌や、若い頃の文章をまとめた商業エッセイ集、よろしくお願いします♪</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-08-02 06:22\n一口随笔：随身带三部手机的无业者\n一口エッセイ:スマホを３つ持ち歩く無職\n\n今までずっとアルバイトのみだった友人が、このたび生活保護を申請する決意ができたようで、まずは申請を通し易くするため米青ネ申禾斗で診断をもらいにいくそうです。というわけで、米青ネ申禾斗で社会に馴染めないことを診断ではっきりさせるため、一般人と違う点を教えてくれと言われたので、まっさきに「無職なのにスマホを3台持ち歩いているところだよ！」と指摘した。\n\n彼は、なぜか常日頃からスマホを３つ携帯しており、それぞれネット用・連絡用・音楽用である。懸命な読者はお気づきの通り、ネットも連絡も音楽も本来は一台あれば全て事足りる。しかし、彼はあまりに「スマホが便利すぎて」用途を制限させないと混乱してしまうのです。医者も驚くほどのシングルタスクであるため、なんでもできてしまうと、かえってパニックになって何もできない。なので、こうして３つ持ち歩く。\n しかも、それを指摘されるまで変なことだと認識していなかった。これは確実に米青ネ申禾斗で話すべき事柄です。度を超えて極端すぎる。\n が、これはこれで良い点がひとつだけあり、連絡用のスマホだけにLINEを入れているので、ネットサーフィンや音楽鑑賞中は絶対に他人から連絡がこないこと。そのおかげで、彼は決められたごく短い時間にしか他人と連絡しないし、そのおかげか人間関係の悩みが薄い。ここまで徹底する必要かはともかく、ここまで強引な方法で生活している人もいるんだなぁと参考にどうぞ。\n\n毎日の日記をまとめた同人誌や、若い頃の文章をまとめた商業エッセイ集、よろしくお願いします♪"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

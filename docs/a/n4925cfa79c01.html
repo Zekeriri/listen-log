@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔:惩罚</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2023-09-02 07:19</p>
+  <h1>一口随笔:惩罚</h1>
+  <p class="ja-title">一口エッセイ:罰</p>
+</header>
+<main>
+  <article class="body">自分の死体を見ることは決してないのだから、必然的に死を自覚する瞬間も存在せず、それならば死を恐れる必要もないのではという考え方を読み、この結論はすごく良いなと思った。実感できないものに対して考えたところで意味がない。
+ ところで、方法によっては自死でも痛みどころか心地良さを感じることもできる。凍死などは、一定の時間を超えたら感覚が麻痺して恐怖も痛みもなく、幻覚に包まれるらしい。それは夢のような瞬間でしょう。幻覚を見ている間に観測できない「死」がやってくる。死んだあとにどこまでが「意識」か、輪廻転生はあるのか、はたまた天国か地獄か。それは進んだものにしかわからない。……ので、無宗教であれば考えなくともよい。特定の宗教を信仰しているのであれば、功徳を溜めて、より良い来世に、清らかな天国に、悟った涅槃へと辿り着く。が、自ら死を選ぶ行為への罰は相当大きなものであるでしょうけどね。
+ のんびり生き、ゆったりできる範囲で穏やかにしているあいだに頭が曖昧になって、凍死するかのようにゆったりとベッドの上で朦朧としながら冷たくゆらゆら揺れる幻覚の中で死ぬ。僕という一人称の死体を、僕が認識することはない。さて、死の先に辿り着く場所がどこであったかはどうだろう。あーだめだ。徳も足りない。不健康でカス。これはカエルとかでいいですね。コイツの来世はアマガエル。死ぬ直前に見えた優しい幻覚の記憶を背負い、土の上で鳴きなさい。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-09-02 07:19\n一口随笔:惩罚\n一口エッセイ:罰\n\n自分の死体を見ることは決してないのだから、必然的に死を自覚する瞬間も存在せず、それならば死を恐れる必要もないのではという考え方を読み、この結論はすごく良いなと思った。実感できないものに対して考えたところで意味がない。\n ところで、方法によっては自死でも痛みどころか心地良さを感じることもできる。凍死などは、一定の時間を超えたら感覚が麻痺して恐怖も痛みもなく、幻覚に包まれるらしい。それは夢のような瞬間でしょう。幻覚を見ている間に観測できない「死」がやってくる。死んだあとにどこまでが「意識」か、輪廻転生はあるのか、はたまた天国か地獄か。それは進んだものにしかわからない。……ので、無宗教であれば考えなくともよい。特定の宗教を信仰しているのであれば、功徳を溜めて、より良い来世に、清らかな天国に、悟った涅槃へと辿り着く。が、自ら死を選ぶ行為への罰は相当大きなものであるでしょうけどね。\n のんびり生き、ゆったりできる範囲で穏やかにしているあいだに頭が曖昧になって、凍死するかのようにゆったりとベッドの上で朦朧としながら冷たくゆらゆら揺れる幻覚の中で死ぬ。僕という一人称の死体を、僕が認識することはない。さて、死の先に辿り着く場所がどこであったかはどうだろう。あーだめだ。徳も足りない。不健康でカス。これはカエルとかでいいですね。コイツの来世はアマガエル。死ぬ直前に見えた優しい幻覚の記憶を背負い、土の上で鳴きなさい。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

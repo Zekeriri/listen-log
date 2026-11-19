@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>突然，在城市里出现格伦戴撒的事情</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-06-13 14:29</p>
+  <h1>突然，在城市里出现格伦戴撒的事情</h1>
+  <p class="ja-title">突然、街にグレンダイザーが現れるようなこと</p>
+</header>
+<main>
+  <article class="body">別に本気で文句がある訳でもないけれども、万博などで展示される際の「文化としてのガンダム」の顔ぶれに食傷気味というか、ファーストガンダム自体は洗練されて素晴らしいデザインと思っていますが、もうイベントなとでは見飽きた顔ではあるんだよなぁと常々考えてしまう。
+ こういう時、とつぜん企画者が勇気を出して、「今回の万博は……ガンダムデスサイズヘルカスタムでいきます！」とかになったりしないものかと妄想する。フォビドゥンとかでも、なんでもいいけど。とにかく「たしかにカッコよくて大好きだけど……お前が！？」みたいな事態を欲してしまうよね。
+ 「日本が生んだアニメーション文化の象徴として、世界に向けてガンダムパビリオンには等身大ガンダムヴァサーゴが設置されます！」などとアナウンスされたら、一日中並んでもいいから絶対見に行くけどね。
+
+イタリアを散歩していた際、ここでのドラえもんやクレしんくらいの扱いでグレンダイザーがそこかしこに居て興奮したね。
+
+「この道をまっすぐ進めばグレンダイザーが見れるぜ！」という案内を信じて進んだら、
+
+本当にグレンダイザーを中心に飾られた施設に辿り着いた。日本なら、まずマジンガーかそれこそガンダム。稀に鉄人28号がこの立ち位置でしょう。
+ ヨーロッパでは、フィンファンネルよりもダブルハーケンに熱狂するのだ！
+
+ガンダムパビリオンも後期は攻めたりして欲しいよ。ガブスレイとかギャプランとか置いたらいい。「えっ、ティターンズ！？」と、そこからみんな驚くだろうからね。ガンダムの記念展示にシロッコ製のやつらなんかめったに居ないし。
+ といった妄想を毎日しちゃっている。
+ そういうことの繰り返しで、気づいたら死んでいる。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-06-13 14:29\n突然，在城市里出现格伦戴撒的事情\n突然、街にグレンダイザーが現れるようなこと\n\n別に本気で文句がある訳でもないけれども、万博などで展示される際の「文化としてのガンダム」の顔ぶれに食傷気味というか、ファーストガンダム自体は洗練されて素晴らしいデザインと思っていますが、もうイベントなとでは見飽きた顔ではあるんだよなぁと常々考えてしまう。\n こういう時、とつぜん企画者が勇気を出して、「今回の万博は……ガンダムデスサイズヘルカスタムでいきます！」とかになったりしないものかと妄想する。フォビドゥンとかでも、なんでもいいけど。とにかく「たしかにカッコよくて大好きだけど……お前が！？」みたいな事態を欲してしまうよね。\n 「日本が生んだアニメーション文化の象徴として、世界に向けてガンダムパビリオンには等身大ガンダムヴァサーゴが設置されます！」などとアナウンスされたら、一日中並んでもいいから絶対見に行くけどね。\n\nイタリアを散歩していた際、ここでのドラえもんやクレしんくらいの扱いでグレンダイザーがそこかしこに居て興奮したね。\n\n「この道をまっすぐ進めばグレンダイザーが見れるぜ！」という案内を信じて進んだら、\n\n本当にグレンダイザーを中心に飾られた施設に辿り着いた。日本なら、まずマジンガーかそれこそガンダム。稀に鉄人28号がこの立ち位置でしょう。\n ヨーロッパでは、フィンファンネルよりもダブルハーケンに熱狂するのだ！\n\nガンダムパビリオンも後期は攻めたりして欲しいよ。ガブスレイとかギャプランとか置いたらいい。「えっ、ティターンズ！？」と、そこからみんな驚くだろうからね。ガンダムの記念展示にシロッコ製のやつらなんかめったに居ないし。\n といった妄想を毎日しちゃっている。\n そういうことの繰り返しで、気づいたら死んでいる。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

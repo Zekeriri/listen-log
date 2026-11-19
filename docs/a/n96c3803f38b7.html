@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>国际象棋中的劳动</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2026-05-08 05:06</p>
+  <h1>国际象棋中的劳动</h1>
+  <p class="ja-title">チェスの中での労働</p>
+</header>
+<main>
+  <article class="body">相変わらずチェスにハマっている。
+
+昔、とても好きだった大槍先生の絵が届いた。この前のイベントで購入した。当時、PCの壁紙にしていたなあ。なんて美しい絵画でしょうか。この人に、美術という世界のドアを開けてもらったようなものだ。
+ 生活保護の友人が遊びにきて、ともにチェスを打つ。
+ 白番、黒番、白番、黒番。
+ 先攻と後攻を入れ替え、何度も。
+ 高校の頃からの友人だ。沖縄に居た頃から、ずっと一緒にゲームをしてきた。
+ まさか、互いに30越えてなお、それもついにゲーム機すら介さず、ボードの上で駒を動かすだけの遊びに興じている。
+ チェスは、定石を覚えまくるゲームだ。実は、暗記の世界であり、暗記の連続からの不意な行動への対応力が求められる。友人は、黒番、後攻側が非常に弱かった。チェスは基本的に白が有利で、先攻である利を生かした様々な攻め方が楽しい。一方、黒はまず防衛から始まるので、受け方のパターンをたくさん学習する必要がある。
+ 僕が白番時の猛攻を止めるため、彼は受け方を学ぼうとした。
+ それがロンドンシステムという名前なのだが、これがまた事務的で退屈な型であるらしく、「仕事チェス」「サラリーマンチェス」と呼ばれているらしい。
+ 当然、友人側の拒否感は凄まじい。サラリーマンって。
+ しかし、そのようなありきたりな初歩に馴染んでこその勝負だ。社会とまったく同じである。コンビニバイトどころかウーバーの配達員程度の会話量でも耐えきれず発狂した友人がポツリと漏らす。
+
+「盤上でくらい働いた方がいいのかな？」
+
+見事な生活保護ギャグだった。
+ 完全に呆気にとられた僕の投了（リザイン）でしたね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-05-08 05:06\n国际象棋中的劳动\nチェスの中での労働\n\n相変わらずチェスにハマっている。\n\n昔、とても好きだった大槍先生の絵が届いた。この前のイベントで購入した。当時、PCの壁紙にしていたなあ。なんて美しい絵画でしょうか。この人に、美術という世界のドアを開けてもらったようなものだ。\n 生活保護の友人が遊びにきて、ともにチェスを打つ。\n 白番、黒番、白番、黒番。\n 先攻と後攻を入れ替え、何度も。\n 高校の頃からの友人だ。沖縄に居た頃から、ずっと一緒にゲームをしてきた。\n まさか、互いに30越えてなお、それもついにゲーム機すら介さず、ボードの上で駒を動かすだけの遊びに興じている。\n チェスは、定石を覚えまくるゲームだ。実は、暗記の世界であり、暗記の連続からの不意な行動への対応力が求められる。友人は、黒番、後攻側が非常に弱かった。チェスは基本的に白が有利で、先攻である利を生かした様々な攻め方が楽しい。一方、黒はまず防衛から始まるので、受け方のパターンをたくさん学習する必要がある。\n 僕が白番時の猛攻を止めるため、彼は受け方を学ぼうとした。\n それがロンドンシステムという名前なのだが、これがまた事務的で退屈な型であるらしく、「仕事チェス」「サラリーマンチェス」と呼ばれているらしい。\n 当然、友人側の拒否感は凄まじい。サラリーマンって。\n しかし、そのようなありきたりな初歩に馴染んでこその勝負だ。社会とまったく同じである。コンビニバイトどころかウーバーの配達員程度の会話量でも耐えきれず発狂した友人がポツリと漏らす。\n\n「盤上でくらい働いた方がいいのかな？」\n\n見事な生活保護ギャグだった。\n 完全に呆気にとられた僕の投了（リザイン）でしたね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：中野Broadway故事</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-05-23 03:41</p>
+  <h1>一口随笔：中野Broadway故事</h1>
+  <p class="ja-title">一口エッセイ:中野ブロードウェイ物語</p>
+</header>
+<main>
+  <article class="body">『中野ブロードウェイ物語』を読みました。
+ 書名通り、中野ブロードウェイの成り立ちと現在までの物語と歴史が綴られた、中野に思い入れのある人間にはたまらないニッチな一冊。もちろん、中野ブロードウェイに歩いて数分の場所に住んでいる自分にとっては、非常に唆る内容。
+ 本書を通して、自分が何故ここまで中野ブロードウェイに惹かれるかを再考してみると、本の中でも書かれているように「日本の九龍城砦」と呼ばれるに相応しい、カオスを体現したような空間であるからでしょうか。
+ 一般的な商業施設を運営する方なら、中野ブロードウェイは「店舗の集まり方の方向性が見えない、B級店だけを入れたダメな空間」と評価するらしい。実際、まいにち中野ブロードウェイを散歩している自分としても、その通りと言わざるを得ない。が、それこそ中野の魅力なのですね。みなが思うままオタク・サブカルな店を採算度外視で開く。最近なんて、レアなポケモンカード専門店が登場。4階には、この時代にセル画屋が増えました。それでいて、秋葉原と違ってオタクショップに限定されるわけでもなく、普通の服屋や時計店なども立ち並ぶのだから、間違いなくカオスそのもの。この混沌とした雰囲気を吸うため、日々散歩を繰り返す。
+ そんな中野ブロードウェイですが、もう55周年を迎えまして、どんどん老朽化は進んでおります。正直、いつ取り壊されてもおかしくない状態でして、いつか急に「日本の九龍城砦」は消え失せ、いつまでもレトロサブカルに囚われている僕らが夢から醒める日は近い……。その日が来るまで、ただただ散歩を繰り返すことしかできない。
+
+毎日の日記をまとめた同人誌をBOOTHにて販売中です。いろんな話が載っていて、カオスで面白いよ。
+
+商業エッセイ集もよろしくお願いします♪
+ こちらは、もっと混沌としているぜ。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-05-23 03:41\n一口随笔：中野Broadway故事\n一口エッセイ:中野ブロードウェイ物語\n\n『中野ブロードウェイ物語』を読みました。\n 書名通り、中野ブロードウェイの成り立ちと現在までの物語と歴史が綴られた、中野に思い入れのある人間にはたまらないニッチな一冊。もちろん、中野ブロードウェイに歩いて数分の場所に住んでいる自分にとっては、非常に唆る内容。\n 本書を通して、自分が何故ここまで中野ブロードウェイに惹かれるかを再考してみると、本の中でも書かれているように「日本の九龍城砦」と呼ばれるに相応しい、カオスを体現したような空間であるからでしょうか。\n 一般的な商業施設を運営する方なら、中野ブロードウェイは「店舗の集まり方の方向性が見えない、B級店だけを入れたダメな空間」と評価するらしい。実際、まいにち中野ブロードウェイを散歩している自分としても、その通りと言わざるを得ない。が、それこそ中野の魅力なのですね。みなが思うままオタク・サブカルな店を採算度外視で開く。最近なんて、レアなポケモンカード専門店が登場。4階には、この時代にセル画屋が増えました。それでいて、秋葉原と違ってオタクショップに限定されるわけでもなく、普通の服屋や時計店なども立ち並ぶのだから、間違いなくカオスそのもの。この混沌とした雰囲気を吸うため、日々散歩を繰り返す。\n そんな中野ブロードウェイですが、もう55周年を迎えまして、どんどん老朽化は進んでおります。正直、いつ取り壊されてもおかしくない状態でして、いつか急に「日本の九龍城砦」は消え失せ、いつまでもレトロサブカルに囚われている僕らが夢から醒める日は近い……。その日が来るまで、ただただ散歩を繰り返すことしかできない。\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中です。いろんな話が載っていて、カオスで面白いよ。\n\n商業エッセイ集もよろしくお願いします♪\n こちらは、もっと混沌としているぜ。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

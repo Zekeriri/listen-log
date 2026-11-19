@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：殴杀天使的骷髅酱</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-09-17 05:22</p>
+  <h1>一口随笔：殴杀天使的骷髅酱</h1>
+  <p class="ja-title">一口エッセイ:撲殺天使のドクロちゃん</p>
+</header>
+<main>
+  <article class="body">深夜になると睡眠薬などでラリった方や、不眠で精神が昂っている方から、勢いのある長文が送られてきたりもします。
+ 色んなパターンがありますが、だいたいは文末は「応援してます!」「にゃるらさん好きです!」的なファンレターで終わっており、返信を求めない形でえらいなと思いながら、ハートだけつけたりつけなかったりします。流石に知らない方に毎回返信もできませんし、無関係の人間に一瞬だけ理解を示すフリをするのは、優しさではないと思うので。これくらいの距離感でいきましょう。
+ そんな中、久々にDMを開いてみると、すでに消えたアカウントから長文が届いていた。やはり睡眠薬の勢いで送ったと書いてあり、社会への恨みつらみが並べられていて、大変だなあと読み進めていると、とつぜん脈絡なく「初恋の人 撲殺天使のドクロちゃん」と書かれてある。
+
+これは良いな。すごく良い。ラリってるからでてきた支離滅裂だからこそ美しい一文。残念ながら知らない人の不幸話に同情するほどピュアではないが、初恋のキャラを書き記したくだりは、僕の心をつよく掴んだ。曖昧な脳みそで加速していく思考の中でも、ドクロちゃんへの恋心だけは絶対に伝えたかった。素敵だ。もうアカウントが消えているので返信もできないし、やはり知らない人に優しくもできないが、こうして貴方の残した一文の素晴らしさは読者に伝えます。それを貴方がどう感じようとも。でもそれって僕の愛なの。
+
+毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-09-17 05:22\n一口随笔：殴杀天使的骷髅酱\n一口エッセイ:撲殺天使のドクロちゃん\n\n深夜になると睡眠薬などでラリった方や、不眠で精神が昂っている方から、勢いのある長文が送られてきたりもします。\n 色んなパターンがありますが、だいたいは文末は「応援してます!」「にゃるらさん好きです!」的なファンレターで終わっており、返信を求めない形でえらいなと思いながら、ハートだけつけたりつけなかったりします。流石に知らない方に毎回返信もできませんし、無関係の人間に一瞬だけ理解を示すフリをするのは、優しさではないと思うので。これくらいの距離感でいきましょう。\n そんな中、久々にDMを開いてみると、すでに消えたアカウントから長文が届いていた。やはり睡眠薬の勢いで送ったと書いてあり、社会への恨みつらみが並べられていて、大変だなあと読み進めていると、とつぜん脈絡なく「初恋の人 撲殺天使のドクロちゃん」と書かれてある。\n\nこれは良いな。すごく良い。ラリってるからでてきた支離滅裂だからこそ美しい一文。残念ながら知らない人の不幸話に同情するほどピュアではないが、初恋のキャラを書き記したくだりは、僕の心をつよく掴んだ。曖昧な脳みそで加速していく思考の中でも、ドクロちゃんへの恋心だけは絶対に伝えたかった。素敵だ。もうアカウントが消えているので返信もできないし、やはり知らない人に優しくもできないが、こうして貴方の残した一文の素晴らしさは読者に伝えます。それを貴方がどう感じようとも。でもそれって僕の愛なの。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

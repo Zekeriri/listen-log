@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>精选一口随笔：电波男与超人计划</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-09-14 16:45</p>
+  <h1>精选一口随笔：电波男与超人计划</h1>
+  <p class="ja-title">選り抜き一口エッセイ:電波男と超人計画</p>
+</header>
+<main>
+  <article class="body">僕が子供の頃、「電車男」のドラマ化などをきっかけに、オタクの概念が世間へ急速に広がりました。まだまだオタクが理解されずに叩かれ気味だった時代ですが、そんな中で敢えてオタクであることを前面に打ち出した本田透先生の「電波男」なる本が刊行されました。僕は、この「電波男」と、「NHKへようこそ！」の瀧本先生が書いたオタク的なエッセイ集「超人計画」が大好きだったのですね。特に、「超人計画」の「薄汚れたオタクの部屋の押し入れから美少女キャラクターの象徴である綾波が顔をのぞかせている」表紙は痺れました。コンセプトがとても美しい一枚だと思います。
+
+オタクであることがバレた瞬間、社会から爪弾きされる環境で、ここまで声を大にして「自分はこんなにキモくてモテないオタクだ！！」と主張する両先生の恐れを知らない態度に、僕は激しく憧れを抱きました。だからこそ、誰よりも二次元キャラクターを愛していると話す迫力に、本物の愛を感じたものです。
+ 時は経って、現代では、もうオタクであることを負い目に感じる必要はありませんでした。オタクカルチャーとメインカルチャーは、SNSや深夜アニメなどを通して混ざり合い、もはや誰も電波男や超人を目指すオタクの青年たちを見ても、それを笑わない。その事実に伴い、この2冊の面白さも、今読むと伝わりづらいのではと懸念しております。なので、この文章を読んでいる人たちは忘れないでくださいね。オタクが憧れたカッコいいオタクの先人たちの存在を。
+
+毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくお願いします♪</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-09-14 16:45\n精选一口随笔：电波男与超人计划\n選り抜き一口エッセイ:電波男と超人計画\n\n僕が子供の頃、「電車男」のドラマ化などをきっかけに、オタクの概念が世間へ急速に広がりました。まだまだオタクが理解されずに叩かれ気味だった時代ですが、そんな中で敢えてオタクであることを前面に打ち出した本田透先生の「電波男」なる本が刊行されました。僕は、この「電波男」と、「NHKへようこそ！」の瀧本先生が書いたオタク的なエッセイ集「超人計画」が大好きだったのですね。特に、「超人計画」の「薄汚れたオタクの部屋の押し入れから美少女キャラクターの象徴である綾波が顔をのぞかせている」表紙は痺れました。コンセプトがとても美しい一枚だと思います。\n\nオタクであることがバレた瞬間、社会から爪弾きされる環境で、ここまで声を大にして「自分はこんなにキモくてモテないオタクだ！！」と主張する両先生の恐れを知らない態度に、僕は激しく憧れを抱きました。だからこそ、誰よりも二次元キャラクターを愛していると話す迫力に、本物の愛を感じたものです。\n 時は経って、現代では、もうオタクであることを負い目に感じる必要はありませんでした。オタクカルチャーとメインカルチャーは、SNSや深夜アニメなどを通して混ざり合い、もはや誰も電波男や超人を目指すオタクの青年たちを見ても、それを笑わない。その事実に伴い、この2冊の面白さも、今読むと伝わりづらいのではと懸念しております。なので、この文章を読んでいる人たちは忘れないでくださいね。オタクが憧れたカッコいいオタクの先人たちの存在を。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくお願いします♪"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

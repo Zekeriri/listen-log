@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：请观看战国收藏</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-01-10 01:42</p>
+  <h1>一口随笔：请观看战国收藏</h1>
+  <p class="ja-title">一口エッセイ:戦国コレクションを観なさい</p>
+</header>
+<main>
+  <article class="body">先日の日記で、僕はソーシャルゲームを一切遊ばないことを書きましたが、アニメで放送されると観ます。中でも大好きなソシャゲ原作アニメもありまして、その一つが「戦国コレクション」です。
+ 戦コレの何が出色の作品に感じるかですが、先ずなんと言っても一話完結かつ、各話のジャンルや作風がバラバラ（登場人物もほぼ共通しない）なので、どの話を観ても毎回別のワクワクがある。
+ ある作品では、女の子3人がひたすら部屋でダラダラするだけで終わったと思えば、急に幼稚園を舞台に銀河英雄伝説のパロディを行ったり、真っ当な感動回もあれば、唐突なSF回もあったりする。どの話も主人公となるヒロインは別（現代に飛ばされた戦国武将）で、どんどん緩く繋がっていく彼女たちの関係が堪らない。
+ 1話完結の短編としての出来がどれも良く、どの回もモチーフとなる名作映画が存在する。この回は「バグダッド・カフェ」だなとか、これは「幻の湖」なのか！ という楽しみ方もできて、映画ファンからの評価も高い。こんな冒険した内容（原作からかけ離れた）で2クールある。元となった映画26本を追っていくだけでも面白い。どこからでも観れる点も、基本的にはストーリーとキャラを追っていく他のソシャゲ原作アニメと一線を画す。
+
+特にオススメの回は18話。背景美術がゴッホタッチで陰鬱としており、ダウナーな見た目の大谷吉継ちゃんとの相性は抜群。そして、この回のモチーフは「ダンサー・イン・ザ・ダーク」。あの映画が元ネタということはストーリーも勿論……。この先の展開は、是非皆さんの目でたしかめてもらいたい。
+
+毎日のエッセイをまとめた同人誌が販売中です。アニメの話もいっぱいしている。
+
+こっちは人生の話が多めの商業エッセイ集。最近Amazonレビューが増え始めていて嬉しい！</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-01-10 01:42\n一口随笔：请观看战国收藏\n一口エッセイ:戦国コレクションを観なさい\n\n先日の日記で、僕はソーシャルゲームを一切遊ばないことを書きましたが、アニメで放送されると観ます。中でも大好きなソシャゲ原作アニメもありまして、その一つが「戦国コレクション」です。\n 戦コレの何が出色の作品に感じるかですが、先ずなんと言っても一話完結かつ、各話のジャンルや作風がバラバラ（登場人物もほぼ共通しない）なので、どの話を観ても毎回別のワクワクがある。\n ある作品では、女の子3人がひたすら部屋でダラダラするだけで終わったと思えば、急に幼稚園を舞台に銀河英雄伝説のパロディを行ったり、真っ当な感動回もあれば、唐突なSF回もあったりする。どの話も主人公となるヒロインは別（現代に飛ばされた戦国武将）で、どんどん緩く繋がっていく彼女たちの関係が堪らない。\n 1話完結の短編としての出来がどれも良く、どの回もモチーフとなる名作映画が存在する。この回は「バグダッド・カフェ」だなとか、これは「幻の湖」なのか！ という楽しみ方もできて、映画ファンからの評価も高い。こんな冒険した内容（原作からかけ離れた）で2クールある。元となった映画26本を追っていくだけでも面白い。どこからでも観れる点も、基本的にはストーリーとキャラを追っていく他のソシャゲ原作アニメと一線を画す。\n\n特にオススメの回は18話。背景美術がゴッホタッチで陰鬱としており、ダウナーな見た目の大谷吉継ちゃんとの相性は抜群。そして、この回のモチーフは「ダンサー・イン・ザ・ダーク」。あの映画が元ネタということはストーリーも勿論……。この先の展開は、是非皆さんの目でたしかめてもらいたい。\n\n毎日のエッセイをまとめた同人誌が販売中です。アニメの話もいっぱいしている。\n\nこっちは人生の話が多めの商業エッセイ集。最近Amazonレビューが増え始めていて嬉しい！"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

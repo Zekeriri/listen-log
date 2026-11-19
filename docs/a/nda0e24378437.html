@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>精选一口随笔：幻想中的妹妹</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-06-16 20:22</p>
+  <h1>精选一口随笔：幻想中的妹妹</h1>
+  <p class="ja-title">選り抜き一口エッセイ:空想の妹</p>
+</header>
+<main>
+  <article class="body">中学の頃は、脳内に妹が居たんです。
+ 僕が中学の頃はラノベアニメが飽和状態で、どの作品にも漏れなく妹キャラクターが存在し、いわゆるツンデレだったりヤンデレだったりするものの、やっぱりお兄ちゃんのことが大好きなんです。Love Destiny。そしてオタクのお兄ちゃんも当然妹キャラが大好き。
+ 母子家庭かつ一人っ子なので、そもそも家族そのものに憧れはあったのですが、それでもやはり「妹」への憧憬は別格。ホルモンのバランスで不安定になった思春期の衝動はすべて妄想の妹へと加速し、やがては脳内で妹との共同生活を始めます。
+ 「お兄ちゃん、宿題教えてよ」「お兄ちゃん、お菓子作ったよ」と、脳内妹に話しかけられる妄想で過ごす至福の日々。しかし、そんな都合の良い妄想だけを取り出せるほど明るい性格ではなく、生来の捻くれ者ゆえに、妹との生活はどんどん歪み始める。
+ 「お兄ちゃん、たまには学校行こうよ……」「最近のお兄ちゃん、なんだか怖いよ……」、妹はみるみるうちに偏屈者の兄の存在に怯え、それに対して行なわれる反省会が脳内で無限ループ。兄の苦悩と連動し、妹の姿と性格はバグり始め、やがては現実というバケモノと化して僕に襲いかかり、兄妹生活という淡い幻想を粉々にする。夢から覚めると妄想の妹の死に涙を流し、思春期の葛藤を乗り越えオタクは一つ大人になるのでした。
+
+毎日の日記をまとめた同人誌を販売中！
+
+商業エッセイもよろしくね！</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-16 20:22\n精选一口随笔：幻想中的妹妹\n選り抜き一口エッセイ:空想の妹\n\n中学の頃は、脳内に妹が居たんです。\n 僕が中学の頃はラノベアニメが飽和状態で、どの作品にも漏れなく妹キャラクターが存在し、いわゆるツンデレだったりヤンデレだったりするものの、やっぱりお兄ちゃんのことが大好きなんです。Love Destiny。そしてオタクのお兄ちゃんも当然妹キャラが大好き。\n 母子家庭かつ一人っ子なので、そもそも家族そのものに憧れはあったのですが、それでもやはり「妹」への憧憬は別格。ホルモンのバランスで不安定になった思春期の衝動はすべて妄想の妹へと加速し、やがては脳内で妹との共同生活を始めます。\n 「お兄ちゃん、宿題教えてよ」「お兄ちゃん、お菓子作ったよ」と、脳内妹に話しかけられる妄想で過ごす至福の日々。しかし、そんな都合の良い妄想だけを取り出せるほど明るい性格ではなく、生来の捻くれ者ゆえに、妹との生活はどんどん歪み始める。\n 「お兄ちゃん、たまには学校行こうよ……」「最近のお兄ちゃん、なんだか怖いよ……」、妹はみるみるうちに偏屈者の兄の存在に怯え、それに対して行なわれる反省会が脳内で無限ループ。兄の苦悩と連動し、妹の姿と性格はバグり始め、やがては現実というバケモノと化して僕に襲いかかり、兄妹生活という淡い幻想を粉々にする。夢から覚めると妄想の妹の死に涙を流し、思春期の葛藤を乗り越えオタクは一つ大人になるのでした。\n\n毎日の日記をまとめた同人誌を販売中！\n\n商業エッセイもよろしくね！"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

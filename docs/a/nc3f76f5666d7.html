@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：罗泽烈姆</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-05-20 15:04</p>
+  <h1>一口随笔：罗泽烈姆</h1>
+  <p class="ja-title">一口エッセイ:ロゼレム</p>
+</header>
+<main>
+  <article class="body">ガッツリ寝落ちしました。ちょっとベッドで横になっているうちに、数時間ぽこっといった。
+ Twitter始めたての頃、寝落ちのことを必ず「気絶していた」と大袈裟に表現する人がいて、その人に対して「ただの寝落ちを気絶と言うのはいかがなものか……」と注意する方までおり、SNSとは難しいものだなと怖くなった覚えがあります。両者の気持ちも分かりますからね。
+ そんなことはどうでもいいとして、寝落ちとはいえ眠れた要因としては、「ロゼレム」をたくさん飲んだからでしょう。ロゼレムは、睡眠薬の中でも「自然な眠気」を促す薬で、生活リズムを整えるメラトニンにそっと働きかけます。優しいやつだぜ。
+ が、この「自然な眠気」を促す系の睡眠薬は、ラリって暴れて記憶を飛ばすことがない代わりに、やはり即効性は全然なかったり、効き目が薄かったりします。「脳の働きを強制的にシャットダウンするあの感覚」は、ありません。ですので、個人的には全然効いた感じがなくて余らせていたんです。
+ なので、もしかしたら量の力で効くかもしれないし、余っている分多めに飲んでおいたら、一気に刺激されたメラトニンが頑張ってくれたのか、深夜になったら眠気がすごく、こうして寝落ちして昼まで寝ていたのですね。すごいぜ。
+ それにしても、「生活リズムを整える薬」って、物凄く優等生っぽくて怖いですね。強制的に眠らせようとする薬と違って、人格的な部分を矯正されているようでムカつく（わがまま）！ 寝たい時に寝るから人間なんだぞと思いつつ、寝たい時に寝れないから結局お世話になるのですが。
+
+毎日の日記をまとめた同人誌をboothにて販売中！
+ 今日のように起きたばかりの頭で、雑に書いた文章は捨て回ですね。
+
+商業エッセイ集もよろしくね。こちらの本には怨念が込められているので、どれも読み応えがある。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-05-20 15:04\n一口随笔：罗泽烈姆\n一口エッセイ:ロゼレム\n\nガッツリ寝落ちしました。ちょっとベッドで横になっているうちに、数時間ぽこっといった。\n Twitter始めたての頃、寝落ちのことを必ず「気絶していた」と大袈裟に表現する人がいて、その人に対して「ただの寝落ちを気絶と言うのはいかがなものか……」と注意する方までおり、SNSとは難しいものだなと怖くなった覚えがあります。両者の気持ちも分かりますからね。\n そんなことはどうでもいいとして、寝落ちとはいえ眠れた要因としては、「ロゼレム」をたくさん飲んだからでしょう。ロゼレムは、睡眠薬の中でも「自然な眠気」を促す薬で、生活リズムを整えるメラトニンにそっと働きかけます。優しいやつだぜ。\n が、この「自然な眠気」を促す系の睡眠薬は、ラリって暴れて記憶を飛ばすことがない代わりに、やはり即効性は全然なかったり、効き目が薄かったりします。「脳の働きを強制的にシャットダウンするあの感覚」は、ありません。ですので、個人的には全然効いた感じがなくて余らせていたんです。\n なので、もしかしたら量の力で効くかもしれないし、余っている分多めに飲んでおいたら、一気に刺激されたメラトニンが頑張ってくれたのか、深夜になったら眠気がすごく、こうして寝落ちして昼まで寝ていたのですね。すごいぜ。\n それにしても、「生活リズムを整える薬」って、物凄く優等生っぽくて怖いですね。強制的に眠らせようとする薬と違って、人格的な部分を矯正されているようでムカつく（わがまま）！ 寝たい時に寝るから人間なんだぞと思いつつ、寝たい時に寝れないから結局お世話になるのですが。\n\n毎日の日記をまとめた同人誌をboothにて販売中！\n 今日のように起きたばかりの頭で、雑に書いた文章は捨て回ですね。\n\n商業エッセイ集もよろしくね。こちらの本には怨念が込められているので、どれも読み応えがある。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

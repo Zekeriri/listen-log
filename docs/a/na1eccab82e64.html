@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>精选一口散文：能够在一起，大概直到地面为止</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2021-12-18 14:27</p>
+  <h1>精选一口散文：能够在一起，大概直到地面为止</h1>
+  <p class="ja-title">選り抜き一口エッセイ: 一緒に居られるのは、きっと地面までよ</p>
+</header>
+<main>
+  <article class="body">「天使のいない12月」は、ビックリするくらい僕の人生に大きな影響を与えており、美少女ゲームのヒロインを全員メンヘラにしていいんだ！ と、「ガンプラは自由だ！」のテンションで叫んでしまったのですね。
+ 何度も話しておりますが、中でも須磨寺雪緒というヒロインは衝撃的すぎました。
+ 須磨寺さんのシナリオがどれだけ革新的だったかは、添付した僕のnote記事を参照して頂けると幸いです。本当に大好きなヒロイン。
+ 須磨寺ルートの一番の盛り上がりどころは、やはりラストの屋上でのやり取り。希死念慮持ちの彼女と心中を決心した主人公は、リボンで互いの手をむすび、飛び降りを決行する。
+ その際に彼女が放った「一緒に居られるのは、きっと地面までよ」というセリフがたいへん素晴らしく、須磨寺雪緒というキャラクターの詩的な点を余すことなく表現している。いわゆる「一緒に死んで永遠になろう」とする行為への冷静かつ、だからこそ美しい返答。ここで「死んでも一緒よ」なんて甘い台詞を吐くような人格でないからこそ、十数年経った今でも多くのオタクたちの記憶に刻まれる女性となったのでしょう。
+ 夕暮れ時の屋上で、同時に死ねるようにリボンで腕を結び合った男女が見つめ合う、ポエマーな彼女が望んだ最高の状況で、「一緒に居られるのは、きっと地面までよ」と呟く。この瞬間、彼女の不安定で拗れに拗れた思春期の感性は頂点に達したように感じます。「きっと」の部分に含まれた複雑な想いを考えるだけで一晩明かせます。
+
+毎日のエッセイをまとめた同人誌が販売中です。読んでみてね。
+
+今月末には、商業エッセイ集もでます。こちらも読んでもらえると嬉しい！</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-18 14:27\n精选一口散文：能够在一起，大概直到地面为止\n選り抜き一口エッセイ: 一緒に居られるのは、きっと地面までよ\n\n「天使のいない12月」は、ビックリするくらい僕の人生に大きな影響を与えており、美少女ゲームのヒロインを全員メンヘラにしていいんだ！ と、「ガンプラは自由だ！」のテンションで叫んでしまったのですね。\n 何度も話しておりますが、中でも須磨寺雪緒というヒロインは衝撃的すぎました。\n 須磨寺さんのシナリオがどれだけ革新的だったかは、添付した僕のnote記事を参照して頂けると幸いです。本当に大好きなヒロイン。\n 須磨寺ルートの一番の盛り上がりどころは、やはりラストの屋上でのやり取り。希死念慮持ちの彼女と心中を決心した主人公は、リボンで互いの手をむすび、飛び降りを決行する。\n その際に彼女が放った「一緒に居られるのは、きっと地面までよ」というセリフがたいへん素晴らしく、須磨寺雪緒というキャラクターの詩的な点を余すことなく表現している。いわゆる「一緒に死んで永遠になろう」とする行為への冷静かつ、だからこそ美しい返答。ここで「死んでも一緒よ」なんて甘い台詞を吐くような人格でないからこそ、十数年経った今でも多くのオタクたちの記憶に刻まれる女性となったのでしょう。\n 夕暮れ時の屋上で、同時に死ねるようにリボンで腕を結び合った男女が見つめ合う、ポエマーな彼女が望んだ最高の状況で、「一緒に居られるのは、きっと地面までよ」と呟く。この瞬間、彼女の不安定で拗れに拗れた思春期の感性は頂点に達したように感じます。「きっと」の部分に含まれた複雑な想いを考えるだけで一晩明かせます。\n\n毎日のエッセイをまとめた同人誌が販売中です。読んでみてね。\n\n今月末には、商業エッセイ集もでます。こちらも読んでもらえると嬉しい！"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

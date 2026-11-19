@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>与VA-11 HALL-A作者Kiririn先生进行公开直播</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2026-09-18 06:42</p>
+  <h1>与VA-11 HALL-A作者Kiririn先生进行公开直播</h1>
+  <p class="ja-title">VA-11 HALL-A作者Kiririn氏と公開生放送を行うよ</p>
+</header>
+<main>
+  <article class="body">#va11halla 作者の @kiririn51 と #ニディガ 作者の @nyalra 、2人が世界のオタクカルチャーをアキバでファンのみんなとはなす公開生放送が9月23日（水・祝）に決定！
+▶ニコ生https://t.co/h0jhII42FP
+▶YouTubehttps://t.co/HlbObawCX7
+特典付き現地参加チケット詳細はツリーをチェック▼ pic.twitter.com/OPMZbMCrz2— ニコニコニュース (@nico_nico_news) September 10, 2026
+
+というわけで、次回のnyalraと夜更かしは、配信だけでなく公開生放送を行います。
+ ぜひ、秋葉原の書泉ブックタワーへ遊びに来てくださいね♫
+ 23日のお昼です。来れない方もURLから気軽に番組を視聴できるので大丈夫。
+
+↓こちらからどうぞ。
+
+#va11halla 作者の @kiririn51 と #ニディガ 作者の @nyalra のトークイベントが開催！
+イベント参加特典は @Parorou 描き下ろしのジル・スティングレイ × 沙華 コラボステッカー
+9月23日（水・祝）14時・書泉ブックタワーにて
+チケットはこちら▼https://t.co/23kQ3Fnix6 pic.twitter.com/mTtd4RRqNi— ニコニコニュース (@nico_nico_news) September 14, 2026</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-09-18 06:42\n与VA-11 HALL-A作者Kiririn先生进行公开直播\nVA-11 HALL-A作者Kiririn氏と公開生放送を行うよ\n\n#va11halla 作者の @kiririn51 と #ニディガ 作者の @nyalra 、2人が世界のオタクカルチャーをアキバでファンのみんなとはなす公開生放送が9月23日（水・祝）に決定！\n▶ニコ生https://t.co/h0jhII42FP\n▶YouTubehttps://t.co/HlbObawCX7\n特典付き現地参加チケット詳細はツリーをチェック▼ pic.twitter.com/OPMZbMCrz2— ニコニコニュース (@nico_nico_news) September 10, 2026\n\nというわけで、次回のnyalraと夜更かしは、配信だけでなく公開生放送を行います。\n ぜひ、秋葉原の書泉ブックタワーへ遊びに来てくださいね♫\n 23日のお昼です。来れない方もURLから気軽に番組を視聴できるので大丈夫。\n\n↓こちらからどうぞ。\n\n#va11halla 作者の @kiririn51 と #ニディガ 作者の @nyalra のトークイベントが開催！\nイベント参加特典は @Parorou 描き下ろしのジル・スティングレイ × 沙華 コラボステッカー\n9月23日（水・祝）14時・書泉ブックタワーにて\nチケットはこちら▼https://t.co/23kQ3Fnix6 pic.twitter.com/mTtd4RRqNi— ニコニコニュース (@nico_nico_news) September 14, 2026"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：各种超级天商品</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-08-06 13:17</p>
+  <h1>一口随笔：各种超级天商品</h1>
+  <p class="ja-title">一口エッセイ:超てんグッズのいろいろ</p>
+</header>
+<main>
+  <article class="body">超てんちゃんのグッズが発送されたらしく、届いた人の声がちらほら聴こえて嬉しい。
+
+グッズ監修は、お仕事の中でもかなり楽しくやっております。いろんな企業さんからもお声掛けありましたが、Tシャツやアクスタは自分たち（自社製作）でやろうと決めました。そのせいで少し高くなったのはごめんね！ 他企業と組んで安くする方法もあったのですが、最初の公式グッズ通販ですし、クオリティに拘ったり、なんの制限もなく作りたかったのです。でも、その甲斐あった素晴らしいものがみなさんの手元に届いた筈だと信じております。アクスタの台座の虹色の光沢、とてもサイケデリックに輝いて綺麗でしょう？ Tシャツもデザインとっても頑張ったんですよ。これも、グッズ製作班の方々が丁寧に打ち合わせを重ねてくれた結果です。
+
+超てんちゃんフィギャー2体目でるよ！
+これ打ち合わせで撮った写真 https://t.co/IhDv1Jywyr pic.twitter.com/DzvjZXVQ3t— 🎀超絶最かわ🎀てんしちゃん (@x_angelkawaii_x) August 6, 2022
+
+フィギュアも2体目が発表されました。超てんちゃんは、本当に人気者ですね！ 僕は、怪獣ソフビや特撮玩具など立体物が大好きなので、立体化の話は届くたびに小躍りしています。あめちゃんもいつかフィギュア化して欲しいですよね。ふたり並べて飾れると素敵ですね。
+ いろいろ製作側が喋ってるの萎えると思うのでこのへんにしておきます。届いた人たちが写真をあげているのが嬉しくて、思わずお礼と興奮をかねてダラダラ書いてしまいました。
+ みなさんの手元のあめちゃんが、末永くかわいくいてあり続けることを祈っております。
+
+僕の文章を本にしたやつもよろしくね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-08-06 13:17\n一口随笔：各种超级天商品\n一口エッセイ:超てんグッズのいろいろ\n\n超てんちゃんのグッズが発送されたらしく、届いた人の声がちらほら聴こえて嬉しい。\n\nグッズ監修は、お仕事の中でもかなり楽しくやっております。いろんな企業さんからもお声掛けありましたが、Tシャツやアクスタは自分たち（自社製作）でやろうと決めました。そのせいで少し高くなったのはごめんね！ 他企業と組んで安くする方法もあったのですが、最初の公式グッズ通販ですし、クオリティに拘ったり、なんの制限もなく作りたかったのです。でも、その甲斐あった素晴らしいものがみなさんの手元に届いた筈だと信じております。アクスタの台座の虹色の光沢、とてもサイケデリックに輝いて綺麗でしょう？ Tシャツもデザインとっても頑張ったんですよ。これも、グッズ製作班の方々が丁寧に打ち合わせを重ねてくれた結果です。\n\n超てんちゃんフィギャー2体目でるよ！\nこれ打ち合わせで撮った写真 https://t.co/IhDv1Jywyr pic.twitter.com/DzvjZXVQ3t— 🎀超絶最かわ🎀てんしちゃん (@x_angelkawaii_x) August 6, 2022\n\nフィギュアも2体目が発表されました。超てんちゃんは、本当に人気者ですね！ 僕は、怪獣ソフビや特撮玩具など立体物が大好きなので、立体化の話は届くたびに小躍りしています。あめちゃんもいつかフィギュア化して欲しいですよね。ふたり並べて飾れると素敵ですね。\n いろいろ製作側が喋ってるの萎えると思うのでこのへんにしておきます。届いた人たちが写真をあげているのが嬉しくて、思わずお礼と興奮をかねてダラダラ書いてしまいました。\n みなさんの手元のあめちゃんが、末永くかわいくいてあり続けることを祈っております。\n\n僕の文章を本にしたやつもよろしくね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

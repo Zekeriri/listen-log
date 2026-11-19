@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>过劳死的设想</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2026-11-19 11:11</p>
+  <h1>过劳死的设想</h1>
+  <p class="ja-title">過労死の想定</p>
+</header>
+<main>
+  <article class="body">徹夜続きで今までにない頭痛と意識の曖昧さに襲われる。
+ 最近の睡眠時間を振り返ってみると、
+
+2時間だけ眠ってほぼ徹夜。夕方に一瞬眠って夜の打ち合わせのために起き、
+
+それから一気に10時間眠る。
+
+3時間ちょっとだけ眠って……
+
+泥のように眠る。脅威の14時間睡眠。
+
+これ繰り返していたら死ぬなあと思いつつ、自分の人生の終わり方に「過労死」なんて一切想定していなかったので、首吊りとかじゃなくて単純に忙しさで倒れてそのままってパターンあるかもなと発見が。
+ 実際、一度エロゲ業界の多忙に取り憑かれて血管が切れ、どうにか意識を取り戻したものの、それ以降記憶能力が曖昧になった方を知っている。話すと、昔のエロゲ業界がどれだけ過酷で、だけど楽しかったかを細切れの記憶から辿って語ってくれます。この状況自体が泣きゲーだなとも思う。生きていて良かったです。
+ 過労って意外と死なないのか、思ったより死ぬのかどっちなんだ。
+ 調べてみたら、働きすぎた結果のうつ病からの自殺も過労死扱いらしい。じゃあ今もし僕がいざ首を吊ったら区分としては「過労死」になるのか！？
+ それは嫌だぜ……。
+ 血圧が高くなりすぎての脳出血のパターンはあるのかなあと、最近妙に増えた頭痛について頭を悩ませる。
+ 過労死って。
+ この死に方は予想してなかったな。
+ 夜はちゃんと寝たほうがいい。
+ 本当に、たくさんたくさん眠ったほうがいい。
+ 現実と接している時間なんて、一秒でも短いほうがいいんだ。
+ そう考えると死んだほうが手っ取り早いね！</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-11-19 11:11\n过劳死的设想\n過労死の想定\n\n徹夜続きで今までにない頭痛と意識の曖昧さに襲われる。\n 最近の睡眠時間を振り返ってみると、\n\n2時間だけ眠ってほぼ徹夜。夕方に一瞬眠って夜の打ち合わせのために起き、\n\nそれから一気に10時間眠る。\n\n3時間ちょっとだけ眠って……\n\n泥のように眠る。脅威の14時間睡眠。\n\nこれ繰り返していたら死ぬなあと思いつつ、自分の人生の終わり方に「過労死」なんて一切想定していなかったので、首吊りとかじゃなくて単純に忙しさで倒れてそのままってパターンあるかもなと発見が。\n 実際、一度エロゲ業界の多忙に取り憑かれて血管が切れ、どうにか意識を取り戻したものの、それ以降記憶能力が曖昧になった方を知っている。話すと、昔のエロゲ業界がどれだけ過酷で、だけど楽しかったかを細切れの記憶から辿って語ってくれます。この状況自体が泣きゲーだなとも思う。生きていて良かったです。\n 過労って意外と死なないのか、思ったより死ぬのかどっちなんだ。\n 調べてみたら、働きすぎた結果のうつ病からの自殺も過労死扱いらしい。じゃあ今もし僕がいざ首を吊ったら区分としては「過労死」になるのか！？\n それは嫌だぜ……。\n 血圧が高くなりすぎての脳出血のパターンはあるのかなあと、最近妙に増えた頭痛について頭を悩ませる。\n 過労死って。\n この死に方は予想してなかったな。\n 夜はちゃんと寝たほうがいい。\n 本当に、たくさんたくさん眠ったほうがいい。\n 現実と接している時間なんて、一秒でも短いほうがいいんだ。\n そう考えると死んだほうが手っ取り早いね！"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

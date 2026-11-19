@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>会议上的闲聊</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-06-07 14:53</p>
+  <h1>会议上的闲聊</h1>
+  <p class="ja-title">打ち合わせで雑談をする</p>
+</header>
+<main>
+  <article class="body">原口（沙輔）さんと仕事の打ち合わせ……をする筈が、99%雑談で終わってしまった。彼が深夜1時にウチへ来て、朝8時まで居たのに！ 深夜に集まるくらいスケジュール追い込まれるていると迫力がでるので、原口さんも、ここしばらくでぐんぐんカッコいい男になってきたなあと思う。
+ いい打ち合わせは9割雑談であると考えている。打ち合わせなんて互いの目指す景色の擦り合わせであり、それはたくさんの横道に逸れて真に理解していくものだ。ライ麦畑で、主人公のホールデンは、生徒の話が脱線すると注意する先生を心底毛嫌いしていた。授業から外れるくらいに話したいことがあるから話が脱線するわけで、そんな話の方が聞く価値のある面白さがあるのではないかと。そういうことだね。具体の話をするだけではビジネスだよ。
+ ZOOMやらGoogleミートみたいなもので時間通り集められ、なんか自己紹介パートがあり、時間にハミださないよう気をつけながら手短に要件をぶつけ合う会。あれはただ拷問だ。そのような時間ができるだけ少ない人生を謳歌したいと願う。やっぱ対面じゃないとなかなか脇道を散歩できないよ。
+ とはいえ99%雑談は、違うけどね！
+ 帰り際、思い出したように仕事の話を3.4分擦り合わせただけだもの。「確認」でしかない。それがいいんだ。7時間居たのだから6時間55分、雑談として音楽の話をしていたわけで、それでもなお僕はもっと原口さんから音楽を教えて欲しいし、今後もどうせ仲良くやっていくだろうって直感の方が大切だからね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-06-07 14:53\n会议上的闲聊\n打ち合わせで雑談をする\n\n原口（沙輔）さんと仕事の打ち合わせ……をする筈が、99%雑談で終わってしまった。彼が深夜1時にウチへ来て、朝8時まで居たのに！ 深夜に集まるくらいスケジュール追い込まれるていると迫力がでるので、原口さんも、ここしばらくでぐんぐんカッコいい男になってきたなあと思う。\n いい打ち合わせは9割雑談であると考えている。打ち合わせなんて互いの目指す景色の擦り合わせであり、それはたくさんの横道に逸れて真に理解していくものだ。ライ麦畑で、主人公のホールデンは、生徒の話が脱線すると注意する先生を心底毛嫌いしていた。授業から外れるくらいに話したいことがあるから話が脱線するわけで、そんな話の方が聞く価値のある面白さがあるのではないかと。そういうことだね。具体の話をするだけではビジネスだよ。\n ZOOMやらGoogleミートみたいなもので時間通り集められ、なんか自己紹介パートがあり、時間にハミださないよう気をつけながら手短に要件をぶつけ合う会。あれはただ拷問だ。そのような時間ができるだけ少ない人生を謳歌したいと願う。やっぱ対面じゃないとなかなか脇道を散歩できないよ。\n とはいえ99%雑談は、違うけどね！\n 帰り際、思い出したように仕事の話を3.4分擦り合わせただけだもの。「確認」でしかない。それがいいんだ。7時間居たのだから6時間55分、雑談として音楽の話をしていたわけで、それでもなお僕はもっと原口さんから音楽を教えて欲しいし、今後もどうせ仲良くやっていくだろうって直感の方が大切だからね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

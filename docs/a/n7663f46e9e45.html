@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>复仇的生产力</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-06-20 15:36</p>
+  <h1>复仇的生产力</h1>
+  <p class="ja-title">復讐の生産性</p>
+</header>
+<main>
+  <article class="body">睡眠時間が異常だ。
+ 明らかに心がSOSを出している。起きて数時間経つと、もはや立ってられないくらいの眠気が襲う。その後、10時間以上眠る。大して起きていないのに。要するに、現実世界を見つめていても怒りや悲しみなどのストレスが募る状態なので、少しでも長く現実逃避し、己を守りたいと心が助かりたがっている。
+ というのもありつつ、単純に体調不良かもしれない。ジムに行くと、「今日は4件もキャンセルあったんですよ」とトレーナーが話す。梅雨があけて異様な暑さが始まり、みな体調を崩す時期なんじゃないか。それでも通っている僕はえらい。もう目に見えてマッチョと呼ばれる部類な気がするけれども、それで何を得したとかでもないのがえらい。もはや己との勝負でしかない。
+ が、心はどうにもならないね。
+ これ以上、精神が圧迫されたら死ぬって時の強烈な頭痛、眠気、怠さ。あれは筋トレ時の「あと1セットいけるんじゃないか！？」と追い込む快楽とは、また違う。それ以上起きていたって、脳が「怒り」のストレスに支配されるだけであって、もはや利はない。
+ 10時間以上眠ってもなお、悲しみは癒えやしない。「復讐はなにも生まない」。そんなことはない。復讐しなければ心が前に進むことがないほど腸が煮えくり返る思いであれば、それは憎しみの元を解決しなければならない。普通、人はここまで怒りに支配されない。もはや怒りを解決しなければ生産的な活動ができないのであれば、復讐は「生産性のある行動」になる。
+ そこまで憎いのなら仕方ないのではないか。喧嘩別れとか、悪口言われたとか、そりゃ悔しいけれども忘れて生きた方が得なことの方が多いさ。でも、例えば娘を殺されたとかなら、そりゃもう相手も殺さないと前に進まないよねぇ。度合いの話なんだな。
+ 今日も灼熱の中、人間より重いバーベルを上げ下げする。人間未満の人物へ復讐を果たす日を夢見て。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-06-20 15:36\n复仇的生产力\n復讐の生産性\n\n睡眠時間が異常だ。\n 明らかに心がSOSを出している。起きて数時間経つと、もはや立ってられないくらいの眠気が襲う。その後、10時間以上眠る。大して起きていないのに。要するに、現実世界を見つめていても怒りや悲しみなどのストレスが募る状態なので、少しでも長く現実逃避し、己を守りたいと心が助かりたがっている。\n というのもありつつ、単純に体調不良かもしれない。ジムに行くと、「今日は4件もキャンセルあったんですよ」とトレーナーが話す。梅雨があけて異様な暑さが始まり、みな体調を崩す時期なんじゃないか。それでも通っている僕はえらい。もう目に見えてマッチョと呼ばれる部類な気がするけれども、それで何を得したとかでもないのがえらい。もはや己との勝負でしかない。\n が、心はどうにもならないね。\n これ以上、精神が圧迫されたら死ぬって時の強烈な頭痛、眠気、怠さ。あれは筋トレ時の「あと1セットいけるんじゃないか！？」と追い込む快楽とは、また違う。それ以上起きていたって、脳が「怒り」のストレスに支配されるだけであって、もはや利はない。\n 10時間以上眠ってもなお、悲しみは癒えやしない。「復讐はなにも生まない」。そんなことはない。復讐しなければ心が前に進むことがないほど腸が煮えくり返る思いであれば、それは憎しみの元を解決しなければならない。普通、人はここまで怒りに支配されない。もはや怒りを解決しなければ生産的な活動ができないのであれば、復讐は「生産性のある行動」になる。\n そこまで憎いのなら仕方ないのではないか。喧嘩別れとか、悪口言われたとか、そりゃ悔しいけれども忘れて生きた方が得なことの方が多いさ。でも、例えば娘を殺されたとかなら、そりゃもう相手も殺さないと前に進まないよねぇ。度合いの話なんだな。\n 今日も灼熱の中、人間より重いバーベルを上げ下げする。人間未満の人物へ復讐を果たす日を夢見て。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

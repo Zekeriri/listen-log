@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：喜欢吗？喜欢吗？非常喜欢？（原题: Do You Love Me?）</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-01-24 05:04</p>
+  <h1>一口随笔：喜欢吗？喜欢吗？非常喜欢？（原题: Do You Love Me?）</h1>
+  <p class="ja-title">一口エッセイ:好き？好き？大好き？　（原題: Do You Love Me?）</p>
+</header>
+<main>
+  <article class="body">昨日に引き続き、僕が好きな本の話をします。
+ 主に統合失調症の患者などと交流をしてきた精神科医R.D.レイン著作の詩集、「好き？好き？大好き？ （原題: Do You Love Me?）」は、今回自分が製作したゲームの中でも、かなり重要な部分で引用しているので、もしゲームも購入して頂いた方は、そこを意識してもらえると嬉しい。
+
+このR.D.レインの詩集が与えた影響は大きく、それこそ岩倉玲音の名前の由来になっているし、ゲーム版ではこの詩がカウンセリング時に引用される。戸川純の代表曲の曲名にもなっているし、一部で有名な美少女ゲームのタイトルでもある。これら全てを僕は大好きなのですが、それも大元であるレインの詩が素晴らしいからでしょう。レインの詩は、精神病の患者とのカウンセリングを経て紡がれる。この詩集もまた、精神病の患者たちがレインに発した言葉がモチーフに。特に表題作「好き？好き？大好き？」は何百回も音読した程に素敵です。
+
+「好き？好き？大好き？」と何度も確認する彼女。彼氏がオウム返しで「好き好き大好き」と答えるたび、「世界全体よりも？」「わたしのそばにいるの好き？」「ほんとうに好き？好き？大好き？」と何度も何度も聞き出す。彼氏は、その度に同じ言葉を繰り返しており、とても狂った関係である。
+ これは、彼女が彼氏の思考を全て自分への愛で上書きすることで、完全な同一化を行おうとしているように思える。世界一好き好き大好きな自分と融和させるため、バグったラジオのように愛情を無限に確認する。壊れた彼女の頭の中にあるのは、大好きな彼氏との同一化という究極の愛だけなのだ。
+
+毎日の日記をまとめた同人誌をboothにて販売中です。僕の思想を読み進めて、思考を一体化させましょう。
+
+先月に発売した商業エッセイ集もよろしくお願いします。こちらはもっと融合係数が高くなると思います。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-01-24 05:04\n一口随笔：喜欢吗？喜欢吗？非常喜欢？（原题: Do You Love Me?）\n一口エッセイ:好き？好き？大好き？　（原題: Do You Love Me?）\n\n昨日に引き続き、僕が好きな本の話をします。\n 主に統合失調症の患者などと交流をしてきた精神科医R.D.レイン著作の詩集、「好き？好き？大好き？ （原題: Do You Love Me?）」は、今回自分が製作したゲームの中でも、かなり重要な部分で引用しているので、もしゲームも購入して頂いた方は、そこを意識してもらえると嬉しい。\n\nこのR.D.レインの詩集が与えた影響は大きく、それこそ岩倉玲音の名前の由来になっているし、ゲーム版ではこの詩がカウンセリング時に引用される。戸川純の代表曲の曲名にもなっているし、一部で有名な美少女ゲームのタイトルでもある。これら全てを僕は大好きなのですが、それも大元であるレインの詩が素晴らしいからでしょう。レインの詩は、精神病の患者とのカウンセリングを経て紡がれる。この詩集もまた、精神病の患者たちがレインに発した言葉がモチーフに。特に表題作「好き？好き？大好き？」は何百回も音読した程に素敵です。\n\n「好き？好き？大好き？」と何度も確認する彼女。彼氏がオウム返しで「好き好き大好き」と答えるたび、「世界全体よりも？」「わたしのそばにいるの好き？」「ほんとうに好き？好き？大好き？」と何度も何度も聞き出す。彼氏は、その度に同じ言葉を繰り返しており、とても狂った関係である。\n これは、彼女が彼氏の思考を全て自分への愛で上書きすることで、完全な同一化を行おうとしているように思える。世界一好き好き大好きな自分と融和させるため、バグったラジオのように愛情を無限に確認する。壊れた彼女の頭の中にあるのは、大好きな彼氏との同一化という究極の愛だけなのだ。\n\n毎日の日記をまとめた同人誌をboothにて販売中です。僕の思想を読み進めて、思考を一体化させましょう。\n\n先月に発売した商業エッセイ集もよろしくお願いします。こちらはもっと融合係数が高くなると思います。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

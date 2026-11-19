@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>上空的噩梦</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2026-10-05 23:01</p>
+  <h1>上空的噩梦</h1>
+  <p class="ja-title">上空の悪夢</p>
+</header>
+<main>
+  <article class="body">スペイン内に居る時は問題なかったけれども、10日間の海外できちんと体力は消耗していたらしく、飛行機内で発熱に襲われる。
+ 発熱というか、見るからに身体中の免疫が落ちていて、上から下まで発疹が現れてめちゃくちゃに痒い！ 14時間も痒みと鼻水と熱に襲われ続けながら一切動けない拷問を味わう。思い返すと、よく乗り越えたなあと感心するぜ。空の上にいると、もはや何があろうと着陸するまでどうもできないもどかしさ。
+
+トワイライトゾーンの短編に、飛行機が怖すぎて外にグレムリンが居る幻覚すら見えて暴れる男の話がある。彼がどれだけ暴れようとも、とにかく飛行機は着陸までどうしようもない。彼は人生でトップクラスのバッドトリップを味わい続ける。
+ ずっと、この話のことを考えていた。
+ 状況的に数時間、僕の場合はヨーロッパから日本なので10数時間、外にグレムリンが居ようが体内のウィルスがひたすら頭痛と痒みを与えようが、とにかく耐える以外の選択肢しかない。
+ 発疹が身体中を這っていくのがわかる。手のひらが真っ赤になったと思ったら、次は太もも。次は臀部。これがまた眠ることも本読むこともできず非常に苦しいのですね。
+ 家帰って眠り続けた今は結構楽になりましたが。人生でも忘れられない苦しいフライトを越え、いまは少し清々しい。
+ やはりバッドトリップの方が強烈な思い出になるものです。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-10-05 23:01\n上空的噩梦\n上空の悪夢\n\nスペイン内に居る時は問題なかったけれども、10日間の海外できちんと体力は消耗していたらしく、飛行機内で発熱に襲われる。\n 発熱というか、見るからに身体中の免疫が落ちていて、上から下まで発疹が現れてめちゃくちゃに痒い！ 14時間も痒みと鼻水と熱に襲われ続けながら一切動けない拷問を味わう。思い返すと、よく乗り越えたなあと感心するぜ。空の上にいると、もはや何があろうと着陸するまでどうもできないもどかしさ。\n\nトワイライトゾーンの短編に、飛行機が怖すぎて外にグレムリンが居る幻覚すら見えて暴れる男の話がある。彼がどれだけ暴れようとも、とにかく飛行機は着陸までどうしようもない。彼は人生でトップクラスのバッドトリップを味わい続ける。\n ずっと、この話のことを考えていた。\n 状況的に数時間、僕の場合はヨーロッパから日本なので10数時間、外にグレムリンが居ようが体内のウィルスがひたすら頭痛と痒みを与えようが、とにかく耐える以外の選択肢しかない。\n 発疹が身体中を這っていくのがわかる。手のひらが真っ赤になったと思ったら、次は太もも。次は臀部。これがまた眠ることも本読むこともできず非常に苦しいのですね。\n 家帰って眠り続けた今は結構楽になりましたが。人生でも忘れられない苦しいフライトを越え、いまは少し清々しい。\n やはりバッドトリップの方が強烈な思い出になるものです。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

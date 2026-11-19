@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：随笔集的第三本出版了</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-03-30 04:07</p>
+  <h1>一口随笔：随笔集的第三本出版了</h1>
+  <p class="ja-title">一口エッセイ:エッセイ集の3冊目でた</p>
+</header>
+<main>
+  <article class="body">毎日のエッセイをまとめた同人誌の3冊目が出ました。みんな読んでくれたら嬉しい！
+ さて、スペースでフォロワーから「どうやって毎日のエッセイをお金にしているんですか？」と訊かれましたが、はっきり言ってコレはお金になっていないです。もちろん、このように同人誌の形にしているのでお金はとっているのですが、所詮は華がないテキストだけの本（組長さんによるかわいい表紙はあれども）。しかも、書き下ろしアリとはいえ、こうして無料で公開しているのだから購入者も限られる。イベントなどを通して何度か世に出すうちに、ようやくある程度プラスにはなる。が、日々こうやってネタと時間を絞り出して行うほどの利益ではない。この時間で寝ていた方が千倍マシですね。
+ なので、このエッセイというのは「毎日、文章を投稿するからどうか見捨てないでね」以上の意味はなく、もし気に入ってもらえたら支援としてnoteを購読してくれると嬉しいですが、それも月500円。主な効果は、たまに出す商業本やゲームなどへの導線のための読者集めです。もし、僕の文章や生き方に興味持ったら、創作物にも手を出してもらえると嬉しいなみたいな。昔から、この方法で自分を見てくれる人を集めてきたのですね。個人ブログでもネットメディアでも、無料で文章を書くと、ビックリするくらい知らない人たちから批判されるけど！ これは防ぎようがないから慣れていくしかない。
+ そんな苦労を背負っているので、自分の生きた証を物理で残したいという意思の現れなエッセイ同人誌を手にとって頂いた方には、とても感謝をしております。見つけてくれてありがとうね。
+
+商業エッセイ集の方も気に入ったらよろしくね！</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-03-30 04:07\n一口随笔：随笔集的第三本出版了\n一口エッセイ:エッセイ集の3冊目でた\n\n毎日のエッセイをまとめた同人誌の3冊目が出ました。みんな読んでくれたら嬉しい！\n さて、スペースでフォロワーから「どうやって毎日のエッセイをお金にしているんですか？」と訊かれましたが、はっきり言ってコレはお金になっていないです。もちろん、このように同人誌の形にしているのでお金はとっているのですが、所詮は華がないテキストだけの本（組長さんによるかわいい表紙はあれども）。しかも、書き下ろしアリとはいえ、こうして無料で公開しているのだから購入者も限られる。イベントなどを通して何度か世に出すうちに、ようやくある程度プラスにはなる。が、日々こうやってネタと時間を絞り出して行うほどの利益ではない。この時間で寝ていた方が千倍マシですね。\n なので、このエッセイというのは「毎日、文章を投稿するからどうか見捨てないでね」以上の意味はなく、もし気に入ってもらえたら支援としてnoteを購読してくれると嬉しいですが、それも月500円。主な効果は、たまに出す商業本やゲームなどへの導線のための読者集めです。もし、僕の文章や生き方に興味持ったら、創作物にも手を出してもらえると嬉しいなみたいな。昔から、この方法で自分を見てくれる人を集めてきたのですね。個人ブログでもネットメディアでも、無料で文章を書くと、ビックリするくらい知らない人たちから批判されるけど！ これは防ぎようがないから慣れていくしかない。\n そんな苦労を背負っているので、自分の生きた証を物理で残したいという意思の現れなエッセイ同人誌を手にとって頂いた方には、とても感謝をしております。見つけてくれてありがとうね。\n\n商業エッセイ集の方も気に入ったらよろしくね！"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：帮助</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-09-23 07:46</p>
+  <h1>一口随笔：帮助</h1>
+  <p class="ja-title">一口エッセイ:ヘルプ</p>
+</header>
+<main>
+  <article class="body">つい先月に引っ越したばかりなのですが、またしても引っ越さなければならない危機に陥っております。
+ というのも、どうやら僕が借りる前に今の部屋はリフォームされたらしいのですが、その際に業者が排水管を雑に繋げてしまったらしい。そのせいで、水を流すとすぐに溢れてしまう状態となりました。お風呂も入れない！
+ そのリフォームが行われたのが2年前なので、当時リフォームしてくれた業者と話し合いするのも段階を踏む必要があるらしいし、急ぎできてくれた業者曰く、「排水管自体を整備する必要があるから、大掛かりな工事になって数週間かかるだろう」とのこと。つまり、遠回しに引越しを促されたのですね。
+ これは困った。2年間誰も借りなかったような変則的な間取りの部屋なのですが、だからこそ使いこなしてやるぜと意気揚々と契約したし、変な間取りの部屋用の家具も揃えた。何より、引越し作業というのは死ぬほど体力が持っていかれる。
+ とは言え、別に不動産が悪いわけじゃないし、誰を責めるという話でもない。流石に引っ越しが決まったらその分の費用は欲しいけれど……こういう時に強く料金請求できる勇気がなくて、今から既に落ち込み気味です。
+ こういう時にどうしたら良いんだと悩みつつ答えもでない。人生はこういうことの連続なのですね。早くお風呂入りたい。
+
+毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-09-23 07:46\n一口随笔：帮助\n一口エッセイ:ヘルプ\n\nつい先月に引っ越したばかりなのですが、またしても引っ越さなければならない危機に陥っております。\n というのも、どうやら僕が借りる前に今の部屋はリフォームされたらしいのですが、その際に業者が排水管を雑に繋げてしまったらしい。そのせいで、水を流すとすぐに溢れてしまう状態となりました。お風呂も入れない！\n そのリフォームが行われたのが2年前なので、当時リフォームしてくれた業者と話し合いするのも段階を踏む必要があるらしいし、急ぎできてくれた業者曰く、「排水管自体を整備する必要があるから、大掛かりな工事になって数週間かかるだろう」とのこと。つまり、遠回しに引越しを促されたのですね。\n これは困った。2年間誰も借りなかったような変則的な間取りの部屋なのですが、だからこそ使いこなしてやるぜと意気揚々と契約したし、変な間取りの部屋用の家具も揃えた。何より、引越し作業というのは死ぬほど体力が持っていかれる。\n とは言え、別に不動産が悪いわけじゃないし、誰を責めるという話でもない。流石に引っ越しが決まったらその分の費用は欲しいけれど……こういう時に強く料金請求できる勇気がなくて、今から既に落ち込み気味です。\n こういう時にどうしたら良いんだと悩みつつ答えもでない。人生はこういうことの連続なのですね。早くお風呂入りたい。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>好事发生</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-07-29 06:02</p>
+  <h1>好事发生</h1>
+  <p class="ja-title">いいことあった</p>
+</header>
+<main>
+  <article class="body">スタジオへ寄る。
+ 絵コンテの方と偶然顔を合わせ、近況を話す。
+ 自分が書いた脚本のなかでも、特に絵コンテへ落とすことが難解な回を担当していただいているので、なんだか悪いなあという気にもなりつつ、相手が回の解釈について色々話してくれることが本当に嬉しくて、ここ最近の鬱々が吹っ飛んだ。
+ 僕が書いたものとしても、やはりセリフ単位では覚えていないものだ。絵コンテとして画に起こすため、細部の記憶は僕よりもコンテ担当の方が詳しいでしょう。話して、「そういうえばそんなセリフあったな」と思ったりもする。嬉しいことだ。なんて嬉しいことだ。自分が書いた文章に対し、優秀なクリエイターがここまで向き合ってくれている。そして形になっていく。いろいろとあれでも、少なくともこの瞬間は間違いなく幸福であった。
+ 実際、僕はまだ表になっていない作品のキャラクター名を呼ぶのがちょっと気恥ずかしい。最近は慣れてきたけれども。この感覚はなんとも形容詞しがたい。絵コンテ担当の方が、自身のキャラクターかのように平然と名前を出す。これも心底嬉しい。キャラが、自分にとって子どものような存在を芯から愛してもらえている。この回に関し、あなたも親の一人だ。共犯者のようなものだ。仲間いるとそれは嬉しい。そんな真摯な方が仲間で、不意に雑談できることがとんでもなく幸せだった。
+ 早くみんなにお披露目したいよ。僕だけ幸せなのは申し訳ないからね。
+ 嬉しいなあ。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-07-29 06:02\n好事发生\nいいことあった\n\nスタジオへ寄る。\n 絵コンテの方と偶然顔を合わせ、近況を話す。\n 自分が書いた脚本のなかでも、特に絵コンテへ落とすことが難解な回を担当していただいているので、なんだか悪いなあという気にもなりつつ、相手が回の解釈について色々話してくれることが本当に嬉しくて、ここ最近の鬱々が吹っ飛んだ。\n 僕が書いたものとしても、やはりセリフ単位では覚えていないものだ。絵コンテとして画に起こすため、細部の記憶は僕よりもコンテ担当の方が詳しいでしょう。話して、「そういうえばそんなセリフあったな」と思ったりもする。嬉しいことだ。なんて嬉しいことだ。自分が書いた文章に対し、優秀なクリエイターがここまで向き合ってくれている。そして形になっていく。いろいろとあれでも、少なくともこの瞬間は間違いなく幸福であった。\n 実際、僕はまだ表になっていない作品のキャラクター名を呼ぶのがちょっと気恥ずかしい。最近は慣れてきたけれども。この感覚はなんとも形容詞しがたい。絵コンテ担当の方が、自身のキャラクターかのように平然と名前を出す。これも心底嬉しい。キャラが、自分にとって子どものような存在を芯から愛してもらえている。この回に関し、あなたも親の一人だ。共犯者のようなものだ。仲間いるとそれは嬉しい。そんな真摯な方が仲間で、不意に雑談できることがとんでもなく幸せだった。\n 早くみんなにお披露目したいよ。僕だけ幸せなのは申し訳ないからね。\n 嬉しいなあ。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

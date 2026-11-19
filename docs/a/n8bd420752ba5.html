@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：《我喜欢活着》这句歌词</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-10-10 06:21</p>
+  <h1>一口随笔：《我喜欢活着》这句歌词</h1>
+  <p class="ja-title">一口エッセイ:「生きることが好きさ」って歌詞</p>
+</header>
+<main>
+  <article class="body">友達が、「子供に&quot;産んでなんて頼んでない&quot;って言われたら反論できないよね。生きることでの苦痛や悲しみを勝手に背負わせるわけだし」と話してきたので、脳内で作り出した架空の息子の思春期について思いを馳せ、架空の息子から口論の末に「産んでなんて頼んでねーよ！！」と言われた瞬間、めちゃくちゃ傷ついてしまった。たしかに、そんなこと言われたら返す言葉もない。お願いだから、お父さんにそんなつらいこと言わないでくれ……と存在しない息子の前で泣き崩れるしかない。
+ これは難しい問題だ。誰だって「産んでくれ！！」と頼んで産まれてくるわけじゃないし、生きることが全て苦痛でしかない人生だってある。そういえば、はじめて仮面ライダーBLACKの主題歌で「生きることが好きさ」という歌詞を聴いてビックリした記憶があります。
+ 生きること自体が好きだと認識したこと一度たりともない……。もちろん生きている上で嬉しかったことは全然あるけど。生きることが好き、エネルギッシュすぎるだろ。架空の息子にも「生きることが好きさ」って思って欲しい。いや、やっぱりそれはそれでなんか気持ち悪いな……。それよりかは、「産んでなんて頼んでねぇ！」と思春期が一度は通るアレを言ってきた方が健全かもしれません。
+ まあ僕には息子は存在しないし、なんならこの話をしてきた友人の岡島は無職なので、特にいま子供の問題を意識する必要はない。生きること自体が好きかはともかく、このように適当に友達と駄弁っている分には、人生を満喫しているなぁと思ったりしました。生きるって実際こんなもんなんだよなぁ。
+
+毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-10-10 06:21\n一口随笔：《我喜欢活着》这句歌词\n一口エッセイ:「生きることが好きさ」って歌詞\n\n友達が、「子供に\"産んでなんて頼んでない\"って言われたら反論できないよね。生きることでの苦痛や悲しみを勝手に背負わせるわけだし」と話してきたので、脳内で作り出した架空の息子の思春期について思いを馳せ、架空の息子から口論の末に「産んでなんて頼んでねーよ！！」と言われた瞬間、めちゃくちゃ傷ついてしまった。たしかに、そんなこと言われたら返す言葉もない。お願いだから、お父さんにそんなつらいこと言わないでくれ……と存在しない息子の前で泣き崩れるしかない。\n これは難しい問題だ。誰だって「産んでくれ！！」と頼んで産まれてくるわけじゃないし、生きることが全て苦痛でしかない人生だってある。そういえば、はじめて仮面ライダーBLACKの主題歌で「生きることが好きさ」という歌詞を聴いてビックリした記憶があります。\n 生きること自体が好きだと認識したこと一度たりともない……。もちろん生きている上で嬉しかったことは全然あるけど。生きることが好き、エネルギッシュすぎるだろ。架空の息子にも「生きることが好きさ」って思って欲しい。いや、やっぱりそれはそれでなんか気持ち悪いな……。それよりかは、「産んでなんて頼んでねぇ！」と思春期が一度は通るアレを言ってきた方が健全かもしれません。\n まあ僕には息子は存在しないし、なんならこの話をしてきた友人の岡島は無職なので、特にいま子供の問題を意識する必要はない。生きること自体が好きかはともかく、このように適当に友達と駄弁っている分には、人生を満喫しているなぁと思ったりしました。生きるって実際こんなもんなんだよなぁ。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

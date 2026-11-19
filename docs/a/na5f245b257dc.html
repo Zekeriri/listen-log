@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：不要飘飘然，危险</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-06-05 05:59</p>
+  <h1>一口随笔：不要飘飘然，危险</h1>
+  <p class="ja-title">一口エッセイ:ラリるな危険</p>
+</header>
+<main>
+  <article class="body">一昨日の日記で、良い睡眠薬に巡りあえたのでラリる心配がなくなったと書きましたが、そもそも睡眠薬でラリるとどう危険かの話をします。
+ まず、睡眠薬を飲んだ状態で眠れずに（または意識して寝ないで）いると、酔っ払ったように頭がポワポワする。そうした曖昧な状態での意識は、細かいことを考えなくなり、それが心地よくて、起き上がって大胆な行動を始めたり、睡眠薬の量を増やしたりする。これらの行動は、ほとんど翌日には忘れている。健忘ですね。
+ このモードに入ると無性に人恋しくなる。ワンマンショーでふざけていれば被害は一人で済むのに、寂しくなって他人に連絡してしまう。それも、支離滅裂ながら若干の意味は読み取れるのが厄介。完全に会話不能な狂人よりも、僅かながら意思疎通が取れる（のにやっぱり意味がわからない）方が怖い。相手は気味悪くなって怖がるし、なんなら怒らせてしまうことも。こういう時も返信してくれるのは親しい人ですから、折角の友人の好感度を無闇に減らすのは大変つらいのです。
+ 誰も反応してくれなければTwitterで騒ぐ。文章になってない文章を呟き始め、それが的確に恥ずかしいポエム調なのだ。起きて読んだら恥ずかしすぎて即削除するような。黒歴史は封印されなければならない。僕はもう、友人を減らしたくないので、極力健康でいたいと願っているのです。でも、時折あの頭空っぽな状態が懐かしくなって仕方ない。
+
+毎日の日記をまとめた同人誌をBOOTHにて販売中！ 初期の内容は、ラリっている時もある。
+
+商業エッセイ集の方は、もうイカれまくり。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-05 05:59\n一口随笔：不要飘飘然，危险\n一口エッセイ:ラリるな危険\n\n一昨日の日記で、良い睡眠薬に巡りあえたのでラリる心配がなくなったと書きましたが、そもそも睡眠薬でラリるとどう危険かの話をします。\n まず、睡眠薬を飲んだ状態で眠れずに（または意識して寝ないで）いると、酔っ払ったように頭がポワポワする。そうした曖昧な状態での意識は、細かいことを考えなくなり、それが心地よくて、起き上がって大胆な行動を始めたり、睡眠薬の量を増やしたりする。これらの行動は、ほとんど翌日には忘れている。健忘ですね。\n このモードに入ると無性に人恋しくなる。ワンマンショーでふざけていれば被害は一人で済むのに、寂しくなって他人に連絡してしまう。それも、支離滅裂ながら若干の意味は読み取れるのが厄介。完全に会話不能な狂人よりも、僅かながら意思疎通が取れる（のにやっぱり意味がわからない）方が怖い。相手は気味悪くなって怖がるし、なんなら怒らせてしまうことも。こういう時も返信してくれるのは親しい人ですから、折角の友人の好感度を無闇に減らすのは大変つらいのです。\n 誰も反応してくれなければTwitterで騒ぐ。文章になってない文章を呟き始め、それが的確に恥ずかしいポエム調なのだ。起きて読んだら恥ずかしすぎて即削除するような。黒歴史は封印されなければならない。僕はもう、友人を減らしたくないので、極力健康でいたいと願っているのです。でも、時折あの頭空っぽな状態が懐かしくなって仕方ない。\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中！ 初期の内容は、ラリっている時もある。\n\n商業エッセイ集の方は、もうイカれまくり。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

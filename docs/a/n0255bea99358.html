@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：药物依赖 VS 宗教依赖</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-01-15 06:38</p>
+  <h1>一口随笔：药物依赖 VS 宗教依赖</h1>
+  <p class="ja-title">一口エッセイ:薬物依存VS宗教依存</p>
+</header>
+<main>
+  <article class="body">深夜に開いたからか、今夜のスペースに来た人たちは濃かった。性別違和、同性愛者、宗教二世、うつ病、希死念慮持ちADHD、自閉症、同担拒否……色んな方が来てくれましたが、特に宗教二世の少女の話は興味深かったですね。
+ この女の子は、どうやら両親に信仰を強制させられているものの、それ以前に薬物依存であり、父親から「薬に依存するくらいなら宗教に依存しろ！」と迫られているらしい。状況が特殊すぎるだろ。
+ 一応、とりあえずもう少ししたら一人暮らしもできるだろうし、家から離れれば勧誘も多少落ち着くと思う。LINEや通話は無視すればいいし、もし家まで来たらもう警察行くとかで。宗教勧誘はともかく薬物依存は自分の問題だから、それは好きにすればいいと思いますよ。と答えたら、凄く喜んで納得してくれました。僕の人生で真っ当に少女の助けになることがあるとはね。
+ そこは一旦解決したとして、この父親の発言は面白い。「薬物より宗教に依存しろ！」って。薬の過剰摂取と信じてない神、どちらに依存した方が幸せか訊かれると、たしかに難しい。これはダブルバインドなので、正しい回答はどちらも選ばないことでしょうけど。もちろんこの答えも、そう上手くいかないとは思いますけどね。依存体質の子に依存対象を取り上げて、急に幸福になるわけじゃないし。
+ 薬の場合は健康を害し、信仰の矯正の場合は精神を害する。では、逆に、両者を極めて神を信じた状態でトリップし、宗教的エクスタシーに到達するのはどうだろう！ なんて言う訳にはいかないか……。良い塩梅が見つかるといいですね。
+
+日々のエッセイをまとめた同人誌をboothにて販売中です。毎日少しずつ読んでいけば、何かの依存から気が紛れるかもしれません。
+
+先月に発売した商業エッセイ集もよろしくお願いします。一緒に重い気分になりましょう。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-01-15 06:38\n一口随笔：药物依赖 VS 宗教依赖\n一口エッセイ:薬物依存VS宗教依存\n\n深夜に開いたからか、今夜のスペースに来た人たちは濃かった。性別違和、同性愛者、宗教二世、うつ病、希死念慮持ちADHD、自閉症、同担拒否……色んな方が来てくれましたが、特に宗教二世の少女の話は興味深かったですね。\n この女の子は、どうやら両親に信仰を強制させられているものの、それ以前に薬物依存であり、父親から「薬に依存するくらいなら宗教に依存しろ！」と迫られているらしい。状況が特殊すぎるだろ。\n 一応、とりあえずもう少ししたら一人暮らしもできるだろうし、家から離れれば勧誘も多少落ち着くと思う。LINEや通話は無視すればいいし、もし家まで来たらもう警察行くとかで。宗教勧誘はともかく薬物依存は自分の問題だから、それは好きにすればいいと思いますよ。と答えたら、凄く喜んで納得してくれました。僕の人生で真っ当に少女の助けになることがあるとはね。\n そこは一旦解決したとして、この父親の発言は面白い。「薬物より宗教に依存しろ！」って。薬の過剰摂取と信じてない神、どちらに依存した方が幸せか訊かれると、たしかに難しい。これはダブルバインドなので、正しい回答はどちらも選ばないことでしょうけど。もちろんこの答えも、そう上手くいかないとは思いますけどね。依存体質の子に依存対象を取り上げて、急に幸福になるわけじゃないし。\n 薬の場合は健康を害し、信仰の矯正の場合は精神を害する。では、逆に、両者を極めて神を信じた状態でトリップし、宗教的エクスタシーに到達するのはどうだろう！ なんて言う訳にはいかないか……。良い塩梅が見つかるといいですね。\n\n日々のエッセイをまとめた同人誌をboothにて販売中です。毎日少しずつ読んでいけば、何かの依存から気が紛れるかもしれません。\n\n先月に発売した商業エッセイ集もよろしくお願いします。一緒に重い気分になりましょう。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

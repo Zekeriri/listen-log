@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>写词经历与摇滚乐</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-07-09 08:00</p>
+  <h1>写词经历与摇滚乐</h1>
+  <p class="ja-title">作詞をしてきて ロックンロール</p>
+</header>
+<main>
+  <article class="body">作詞を終えたら朝になっていた。
+ これでアニメに2曲、詩を書き残している。
+ 思えば遠くへ来たものです。
+ 自分が書いたシナリオなのだから、自分が詞を載せたいなと拙作のゲームで作詞をし、以降、アニメ作品でも脚本である僕が作詞を担当した。といっても、今回は一曲僕でない方にお願いしたのだけれど。それは来年まで秘密で。現状、3曲がある。
+
+僕は、自閉症スペクトラム障害だ。
+ 些細な言葉たちが脳内で永久に乱反射する。
+ 人々の何気ない発言、書き込みに選択された語彙について、延々と思考を巡らせてしまう。そういう病気だ。どうせアタマのナカは言葉だらけなのだから、こうして毎日日記を投稿している。日々、脳みそを掃除して言葉を外に出してやらないとパンクするんだ。
+ そうして指先から綴られる感覚たちを掻き集めると、詩情が生まれる。
+ 詩情を音楽に載せると、作詞が出来上がる。
+
+最もロックンロールな行為は、詩を紡ぐことにある。
+ 詩は社会と正反対の概念だ。
+ 社会人たちは、詩情を捧げて給料を得る。お金の代わりに感情を殺していく。彼らは生活のたび、詩を失っていく。彼らの聖書から言葉たちが消えていく。
+ だから、物語（ロマン）とは、反社会的なモノだ。
+ 喜ばしいことに、僕が作詞した曲たちは、クレジットを確認せずとも「nyalraだな」と分かってもらえるようになった。
+ 言葉の集合体に、世界観があるのだね。
+
+こうしてキーボードをカタカタする。本を読む。映画を観る。音楽を聴く。あらゆる興味が血肉となって世界を生む。
+ 僕の中には世界がある。
+ 非常にロックンロールな、己の魂だけが奏でる歌を、詩情を抱いて生きている。おやすみなさい。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-07-09 08:00\n写词经历与摇滚乐\n作詞をしてきて ロックンロール\n\n作詞を終えたら朝になっていた。\n これでアニメに2曲、詩を書き残している。\n 思えば遠くへ来たものです。\n 自分が書いたシナリオなのだから、自分が詞を載せたいなと拙作のゲームで作詞をし、以降、アニメ作品でも脚本である僕が作詞を担当した。といっても、今回は一曲僕でない方にお願いしたのだけれど。それは来年まで秘密で。現状、3曲がある。\n\n僕は、自閉症スペクトラム障害だ。\n 些細な言葉たちが脳内で永久に乱反射する。\n 人々の何気ない発言、書き込みに選択された語彙について、延々と思考を巡らせてしまう。そういう病気だ。どうせアタマのナカは言葉だらけなのだから、こうして毎日日記を投稿している。日々、脳みそを掃除して言葉を外に出してやらないとパンクするんだ。\n そうして指先から綴られる感覚たちを掻き集めると、詩情が生まれる。\n 詩情を音楽に載せると、作詞が出来上がる。\n\n最もロックンロールな行為は、詩を紡ぐことにある。\n 詩は社会と正反対の概念だ。\n 社会人たちは、詩情を捧げて給料を得る。お金の代わりに感情を殺していく。彼らは生活のたび、詩を失っていく。彼らの聖書から言葉たちが消えていく。\n だから、物語（ロマン）とは、反社会的なモノだ。\n 喜ばしいことに、僕が作詞した曲たちは、クレジットを確認せずとも「nyalraだな」と分かってもらえるようになった。\n 言葉の集合体に、世界観があるのだね。\n\nこうしてキーボードをカタカタする。本を読む。映画を観る。音楽を聴く。あらゆる興味が血肉となって世界を生む。\n 僕の中には世界がある。\n 非常にロックンロールな、己の魂だけが奏でる歌を、詩情を抱いて生きている。おやすみなさい。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

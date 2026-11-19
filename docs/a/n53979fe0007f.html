@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：“光说酷的话 胃还是会变大哦”</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-08-07 15:52</p>
+  <h1>一口随笔：“光说酷的话 胃还是会变大哦”</h1>
+  <p class="ja-title">一口エッセイ: 「かっこいいことばかりいっても お腹が出てくるのよ」</p>
+</header>
+<main>
+  <article class="body">人生で一度も太ったことがない。
+ 生まれつき嗅覚がないため、料理や食事に拘ることへの興味がなかったぶん、今まで特に暴飲暴食する時期がありませんでした。ただ、集団で食事をする際、手持ち無沙汰な感じがして、その場にあるものに手を伸ばしがちでしたが。それでも、特に体重的に問題はなかった。今でも。
+ が、30手前となった現在、食後はお腹がぽっこりするようになりました。きましたね、「老い」。恐らく、運動と無縁の人生であったため、腹筋やインナーマッスルなりが衰えつつあり、食後の胃を支える力が弱まったからでしょう。
+ 適当にヘラヘラ生きたっていい、ただみっともないのはよくない。仕方がないので、元から不眠解消のために始めたエアロバイクに加えて腹筋を鍛える運動を一通り行うようになり、どうにか食後もお腹がひっこみました。結果的に20代前半の頃より健康になってきてる気がする！ これから死ぬまでエアロバイクや腹筋運動を毎日続けないといけないのか……。
+ 森高千里は、女性の強さを表現した名曲『私がオバさんになっても』で、「かっこいいことばかりいっても お腹が出てくるのよ」と言いました。正しく、その通り。そんな森高千里さんは、26歳の頃に42歳の方との対談で「強制的にオバさんになる恐怖」を語られましたが、いざ42歳を超えデビュー25周年を迎えた森高さんは、それでも全盛期なみの美貌を見せつけファンを沸かせた強キャラエピソードがあります。一体どれだけの努力をし続けてきたのでしょう。あの名曲を歌うだけはある、とても強く気高い女性です。
+
+毎日の日記をまとめた同人誌や、若い頃の文章をまとめたエッセイ集をよろしくね♪</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-08-07 15:52\n一口随笔：“光说酷的话 胃还是会变大哦”\n一口エッセイ: 「かっこいいことばかりいっても お腹が出てくるのよ」\n\n人生で一度も太ったことがない。\n 生まれつき嗅覚がないため、料理や食事に拘ることへの興味がなかったぶん、今まで特に暴飲暴食する時期がありませんでした。ただ、集団で食事をする際、手持ち無沙汰な感じがして、その場にあるものに手を伸ばしがちでしたが。それでも、特に体重的に問題はなかった。今でも。\n が、30手前となった現在、食後はお腹がぽっこりするようになりました。きましたね、「老い」。恐らく、運動と無縁の人生であったため、腹筋やインナーマッスルなりが衰えつつあり、食後の胃を支える力が弱まったからでしょう。\n 適当にヘラヘラ生きたっていい、ただみっともないのはよくない。仕方がないので、元から不眠解消のために始めたエアロバイクに加えて腹筋を鍛える運動を一通り行うようになり、どうにか食後もお腹がひっこみました。結果的に20代前半の頃より健康になってきてる気がする！ これから死ぬまでエアロバイクや腹筋運動を毎日続けないといけないのか……。\n 森高千里は、女性の強さを表現した名曲『私がオバさんになっても』で、「かっこいいことばかりいっても お腹が出てくるのよ」と言いました。正しく、その通り。そんな森高千里さんは、26歳の頃に42歳の方との対談で「強制的にオバさんになる恐怖」を語られましたが、いざ42歳を超えデビュー25周年を迎えた森高さんは、それでも全盛期なみの美貌を見せつけファンを沸かせた強キャラエピソードがあります。一体どれだけの努力をし続けてきたのでしょう。あの名曲を歌うだけはある、とても強く気高い女性です。\n\n毎日の日記をまとめた同人誌や、若い頃の文章をまとめたエッセイ集をよろしくね♪"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

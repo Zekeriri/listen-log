@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>请多来我家</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-03-11 07:44</p>
+  <h1>请多来我家</h1>
+  <p class="ja-title">どんどん家に来てね</p>
+</header>
+<main>
+  <article class="body">この記事を読んでくれたフォロワーが遊びに来てくれた。彼がごろごろとアニメを観ているので、たまに会話をしながら僕がカタカタと作業に打ち込む。最後に一緒に食事をする。とても理想的な空間に！ ありがとうざいます。他人がそれなりにゴソゴソとしている方が集中できますね。寂しくないし。
+
+アニメを観たり、ときおり眠ったり。本当にちょっと原稿に向き合っていたりしていた。僕が途中でジムへ行ったので。
+ 彼（あらばきさん）が観ていたアニメは……
+
+アミテージ・ザ・サード。海外OVAで字幕付きにて視聴。
+ 他人の家だと集中しながらじっとできるかもなので、互いにうっすらと監視しているようで都合がいいですね。僕もちらちらOVAならではの作画を堪能できるし。今度はゲームを持ってくるようで。楽しみだぜ。
+
+原稿や仕事は無限にあるので、こんな感じで相互フォローの方は気軽に中野へ来てください。DMくれたら大丈夫。4.5時間のろのろして解散！ なんだか部活っぽくていいね。喫茶店でもいいし。たまーに壁打ちをしながら。連絡お待ちしております。本当に助かる。
+
+1日中ごろごろとしてくれた彼を見て、幽遊白書の最終巻を思い出す。
+
+このページ、わなわなと震えるほど羨ましかったなあ……。オタクの女の子と互いに黙々と。時折ゲームしながらダラダラ。この1ページだけで海藤の人生への解像度が一気に跳ね上がり、冨樫義博のセンスに打ち震えたよ。そもそも誰なんだよ、この女は！ どことなく漂うエロティシズムがいいよね……一切そんな描写ないのに。
+
+高校生の頃に流行った『放課後プレイ』も憧れた。この作品も、謂わば海藤の1ページが膨らんだ漫画なんですよね（暴論）。
+
+おっさん同士であるが、今日は完全にこれで楽しかったな。
+ 改めて、自分の理想がこの感じなことを再確認できて良かったです。
+
+おわり。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-03-11 07:44\n请多来我家\nどんどん家に来てね\n\nこの記事を読んでくれたフォロワーが遊びに来てくれた。彼がごろごろとアニメを観ているので、たまに会話をしながら僕がカタカタと作業に打ち込む。最後に一緒に食事をする。とても理想的な空間に！ ありがとうざいます。他人がそれなりにゴソゴソとしている方が集中できますね。寂しくないし。\n\nアニメを観たり、ときおり眠ったり。本当にちょっと原稿に向き合っていたりしていた。僕が途中でジムへ行ったので。\n 彼（あらばきさん）が観ていたアニメは……\n\nアミテージ・ザ・サード。海外OVAで字幕付きにて視聴。\n 他人の家だと集中しながらじっとできるかもなので、互いにうっすらと監視しているようで都合がいいですね。僕もちらちらOVAならではの作画を堪能できるし。今度はゲームを持ってくるようで。楽しみだぜ。\n\n原稿や仕事は無限にあるので、こんな感じで相互フォローの方は気軽に中野へ来てください。DMくれたら大丈夫。4.5時間のろのろして解散！ なんだか部活っぽくていいね。喫茶店でもいいし。たまーに壁打ちをしながら。連絡お待ちしております。本当に助かる。\n\n1日中ごろごろとしてくれた彼を見て、幽遊白書の最終巻を思い出す。\n\nこのページ、わなわなと震えるほど羨ましかったなあ……。オタクの女の子と互いに黙々と。時折ゲームしながらダラダラ。この1ページだけで海藤の人生への解像度が一気に跳ね上がり、冨樫義博のセンスに打ち震えたよ。そもそも誰なんだよ、この女は！ どことなく漂うエロティシズムがいいよね……一切そんな描写ないのに。\n\n高校生の頃に流行った『放課後プレイ』も憧れた。この作品も、謂わば海藤の1ページが膨らんだ漫画なんですよね（暴論）。\n\nおっさん同士であるが、今日は完全にこれで楽しかったな。\n 改めて、自分の理想がこの感じなことを再確認できて良かったです。\n\nおわり。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

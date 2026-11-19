@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>精选一口随笔：孩子的感性</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-04-20 16:04</p>
+  <h1>精选一口随笔：孩子的感性</h1>
+  <p class="ja-title">選り抜き一口エッセイ:子供の感性</p>
+</header>
+<main>
+  <article class="body">自宅の近くに、漫画家たちが集まってシェアハウスをしている物件があり、人恋しくなった際などに顔を出しに行きます。
+ オタクの友人というのは、とても素晴らしい。どんな時も変わらずオタクをしている。世間やネットの荒波とは関係なく、ゆるくアニメを観てゲームをしてが繰り返される。バキでは、オリバとゲバルは大人になるに連れてオモチャで遊ぶのをやめていきましたが、逆に僕らはオモチャで遊ぶことをやめられないまま大人になりました。
+
+その日も、彼らはリビングでカードゲームに興じていました。好きなキャラクターのスリーブでカードを包み、ポケモンが印刷されたカードをどんどん展開していく。テレビにはアニメが流れ続けており、ここだけ切り取ったら小学生の放課後となんら変わりはない。
+ 「20歳以降は、損得抜きに友人を作るのは難しい」とも言われていて、自分もそれはあると感じています。教室という大きな共通点があった学生時代と違い、年齢や環境、仕事に人格まで様々。そんな中で、こうしてカードやゲームで心から笑い合えるのだから、これは幸運なことだと思う。
+ 人間は大人になるに連れて、徐々に擦り減らした童心を取り戻すために生きていくのだと感じることがあります。富野監督も子供の感性こそが何より大切だと話していた。残念ながら、僕らはもう肉体的には大人で、それはもう取り返しがつかない。せめて、カードゲームで遊んだりライダーの話をして、それが最も楽しいと感じる時間が1秒でも長くあって欲しいものです。
+
+毎日の日記をまとめた同人誌を販売中です。新刊読んでみてね。どれから手に取っても大丈夫です。
+
+長文エッセイをまとめた商業エッセイ集もよろしくお願いします。ビックリするくらいガキの人格ですね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-04-20 16:04\n精选一口随笔：孩子的感性\n選り抜き一口エッセイ:子供の感性\n\n自宅の近くに、漫画家たちが集まってシェアハウスをしている物件があり、人恋しくなった際などに顔を出しに行きます。\n オタクの友人というのは、とても素晴らしい。どんな時も変わらずオタクをしている。世間やネットの荒波とは関係なく、ゆるくアニメを観てゲームをしてが繰り返される。バキでは、オリバとゲバルは大人になるに連れてオモチャで遊ぶのをやめていきましたが、逆に僕らはオモチャで遊ぶことをやめられないまま大人になりました。\n\nその日も、彼らはリビングでカードゲームに興じていました。好きなキャラクターのスリーブでカードを包み、ポケモンが印刷されたカードをどんどん展開していく。テレビにはアニメが流れ続けており、ここだけ切り取ったら小学生の放課後となんら変わりはない。\n 「20歳以降は、損得抜きに友人を作るのは難しい」とも言われていて、自分もそれはあると感じています。教室という大きな共通点があった学生時代と違い、年齢や環境、仕事に人格まで様々。そんな中で、こうしてカードやゲームで心から笑い合えるのだから、これは幸運なことだと思う。\n 人間は大人になるに連れて、徐々に擦り減らした童心を取り戻すために生きていくのだと感じることがあります。富野監督も子供の感性こそが何より大切だと話していた。残念ながら、僕らはもう肉体的には大人で、それはもう取り返しがつかない。せめて、カードゲームで遊んだりライダーの話をして、それが最も楽しいと感じる時間が1秒でも長くあって欲しいものです。\n\n毎日の日記をまとめた同人誌を販売中です。新刊読んでみてね。どれから手に取っても大丈夫です。\n\n長文エッセイをまとめた商業エッセイ集もよろしくお願いします。ビックリするくらいガキの人格ですね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

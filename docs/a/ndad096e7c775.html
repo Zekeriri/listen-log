@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：关于睡眠的种种</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-09-09 13:10</p>
+  <h1>一口随笔：关于睡眠的种种</h1>
+  <p class="ja-title">一口エッセイ:睡眠についてのあれこれ</p>
+</header>
+<main>
+  <article class="body">睡眠薬の効果により、日記を書く前に寝落ちしてしまったので、折角ですからいまの睡眠事情についてまとめます。
+
+今は、デエビゴという変な名前の睡眠薬を処方されています。強制的な眠気でなく自然な眠気が発生するため、健忘（テンション上がって変な行動や言動をすること）が起きず、依存度も殆どないので安全です。効果はちょっと薄めです。でも、健忘で暴れることに比べたら全然これでいい……。
+
+代わりに、「悪夢」の副作用が強いです。正確には、レム睡眠だかノンレム睡眠の時間が長くなった関係で「夢を覚えている」確率が高いらしい。夢ってだいたい混沌としていて気分良いものではないので、「悪夢」を記憶している率が高くなってしまう。僕も、デエビゴを飲んでからは殆ど夢を覚えています。夢の中の自分がつねに学生時代なのがつらい。
+ 不安や緊張が強い時は、向精神薬も飲んでいるので、そっちの副作用も眠気があります。効果が合わさるとめちゃくちゃ眠くて、こうして気づいたら耐えきれずに寝落ちしていることが増えました。これは、特に対策もできないですね。
+ それでも2.3時間で起きます。恐らく自分が鼻呼吸を全くできない体質なためです。起きはするけど薬が効いていて身体と頭が働かず、金縛りになっていることも多いです。
+ そんな感じです。よろしくお願い致します。
+
+毎日の日記をまとめた同人誌をBOOTHにて販売中です。商業エッセイ集の方もよろしくね♪</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-09-09 13:10\n一口随笔：关于睡眠的种种\n一口エッセイ:睡眠についてのあれこれ\n\n睡眠薬の効果により、日記を書く前に寝落ちしてしまったので、折角ですからいまの睡眠事情についてまとめます。\n\n今は、デエビゴという変な名前の睡眠薬を処方されています。強制的な眠気でなく自然な眠気が発生するため、健忘（テンション上がって変な行動や言動をすること）が起きず、依存度も殆どないので安全です。効果はちょっと薄めです。でも、健忘で暴れることに比べたら全然これでいい……。\n\n代わりに、「悪夢」の副作用が強いです。正確には、レム睡眠だかノンレム睡眠の時間が長くなった関係で「夢を覚えている」確率が高いらしい。夢ってだいたい混沌としていて気分良いものではないので、「悪夢」を記憶している率が高くなってしまう。僕も、デエビゴを飲んでからは殆ど夢を覚えています。夢の中の自分がつねに学生時代なのがつらい。\n 不安や緊張が強い時は、向精神薬も飲んでいるので、そっちの副作用も眠気があります。効果が合わさるとめちゃくちゃ眠くて、こうして気づいたら耐えきれずに寝落ちしていることが増えました。これは、特に対策もできないですね。\n それでも2.3時間で起きます。恐らく自分が鼻呼吸を全くできない体質なためです。起きはするけど薬が効いていて身体と頭が働かず、金縛りになっていることも多いです。\n そんな感じです。よろしくお願い致します。\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中です。商業エッセイ集の方もよろしくね♪"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

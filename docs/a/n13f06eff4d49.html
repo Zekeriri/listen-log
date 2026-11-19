@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>什么是电波</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2026-07-29 12:12</p>
+  <h1>什么是电波</h1>
+  <p class="ja-title">電波とはなにか</p>
+</header>
+<main>
+  <article class="body">電波とはなにか。
+ 電波とは、自由であること。何者にも縛られない叫び。少年少女のロックンロール。鳴り止まないギター。アンチ・クライスト。定義されていない精神疾患。終わらない思春期の葛藤。やぶれかぶれの負け戦。虹色の端に咲く紫。誰にも見つからないゴシック&amp;ロリータ。望まれなかった生命。この世界を侵す毒。誰より弱い者たちの詩。永久に始まらない祝祭。残酷なまでの純粋さ。法律が存在しない聖域。別次元にいる上位存在の知覚。二人だけのオリジナル陰謀論。世界を混沌に帰すための教典。愛してもらえなかった嘆き。ただ話を聞いて欲しかった。声帯でなく脳漿から飛び散る音の集合体。苦しいくらいに必死に生きた証。両方BADエンドの分岐路。赤子が誕生した瞬間の産声。遺伝子への最後の抵抗。
+
+電波とは、破れた聖書。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-07-29 12:12\n什么是电波\n電波とはなにか\n\n電波とはなにか。\n 電波とは、自由であること。何者にも縛られない叫び。少年少女のロックンロール。鳴り止まないギター。アンチ・クライスト。定義されていない精神疾患。終わらない思春期の葛藤。やぶれかぶれの負け戦。虹色の端に咲く紫。誰にも見つからないゴシック&ロリータ。望まれなかった生命。この世界を侵す毒。誰より弱い者たちの詩。永久に始まらない祝祭。残酷なまでの純粋さ。法律が存在しない聖域。別次元にいる上位存在の知覚。二人だけのオリジナル陰謀論。世界を混沌に帰すための教典。愛してもらえなかった嘆き。ただ話を聞いて欲しかった。声帯でなく脳漿から飛び散る音の集合体。苦しいくらいに必死に生きた証。両方BADエンドの分岐路。赤子が誕生した瞬間の産声。遺伝子への最後の抵抗。\n\n電波とは、破れた聖書。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

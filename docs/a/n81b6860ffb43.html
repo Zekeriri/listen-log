@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：素材收集与阅读的强迫观念</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-03-24 03:25</p>
+  <h1>一口随笔：素材收集与阅读的强迫观念</h1>
+  <p class="ja-title">一口エッセイ:ネタ集めと読書の強迫観念</p>
+</header>
+<main>
+  <article class="body">毎日日記を書いて500日近くになる。この日記連載は僕の人生で最もつらいところです。例えどんなに精神的に苦しくとも、こうして文章を書かねばならない。鬱や発狂寸前であっても、画面と向かい合って長文を打ち込む時間は作らねばならない。
+ 僕は、毎日の日記に使う「ネタ」のために生きているといっても過言ではない状態で、つねになんらかの情報を頭に入れてないとネタが枯渇するのではと強迫観念に襲われる日々なのだ。
+
+なので、空いた時間はゆっくり解説で知らないコンテンツの話を聞くし、一日1〜2冊の読書を心掛けている。本読んで偉いと褒めてくれると嬉しいが、これはもう病気なだけです。僕は毎週本屋で10冊くらい一気に買う習慣がありますが、画像の通りジャンルはまばらで、しかも深く興味がある本ではない。東京の地域別経済格差とかどうでもいいし、偉人の年収も知らなくて別にいいんだが、とりあえずネタになるかもしれないので読む。むしろ、こうして「そこまで興味ないけど読むのが苦痛でない」くらいの方がネタが偏らずエッセイに最適なのではと思って購入している。実際、読むと面白い。結局は面白いから続くわけですね。
+ ネタ集めのために興味があるわけでないジャンルをランダムに手に取る強迫観念に困らされてはいるが、急に「なんでそんなこと知ってんの！？」みたいな知識を差し込む快感は、この方法で磨くしかないし、その一瞬のために時間と金を使う生活に最近は誇らしさすら感じてきています。僕は日常において、「その偉人の年収の内訳といえばね」とわけわからん知識を披露する瞬間を狙って生きている。
+
+毎日の日記をまとめた同人誌をboothにて販売中です。こうした努力によって本が出来上がるのだ。読んであげてね。
+
+商業エッセイ集もよろしくね。こっちは重い話だらけだよ。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-03-24 03:25\n一口随笔：素材收集与阅读的强迫观念\n一口エッセイ:ネタ集めと読書の強迫観念\n\n毎日日記を書いて500日近くになる。この日記連載は僕の人生で最もつらいところです。例えどんなに精神的に苦しくとも、こうして文章を書かねばならない。鬱や発狂寸前であっても、画面と向かい合って長文を打ち込む時間は作らねばならない。\n 僕は、毎日の日記に使う「ネタ」のために生きているといっても過言ではない状態で、つねになんらかの情報を頭に入れてないとネタが枯渇するのではと強迫観念に襲われる日々なのだ。\n\nなので、空いた時間はゆっくり解説で知らないコンテンツの話を聞くし、一日1〜2冊の読書を心掛けている。本読んで偉いと褒めてくれると嬉しいが、これはもう病気なだけです。僕は毎週本屋で10冊くらい一気に買う習慣がありますが、画像の通りジャンルはまばらで、しかも深く興味がある本ではない。東京の地域別経済格差とかどうでもいいし、偉人の年収も知らなくて別にいいんだが、とりあえずネタになるかもしれないので読む。むしろ、こうして「そこまで興味ないけど読むのが苦痛でない」くらいの方がネタが偏らずエッセイに最適なのではと思って購入している。実際、読むと面白い。結局は面白いから続くわけですね。\n ネタ集めのために興味があるわけでないジャンルをランダムに手に取る強迫観念に困らされてはいるが、急に「なんでそんなこと知ってんの！？」みたいな知識を差し込む快感は、この方法で磨くしかないし、その一瞬のために時間と金を使う生活に最近は誇らしさすら感じてきています。僕は日常において、「その偉人の年収の内訳といえばね」とわけわからん知識を披露する瞬間を狙って生きている。\n\n毎日の日記をまとめた同人誌をboothにて販売中です。こうした努力によって本が出来上がるのだ。読んであげてね。\n\n商業エッセイ集もよろしくね。こっちは重い話だらけだよ。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

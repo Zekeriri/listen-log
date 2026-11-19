@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：孤独的患者</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-01-17 01:56</p>
+  <h1>一口随笔：孤独的患者</h1>
+  <p class="ja-title">一口エッセイ:孤独の患者</p>
+</header>
+<main>
+  <article class="body">数年ぶりに、救急車に乗りました。
+ 昨日の日記で「絶対症状でググるな」の歌について書きましたが、何を隠そうアレを書いている時には、「嘔吐」「腹痛」「頭痛」「めまい」で体調不良のオンパレードでした。ここまでくると自分で調べて不安になっても仕方ないので、「症状でググるな」と半ば自分に言い聞かせるように文章を打っていたんですね。
+ 死んでもニチアサまでは観ようと耐えたものの、終わってすぐ強烈な眩暈が起きて倒れ込み、数分動けなくなる状態を数度繰り返した。恐らく、ゲームがマスターアップして緊張の糸が切れ、製作中の疲労やストレスに襲われたのかもしれない。
+ 救急車で運ばれていると、救急隊員から「手術や入院になった際にお見舞いに来れる家族はいますか？」と訊かれ、それに「母は沖縄に居るし、絶対来ないです」と答えた。このやり取りは2回目で、昔、盲腸になった際も同じ会話を繰り返しており、家族も友達も誰一人来ない未成年の男に対し、看護婦さんに憐れんでもらったこともあります。もはや腹痛そのものよりも、知らない施設で孤独な哀しみの方がつらかった。
+
+今回は、結果的にそこまで大したことはなく、栄養補給なり抗生物質なりをどうこうし、現在はまぁまぁ大丈夫です。ゲーム発売日頃には、元気だろうから心配しないでね。ただ、胃が受け付けない状態なので食事はできませんが。お祝いできないね。
+ ただ、今は倒れたと連絡すると、いろいろサポートしてくれるプロデューサーや編集さんが居たので、孤独は感じなかったです。ちょっと自分が成長した気がして嬉しかったな。
+
+毎日のエッセイをまとめた同人誌をboothにて販売中です。どんなに体調不良が続いても、毎日書き続けているよ！
+
+先月に発売した商業エッセイ集もよろしくお願いします。わりと好評で、これまで生きてきた甲斐を感じますね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-01-17 01:56\n一口随笔：孤独的患者\n一口エッセイ:孤独の患者\n\n数年ぶりに、救急車に乗りました。\n 昨日の日記で「絶対症状でググるな」の歌について書きましたが、何を隠そうアレを書いている時には、「嘔吐」「腹痛」「頭痛」「めまい」で体調不良のオンパレードでした。ここまでくると自分で調べて不安になっても仕方ないので、「症状でググるな」と半ば自分に言い聞かせるように文章を打っていたんですね。\n 死んでもニチアサまでは観ようと耐えたものの、終わってすぐ強烈な眩暈が起きて倒れ込み、数分動けなくなる状態を数度繰り返した。恐らく、ゲームがマスターアップして緊張の糸が切れ、製作中の疲労やストレスに襲われたのかもしれない。\n 救急車で運ばれていると、救急隊員から「手術や入院になった際にお見舞いに来れる家族はいますか？」と訊かれ、それに「母は沖縄に居るし、絶対来ないです」と答えた。このやり取りは2回目で、昔、盲腸になった際も同じ会話を繰り返しており、家族も友達も誰一人来ない未成年の男に対し、看護婦さんに憐れんでもらったこともあります。もはや腹痛そのものよりも、知らない施設で孤独な哀しみの方がつらかった。\n\n今回は、結果的にそこまで大したことはなく、栄養補給なり抗生物質なりをどうこうし、現在はまぁまぁ大丈夫です。ゲーム発売日頃には、元気だろうから心配しないでね。ただ、胃が受け付けない状態なので食事はできませんが。お祝いできないね。\n ただ、今は倒れたと連絡すると、いろいろサポートしてくれるプロデューサーや編集さんが居たので、孤独は感じなかったです。ちょっと自分が成長した気がして嬉しかったな。\n\n毎日のエッセイをまとめた同人誌をboothにて販売中です。どんなに体調不良が続いても、毎日書き続けているよ！\n\n先月に発売した商業エッセイ集もよろしくお願いします。わりと好評で、これまで生きてきた甲斐を感じますね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

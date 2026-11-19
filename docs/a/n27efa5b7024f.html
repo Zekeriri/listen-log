@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>精选一口随笔：不上学的回忆</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-10-15 19:40</p>
+  <h1>精选一口随笔：不上学的回忆</h1>
+  <p class="ja-title">選り抜き一口エッセイ:不登校の思い出</p>
+</header>
+<main>
+  <article class="body">中学の不登校時、毎朝迎えに来てくれる同級生の女の子が居て、どうやら僕の近所で同じクラスという理由で先生に頼まれていたらしい。
+ 基本的には、毎日無視していたのですが、覗き穴越しに見たその日の彼女は、なんだか泣きそうに見えたので、珍しくドアを開けてみたのです。
+ 「私も不登校になれば良かった」と彼女が涙目で話したので、「じゃあ学校サボって遊ぼうよ」と誘ってみた。あまりに予想外の返答だったらしく、目が点となっていましたが、数日ぶりに部屋を出て、学校とは別方向に向けて歩き出します。どうせなら目的があった方がいいので、海を目指す。泣きそうな理由は訊かないことにしました。
+ 瀬長島と呼ばれる離れ島を目指し、那覇空港近くを二人で歩きます。そばに米軍基地もあるおかげで、公道を戦車が走っており、思わずビックリして互いに笑い合います。いつもの仏頂面で迎えにくるか、今の泣き顔のどちらかしか知らなかったので、笑顔が見れて良かったなと思いました。
+ 海につくと、彼女が「学校サボるの初めて」と言うので、「僕は毎日行ってないけどね」と返すと、「それ自慢じゃないよ」と優しく注意してくれる。そろそろ学校を休んだ理由を訊こうとした時、近くを通った見回りのパトカーに捕まりました。いわゆる補導です。僕は数回目で慣れていたので、「彼女は僕が無理やり連れてきたんです」と庇おうとすると、警察は怪訝な顔をして言いました。「彼女って誰のこと？」と。僕は「いえ、なんでもないです」と返し、そのまま何度目かの生徒指導室へ連れて行かれました。
+
+毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-10-15 19:40\n精选一口随笔：不上学的回忆\n選り抜き一口エッセイ:不登校の思い出\n\n中学の不登校時、毎朝迎えに来てくれる同級生の女の子が居て、どうやら僕の近所で同じクラスという理由で先生に頼まれていたらしい。\n 基本的には、毎日無視していたのですが、覗き穴越しに見たその日の彼女は、なんだか泣きそうに見えたので、珍しくドアを開けてみたのです。\n 「私も不登校になれば良かった」と彼女が涙目で話したので、「じゃあ学校サボって遊ぼうよ」と誘ってみた。あまりに予想外の返答だったらしく、目が点となっていましたが、数日ぶりに部屋を出て、学校とは別方向に向けて歩き出します。どうせなら目的があった方がいいので、海を目指す。泣きそうな理由は訊かないことにしました。\n 瀬長島と呼ばれる離れ島を目指し、那覇空港近くを二人で歩きます。そばに米軍基地もあるおかげで、公道を戦車が走っており、思わずビックリして互いに笑い合います。いつもの仏頂面で迎えにくるか、今の泣き顔のどちらかしか知らなかったので、笑顔が見れて良かったなと思いました。\n 海につくと、彼女が「学校サボるの初めて」と言うので、「僕は毎日行ってないけどね」と返すと、「それ自慢じゃないよ」と優しく注意してくれる。そろそろ学校を休んだ理由を訊こうとした時、近くを通った見回りのパトカーに捕まりました。いわゆる補導です。僕は数回目で慣れていたので、「彼女は僕が無理やり連れてきたんです」と庇おうとすると、警察は怪訝な顔をして言いました。「彼女って誰のこと？」と。僕は「いえ、なんでもないです」と返し、そのまま何度目かの生徒指導室へ連れて行かれました。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

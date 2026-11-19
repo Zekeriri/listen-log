@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>精选一口散文：作为妹妹题材的卡夫卡《变形记》</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2021-12-09 02:26</p>
+  <h1>精选一口散文：作为妹妹题材的卡夫卡《变形记》</h1>
+  <p class="ja-title">選り抜き一口エッセイ:妹モノとしてのカフカの「変身」</p>
+</header>
+<main>
+  <article class="body">僕はカフカの「変身」を、美少女ゲームの鬱ゲー的なジャンルの文脈として読みました。
+ というのも、僕の学生時代に直撃した「萌え」ブームにより、数々の出版社が既存の概念と美少女を組み合わせることに躍起になったのですね。そして、どこかの編集が文学に目をつけた結果、名作文学に登場するヒロインたちを「二次元美少女」のように紹介するムックができあがったのです。その名も「萌える名作文学」。
+ 本屋で見かけ、ぱらぱらページを捲ったにゃるら少年は、カフカの変身が「妹萌え」作品として紹介されているのを発見。変身のタイトルと冒頭くらいは流石に知っていたものの、まさか「妹に萌える」作品であるなんて想像もつかず、一人っ子で当時は強く妹キャラへ憧れがあった僕は、すぐさま変身を手に取ります。
+ 「萌える名作文学」の中で既に美少女化されたイラストが掲載されていたことにより、「献身的なヒロインが登場する鬱エンドの短編」という脳に切り替わった僕は、もう完全に美少女ゲーム、中でも不条理で鬱ゲーで有名な作品としか読めなくなってしまった。
+ そうなってくると、害虫になったザムザの世話をしてくれる妹が可愛くて仕方ない。たしかに、兄を甘やかせてくれる妹キャラなんて星の数ほど存在する。しかし、兄が害虫になっても面倒を引き受ける妹なんて、ザムザの妹だけだ。
+ という経緯があって、妹モノとして変身を読んでしまった世にも奇妙なオタクが爆誕したのだ。これには天国のカフカもびっくりでしょう。
+
+毎日のエッセイをまとめた同人誌がboothにて発売中です。読んでみてね。
+
+今月末には、長文エッセイが収録された商業エッセイ集もでます。書き下ろしもたくさんあってお得！</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-09 02:26\n精选一口散文：作为妹妹题材的卡夫卡《变形记》\n選り抜き一口エッセイ:妹モノとしてのカフカの「変身」\n\n僕はカフカの「変身」を、美少女ゲームの鬱ゲー的なジャンルの文脈として読みました。\n というのも、僕の学生時代に直撃した「萌え」ブームにより、数々の出版社が既存の概念と美少女を組み合わせることに躍起になったのですね。そして、どこかの編集が文学に目をつけた結果、名作文学に登場するヒロインたちを「二次元美少女」のように紹介するムックができあがったのです。その名も「萌える名作文学」。\n 本屋で見かけ、ぱらぱらページを捲ったにゃるら少年は、カフカの変身が「妹萌え」作品として紹介されているのを発見。変身のタイトルと冒頭くらいは流石に知っていたものの、まさか「妹に萌える」作品であるなんて想像もつかず、一人っ子で当時は強く妹キャラへ憧れがあった僕は、すぐさま変身を手に取ります。\n 「萌える名作文学」の中で既に美少女化されたイラストが掲載されていたことにより、「献身的なヒロインが登場する鬱エンドの短編」という脳に切り替わった僕は、もう完全に美少女ゲーム、中でも不条理で鬱ゲーで有名な作品としか読めなくなってしまった。\n そうなってくると、害虫になったザムザの世話をしてくれる妹が可愛くて仕方ない。たしかに、兄を甘やかせてくれる妹キャラなんて星の数ほど存在する。しかし、兄が害虫になっても面倒を引き受ける妹なんて、ザムザの妹だけだ。\n という経緯があって、妹モノとして変身を読んでしまった世にも奇妙なオタクが爆誕したのだ。これには天国のカフカもびっくりでしょう。\n\n毎日のエッセイをまとめた同人誌がboothにて発売中です。読んでみてね。\n\n今月末には、長文エッセイが収録された商業エッセイ集もでます。書き下ろしもたくさんあってお得！"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

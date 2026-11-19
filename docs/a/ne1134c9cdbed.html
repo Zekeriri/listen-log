@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>错过、调情</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-12-21 06:25</p>
+  <h1>错过、调情</h1>
+  <p class="ja-title">すれ違い、いちゃつく</p>
+</header>
+<main>
+  <article class="body">とぼとぼと歩いていたら「にゃるらじゃん」と話しかけられ、顔をあげるとヒトリエのシノダさん。
+ 顔を合わせたからには挨拶が発生し、シノダさんは「元気？」と尋ねてくるものの、僕はと言えば端的に元気がない。察したシノダさんも「今は大変そうだもんな」と続けてくれ、かといって別に元気ではないけど落ち込んでいることもなく、せっかく会ったのだから「ご飯とか行きます？」と聞くと、「いや用事ある……」と別れることに。
+ 急にすれ違った故のコミュニケーションとはいえ、なんだか関係のわりに冷たくなったことを気にして、これはこれで愉快なサプライズだったぜと伝えたく、角を曲がったところで名前を呟く。
+
+シノダ— nyalra (@nyalra) December 19, 2025
+
+嬉しいことに相手方も乗ってきて、
+
+nyalra https://t.co/jar0Vl4Tyh— シノダ/ヒトリエ/cakebox (@sho_do_teki) December 19, 2025
+
+互いに名前を呼びあったことにより、なんだかタイムライン上でいちゃつく大学生みたいになったなあと、ヒトリエのファンが「なんだなんだ！？」と驚くなか、真相はと言えば非常にしょうもなく、ただ不意にすれ違ったゆえに微妙となった空気を上書きした。本当にそれだけのことであった。
+
+シノダが描いた超てんちゃんがかわいいのでにゃるーらに即・共有（シェアー）した https://t.co/6LndP4vX2S— キタニタツヤ Tatsuya Kitani (@TatsuyaKitani) April 20, 2024</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-12-21 06:25\n错过、调情\nすれ違い、いちゃつく\n\nとぼとぼと歩いていたら「にゃるらじゃん」と話しかけられ、顔をあげるとヒトリエのシノダさん。\n 顔を合わせたからには挨拶が発生し、シノダさんは「元気？」と尋ねてくるものの、僕はと言えば端的に元気がない。察したシノダさんも「今は大変そうだもんな」と続けてくれ、かといって別に元気ではないけど落ち込んでいることもなく、せっかく会ったのだから「ご飯とか行きます？」と聞くと、「いや用事ある……」と別れることに。\n 急にすれ違った故のコミュニケーションとはいえ、なんだか関係のわりに冷たくなったことを気にして、これはこれで愉快なサプライズだったぜと伝えたく、角を曲がったところで名前を呟く。\n\nシノダ— nyalra (@nyalra) December 19, 2025\n\n嬉しいことに相手方も乗ってきて、\n\nnyalra https://t.co/jar0Vl4Tyh— シノダ/ヒトリエ/cakebox (@sho_do_teki) December 19, 2025\n\n互いに名前を呼びあったことにより、なんだかタイムライン上でいちゃつく大学生みたいになったなあと、ヒトリエのファンが「なんだなんだ！？」と驚くなか、真相はと言えば非常にしょうもなく、ただ不意にすれ違ったゆえに微妙となった空気を上書きした。本当にそれだけのことであった。\n\nシノダが描いた超てんちゃんがかわいいのでにゃるーらに即・共有（シェアー）した https://t.co/6LndP4vX2S— キタニタツヤ Tatsuya Kitani (@TatsuyaKitani) April 20, 2024"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

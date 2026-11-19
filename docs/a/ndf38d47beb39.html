@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>精选一口随笔：巨大的精神病院</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-04-22 21:24</p>
+  <h1>精选一口随笔：巨大的精神病院</h1>
+  <p class="ja-title">選り抜き一口エッセイ:巨大な精神病棟</p>
+</header>
+<main>
+  <article class="body">急に人が「正しさ」で殴っているとビックリする。ネット依存の時点でみんなどこか壊れているんだ。僕も、お前も、そこは同じでしょう。SNSという巨大な精神病棟の揺り籠で、長い長い時間をかけながら治療をされているイメージある。
+ だから「こいつはこんなに常識がない」とか「こいつ発達障害だろ」みたいな発言で他人を煽っている様を見るたび、ネットで健常さや社会性の高さを武器にするのかとビックリするんです。
+ 僕らは学習能力がとても低いから、何度も何度も他人との距離感や心情の読み取りを間違え続け、破滅をやらかすことでようやく身体で覚えるしかない。そうやって、少しづつ、少しづつ成長していく。
+ 現実世界から見て変なヤツであるのは、お互い同じなんじゃないか。破損箇所に違いがあるだけで、ちゃんと損傷しているんだよ。そもそも他人を見下して晒したりし続けているのも、それはそれで病気やコンプレックスの一種でしょう。本気でそれに気づいていないなら、やっぱり同じ病気の仲間だ。精神病棟の患者同士での上下関係なんて、しょうもないじゃないか。
+ やらかしながら治していくんだから、たまに問題を起こすのも仕方ないと思う。あんまり昔の話をいつまでも引っ張ることないだろう。ゆっくりだけど進んでいるんだから、過去の話も水に流した方がいい。寛容とは余裕があることで、余裕は大人の証であるわけです。
+ 病人であるのは同じ前提で居てほしい。それだけは常々思っております。
+
+毎日のエッセイをまとめた同人誌を販売中です。新刊買ってもらえたら嬉しいぜ。どこから読んでも大丈夫です。
+
+かなりアレな時期の長文エッセイをまとめた商業エッセイ集もよろしくお願いします。かなりアレな内容。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-04-22 21:24\n精选一口随笔：巨大的精神病院\n選り抜き一口エッセイ:巨大な精神病棟\n\n急に人が「正しさ」で殴っているとビックリする。ネット依存の時点でみんなどこか壊れているんだ。僕も、お前も、そこは同じでしょう。SNSという巨大な精神病棟の揺り籠で、長い長い時間をかけながら治療をされているイメージある。\n だから「こいつはこんなに常識がない」とか「こいつ発達障害だろ」みたいな発言で他人を煽っている様を見るたび、ネットで健常さや社会性の高さを武器にするのかとビックリするんです。\n 僕らは学習能力がとても低いから、何度も何度も他人との距離感や心情の読み取りを間違え続け、破滅をやらかすことでようやく身体で覚えるしかない。そうやって、少しづつ、少しづつ成長していく。\n 現実世界から見て変なヤツであるのは、お互い同じなんじゃないか。破損箇所に違いがあるだけで、ちゃんと損傷しているんだよ。そもそも他人を見下して晒したりし続けているのも、それはそれで病気やコンプレックスの一種でしょう。本気でそれに気づいていないなら、やっぱり同じ病気の仲間だ。精神病棟の患者同士での上下関係なんて、しょうもないじゃないか。\n やらかしながら治していくんだから、たまに問題を起こすのも仕方ないと思う。あんまり昔の話をいつまでも引っ張ることないだろう。ゆっくりだけど進んでいるんだから、過去の話も水に流した方がいい。寛容とは余裕があることで、余裕は大人の証であるわけです。\n 病人であるのは同じ前提で居てほしい。それだけは常々思っております。\n\n毎日のエッセイをまとめた同人誌を販売中です。新刊買ってもらえたら嬉しいぜ。どこから読んでも大丈夫です。\n\nかなりアレな時期の長文エッセイをまとめた商業エッセイ集もよろしくお願いします。かなりアレな内容。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

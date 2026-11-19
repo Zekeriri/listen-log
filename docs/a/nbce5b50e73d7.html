@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>被雷诺阿装饰的雷诺阿</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-05-14 05:05</p>
+  <h1>被雷诺阿装饰的雷诺阿</h1>
+  <p class="ja-title">ルノアールに飾られるルノワール</p>
+</header>
+<main>
+  <article class="body">ルノアールは良い。なんといってもルノワールの絵が飾られており、作業中にふと目を移すと、その眩さに心奪われる。ルノワールの描く色の優しさは、そのまま人の優しさを想ってしまう。
+
+可愛いイレーヌ。こんなにも優雅に栗色の髪を描けるのも、ルノワールが人を丹念に観察し、人間を愛していた何よりの証拠でしょう。
+
+さらに目線を移すと、『ムーラン・ド・ラ・ギャレット』だ。この絵の賑やかさと言ったら凄い。無人の席からでも舞踏会のような足音が聴こえてくるような。
+
+ルノワールと言えば、やはり「人物」。ここまで多くの人たちの日常を、いっさいのいやらしさなく切り取る。一癖も二癖もある印象派の画家たちのなかで、ここまで人間の朗らかさを信じた人物も珍しい。
+ とはいえ、実際の喫茶店で行われているのは、風俗の勧誘や保険の契約などではあるのだが。喜びに溢れたルノワールの絵画とクラシックの下、非常に俗な話題が展開されているのは現代アートか。
+
+有名な話で、ルノワールとモネ、それぞれの違った魅力が面白い構図がある。同じ場面を描いているのに注目する点がまったく異なる。
+
+こちらがルノワールの『ラ・グルヌイエール』。先述した絵と同じく、人々の豊かな暮らしを美麗に描く。
+
+一方、モネの『ラ・グルヌイエール』。こちらは、モネらしく水面の反射が美しい。代わりに人物は簡素に、まるで水面を引き立てるための脇役としてぼやっと描かれている。
+
+人物と水面。
+ 同じ空間を切り取ろうとも、人間たちはここまで視点が異なり、またどちらも別種の美しさを持っている。
+ 印象派たちの生き様に想いを馳せながら、ルノアールで大声を出すマルチの勧誘たちの喧騒をBGMにコーヒーを嗜む。ルノワールが描けば、この店内もまた優雅で喜びに満ちた一枚となるのでしょうか。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-05-14 05:05\n被雷诺阿装饰的雷诺阿\nルノアールに飾られるルノワール\n\nルノアールは良い。なんといってもルノワールの絵が飾られており、作業中にふと目を移すと、その眩さに心奪われる。ルノワールの描く色の優しさは、そのまま人の優しさを想ってしまう。\n\n可愛いイレーヌ。こんなにも優雅に栗色の髪を描けるのも、ルノワールが人を丹念に観察し、人間を愛していた何よりの証拠でしょう。\n\nさらに目線を移すと、『ムーラン・ド・ラ・ギャレット』だ。この絵の賑やかさと言ったら凄い。無人の席からでも舞踏会のような足音が聴こえてくるような。\n\nルノワールと言えば、やはり「人物」。ここまで多くの人たちの日常を、いっさいのいやらしさなく切り取る。一癖も二癖もある印象派の画家たちのなかで、ここまで人間の朗らかさを信じた人物も珍しい。\n とはいえ、実際の喫茶店で行われているのは、風俗の勧誘や保険の契約などではあるのだが。喜びに溢れたルノワールの絵画とクラシックの下、非常に俗な話題が展開されているのは現代アートか。\n\n有名な話で、ルノワールとモネ、それぞれの違った魅力が面白い構図がある。同じ場面を描いているのに注目する点がまったく異なる。\n\nこちらがルノワールの『ラ・グルヌイエール』。先述した絵と同じく、人々の豊かな暮らしを美麗に描く。\n\n一方、モネの『ラ・グルヌイエール』。こちらは、モネらしく水面の反射が美しい。代わりに人物は簡素に、まるで水面を引き立てるための脇役としてぼやっと描かれている。\n\n人物と水面。\n 同じ空間を切り取ろうとも、人間たちはここまで視点が異なり、またどちらも別種の美しさを持っている。\n 印象派たちの生き様に想いを馳せながら、ルノアールで大声を出すマルチの勧誘たちの喧騒をBGMにコーヒーを嗜む。ルノワールが描けば、この店内もまた優雅で喜びに満ちた一枚となるのでしょうか。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

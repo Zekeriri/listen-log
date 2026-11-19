@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>接下来是咨询</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2026-07-17 15:11</p>
+  <h1>接下来是咨询</h1>
+  <p class="ja-title">これからカウンセリングです</p>
+</header>
+<main>
+  <article class="body">これからカウンセリングを受けにいく。
+ 「カウンセラー側」がどういう仕組みで、何を行うのかはある程度を読んだ。つまり、マニュアル通りにきたら察することができるし、よいカウンセラーは臨機応変な対応でそれぞれに合った手法を使うはずで、こうして本だけで学んだ自分の想像を越えることがあることを期待する。
+
+結果としては、「こころ」。
+ 要するに、ここでの心とは激しい衝動をコントロールするための理性のような定義ですね。
+ 心を変化させられるかどうか。自分の場合は著しく生活を苛ませるトラウマとストレスからの解放、が主観で思える相談内容ではあるのですが、僕からの会話を巧みに手繰り寄せ、自分でも全く気づかない根本的な問題と処置が施され、まるっきり違う方向に入るかもしれない。やっぱり、そのようなことも期待してしまうが、現実のカウンセリングは魔法じゃない。
+ なんなら、応募時のメールから所作、全ての情報を総合して二人三脚でゴールへ向かう競技のようなもので、こちらもまた「カウンセリングでどうにかなるのか？」と斜に構えていると先に進めない。
+ いったい、どうなるのかわからない。
+ 表で書けるような悩み・苦しみは書き過ぎなくらいに晒してきた。そういった自傷行為も止めたほうがいいかもしれないが……そうでもないと自分の存在価値なんてないしなぁとも不安にもなる。
+ こうして紡いでいくと、文章を書いて読まれるようになるまでの間ずっと感じていた「無価値な自分」のコンプレックスがある気もするし、じゃあそれをどう克服するんでしょう？ って話もしてみたい。
+ 結局、もはや周囲の人間には話してもどうにもならないことをコミュニケーションできるのだから、この時点で僕にとってカウンセリングは役割を果たしているとも言える。
+
+行ってきます。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-07-17 15:11\n接下来是咨询\nこれからカウンセリングです\n\nこれからカウンセリングを受けにいく。\n 「カウンセラー側」がどういう仕組みで、何を行うのかはある程度を読んだ。つまり、マニュアル通りにきたら察することができるし、よいカウンセラーは臨機応変な対応でそれぞれに合った手法を使うはずで、こうして本だけで学んだ自分の想像を越えることがあることを期待する。\n\n結果としては、「こころ」。\n 要するに、ここでの心とは激しい衝動をコントロールするための理性のような定義ですね。\n 心を変化させられるかどうか。自分の場合は著しく生活を苛ませるトラウマとストレスからの解放、が主観で思える相談内容ではあるのですが、僕からの会話を巧みに手繰り寄せ、自分でも全く気づかない根本的な問題と処置が施され、まるっきり違う方向に入るかもしれない。やっぱり、そのようなことも期待してしまうが、現実のカウンセリングは魔法じゃない。\n なんなら、応募時のメールから所作、全ての情報を総合して二人三脚でゴールへ向かう競技のようなもので、こちらもまた「カウンセリングでどうにかなるのか？」と斜に構えていると先に進めない。\n いったい、どうなるのかわからない。\n 表で書けるような悩み・苦しみは書き過ぎなくらいに晒してきた。そういった自傷行為も止めたほうがいいかもしれないが……そうでもないと自分の存在価値なんてないしなぁとも不安にもなる。\n こうして紡いでいくと、文章を書いて読まれるようになるまでの間ずっと感じていた「無価値な自分」のコンプレックスがある気もするし、じゃあそれをどう克服するんでしょう？ って話もしてみたい。\n 結局、もはや周囲の人間には話してもどうにもならないことをコミュニケーションできるのだから、この時点で僕にとってカウンセリングは役割を果たしているとも言える。\n\n行ってきます。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：有趣的推文</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2021-11-26 07:38</p>
+  <h1>一口随笔：有趣的推文</h1>
+  <p class="ja-title">一口エッセイ:面白ツイート</p>
+</header>
+<main>
+  <article class="body">面白いツイート、あまり「ネタツイート」なんて表現は使いたくないですが、そういう呟きをする人たちが存在します。僕も昔は面白い……突飛な表現やパロディを駆使して変なツイートを吐き、いいねやRTされることを楽しみの一つとしてTwitterを利用していたのです。そのようなことを続けていると、次第にフォロワー数が増える。目立つから。この数字の魔力に取り憑かれて、発言が過激になったり、パクりだったり、大衆ウケ狙いすぎて陳腐になったりもする。インターネットは、人を狂わせる。
+ 出る杭は打たれるのが世の常で、どの時代にも「ウケを狙う行為」を叩く人間が出現します。「滑ってる」とか「馴れ合いだろ」とかね。日常の些細なことを発信するツールで、「俺の発言面白いだろ？」と主張しているのですから、鼻につくのも仕方ないと思う。悪意をぶつけられ病む人も少なくない。僕も他者にそれを感じていた時期はあった。今思うと、同族嫌悪や妬み嫉みなんですけど。
+ しかし、ここ数年それが無くなったんです。なんというか、大人になるにつれ夾雑物が落ちて丸くなった。面白いモノは面白いと素直に感じられる。
+ 若者たちはトゲトゲするのが仕事だから、「ユーモア」に厳しく接することで個性を出すが、僕らくたびれたアラサー以降は、もう疲れているから、単純に「おもしれ〜」とだけ思っている。もちろん疲れているから口に出して褒めることもないが、そっといいねくらいはする。「笑わせる」って本質的に知能が高い行為なので、それはカッコいいことだ。同年代の攻撃に挫けず頑張って欲しいぜ。くたびれたおっさんたちは、キミのツイートを待っている。
+
+このような毎日のエッセイを纏めた同人誌を、boothにて販売しています。最近2巻が出ました。良ければ買ってあげてくださいね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-11-26 07:38\n一口随笔：有趣的推文\n一口エッセイ:面白ツイート\n\n面白いツイート、あまり「ネタツイート」なんて表現は使いたくないですが、そういう呟きをする人たちが存在します。僕も昔は面白い……突飛な表現やパロディを駆使して変なツイートを吐き、いいねやRTされることを楽しみの一つとしてTwitterを利用していたのです。そのようなことを続けていると、次第にフォロワー数が増える。目立つから。この数字の魔力に取り憑かれて、発言が過激になったり、パクりだったり、大衆ウケ狙いすぎて陳腐になったりもする。インターネットは、人を狂わせる。\n 出る杭は打たれるのが世の常で、どの時代にも「ウケを狙う行為」を叩く人間が出現します。「滑ってる」とか「馴れ合いだろ」とかね。日常の些細なことを発信するツールで、「俺の発言面白いだろ？」と主張しているのですから、鼻につくのも仕方ないと思う。悪意をぶつけられ病む人も少なくない。僕も他者にそれを感じていた時期はあった。今思うと、同族嫌悪や妬み嫉みなんですけど。\n しかし、ここ数年それが無くなったんです。なんというか、大人になるにつれ夾雑物が落ちて丸くなった。面白いモノは面白いと素直に感じられる。\n 若者たちはトゲトゲするのが仕事だから、「ユーモア」に厳しく接することで個性を出すが、僕らくたびれたアラサー以降は、もう疲れているから、単純に「おもしれ〜」とだけ思っている。もちろん疲れているから口に出して褒めることもないが、そっといいねくらいはする。「笑わせる」って本質的に知能が高い行為なので、それはカッコいいことだ。同年代の攻撃に挫けず頑張って欲しいぜ。くたびれたおっさんたちは、キミのツイートを待っている。\n\nこのような毎日のエッセイを纏めた同人誌を、boothにて販売しています。最近2巻が出ました。良ければ買ってあげてくださいね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

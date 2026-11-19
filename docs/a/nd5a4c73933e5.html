@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>互联网的总幸福量</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2026-08-11 17:25</p>
+  <h1>互联网的总幸福量</h1>
+  <p class="ja-title">インターネットの総幸福量</p>
+</header>
+<main>
+  <article class="body">人間は脳内で物語を描いてしまう。
+ 目に入った情報、身の回りの出来事、それらを数珠つなぎにして頭の中に「ストーリー」を描く。それ自体は悪いことではないが……ネット上に居ると入ってくる曖昧な情報をつなぎ合わせるとどんどん狂っていく。
+ 自分がハマっているトロピコ6なるゲームでは、施設や仕事ごとに「質」の値が設定されており、質のいい施設や仕事を増やしていかないと国民の総幸福量が上がらない。この現象と同じで、「情報の質」は情報過多な現代では最終的な幸福量と関連するでしょう。
+ 情報の質を紐解くためには、様々な知識と経験から比較して理解する必要があり、つまるところは「本を読む」というシンプルな回答へ帰結する。本、雑誌にはある程度のリテラシーが保証されている。大仰な言い方をやめれば「インスタントフードを食べない」と同じレベルのことなのですが。
+ 本来、人間に必要な物語はもっと単純で少なかった。
+ 主に「宗教」と「戦争」なる、あまりに巨大なスケールの物語がすぐ隣にあったから。
+ 巨大な物語性が薄くなって、それぞれが「個人」となった世界の隣人は、インターネットなる非常に取捨選択が複雑な戦場で、ここに呑まれずにいるには、結構な経験と理解度が求められる。
+ それでも自信満々に間違いを出すことがあるとはいえ、人類がブラウジングから多少はAIとの対話に移行したのはよい兆候でしょう。とにかく、そこに置かれている「施設の質」が総幸福度であるなら、「いかがでしたか？」サイトにSEOを乗っ取られていたGoogle検索の影響力が薄くなっていくのは、まだマシなことが起きている。その上で、もっと人生を休憩したい場合は、匿名でのアンダーグラウンドな楽しみはまだまだ電子の水底に残っています。
+ 「インターネット」なる共同幻想による神話の質。
+ その物語をどう脳内で勝手に紡ぐか。
+ それぞれが「インターネットとはなんだったのか」と決着つけていく時期か。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-08-11 17:25\n互联网的总幸福量\nインターネットの総幸福量\n\n人間は脳内で物語を描いてしまう。\n 目に入った情報、身の回りの出来事、それらを数珠つなぎにして頭の中に「ストーリー」を描く。それ自体は悪いことではないが……ネット上に居ると入ってくる曖昧な情報をつなぎ合わせるとどんどん狂っていく。\n 自分がハマっているトロピコ6なるゲームでは、施設や仕事ごとに「質」の値が設定されており、質のいい施設や仕事を増やしていかないと国民の総幸福量が上がらない。この現象と同じで、「情報の質」は情報過多な現代では最終的な幸福量と関連するでしょう。\n 情報の質を紐解くためには、様々な知識と経験から比較して理解する必要があり、つまるところは「本を読む」というシンプルな回答へ帰結する。本、雑誌にはある程度のリテラシーが保証されている。大仰な言い方をやめれば「インスタントフードを食べない」と同じレベルのことなのですが。\n 本来、人間に必要な物語はもっと単純で少なかった。\n 主に「宗教」と「戦争」なる、あまりに巨大なスケールの物語がすぐ隣にあったから。\n 巨大な物語性が薄くなって、それぞれが「個人」となった世界の隣人は、インターネットなる非常に取捨選択が複雑な戦場で、ここに呑まれずにいるには、結構な経験と理解度が求められる。\n それでも自信満々に間違いを出すことがあるとはいえ、人類がブラウジングから多少はAIとの対話に移行したのはよい兆候でしょう。とにかく、そこに置かれている「施設の質」が総幸福度であるなら、「いかがでしたか？」サイトにSEOを乗っ取られていたGoogle検索の影響力が薄くなっていくのは、まだマシなことが起きている。その上で、もっと人生を休憩したい場合は、匿名でのアンダーグラウンドな楽しみはまだまだ電子の水底に残っています。\n 「インターネット」なる共同幻想による神話の質。\n その物語をどう脳内で勝手に紡ぐか。\n それぞれが「インターネットとはなんだったのか」と決着つけていく時期か。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

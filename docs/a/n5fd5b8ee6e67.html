@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>出版了一本同人志，收录了我喜欢的50款美少女游戏</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-01-26 20:45</p>
+  <h1>出版了一本同人志，收录了我喜欢的50款美少女游戏</h1>
+  <p class="ja-title">好きな美少女ゲームを50本分選んで書いた同人誌がでました</p>
+</header>
+<main>
+  <article class="body">雰囲気が良すぎてたまらない表紙は、ななみ雪( https://twitter.com/yuki77mi ）さんにお願いしました。抽象的な「美少女ゲームの名シーン」をイメージしたドット絵が素晴らしい。
+
+「インターネット2増刊号 にゃるらと文也の美少女ゲーム50選」という、僕と岩倉文也が互いに25本ずつ作品を選び、合計50本分の美少女ゲームについて書いた本の通販が始まりました。きっと、まだ知らない・または気になっていた名作と出会えるよう頑張って書いたので、ぜひ読んでね！
+
+たとえば、自分の場合は上のようにちょっと古めな作品を、
+
+岩倉文也の場合は、最近の作品が多めです。
+ ここ数年は美少女ゲームに触れていないという方も、昨今の業界を知ることができるので満足できる！
+ あまり「批評」なんて形をとりたくなかったので、自分の感性などが多めなちょっと変わった本ですが、商業ではけっして再現できない読み応えになっていると思います。宜しくお願い致します。
+
+今まで書いた美少女ゲームゲームに関する記事は、上から読めます。記事とか気に入ってくれたのであれば、同人誌の方も楽しめるかなって祈っております。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-01-26 20:45\n出版了一本同人志，收录了我喜欢的50款美少女游戏\n好きな美少女ゲームを50本分選んで書いた同人誌がでました\n\n雰囲気が良すぎてたまらない表紙は、ななみ雪( https://twitter.com/yuki77mi ）さんにお願いしました。抽象的な「美少女ゲームの名シーン」をイメージしたドット絵が素晴らしい。\n\n「インターネット2増刊号 にゃるらと文也の美少女ゲーム50選」という、僕と岩倉文也が互いに25本ずつ作品を選び、合計50本分の美少女ゲームについて書いた本の通販が始まりました。きっと、まだ知らない・または気になっていた名作と出会えるよう頑張って書いたので、ぜひ読んでね！\n\nたとえば、自分の場合は上のようにちょっと古めな作品を、\n\n岩倉文也の場合は、最近の作品が多めです。\n ここ数年は美少女ゲームに触れていないという方も、昨今の業界を知ることができるので満足できる！\n あまり「批評」なんて形をとりたくなかったので、自分の感性などが多めなちょっと変わった本ですが、商業ではけっして再現できない読み応えになっていると思います。宜しくお願い致します。\n\n今まで書いた美少女ゲームゲームに関する記事は、上から読めます。記事とか気に入ってくれたのであれば、同人誌の方も楽しめるかなって祈っております。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

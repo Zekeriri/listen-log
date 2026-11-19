@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：时机</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-11-29 15:31</p>
+  <h1>一口随笔：时机</h1>
+  <p class="ja-title">一口エッセイ:タイミング</p>
+</header>
+<main>
+  <article class="body">朝。眠るために睡眠薬を服用してから、どかっとたまたま各所から同時に連絡がきてしまい、それが悲しかったりするものもあったので、一気に頭が混線してしまいました。連絡する側は起き始めて仕事を開始した朝に活動するのが当たり前で、逆にその時間に睡眠薬を飲んで眠気が最高潮の僕とでは状況が真逆なのですね。別に、誰も悪くないですが。
+ 流石に薬の眠気に逆らうこともできないので、日記も起きてから書こうと、こうしてお昼の今に投稿している次第です。朝はパニックになっていたものの、数時間眠ってクリアな頭で読んでいけば、各連絡への対応もまったく問題なく行える。あの瞬間は異様に悲しかったことも、いったん冷静になれば驚くほどどうでも良かったりするのですね。人間は難しい。
+ こう考えると、人間は確実に波があるので全てはタイミングなのでしょうね。ブラックビスケッツの『タイミング』も、そういうことを歌った名曲ですものね。「良い時」に連絡すれば盛り上がって好感度もあがり、「悪い時」に連絡すると傷つけたり避けられたりする可能性もある。こんなの完全にランダムだし、ネットを介しての交流であれば、相手の気分なんて読めなくて当然ですから運でしかない。「ヒトも街も宇宙もまわれまわるタイミング ヘンにね合わせ過ぎてもたぶんつらいだけさ」という歌詞は真理すぎる。深く考えても仕方のないことですね。
+
+毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-11-29 15:31\n一口随笔：时机\n一口エッセイ:タイミング\n\n朝。眠るために睡眠薬を服用してから、どかっとたまたま各所から同時に連絡がきてしまい、それが悲しかったりするものもあったので、一気に頭が混線してしまいました。連絡する側は起き始めて仕事を開始した朝に活動するのが当たり前で、逆にその時間に睡眠薬を飲んで眠気が最高潮の僕とでは状況が真逆なのですね。別に、誰も悪くないですが。\n 流石に薬の眠気に逆らうこともできないので、日記も起きてから書こうと、こうしてお昼の今に投稿している次第です。朝はパニックになっていたものの、数時間眠ってクリアな頭で読んでいけば、各連絡への対応もまったく問題なく行える。あの瞬間は異様に悲しかったことも、いったん冷静になれば驚くほどどうでも良かったりするのですね。人間は難しい。\n こう考えると、人間は確実に波があるので全てはタイミングなのでしょうね。ブラックビスケッツの『タイミング』も、そういうことを歌った名曲ですものね。「良い時」に連絡すれば盛り上がって好感度もあがり、「悪い時」に連絡すると傷つけたり避けられたりする可能性もある。こんなの完全にランダムだし、ネットを介しての交流であれば、相手の気分なんて読めなくて当然ですから運でしかない。「ヒトも街も宇宙もまわれまわるタイミング ヘンにね合わせ過ぎてもたぶんつらいだけさ」という歌詞は真理すぎる。深く考えても仕方のないことですね。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

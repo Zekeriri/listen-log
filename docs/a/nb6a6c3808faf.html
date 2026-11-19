@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>精选一口随笔:失败御宅的等级制度</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-02-15 16:00</p>
+  <h1>精选一口随笔:失败御宅的等级制度</h1>
+  <p class="ja-title">選り抜き一口エッセイ:ダメオタクのヒエラルキー</p>
+</header>
+<main>
+  <article class="body">大槻ケンヂと滝本竜彦の対談後（尺の都合で敬称略）、オーケンのもとに「滝本竜彦はひきこもり界の成功者なので、ダメなひきこもりの私みたいな者は悔しくて、読みたくない気もするのです」という手紙が届いたそうです。
+ それに対して、オーケンは「ひきこもり界にもヒエラルキー闘争があるのかぁ。大変だなぁ滝本君」とコメントしているのですが、このひきこもり界のヒエラルキー……要はダメオタクたちの中にも、ダメさでヒエラルキーが存在するのは良くわかります。現に、作家となった当時の滝本さんのサイン会には、メイド服を着たファンが「恋人にしてください」と頼み込んできたそうで、そりゃ素敵な作品を世に出したわけですから、モテて当然ではあるのですが、それに納得いかないオタクたちも登場します。
+ この例はインターネットがさらに広まった現在こそ顕著で、今日もSNSでは、「こいつはダメ人間ぶっているが恋人が居るフェイク野郎」だとか、「なんだかんだ学歴良いくせに」、「顔が悪くないじゃん」と、下からマウントが展開され、仲間だと思った人間が少しでも成功しようものなら、亡者のように足を引っ張りだすのですね。
+ それでも、やはりひきこもりから成功した人間の存在は、陰に隠れて生きるオタクたちの希望でもあるので、今でも僕含めたファンは強く記憶に刻まれている。オーケンも「大変だから俺より売れてるのか」と語っており、亡者たちの屍を越えた先で何かを成し遂げ、みんなでこのSNSという瓶詰地獄から抜け出していきましょう。
+
+毎日のエッセイをまとめた同人誌などをboothにて販売中！ こんなに赤裸々に全部を曝け出して大丈夫なのか？
+
+最近でた商業エッセイ集も、よろしくお願いします。いろんなダメさが詰まっている。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-02-15 16:00\n精选一口随笔:失败御宅的等级制度\n選り抜き一口エッセイ:ダメオタクのヒエラルキー\n\n大槻ケンヂと滝本竜彦の対談後（尺の都合で敬称略）、オーケンのもとに「滝本竜彦はひきこもり界の成功者なので、ダメなひきこもりの私みたいな者は悔しくて、読みたくない気もするのです」という手紙が届いたそうです。\n それに対して、オーケンは「ひきこもり界にもヒエラルキー闘争があるのかぁ。大変だなぁ滝本君」とコメントしているのですが、このひきこもり界のヒエラルキー……要はダメオタクたちの中にも、ダメさでヒエラルキーが存在するのは良くわかります。現に、作家となった当時の滝本さんのサイン会には、メイド服を着たファンが「恋人にしてください」と頼み込んできたそうで、そりゃ素敵な作品を世に出したわけですから、モテて当然ではあるのですが、それに納得いかないオタクたちも登場します。\n この例はインターネットがさらに広まった現在こそ顕著で、今日もSNSでは、「こいつはダメ人間ぶっているが恋人が居るフェイク野郎」だとか、「なんだかんだ学歴良いくせに」、「顔が悪くないじゃん」と、下からマウントが展開され、仲間だと思った人間が少しでも成功しようものなら、亡者のように足を引っ張りだすのですね。\n それでも、やはりひきこもりから成功した人間の存在は、陰に隠れて生きるオタクたちの希望でもあるので、今でも僕含めたファンは強く記憶に刻まれている。オーケンも「大変だから俺より売れてるのか」と語っており、亡者たちの屍を越えた先で何かを成し遂げ、みんなでこのSNSという瓶詰地獄から抜け出していきましょう。\n\n毎日のエッセイをまとめた同人誌などをboothにて販売中！ こんなに赤裸々に全部を曝け出して大丈夫なのか？\n\n最近でた商業エッセイ集も、よろしくお願いします。いろんなダメさが詰まっている。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

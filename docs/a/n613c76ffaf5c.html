@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>新作发表的准备</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2026-11-10 23:52</p>
+  <h1>新作发表的准备</h1>
+  <p class="ja-title">新作発表の準備</p>
+</header>
+<main>
+  <article class="body">新作ゲームのPVが出来上がりつつあり、もちろん限界までブラッシュアップはするものの確実に予定日に発表できる準備が整う。すでに一年裏でぽちぽちと進めていました。
+ イラスト、音楽、映像、いろんなものが届いてくるたびに、湘北がゴール決めた時の安西先生のようなガッツポーズになる。個人的にはPVとしてもすでに十分魅力的なものが揃っているので、あとは途中の文言やセリフを外さないよう僕の仕事としても緊張が走る。直接的にモチーフや内容を伝えるのはやはりテキストが担う部分は多い。
+ こちらを含めた打ち合わせが毎日のようにあり、先月あたりから全く休んでいない。日々何らかの打ち合わせがありつつ、合間にシナリオなり企画なりを書き続けている。よく多忙な著名人が「お金を使う暇もない」と話すことがあるけれども、いまの自分も同じ状況。本やフィギュアをぽちぽちする以外でまったく無駄遣いしていない。えらいね！ 新しい作品たちのために一途で泣ける。
+ そんなこんなで最近、日記の投稿時間もまばらになり、ちょっと短めなことも多くて申し訳ない。発表後は、その作品のことについて騒ぎまくる予定なのでお楽しみに。
+ Aiobahnがプリキュアの映画を観たいとのことで誘ってくれたので、せっかくだしゴジラもカブトも一気に観て来ようかなと思います。
+ がんばりますよ！</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-11-10 23:52\n新作发表的准备\n新作発表の準備\n\n新作ゲームのPVが出来上がりつつあり、もちろん限界までブラッシュアップはするものの確実に予定日に発表できる準備が整う。すでに一年裏でぽちぽちと進めていました。\n イラスト、音楽、映像、いろんなものが届いてくるたびに、湘北がゴール決めた時の安西先生のようなガッツポーズになる。個人的にはPVとしてもすでに十分魅力的なものが揃っているので、あとは途中の文言やセリフを外さないよう僕の仕事としても緊張が走る。直接的にモチーフや内容を伝えるのはやはりテキストが担う部分は多い。\n こちらを含めた打ち合わせが毎日のようにあり、先月あたりから全く休んでいない。日々何らかの打ち合わせがありつつ、合間にシナリオなり企画なりを書き続けている。よく多忙な著名人が「お金を使う暇もない」と話すことがあるけれども、いまの自分も同じ状況。本やフィギュアをぽちぽちする以外でまったく無駄遣いしていない。えらいね！ 新しい作品たちのために一途で泣ける。\n そんなこんなで最近、日記の投稿時間もまばらになり、ちょっと短めなことも多くて申し訳ない。発表後は、その作品のことについて騒ぎまくる予定なのでお楽しみに。\n Aiobahnがプリキュアの映画を観たいとのことで誘ってくれたので、せっかくだしゴジラもカブトも一気に観て来ようかなと思います。\n がんばりますよ！"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

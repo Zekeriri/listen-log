@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：《猜火车》</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-03-13 00:41</p>
+  <h1>一口随笔：《猜火车》</h1>
+  <p class="ja-title">一口エッセイ:トレイン・スポッティング</p>
+</header>
+<main>
+  <article class="body">確定申告が終わった。すべて税理士さんのおかげですが。今年はゲームの売り上げが入ってくるので、引き続き税理士さんのありがたいアドバイスに従いながら、税金対策を始めていきます。
+ 一番良い使い道は健康で、今月と来月で目・鼻・歯の手術や矯正を進めています。全身脱毛も好調で、僕はみるみる健康になっていく。
+ 健康になるにつれて『トレイン・スポッティング』のことを考える。この映画の主人公はヘロイン中毒のどうしようもない若者で、薬のことしか頭になかったのに、不意に大金を手にしたことで「出世・家族・洗濯機・車・健康・低コレステロール・住宅ローン・おしゃれ、年金、税金控除……」などの欲望をあたまに浮かべながら「あんたと同じ人生だ」と呑気な視聴者に語りかける。
+
+最高にクールなシーン。僕らは非日常の刺激を求めて、退廃的なヤク中の若者をメインにした映画を楽しんで憧れを感じていたところに、ヤク中の若者は視聴者のような平和な人生に憧れていたことを吐露する。しかし、この作品を観た視聴者は知っている。出世や税金のことを考える人生より、彼らのように思うまま生きる方がドラマになることを。皮肉だよね。現に続編の『T2』でも、主人公が送った平穏な生活は大して描かれない。どこにでもある、ドラマチックのカケラもない生活だから。
+ これから僕は健康になり、節税を始める。一層オシャレも楽しむし、イベント用のスーツなんて買うかもしれない。やがて30代になり、順調に人生を歩んでいく。『トレイン・スポッティング』を観た衝撃を徐々に忘れながら、寿命を勘定して。
+
+毎日の日記をまとめた同人誌をboothにて販売中です。他人の人生を垣間見て、正しい未来を選びましょう。
+
+商業エッセイ集もよろしくね。ろくでもない人生が読めて、今回のエッセイと合わせると感慨深いかもしれません。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-03-13 00:41\n一口随笔：《猜火车》\n一口エッセイ:トレイン・スポッティング\n\n確定申告が終わった。すべて税理士さんのおかげですが。今年はゲームの売り上げが入ってくるので、引き続き税理士さんのありがたいアドバイスに従いながら、税金対策を始めていきます。\n 一番良い使い道は健康で、今月と来月で目・鼻・歯の手術や矯正を進めています。全身脱毛も好調で、僕はみるみる健康になっていく。\n 健康になるにつれて『トレイン・スポッティング』のことを考える。この映画の主人公はヘロイン中毒のどうしようもない若者で、薬のことしか頭になかったのに、不意に大金を手にしたことで「出世・家族・洗濯機・車・健康・低コレステロール・住宅ローン・おしゃれ、年金、税金控除……」などの欲望をあたまに浮かべながら「あんたと同じ人生だ」と呑気な視聴者に語りかける。\n\n最高にクールなシーン。僕らは非日常の刺激を求めて、退廃的なヤク中の若者をメインにした映画を楽しんで憧れを感じていたところに、ヤク中の若者は視聴者のような平和な人生に憧れていたことを吐露する。しかし、この作品を観た視聴者は知っている。出世や税金のことを考える人生より、彼らのように思うまま生きる方がドラマになることを。皮肉だよね。現に続編の『T2』でも、主人公が送った平穏な生活は大して描かれない。どこにでもある、ドラマチックのカケラもない生活だから。\n これから僕は健康になり、節税を始める。一層オシャレも楽しむし、イベント用のスーツなんて買うかもしれない。やがて30代になり、順調に人生を歩んでいく。『トレイン・スポッティング』を観た衝撃を徐々に忘れながら、寿命を勘定して。\n\n毎日の日記をまとめた同人誌をboothにて販売中です。他人の人生を垣間見て、正しい未来を選びましょう。\n\n商業エッセイ集もよろしくね。ろくでもない人生が読めて、今回のエッセイと合わせると感慨深いかもしれません。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

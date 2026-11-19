@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔: 我的背景控与押井守的“癖好”</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-07-15 03:03</p>
+  <h1>一口随笔: 我的背景控与押井守的“癖好”</h1>
+  <p class="ja-title">一口エッセイ:僕の背景フェチと押井守の&quot;癖&quot;</p>
+</header>
+<main>
+  <article class="body">ものすごく建築物や背景が好きだ。自分でも理屈がわからないけれど、とにかく階段や廊下とか少し変わった家とか見ていると心が非常に安らぐ。水木しげる・つげ義春の漫画に執着していたのも、両先生の描く繊細な背景が好きなことも大きい。こち亀や弐瓶勉も良い。チェンソーマン2部もクーロン城や香港チックな違法建築をバリバリ描いてくれて、それが一番興奮しました。
+ アニメの無い時間は、基本的に『世界の車窓から』やエルサレム周辺の散歩動画を垂れ流しています。
+
+Twitterでも、いい路地の写真を貼ったりするbotやLimimal spaceを眺めているし、レトロな遊園地や建築物の本を集める趣味もある。『いい階段の写真集』なんてニッチな名前の本が堪らなく好きなのです。中野ブロードウェイを毎日散歩するのも、このレトロな香りの風景が続いているからでしょう。先日、行ったナンジャタウンの昭和な街並みも素晴らしかった。
+
+なんでこんな趣味がと思い返すと、これも押井守監督のせいなのでしょう。『攻殻機動隊』で何分間も香港の街並みを川井憲次の重厚なBGMとともに垂れ流し、劇パトではそれを下町で行った。数分ひたすら背景を映す大胆さ……これこそ大物監督しかできない&quot;癖&quot;であり（本人もそこがサビだと言っている）、まんまとその癖に引っかかった僕は、こうして何かを鑑賞するたびに、真っ先に背景から見る呪いをかけられたのだ。僕の人生、どれだけ押井守に影響されているんだ！
+
+文章をまとめた同人誌や商業エッセイ集をよろしくね。僕が押井守監督に大きく影響されたように、僕の影響された若者もいるかもと想像すると嬉しくなりますね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-07-15 03:03\n一口随笔: 我的背景控与押井守的“癖好”\n一口エッセイ:僕の背景フェチと押井守の\"癖\"\n\nものすごく建築物や背景が好きだ。自分でも理屈がわからないけれど、とにかく階段や廊下とか少し変わった家とか見ていると心が非常に安らぐ。水木しげる・つげ義春の漫画に執着していたのも、両先生の描く繊細な背景が好きなことも大きい。こち亀や弐瓶勉も良い。チェンソーマン2部もクーロン城や香港チックな違法建築をバリバリ描いてくれて、それが一番興奮しました。\n アニメの無い時間は、基本的に『世界の車窓から』やエルサレム周辺の散歩動画を垂れ流しています。\n\nTwitterでも、いい路地の写真を貼ったりするbotやLimimal spaceを眺めているし、レトロな遊園地や建築物の本を集める趣味もある。『いい階段の写真集』なんてニッチな名前の本が堪らなく好きなのです。中野ブロードウェイを毎日散歩するのも、このレトロな香りの風景が続いているからでしょう。先日、行ったナンジャタウンの昭和な街並みも素晴らしかった。\n\nなんでこんな趣味がと思い返すと、これも押井守監督のせいなのでしょう。『攻殻機動隊』で何分間も香港の街並みを川井憲次の重厚なBGMとともに垂れ流し、劇パトではそれを下町で行った。数分ひたすら背景を映す大胆さ……これこそ大物監督しかできない\"癖\"であり（本人もそこがサビだと言っている）、まんまとその癖に引っかかった僕は、こうして何かを鑑賞するたびに、真っ先に背景から見る呪いをかけられたのだ。僕の人生、どれだけ押井守に影響されているんだ！\n\n文章をまとめた同人誌や商業エッセイ集をよろしくね。僕が押井守監督に大きく影響されたように、僕の影響された若者もいるかもと想像すると嬉しくなりますね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>香港散步</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2026-08-23 02:59</p>
+  <h1>香港散步</h1>
+  <p class="ja-title">香港散歩</p>
+</header>
+<main>
+  <article class="body">香港にて、デパートへと入る。
+
+このデパートでは、過去に建物内をジェットコースターが走っていたらしい。なんと夢溢れる光景なのでしょう。いまでは、夢の残骸が寂しく空中にそびえ立っている。このもの悲しげな眺めもまた良い。
+ 無人のメリーゴーランドの背中に、無人の線路が横たわる。
+
+それにしたって、こんな場所を駆け抜けるジェットコースターの乗り心地はいったいどんな感触なのでしょう。下手に速度が出る屋外よりも怖そうな気もするけれど。
+
+かつては、ここが夢の入り口だったのでしょう。
+ 今夜は2万5千歩も歩いた。昨日は2万歩。
+ 人は、何もしていない「無」の時間にこそ、頭の中が整理をされて成長をしていくものらしい。無心で異国を歩いた時間はそのまま思考に反映されていく。豆ができるほどの脚部の疲労と引き換えに、少し頭がスッキリとする。
+
+入ったローカルな食堂では、そのまま豚の死体が陳列されている。
+ 今からこれを食べるのだ。
+ 日本語どころか英語すら通じないお店で、どうにかパッションで食事と会計を済ませる。言葉が通じないものにも気持ちで食事を提供する優しさに心打たれた。
+
+ふと天井に目をやると、野良猫がはしゃいでいた。
+ この自由さがローカル店だなあ。
+
+帰り道でいいものを見た。
+
+明日は何を見るでしょう？</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-08-23 02:59\n香港散步\n香港散歩\n\n香港にて、デパートへと入る。\n\nこのデパートでは、過去に建物内をジェットコースターが走っていたらしい。なんと夢溢れる光景なのでしょう。いまでは、夢の残骸が寂しく空中にそびえ立っている。このもの悲しげな眺めもまた良い。\n 無人のメリーゴーランドの背中に、無人の線路が横たわる。\n\nそれにしたって、こんな場所を駆け抜けるジェットコースターの乗り心地はいったいどんな感触なのでしょう。下手に速度が出る屋外よりも怖そうな気もするけれど。\n\nかつては、ここが夢の入り口だったのでしょう。\n 今夜は2万5千歩も歩いた。昨日は2万歩。\n 人は、何もしていない「無」の時間にこそ、頭の中が整理をされて成長をしていくものらしい。無心で異国を歩いた時間はそのまま思考に反映されていく。豆ができるほどの脚部の疲労と引き換えに、少し頭がスッキリとする。\n\n入ったローカルな食堂では、そのまま豚の死体が陳列されている。\n 今からこれを食べるのだ。\n 日本語どころか英語すら通じないお店で、どうにかパッションで食事と会計を済ませる。言葉が通じないものにも気持ちで食事を提供する優しさに心打たれた。\n\nふと天井に目をやると、野良猫がはしゃいでいた。\n この自由さがローカル店だなあ。\n\n帰り道でいいものを見た。\n\n明日は何を見るでしょう？"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

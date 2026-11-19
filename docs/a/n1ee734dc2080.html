@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔: 超天酱的手办化与《独自的夜》</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-07-25 09:28</p>
+  <h1>一口随笔: 超天酱的手办化与《独自的夜》</h1>
+  <p class="ja-title">一口エッセイ:超てんちゃんのフィギュア化と『ヒトリノ夜』</p>
+</header>
+<main>
+  <article class="body">超てんちゃんのフィギュア化が発表されました。初のフィギュアということで、ポーズは本編中で登場するフィギュアの再現となりました。超てんちゃんが下から覗いているやつですね。
+
+改めて告知……！
+超てんちゃんフィギャーになるよ（表記を直してもらった）
+舐めたり下から覗いたりしないみんなは、よろしくね♫ https://t.co/F0ngqiYc4Z— 🎀超絶最かわ🎀てんしちゃん (@x_angelkawaii_x) July 24, 2022
+
+pic.twitter.com/Ky6kLthrLJ— にゃるら (@nyalra) July 24, 2022
+
+さて、Switch版発売も控えており、製作陣や流通的には本気で100万本を目指して頑張っておりまして、50万本の折り返し地点を超えてもなお、おかげさまでフィギュア化などのように色んな企画が止まらず、これは100万も夢ではないのではと期待を抱いてしまいます。
+ 100万が近づくに連れて、ポルノグラフィティ『ヒトリノ夜』の、「100万人のために唄われたラブソングなんかに僕はカンタンに想いを重ねたりはしない」という歌詞を連想してしまい、そのたび「僕は自分が自分のために作ったわけで、元から100万人に向けて製作したつもりは全くないから……！」と脳内で反論しております。
+ そもそも、この『ヒトリノ夜』自体が名曲すぎて100万人以上が想い重ねているでしょうし、結果的に100万人に届く作品と成長したものの、最初は自分と自分と感性の似た極小数のために唄ったラブソングも、たくさんあったのだろうなと思ったりしたのでした。
+ 『ヒトリノ夜』歌詞内の彼のように、カンタンに想いを重ねてくれない人もいるかも知れませんが、それでも超てんちゃんを100万人の女にするために今後も頑張っていく所存です。フィギュアよろしくね！
+
+毎日の日記をまとめた同人誌や、若い頃に書いたエッセイを収録した商業エッセイ集、よろしくね！</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-07-25 09:28\n一口随笔: 超天酱的手办化与《独自的夜》\n一口エッセイ:超てんちゃんのフィギュア化と『ヒトリノ夜』\n\n超てんちゃんのフィギュア化が発表されました。初のフィギュアということで、ポーズは本編中で登場するフィギュアの再現となりました。超てんちゃんが下から覗いているやつですね。\n\n改めて告知……！\n超てんちゃんフィギャーになるよ（表記を直してもらった）\n舐めたり下から覗いたりしないみんなは、よろしくね♫ https://t.co/F0ngqiYc4Z— 🎀超絶最かわ🎀てんしちゃん (@x_angelkawaii_x) July 24, 2022\n\npic.twitter.com/Ky6kLthrLJ— にゃるら (@nyalra) July 24, 2022\n\nさて、Switch版発売も控えており、製作陣や流通的には本気で100万本を目指して頑張っておりまして、50万本の折り返し地点を超えてもなお、おかげさまでフィギュア化などのように色んな企画が止まらず、これは100万も夢ではないのではと期待を抱いてしまいます。\n 100万が近づくに連れて、ポルノグラフィティ『ヒトリノ夜』の、「100万人のために唄われたラブソングなんかに僕はカンタンに想いを重ねたりはしない」という歌詞を連想してしまい、そのたび「僕は自分が自分のために作ったわけで、元から100万人に向けて製作したつもりは全くないから……！」と脳内で反論しております。\n そもそも、この『ヒトリノ夜』自体が名曲すぎて100万人以上が想い重ねているでしょうし、結果的に100万人に届く作品と成長したものの、最初は自分と自分と感性の似た極小数のために唄ったラブソングも、たくさんあったのだろうなと思ったりしたのでした。\n 『ヒトリノ夜』歌詞内の彼のように、カンタンに想いを重ねてくれない人もいるかも知れませんが、それでも超てんちゃんを100万人の女にするために今後も頑張っていく所存です。フィギュアよろしくね！\n\n毎日の日記をまとめた同人誌や、若い頃に書いたエッセイを収録した商業エッセイ集、よろしくね！"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

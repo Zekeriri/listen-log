@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：AI写的喵拉拉日记</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-03-09 00:09</p>
+  <h1>一口随笔：AI写的喵拉拉日记</h1>
+  <p class="ja-title">一口エッセイ:AIが書いたにゃるらの日記</p>
+</header>
+<main>
+  <article class="body">親知らず抜歯の痛みがひどくて怠いので、僕の日記4か月分を読み込んだAIに、にゃるら風の日記を自動生成してもらいます。楽！
+ 「星の王子さま」を久しぶりに読み返した。
+昔も今も変わらないのは、サン=ピエールが「愛」について語るということ。そしてそれは、常に自分の中に答えを探しているからだ。
+ 愛とはなんだ？ 恋とは何か。友情とは何か。生きることの意味は何なのか。
+ そんなことを延々と繰り返し問いかけてくる。
+ 今ならこう答える。
+「キミが欲しいものは、何だい？」
+ 翻訳者の赤川次郎先生が、新しい解釈を加えてくださったので、それに合わせて改訳しました。前回より更に面白くなっているはずです。
+この本を読んでいると、本当に心が洗われる気がする。こんなに優しく、温かく、慈しみに満ちた物語があるだろうか。
+ 誰もが、きっとどこかで一度は出会うはずだ。
+ 自分だけの大切な宝物に出会えたら、もう手放さないでほしい。
+ この世に生を受けた奇跡に感謝し、大切にして欲しいと思うのです。
+1 月 23 日 星崎 空
+ 最後の最後で「星崎空」なる知らない人の日記になりましたが、まぁこれでいいでしょう。もう毎日AIでいいわ。ちょっと綺麗事の割合が多くて星崎空の文章ウザめだが……。
+
+↑『星の王子さま』。残念ながら、翻訳者は赤川次郎ではない。
+
+毎日の日記をまとめた同人誌を販売中！
+ 全部AIが代わって書いてくれ。
+
+商業エッセイ集の方もよろしくお願いします。よくもまぁ、こんな恥ずかしい文章を人間が書けるよな。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-03-09 00:09\n一口随笔：AI写的喵拉拉日记\n一口エッセイ:AIが書いたにゃるらの日記\n\n親知らず抜歯の痛みがひどくて怠いので、僕の日記4か月分を読み込んだAIに、にゃるら風の日記を自動生成してもらいます。楽！\n 「星の王子さま」を久しぶりに読み返した。\n昔も今も変わらないのは、サン=ピエールが「愛」について語るということ。そしてそれは、常に自分の中に答えを探しているからだ。\n 愛とはなんだ？ 恋とは何か。友情とは何か。生きることの意味は何なのか。\n そんなことを延々と繰り返し問いかけてくる。\n 今ならこう答える。\n「キミが欲しいものは、何だい？」\n 翻訳者の赤川次郎先生が、新しい解釈を加えてくださったので、それに合わせて改訳しました。前回より更に面白くなっているはずです。\nこの本を読んでいると、本当に心が洗われる気がする。こんなに優しく、温かく、慈しみに満ちた物語があるだろうか。\n 誰もが、きっとどこかで一度は出会うはずだ。\n 自分だけの大切な宝物に出会えたら、もう手放さないでほしい。\n この世に生を受けた奇跡に感謝し、大切にして欲しいと思うのです。\n1 月 23 日 星崎 空\n 最後の最後で「星崎空」なる知らない人の日記になりましたが、まぁこれでいいでしょう。もう毎日AIでいいわ。ちょっと綺麗事の割合が多くて星崎空の文章ウザめだが……。\n\n↑『星の王子さま』。残念ながら、翻訳者は赤川次郎ではない。\n\n毎日の日記をまとめた同人誌を販売中！\n 全部AIが代わって書いてくれ。\n\n商業エッセイ集の方もよろしくお願いします。よくもまぁ、こんな恥ずかしい文章を人間が書けるよな。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

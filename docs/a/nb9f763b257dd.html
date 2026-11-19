@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：逆向“正确”的人们</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-09-30 03:24</p>
+  <h1>一口随笔：逆向“正确”的人们</h1>
+  <p class="ja-title">一口エッセイ:「正解」に逆張りする者たち</p>
+</header>
+<main>
+  <article class="body">相変わらず両目が腫れて、痛い。
+ 痛いうえに涙が止まらず、視界も悪い。流れた涙がまぶたを伝うたびに痛みが走るのも厄介。
+ こうなると、全ての悩みが「痛み」に収束されるのが面白い。数日前の健全な両目の状態では、もっといろんなことに悩んでいた筈なのに、今やとにかく両目さえ治ってもらえたら何もかも解決する気さえある。例え目が見えるようになったからといって、自律神経の不調や人間関係の悩み、恐らく目の腫れに関係しているのであろう睡眠不足やストレスは残り続けているというのに。
+ 細かい苦しみに対して、より大きすぎる苦しみをぶつけて誤魔化す方法というのは、結構あると思う。例えば筋トレは完全にそれでしょう。「運動の負荷」という肉体的な大きな苦しみに耐えている間は、その他のことなんて全く考えきれない。現実逃避ができるうえに健康にもなるのだから、多くの人が運動を勧めるのも頷けますよね。だからこそ嫌いなんですが。あまりに効率的な行動すぎて怖いんだよ。
+ とは言え、正解としては運動とか入浴とか健康的なことでしかない。両目の腫れも適度な運動からの入浴、そして快眠のコンボでみるみる良くなることでしょう。では、今の僕の最適な行動は筋トレになるが、そんな正解に絶対従いたくない。いったい何に逆張りしているのか、もう自分でも分からない。とにかく両目が痛くて、今も真っ赤に染まった眼球からは涙が溢れ続けております。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-09-30 03:24\n一口随笔：逆向“正确”的人们\n一口エッセイ:「正解」に逆張りする者たち\n\n相変わらず両目が腫れて、痛い。\n 痛いうえに涙が止まらず、視界も悪い。流れた涙がまぶたを伝うたびに痛みが走るのも厄介。\n こうなると、全ての悩みが「痛み」に収束されるのが面白い。数日前の健全な両目の状態では、もっといろんなことに悩んでいた筈なのに、今やとにかく両目さえ治ってもらえたら何もかも解決する気さえある。例え目が見えるようになったからといって、自律神経の不調や人間関係の悩み、恐らく目の腫れに関係しているのであろう睡眠不足やストレスは残り続けているというのに。\n 細かい苦しみに対して、より大きすぎる苦しみをぶつけて誤魔化す方法というのは、結構あると思う。例えば筋トレは完全にそれでしょう。「運動の負荷」という肉体的な大きな苦しみに耐えている間は、その他のことなんて全く考えきれない。現実逃避ができるうえに健康にもなるのだから、多くの人が運動を勧めるのも頷けますよね。だからこそ嫌いなんですが。あまりに効率的な行動すぎて怖いんだよ。\n とは言え、正解としては運動とか入浴とか健康的なことでしかない。両目の腫れも適度な運動からの入浴、そして快眠のコンボでみるみる良くなることでしょう。では、今の僕の最適な行動は筋トレになるが、そんな正解に絶対従いたくない。いったい何に逆張りしているのか、もう自分でも分からない。とにかく両目が痛くて、今も真っ赤に染まった眼球からは涙が溢れ続けております。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

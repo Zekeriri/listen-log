@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>引入了 PC</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2024-12-28 05:41</p>
+  <h1>引入了 PC</h1>
+  <p class="ja-title">PCを導入</p>
+</header>
+<main>
+  <article class="body">家にPCとPCモニターを設置。
+ パソコンのある生活は久々だ。屈辱的だ。今やブラウザでできることはスマホで十分。原稿だってスマホでいい。ならパソコンのある理由は仕事になってしまう。スマホ以上に仕事を効率よく捌くための機械を部屋に導入したのだ。それは屈辱だ。
+ パソコンに机の三分の一が占領される。それだけフィギュアや本を置くスペースが減ったわけです。悔しい。モニターは無機質だ。真っ黒に大きい画面がふと目に入るのは想像すると嫌気がさす。代わりに壮大な緑の草原の壁紙でも垂れ流しておくか？ それも、ねぇ。
+
+僕の部屋に生活感は不要で、ベッドすらも処分する目処がたった。代わりに本棚を増設する。電子レンジや台所も塞ごう。僕が生きるために不要なものだから。
+ となるとパソコンは微妙なところだ。大きなモニターや本体は著しく景観を損ねる。頑張ればPCケースはカッコよくカスタマイズできるかもしれないが、あんな四角くてデカい箱に情緒が無さすぎる。
+ でも、PCはブラウジングも動画も楽々。これから色んな調べ物が楽々になり、キーボードを使った原稿入力はサクサクに。結果的には得をするだろう。Discordやメールの返信も効率が良くなる。
+ 昔はデスクトップPCの無い人生なんて想像もつかなかったけれど。毎日、美少女ゲームへ齧り付いていたし。それなりの作業はiPadで済むしなあ。
+ これからは余計に在宅の時間が増える。本棚も増えて読書の利便性も増すなら、なおさら。本棚はついに部屋の大きさに合わせてオーダーメイドをした。そういうところに拘らないと生きている意味がないからね。
+ その部屋でしか使えない家具を作ることにしたということは、まだまだここに住むのだ。中野ブロードウェイとともに、この国のサブカルの残り香がどこへ吹いて行くのかを見守っていこう。冷たく暗いPCモニターに囲まれながら。まったく不本意だ。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-12-28 05:41\n引入了 PC\nPCを導入\n\n家にPCとPCモニターを設置。\n パソコンのある生活は久々だ。屈辱的だ。今やブラウザでできることはスマホで十分。原稿だってスマホでいい。ならパソコンのある理由は仕事になってしまう。スマホ以上に仕事を効率よく捌くための機械を部屋に導入したのだ。それは屈辱だ。\n パソコンに机の三分の一が占領される。それだけフィギュアや本を置くスペースが減ったわけです。悔しい。モニターは無機質だ。真っ黒に大きい画面がふと目に入るのは想像すると嫌気がさす。代わりに壮大な緑の草原の壁紙でも垂れ流しておくか？ それも、ねぇ。\n\n僕の部屋に生活感は不要で、ベッドすらも処分する目処がたった。代わりに本棚を増設する。電子レンジや台所も塞ごう。僕が生きるために不要なものだから。\n となるとパソコンは微妙なところだ。大きなモニターや本体は著しく景観を損ねる。頑張ればPCケースはカッコよくカスタマイズできるかもしれないが、あんな四角くてデカい箱に情緒が無さすぎる。\n でも、PCはブラウジングも動画も楽々。これから色んな調べ物が楽々になり、キーボードを使った原稿入力はサクサクに。結果的には得をするだろう。Discordやメールの返信も効率が良くなる。\n 昔はデスクトップPCの無い人生なんて想像もつかなかったけれど。毎日、美少女ゲームへ齧り付いていたし。それなりの作業はiPadで済むしなあ。\n これからは余計に在宅の時間が増える。本棚も増えて読書の利便性も増すなら、なおさら。本棚はついに部屋の大きさに合わせてオーダーメイドをした。そういうところに拘らないと生きている意味がないからね。\n その部屋でしか使えない家具を作ることにしたということは、まだまだここに住むのだ。中野ブロードウェイとともに、この国のサブカルの残り香がどこへ吹いて行くのかを見守っていこう。冷たく暗いPCモニターに囲まれながら。まったく不本意だ。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

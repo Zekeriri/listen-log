@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>快乐地准备发表</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2026-09-19 19:20</p>
+  <h1>快乐地准备发表</h1>
+  <p class="ja-title">発表の準備を楽しくやっています</p>
+</header>
+<main>
+  <article class="body">新作の発表に向けててんやわんやです。
+ どのタイミングでどう発表するかの算段がつきはじめました。あとは、遠くないその日に向かって全員で立ち向かうだけ。
+ 一緒にゲームを作ってきたメンバーにプラスして、今回加わった新たなクリエイターたちと連携しながら、発表日までにできることを最大限行っていく。雑談が8割の打ち合わせを繰り返し、楽しくやっております。要するに僕は各クリエイターの創作と実力に惚れ込んでいるのだから、素敵な絵や音楽が上がってくるたびモチベーションになる。お久しぶりさんが最高のデザインを変わらず上げてくるたび、ああこの才能を大切に作品へと内包していくのが使命なんだなと感じる。
+ 発表日が定まってぐんぐん成果があがってくるから、これをどうまとめていこうかなと、あーだこーだしている瞬間が嬉しい。
+ あらゆることが起きたけれども、僕らが次にどのような進化を遂げたかに挑戦できること、再びみんなで新しい作品を一からつくれる喜び、それらがもうじき見せれられると思うと、この環境が最適解だったんじゃないかと、そう思えるような瞬間に向かって、僕らはてんやわんやとやっております。
+ 発表時に向けての宣言でしかなく、細かいことはその時に書くので今回は短めに。
+ 頑張っている報告でした。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-09-19 19:20\n快乐地准备发表\n発表の準備を楽しくやっています\n\n新作の発表に向けててんやわんやです。\n どのタイミングでどう発表するかの算段がつきはじめました。あとは、遠くないその日に向かって全員で立ち向かうだけ。\n 一緒にゲームを作ってきたメンバーにプラスして、今回加わった新たなクリエイターたちと連携しながら、発表日までにできることを最大限行っていく。雑談が8割の打ち合わせを繰り返し、楽しくやっております。要するに僕は各クリエイターの創作と実力に惚れ込んでいるのだから、素敵な絵や音楽が上がってくるたびモチベーションになる。お久しぶりさんが最高のデザインを変わらず上げてくるたび、ああこの才能を大切に作品へと内包していくのが使命なんだなと感じる。\n 発表日が定まってぐんぐん成果があがってくるから、これをどうまとめていこうかなと、あーだこーだしている瞬間が嬉しい。\n あらゆることが起きたけれども、僕らが次にどのような進化を遂げたかに挑戦できること、再びみんなで新しい作品を一からつくれる喜び、それらがもうじき見せれられると思うと、この環境が最適解だったんじゃないかと、そう思えるような瞬間に向かって、僕らはてんやわんやとやっております。\n 発表時に向けての宣言でしかなく、細かいことはその時に書くので今回は短めに。\n 頑張っている報告でした。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

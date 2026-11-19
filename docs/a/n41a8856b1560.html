@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>《Baby Blue Cluster》第一卷已发售</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2021-03-22 22:28</p>
+  <h1>《Baby Blue Cluster》第一卷已发售</h1>
+  <p class="ja-title">「ベイビー・ブルー・クラスター」の１巻がでました</p>
+</header>
+<main>
+  <article class="body">こちらでも紹介した、自分が原作を担当している漫画作品「ベイビー・ブルー・クラスター」の１巻が明日、発売されます。
+
+顔はいいけど、思ったことをすぐ口に出しちゃう炎上系アイドル天久ルシ。
+持前の炎上体質で、アイドル事務所を追い出され、途方に暮れる中たどり着いた先は、最底辺のダメ人間たちが身を寄せ合う、モラトリアムハウスだった！
+炎上系美少女アイドルと世界の片隅に生きる最底辺共が織りなす、ハートフルシェアハウスコメディ。
+
+シェアハウスの話です。表紙がオシャレ！
+ ダメ人間たちが集まって暮らすということを書いています。今までの自分の共同生活をごちゃ混ぜにしておもしろく書いたつもりですので、よろしくお願いいたします。
+
+鈴せんぱいの方もよろしくお願いいたします。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-03-22 22:28\n《Baby Blue Cluster》第一卷已发售\n「ベイビー・ブルー・クラスター」の１巻がでました\n\nこちらでも紹介した、自分が原作を担当している漫画作品「ベイビー・ブルー・クラスター」の１巻が明日、発売されます。\n\n顔はいいけど、思ったことをすぐ口に出しちゃう炎上系アイドル天久ルシ。\n持前の炎上体質で、アイドル事務所を追い出され、途方に暮れる中たどり着いた先は、最底辺のダメ人間たちが身を寄せ合う、モラトリアムハウスだった！\n炎上系美少女アイドルと世界の片隅に生きる最底辺共が織りなす、ハートフルシェアハウスコメディ。\n\nシェアハウスの話です。表紙がオシャレ！\n ダメ人間たちが集まって暮らすということを書いています。今までの自分の共同生活をごちゃ混ぜにしておもしろく書いたつもりですので、よろしくお願いいたします。\n\n鈴せんぱいの方もよろしくお願いいたします。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

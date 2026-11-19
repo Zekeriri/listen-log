@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>咨询第n次 呼吸</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2026-09-12 16:41</p>
+  <h1>咨询第n次 呼吸</h1>
+  <p class="ja-title">カウンセリングn回目 呼吸</p>
+</header>
+<main>
+  <article class="body">もうカウンセリングも6回目くらいになると無言の時間も長くなる。自分が見つけた信頼できるカウンセラーは沈黙に重きをおくタイプで、たまに5分くらい黙り続けていることもある。この時間もまた必要であるとも理解しています。
+ なんで知らない人の家に通ってお金支払ってまで沈黙を……と思わなくもないが、だからこそこのような状況で言葉が出なくなった意味や、現代では数少ない他人とただただ無言で向き合う時間を大切にする。
+ ここでカウンセラーが口を開く。
+｢あなたいつも姿勢が強張っているね｣
+ その通りだった。
+ 僕はおそろしいほど交感神経優位でつねに緊張したように身体がガチガチ。鼻の病気だったせいで、呼吸が下手くそで「リラックス」という概念がとても苦手であった! 常に身体のどこかに力が入ってしまう体質。
+ こうも身体が臨戦態勢だと休むのも休めないわなと、呼吸法から身につけていこうと、珍しく健康面からのアプローチが始まる。今は手術して鼻から呼吸できなくもないのだから活かしていこうと。
+ 曰く、人間が間接的にでも自律神経にアプローチできる数少ない手段が深い呼吸であるそうだ。僕がもっとも苦手とする分野だった。
+ 身につけるために一日五分の瞑想をしようと話し合う。
+ というわけで生活の中へ、ついにマインドフルネスが組み込まれた。
+ まずは一日五分。
+ ただただ呼吸のみに集中して｢無｣となる時間がやってくる。
+ 実は一度寺に泊まって座禅をした日がある。集中力が切れたらバシーンと肩を叩かれる。懐かしいなあ。
+ 一日五分。この世のすべてを忘れて、遠い遠い宇宙のことを想います。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-09-12 16:41\n咨询第n次 呼吸\nカウンセリングn回目 呼吸\n\nもうカウンセリングも6回目くらいになると無言の時間も長くなる。自分が見つけた信頼できるカウンセラーは沈黙に重きをおくタイプで、たまに5分くらい黙り続けていることもある。この時間もまた必要であるとも理解しています。\n なんで知らない人の家に通ってお金支払ってまで沈黙を……と思わなくもないが、だからこそこのような状況で言葉が出なくなった意味や、現代では数少ない他人とただただ無言で向き合う時間を大切にする。\n ここでカウンセラーが口を開く。\n｢あなたいつも姿勢が強張っているね｣\n その通りだった。\n 僕はおそろしいほど交感神経優位でつねに緊張したように身体がガチガチ。鼻の病気だったせいで、呼吸が下手くそで「リラックス」という概念がとても苦手であった! 常に身体のどこかに力が入ってしまう体質。\n こうも身体が臨戦態勢だと休むのも休めないわなと、呼吸法から身につけていこうと、珍しく健康面からのアプローチが始まる。今は手術して鼻から呼吸できなくもないのだから活かしていこうと。\n 曰く、人間が間接的にでも自律神経にアプローチできる数少ない手段が深い呼吸であるそうだ。僕がもっとも苦手とする分野だった。\n 身につけるために一日五分の瞑想をしようと話し合う。\n というわけで生活の中へ、ついにマインドフルネスが組み込まれた。\n まずは一日五分。\n ただただ呼吸のみに集中して｢無｣となる時間がやってくる。\n 実は一度寺に泊まって座禅をした日がある。集中力が切れたらバシーンと肩を叩かれる。懐かしいなあ。\n 一日五分。この世のすべてを忘れて、遠い遠い宇宙のことを想います。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作为大逆转手段的自杀</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-12-10 15:58</p>
+  <h1>作为大逆转手段的自杀</h1>
+  <p class="ja-title">大逆転手段としての自殺</p>
+</header>
+<main>
+  <article class="body">「被害者になるための大逆転手段としての自殺」って選択肢はあるんだろうなと想像する。
+ 死んじゃったら、どんな加害者も「不当に責められて苦悩の末に耐えきれなかった人」として終わることができる。これまでの罪もそれなりに曖昧になることでしょう。
+ 現実はそこまで甘くないけれど。
+ 残念ながらインターネット社会ではファクトチェックが簡単で、周囲の証言や事実を読み取れるだけ読み取ったら、「逃げただけだね」と証明されてしまう。それでも「現実に耐えきれなかった」一点で社会の被害者になることができる。そして、現世の人間関係と清算すべき罪から逃れられる。
+ 最後の最後に「俺をここまで追い詰めたお前らこそ真の悪だ！」と信じ込みながら地面の1mm上空までの間、「俺は社会に正義を訴える！」と気持ちよくなっていたなら、それは精神的勝利だ。客体を捨て、主観の世界でラストに勝つ。ある意味ではプライド。
+ 自信の無価値と見つめあった末の諦めからくる自殺もある。あまりのストレスに耐えきれずに飛び込む突発的な自殺もある。脳味噌を守りたいがために一刻も早く生命活動を止める。一見非合理的な判断に思えて合理的なのだ。だって脳みその痛みからは誰も逃れられず、止める方法は生命でなくなることだけ。動物としてその場で実行する。痛みから逃れるために。
+
+「最後に被害者として勝利して終われ！」って、脳味噌の命令に従う。そうじゃないとこの頭痛はやまないぞ、と。そこでシンのようにフハハハと高笑いし、身は裂かれる。
+ 脳味噌の負荷にどれだけ耐え切れるか。
+ 脳をどう鍛えるか、そういうことが現世の目的なのか？ そう確信した者も居て、哲学者となっていく。
+
+エッセイが出ているよ。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-12-10 15:58\n作为大逆转手段的自杀\n大逆転手段としての自殺\n\n「被害者になるための大逆転手段としての自殺」って選択肢はあるんだろうなと想像する。\n 死んじゃったら、どんな加害者も「不当に責められて苦悩の末に耐えきれなかった人」として終わることができる。これまでの罪もそれなりに曖昧になることでしょう。\n 現実はそこまで甘くないけれど。\n 残念ながらインターネット社会ではファクトチェックが簡単で、周囲の証言や事実を読み取れるだけ読み取ったら、「逃げただけだね」と証明されてしまう。それでも「現実に耐えきれなかった」一点で社会の被害者になることができる。そして、現世の人間関係と清算すべき罪から逃れられる。\n 最後の最後に「俺をここまで追い詰めたお前らこそ真の悪だ！」と信じ込みながら地面の1mm上空までの間、「俺は社会に正義を訴える！」と気持ちよくなっていたなら、それは精神的勝利だ。客体を捨て、主観の世界でラストに勝つ。ある意味ではプライド。\n 自信の無価値と見つめあった末の諦めからくる自殺もある。あまりのストレスに耐えきれずに飛び込む突発的な自殺もある。脳味噌を守りたいがために一刻も早く生命活動を止める。一見非合理的な判断に思えて合理的なのだ。だって脳みその痛みからは誰も逃れられず、止める方法は生命でなくなることだけ。動物としてその場で実行する。痛みから逃れるために。\n\n「最後に被害者として勝利して終われ！」って、脳味噌の命令に従う。そうじゃないとこの頭痛はやまないぞ、と。そこでシンのようにフハハハと高笑いし、身は裂かれる。\n 脳味噌の負荷にどれだけ耐え切れるか。\n 脳をどう鍛えるか、そういうことが現世の目的なのか？ そう確信した者も居て、哲学者となっていく。\n\nエッセイが出ているよ。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

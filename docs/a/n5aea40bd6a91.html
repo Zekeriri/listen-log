@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>封面很美的同人志</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-05-26 15:47</p>
+  <h1>封面很美的同人志</h1>
+  <p class="ja-title">美しい表紙の同人誌</p>
+</header>
+<main>
+  <article class="body">自分の日記では、何が最も美しいかの話を何度もしてきましたが、今回は最も美しい「同人誌」について2冊お話します。
+
+僕は大槍先生の大ファンかつ、カードキャプターさくら……特に知世ちゃんが大好きなのですが、この世には大槍先生が描いた大道寺知世本が存在しております。こんな奇跡のような組み合わせがあって良いのでしょうか？
+ 1997年冬に『恋心』というタイトルで発行されたこちらの同人誌の特筆すべき点としては、なんといっても初期の大槍先生が描く憂い顔の知世ちゃんがあまりに美人すぎること。先生が得意とする「儚げな表情」と、小学生が抱えるには重すぎる苦悩を持つ知世ちゃんがベストマッチ。先生特有の「白さ」とも相性が良すぎて、とてつもない完成度に。こんな美しいものがあっていいのか。
+
+「恋心」に並ぶ好きな同人誌に、冬目景先生が描いたスト3本『クローン羊ハ電気毛布ノ夢ヲ見ルカ？』があります。冬目景先生のタッチや作風とエフィーのキャラクター性もまたベストマッチで、題材のニッチさやオシャレなタイトル、表紙の迫力含めて100点満点。こちらは98年発行。冬目景先生が、ここまでゴッスゴスなデザインを描いてくれるのも、二次創作ながらですね。カプコンのセンスに感謝……。本編の内容もケミカルで素晴らしい。
+ という訳で、この2冊だけは自分が集めてきた同人誌の中でも別格です。これからも両先生の作品はずっと追い続けていきたい。
+
+毎日のエッセイをまとめた同人誌をBOOTHにて販売中！
+ よろしくね。
+
+若い頃に書いた長文をまとめた商業エッセイ集もよろしくね。どちらも、表紙がきれいです。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-05-26 15:47\n封面很美的同人志\n美しい表紙の同人誌\n\n自分の日記では、何が最も美しいかの話を何度もしてきましたが、今回は最も美しい「同人誌」について2冊お話します。\n\n僕は大槍先生の大ファンかつ、カードキャプターさくら……特に知世ちゃんが大好きなのですが、この世には大槍先生が描いた大道寺知世本が存在しております。こんな奇跡のような組み合わせがあって良いのでしょうか？\n 1997年冬に『恋心』というタイトルで発行されたこちらの同人誌の特筆すべき点としては、なんといっても初期の大槍先生が描く憂い顔の知世ちゃんがあまりに美人すぎること。先生が得意とする「儚げな表情」と、小学生が抱えるには重すぎる苦悩を持つ知世ちゃんがベストマッチ。先生特有の「白さ」とも相性が良すぎて、とてつもない完成度に。こんな美しいものがあっていいのか。\n\n「恋心」に並ぶ好きな同人誌に、冬目景先生が描いたスト3本『クローン羊ハ電気毛布ノ夢ヲ見ルカ？』があります。冬目景先生のタッチや作風とエフィーのキャラクター性もまたベストマッチで、題材のニッチさやオシャレなタイトル、表紙の迫力含めて100点満点。こちらは98年発行。冬目景先生が、ここまでゴッスゴスなデザインを描いてくれるのも、二次創作ながらですね。カプコンのセンスに感謝……。本編の内容もケミカルで素晴らしい。\n という訳で、この2冊だけは自分が集めてきた同人誌の中でも別格です。これからも両先生の作品はずっと追い続けていきたい。\n\n毎日のエッセイをまとめた同人誌をBOOTHにて販売中！\n よろしくね。\n\n若い頃に書いた長文をまとめた商業エッセイ集もよろしくね。どちらも、表紙がきれいです。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

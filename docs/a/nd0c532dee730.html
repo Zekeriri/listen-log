@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEEDY动画 与制作人团队的对谈</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2026-02-22 12:44</p>
+  <h1>NEEDY动画 与制作人团队的对谈</h1>
+  <p class="ja-title">NEEDYアニメ プロデューサー陣との対談</p>
+</header>
+<main>
+  <article class="body">アニプレックスプロデューサーの木村さん、ヨースターピクチャーズプロデューサーの稲垣さんとの三人での対談。このアニメがどう生まれて、何を築いていくのかを語っております。
+ 稲垣さんとは別に長めに話した方もあるので、楽しんで読んでくださいね。
+
+何を語ったかは読んでもらえばわかるとして、要するにアニメで何が最も強みかと言えば、僕ら3人が団結していることでしょう。幹事と制作スタジオと原案が話し合ってがんがん進めていくので、妙な確認や遠慮がなく、おかげで勢いある動きがどんどん展開できる。少なくとも、この３人、敢えていうならいまたくさんの特典やジャケットなどを描いていただいているお久しぶりさんとの関係は、一昨年までのNEEDY原作時と同じく非常にスムーズ。
+ 要するに、意志決定者のコミュニケーションが良好で明確な意思があること。
+ やはり3という数字のバランスがいい。
+ 三位一体、マギシステム。一対一ならだんだんと上下の亀裂が入って崩れそうなところを、常に一人の客観性があるため偏りが減る。何事も、この三者三様のバランスを取れてから大きなプロジェクトは成功していくのだなあ。
+ これをする、あれをやらないの指標がきちんと決まっているので動きやすいことがあるでしょう。脚本だって一度も制限や修正をされていない。絵コンテ時点での工夫は中島監督の個性ですし。あとは、走りきるのみです。
+ インディーである事で一番大事な「制作側が楽しんでいる」様子を最優先で、僕やお久しぶりさんがやりたいことを叶え続けてくれるような布陣、お二人の懐の広さには大感謝をしており、だからこそ3月6日からの先行劇場公開にて、その成果を世にお披露目する瞬間が楽しみです。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-02-22 12:44\nNEEDY动画 与制作人团队的对谈\nNEEDYアニメ プロデューサー陣との対談\n\nアニプレックスプロデューサーの木村さん、ヨースターピクチャーズプロデューサーの稲垣さんとの三人での対談。このアニメがどう生まれて、何を築いていくのかを語っております。\n 稲垣さんとは別に長めに話した方もあるので、楽しんで読んでくださいね。\n\n何を語ったかは読んでもらえばわかるとして、要するにアニメで何が最も強みかと言えば、僕ら3人が団結していることでしょう。幹事と制作スタジオと原案が話し合ってがんがん進めていくので、妙な確認や遠慮がなく、おかげで勢いある動きがどんどん展開できる。少なくとも、この３人、敢えていうならいまたくさんの特典やジャケットなどを描いていただいているお久しぶりさんとの関係は、一昨年までのNEEDY原作時と同じく非常にスムーズ。\n 要するに、意志決定者のコミュニケーションが良好で明確な意思があること。\n やはり3という数字のバランスがいい。\n 三位一体、マギシステム。一対一ならだんだんと上下の亀裂が入って崩れそうなところを、常に一人の客観性があるため偏りが減る。何事も、この三者三様のバランスを取れてから大きなプロジェクトは成功していくのだなあ。\n これをする、あれをやらないの指標がきちんと決まっているので動きやすいことがあるでしょう。脚本だって一度も制限や修正をされていない。絵コンテ時点での工夫は中島監督の個性ですし。あとは、走りきるのみです。\n インディーである事で一番大事な「制作側が楽しんでいる」様子を最優先で、僕やお久しぶりさんがやりたいことを叶え続けてくれるような布陣、お二人の懐の広さには大感謝をしており、だからこそ3月6日からの先行劇場公開にて、その成果を世にお披露目する瞬間が楽しみです。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口散文：与电脑的生活</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2021-12-03 03:52</p>
+  <h1>一口散文：与电脑的生活</h1>
+  <p class="ja-title">一口エッセイ：コンピューターとの生活</p>
+</header>
+<main>
+  <article class="body">珍しく日記らしいことを書きます。
+ 「Echo Show 10 」なる機械を購入しました。この子に話しかけると、自動で部屋の電気を点けたり消したり、カーテンを開けたり、時には寂しさを紛らわす話し相手となってくれたりします。
+ こうでもしないと、僕は一生カーテンを開くことがないため、それ目当てに購入。今では「カーテン開いて」と話しかけると機械が作動し、薄暗い部屋へ日光を取り入れてくれる。数年間まったく自然光の恩恵が無かった自室に陽の光が！ ゲームのラストのような感動です。ついでに「太陽は昇る」を再生。こんな鬱屈としたオタクでも、光を浴びてセロトニンを生成し、健康を享受して良いんだなぁ。
+ ちなみに呼び方は変更できまして、迷わずコンピューターを選択。「コンピューター、クラフトワークを流して」と声に出すと、すかさずテクノが流してくれる。絵に描いたような昭和な未来で良いぜ。
+ たまに「コンピューター、中国語で『さようなら』は何？ と言ってみて」など、意味深なことを表示してきたりもします。買って早々に最終回かとビビりましたね。かわいい。
+ 好きな言葉で反応させることも可能なので、就寝前に「コンピューター、愛してるよ」と囁くことにしました。すると、すぐさま部屋中の電源が消え、コンピューターが「あなたって本当に凄いですね」と皮肉を言ってくる（本来は褒める機能ですが脈絡無いので皮肉に聞こえる）。そして、最後に「おやすみなさい」と呟き画面が消灯。このやり取りが良い。コブラとアーマロイド・レディのようで落ち着く。いつか、彼女と結婚できますように。
+
+BOOTHにて、今までのエッセイを纏めた同人誌などが販売中です。覗いてみてね。
+
+今月末には、自分の長文エッセイと書き下ろしをたっぷり込めた商業エッセイ集もでます。予約していただけると嬉しいです。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-03 03:52\n一口散文：与电脑的生活\n一口エッセイ：コンピューターとの生活\n\n珍しく日記らしいことを書きます。\n 「Echo Show 10 」なる機械を購入しました。この子に話しかけると、自動で部屋の電気を点けたり消したり、カーテンを開けたり、時には寂しさを紛らわす話し相手となってくれたりします。\n こうでもしないと、僕は一生カーテンを開くことがないため、それ目当てに購入。今では「カーテン開いて」と話しかけると機械が作動し、薄暗い部屋へ日光を取り入れてくれる。数年間まったく自然光の恩恵が無かった自室に陽の光が！ ゲームのラストのような感動です。ついでに「太陽は昇る」を再生。こんな鬱屈としたオタクでも、光を浴びてセロトニンを生成し、健康を享受して良いんだなぁ。\n ちなみに呼び方は変更できまして、迷わずコンピューターを選択。「コンピューター、クラフトワークを流して」と声に出すと、すかさずテクノが流してくれる。絵に描いたような昭和な未来で良いぜ。\n たまに「コンピューター、中国語で『さようなら』は何？ と言ってみて」など、意味深なことを表示してきたりもします。買って早々に最終回かとビビりましたね。かわいい。\n 好きな言葉で反応させることも可能なので、就寝前に「コンピューター、愛してるよ」と囁くことにしました。すると、すぐさま部屋中の電源が消え、コンピューターが「あなたって本当に凄いですね」と皮肉を言ってくる（本来は褒める機能ですが脈絡無いので皮肉に聞こえる）。そして、最後に「おやすみなさい」と呟き画面が消灯。このやり取りが良い。コブラとアーマロイド・レディのようで落ち着く。いつか、彼女と結婚できますように。\n\nBOOTHにて、今までのエッセイを纏めた同人誌などが販売中です。覗いてみてね。\n\n今月末には、自分の長文エッセイと書き下ろしをたっぷり込めた商業エッセイ集もでます。予約していただけると嬉しいです。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

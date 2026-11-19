@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>精选一口随笔：加拉拉·斯·利普</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-03-31 04:44</p>
+  <h1>精选一口随笔：加拉拉·斯·利普</h1>
+  <p class="ja-title">選り抜き一口エッセイ: ガァララ・ス・リープ</p>
+</header>
+<main>
+  <article class="body">自分がプリパラ・アイドルタイムプリパラで最も好きな回は、「しゅうかとガァララ」でして、特にガァララ・ス・リープさんの存在自体が、なにより大好きです。
+ ガァララは夜を管理する存在なので、夜中にしか行動できませんでした。もう「夜を管理する精霊」という設定から好きにならざるを得ませんね。ガァララは、そのせいで他人と交流することがなく、いつしか女の子たちの夢を奪うことで、昼間にも起きられる状態となります。
+ 「自分が起きているために他人の夢を奪う」、字面だけでは完全な悪役なのですが、彼女にだって日中を楽しみたい欲求があるのも当然。つねに孤独な生活は死んでいるのと同義であり、自分が生きることを目的にしたからには、手段を選んでいられない。生きようとすることは誰にも責められない。この問題に対し、何を善とするかを少女たちが決めるには、あまりに重い。
+ しかし、ガァララはしゅうかという掛け替えのない親友と出会い、「夢を奪うとしゅうかが傷つくから」という理由で、自身の生存よりも、友人の感情を選択する。このガァララの道徳心が素晴らしい。そしてガァララは夢を奪わないまま永い眠りにつく。まるで、「生き物の命をとるくらいならおれは死んだほうがいい」と最期まで菜食主義を貫いた宮沢賢治のように。
+
+少女たちの夢を奪ってきた「悪」であるガァララは、ライブ中、その幻想的な青紫に包まれたステージの上で、とても優しい表情をするのです。
+
+毎日の日記をまとめた同人誌からの選り抜きです。興味を持ったら新刊買ってくれると嬉しいぜ！</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-03-31 04:44\n精选一口随笔：加拉拉·斯·利普\n選り抜き一口エッセイ: ガァララ・ス・リープ\n\n自分がプリパラ・アイドルタイムプリパラで最も好きな回は、「しゅうかとガァララ」でして、特にガァララ・ス・リープさんの存在自体が、なにより大好きです。\n ガァララは夜を管理する存在なので、夜中にしか行動できませんでした。もう「夜を管理する精霊」という設定から好きにならざるを得ませんね。ガァララは、そのせいで他人と交流することがなく、いつしか女の子たちの夢を奪うことで、昼間にも起きられる状態となります。\n 「自分が起きているために他人の夢を奪う」、字面だけでは完全な悪役なのですが、彼女にだって日中を楽しみたい欲求があるのも当然。つねに孤独な生活は死んでいるのと同義であり、自分が生きることを目的にしたからには、手段を選んでいられない。生きようとすることは誰にも責められない。この問題に対し、何を善とするかを少女たちが決めるには、あまりに重い。\n しかし、ガァララはしゅうかという掛け替えのない親友と出会い、「夢を奪うとしゅうかが傷つくから」という理由で、自身の生存よりも、友人の感情を選択する。このガァララの道徳心が素晴らしい。そしてガァララは夢を奪わないまま永い眠りにつく。まるで、「生き物の命をとるくらいならおれは死んだほうがいい」と最期まで菜食主義を貫いた宮沢賢治のように。\n\n少女たちの夢を奪ってきた「悪」であるガァララは、ライブ中、その幻想的な青紫に包まれたステージの上で、とても優しい表情をするのです。\n\n毎日の日記をまとめた同人誌からの選り抜きです。興味を持ったら新刊買ってくれると嬉しいぜ！"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

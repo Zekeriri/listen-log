@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>睡了30小时</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2024-01-26 18:59</p>
+  <h1>睡了30小时</h1>
+  <p class="ja-title">30時間寝た</p>
+</header>
+<main>
+  <article class="body">一日中眠った。
+ 一日というか30時間くらい眠った。もちろん途中で起きて水分補給はしたが、それでも即眠くなってすぐに横になった。もう、ありえないほどに眠く、こうしないと自分は今後大変なことになると脳が訴えかけてくるようであった。
+ 本能には従おう。というか、眠れるならずっと眠っていたい。中途覚醒のたびに一瞬目に入る仕事の通知が悲しい。起きるとそういった現実へと目を向けなければならないのが苦しいが、今は全てを忘れて眠ろう。
+ それにしたって凄かった。一昨日、数時間ただただ『こぼ・かなえる』を眺めていた時点で精神的な限界を迎えていたのかもしれない。あの時は正気のつもりであったが、よくよく考えると一昨日時点で意識はもう向こうへいっており、気力で日記一本だけ書いて糸が切れた。
+ こんなに眠ったのは生まれて初めてだった。起きるたび、水分補給をして数分したら耐え切れないほどの眠気がくる。ちょっとだけスマホ弄ったらすぐに文字が読めなくなるので、何もかも諦めて瞼を閉じる。
+ こう考えると今までも「体力の限界」と認識していたものは、まだ正常であっただろう。今回30時間眠る機会がなければ、また別の未来があったはず。とりあえず今はある程度頭が動く。明日は梨さんとトークショーがある。今夜もたっぷり眠り、どうにか明日は人間のように動くぞ。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-01-26 18:59\n睡了30小时\n30時間寝た\n\n一日中眠った。\n 一日というか30時間くらい眠った。もちろん途中で起きて水分補給はしたが、それでも即眠くなってすぐに横になった。もう、ありえないほどに眠く、こうしないと自分は今後大変なことになると脳が訴えかけてくるようであった。\n 本能には従おう。というか、眠れるならずっと眠っていたい。中途覚醒のたびに一瞬目に入る仕事の通知が悲しい。起きるとそういった現実へと目を向けなければならないのが苦しいが、今は全てを忘れて眠ろう。\n それにしたって凄かった。一昨日、数時間ただただ『こぼ・かなえる』を眺めていた時点で精神的な限界を迎えていたのかもしれない。あの時は正気のつもりであったが、よくよく考えると一昨日時点で意識はもう向こうへいっており、気力で日記一本だけ書いて糸が切れた。\n こんなに眠ったのは生まれて初めてだった。起きるたび、水分補給をして数分したら耐え切れないほどの眠気がくる。ちょっとだけスマホ弄ったらすぐに文字が読めなくなるので、何もかも諦めて瞼を閉じる。\n こう考えると今までも「体力の限界」と認識していたものは、まだ正常であっただろう。今回30時間眠る機会がなければ、また別の未来があったはず。とりあえず今はある程度頭が動く。明日は梨さんとトークショーがある。今夜もたっぷり眠り、どうにか明日は人間のように動くぞ。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

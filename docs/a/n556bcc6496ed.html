@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>早晨手机</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-01-26 08:11</p>
+  <h1>早晨手机</h1>
+  <p class="ja-title">朝スマホ</p>
+</header>
+<main>
+  <article class="body">朝起きて即スマホを見るのいやだなと感じ、しかし起き上がったときに時計を確認できないと不安だ。逆に言えば、起床時にスマホを開かず時刻を見ることができれば問題は解決をする。
+ というか、起きてすぐにスマホで仕事の通知を見る苦痛をみんなどう乗り越えているんだ。とはいえ通知なしだと返信を忘れてしまうというか支障をきたしまくるので避けられない。
+
+というわけで、起きてからしばらくスマホを開かないルーティンを続けてみた。むしろベッド周りに時計を置かないことで、起き上がらないと時刻がわからず起床の重要性を高めることもできる。
+ 起きてフィットボクシングを一通りプレイし、シャワーで汗を流してすっきりし、しばらくぼけっとしてようやくスマホを開いてみる。
+ まあ、過程を刻んだどころで画面の先には通知だらけなことに変わりはないけれども。むしろ、フィットボクシング中も「寝ている間に問題が発生していたらどうしよう」と不安に襲われている。いまニディガ展も開催中で、展示でなにかあったら、なんらかのトラブルに気づいてなかったら、と。いっそ早めに安心したいとも焦る。
+
+まあ朝というか昼過ぎなんだけど。
+ たまに夕方に起きたときなんか、昼間の混乱を通知欄で把握することになる。勝手に解決している。すごいことだ。
+ 普通は夜に寝て朝に起きるから、その間であまり仕事の連絡もなくて、朝に余裕があるのかもしれない。サラリーマンなら出社まで見なくとも責任は生まれないし。
+
+うーん。
+ 起きるのがつまらない。ずっと夢の中に居たいけれども、それはスマートフォンとは関係なく昔からか。別に変わらないかもしれません。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-01-26 08:11\n早晨手机\n朝スマホ\n\n朝起きて即スマホを見るのいやだなと感じ、しかし起き上がったときに時計を確認できないと不安だ。逆に言えば、起床時にスマホを開かず時刻を見ることができれば問題は解決をする。\n というか、起きてすぐにスマホで仕事の通知を見る苦痛をみんなどう乗り越えているんだ。とはいえ通知なしだと返信を忘れてしまうというか支障をきたしまくるので避けられない。\n\nというわけで、起きてからしばらくスマホを開かないルーティンを続けてみた。むしろベッド周りに時計を置かないことで、起き上がらないと時刻がわからず起床の重要性を高めることもできる。\n 起きてフィットボクシングを一通りプレイし、シャワーで汗を流してすっきりし、しばらくぼけっとしてようやくスマホを開いてみる。\n まあ、過程を刻んだどころで画面の先には通知だらけなことに変わりはないけれども。むしろ、フィットボクシング中も「寝ている間に問題が発生していたらどうしよう」と不安に襲われている。いまニディガ展も開催中で、展示でなにかあったら、なんらかのトラブルに気づいてなかったら、と。いっそ早めに安心したいとも焦る。\n\nまあ朝というか昼過ぎなんだけど。\n たまに夕方に起きたときなんか、昼間の混乱を通知欄で把握することになる。勝手に解決している。すごいことだ。\n 普通は夜に寝て朝に起きるから、その間であまり仕事の連絡もなくて、朝に余裕があるのかもしれない。サラリーマンなら出社まで見なくとも責任は生まれないし。\n\nうーん。\n 起きるのがつまらない。ずっと夢の中に居たいけれども、それはスマートフォンとは関係なく昔からか。別に変わらないかもしれません。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

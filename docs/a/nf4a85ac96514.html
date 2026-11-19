@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔: 灵魂的污秽</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-07-02 02:50</p>
+  <h1>一口随笔: 灵魂的污秽</h1>
+  <p class="ja-title">一口エッセイ:魂の穢れ</p>
+</header>
+<main>
+  <article class="body">今年の初め頃から、「魂の穢れ」について考えることが多くなりました。自分の中に線引きした「汚いこと」を行う/考えると、魂に汚れが付着して全身を蝕むようなイメージが湧き、そして魂が穢れたまま死を迎えると、死後の世界で相応の罰を受けるのではと想像してしまう。
+ たとえば、ポイ捨てだとか匿名での悪口だとか、そういうのは僕の中でかなりカルマのポイントが高い。精神の根元が腐っていく感覚がする。綺麗事や偽善がしたいわけでなく、単純に自分が生理的に嫌悪感を覚えるだけです。他人に強要することもない。ただ、自分は魂を穢したくない。
+ 天国地獄や輪廻転生を信じているほど、熱心な仏教徒でもヒンドゥー教徒でもありませんが、ぼんやりとした「死語」への情念と、自分の考える善のために「善く」生きるという前提がある。人は、こうして己が引いた線の内側で魂を保護して育てていくべきだ。そうすることが結果的に幸福へと繋がると信じている。
+ しかし、「欲」も生きる上で大事であることも仮面ライダーオーズから学んだし、僕はまだ欲望自体を失くす悟りには程遠い。なにが善いことでなにが悪いかも曖昧であれども、それでも自分の線引きを大切に、老後には煩悩を捨てて善を抱えたまま死ぬ準備を終えるため、今のうち欲を満たせるだけ満たせるよう生きていく。極楽浄土や来世があるかは分からないけれど、死ぬ寸前の自分の魂が、清く美しいものであることを願います。
+
+毎日の日記をまとめた同人誌をBOOTHにて販売中。これもまた善行。
+
+いろいろと重めな商業エッセイもよろしくね。若くて煩悩まみれ！</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-07-02 02:50\n一口随笔: 灵魂的污秽\n一口エッセイ:魂の穢れ\n\n今年の初め頃から、「魂の穢れ」について考えることが多くなりました。自分の中に線引きした「汚いこと」を行う/考えると、魂に汚れが付着して全身を蝕むようなイメージが湧き、そして魂が穢れたまま死を迎えると、死後の世界で相応の罰を受けるのではと想像してしまう。\n たとえば、ポイ捨てだとか匿名での悪口だとか、そういうのは僕の中でかなりカルマのポイントが高い。精神の根元が腐っていく感覚がする。綺麗事や偽善がしたいわけでなく、単純に自分が生理的に嫌悪感を覚えるだけです。他人に強要することもない。ただ、自分は魂を穢したくない。\n 天国地獄や輪廻転生を信じているほど、熱心な仏教徒でもヒンドゥー教徒でもありませんが、ぼんやりとした「死語」への情念と、自分の考える善のために「善く」生きるという前提がある。人は、こうして己が引いた線の内側で魂を保護して育てていくべきだ。そうすることが結果的に幸福へと繋がると信じている。\n しかし、「欲」も生きる上で大事であることも仮面ライダーオーズから学んだし、僕はまだ欲望自体を失くす悟りには程遠い。なにが善いことでなにが悪いかも曖昧であれども、それでも自分の線引きを大切に、老後には煩悩を捨てて善を抱えたまま死ぬ準備を終えるため、今のうち欲を満たせるだけ満たせるよう生きていく。極楽浄土や来世があるかは分からないけれど、死ぬ寸前の自分の魂が、清く美しいものであることを願います。\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中。これもまた善行。\n\nいろいろと重めな商業エッセイもよろしくね。若くて煩悩まみれ！"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

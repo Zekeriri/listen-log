@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：一直喝醉</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2023-07-26 12:51</p>
+  <h1>一口随笔：一直喝醉</h1>
+  <p class="ja-title">一口エッセイ:ずっと酔う</p>
+</header>
+<main>
+  <article class="body">最初は興味本位で、「生活に変化をつけてみるか」程度の気持ちから起きてすぐビールを数杯飲んでみることにしたのです。
+ 起きて、のんびり支度をすると、一人でカウンターにてビール飲み比べをしていても浮かないタイプのお店へ向かう。クラフトビール系なら一人できても「本当にビールが好きな人だ」と認識してくれている気がする。店員さんが様々なクラフトビールの特徴を説明してくれるので、よくわからないまま出された数種類を口へと運び、感想を述べる。
+ 「一日中酔っていると実際気持ちいいのか」と試す程度の気持ちであったが、これが意外と悪くない。夕方前は客も少なく静かで、ビール片手にKindleで読書していると世界がとても穏やかだ。老人たちが大声での会話に耽っている喫茶店ともまた違う魅力がある。そして、酔うと現実もネットも曖昧に見える。直視せずにすむので、アルコールの分だけ全部が他人事に思える。
+ この「他人事」という感覚は重要に感じます。本当の本当にいま自分が向き合わねばならない問題なんて大してあるはずもない。なんなら睡眠時間がたくさんあるならそれだけで良いくらいに懸念や夾雑物を削っていくべきで、何もかも曖昧なまま時だけが過ぎて、気づいたら眠るサイクルは非常に楽だ。
+ とにかく脳の根底から伸びていく余計な思考の枝葉と、親しくない他者からの干渉をブロックしていきたい。その願望をアルコールはほどよく叶えてくれる。向精神薬と睡眠薬よりは（量によりけりだが）マイルドに。できる限りお酒も飲まず、ましてや一人の時に飲むタイプでは全く無かったものの、一度「一日中酔っている」を経験すると魅力はすぐにでも伝わってしまった。
+ 自我の芯はある程度保ちつつ、世界と自分にまつわるある程度のイベントの輪郭をぼやかしていたい。今はそのような気持ちがとにかく強い。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-07-26 12:51\n一口随笔：一直喝醉\n一口エッセイ:ずっと酔う\n\n最初は興味本位で、「生活に変化をつけてみるか」程度の気持ちから起きてすぐビールを数杯飲んでみることにしたのです。\n 起きて、のんびり支度をすると、一人でカウンターにてビール飲み比べをしていても浮かないタイプのお店へ向かう。クラフトビール系なら一人できても「本当にビールが好きな人だ」と認識してくれている気がする。店員さんが様々なクラフトビールの特徴を説明してくれるので、よくわからないまま出された数種類を口へと運び、感想を述べる。\n 「一日中酔っていると実際気持ちいいのか」と試す程度の気持ちであったが、これが意外と悪くない。夕方前は客も少なく静かで、ビール片手にKindleで読書していると世界がとても穏やかだ。老人たちが大声での会話に耽っている喫茶店ともまた違う魅力がある。そして、酔うと現実もネットも曖昧に見える。直視せずにすむので、アルコールの分だけ全部が他人事に思える。\n この「他人事」という感覚は重要に感じます。本当の本当にいま自分が向き合わねばならない問題なんて大してあるはずもない。なんなら睡眠時間がたくさんあるならそれだけで良いくらいに懸念や夾雑物を削っていくべきで、何もかも曖昧なまま時だけが過ぎて、気づいたら眠るサイクルは非常に楽だ。\n とにかく脳の根底から伸びていく余計な思考の枝葉と、親しくない他者からの干渉をブロックしていきたい。その願望をアルコールはほどよく叶えてくれる。向精神薬と睡眠薬よりは（量によりけりだが）マイルドに。できる限りお酒も飲まず、ましてや一人の時に飲むタイプでは全く無かったものの、一度「一日中酔っている」を経験すると魅力はすぐにでも伝わってしまった。\n 自我の芯はある程度保ちつつ、世界と自分にまつわるある程度のイベントの輪郭をぼやかしていたい。今はそのような気持ちがとにかく強い。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

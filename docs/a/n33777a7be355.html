@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>德岛的阿波一点突破</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-08-10 02:19</p>
+  <h1>德岛的阿波一点突破</h1>
+  <p class="ja-title">徳島の阿波一点突破</p>
+</header>
+<main>
+  <article class="body">徳島に来た！！！
+ 徳島といえば、阿波踊りだ！！！
+
+夜の街を散歩するぜ。いったいどれくらい阿波に塗れているのだろうか……。
+
+ちょっと歩けば阿波踊りの銅像が。
+ これめっちゃたくさん設置されている。徳島だもの。
+
+今にも踊り出しそうな提灯たちが、島の夜を照らしている。
+
+商店街に入ると、明らかに阿波を踊るためのやぐらが設置されている。徳島だから。
+
+阿波おどりカラクリ時計。
+ 阿波おどりカラクリ時計、か。
+
+よくよく見ると『徳島オカルト伝説』なるポスターまで。イベントの主題は、闇に消えた阿波歴史ツアー。そうか。
+
+サボテンが花をつけている。急にぽつんと花が横に伸びていてすごい。
+
+クワガタがいたよ。
+ 徳島だからね。
+ おやすみなさい。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-08-10 02:19\n德岛的阿波一点突破\n徳島の阿波一点突破\n\n徳島に来た！！！\n 徳島といえば、阿波踊りだ！！！\n\n夜の街を散歩するぜ。いったいどれくらい阿波に塗れているのだろうか……。\n\nちょっと歩けば阿波踊りの銅像が。\n これめっちゃたくさん設置されている。徳島だもの。\n\n今にも踊り出しそうな提灯たちが、島の夜を照らしている。\n\n商店街に入ると、明らかに阿波を踊るためのやぐらが設置されている。徳島だから。\n\n阿波おどりカラクリ時計。\n 阿波おどりカラクリ時計、か。\n\nよくよく見ると『徳島オカルト伝説』なるポスターまで。イベントの主題は、闇に消えた阿波歴史ツアー。そうか。\n\nサボテンが花をつけている。急にぽつんと花が横に伸びていてすごい。\n\nクワガタがいたよ。\n 徳島だからね。\n おやすみなさい。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

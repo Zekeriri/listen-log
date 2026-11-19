@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>精选一口随笔: 关于“成为某人”的愿望</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-06-23 16:41</p>
+  <h1>精选一口随笔: 关于“成为某人”的愿望</h1>
+  <p class="ja-title">選り抜き一口エッセイ:何者か願望について</p>
+</header>
+<main>
+  <article class="body">インターネットでは、「何者かになりたい」という叫びが散見されます。SNSによってイラストレーター、文筆家、ミュージシャンなどクリエイターとの距離感が近く感じてしまうからでしょうか。ネットに漂う一アカウントでは終わりたくないという祈りにも似た投稿が、今日もタイムラインに流れては無慈悲に雲散していく。
+ 僕の方にも、たまに「どうしたらインターネットで何者かになれますか？」といったDMが届きます。自分はしばらく、その質問に対して適切な返答ができませんでした。「努力」なんて、つまらない答えは言いたくなかったのです。
+
+雨瀬シオリ先生の漫画『ここは今から倫理です。』では、普通の人に埋もれたくなくて、何者かになりたくて、急に車道へ一歩飛び出して怪我を負ってしまった生徒が登場します。そんな悩みで突飛な行動をしてしまった自分を異常だと自虐する彼に対し、主人公である教師は「悩まぬ豚より悩めるソクラテスであれ」と、J.S.ミルの言葉を引用して宥めます。
+
+せっかく人間に生まれたのだから、そうやって悩み続けましょう、それが人間だけにできる特別なことだからと。
+ 元から好きな作品でしたが、この話は目から鱗で、ますます好きになりました。何者なのかと悩んだ時点で「特別」という答えは素敵だと思います。綺麗事ではありますけど、個人的には大分しっくりきたのです。結局、何か行動は必要なのですが、その悩みは大切で特別なものだと認識するだけで救われる方も居るのではないでしょうか。
+
+毎日のエッセイをまとめた同人誌を販売中です。何者かに近づくため、毎日頑張る。
+
+商業エッセイ集もよろしくね！</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-23 16:41\n精选一口随笔: 关于“成为某人”的愿望\n選り抜き一口エッセイ:何者か願望について\n\nインターネットでは、「何者かになりたい」という叫びが散見されます。SNSによってイラストレーター、文筆家、ミュージシャンなどクリエイターとの距離感が近く感じてしまうからでしょうか。ネットに漂う一アカウントでは終わりたくないという祈りにも似た投稿が、今日もタイムラインに流れては無慈悲に雲散していく。\n 僕の方にも、たまに「どうしたらインターネットで何者かになれますか？」といったDMが届きます。自分はしばらく、その質問に対して適切な返答ができませんでした。「努力」なんて、つまらない答えは言いたくなかったのです。\n\n雨瀬シオリ先生の漫画『ここは今から倫理です。』では、普通の人に埋もれたくなくて、何者かになりたくて、急に車道へ一歩飛び出して怪我を負ってしまった生徒が登場します。そんな悩みで突飛な行動をしてしまった自分を異常だと自虐する彼に対し、主人公である教師は「悩まぬ豚より悩めるソクラテスであれ」と、J.S.ミルの言葉を引用して宥めます。\n\nせっかく人間に生まれたのだから、そうやって悩み続けましょう、それが人間だけにできる特別なことだからと。\n 元から好きな作品でしたが、この話は目から鱗で、ますます好きになりました。何者なのかと悩んだ時点で「特別」という答えは素敵だと思います。綺麗事ではありますけど、個人的には大分しっくりきたのです。結局、何か行動は必要なのですが、その悩みは大切で特別なものだと認識するだけで救われる方も居るのではないでしょうか。\n\n毎日のエッセイをまとめた同人誌を販売中です。何者かに近づくため、毎日頑張る。\n\n商業エッセイ集もよろしくね！"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

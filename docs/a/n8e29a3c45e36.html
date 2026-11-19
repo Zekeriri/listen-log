@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：最近对Prismmy心情无法抑制的御宅族</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-04-28 05:54</p>
+  <h1>一口随笔：最近对Prismmy心情无法抑制的御宅族</h1>
+  <p class="ja-title">一口エッセイ:最近のプリマジに気持ちが抑えられないオタク</p>
+</header>
+<main>
+  <article class="body">最近のプリマジの話をしたい欲が我慢できない。ミュークルが終わってから、「サンリオアニメ枠の無いこの国の未来はどうなってしまうのか……」と憂いておりましたが、先週のプリマジのしっとりした湿り気には完全に負けてしまった。プリマジの話、いくぞ！！！
+ 新OPを見る限り、次の展開で各キャラを二人組にする動きがある。まつりちゃんとあうる、ひな先輩とあまね様、そして……甘瓜みるきとれもん氏。
+
+もう、みるきとれもんがペアになっていく様子は百点満点ですよ。ファーストコンタクトでは、アイドル然としたみるきにビビりまくりなオタクのれもん氏が無難な話を振って、「天気の話は みるきの三大興味ない話の一つだお」と袖にされていたのにさ、こう……一緒に居るうちにじわじわ打ち解け、特にきっかけがあったわけでないのに、新OPの背中合わせを見てデカい声出ましたからね。なんだかんだ面倒見の良いみるきとコミュ障なものの相手をリスペクトするれもん氏が、デコボコながらも互いの個性を認識し合い、友達の距離感になっていく過程が素晴らしい。OPの通り、ペアらしくなる回がきたら耐え切れるか不安です。死ぬかもしれない。
+
+そんな中、先週のアバンでは、まつりちゃんとみゃむの夜が描かれ、既に関係が成熟しきった二人は湿り気を隠そうともしない。じめっとしたイチャつきが展開され、これが公式なのかと気が狂いそうになる。こんなやり取りを朝から見せてもらって良いのか不安で堪らない。悔しいくらいに気色悪いオタクスマイルになってしまう。この国の未来は、プリマジとプリマジで育った女児たちが支えていく。
+
+毎日のエッセイをまとめた同人誌をboothにて販売中です。気づけばニチアサの話ばっかり。
+
+商業エッセイ集もよろしくね。Amazon評価もしてくれたら、とても嬉しいです。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-04-28 05:54\n一口随笔：最近对Prismmy心情无法抑制的御宅族\n一口エッセイ:最近のプリマジに気持ちが抑えられないオタク\n\n最近のプリマジの話をしたい欲が我慢できない。ミュークルが終わってから、「サンリオアニメ枠の無いこの国の未来はどうなってしまうのか……」と憂いておりましたが、先週のプリマジのしっとりした湿り気には完全に負けてしまった。プリマジの話、いくぞ！！！\n 新OPを見る限り、次の展開で各キャラを二人組にする動きがある。まつりちゃんとあうる、ひな先輩とあまね様、そして……甘瓜みるきとれもん氏。\n\nもう、みるきとれもんがペアになっていく様子は百点満点ですよ。ファーストコンタクトでは、アイドル然としたみるきにビビりまくりなオタクのれもん氏が無難な話を振って、「天気の話は みるきの三大興味ない話の一つだお」と袖にされていたのにさ、こう……一緒に居るうちにじわじわ打ち解け、特にきっかけがあったわけでないのに、新OPの背中合わせを見てデカい声出ましたからね。なんだかんだ面倒見の良いみるきとコミュ障なものの相手をリスペクトするれもん氏が、デコボコながらも互いの個性を認識し合い、友達の距離感になっていく過程が素晴らしい。OPの通り、ペアらしくなる回がきたら耐え切れるか不安です。死ぬかもしれない。\n\nそんな中、先週のアバンでは、まつりちゃんとみゃむの夜が描かれ、既に関係が成熟しきった二人は湿り気を隠そうともしない。じめっとしたイチャつきが展開され、これが公式なのかと気が狂いそうになる。こんなやり取りを朝から見せてもらって良いのか不安で堪らない。悔しいくらいに気色悪いオタクスマイルになってしまう。この国の未来は、プリマジとプリマジで育った女児たちが支えていく。\n\n毎日のエッセイをまとめた同人誌をboothにて販売中です。気づけばニチアサの話ばっかり。\n\n商業エッセイ集もよろしくね。Amazon評価もしてくれたら、とても嬉しいです。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

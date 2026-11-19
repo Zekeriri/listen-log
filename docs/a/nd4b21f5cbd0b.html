@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：在中野Broadway发现的东西</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2023-03-26 07:06</p>
+  <h1>一口随笔：在中野Broadway发现的东西</h1>
+  <p class="ja-title">一口エッセイ:中野ブロードウェイで見つけたもの</p>
+</header>
+<main>
+  <article class="body">自身が中野ブロードウェイを散歩している際に見つけたアイテムを投稿するアカウント、『中野ブロードウェイで見つけたもの』のフォロワー数が6000人になりました。
+ 最初はネタ切れを防ぐために1日1枚投稿でしたが、最近は2枚も3枚も貼ってしまう。中野ブロードウェイが楽しすぎて、弾が切れない。なんといいことでしょう。
+
+ここ数ヶ月、中野ブロードウェイは相変わらず高級時計屋が増え、そのうえでプレミア品を扱うポケモンカードショップも増え始めた。まあ資産運用のために時計やジュエリーが飾られているよりは、まだ何十万・何百万のポケモンカードを眺めていた方がいいのでいいですが。それにしてもサブカルチャーが少しずつ追い込まれて、代わりに投機対象用のお店が侵食してくるのはなんだか不思議な現象です。わけわからん街だ。
+ ちなみに、この前2階あたりを散歩している時に、男の二人組に「にゃるらさんですか？」と声をかけられたので一緒に写真を撮った。
+ 「SNSに貼るなら教えてくださいね〜」と言うと、「自分だけの思い出にしたいので誰にも見せません！！」と嬉しそうにしてくれました。フォロワーの誰かが中野ブロードウェイを楽しんでいる際に、僕を見つけたのでテンション上がってくれて、しかもその出来事を自分の胸に秘めている。嬉しいことですね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-03-26 07:06\n一口随笔：在中野Broadway发现的东西\n一口エッセイ:中野ブロードウェイで見つけたもの\n\n自身が中野ブロードウェイを散歩している際に見つけたアイテムを投稿するアカウント、『中野ブロードウェイで見つけたもの』のフォロワー数が6000人になりました。\n 最初はネタ切れを防ぐために1日1枚投稿でしたが、最近は2枚も3枚も貼ってしまう。中野ブロードウェイが楽しすぎて、弾が切れない。なんといいことでしょう。\n\nここ数ヶ月、中野ブロードウェイは相変わらず高級時計屋が増え、そのうえでプレミア品を扱うポケモンカードショップも増え始めた。まあ資産運用のために時計やジュエリーが飾られているよりは、まだ何十万・何百万のポケモンカードを眺めていた方がいいのでいいですが。それにしてもサブカルチャーが少しずつ追い込まれて、代わりに投機対象用のお店が侵食してくるのはなんだか不思議な現象です。わけわからん街だ。\n ちなみに、この前2階あたりを散歩している時に、男の二人組に「にゃるらさんですか？」と声をかけられたので一緒に写真を撮った。\n 「SNSに貼るなら教えてくださいね〜」と言うと、「自分だけの思い出にしたいので誰にも見せません！！」と嬉しそうにしてくれました。フォロワーの誰かが中野ブロードウェイを楽しんでいる際に、僕を見つけたのでテンション上がってくれて、しかもその出来事を自分の胸に秘めている。嬉しいことですね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

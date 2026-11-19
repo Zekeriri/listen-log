@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>希望所有事情都能像这样随意</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-02-01 07:00</p>
+  <h1>希望所有事情都能像这样随意</h1>
+  <p class="ja-title">すべてのことがこれくらい適当であって欲しい</p>
+</header>
+<main>
+  <article class="body">すべてのことがこれくらい適当であって欲しい。
+
+スペインのKEC公式アカウントが、突然ムメイ（ホロライブEN所属のemoガール）が店に遊びに来ているコラ画像を投稿した。
+
+画質が悪くて面白い。この公式アカウントは、これまでも拾った美少女キャラクターの画像を雑にコラして投稿してきた。当然コラボか何かと思われるのでこんなこと通常であれば許されない。というかきちんと怒っている人もいるのでしょう。けれどもスペイン側が細かいことを気にする様子もない。
+ 次第に、「スペインKFCのノリはこんなものだよね」と海外の人々は受け入れた。権利関係なぞどこ吹く風な傾奇者が一人二人居るくらいが面白いんじゃないかと。
+
+リプライ欄もかわいいかわいいフクロウたちの画像で溢れかえる。I LOVE MUMEI !
+
+本人も「いまスペインに行ったらタダでケンタッキー食べていい？」と気さくな反応。それ以上でも以下でもない程度の。ゆるくていいよね。
+
+僕はすべてのことがこれくらいであるべきと考えている。この一連の「感じ」が最も好きで、そこに倫理や善悪をない混ぜにしたくない。けれども、人は善悪から抜け出すのは難しい。適当さ・ゆるさには多くの悪がつきまとう。絶対にゆるさないよ。
+
+コラボでもなんでもないのに解像度の荒いムメイがケンタッキー食べている画像に笑った。リプライ欄はファンたちがとっておきのムメイを送って可愛く彩った。moom本人ものんびり乗っかった。
+
+永遠にそうあって欲しい。
+
+こんな毎日が永久に続くといい。
+ 彼女たちの幸せも。スペインのケンタッキーも盛況であるといいな。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-02-01 07:00\n希望所有事情都能像这样随意\nすべてのことがこれくらい適当であって欲しい\n\nすべてのことがこれくらい適当であって欲しい。\n\nスペインのKEC公式アカウントが、突然ムメイ（ホロライブEN所属のemoガール）が店に遊びに来ているコラ画像を投稿した。\n\n画質が悪くて面白い。この公式アカウントは、これまでも拾った美少女キャラクターの画像を雑にコラして投稿してきた。当然コラボか何かと思われるのでこんなこと通常であれば許されない。というかきちんと怒っている人もいるのでしょう。けれどもスペイン側が細かいことを気にする様子もない。\n 次第に、「スペインKFCのノリはこんなものだよね」と海外の人々は受け入れた。権利関係なぞどこ吹く風な傾奇者が一人二人居るくらいが面白いんじゃないかと。\n\nリプライ欄もかわいいかわいいフクロウたちの画像で溢れかえる。I LOVE MUMEI !\n\n本人も「いまスペインに行ったらタダでケンタッキー食べていい？」と気さくな反応。それ以上でも以下でもない程度の。ゆるくていいよね。\n\n僕はすべてのことがこれくらいであるべきと考えている。この一連の「感じ」が最も好きで、そこに倫理や善悪をない混ぜにしたくない。けれども、人は善悪から抜け出すのは難しい。適当さ・ゆるさには多くの悪がつきまとう。絶対にゆるさないよ。\n\nコラボでもなんでもないのに解像度の荒いムメイがケンタッキー食べている画像に笑った。リプライ欄はファンたちがとっておきのムメイを送って可愛く彩った。moom本人ものんびり乗っかった。\n\n永遠にそうあって欲しい。\n\nこんな毎日が永久に続くといい。\n 彼女たちの幸せも。スペインのケンタッキーも盛況であるといいな。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

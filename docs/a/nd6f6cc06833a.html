@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>捷克 咖啡馆与建筑之旅</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-04-27 02:08</p>
+  <h1>捷克 咖啡馆与建筑之旅</h1>
+  <p class="ja-title">チェコ カフェと建築をめぐる旅</p>
+</header>
+<main>
+  <article class="body">せっかくチェコを回ってきたので、ビールの次はカフェについて話そうと思う。チェコは木組みの街にビールとコーヒーがたんまりと詰まっている国だ。
+
+さらっと入ったデパートでの一枚。ヨーロッパ人は店外で飲むのが本当に好きだ。
+
+みんな、こうして昼を過ごす。西の世界は眩しい。
+
+コーヒーの味に関しては、正直「どれも美味しい」以上のことを言えない。僕は、コーヒーそのものよりも建築美を味わいにきている。ビールだって同じだ。濃いか薄いかくらいしか気にならない。
+
+一番気に入ったロケーション。インペリアルホテルだかなんだか。ものすごそうな高級ホテルであるものの、カフェスペースは誰でも利用可能なので毎朝こちらに来ていた。
+
+ロイヤル・エッグ。チェコの朝は、このとろーり卵とカプチーノから始まる。
+
+アール・ヌーヴォー調の模様が素敵。ものすごく分かりやすく比較するなら、アール・ヌーヴォーは曲線的な印象。
+
+一方、
+
+こちらがアール・デコ調。直線的でモダンな印象。
+ このようにプラハでは、コーヒーひとつで多くの建築と歴史を楽しめる。おかげで作詞も捗った。ヨーロッパまで足を運んだ結果を来年までお披露目できないのは悲しいけれど。
+
+こちらは世界で唯一、キュビズムをテーマにしたカフェ。チェコを訪れる際には、この『黒い聖母の家』は必見。いちばん気に入ったカフェです。
+
+実は、外が爽やか。
+
+KAFKA HUMMUS CAFE。
+ プラハの一画は異様にカフカ推し。カフカ縁の喫茶店で文学を満喫もできるし、カフカに商売っ気は似合わないとつんと無視してもいい。実際、カフカ自体が通っていたのはまた別のカフェである。複雑だね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-04-27 02:08\n捷克 咖啡馆与建筑之旅\nチェコ カフェと建築をめぐる旅\n\nせっかくチェコを回ってきたので、ビールの次はカフェについて話そうと思う。チェコは木組みの街にビールとコーヒーがたんまりと詰まっている国だ。\n\nさらっと入ったデパートでの一枚。ヨーロッパ人は店外で飲むのが本当に好きだ。\n\nみんな、こうして昼を過ごす。西の世界は眩しい。\n\nコーヒーの味に関しては、正直「どれも美味しい」以上のことを言えない。僕は、コーヒーそのものよりも建築美を味わいにきている。ビールだって同じだ。濃いか薄いかくらいしか気にならない。\n\n一番気に入ったロケーション。インペリアルホテルだかなんだか。ものすごそうな高級ホテルであるものの、カフェスペースは誰でも利用可能なので毎朝こちらに来ていた。\n\nロイヤル・エッグ。チェコの朝は、このとろーり卵とカプチーノから始まる。\n\nアール・ヌーヴォー調の模様が素敵。ものすごく分かりやすく比較するなら、アール・ヌーヴォーは曲線的な印象。\n\n一方、\n\nこちらがアール・デコ調。直線的でモダンな印象。\n このようにプラハでは、コーヒーひとつで多くの建築と歴史を楽しめる。おかげで作詞も捗った。ヨーロッパまで足を運んだ結果を来年までお披露目できないのは悲しいけれど。\n\nこちらは世界で唯一、キュビズムをテーマにしたカフェ。チェコを訪れる際には、この『黒い聖母の家』は必見。いちばん気に入ったカフェです。\n\n実は、外が爽やか。\n\nKAFKA HUMMUS CAFE。\n プラハの一画は異様にカフカ推し。カフカ縁の喫茶店で文学を満喫もできるし、カフカに商売っ気は似合わないとつんと無視してもいい。実際、カフカ自体が通っていたのはまた別のカフェである。複雑だね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

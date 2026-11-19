@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>精选一口随笔：母亲的男友与非法ROM</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2021-11-30 01:56</p>
+  <h1>精选一口随笔：母亲的男友与非法ROM</h1>
+  <p class="ja-title">選り抜き一口エッセイ: 母親の彼氏と違法ROM</p>
+</header>
+<main>
+  <article class="body">小学生の頃、母親の彼氏の1人に、今思うとかなりオタク寄りの中年男性がいた。当然、母親の彼氏なんて基本的に不快であり、母親の機嫌をとるために無理して仲良くなろうとする姿勢が嫌だった。子供が好きでないことは一目でわかったし。
+ しかし、その男だけは違った。僕に向かって怪しいCD‐ROMを渡すと、「これをPCに入れるとキミが大好きなゲームボーイアドバンスのソフトがすべて遊べるんだ」と話した。瞬間、僕はこれがもの凄く違法なことだと理解した。男はそのディスクを通して僕と一緒にゲームするのを、心から楽しみにしている様子で、僕がエミュレーターを起動して目を輝かせるであろう姿を想像してワクワクしているのがわかる。
+ こんな大人も居るんだ、と思った。ディスクの中身は案の定、どこかで落としたのであろう違法ROMだらけで、男は「好きなソフトを選んでここをクリックするんだよ」と丁寧に悪事の指導をしてくれた。正しいことしか教えない学校の教師と真逆の存在に、僕はただただビックリする。
+ しばらくして、母親は彼と別れたらしく、遊びにきたのはその一回のみだった。オタクの中年なんて母親の趣味ではなかったのでしょう。次の彼氏はいつも通りヤンキーっぽいEXILE好きの男だった。パソコンなんて触ったこともない可能性があるような人で、僕も特に会話をしなかった。
+ いつの間にかCD‐ROMはどこかへ消えていた。母親が捨てたのかもしれない。それはあなたが連れてきた今までの男の偽物の好意より、何倍も僕の心を動かしたということに気づかないまま。
+
+※Twitterに連載していたエッセイからの抜粋です。↑で購入できますので、エッセイ集をぜひ読んでみてね</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-11-30 01:56\n精选一口随笔：母亲的男友与非法ROM\n選り抜き一口エッセイ: 母親の彼氏と違法ROM\n\n小学生の頃、母親の彼氏の1人に、今思うとかなりオタク寄りの中年男性がいた。当然、母親の彼氏なんて基本的に不快であり、母親の機嫌をとるために無理して仲良くなろうとする姿勢が嫌だった。子供が好きでないことは一目でわかったし。\n しかし、その男だけは違った。僕に向かって怪しいCD‐ROMを渡すと、「これをPCに入れるとキミが大好きなゲームボーイアドバンスのソフトがすべて遊べるんだ」と話した。瞬間、僕はこれがもの凄く違法なことだと理解した。男はそのディスクを通して僕と一緒にゲームするのを、心から楽しみにしている様子で、僕がエミュレーターを起動して目を輝かせるであろう姿を想像してワクワクしているのがわかる。\n こんな大人も居るんだ、と思った。ディスクの中身は案の定、どこかで落としたのであろう違法ROMだらけで、男は「好きなソフトを選んでここをクリックするんだよ」と丁寧に悪事の指導をしてくれた。正しいことしか教えない学校の教師と真逆の存在に、僕はただただビックリする。\n しばらくして、母親は彼と別れたらしく、遊びにきたのはその一回のみだった。オタクの中年なんて母親の趣味ではなかったのでしょう。次の彼氏はいつも通りヤンキーっぽいEXILE好きの男だった。パソコンなんて触ったこともない可能性があるような人で、僕も特に会話をしなかった。\n いつの間にかCD‐ROMはどこかへ消えていた。母親が捨てたのかもしれない。それはあなたが連れてきた今までの男の偽物の好意より、何倍も僕の心を動かしたということに気づかないまま。\n\n※Twitterに連載していたエッセイからの抜粋です。↑で購入できますので、エッセイ集をぜひ読んでみてね"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

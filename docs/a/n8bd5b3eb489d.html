@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>新作随笔集要出版了</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-11-08 02:43</p>
+  <h1>新作随笔集要出版了</h1>
+  <p class="ja-title">新作エッセイ集がでるよ</p>
+</header>
+<main>
+  <article class="body">こちらで毎日投稿しているエッセイの中からチョイスしてまとめた本が出ます。数年分のnyalraが凝縮されており、濃密です。
+
+いろんなことがあった。
+ 初めてのゲームをリリースしたり、作詞に挑戦したり、病んだり、アニメを製作し始めたり、インターネットでいじめられたり、たくさん応援してもらえたり。あと、生来の病気であった鼻を手術しましたね！
+
+そんな数年間をお楽しみください。
+
+書名『チョコレート脳髄クラブ』については、上記の通り、もう10年もいっしょにお仕事している仲良しな編集たちの命名です。前作、『僕はにゃるらになってしまった』から引き続き、絶妙に人々の怒りを煽る凄まじいセンスに思います。僕は被害者だよ。
+ あと甘いものをあまり好まないので、チョコレートぜんぜん食べません。
+
+11月24日、大阪でトークイベントを開くので遊びに来てね。
+ 久々に人前で喋りますよ。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-11-08 02:43\n新作随笔集要出版了\n新作エッセイ集がでるよ\n\nこちらで毎日投稿しているエッセイの中からチョイスしてまとめた本が出ます。数年分のnyalraが凝縮されており、濃密です。\n\nいろんなことがあった。\n 初めてのゲームをリリースしたり、作詞に挑戦したり、病んだり、アニメを製作し始めたり、インターネットでいじめられたり、たくさん応援してもらえたり。あと、生来の病気であった鼻を手術しましたね！\n\nそんな数年間をお楽しみください。\n\n書名『チョコレート脳髄クラブ』については、上記の通り、もう10年もいっしょにお仕事している仲良しな編集たちの命名です。前作、『僕はにゃるらになってしまった』から引き続き、絶妙に人々の怒りを煽る凄まじいセンスに思います。僕は被害者だよ。\n あと甘いものをあまり好まないので、チョコレートぜんぜん食べません。\n\n11月24日、大阪でトークイベントを開くので遊びに来てね。\n 久々に人前で喋りますよ。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

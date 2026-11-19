@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：心爱れもん氏的“御宅女”放开自我的方式</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2021-12-01 07:06</p>
+  <h1>一口随笔：心爱れもん氏的“御宅女”放开自我的方式</h1>
+  <p class="ja-title">一口エッセイ：心愛れもん氏による「オタク女」のはっちゃけ方</p>
+</header>
+<main>
+  <article class="body">先日の「ワッチャプリマジ！」で遂にライブを披露した、†漆黒の明星†こと「心愛れもん」氏について考えます。
+ 彼女のオタクとしての質感は絶妙だと思う。ネトゲ廃人でゴスロリ趣味、他アイドルへ積極的に長文感想を送ることを得意としつつ、引っ込み思案で身内でしか盛り上がらない。
+ こう並べるとリアリティに溢れ過ぎていて強烈ですが、一人称が「拙者」で語尾が「ござる」だったり「ワロタ」「それなんてエロゲ？（アニメ内ではホラゲに変更）」など、あえて一昔前のネットスラングを足すことで、逆に現実味が薄れ、女児アニメのキャラクターとして、安心して観られる塩梅となっております。
+ そんな彼女のライブシーンもまた個性が凄い。なんというか、本当に「オタクがはっちゃけてハメを外してしまった空気感」がある。見てくれ、この「なんでなんだよ！ なんでなんだよ！」と叫びながら目を閉じて両腕をあげる、まるでお笑い芸人のような振り付け！ 正しくオタクのはしゃぎ方そのもの！ この独特の「それっぽさ」と、それを完全にカバーする美貌と歌唱力により、唯一無二のライブ体験が構築される。これは貴重な映像ですよ。
+ この空気はなんなんだろうなと何度もリピートしたところ、ようやく分かりました。あっ、これ「普段は大人しいクラスの女オタクが、カラオケに入った瞬間ノリノリでデンカレや妖精帝國を歌い始めた感じだ！（しかも上手い）」と。
+ いや、その「感じ」を最新のCG技術で再現する女児アニメってなんなんだよ！
+
+毎日のエッセイ集をまとめた同人誌がBOOTHにて販売中です。買ってもらえると嬉しいです。
+
+今月末には、長文エッセイと書き下ろしをたくさん詰め込んだ商業エッセイ集もでます。予約していただけると幸いです。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-01 07:06\n一口随笔：心爱れもん氏的“御宅女”放开自我的方式\n一口エッセイ：心愛れもん氏による「オタク女」のはっちゃけ方\n\n先日の「ワッチャプリマジ！」で遂にライブを披露した、†漆黒の明星†こと「心愛れもん」氏について考えます。\n 彼女のオタクとしての質感は絶妙だと思う。ネトゲ廃人でゴスロリ趣味、他アイドルへ積極的に長文感想を送ることを得意としつつ、引っ込み思案で身内でしか盛り上がらない。\n こう並べるとリアリティに溢れ過ぎていて強烈ですが、一人称が「拙者」で語尾が「ござる」だったり「ワロタ」「それなんてエロゲ？（アニメ内ではホラゲに変更）」など、あえて一昔前のネットスラングを足すことで、逆に現実味が薄れ、女児アニメのキャラクターとして、安心して観られる塩梅となっております。\n そんな彼女のライブシーンもまた個性が凄い。なんというか、本当に「オタクがはっちゃけてハメを外してしまった空気感」がある。見てくれ、この「なんでなんだよ！ なんでなんだよ！」と叫びながら目を閉じて両腕をあげる、まるでお笑い芸人のような振り付け！ 正しくオタクのはしゃぎ方そのもの！ この独特の「それっぽさ」と、それを完全にカバーする美貌と歌唱力により、唯一無二のライブ体験が構築される。これは貴重な映像ですよ。\n この空気はなんなんだろうなと何度もリピートしたところ、ようやく分かりました。あっ、これ「普段は大人しいクラスの女オタクが、カラオケに入った瞬間ノリノリでデンカレや妖精帝國を歌い始めた感じだ！（しかも上手い）」と。\n いや、その「感じ」を最新のCG技術で再現する女児アニメってなんなんだよ！\n\n毎日のエッセイ集をまとめた同人誌がBOOTHにて販売中です。買ってもらえると嬉しいです。\n\n今月末には、長文エッセイと書き下ろしをたくさん詰め込んだ商業エッセイ集もでます。予約していただけると幸いです。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

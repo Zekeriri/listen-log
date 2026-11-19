@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>养老先生关于死亡的看法与痴呆</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-09-25 04:44</p>
+  <h1>养老先生关于死亡的看法与痴呆</h1>
+  <p class="ja-title">養老さんによる死の捉え方とボケ</p>
+</header>
+<main>
+  <article class="body">養老さん。
+ 80を越えてなお誰より聡明で、博識で、冷静に生きる養老さん。YouTubeへの登場頻度も増えた数年前から更に老け、余計に落ち着き払った喋り方が大好きだ。本当に格好の良い人物だ。
+ 養老さんの「死」の捉え方には、勇気を貰える。
+ 養老さんは死を恐れない。解剖医として、標本コレクターとして、誰よりも「死体」を眺めてきたからだ。その手で扱ってきたから。じっと死を見つめ続けてきた。そんな養老さんは、「死は二人称」という真実に辿り着く。死は自分事にならない。何故なら死んだ瞬間、自分は死んだと認識すらできなくなるのだから。人間はつねに「他人の死」しか認識できない。
+ 死に意味はない。気づいたら死んでいる。二人称の死には意味がある。家族や友人が亡くなるのは悲しい。けれども、己の死は決して確認できない。ただ、死んだだけ。そこに意味はない。じゃあ生きるってなんだ。しかし、自我にも意味はない。仏教でも自我を捨てろと教えられる。「自分」にも「死」にも大きな意味なんてないと、死体に囲まれた日々を送る養老さんは知っている。
+
+そんな養老さんが「ボケました」と動画をアップする。苦しい。アカギがアルツハイマーになったかのような苦しさ。
+ しかし、動画内の養老さんといったら。
+ なんと医者として、ボケて同じ言動を行い記憶が飛んでいる自分を、その症状を、非常に淡々と見識を語ってくれる。
+ 本人がボケで数分の記憶が飛んでいるのに、そんな自分の脳内に何が起きているかを医学的に語るメタ構造。こんな賢人の養老さんだってボケて数十分記憶が飛ぶ。自分がボケて記憶が飛んだこと、それが何を意味するか。自身のボケた様子をまだ正常な自分自身で解決する。
+ その賢さ、かっこよさ、態度、全てに憧れる。
+ 長生きしてね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-09-25 04:44\n养老先生关于死亡的看法与痴呆\n養老さんによる死の捉え方とボケ\n\n養老さん。\n 80を越えてなお誰より聡明で、博識で、冷静に生きる養老さん。YouTubeへの登場頻度も増えた数年前から更に老け、余計に落ち着き払った喋り方が大好きだ。本当に格好の良い人物だ。\n 養老さんの「死」の捉え方には、勇気を貰える。\n 養老さんは死を恐れない。解剖医として、標本コレクターとして、誰よりも「死体」を眺めてきたからだ。その手で扱ってきたから。じっと死を見つめ続けてきた。そんな養老さんは、「死は二人称」という真実に辿り着く。死は自分事にならない。何故なら死んだ瞬間、自分は死んだと認識すらできなくなるのだから。人間はつねに「他人の死」しか認識できない。\n 死に意味はない。気づいたら死んでいる。二人称の死には意味がある。家族や友人が亡くなるのは悲しい。けれども、己の死は決して確認できない。ただ、死んだだけ。そこに意味はない。じゃあ生きるってなんだ。しかし、自我にも意味はない。仏教でも自我を捨てろと教えられる。「自分」にも「死」にも大きな意味なんてないと、死体に囲まれた日々を送る養老さんは知っている。\n\nそんな養老さんが「ボケました」と動画をアップする。苦しい。アカギがアルツハイマーになったかのような苦しさ。\n しかし、動画内の養老さんといったら。\n なんと医者として、ボケて同じ言動を行い記憶が飛んでいる自分を、その症状を、非常に淡々と見識を語ってくれる。\n 本人がボケで数分の記憶が飛んでいるのに、そんな自分の脳内に何が起きているかを医学的に語るメタ構造。こんな賢人の養老さんだってボケて数十分記憶が飛ぶ。自分がボケて記憶が飛んだこと、それが何を意味するか。自身のボケた様子をまだ正常な自分自身で解決する。\n その賢さ、かっこよさ、態度、全てに憧れる。\n 長生きしてね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

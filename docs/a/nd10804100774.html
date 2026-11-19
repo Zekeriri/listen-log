@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口小随笔：请邀请我去做一些有趣的事</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2023-02-15 06:49</p>
+  <h1>一口小随笔：请邀请我去做一些有趣的事</h1>
+  <p class="ja-title">一口エッセイ:なにか楽しいことに誘ってください</p>
+</header>
+<main>
+  <article class="body">なにか良いことはないだろうか。
+ もう数日で誕生日ですが、特になんの予定もない。今までの人生でも誕生日に自分がメインの予定があったことない。ちなみに今日はバレンタインでしたが、べつにチョコだろうがクリスマスプレゼントだろうが異性から貰ったことはない。異性から心の困った贈り物をもらえた経験があるなら、僕なんかより貴方の人生の方が確実に勝っている。おめでとうございます。
+ 本来、今年は偶然自分の誕生日と重なった日に韓国でゲームイベントがあり、そこでニディガも出展するため初の海外旅行に連れて行ってくれるって話で、ものすごくワクワクしていたのですが、僕が朝起きれないためパスポートが取れずに終わった。パスポートを取るためには戸籍謄本が必要で、自分の戸籍に親の名前が記載されている事実を連想すると吐き気がするので億劫になっていたら間に合わなかった。無念。
+ そんな自業自得のミスもあって非常に落ち込んでおり、ここ数年はいろんな仕事をして頑張ったつもりなんだけどな……にはは……みたいな気持ちでいっぱい。いや、その実頑張ってないからこうなっているのか。何事も因果応報ですものね。
+ やむを得ないので、一人旅でもしようかと考えていますが、締め切りも多いので悩み中。締め切りを守って仕事をすると、ご褒美として次の仕事がもらえる。おかしいだろ。誰か助けてください。なにか嬉しいことがあるといいです。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-02-15 06:49\n一口小随笔：请邀请我去做一些有趣的事\n一口エッセイ:なにか楽しいことに誘ってください\n\nなにか良いことはないだろうか。\n もう数日で誕生日ですが、特になんの予定もない。今までの人生でも誕生日に自分がメインの予定があったことない。ちなみに今日はバレンタインでしたが、べつにチョコだろうがクリスマスプレゼントだろうが異性から貰ったことはない。異性から心の困った贈り物をもらえた経験があるなら、僕なんかより貴方の人生の方が確実に勝っている。おめでとうございます。\n 本来、今年は偶然自分の誕生日と重なった日に韓国でゲームイベントがあり、そこでニディガも出展するため初の海外旅行に連れて行ってくれるって話で、ものすごくワクワクしていたのですが、僕が朝起きれないためパスポートが取れずに終わった。パスポートを取るためには戸籍謄本が必要で、自分の戸籍に親の名前が記載されている事実を連想すると吐き気がするので億劫になっていたら間に合わなかった。無念。\n そんな自業自得のミスもあって非常に落ち込んでおり、ここ数年はいろんな仕事をして頑張ったつもりなんだけどな……にはは……みたいな気持ちでいっぱい。いや、その実頑張ってないからこうなっているのか。何事も因果応報ですものね。\n やむを得ないので、一人旅でもしようかと考えていますが、締め切りも多いので悩み中。締め切りを守って仕事をすると、ご褒美として次の仕事がもらえる。おかしいだろ。誰か助けてください。なにか嬉しいことがあるといいです。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

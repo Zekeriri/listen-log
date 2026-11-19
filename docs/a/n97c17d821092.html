@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：电被停了</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-09-01 12:26</p>
+  <h1>一口随笔：电被停了</h1>
+  <p class="ja-title">一口エッセイ:電気止められた</p>
+</header>
+<main>
+  <article class="body">妙に部屋が暑苦しいと起きてしまったら、電気が止まっていました。
+ 引っ越し時に新規契約しないまま使用していたので、未払い判定になったのでしょう。どうにか当日に契約してもらえたものの、通電まで数時間かかるので、それまでひたすら暗闇の中で瞑想をします。部屋が暑いが外はもっと暑いし、途中で飛び起きたから寝不足で意識も朦朧としている。
+ 思い返すと、上京して友人とルームシェアしていた際は、毎月のように電気・ガス・水道・ネットのどれかが止まっていた。そのたび公園を利用したり、水風呂で我慢したりなど、工夫と根性で乗り越えていた苦難の日々。
+ 特に電気はよく止まったので、通電再開の瞬間に家中の家電が一気に光ってロボアニメのOPみたいな光景になるのを楽しんだり、電源が点かないためPS3に入っているDVDが取り出せずにTSUTAYAから延滞料金を取られたりしました。生きるだけで精一杯だったけれど、トラブルのたびに友達と笑い合った瞬間は、たしかに青春であったと思う。
+ とはいえ、今もTSUTAYAの延滞料金が払えずに四苦八苦したいかと言われると絶対に遠慮する。昔は部屋にエアコンも無かったけれど、今はとにかく電力が供給されて涼みたい。あの頃に比べて成長したなとしみじみしつつ、よく考えたらこの歳で電気止められたんだから根本は変わってないなと安心感も覚えたりしたのですね。
+
+毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪ 僕の電気代になります。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-09-01 12:26\n一口随笔：电被停了\n一口エッセイ:電気止められた\n\n妙に部屋が暑苦しいと起きてしまったら、電気が止まっていました。\n 引っ越し時に新規契約しないまま使用していたので、未払い判定になったのでしょう。どうにか当日に契約してもらえたものの、通電まで数時間かかるので、それまでひたすら暗闇の中で瞑想をします。部屋が暑いが外はもっと暑いし、途中で飛び起きたから寝不足で意識も朦朧としている。\n 思い返すと、上京して友人とルームシェアしていた際は、毎月のように電気・ガス・水道・ネットのどれかが止まっていた。そのたび公園を利用したり、水風呂で我慢したりなど、工夫と根性で乗り越えていた苦難の日々。\n 特に電気はよく止まったので、通電再開の瞬間に家中の家電が一気に光ってロボアニメのOPみたいな光景になるのを楽しんだり、電源が点かないためPS3に入っているDVDが取り出せずにTSUTAYAから延滞料金を取られたりしました。生きるだけで精一杯だったけれど、トラブルのたびに友達と笑い合った瞬間は、たしかに青春であったと思う。\n とはいえ、今もTSUTAYAの延滞料金が払えずに四苦八苦したいかと言われると絶対に遠慮する。昔は部屋にエアコンも無かったけれど、今はとにかく電力が供給されて涼みたい。あの頃に比べて成長したなとしみじみしつつ、よく考えたらこの歳で電気止められたんだから根本は変わってないなと安心感も覚えたりしたのですね。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪ 僕の電気代になります。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

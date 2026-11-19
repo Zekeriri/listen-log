@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：邂逅，像美少女游戏般突然</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-03-22 03:38</p>
+  <h1>一口随笔：邂逅，像美少女游戏般突然</h1>
+  <p class="ja-title">一口エッセイ: 出会いは、美少女ゲームのように突然だった</p>
+</header>
+<main>
+  <article class="body">桃井はるこさんのエッセイ集を久々に読み返していたら、『小麦ちゃんとわたし』の冒頭が「出会いは、美少女ゲームのように突然だった」から始まり、この言い回しはとても痺れる。美少女作品の最前線で活躍し続けたモモーイならではの表現。
+
+美少女ゲームのような出会いをいつだって期待している。僕が好きな出会いは『はつゆきさくら』で、街中で不貞腐れている時にお姫様な格好をした謎の少女と出会い、腕を引っ張られて「やれやれ……」といった態度のまま二人で雪が降る夜の街を歩き回る冒頭。僕たちはいくつになっても、意味深な態度をとる謎の美少女に無理やり腕を引っ張られる夜を待ち続ける。
+ 出会い系アプリなどで条件擦り合わせて待ち合わせする時点でもう違うんだよ。そういう打算とか一切なく、急に全力ダッシュで突っ込んでくる少女とぶつかって、痛みで泣きそうになっている彼女の手を取ったあと、後ろから追ってくる謎のおっさんから隠すように自宅に避難させるとか、同じ夢を目指す仲間として出会い、時に傷つけあったりもしながら互いに成長していくうちに「コイツが隣に居ないと調子狂うな……」と気づいた時には恋になっているみたいな。そういうのじゃないとダメだよな。
+ 美少女ゲームのように突然発生した予測不可能な出会いがきっかけで、やがては世界全体が巻き込まれないと満足できない。世界か少女かの選択が迫られて、女の涙に比べたら世界崩壊なんて大したことないぜってビシっと神に喧嘩を売りたい。
+ そんな体験が永遠にこないまま死ぬことが確定しているのは、無念極まりない。
+
+毎日の日記をまとめた同人誌を販売中！
+ 美少女ゲームについて語るだけの本もあるよ。
+
+商業エッセイ集もよろしくね！ 全然明るいことは書いてないよ。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-03-22 03:38\n一口随笔：邂逅，像美少女游戏般突然\n一口エッセイ: 出会いは、美少女ゲームのように突然だった\n\n桃井はるこさんのエッセイ集を久々に読み返していたら、『小麦ちゃんとわたし』の冒頭が「出会いは、美少女ゲームのように突然だった」から始まり、この言い回しはとても痺れる。美少女作品の最前線で活躍し続けたモモーイならではの表現。\n\n美少女ゲームのような出会いをいつだって期待している。僕が好きな出会いは『はつゆきさくら』で、街中で不貞腐れている時にお姫様な格好をした謎の少女と出会い、腕を引っ張られて「やれやれ……」といった態度のまま二人で雪が降る夜の街を歩き回る冒頭。僕たちはいくつになっても、意味深な態度をとる謎の美少女に無理やり腕を引っ張られる夜を待ち続ける。\n 出会い系アプリなどで条件擦り合わせて待ち合わせする時点でもう違うんだよ。そういう打算とか一切なく、急に全力ダッシュで突っ込んでくる少女とぶつかって、痛みで泣きそうになっている彼女の手を取ったあと、後ろから追ってくる謎のおっさんから隠すように自宅に避難させるとか、同じ夢を目指す仲間として出会い、時に傷つけあったりもしながら互いに成長していくうちに「コイツが隣に居ないと調子狂うな……」と気づいた時には恋になっているみたいな。そういうのじゃないとダメだよな。\n 美少女ゲームのように突然発生した予測不可能な出会いがきっかけで、やがては世界全体が巻き込まれないと満足できない。世界か少女かの選択が迫られて、女の涙に比べたら世界崩壊なんて大したことないぜってビシっと神に喧嘩を売りたい。\n そんな体験が永遠にこないまま死ぬことが確定しているのは、無念極まりない。\n\n毎日の日記をまとめた同人誌を販売中！\n 美少女ゲームについて語るだけの本もあるよ。\n\n商業エッセイ集もよろしくね！ 全然明るいことは書いてないよ。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

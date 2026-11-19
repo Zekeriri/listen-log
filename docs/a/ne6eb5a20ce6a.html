@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔:整体与各自的人生</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-02-28 06:56</p>
+  <h1>一口随笔:整体与各自的人生</h1>
+  <p class="ja-title">一口エッセイ:整体とそれぞれの人生</p>
+</header>
+<main>
+  <article class="body">腰も肩も死ぬほどヤバいので、2日に1回の頻度で整体に通っております。これで整体と全身脱毛と精神科に通っていることになるので、予定表だけ見ると婚期を焦って美容意識が高くなったOLっぽい。まぁ精神科の方はサボって半年くらいになるけれど。精神科に薬を貰いに行くための薬が欲しい。
+ 閑話休題。とにかく僕の全身はカチカチで、ただ座っているだけでも妙に力が入って痛みが生じる状態。寝転んでいても筋肉が強張っており、入眠や睡眠にも問題が出ているとかなんとか。つまり、僕はもう「力を抜くこと」ができないんです。つねに力（りき）入れてカクカク動くヤバい老人なのだ。
+ 少なくとも50回通おうと言われたので通い放題プランに入った。通い放題なら、行けば行くだけ得である。どうせ決まった予定があるわけでないので、2日に1回の通院をしております。最初は毎日行ってましたが、さすがに申し訳なくて頻度を落とした。
+ そうなると、施術師の兄ちゃんは僕の生活が気になるわけですね。「同年代なのに毎日来て暇そうな上に全身は硬すぎるしコイツなに？」と。当然です。仕方ないので「作家です」と伝えると、相手は「いいなー。好きな時に働けて休めるの羨ましいっす。自分は、毎日早起きだし給料少ないし……」と語ってくれるようになった。どう考えても自分で毎日早起きした上に修行で身につけた技術で客を満足させている方が偉い。作家の収入は不安定だし。僕からは、手に職をつけてしっかりしているよう同年代の兄ちゃんがカッコよく見えるが、向こうは年中暇な僕が羨ましい。全く別々な二つの人生が交差する、妙な時間を2日に1回過ごしております。
+
+毎日のエッセイをまとめた同人誌をboothにて販売中。今回で2年目が100回です。すごいね！
+
+商業エッセイ集もよろしくね。Amazon評価とか入れてくれるとなお嬉しいよ。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-02-28 06:56\n一口随笔:整体与各自的人生\n一口エッセイ:整体とそれぞれの人生\n\n腰も肩も死ぬほどヤバいので、2日に1回の頻度で整体に通っております。これで整体と全身脱毛と精神科に通っていることになるので、予定表だけ見ると婚期を焦って美容意識が高くなったOLっぽい。まぁ精神科の方はサボって半年くらいになるけれど。精神科に薬を貰いに行くための薬が欲しい。\n 閑話休題。とにかく僕の全身はカチカチで、ただ座っているだけでも妙に力が入って痛みが生じる状態。寝転んでいても筋肉が強張っており、入眠や睡眠にも問題が出ているとかなんとか。つまり、僕はもう「力を抜くこと」ができないんです。つねに力（りき）入れてカクカク動くヤバい老人なのだ。\n 少なくとも50回通おうと言われたので通い放題プランに入った。通い放題なら、行けば行くだけ得である。どうせ決まった予定があるわけでないので、2日に1回の通院をしております。最初は毎日行ってましたが、さすがに申し訳なくて頻度を落とした。\n そうなると、施術師の兄ちゃんは僕の生活が気になるわけですね。「同年代なのに毎日来て暇そうな上に全身は硬すぎるしコイツなに？」と。当然です。仕方ないので「作家です」と伝えると、相手は「いいなー。好きな時に働けて休めるの羨ましいっす。自分は、毎日早起きだし給料少ないし……」と語ってくれるようになった。どう考えても自分で毎日早起きした上に修行で身につけた技術で客を満足させている方が偉い。作家の収入は不安定だし。僕からは、手に職をつけてしっかりしているよう同年代の兄ちゃんがカッコよく見えるが、向こうは年中暇な僕が羨ましい。全く別々な二つの人生が交差する、妙な時間を2日に1回過ごしております。\n\n毎日のエッセイをまとめた同人誌をboothにて販売中。今回で2年目が100回です。すごいね！\n\n商業エッセイ集もよろしくね。Amazon評価とか入れてくれるとなお嬉しいよ。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

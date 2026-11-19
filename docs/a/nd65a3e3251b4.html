@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口散文：大家都在崩坏</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2021-12-27 07:17</p>
+  <h1>一口散文：大家都在崩坏</h1>
+  <p class="ja-title">一口エッセイ:みんな壊れている</p>
+</header>
+<main>
+  <article class="body">僕が密かに楽しみにしている番組、「警察密着24時」の話をします。昨日の放送も、いつも通り警察と犯罪者の激しいバトルの嵐。飲酒運転、スピード違反、薬物乱用、盗撮……次々と行われる犯罪に対し、警察の捜査とテレビ局のカメラが追う。
+ だいたいの人間は、警察に捕まるとまず犯行を否認する。どう見たってラリっているのに、薬や酒を雑に隠すし、スピード違反もカーナビがどうと言い訳したり、皆やってるのに何故自分だけと言い出す。そんな犯罪者たちを厳しく説教し、逮捕する。
+ 気持ちはわかる。自分が悪いことは当然としても、急に警察がやってきたら絶対に慌てて、しょうもない嘘や言い訳を展開するでしょう。自分の身に置き換えて想像した時のドキドキを体験していく。逮捕時のパニックだけ切り取られると滑稽で可哀想ですが、正義は間違いなく警察側なので、犯罪撲滅の大義名分のもとテレビ局も堂々と弱った人間を放送できる。良くできたシステムですね。番組の放送時に実況ツイートなどを漁ると、ビックリするくらい罵詈雑言が飛び交っている。「二度と社会に出るな」とか「こんなゴミ消えればいいのに」など。
+ 昔、フォロワーのシェアハウスがテレビで放送された際、「こいつらちゃんと税金払っているの？ 払っている私より楽しそうでムカつく。国に納めてないのに公園とか利用するな！！」と怒っているアカウントが存在したことを思い出します。
+ 犯罪者や貧乏人に腹立つ気持ちもあるでしょうが、所詮は他人。テレビの向こうの人間を過度に罵倒する方も、じゅうぶん病んでいるように思える。みんな壊れているんだなぁ。
+
+毎日のエッセイをまとめた同人誌を販売中です。しょうもない人生を読んで、好きなだけ罵倒してください。
+
+今月は商業エッセイ集もでました！ いろんな書店に僕の恥が流通しております。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-27 07:17\n一口散文：大家都在崩坏\n一口エッセイ:みんな壊れている\n\n僕が密かに楽しみにしている番組、「警察密着24時」の話をします。昨日の放送も、いつも通り警察と犯罪者の激しいバトルの嵐。飲酒運転、スピード違反、薬物乱用、盗撮……次々と行われる犯罪に対し、警察の捜査とテレビ局のカメラが追う。\n だいたいの人間は、警察に捕まるとまず犯行を否認する。どう見たってラリっているのに、薬や酒を雑に隠すし、スピード違反もカーナビがどうと言い訳したり、皆やってるのに何故自分だけと言い出す。そんな犯罪者たちを厳しく説教し、逮捕する。\n 気持ちはわかる。自分が悪いことは当然としても、急に警察がやってきたら絶対に慌てて、しょうもない嘘や言い訳を展開するでしょう。自分の身に置き換えて想像した時のドキドキを体験していく。逮捕時のパニックだけ切り取られると滑稽で可哀想ですが、正義は間違いなく警察側なので、犯罪撲滅の大義名分のもとテレビ局も堂々と弱った人間を放送できる。良くできたシステムですね。番組の放送時に実況ツイートなどを漁ると、ビックリするくらい罵詈雑言が飛び交っている。「二度と社会に出るな」とか「こんなゴミ消えればいいのに」など。\n 昔、フォロワーのシェアハウスがテレビで放送された際、「こいつらちゃんと税金払っているの？ 払っている私より楽しそうでムカつく。国に納めてないのに公園とか利用するな！！」と怒っているアカウントが存在したことを思い出します。\n 犯罪者や貧乏人に腹立つ気持ちもあるでしょうが、所詮は他人。テレビの向こうの人間を過度に罵倒する方も、じゅうぶん病んでいるように思える。みんな壊れているんだなぁ。\n\n毎日のエッセイをまとめた同人誌を販売中です。しょうもない人生を読んで、好きなだけ罵倒してください。\n\n今月は商業エッセイ集もでました！ いろんな書店に僕の恥が流通しております。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

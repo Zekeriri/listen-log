@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔: 「不读书的人，正是未曾孤独的证据」</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-11-17 09:11</p>
+  <h1>一口随笔: 「不读书的人，正是未曾孤独的证据」</h1>
+  <p class="ja-title">一口エッセイ: 「本を読まないということは、そのひとは孤独ではないという証拠である」</p>
+</header>
+<main>
+  <article class="body">太宰治の言葉に、「本を読まないということは、そのひとは孤独ではないという証拠である」とある。これが非常にネチネチと皮肉めいているのが太宰らしくて面白い。
+ この言葉からは、「孤独な人間は本を逃げ場とする」という太宰の考え方が現れていまして、逆に言えば孤独な人間は読書を強みにして生きていかねばならない。あるいは、読書を通じて交流することで友人を作っていく。共通の趣味があれば、比較的簡単に仲間ができる。昭和の時代の読書という文化は、同好の士を見つけるための手段でもあったでしょう。現代では、ゲームやアニメでも代用できるのですから、良い時代ですね。
+ さらに、太宰のこの言葉には、「本を読まなくても人生を楽しめるような人間」への僻みも感じられます。彼ら彼女らは、わざわざサブカルに走らなくても友人が存在する。孤独を感じずに済む。そんなことが許せるか。人生を存分に楽しめる天性の才能に恵まれた者たちを。
+ では、彼ら彼女らを超えるには、たくさんの読書を重ね、知識を蓄え、それらを元に勝負していかねばならない。武器が本しかないのだから、本の世界で戦うのだ。そうして、太宰治は文豪となった。現代では、本でなくネットの土俵でも戦うことができる。孤独でない人間へ対抗するためには、ネットしかない人間が「勝つ」ためには、一心不乱にそれを極めていくしかないのかもしれませんね。
+
+毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-11-17 09:11\n一口随笔: 「不读书的人，正是未曾孤独的证据」\n一口エッセイ: 「本を読まないということは、そのひとは孤独ではないという証拠である」\n\n太宰治の言葉に、「本を読まないということは、そのひとは孤独ではないという証拠である」とある。これが非常にネチネチと皮肉めいているのが太宰らしくて面白い。\n この言葉からは、「孤独な人間は本を逃げ場とする」という太宰の考え方が現れていまして、逆に言えば孤独な人間は読書を強みにして生きていかねばならない。あるいは、読書を通じて交流することで友人を作っていく。共通の趣味があれば、比較的簡単に仲間ができる。昭和の時代の読書という文化は、同好の士を見つけるための手段でもあったでしょう。現代では、ゲームやアニメでも代用できるのですから、良い時代ですね。\n さらに、太宰のこの言葉には、「本を読まなくても人生を楽しめるような人間」への僻みも感じられます。彼ら彼女らは、わざわざサブカルに走らなくても友人が存在する。孤独を感じずに済む。そんなことが許せるか。人生を存分に楽しめる天性の才能に恵まれた者たちを。\n では、彼ら彼女らを超えるには、たくさんの読書を重ね、知識を蓄え、それらを元に勝負していかねばならない。武器が本しかないのだから、本の世界で戦うのだ。そうして、太宰治は文豪となった。現代では、本でなくネットの土俵でも戦うことができる。孤独でない人間へ対抗するためには、ネットしかない人間が「勝つ」ためには、一心不乱にそれを極めていくしかないのかもしれませんね。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

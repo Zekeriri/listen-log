@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>巨大的佩科拉小姐要来了！</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2026-01-01 14:59</p>
+  <h1>巨大的佩科拉小姐要来了！</h1>
+  <p class="ja-title">巨大ぺこーらさんがやってくる！</p>
+</header>
+<main>
+  <article class="body">なんだ、この大きな段ボールは！？
+
+もしかして……
+
+サンタさん来た！？
+
+中身はなんと……
+
+巨大ぺこーら。
+
+良い子にしていたから、ついにぺこーらさんがウチへやってきた！
+
+カレーを食べて缶チューハイ飲んでいる住民を優しく見守るぺこーらさん。ありがたいね。まさかぺこーらさんと晩酌する時が来るなんて。
+
+なんて頼もしい背中なんだ。これが数年間、ホロライブのトップとして走り続けた豪傑の背中か。沈黙していてもまるで何万人の野うさぎたちを湧かせる軽快なトークが聴こえてくるようだ。
+
+気づけば、住民の一人が嫌がらせしていた。最悪だ。どうやら男の子はどうしても好きな子にほどイタズラしてしまうらしい。
+
+ぺこーらさん、来てくれてありがとう！</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-01-01 14:59\n巨大的佩科拉小姐要来了！\n巨大ぺこーらさんがやってくる！\n\nなんだ、この大きな段ボールは！？\n\nもしかして……\n\nサンタさん来た！？\n\n中身はなんと……\n\n巨大ぺこーら。\n\n良い子にしていたから、ついにぺこーらさんがウチへやってきた！\n\nカレーを食べて缶チューハイ飲んでいる住民を優しく見守るぺこーらさん。ありがたいね。まさかぺこーらさんと晩酌する時が来るなんて。\n\nなんて頼もしい背中なんだ。これが数年間、ホロライブのトップとして走り続けた豪傑の背中か。沈黙していてもまるで何万人の野うさぎたちを湧かせる軽快なトークが聴こえてくるようだ。\n\n気づけば、住民の一人が嫌がらせしていた。最悪だ。どうやら男の子はどうしても好きな子にほどイタズラしてしまうらしい。\n\nぺこーらさん、来てくれてありがとう！"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

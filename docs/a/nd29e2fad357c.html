@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：埃隆·马斯克与模拟假说</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-05-04 04:59</p>
+  <h1>一口随笔：埃隆·马斯克与模拟假说</h1>
+  <p class="ja-title">一口エッセイ:イーロン・マスクとシミュレーション仮説</p>
+</header>
+<main>
+  <article class="body">the elusive beauty of imperfection
+侘寂— Elon Musk (@elonmusk) May 2, 2022
+
+イーロン・マスク氏がシミュレーション仮説について熱い男である話は以前にも書きましたが、好きな話題なのでまたこの話をします。
+ マスク氏は、この世界はコンピューターで制御された空間であり、基底現実である可能性は低いと話しております。「仮想現実でないなら、人類はもうすぐ終わりを迎える。だからこそ、仮想現実であることに期待したい」とのこと。技術の発展を誰より観測した続けてきた方ですから、この速度で科学が進んだ世界があり、僕らはそこで創られた仮想空間の存在であると導き出したのです。壮大な話だ。
+ 僕は、この世界に上位存在……神々が居て欲しいんです。クトゥルフ神話が大好きだから、宇宙や海底には、人智の及ばない程に気高く神々しかったり、狂気そのものである冒涜的な存在が潜むことを夢見ているのですね。「人類を見守る神は居る」前提で生きた方が、道徳論を信じて己の「善」に従うことで神に近づく大義名分を得られますし、人生の指標として楽だ。「善く生きる/または悪魔を崇拝することで神/邪神に救われる」、道徳論的証明です。
+ といった考えですから、この世界はコンピューターで構築された仮想現実であり、僕らを支配して管理する上位存在が居るという、シミュレーション仮説は好きなんです。科学でなく宗教的な面で見ていますが。なので、この説を追っていた際に、イーロン・マスクのことも知って、興味を持っていたのです。そんなマスク氏にTwitterの未来を委ねられたわけですが、僕は上記の思想に賛同できることから、マスク氏を応援する立ち位置であります。ドラッグ好きなロックな部分含めて面白い人ですよね。
+
+毎日のエッセイをまとめた同人誌を、boothにて販売中！ イーロン・マスクさんにもお勧めです。
+
+商業エッセイ集もよろしくね。Amazon評価も入れてもらえたら、いつかイーロン・マスクも手に取る確率が上がる。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-05-04 04:59\n一口随笔：埃隆·马斯克与模拟假说\n一口エッセイ:イーロン・マスクとシミュレーション仮説\n\nthe elusive beauty of imperfection\n侘寂— Elon Musk (@elonmusk) May 2, 2022\n\nイーロン・マスク氏がシミュレーション仮説について熱い男である話は以前にも書きましたが、好きな話題なのでまたこの話をします。\n マスク氏は、この世界はコンピューターで制御された空間であり、基底現実である可能性は低いと話しております。「仮想現実でないなら、人類はもうすぐ終わりを迎える。だからこそ、仮想現実であることに期待したい」とのこと。技術の発展を誰より観測した続けてきた方ですから、この速度で科学が進んだ世界があり、僕らはそこで創られた仮想空間の存在であると導き出したのです。壮大な話だ。\n 僕は、この世界に上位存在……神々が居て欲しいんです。クトゥルフ神話が大好きだから、宇宙や海底には、人智の及ばない程に気高く神々しかったり、狂気そのものである冒涜的な存在が潜むことを夢見ているのですね。「人類を見守る神は居る」前提で生きた方が、道徳論を信じて己の「善」に従うことで神に近づく大義名分を得られますし、人生の指標として楽だ。「善く生きる/または悪魔を崇拝することで神/邪神に救われる」、道徳論的証明です。\n といった考えですから、この世界はコンピューターで構築された仮想現実であり、僕らを支配して管理する上位存在が居るという、シミュレーション仮説は好きなんです。科学でなく宗教的な面で見ていますが。なので、この説を追っていた際に、イーロン・マスクのことも知って、興味を持っていたのです。そんなマスク氏にTwitterの未来を委ねられたわけですが、僕は上記の思想に賛同できることから、マスク氏を応援する立ち位置であります。ドラッグ好きなロックな部分含めて面白い人ですよね。\n\n毎日のエッセイをまとめた同人誌を、boothにて販売中！ イーロン・マスクさんにもお勧めです。\n\n商業エッセイ集もよろしくね。Amazon評価も入れてもらえたら、いつかイーロン・マスクも手に取る確率が上がる。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

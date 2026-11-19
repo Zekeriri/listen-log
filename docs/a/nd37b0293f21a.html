@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>水木茂的百鬼夜行与风景描写</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-08-17 03:20</p>
+  <h1>水木茂的百鬼夜行与风景描写</h1>
+  <p class="ja-title">水木しげるの百鬼夜行と風景描写</p>
+</header>
+<main>
+  <article class="body">昨日、六本木でアリス展と水木しげるの展示に行き、昨晩はアリスの話をしたので、今晩は『水木しげるの妖怪百鬼夜行展』の話をします。両者ともに素晴らしく、同日に回ることも可能なので、今すぐ両方観に行ってください。
+
+さて、水木しげる先生といえば、一般的に「鬼太郎の作者」というイメージだと思われますが、もっと広くいえば「妖怪の第一人者」なのですね。鬼太郎などの作品を通して、ひたすら妖怪を紹介し続けたのです。生涯をかけて。今回の展示は、水木先生が過去の文献を参考にアレンジした妖怪たちのイラストがズラッと並べられており、その圧巻の様はまさに百鬼夜行。これぞ、人生を妖怪に捧げたからこその偉業。
+
+が、これは水木先生の弟子であるつげ義春先生にも共通して言えるのですが、僕はとにかく水木先生の描く「繊細な背景」が好きなのですね。先生は妖怪の迫力や出現する状況をより明瞭にするため、綿密に背景の作画にこだわった。背景フェチな自分としては、それが堪らなく好きで、このレトロで日本らしい雰囲気の背景たちが堪らない。つまり、今回の展示では妖怪の数だけその美麗な背景を堪能できたのですね。至福。
+
+もちろん、今回のような一枚絵の背景も素晴らしいが、鬼太郎原作の何気ない背景の描き込みも好きだ。いろんな魅力のある作品ですが、僕が最も惹かれた要素は、先生の風景描写なのですね。それが実感できる良き展示でした。
+
+毎日の日記をまとめた同人誌や、若い頃の文章をまとめた商業エッセイ集よろしくね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-08-17 03:20\n水木茂的百鬼夜行与风景描写\n水木しげるの百鬼夜行と風景描写\n\n昨日、六本木でアリス展と水木しげるの展示に行き、昨晩はアリスの話をしたので、今晩は『水木しげるの妖怪百鬼夜行展』の話をします。両者ともに素晴らしく、同日に回ることも可能なので、今すぐ両方観に行ってください。\n\nさて、水木しげる先生といえば、一般的に「鬼太郎の作者」というイメージだと思われますが、もっと広くいえば「妖怪の第一人者」なのですね。鬼太郎などの作品を通して、ひたすら妖怪を紹介し続けたのです。生涯をかけて。今回の展示は、水木先生が過去の文献を参考にアレンジした妖怪たちのイラストがズラッと並べられており、その圧巻の様はまさに百鬼夜行。これぞ、人生を妖怪に捧げたからこその偉業。\n\nが、これは水木先生の弟子であるつげ義春先生にも共通して言えるのですが、僕はとにかく水木先生の描く「繊細な背景」が好きなのですね。先生は妖怪の迫力や出現する状況をより明瞭にするため、綿密に背景の作画にこだわった。背景フェチな自分としては、それが堪らなく好きで、このレトロで日本らしい雰囲気の背景たちが堪らない。つまり、今回の展示では妖怪の数だけその美麗な背景を堪能できたのですね。至福。\n\nもちろん、今回のような一枚絵の背景も素晴らしいが、鬼太郎原作の何気ない背景の描き込みも好きだ。いろんな魅力のある作品ですが、僕が最も惹かれた要素は、先生の風景描写なのですね。それが実感できる良き展示でした。\n\n毎日の日記をまとめた同人誌や、若い頃の文章をまとめた商業エッセイ集よろしくね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

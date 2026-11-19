@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>压倒性地支持拓海派</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2026-06-01 04:09</p>
+  <h1>压倒性地支持拓海派</h1>
+  <p class="ja-title">圧倒的にタクミ派</p>
+</header>
+<main>
+  <article class="body">NANAでは、圧倒的にタクミ派です。
+
+というか、ノブに関してはシンプルにイライラするほどです。
+ 「優しすぎてムカつく」、作中でもそのような扱いでしたが、タクミのリアリスト部分、その上でチームの歌姫を神格化して過剰に扱ってしまう夢見がちな矛盾。あらゆることを理解しながら「虚像」であれる点。
+ 「オラオラ系な俺様男（実は優しいところアリ♡）」ではなく、自己中心的でありながらも、その振る舞いすらすべて仲間のため、愛する者たちとバランスを取るため、憎まれ役を引き受けながら進める男であることを、非常に丁寧に描かれていて、このキャラクター性が主人公を射止めているところ含めて唯一無二のポジションに思えます。
+ 作中で最も頭が回るポジションでありながら、きちんと女遊びは激しく、結局は結婚後もしれっと浮気はしている。それをわかりつつも「一番であるなら」と許容するハチ公。「どうあってもモテてしまう男」との関係性として非常にリアルで、実際にタクミ視点での「一番の休憩所」ではあるのも厄介。それでも、別口でレイラも居て、と。
+ と、色々と言いつつも、今風の言葉で言うならなんといっても「ビジュが好き」だったりする。かっこいい＝虚像として他人の夢を壊さないため努力し続けている、でもあるわけで、作中で最も頭が回りつつ、最も苦労人。ノブは優しいし一途ではあるけれども、「最高にカッコいいチームを引っ張り続ける」という狂気が足りない。ただ、狂ってないからこその魅力はわかるが。
+ 僕は男性であるので、なおさら男性視点で、「とにかくカッコよく在り続ける」男に轢かれるのでしょうか。優しさ以上に。とにかく強く逞しくあることが、何よりの優しさであると美学を重ねている。
+
+次点でシンが好きだけれども、これは単純に顔です。
+ じゃあ、どっちも顔で見てるじゃん。
+ そうかも……。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-06-01 04:09\n压倒性地支持拓海派\n圧倒的にタクミ派\n\nNANAでは、圧倒的にタクミ派です。\n\nというか、ノブに関してはシンプルにイライラするほどです。\n 「優しすぎてムカつく」、作中でもそのような扱いでしたが、タクミのリアリスト部分、その上でチームの歌姫を神格化して過剰に扱ってしまう夢見がちな矛盾。あらゆることを理解しながら「虚像」であれる点。\n 「オラオラ系な俺様男（実は優しいところアリ♡）」ではなく、自己中心的でありながらも、その振る舞いすらすべて仲間のため、愛する者たちとバランスを取るため、憎まれ役を引き受けながら進める男であることを、非常に丁寧に描かれていて、このキャラクター性が主人公を射止めているところ含めて唯一無二のポジションに思えます。\n 作中で最も頭が回るポジションでありながら、きちんと女遊びは激しく、結局は結婚後もしれっと浮気はしている。それをわかりつつも「一番であるなら」と許容するハチ公。「どうあってもモテてしまう男」との関係性として非常にリアルで、実際にタクミ視点での「一番の休憩所」ではあるのも厄介。それでも、別口でレイラも居て、と。\n と、色々と言いつつも、今風の言葉で言うならなんといっても「ビジュが好き」だったりする。かっこいい＝虚像として他人の夢を壊さないため努力し続けている、でもあるわけで、作中で最も頭が回りつつ、最も苦労人。ノブは優しいし一途ではあるけれども、「最高にカッコいいチームを引っ張り続ける」という狂気が足りない。ただ、狂ってないからこその魅力はわかるが。\n 僕は男性であるので、なおさら男性視点で、「とにかくカッコよく在り続ける」男に轢かれるのでしょうか。優しさ以上に。とにかく強く逞しくあることが、何よりの優しさであると美学を重ねている。\n\n次点でシンが好きだけれども、これは単純に顔です。\n じゃあ、どっちも顔で見てるじゃん。\n そうかも……。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

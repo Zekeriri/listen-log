@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>无人二手店的夜晚</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-06-14 04:49</p>
+  <h1>无人二手店的夜晚</h1>
+  <p class="ja-title">無人古着屋の夜</p>
+</header>
+<main>
+  <article class="body">たまには本当の日記のようなことを書いてみましょう。
+
+一人、基本的にたんぽぽハウス……100円で古着を購入できるお店でTシャツを適当に選んで着ている友人がおり、彼の新しいTシャツを探そうと、みんなで深夜の無人古着屋へ。現代には、そういうものがある。
+
+深夜のお店にゾロゾロと。
+ コンビニ以外でも、夜に光っているお店がぽつんとある事実が嬉しい。店員すら居ないわけで、あらゆる点において気楽なのも良い。
+
+500円の服たちをのんびりと眺める。彼が気に入っているたんぽぽハウスで100円だったTシャツは、元を調べると1万円のブランドモノだったらしい。古着のセンスがあるぜ。
+
+コミュニティノートには、なんと柴田理恵さんからのメッセージが！？
+ 「キモいTシャツほしいす。」なんか桜木花道みたいな喋り方の柴田理恵さんだ。「ドラゴンボールおいてください!!Thank you‼︎」も味があって良い。置いてもらえたのだろうか。
+
+なぜか段ボールに『クドわふたー』と書いてある。
+ わふー！一体どのようなルートを辿って、クドわふたーのために用意された段ボールが古着屋に漂着したのでしょう。気になるぜ。
+
+友だちは、1500円でスプラトゥーンのTシャツを3枚買って帰った。スプラは一度も触ったことがないらしい。無難に誰でもオシャレになるイカちゃんのスタイリッシュさを実感。買い物上手な友の様子が誇らしいぜ。
+
+帰るぜ！
+ さよなら、柴田理恵、能美クドリャフカ。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-06-14 04:49\n无人二手店的夜晚\n無人古着屋の夜\n\nたまには本当の日記のようなことを書いてみましょう。\n\n一人、基本的にたんぽぽハウス……100円で古着を購入できるお店でTシャツを適当に選んで着ている友人がおり、彼の新しいTシャツを探そうと、みんなで深夜の無人古着屋へ。現代には、そういうものがある。\n\n深夜のお店にゾロゾロと。\n コンビニ以外でも、夜に光っているお店がぽつんとある事実が嬉しい。店員すら居ないわけで、あらゆる点において気楽なのも良い。\n\n500円の服たちをのんびりと眺める。彼が気に入っているたんぽぽハウスで100円だったTシャツは、元を調べると1万円のブランドモノだったらしい。古着のセンスがあるぜ。\n\nコミュニティノートには、なんと柴田理恵さんからのメッセージが！？\n 「キモいTシャツほしいす。」なんか桜木花道みたいな喋り方の柴田理恵さんだ。「ドラゴンボールおいてください!!Thank you‼︎」も味があって良い。置いてもらえたのだろうか。\n\nなぜか段ボールに『クドわふたー』と書いてある。\n わふー！一体どのようなルートを辿って、クドわふたーのために用意された段ボールが古着屋に漂着したのでしょう。気になるぜ。\n\n友だちは、1500円でスプラトゥーンのTシャツを3枚買って帰った。スプラは一度も触ったことがないらしい。無難に誰でもオシャレになるイカちゃんのスタイリッシュさを実感。買い物上手な友の様子が誇らしいぜ。\n\n帰るぜ！\n さよなら、柴田理恵、能美クドリャフカ。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

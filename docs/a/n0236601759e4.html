@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>多操作系统</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-12-19 12:07</p>
+  <h1>多操作系统</h1>
+  <p class="ja-title">複数OS</p>
+</header>
+<main>
+  <article class="body">英文を処理する際には、日本人として使用していた回路とは別の道筋が働いている。脳味噌の中に2つ目のOSが生まれたような。言語学習とは、頭の中に新しいOSを載せる感覚らしい。
+ で。脳が複数の言語を扱えるようになると、単純に思考が拡張される。他国の文化をネイティブに近い形で理解することもできるし、要するに「世界が拡がる」わけで。新たな知見を得ると、点と点がくっついて理解と閃きが発生する確率が上昇。分かりやすい言い方では「賢く」なる。
+ 賢いとは、脳の回路を稼働させて、事象に対し多くの視点で対応できることでもあるでしょう。一つの視点で語り続けるから、思想が固まり停滞をする。OSが複数個あれば、気軽に切り替えて柔軟に対応できるのでシンプルに強い。もし、停滞するほど何かに迷ったときは、新たな視点や俯瞰を用いて乗り越えるしかない。その際に必要なことは、既存の自分にない発想を繋げるための点だ。ここで言う点とは経験や学習のことで、多言語は学習と強く結びついている。
+ 趣味で言語学習を行なっている者が、それにどんなやり甲斐を覚えているか考えると、ものすごくダイレクトに「賢くなっていく」からではないか。結局、どんな場面であろうと賢さのステータスが無駄になることはない。理性的で損することも殆どない。素朴な生活な疑問を、アメリカンな規模の解釈だと腑に落ちるかもしれないし、アラビアンな宗教的見方をすれば驚きが増すかもしれない。複数のOSが複数の角度を生む。
+ しかし、そんな単純な答えがあったとて、人はそう簡単に他言語を学ぶつもりもないでしょう。それは何故か。賢いだけが人生ではないから。それもまた一つの答えで、賢さに依存しないことも賢い。身体性は言葉よりものをいうこともある。生き方は自由であるなか、知見を吸収していかないと退屈な現実に耐えきれない者たちも、いる。
+
+エッセイが出ています。よろしく。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-12-19 12:07\n多操作系统\n複数OS\n\n英文を処理する際には、日本人として使用していた回路とは別の道筋が働いている。脳味噌の中に2つ目のOSが生まれたような。言語学習とは、頭の中に新しいOSを載せる感覚らしい。\n で。脳が複数の言語を扱えるようになると、単純に思考が拡張される。他国の文化をネイティブに近い形で理解することもできるし、要するに「世界が拡がる」わけで。新たな知見を得ると、点と点がくっついて理解と閃きが発生する確率が上昇。分かりやすい言い方では「賢く」なる。\n 賢いとは、脳の回路を稼働させて、事象に対し多くの視点で対応できることでもあるでしょう。一つの視点で語り続けるから、思想が固まり停滞をする。OSが複数個あれば、気軽に切り替えて柔軟に対応できるのでシンプルに強い。もし、停滞するほど何かに迷ったときは、新たな視点や俯瞰を用いて乗り越えるしかない。その際に必要なことは、既存の自分にない発想を繋げるための点だ。ここで言う点とは経験や学習のことで、多言語は学習と強く結びついている。\n 趣味で言語学習を行なっている者が、それにどんなやり甲斐を覚えているか考えると、ものすごくダイレクトに「賢くなっていく」からではないか。結局、どんな場面であろうと賢さのステータスが無駄になることはない。理性的で損することも殆どない。素朴な生活な疑問を、アメリカンな規模の解釈だと腑に落ちるかもしれないし、アラビアンな宗教的見方をすれば驚きが増すかもしれない。複数のOSが複数の角度を生む。\n しかし、そんな単純な答えがあったとて、人はそう簡単に他言語を学ぶつもりもないでしょう。それは何故か。賢いだけが人生ではないから。それもまた一つの答えで、賢さに依存しないことも賢い。身体性は言葉よりものをいうこともある。生き方は自由であるなか、知見を吸収していかないと退屈な現実に耐えきれない者たちも、いる。\n\nエッセイが出ています。よろしく。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：理想的恋人</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-09-28 06:13</p>
+  <h1>一口随笔：理想的恋人</h1>
+  <p class="ja-title">一口エッセイ:理想の恋人</p>
+</header>
+<main>
+  <article class="body">以前、友人が理想の恋人について「デートコースとか決めてくれて、女神のように甘えさせ続けてくれる存在」と語っており、彼は週5でサラリーマンをしているので、現代に疲れた社会人らしいな〜と思った。
+ 話の流れで僕が答える番になったので、改めて考えてみると、僕は自分が恋人に救われたいみたいな気持ちはなくて、むしろ相手が泣いている時に駆けつけて「……バカ、泣いたら美人が台無しだろ？」的なことを言って頭を撫でながら、「アニメ観てる時にあんま心配させんな」って抱き寄せるとかをイメージしたのですね。「……迷子になっても困るしな」みたいな流れで手を繋いだりする。「やれやれ、お前はいつも頑張ってんだからしゃーねーか」といった具合でデートコースとか部屋の掃除とかもやる。
+ よくよく思い出せば、母親と二人暮らしの時がそんなノリだった。母は夜中にシングルマザーの寂しさや厳しさに耐えきれず家出することもあったので、そのたび公園へ「ったく……大人が中学生困らせてどーすんだ」と渋々迎えに行った。今思うとアレは結構楽しんでやっていたのだ。
+ つまり、これ恋人に求めてることじゃなくて「自分がどうなりたいか」でしかないし、さらに想定のモデルが母親。マザコンのナルシストというキショすぎるオタクであるわけだが、僕はそんな自分のキショいところわりと好きだぜ（ナルシストだから）。
+
+毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-09-28 06:13\n一口随笔：理想的恋人\n一口エッセイ:理想の恋人\n\n以前、友人が理想の恋人について「デートコースとか決めてくれて、女神のように甘えさせ続けてくれる存在」と語っており、彼は週5でサラリーマンをしているので、現代に疲れた社会人らしいな〜と思った。\n 話の流れで僕が答える番になったので、改めて考えてみると、僕は自分が恋人に救われたいみたいな気持ちはなくて、むしろ相手が泣いている時に駆けつけて「……バカ、泣いたら美人が台無しだろ？」的なことを言って頭を撫でながら、「アニメ観てる時にあんま心配させんな」って抱き寄せるとかをイメージしたのですね。「……迷子になっても困るしな」みたいな流れで手を繋いだりする。「やれやれ、お前はいつも頑張ってんだからしゃーねーか」といった具合でデートコースとか部屋の掃除とかもやる。\n よくよく思い出せば、母親と二人暮らしの時がそんなノリだった。母は夜中にシングルマザーの寂しさや厳しさに耐えきれず家出することもあったので、そのたび公園へ「ったく……大人が中学生困らせてどーすんだ」と渋々迎えに行った。今思うとアレは結構楽しんでやっていたのだ。\n つまり、これ恋人に求めてることじゃなくて「自分がどうなりたいか」でしかないし、さらに想定のモデルが母親。マザコンのナルシストというキショすぎるオタクであるわけだが、僕はそんな自分のキショいところわりと好きだぜ（ナルシストだから）。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>精选一口短文：超级机器人大战爱好者的中学生</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-04-11 14:09</p>
+  <h1>精选一口短文：超级机器人大战爱好者的中学生</h1>
+  <p class="ja-title">選り抜き一口エッセイ:スパロボ大好き中学生</p>
+</header>
+<main>
+  <article class="body">スパロボ30の発売日間際（※日記当時は）であることと、今期アニメが妙にロボアニメが充実していることで、急なロボット熱に煽られそわそわしております。
+ 小学生時代は、ひたすらスパロボαシリーズを周回しておりました。初代αでロボ作品を知り、α外伝でターンエーの異質さに驚き、第二次αでブレンパワードの合体技に興奮、第三次αでイデオンの壮大さに感動して原作を視聴。つまりは、無意識で富野作品に影響され続けた子供であった。
+ そんなガキも、加齢ともに自動で中学生へ。新たな出会いにワクワクしていた頃、同じくスパロボ好きのオタクと出会いました。早速、好きな作品について語り合うも、僕らは中学生真っ盛り。そう正しく中二病の全盛期なのですね。
+ そんな中二の波動にあてられたのか、友人のロボット観は歪んでおり、「愛と勇気なんてゴミだ」と主張し始める。「特にガオガイガーなんて恥ずかしくて見てられない、参戦しないで欲しい！」と言い出します。大声で叫んで敵を倒す作品に対し、斜に構えてしまうお年頃。
+ そんな彼のお気に入りは、みんな大好き「ブラックサレナ」。主人公が劇場版で闇堕ちする姿に中二心は抗えない。スパロボでの参戦タイミングがレアなのも彼のハートを鷲掴み。あのダークさこそロボアニメの真髄だと豪語する。熱血だ美少女だ、よりもストーリー性が大事で云々。
+ そこで「でもルリルリは萌えだよ」と言ってみると、「まぁルリは可愛いけどさ……」と照れながら認める。この素直さが中学生オタクらしくて、どうも偏屈な彼を嫌いになれないのでした。
+
+boothにて、毎日のエッセイをまとめた同人誌を販売しております。気に入ったら買ってあげてね。
+
+商業エッセイ集もよろしくお願いします。オタクの思い出がいっぱい。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-04-11 14:09\n精选一口短文：超级机器人大战爱好者的中学生\n選り抜き一口エッセイ:スパロボ大好き中学生\n\nスパロボ30の発売日間際（※日記当時は）であることと、今期アニメが妙にロボアニメが充実していることで、急なロボット熱に煽られそわそわしております。\n 小学生時代は、ひたすらスパロボαシリーズを周回しておりました。初代αでロボ作品を知り、α外伝でターンエーの異質さに驚き、第二次αでブレンパワードの合体技に興奮、第三次αでイデオンの壮大さに感動して原作を視聴。つまりは、無意識で富野作品に影響され続けた子供であった。\n そんなガキも、加齢ともに自動で中学生へ。新たな出会いにワクワクしていた頃、同じくスパロボ好きのオタクと出会いました。早速、好きな作品について語り合うも、僕らは中学生真っ盛り。そう正しく中二病の全盛期なのですね。\n そんな中二の波動にあてられたのか、友人のロボット観は歪んでおり、「愛と勇気なんてゴミだ」と主張し始める。「特にガオガイガーなんて恥ずかしくて見てられない、参戦しないで欲しい！」と言い出します。大声で叫んで敵を倒す作品に対し、斜に構えてしまうお年頃。\n そんな彼のお気に入りは、みんな大好き「ブラックサレナ」。主人公が劇場版で闇堕ちする姿に中二心は抗えない。スパロボでの参戦タイミングがレアなのも彼のハートを鷲掴み。あのダークさこそロボアニメの真髄だと豪語する。熱血だ美少女だ、よりもストーリー性が大事で云々。\n そこで「でもルリルリは萌えだよ」と言ってみると、「まぁルリは可愛いけどさ……」と照れながら認める。この素直さが中学生オタクらしくて、どうも偏屈な彼を嫌いになれないのでした。\n\nboothにて、毎日のエッセイをまとめた同人誌を販売しております。気に入ったら買ってあげてね。\n\n商業エッセイ集もよろしくお願いします。オタクの思い出がいっぱい。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

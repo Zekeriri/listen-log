@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口散文：不是变得幸福而是减少不幸</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2023-05-14 07:39</p>
+  <h1>一口散文：不是变得幸福而是减少不幸</h1>
+  <p class="ja-title">一口エッセイ:幸せになるのではなく不幸を減らす</p>
+</header>
+<main>
+  <article class="body">ハーバード大の教授が「幸せになる方法について」の質問へ答える動画で、「たくさん眠ると幸せになるわけではないが不幸がへる」と回答しており、それがとても腑に落ちて感動しています。
+ 僕は不眠がつねに生活のトップクラスの悩みですので、とにかく困っている人には睡眠を勧めている。相手の詳しい事情や心境はわからなくとも、混乱して思考がループしている今よりも、眠ってスッキリしてからの方が確実に効率がいいじゃないですか。スムーズに眠れるかどうかは別として。
+ が、たまに「眠っても状況は変わらない！幸せになれない！」とは反論されることがある。それもごもっともではあるが……でも「早く寝た方がいい」くらいのことしか言えない……と悩んでいたところに、冒頭の教授の解説があったおかげで、「眠っても幸せになるわけじゃないが少なくとも今背負っている不幸が軽くなる」と説明できます。幸福の大半ば自身から動かないかぎり訪れないし、とてもつらいときは行動できなくて雁字搦めですけど、たっぷり眠ることならいついかなる時でも理論上可能なので、まずはたくさん眠って精神のダメージを和らげる。もう眠って眠って眠りまくることで、自然と悩みも解決しているかもしれない。それは約束できないが、少なくともあなたをいまも苦しめている漠然とした不安は、上質な睡眠で確実に減少されています。今朝もニチアサ観たらたっぷり眠ろうね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-05-14 07:39\n一口散文：不是变得幸福而是减少不幸\n一口エッセイ:幸せになるのではなく不幸を減らす\n\nハーバード大の教授が「幸せになる方法について」の質問へ答える動画で、「たくさん眠ると幸せになるわけではないが不幸がへる」と回答しており、それがとても腑に落ちて感動しています。\n 僕は不眠がつねに生活のトップクラスの悩みですので、とにかく困っている人には睡眠を勧めている。相手の詳しい事情や心境はわからなくとも、混乱して思考がループしている今よりも、眠ってスッキリしてからの方が確実に効率がいいじゃないですか。スムーズに眠れるかどうかは別として。\n が、たまに「眠っても状況は変わらない！幸せになれない！」とは反論されることがある。それもごもっともではあるが……でも「早く寝た方がいい」くらいのことしか言えない……と悩んでいたところに、冒頭の教授の解説があったおかげで、「眠っても幸せになるわけじゃないが少なくとも今背負っている不幸が軽くなる」と説明できます。幸福の大半ば自身から動かないかぎり訪れないし、とてもつらいときは行動できなくて雁字搦めですけど、たっぷり眠ることならいついかなる時でも理論上可能なので、まずはたくさん眠って精神のダメージを和らげる。もう眠って眠って眠りまくることで、自然と悩みも解決しているかもしれない。それは約束できないが、少なくともあなたをいまも苦しめている漠然とした不安は、上質な睡眠で確実に減少されています。今朝もニチアサ観たらたっぷり眠ろうね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔: 人生中最快乐的时光</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-07-12 01:15</p>
+  <h1>一口随笔: 人生中最快乐的时光</h1>
+  <p class="ja-title">一口エッセイ:人生で最も楽しかった時間</p>
+</header>
+<main>
+  <article class="body">50代の方による、「思えば人生で一番楽しかったのは、TSUTAYAやゲオを回って時間を潰した若い頃だったなぁ」（うろ覚え）のようなツイートが流れてきまして、これに関してあまりに同意しすぎて（僕はまだ20代だが）、「わかる！」と思わず膝を打ったのですね。
+ 僕が中高生の頃は、まだサブスクの動画配信なんてもの存在しなかったので、ニチアサが基本的に一期一会でした。ですから、気に入った作品を観返すためTSUTAYAへ走る必要があり、若干照れつつもライダー・戦隊・プリキュアの好きな回が収録されているDVDを借りてきたわけです。
+ しかし、ニチアサ関連のDVDは、たいてい傷がついていて途中で止まることも多々ある。やはり子供が借りていくものなので、どうしても扱いが雑になってしまうのだ。お気に入りのシーンで動画が停止するたび、「子供たち……許さない！！」と怒りつつ、いや本来のニチアサは子供のものだしな……と冷静になるの繰り返し。わざわざ店員に、プリキュアのDVDを見せて、「このシーンで止まるんですけど」と申告するのも気が引けるので、潔く諦めては別のTSUTAYAへ向かったらしたあの日々。
+ いまや、ディスクを出し入れする行為すら面倒でやりたくないですが、なけなしの数百円を握りしめて、店内を何周も歩いて今週のお供にする作品を吟味するあの緊張感とドキドキ、たしかにアレは人生でもかなり楽しい時間だったなぁ。
+
+毎日の日記をまとめた同人誌をBOOTHにて販売中。僕のエッセイが、あなたの人生の時間の一部になれば幸いです。
+
+商業エッセイ集もよろしくね!</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-07-12 01:15\n一口随笔: 人生中最快乐的时光\n一口エッセイ:人生で最も楽しかった時間\n\n50代の方による、「思えば人生で一番楽しかったのは、TSUTAYAやゲオを回って時間を潰した若い頃だったなぁ」（うろ覚え）のようなツイートが流れてきまして、これに関してあまりに同意しすぎて（僕はまだ20代だが）、「わかる！」と思わず膝を打ったのですね。\n 僕が中高生の頃は、まだサブスクの動画配信なんてもの存在しなかったので、ニチアサが基本的に一期一会でした。ですから、気に入った作品を観返すためTSUTAYAへ走る必要があり、若干照れつつもライダー・戦隊・プリキュアの好きな回が収録されているDVDを借りてきたわけです。\n しかし、ニチアサ関連のDVDは、たいてい傷がついていて途中で止まることも多々ある。やはり子供が借りていくものなので、どうしても扱いが雑になってしまうのだ。お気に入りのシーンで動画が停止するたび、「子供たち……許さない！！」と怒りつつ、いや本来のニチアサは子供のものだしな……と冷静になるの繰り返し。わざわざ店員に、プリキュアのDVDを見せて、「このシーンで止まるんですけど」と申告するのも気が引けるので、潔く諦めては別のTSUTAYAへ向かったらしたあの日々。\n いまや、ディスクを出し入れする行為すら面倒でやりたくないですが、なけなしの数百円を握りしめて、店内を何周も歩いて今週のお供にする作品を吟味するあの緊張感とドキドキ、たしかにアレは人生でもかなり楽しい時間だったなぁ。\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中。僕のエッセイが、あなたの人生の時間の一部になれば幸いです。\n\n商業エッセイ集もよろしくね!"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

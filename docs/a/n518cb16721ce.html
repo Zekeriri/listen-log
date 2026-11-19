@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>精选一口短文：宫泽贤治 访客节大祭</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-04-12 14:47</p>
+  <h1>精选一口短文：宫泽贤治 访客节大祭</h1>
+  <p class="ja-title">選り抜き一口エッセイ: 宮沢賢治 ビジテリアン大祭</p>
+</header>
+<main>
+  <article class="body">宮沢賢治の短編、「ビジテリアン大祭」の話をします。ビジテリアン……つまりはベジタリアンのことですね。
+ この短編の内容は非常に簡潔。ベジタリアンが集合する菜食主義のお祭りがあり、そこに菜食主義を批判するため、それらを中傷したビラを書いた人間が現れる。
+ 彼らは次々とベジタリアンの問題点を指摘します。「菜食は味気がない」「生物が可哀想で肉が食べられないなら、野菜もまた食べられないはず」。それに対してベジタリアン側も丁寧に返答していく。
+ このすれ違いが作品の肝であり、ベジタリアン批判側が何を言おうとも、ベジタリアン側は頑固として主張を曲げない。例えどれだけ一般人から見た間違いを挙げられようとも、肉を食べたくないのだから仕方ない。ちなみに、宮沢賢治もまた菜食主義であったそうです。
+ とにかく「肉が食べたくない」と感じているのだから、それに対して科学的にどうとか、道徳的にどうなんて言われても、自分は食べたくないと感じたのだから、何を言っても意味がない。当人の感性は何よりも重要であり、そこに理屈をぶつけられたところで野暮である。
+ 恐らく、この作品が伝えたいことは「ベジタリアンの正しさ」ではない。人の感性に対して理屈をつけても、平行線のまま不毛な議論が続くだけということを書きたかったのではないかと思う。
+ といったことを意識して、ネット上のいろんな議論を眺めて見ると面白いですね。
+
+、
+
+エッセイを気に入っていただけたら、是非最近でた新刊などを手に取ってね。毎日のエッセイをまとめて同人誌にしています！
+
+商業エッセイ集もよろしくね。偏食な内容です。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-04-12 14:47\n精选一口短文：宫泽贤治 访客节大祭\n選り抜き一口エッセイ: 宮沢賢治 ビジテリアン大祭\n\n宮沢賢治の短編、「ビジテリアン大祭」の話をします。ビジテリアン……つまりはベジタリアンのことですね。\n この短編の内容は非常に簡潔。ベジタリアンが集合する菜食主義のお祭りがあり、そこに菜食主義を批判するため、それらを中傷したビラを書いた人間が現れる。\n 彼らは次々とベジタリアンの問題点を指摘します。「菜食は味気がない」「生物が可哀想で肉が食べられないなら、野菜もまた食べられないはず」。それに対してベジタリアン側も丁寧に返答していく。\n このすれ違いが作品の肝であり、ベジタリアン批判側が何を言おうとも、ベジタリアン側は頑固として主張を曲げない。例えどれだけ一般人から見た間違いを挙げられようとも、肉を食べたくないのだから仕方ない。ちなみに、宮沢賢治もまた菜食主義であったそうです。\n とにかく「肉が食べたくない」と感じているのだから、それに対して科学的にどうとか、道徳的にどうなんて言われても、自分は食べたくないと感じたのだから、何を言っても意味がない。当人の感性は何よりも重要であり、そこに理屈をぶつけられたところで野暮である。\n 恐らく、この作品が伝えたいことは「ベジタリアンの正しさ」ではない。人の感性に対して理屈をつけても、平行線のまま不毛な議論が続くだけということを書きたかったのではないかと思う。\n といったことを意識して、ネット上のいろんな議論を眺めて見ると面白いですね。\n\n、\n\nエッセイを気に入っていただけたら、是非最近でた新刊などを手に取ってね。毎日のエッセイをまとめて同人誌にしています！\n\n商業エッセイ集もよろしくね。偏食な内容です。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

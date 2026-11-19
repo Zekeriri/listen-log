@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>「泄漏」拯救网络的故事</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-03-31 13:26</p>
+  <h1>「泄漏」拯救网络的故事</h1>
+  <p class="ja-title">「漏れ」がネットを救う話</p>
+</header>
+<main>
+  <article class="body">↑好きなAA
+
+最近、一人称を「漏れ」にしたツイートを増やしております。この気の抜けた感じがかわいい。そう、一昔前のネットスラングは、イメージとして全体的にふにゃっとしていてかわいいのだ。
+ キボンヌ、希ガス、おまいら、禿同……。たとえ話題が暗かったり、極端に政治的だったりしても、レスの内容に「おまいらは〜」とか「ソースキボンヌ」とスラングが使用されていた場合、強制的に和んでしまう。そういう良い意味で間の抜けたかわいげがあります。
+ 今は時期が時期だけに、インターネットも重々しい話題で溢れかえってしまっている。国民が声を上げて主張や反発することも、たしかに必要なことかもしれない。しかし、そればかりではみんな疲弊して辟易するだけ。そんな時、一人称を「漏れ」にしたり、相手を「ぽまえら」とかにするとどうでしょう。
+ 「漏れはこの意見に禿同している！ アンチのぽまえらの反論キボンヌだ(ﾟДﾟ)ｺﾞﾙｧ!!！！」のような文章が流れてきた場合、例え内容の本質はトゲトゲしいとしても和む。心がﾏﾀｰﾘする。
+ 今や、もしもし（スマホ）が主流になったことで、AA文化は廃れきってしまった。僕は、どんな荒れた話題のスレにも突然現れるモナーやさくらちゃんのAAに癒されていた。TwitterでAAは無理でも、漏れやぽまえらは使用できるはず。
+ 漏れは、このヌクモリティ精神が、今の煮詰まったネットに平穏をもたらすと信じております。ぽまえらも一度ﾏﾀｰﾘ汁！！！</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-03-31 13:26\n「泄漏」拯救网络的故事\n「漏れ」がネットを救う話\n\n↑好きなAA\n\n最近、一人称を「漏れ」にしたツイートを増やしております。この気の抜けた感じがかわいい。そう、一昔前のネットスラングは、イメージとして全体的にふにゃっとしていてかわいいのだ。\n キボンヌ、希ガス、おまいら、禿同……。たとえ話題が暗かったり、極端に政治的だったりしても、レスの内容に「おまいらは〜」とか「ソースキボンヌ」とスラングが使用されていた場合、強制的に和んでしまう。そういう良い意味で間の抜けたかわいげがあります。\n 今は時期が時期だけに、インターネットも重々しい話題で溢れかえってしまっている。国民が声を上げて主張や反発することも、たしかに必要なことかもしれない。しかし、そればかりではみんな疲弊して辟易するだけ。そんな時、一人称を「漏れ」にしたり、相手を「ぽまえら」とかにするとどうでしょう。\n 「漏れはこの意見に禿同している！ アンチのぽまえらの反論キボンヌだ(ﾟДﾟ)ｺﾞﾙｧ!!！！」のような文章が流れてきた場合、例え内容の本質はトゲトゲしいとしても和む。心がﾏﾀｰﾘする。\n 今や、もしもし（スマホ）が主流になったことで、AA文化は廃れきってしまった。僕は、どんな荒れた話題のスレにも突然現れるモナーやさくらちゃんのAAに癒されていた。TwitterでAAは無理でも、漏れやぽまえらは使用できるはず。\n 漏れは、このヌクモリティ精神が、今の煮詰まったネットに平穏をもたらすと信じております。ぽまえらも一度ﾏﾀｰﾘ汁！！！"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

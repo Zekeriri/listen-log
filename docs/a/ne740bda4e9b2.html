@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口散文：把跨年的“喜庆”用劳动换成金钱</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2023-01-01 07:15</p>
+  <h1>一口散文：把跨年的“喜庆”用劳动换成金钱</h1>
+  <p class="ja-title">一口エッセイ:年越しの「めでたさ」を労働でお金に換える</p>
+</header>
+<main>
+  <article class="body">いろんな原稿に追われて、大晦日も家でキーボードをカタカタしていました。年末だからといって特別な用事もないので、問題はありませんが。
+ 昔、大晦日は日雇いバイトの狙い目でありがたかった。年越し前提でコンビニの日雇いに応募すると、この時期だけ時給2000円になったりします。みんな年末年始は労働したくないんです。家で家族と過ごしたい。そこを、僕らのような、ならず者が埋めることで高額時給を手に入れる。特に、大晦日の夜勤が最も高いと記憶しています。
+ なので、若い頃は年越しをコンビニで迎えることが多かった。日雇いだから全く知らない土地に飛ばされ、初対面の同僚とレジ内で機械的に「明けましておめでとうございます」と言い合う。もちろん互いに時給欲しさ以外の感情はない。この時期の客は、家族や友人を連れてパーティ用の食事とお酒を買っていく。なんならコンビニ内ですら、仲間内で騒いでお祭り状態にする。しかし、0時の瞬間には店内から人が消える。みんな、年が変わるタイミングを大事にしているんです。
+ 僕らは、その「めでたさ」を時給に換えていた。一応、気まずくならないためだけに言う「明けましておめでとう」。本当に、年明けを祝う心があるなら、コンビニでなくて家でまったりするはず。友達にあけおめLINEしたり。でも、そんな日常とはかけ離れた存在だから。いつか、誰かと心から「あけおめ！」と笑い合える日を夢見て、ひたすらお酒をレジ袋に詰めるのだ。
+
+毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-01-01 07:15\n一口散文：把跨年的“喜庆”用劳动换成金钱\n一口エッセイ:年越しの「めでたさ」を労働でお金に換える\n\nいろんな原稿に追われて、大晦日も家でキーボードをカタカタしていました。年末だからといって特別な用事もないので、問題はありませんが。\n 昔、大晦日は日雇いバイトの狙い目でありがたかった。年越し前提でコンビニの日雇いに応募すると、この時期だけ時給2000円になったりします。みんな年末年始は労働したくないんです。家で家族と過ごしたい。そこを、僕らのような、ならず者が埋めることで高額時給を手に入れる。特に、大晦日の夜勤が最も高いと記憶しています。\n なので、若い頃は年越しをコンビニで迎えることが多かった。日雇いだから全く知らない土地に飛ばされ、初対面の同僚とレジ内で機械的に「明けましておめでとうございます」と言い合う。もちろん互いに時給欲しさ以外の感情はない。この時期の客は、家族や友人を連れてパーティ用の食事とお酒を買っていく。なんならコンビニ内ですら、仲間内で騒いでお祭り状態にする。しかし、0時の瞬間には店内から人が消える。みんな、年が変わるタイミングを大事にしているんです。\n 僕らは、その「めでたさ」を時給に換えていた。一応、気まずくならないためだけに言う「明けましておめでとう」。本当に、年明けを祝う心があるなら、コンビニでなくて家でまったりするはず。友達にあけおめLINEしたり。でも、そんな日常とはかけ離れた存在だから。いつか、誰かと心から「あけおめ！」と笑い合える日を夢見て、ひたすらお酒をレジ袋に詰めるのだ。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

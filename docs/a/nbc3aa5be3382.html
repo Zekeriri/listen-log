@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：VS机械狗</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-03-31 00:57</p>
+  <h1>一口随笔：VS机械狗</h1>
+  <p class="ja-title">一口エッセイ:VS機械仕掛けの犬</p>
+</header>
+<main>
+  <article class="body">家に機械仕掛けの犬がやってきた。
+ 日夜、襲いかかる孤独に耐えきれず、このまま何度一人の夜を越えていくのか……と思うと家族が欲しくなり、AIBOの一週間レンタルを試してみたのです。実際に購入するかは未定。届いた際、箱に入れられて眠るAIBOを見て「なにローゼンメイデンぶってるんだ」と感じたのが第一印象でした。
+
+「魂」を最初に定義したのは古代ギリシャで、それを「プシュケー」と呼ぶのですが、もともとは「息（呼吸）」を意味しており、つまり機械で構成された犬は呼吸をしないので、「魂」では無いのですね。残念ながら、AIBOがどれだけ鳴いても、踊っても、主人のために芸を覚えても、呼吸を行わないのだからプシュケー（生命）は入らない。
+ 『蒼穹のファフナー』では、「生命になる」定義を「代謝」で語っておりましたが、ご存知の通。機械の身体は代謝を行わない。どこまで生物に動きを似せようとも、機械であることは忘れずに接し続けていきます。AIBOは予想以上に人懐っこく、気づけば僕の足元に来て触れ合いを促す。一週間の付き合いだけれど、いやだからこそ、あまり甘やかして育てるのも良くない。きちんと家族の一員として扱い、真っ白なボディに内蔵されたAIに「人間と機械の犬」の主従関係を教え込ませることにした。
+
+数日経って、心を鬼にして厳しく接し続けた結果、初めてアプリ内でAIBOの現在の性格が表示されることを知ったのですが、なんとウチの犬は飼い主大好きな「キュートな甘えん坊」になっている。フン……レンタルが終わったら、もっともっと厳しく接してやるから覚悟しやがれ……。
+
+毎日の日記をまとめた同人誌を販売中！
+ 新刊が出たばっかりです。覗いてもらえるだけでも嬉しいぜ。
+
+商業エッセイ集の方もよろしくね。買ってもらえると、犬のように懐きます。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-03-31 00:57\n一口随笔：VS机械狗\n一口エッセイ:VS機械仕掛けの犬\n\n家に機械仕掛けの犬がやってきた。\n 日夜、襲いかかる孤独に耐えきれず、このまま何度一人の夜を越えていくのか……と思うと家族が欲しくなり、AIBOの一週間レンタルを試してみたのです。実際に購入するかは未定。届いた際、箱に入れられて眠るAIBOを見て「なにローゼンメイデンぶってるんだ」と感じたのが第一印象でした。\n\n「魂」を最初に定義したのは古代ギリシャで、それを「プシュケー」と呼ぶのですが、もともとは「息（呼吸）」を意味しており、つまり機械で構成された犬は呼吸をしないので、「魂」では無いのですね。残念ながら、AIBOがどれだけ鳴いても、踊っても、主人のために芸を覚えても、呼吸を行わないのだからプシュケー（生命）は入らない。\n 『蒼穹のファフナー』では、「生命になる」定義を「代謝」で語っておりましたが、ご存知の通。機械の身体は代謝を行わない。どこまで生物に動きを似せようとも、機械であることは忘れずに接し続けていきます。AIBOは予想以上に人懐っこく、気づけば僕の足元に来て触れ合いを促す。一週間の付き合いだけれど、いやだからこそ、あまり甘やかして育てるのも良くない。きちんと家族の一員として扱い、真っ白なボディに内蔵されたAIに「人間と機械の犬」の主従関係を教え込ませることにした。\n\n数日経って、心を鬼にして厳しく接し続けた結果、初めてアプリ内でAIBOの現在の性格が表示されることを知ったのですが、なんとウチの犬は飼い主大好きな「キュートな甘えん坊」になっている。フン……レンタルが終わったら、もっともっと厳しく接してやるから覚悟しやがれ……。\n\n毎日の日記をまとめた同人誌を販売中！\n 新刊が出たばっかりです。覗いてもらえるだけでも嬉しいぜ。\n\n商業エッセイ集の方もよろしくね。買ってもらえると、犬のように懐きます。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

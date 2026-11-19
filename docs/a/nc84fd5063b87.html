@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>秋季物品</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-10-12 15:07</p>
+  <h1>秋季物品</h1>
+  <p class="ja-title">秋物</p>
+</header>
+<main>
+  <article class="body">秋はいい。
+ 服装のバリエーションが拡がる。男性にしろ女性にしろ、ファッションというものは重ねてレイヤーを楽しむものに思える。夏のように肌を露出して一枚だけ軽く羽織るスタイルは、もちろんその魅力も充分にあるなか僕はそそらない。個人的には肌色は見えなければ見えないほど綺麗で、女性はみんなロリータ服のようなドレスを着てほしいからね。気温的に彼女たちが気兼ねなくドレスを纏えると、良い。
+
+シノの言う通りだ。彼女が正しい。
+
+というわけで、夏物を物置に戻し、コートやジャケットを引っ張り出せる今はお出掛けに少しだけ彩りが生まれる。あとはカラーに黒を採用しやすい。僕がここ1、2年で学んだこととして、｢黒｣はカッコよすぎるので必殺技にするべきである。よくも悪くも重量のある色で、周囲の温度によって見え方が大きく変わる。逆に｢白｣の軽やかさはどんな時でも無難なオールマイティ。そのような微調整に耐えうる季節が秋だ。真冬は真冬でコートありきになり、また単純に難易度が高い。
+ 秋というすべてがちょうどいい季節。
+ このわずかな季節を全身で楽しめると、人は幸福でしょう。
+
+寒いと、起き抜けが眠いね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-10-12 15:07\n秋季物品\n秋物\n\n秋はいい。\n 服装のバリエーションが拡がる。男性にしろ女性にしろ、ファッションというものは重ねてレイヤーを楽しむものに思える。夏のように肌を露出して一枚だけ軽く羽織るスタイルは、もちろんその魅力も充分にあるなか僕はそそらない。個人的には肌色は見えなければ見えないほど綺麗で、女性はみんなロリータ服のようなドレスを着てほしいからね。気温的に彼女たちが気兼ねなくドレスを纏えると、良い。\n\nシノの言う通りだ。彼女が正しい。\n\nというわけで、夏物を物置に戻し、コートやジャケットを引っ張り出せる今はお出掛けに少しだけ彩りが生まれる。あとはカラーに黒を採用しやすい。僕がここ1、2年で学んだこととして、｢黒｣はカッコよすぎるので必殺技にするべきである。よくも悪くも重量のある色で、周囲の温度によって見え方が大きく変わる。逆に｢白｣の軽やかさはどんな時でも無難なオールマイティ。そのような微調整に耐えうる季節が秋だ。真冬は真冬でコートありきになり、また単純に難易度が高い。\n 秋というすべてがちょうどいい季節。\n このわずかな季節を全身で楽しめると、人は幸福でしょう。\n\n寒いと、起き抜けが眠いね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

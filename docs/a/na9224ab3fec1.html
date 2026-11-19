@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>千千万万分之一</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2026-08-24 09:36</p>
+  <h1>千千万万分之一</h1>
+  <p class="ja-title">何十億分の一</p>
+</header>
+<main>
+  <article class="body">「現地民は観光客を迷惑がっているのではないか」と勝手に想像してしまうが、香港のモンスターマンション前で実際の住民のおばちゃんが嬉しそうに話しかけてきて、「中に入ったら？ ここはハリウッドでもロケ地だった。ちなみにトイレはあっち！」と案内をしてくれた。
+
+自分たちの住む場所が盛り上がっていることが単に嬉しいだけ。
+ そういう発想もあるわけで、沖縄で居酒屋のバイトをしていた高校時代の、「調子に乗った観光客がハイテンションで絡んでくる感じ」のうざったらしさを、いつまでも引きずっているだけの自分を恥じる。
+ とはいえ、何かが流行した際は、だいたい「現地民は困惑の声も……」といったニュースも流れる。
+ ここまで圧倒的な人口の前では、細かいことはどうでもいいのかもしれない。ある意味で、人類皆兄弟というか。
+ 香港では、今日も上半身が裸のおっちゃんたちが自転車で何かを運んでいる。
+ 誰も何も細かいことを気にしていない。
+ 十何億というスケールの一人が何をしようが、どこにいようがどうだっていい。
+ それは、きっと現地に住んでいたら残酷なことでもあるかもしれない。
+ ただ、歩いているだけで気軽に話しかけてきて、タイミングによっては軽く同行することもあるくらいの地域の解放感は時に羨ましい。
+ もう日本へ帰ってしまう。
+ シーズンを外した、お盆休みでもなければただ暑いだけの時期に行ったので、ほとんど日本人も居なかった。汗がだくだくであること以外は快適な旅でした。アニメもすべて中国語吹替。ゆるキャンが朝から放送していて人気だった。夜はキャプ翼を観た。
+ もう日本へ帰ってしまう。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-08-24 09:36\n千千万万分之一\n何十億分の一\n\n「現地民は観光客を迷惑がっているのではないか」と勝手に想像してしまうが、香港のモンスターマンション前で実際の住民のおばちゃんが嬉しそうに話しかけてきて、「中に入ったら？ ここはハリウッドでもロケ地だった。ちなみにトイレはあっち！」と案内をしてくれた。\n\n自分たちの住む場所が盛り上がっていることが単に嬉しいだけ。\n そういう発想もあるわけで、沖縄で居酒屋のバイトをしていた高校時代の、「調子に乗った観光客がハイテンションで絡んでくる感じ」のうざったらしさを、いつまでも引きずっているだけの自分を恥じる。\n とはいえ、何かが流行した際は、だいたい「現地民は困惑の声も……」といったニュースも流れる。\n ここまで圧倒的な人口の前では、細かいことはどうでもいいのかもしれない。ある意味で、人類皆兄弟というか。\n 香港では、今日も上半身が裸のおっちゃんたちが自転車で何かを運んでいる。\n 誰も何も細かいことを気にしていない。\n 十何億というスケールの一人が何をしようが、どこにいようがどうだっていい。\n それは、きっと現地に住んでいたら残酷なことでもあるかもしれない。\n ただ、歩いているだけで気軽に話しかけてきて、タイミングによっては軽く同行することもあるくらいの地域の解放感は時に羨ましい。\n もう日本へ帰ってしまう。\n シーズンを外した、お盆休みでもなければただ暑いだけの時期に行ったので、ほとんど日本人も居なかった。汗がだくだくであること以外は快適な旅でした。アニメもすべて中国語吹替。ゆるキャンが朝から放送していて人気だった。夜はキャプ翼を観た。\n もう日本へ帰ってしまう。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

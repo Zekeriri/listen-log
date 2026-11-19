@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：健康·税务·结婚 计算寿命……</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-06-14 11:19</p>
+  <h1>一口随笔：健康·税务·结婚 计算寿命……</h1>
+  <p class="ja-title">一口エッセイ:健康・税金・結婚 寿命を勘定して……</p>
+</header>
+<main>
+  <article class="body">もう600日近く、毎日細々と日記を投稿しているわけですが、普段はだいたい深夜〜早朝に投稿しているのに（静かな夜の読みものとして使われるのが一番嬉しいため）、最近はこうして昼に投稿することが増えました。原因としては、単純に「寝落ち」するようになったから。
+
+実は、みんなに黙ってエアロバイクを買ったのですね。アニメ観ながらキコキコ漕いでいる。昔は、健康とお金の話をする大人が退屈で内心バカにしていたのですが、自分ももう30近い身ですから、若い頃に軽蔑していた醜い大人像に「なる」。仕方ない。若者に馬鹿にされてでも生きていくのが大人なのだ。「税金の話なんて興味ねーバーカ！」と思っていたのに、いざ自分が取られる番になると、「ワシがゲーム作って稼いだ金だ！ 国なんかに1円もやらんぞ！」みたいな気持ちに。本当に1円も払わなかったら捕まるので、税理士と相談してできる限り安く抑えてる。
+ 結局、健康にも気を使ってみるかとクラフトワークのTour de Franceを聴きながら、必死な思いでペダルを漕いでいると、めちゃくちゃ疲れたおかげで、お風呂から出て寝転がったらぐーすか眠ってしまう。あまりに健康に体力を消費したので、不安なこと考えて不眠に陥る前に寝ている。なんと健全な人生なのでしょう。このまま、僕も平然と仕事・税金・健康・女遊び・結婚・お酒などの話をするつまらない大人と化すのでしょうか。寿命を勘定して……。
+
+毎日の日記をまとめた同人誌を販売中！
+ 新刊買ってね。購入してもらえたら、僕がエアロバイク漕ぎながら読む本が一冊増えます。
+
+商業エッセイ集もよろしくね！
+ Amazonレビューや評価までしてもらえると、嬉しさでさらにぐっすり眠れます。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-14 11:19\n一口随笔：健康·税务·结婚 计算寿命……\n一口エッセイ:健康・税金・結婚 寿命を勘定して……\n\nもう600日近く、毎日細々と日記を投稿しているわけですが、普段はだいたい深夜〜早朝に投稿しているのに（静かな夜の読みものとして使われるのが一番嬉しいため）、最近はこうして昼に投稿することが増えました。原因としては、単純に「寝落ち」するようになったから。\n\n実は、みんなに黙ってエアロバイクを買ったのですね。アニメ観ながらキコキコ漕いでいる。昔は、健康とお金の話をする大人が退屈で内心バカにしていたのですが、自分ももう30近い身ですから、若い頃に軽蔑していた醜い大人像に「なる」。仕方ない。若者に馬鹿にされてでも生きていくのが大人なのだ。「税金の話なんて興味ねーバーカ！」と思っていたのに、いざ自分が取られる番になると、「ワシがゲーム作って稼いだ金だ！ 国なんかに1円もやらんぞ！」みたいな気持ちに。本当に1円も払わなかったら捕まるので、税理士と相談してできる限り安く抑えてる。\n 結局、健康にも気を使ってみるかとクラフトワークのTour de Franceを聴きながら、必死な思いでペダルを漕いでいると、めちゃくちゃ疲れたおかげで、お風呂から出て寝転がったらぐーすか眠ってしまう。あまりに健康に体力を消費したので、不安なこと考えて不眠に陥る前に寝ている。なんと健全な人生なのでしょう。このまま、僕も平然と仕事・税金・健康・女遊び・結婚・お酒などの話をするつまらない大人と化すのでしょうか。寿命を勘定して……。\n\n毎日の日記をまとめた同人誌を販売中！\n 新刊買ってね。購入してもらえたら、僕がエアロバイク漕ぎながら読む本が一冊増えます。\n\n商業エッセイ集もよろしくね！\n Amazonレビューや評価までしてもらえると、嬉しさでさらにぐっすり眠れます。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

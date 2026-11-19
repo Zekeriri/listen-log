@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>梵高展的老人的故事</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-05-25 14:42</p>
+  <h1>梵高展的老人的故事</h1>
+  <p class="ja-title">ゴッホ展の老人の話</p>
+</header>
+<main>
+  <article class="body">最近の僕は、よほど睡眠不足であるらしく、昨日も珍しく寝落ちしてしまいました。半日以上寝て過ごして特に書くこともないため、思い出話をします。
+ 少し前、一人でゴッホ展へ行きました。『星月夜』が見たかったから。
+ 美術館の前には、たくさん人が並んでおり、その外れに「ゴッホ展のチケットをください」と書かれた紙を掲げている老人がおりました。長い髪の毛はすべて白く、男性か女性かもわかりませんでした。
+ しばらく経つと順番となり、展示を一通り見た後、今回のメインである『糸杉と星の見える道』があり、なんとなく、この絵をどんなお客さんがどれくらい鑑賞するのか数えてみようと、人混みから離れて、絵どころか客しか見えない位置に立ちます。
+
+だいたいの人たちは30秒、並んでいる時にパズドラに夢中になっていたカップルは10秒、スーツ姿のサラリーマンは5秒くらい、糸杉を観て去っていきます。そんな中、どうにかチケットを入手できたのか、先程館内前で見かけた老人が糸杉の前へとやってきたのです。
+ 老人は糸杉の前にじっと立ち止まり、人混みに流されながらも、視線は糸杉から離れません。ようやく糸杉が見えない位置に流されるまでの、1分20秒程度、ひたすら糸杉を鑑賞し続けていたのです。
+ 別に、鑑賞時間が長いことだけが全てとは思いませんが、ゴッホという画家は、美術館に入場できる能力もないが、いざ入ると誰よりも絵にとりつかれる老人に愛されているような偉人なのだなと、理解が深まった1日だったのです。
+
+毎日の日記をまとめた同人誌をBOOTHにて販売中！
+ よろしくね。
+
+商業エッセイ集もよろしくお願いします。Amazon評価も押してみてね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-05-25 14:42\n梵高展的老人的故事\nゴッホ展の老人の話\n\n最近の僕は、よほど睡眠不足であるらしく、昨日も珍しく寝落ちしてしまいました。半日以上寝て過ごして特に書くこともないため、思い出話をします。\n 少し前、一人でゴッホ展へ行きました。『星月夜』が見たかったから。\n 美術館の前には、たくさん人が並んでおり、その外れに「ゴッホ展のチケットをください」と書かれた紙を掲げている老人がおりました。長い髪の毛はすべて白く、男性か女性かもわかりませんでした。\n しばらく経つと順番となり、展示を一通り見た後、今回のメインである『糸杉と星の見える道』があり、なんとなく、この絵をどんなお客さんがどれくらい鑑賞するのか数えてみようと、人混みから離れて、絵どころか客しか見えない位置に立ちます。\n\nだいたいの人たちは30秒、並んでいる時にパズドラに夢中になっていたカップルは10秒、スーツ姿のサラリーマンは5秒くらい、糸杉を観て去っていきます。そんな中、どうにかチケットを入手できたのか、先程館内前で見かけた老人が糸杉の前へとやってきたのです。\n 老人は糸杉の前にじっと立ち止まり、人混みに流されながらも、視線は糸杉から離れません。ようやく糸杉が見えない位置に流されるまでの、1分20秒程度、ひたすら糸杉を鑑賞し続けていたのです。\n 別に、鑑賞時間が長いことだけが全てとは思いませんが、ゴッホという画家は、美術館に入場できる能力もないが、いざ入ると誰よりも絵にとりつかれる老人に愛されているような偉人なのだなと、理解が深まった1日だったのです。\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中！\n よろしくね。\n\n商業エッセイ集もよろしくお願いします。Amazon評価も押してみてね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

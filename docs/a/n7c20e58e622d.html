@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>绝对不要用症状去谷歌</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-01-16 06:05</p>
+  <h1>绝对不要用症状去谷歌</h1>
+  <p class="ja-title">絶対に症状でググるな</p>
+</header>
+<main>
+  <article class="body">スウェーデンの医師たちによる、ネットの医療情報を揶揄した曲が存在していまして、その名も「絶対に症状でググるな」。なんとシンプルで力強いメッセージなのでしょう。
+ 歌っているメッセージも非常に分かりやすい。要約すると、「絶対に症状でググるな。すぐにネットは重症かのような結果を表示する。そのせいで親父は不安が止まらず死んだ」といった内容。
+ 軽症に対しての皮肉はたっぷり。「咳でググればお前は結核だ」「熱でググれば、エボラにかかって死ぬ」。心当たりある方も多いのではないでしょうか？ たしかに、万が一の危険を考えて大袈裟に書いておくことも必要かもしれない。しかし、咳があるだけで数々の重病が表示されてしまうのは、精神が弱っている際は、かなりのダメージとなる。
+ 後半では、「ちょっとクレイジー？ あなたはADHD」なるフレーズが。これは、発達障害の概念が広まり始めたネットにおいて、重要に思えます。
+ 誰だって、忘れ物も遅刻もする。つねに落ち着いていて集中力に自信がある方が稀です。そんな中、ネットでADHDの概念を知ると、「自分はこの病気なのではないか？」と不安になって当然だと思う。バーナム効果もある。意識すればするほど、自分が発達障害者な気がして止まらないのだ。それこそ、深く悩む前に、素直に診断を受けに行く方がいい。
+ 「発達障害かな？」「鬱かな？」と悩むうちに医者に行く。精神の問題は放って治るものではないのだから、素人は黙ってプロに任せることが重要。そういったことを伝えてくれる、ある意味、世界中が一度は聴くべき名曲なのです。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-01-16 06:05\n绝对不要用症状去谷歌\n絶対に症状でググるな\n\nスウェーデンの医師たちによる、ネットの医療情報を揶揄した曲が存在していまして、その名も「絶対に症状でググるな」。なんとシンプルで力強いメッセージなのでしょう。\n 歌っているメッセージも非常に分かりやすい。要約すると、「絶対に症状でググるな。すぐにネットは重症かのような結果を表示する。そのせいで親父は不安が止まらず死んだ」といった内容。\n 軽症に対しての皮肉はたっぷり。「咳でググればお前は結核だ」「熱でググれば、エボラにかかって死ぬ」。心当たりある方も多いのではないでしょうか？ たしかに、万が一の危険を考えて大袈裟に書いておくことも必要かもしれない。しかし、咳があるだけで数々の重病が表示されてしまうのは、精神が弱っている際は、かなりのダメージとなる。\n 後半では、「ちょっとクレイジー？ あなたはADHD」なるフレーズが。これは、発達障害の概念が広まり始めたネットにおいて、重要に思えます。\n 誰だって、忘れ物も遅刻もする。つねに落ち着いていて集中力に自信がある方が稀です。そんな中、ネットでADHDの概念を知ると、「自分はこの病気なのではないか？」と不安になって当然だと思う。バーナム効果もある。意識すればするほど、自分が発達障害者な気がして止まらないのだ。それこそ、深く悩む前に、素直に診断を受けに行く方がいい。\n 「発達障害かな？」「鬱かな？」と悩むうちに医者に行く。精神の問題は放って治るものではないのだから、素人は黙ってプロに任せることが重要。そういったことを伝えてくれる、ある意味、世界中が一度は聴くべき名曲なのです。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

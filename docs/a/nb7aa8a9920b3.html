@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：糖果的内心</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-08-14 03:39</p>
+  <h1>一口随笔：糖果的内心</h1>
+  <p class="ja-title">一口エッセイ:あめちゃんの内面</p>
+</header>
+<main>
+  <article class="body">今日のコミケでのインタビュー載ってるhttps://t.co/V081CsWQ2q pic.twitter.com/Oobt9LhU4U— にゃるら 土曜日 東ヘ20a (@nyalra) August 13, 2022
+
+コミケでニディガのスタッフ本を頒布しました。憧れていたんですよね、スタッフ本。好きな作品に携わった人間たちが好き勝手暴れている様子は単純に嬉しいから。今回は、自分たちもそういう本を作れたと思います。
+
+今回のスタッフ本で自分が最も力を入れたのは、書き下ろし短編小説『ピエタ』です。珍しく真っ当に小説を書いているうえに、ゲーム版では実はほとんど見えない「あめちゃんの内面」が描かれています。ゲーム内では、あめちゃんと対話はしているものの、それがどこまで本心か、はたまたおふざけや誇張なのかは受け取り方次第。どんな日々をともに過ごしたかにもよりますしね。そんなあめちゃんの偽らざる心理を書きました。そして、彼女が自分の偽りの姿である「超てんちゃん」とどう向き合っているかも……。評判を読むと凄く嬉しい感想が多くて安堵しています♪ 在庫があるので通販はたぶんすると思うけれど、そこの仕切りは僕でなく権利元なので、そこのアナウンスを待ってもらえると助かるぜ。
+
+さて、今回のコミケは開始から終了まで、ずっとブースの中にいて、ひたすら手渡しとサインを行なっていました。おかげでめちゃくちゃ疲れたけれど、休憩しなかった理由は「そうしたかった」だけなんですよね。ニディガのファンと一人でも多く顔を合わせたかった、本当にそれだけで、これは僕の偽らざる本音です。みなさん、ありがとうございました。
+
+僕の同人誌や商業エッセイ集の方も、手に取ってもらえると嬉しいなーって……。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-08-14 03:39\n一口随笔：糖果的内心\n一口エッセイ:あめちゃんの内面\n\n今日のコミケでのインタビュー載ってるhttps://t.co/V081CsWQ2q pic.twitter.com/Oobt9LhU4U— にゃるら 土曜日 東ヘ20a (@nyalra) August 13, 2022\n\nコミケでニディガのスタッフ本を頒布しました。憧れていたんですよね、スタッフ本。好きな作品に携わった人間たちが好き勝手暴れている様子は単純に嬉しいから。今回は、自分たちもそういう本を作れたと思います。\n\n今回のスタッフ本で自分が最も力を入れたのは、書き下ろし短編小説『ピエタ』です。珍しく真っ当に小説を書いているうえに、ゲーム版では実はほとんど見えない「あめちゃんの内面」が描かれています。ゲーム内では、あめちゃんと対話はしているものの、それがどこまで本心か、はたまたおふざけや誇張なのかは受け取り方次第。どんな日々をともに過ごしたかにもよりますしね。そんなあめちゃんの偽らざる心理を書きました。そして、彼女が自分の偽りの姿である「超てんちゃん」とどう向き合っているかも……。評判を読むと凄く嬉しい感想が多くて安堵しています♪ 在庫があるので通販はたぶんすると思うけれど、そこの仕切りは僕でなく権利元なので、そこのアナウンスを待ってもらえると助かるぜ。\n\nさて、今回のコミケは開始から終了まで、ずっとブースの中にいて、ひたすら手渡しとサインを行なっていました。おかげでめちゃくちゃ疲れたけれど、休憩しなかった理由は「そうしたかった」だけなんですよね。ニディガのファンと一人でも多く顔を合わせたかった、本当にそれだけで、これは僕の偽らざる本音です。みなさん、ありがとうございました。\n\n僕の同人誌や商業エッセイ集の方も、手に取ってもらえると嬉しいなーって……。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

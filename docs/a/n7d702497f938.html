@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口散文：七观行与卖纸的老人</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2021-12-09 01:05</p>
+  <h1>一口散文：七观行与卖纸的老人</h1>
+  <p class="ja-title">一口エッセイ: 七観行と紙を売る老人</p>
+</header>
+<main>
+  <article class="body">ベンチに座っていたら、老人が話しかけてきました。いったいなにが目的だろうと話を聞いてみると、「般若心経を知っているか？」という話題に。
+ さらに聞いてみると、トークは「七観行 （ななかんぎょう）」の話へ発展。七観行 とは、般若心経を7行程度にまとめて現代風にアレンジし、最低限これだけ知っていれば大丈夫！ みたいな文章。「健康に溢れた楽しい毎日です」「よろこびがいっぱいの毎日です」のような前向きなことが7つ書かれている。ウルトラ5つの誓いのようなものですね。
+ その七観行を毎日写経し続けることで、人は幸福になっていくと老人は話し始める。「感謝に満ちた幸せな毎日です」と写経しているうちに、だんだんとそう思い込む可能性は否めない。「引き寄せの法則」だってあるわけだ。老後の習慣の一つにそれがあるのも悪くないかも（いまやりたい気持ちは一切ないが）と考えていると、老人は続けて「ここに写経用の紙があるので購入してみないか？」と言い出した。真の目的を語るターンです。
+ もちろん、今すぐ写経するつもりもなければ、するにしても老人から購入する必要はまったく無いので、断ってさっさと立ち去った。今やキリスト教だってデジタルサイネージで礼拝できる時代に、そんなアナログなことはしたくなかったのです。
+ ところで、この老人は、七観行を広めること自体は本気で取り組んでいて、その過程で生きるためにお金も必要だから紙を売りつけているのか、はたまた最初から紙を売ることだけが目的なのか、いったいどちらなんでしょう。せめて前者であれば良いなと勝手に考えております。買わないけど。
+
+boothにて、今までの毎日エッセイをまとめた同人誌を販売中です。読んでも幸せになれませんが、一人の人間の生き様を把握できます。
+
+今月末には、長文エッセイと書き下ろしたっぷりな商業エッセイ集もでます。発売したら毎日写経してね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-09 01:05\n一口散文：七观行与卖纸的老人\n一口エッセイ: 七観行と紙を売る老人\n\nベンチに座っていたら、老人が話しかけてきました。いったいなにが目的だろうと話を聞いてみると、「般若心経を知っているか？」という話題に。\n さらに聞いてみると、トークは「七観行 （ななかんぎょう）」の話へ発展。七観行 とは、般若心経を7行程度にまとめて現代風にアレンジし、最低限これだけ知っていれば大丈夫！ みたいな文章。「健康に溢れた楽しい毎日です」「よろこびがいっぱいの毎日です」のような前向きなことが7つ書かれている。ウルトラ5つの誓いのようなものですね。\n その七観行を毎日写経し続けることで、人は幸福になっていくと老人は話し始める。「感謝に満ちた幸せな毎日です」と写経しているうちに、だんだんとそう思い込む可能性は否めない。「引き寄せの法則」だってあるわけだ。老後の習慣の一つにそれがあるのも悪くないかも（いまやりたい気持ちは一切ないが）と考えていると、老人は続けて「ここに写経用の紙があるので購入してみないか？」と言い出した。真の目的を語るターンです。\n もちろん、今すぐ写経するつもりもなければ、するにしても老人から購入する必要はまったく無いので、断ってさっさと立ち去った。今やキリスト教だってデジタルサイネージで礼拝できる時代に、そんなアナログなことはしたくなかったのです。\n ところで、この老人は、七観行を広めること自体は本気で取り組んでいて、その過程で生きるためにお金も必要だから紙を売りつけているのか、はたまた最初から紙を売ることだけが目的なのか、いったいどちらなんでしょう。せめて前者であれば良いなと勝手に考えております。買わないけど。\n\nboothにて、今までの毎日エッセイをまとめた同人誌を販売中です。読んでも幸せになれませんが、一人の人間の生き様を把握できます。\n\n今月末には、長文エッセイと書き下ろしたっぷりな商業エッセイ集もでます。発売したら毎日写経してね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

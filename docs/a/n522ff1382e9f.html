@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：请☆双胞胎</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-06-21 03:01</p>
+  <h1>一口随笔：请☆双胞胎</h1>
+  <p class="ja-title">一口エッセイ:おねがい☆ツインズ</p>
+</header>
+<main>
+  <article class="body">暑いのか涼しいのかいまいちわからない、曖昧な季節がやってきました。そう、『おねがい☆ツインズ』の季節ですね。
+
+このアニメの空気感はたいへん素晴らしい。夏になるたび再生する。背景美術の繊細さが美しく、KOTOKO &amp;佐藤裕美の最強タッグによる最高の主題歌を浴びているうちに、みるみる自身が田舎の夏に吸い込まれる。どの場面を切り取ろうとも、二人の少女と過ごす季節が目の前に「ある」。あまりに「あり」すぎて、なんでもないシーンで涙が流れるくらいに。
+
+ストーリーとしては至って単純で、主人公の家へ押し寄せてきた二人の女の子のうち、どちらかが実妹でどちらかが他人。3人とも誰と血が繋がっているかわからないまま共同生活が始まり、やがて恋に堕ちる。が、兄妹で恋愛することはできない……片方は芽生えた感情を強制的に諦めなければならない。
+
+もちろん雰囲気のみでなく、本筋も素晴らしい。『フタコイ オルタナティブ』と同じく、ヒロイン二人と主人公一人の「3人でひとつ」という歪な関係を誤魔化しながら進む日常の瞬間瞬間が綺麗。サビの歌詞に「限られた時を生きるから」といったフレーズがありますが、彼女たちは、「血縁関係が判明する」までの正しく限られた時間の青春を全力で過ごす。3人の仲が深まるたびに、確実にくる「終わり」を予感させる、そんな切なくて繊細な一夏の物語。
+
+毎日の日記をまとめた同人誌をBOOTHにで販売中です。こんな何気ない日常が、いつか光り輝く宝物となるのでしょうか？
+
+商業エッセイ集もよろしくね。こちらはとても濃いめの味わいに。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-21 03:01\n一口随笔：请☆双胞胎\n一口エッセイ:おねがい☆ツインズ\n\n暑いのか涼しいのかいまいちわからない、曖昧な季節がやってきました。そう、『おねがい☆ツインズ』の季節ですね。\n\nこのアニメの空気感はたいへん素晴らしい。夏になるたび再生する。背景美術の繊細さが美しく、KOTOKO &佐藤裕美の最強タッグによる最高の主題歌を浴びているうちに、みるみる自身が田舎の夏に吸い込まれる。どの場面を切り取ろうとも、二人の少女と過ごす季節が目の前に「ある」。あまりに「あり」すぎて、なんでもないシーンで涙が流れるくらいに。\n\nストーリーとしては至って単純で、主人公の家へ押し寄せてきた二人の女の子のうち、どちらかが実妹でどちらかが他人。3人とも誰と血が繋がっているかわからないまま共同生活が始まり、やがて恋に堕ちる。が、兄妹で恋愛することはできない……片方は芽生えた感情を強制的に諦めなければならない。\n\nもちろん雰囲気のみでなく、本筋も素晴らしい。『フタコイ オルタナティブ』と同じく、ヒロイン二人と主人公一人の「3人でひとつ」という歪な関係を誤魔化しながら進む日常の瞬間瞬間が綺麗。サビの歌詞に「限られた時を生きるから」といったフレーズがありますが、彼女たちは、「血縁関係が判明する」までの正しく限られた時間の青春を全力で過ごす。3人の仲が深まるたびに、確実にくる「終わり」を予感させる、そんな切なくて繊細な一夏の物語。\n\n毎日の日記をまとめた同人誌をBOOTHにで販売中です。こんな何気ない日常が、いつか光り輝く宝物となるのでしょうか？\n\n商業エッセイ集もよろしくね。こちらはとても濃いめの味わいに。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

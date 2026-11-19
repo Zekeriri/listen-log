@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>玩偶和虚拟朋友</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2026-06-27 13:02</p>
+  <h1>玩偶和虚拟朋友</h1>
+  <p class="ja-title">ぬいぐるみとイマジナリーフレンド</p>
+</header>
+<main>
+  <article class="body">超てんちゃんやあめちゃんのぬいぐるみを外に持ち出して写真を撮っている方を見ると、「幸せになってほしい」と切に願う。
+ とにかく、こういうオタクが幸福であってほしい。
+ たくさんの幸せでなくとも、ちょっと美味しいもの食べるみたいな、その時にもぬいぐるみと一緒だったりと。
+
+僕も海外へはguraをよく連れて行った。
+ チェコで一人朝方の散歩をしていた際、guraが卒業を告知する配信を始めた。異国の地にぬいぐるみと二人で、本人の終わりを聞くことになった。
+
+僕の中でのguraは、カートゥーンそのもので、もはや「アニメの概念」だったから、言葉通じぬ遠くに居ても「アニメの女の子といっしょ」である心地にはだいぶ助けられた。
+ 9月末にはイベントに呼ばれて単身でスペインに一週間。ぬいぐるみを連れて行こう。寂しいからね。
+
+アニメの11話で丁寧に描いたけれども、僕はイマジナリーフレンドって大切だと思います。
+ 他人は怖い。できるだけ関わらない方がいいよ。けれども、寂しい。となると妄想の友達が現れるんです。素敵なことじゃないですか。ゲームをすると隣に居て、おもちゃをいじるとともにブンドド騒いで。たまにケンカもしちゃう。
+ 己の殻に閉じこもったゆえに脳みそが生み出した救済措置。人間の逞しさすら感じますよ。
+
+その中間点なのかな。
+ ぬいぐるみに人格を与えて、愛でる。
+ まるで人間かのように。恋人かのように、家族かのように。
+ やはり、ぬいぐるみは何も言わず、愛玩動物のように「都合はいい」。それがまた愛しさに拍車をかけ、本物の他人では得られない独特の快楽と安心感が脳を刺激する。
+
+幸せであってほしい。
+ あなたたち、不器用なものに幸福訪れんことを。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-06-27 13:02\n玩偶和虚拟朋友\nぬいぐるみとイマジナリーフレンド\n\n超てんちゃんやあめちゃんのぬいぐるみを外に持ち出して写真を撮っている方を見ると、「幸せになってほしい」と切に願う。\n とにかく、こういうオタクが幸福であってほしい。\n たくさんの幸せでなくとも、ちょっと美味しいもの食べるみたいな、その時にもぬいぐるみと一緒だったりと。\n\n僕も海外へはguraをよく連れて行った。\n チェコで一人朝方の散歩をしていた際、guraが卒業を告知する配信を始めた。異国の地にぬいぐるみと二人で、本人の終わりを聞くことになった。\n\n僕の中でのguraは、カートゥーンそのもので、もはや「アニメの概念」だったから、言葉通じぬ遠くに居ても「アニメの女の子といっしょ」である心地にはだいぶ助けられた。\n 9月末にはイベントに呼ばれて単身でスペインに一週間。ぬいぐるみを連れて行こう。寂しいからね。\n\nアニメの11話で丁寧に描いたけれども、僕はイマジナリーフレンドって大切だと思います。\n 他人は怖い。できるだけ関わらない方がいいよ。けれども、寂しい。となると妄想の友達が現れるんです。素敵なことじゃないですか。ゲームをすると隣に居て、おもちゃをいじるとともにブンドド騒いで。たまにケンカもしちゃう。\n 己の殻に閉じこもったゆえに脳みそが生み出した救済措置。人間の逞しさすら感じますよ。\n\nその中間点なのかな。\n ぬいぐるみに人格を与えて、愛でる。\n まるで人間かのように。恋人かのように、家族かのように。\n やはり、ぬいぐるみは何も言わず、愛玩動物のように「都合はいい」。それがまた愛しさに拍車をかけ、本物の他人では得られない独特の快楽と安心感が脳を刺激する。\n\n幸せであってほしい。\n あなたたち、不器用なものに幸福訪れんことを。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

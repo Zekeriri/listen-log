@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>精选一口随笔：失眠症、坂口安吾与药物中毒</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-01-29 16:00</p>
+  <h1>精选一口随笔：失眠症、坂口安吾与药物中毒</h1>
+  <p class="ja-title">選り抜き一口エッセイ: 不眠症と坂口安吾と薬物中毒</p>
+</header>
+<main>
+  <article class="body">睡眠薬を断薬しているため、眠れなくて仕方ない。その上、僕は鼻呼吸ができないので、呼吸の関係でほぼ確実に中途覚醒をする。それらを防ぐために睡眠薬が必要だったのですが、あればあるだけ飲んでしまうし、健忘などの症状も酷くてつらい。無理にでも常飲を止めた方が、結果的に不眠よりマシになるだろうと思ったのです。
+ 僕の話はどうでもいいとして、睡眠と薬物中毒といえば、坂口安吾が有名です。
+ 坂口安吾は、眠くて仕方ない時にヒロポン……つまりは覚醒剤を使用するようになります。そのせいで逆に三日四日経っても眠れなくなる。それはそれで困りものですので、次はウィスキーを飲んで無理やり眠るようになった。「覚醒」したおかげによる執筆で得た原稿料は酒代に消えたという。これでは本末転倒だ。
+ さらには、ウイスキーと合わせてアドルムという睡眠薬も服用するようになった。覚醒剤→酒と睡眠薬のコンボにより、一気に薬物中毒一直線。とどめに作家仲間である太宰治の自殺を機に、鬱病まで患ってしまう。
+ しかし、坂口安吾の文章はたいへん美しい。
+ 薬物と鬱病と友人の死に苛まれ、悩み苦しみながらも書き連ねた自意識の塊は、健康な作家からはけっして生まれない魅力と迫力に溢れている。
+ 文書というのは自意識や体験を切り売りするものであるので、苦しめば苦しんだ分だけ、堕落するなら堕落して地獄を見た分、綺麗な物が生まれるのかもしれない。いっそ僕もまた睡眠薬を酒で流す日々に戻ってやろうか。
+
+毎日のエッセイをまとめた同人誌などをboothにて販売中です。不眠の話も、お薬の話もあるよ。
+
+先月に発売した商業エッセイ集は、↑の内容より、さらに濃いです。是非よんでみてね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-01-29 16:00\n精选一口随笔：失眠症、坂口安吾与药物中毒\n選り抜き一口エッセイ: 不眠症と坂口安吾と薬物中毒\n\n睡眠薬を断薬しているため、眠れなくて仕方ない。その上、僕は鼻呼吸ができないので、呼吸の関係でほぼ確実に中途覚醒をする。それらを防ぐために睡眠薬が必要だったのですが、あればあるだけ飲んでしまうし、健忘などの症状も酷くてつらい。無理にでも常飲を止めた方が、結果的に不眠よりマシになるだろうと思ったのです。\n 僕の話はどうでもいいとして、睡眠と薬物中毒といえば、坂口安吾が有名です。\n 坂口安吾は、眠くて仕方ない時にヒロポン……つまりは覚醒剤を使用するようになります。そのせいで逆に三日四日経っても眠れなくなる。それはそれで困りものですので、次はウィスキーを飲んで無理やり眠るようになった。「覚醒」したおかげによる執筆で得た原稿料は酒代に消えたという。これでは本末転倒だ。\n さらには、ウイスキーと合わせてアドルムという睡眠薬も服用するようになった。覚醒剤→酒と睡眠薬のコンボにより、一気に薬物中毒一直線。とどめに作家仲間である太宰治の自殺を機に、鬱病まで患ってしまう。\n しかし、坂口安吾の文章はたいへん美しい。\n 薬物と鬱病と友人の死に苛まれ、悩み苦しみながらも書き連ねた自意識の塊は、健康な作家からはけっして生まれない魅力と迫力に溢れている。\n 文書というのは自意識や体験を切り売りするものであるので、苦しめば苦しんだ分だけ、堕落するなら堕落して地獄を見た分、綺麗な物が生まれるのかもしれない。いっそ僕もまた睡眠薬を酒で流す日々に戻ってやろうか。\n\n毎日のエッセイをまとめた同人誌などをboothにて販売中です。不眠の話も、お薬の話もあるよ。\n\n先月に発売した商業エッセイ集は、↑の内容より、さらに濃いです。是非よんでみてね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

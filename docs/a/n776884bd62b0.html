@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔: 减少人际关系会更接近幸福吗？</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-11-14 06:54</p>
+  <h1>一口随笔: 减少人际关系会更接近幸福吗？</h1>
+  <p class="ja-title">一口エッセイ:人間関係を減らしていけば幸せに近づくのか？</p>
+</header>
+<main>
+  <article class="body">大抵の悩みは人間関係から発生する。悩みがない状態こそ幸福だとエピクロスは悟ったわけで、であればできる限り人間関係を減らせば、人は幸福へと近づくのではないだろうか。手始めにスマホを遠くに置いてみよう。SNSや連絡ツールを通して不特定多数と接続されている環境から解放されるのだ。本来、人間はこんなにたくさんの人と常時つながっているものではない筈です。
+ ……とは、毎回思ったりするのだけれども、やっぱりスマホを手放せないし、誰かから反応がないと寂しい。結局、またしてもSNSを開いてくだらないことを投稿したり、仕事や連絡の確認をしたりする。他人からDMやLINEで話しかけられていると嬉しくなる。しかし、それらを積み重ねていくうちに「人間関係」となり、やがては「悩み」へ発展する。その時に、「やっぱり一人でいいよなぁ……」と後悔する流れの繰り返し。
+ 「一人でいても寂しくならない強さ」と「人間関係でうじうじせずにトラブルを楽しむ強さ」、どちらが真に幸福なのか、または自分に合っているのか考えてみるものの、なかなか答えは出てこない。そもそも、本当になんの起伏もない人生が幸せかも怪しい。それを主張する哲学者が昔居たってだけで、真実ではありませんからね。
+ まあ考えたって仕方がない。適度に悩んで、適度に楽しみ、適度な幸せの中で死んでいく。「適度」の度合いを測るために、人は何十年も生きていくのかもしれません。
+
+毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-11-14 06:54\n一口随笔: 减少人际关系会更接近幸福吗？\n一口エッセイ:人間関係を減らしていけば幸せに近づくのか？\n\n大抵の悩みは人間関係から発生する。悩みがない状態こそ幸福だとエピクロスは悟ったわけで、であればできる限り人間関係を減らせば、人は幸福へと近づくのではないだろうか。手始めにスマホを遠くに置いてみよう。SNSや連絡ツールを通して不特定多数と接続されている環境から解放されるのだ。本来、人間はこんなにたくさんの人と常時つながっているものではない筈です。\n ……とは、毎回思ったりするのだけれども、やっぱりスマホを手放せないし、誰かから反応がないと寂しい。結局、またしてもSNSを開いてくだらないことを投稿したり、仕事や連絡の確認をしたりする。他人からDMやLINEで話しかけられていると嬉しくなる。しかし、それらを積み重ねていくうちに「人間関係」となり、やがては「悩み」へ発展する。その時に、「やっぱり一人でいいよなぁ……」と後悔する流れの繰り返し。\n 「一人でいても寂しくならない強さ」と「人間関係でうじうじせずにトラブルを楽しむ強さ」、どちらが真に幸福なのか、または自分に合っているのか考えてみるものの、なかなか答えは出てこない。そもそも、本当になんの起伏もない人生が幸せかも怪しい。それを主張する哲学者が昔居たってだけで、真実ではありませんからね。\n まあ考えたって仕方がない。適度に悩んで、適度に楽しみ、適度な幸せの中で死んでいく。「適度」の度合いを測るために、人は何十年も生きていくのかもしれません。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>网络上的人比以前是不是更容易生气了</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2020-10-31 05:29</p>
+  <h1>网络上的人比以前是不是更容易生气了</h1>
+  <p class="ja-title">インターネットの人たち昔より怒りすぎじゃないか</p>
+</header>
+<main>
+  <article class="body">ここ最近のいろんな炎上に関して、みんな思いっきり叩いたり揶揄したりしているのを眺める度、別に擁護するつもりとかはさらさらないんですけど、「え？ 無関係でそんなに怒る！？」ってビックリすることが増えました。
+ 恐らく、大多数が義憤とか正義とか考えていなくて、言及しやすい存在がでてきたから群がっているという感じなのかもしれませんが、そういう層が増えたなぁと感じます。単純にネットの人口が増えたのもあるでしょう。
+ その陰湿さやお祭り感こそインターネットだと言われるとそうでもある気もしますが、完全に匿名ならまだしも、SNSで人格を持った人がやっているとビックリしちゃいますね。
+ まぁ、なにもつぶやくことがない時にネットのトレンドとか開くと、なにもかもくだらなく感じて、とにかく言及してみようとなる気持ちもわかるのですが。
+ インターネットの掌返しからの集中リンチが凄まじくて、ユーモアやシニカルのラインを少し間違えると、急に自分が叩きの対象になる世界観恐ろしいなと。「誰も傷つけない笑い」なんて不可能なので、なにがトリガーになるかもわかりませんし。
+ こんな文章を書いたところで何か変わるわけじゃないですし、インターネットを住み良くしようなんて思ってはいませんが、ネットを覗く度に常に誰かが何かと戦っている様子だらけなのは疲れるね。いや、みんなすでに疲弊しきっていて、その結果が現状の可能性はありますけど。
+ 人間はみんなだいぶ疲れてるみたい……休ませてあげようよ。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2020-10-31 05:29\n网络上的人比以前是不是更容易生气了\nインターネットの人たち昔より怒りすぎじゃないか\n\nここ最近のいろんな炎上に関して、みんな思いっきり叩いたり揶揄したりしているのを眺める度、別に擁護するつもりとかはさらさらないんですけど、「え？ 無関係でそんなに怒る！？」ってビックリすることが増えました。\n 恐らく、大多数が義憤とか正義とか考えていなくて、言及しやすい存在がでてきたから群がっているという感じなのかもしれませんが、そういう層が増えたなぁと感じます。単純にネットの人口が増えたのもあるでしょう。\n その陰湿さやお祭り感こそインターネットだと言われるとそうでもある気もしますが、完全に匿名ならまだしも、SNSで人格を持った人がやっているとビックリしちゃいますね。\n まぁ、なにもつぶやくことがない時にネットのトレンドとか開くと、なにもかもくだらなく感じて、とにかく言及してみようとなる気持ちもわかるのですが。\n インターネットの掌返しからの集中リンチが凄まじくて、ユーモアやシニカルのラインを少し間違えると、急に自分が叩きの対象になる世界観恐ろしいなと。「誰も傷つけない笑い」なんて不可能なので、なにがトリガーになるかもわかりませんし。\n こんな文章を書いたところで何か変わるわけじゃないですし、インターネットを住み良くしようなんて思ってはいませんが、ネットを覗く度に常に誰かが何かと戦っている様子だらけなのは疲れるね。いや、みんなすでに疲弊しきっていて、その結果が現状の可能性はありますけど。\n 人間はみんなだいぶ疲れてるみたい……休ませてあげようよ。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

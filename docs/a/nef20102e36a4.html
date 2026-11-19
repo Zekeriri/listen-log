@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>天堂真的存在吗</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2025-10-30 06:27</p>
+  <h1>天堂真的存在吗</h1>
+  <p class="ja-title">天国なんてあるのかな</p>
+</header>
+<main>
+  <article class="body">寿命も近づき、死後に天国へ導かれんと目処を立てたいトランプ大統領は戦争を止めんとし、日本の総理大臣が彼をノーベル平和賞へ推薦する事で同盟を強める。結果的に、何万もの人類の血が流れていく苦しみが止まるなら、それは間違いなく立派な功績で。その誇りを胸に天寿による死を迎え、穢れなき天使のお迎えに笑顔で応える。
+ 天国や輪廻転生、死後の裁きなんてこのように本人が思い込んで幸せになれればいい。他ならぬ己が「ここまで善行を積めばわたしの死後は約束されただろう」と安堵できたなら、それでいい。要するに現世とは来るべきエンディングまでに己が生の答えを見つけるゲームだ。本人が死後の世界に確信を持てたなら、命を捧げ即身仏と成ってもいい。戦争を止めようと躍起になってもいい。
+ 作家なら、芸術に身を捧げることで美の女神からキスがもらえると思い込めばいい。その恍惚な口づけさえあれば、奇妙な生き様に大満足できると、すべて報われると信仰するだけの話だ。
+ 死を受け入れるまでの助走期間に、人間は居る。
+ 生も死もすべて忘れて現実から逃げ出すように、睡眠薬を飲み、意識と無意識の中間を彷徨う。眠りにおちる寸前、きっとこれらは死の予行演習で、天使と悪魔は傍で微笑んでいる。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-10-30 06:27\n天堂真的存在吗\n天国なんてあるのかな\n\n寿命も近づき、死後に天国へ導かれんと目処を立てたいトランプ大統領は戦争を止めんとし、日本の総理大臣が彼をノーベル平和賞へ推薦する事で同盟を強める。結果的に、何万もの人類の血が流れていく苦しみが止まるなら、それは間違いなく立派な功績で。その誇りを胸に天寿による死を迎え、穢れなき天使のお迎えに笑顔で応える。\n 天国や輪廻転生、死後の裁きなんてこのように本人が思い込んで幸せになれればいい。他ならぬ己が「ここまで善行を積めばわたしの死後は約束されただろう」と安堵できたなら、それでいい。要するに現世とは来るべきエンディングまでに己が生の答えを見つけるゲームだ。本人が死後の世界に確信を持てたなら、命を捧げ即身仏と成ってもいい。戦争を止めようと躍起になってもいい。\n 作家なら、芸術に身を捧げることで美の女神からキスがもらえると思い込めばいい。その恍惚な口づけさえあれば、奇妙な生き様に大満足できると、すべて報われると信仰するだけの話だ。\n 死を受け入れるまでの助走期間に、人間は居る。\n 生も死もすべて忘れて現実から逃げ出すように、睡眠薬を飲み、意識と無意識の中間を彷徨う。眠りにおちる寸前、きっとこれらは死の予行演習で、天使と悪魔は傍で微笑んでいる。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

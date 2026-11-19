@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>色彩迷宫 甘川文化村</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2024-12-12 10:08</p>
+  <h1>色彩迷宫 甘川文化村</h1>
+  <p class="ja-title">色彩の迷宮 甘川文化村</p>
+</header>
+<main>
+  <article class="body">韓国旅（といっても釜山だけですが）で最も写真を撮れてよかった場所、甘川文化村。
+
+見ての通り、色彩の村である。そして、中へ入ってみると驚くほど複雑で、さながら色の迷宮を彷徨うような夢見心地へ包まれる。世界を歩いたなかで五指に入る幻想体験。
+ 外から一望する風景も素晴らしいのですが、ここは飛び込んだ先にある構造と生活に散りばめられた色を歩いてこそ。
+
+ここでは人が生きている。生活をしている。だからこそ多くの場所に色が生まれていく。なんと生命に溢れた場所でしょうか。
+
+この村は戦争での避難民と対極道教徒によって作られたバラック。なので非常にくねくねとした山に形成され、公共の道路でない狭い道や階段によって成り立っている。
+
+決まった順路もなく、とにかく好きなように上下左右に移動できる。稀にお婆ちゃんの手芸店やちょっとしたお食事処へ辿り着く。もちろん地図は無い。こんなゲームのような楽しみが現実で味わえるとは。勾配の急な階段を上り、道と呼べない隙間を抜けるたび、どこかの景色にたどり着く。それが面白くてずっと歩き続けてしまう。色とりどりの視界に溺れながら。
+ 子供のように色の迷路を満喫している間に夜になる。夜になって暖色に覆われる村の全景はスマホのカメラなんかじゃ切り取れない。
+
+ひとつひとつの色に住民が居て、生きている。
+ また色彩の待つ意味へ近づけた。
+
+View this post on Instagram A post shared by 無貌の神 (@nyalra_)</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-12-12 10:08\n色彩迷宫 甘川文化村\n色彩の迷宮 甘川文化村\n\n韓国旅（といっても釜山だけですが）で最も写真を撮れてよかった場所、甘川文化村。\n\n見ての通り、色彩の村である。そして、中へ入ってみると驚くほど複雑で、さながら色の迷宮を彷徨うような夢見心地へ包まれる。世界を歩いたなかで五指に入る幻想体験。\n 外から一望する風景も素晴らしいのですが、ここは飛び込んだ先にある構造と生活に散りばめられた色を歩いてこそ。\n\nここでは人が生きている。生活をしている。だからこそ多くの場所に色が生まれていく。なんと生命に溢れた場所でしょうか。\n\nこの村は戦争での避難民と対極道教徒によって作られたバラック。なので非常にくねくねとした山に形成され、公共の道路でない狭い道や階段によって成り立っている。\n\n決まった順路もなく、とにかく好きなように上下左右に移動できる。稀にお婆ちゃんの手芸店やちょっとしたお食事処へ辿り着く。もちろん地図は無い。こんなゲームのような楽しみが現実で味わえるとは。勾配の急な階段を上り、道と呼べない隙間を抜けるたび、どこかの景色にたどり着く。それが面白くてずっと歩き続けてしまう。色とりどりの視界に溺れながら。\n 子供のように色の迷路を満喫している間に夜になる。夜になって暖色に覆われる村の全景はスマホのカメラなんかじゃ切り取れない。\n\nひとつひとつの色に住民が居て、生きている。\n また色彩の待つ意味へ近づけた。\n\nView this post on Instagram A post shared by 無貌の神 (@nyalra_)"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：催眠</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-06-13 03:38</p>
+  <h1>一口随笔：催眠</h1>
+  <p class="ja-title">一口エッセイ:催眠</p>
+</header>
+<main>
+  <article class="body">たまには性的嗜好の話をします。単刀直入に言いますと、僕は生来の「催眠・洗脳」大好き人間として育ちました。恐らく、戦隊やライダー、プリキュアなどの悪堕ちや洗脳シーン、後はクレしんのハイグレ大魔王を見て、「心を……自我を操られる」こと以上の陵辱は無いと認識したのでしょう。正義のヒーローが闇に堕ちて市民を襲う姿、その精神の葛藤。それに興奮を覚えます。
+ 「我思う、ゆえに我あり」なる命題がありますが、その理屈で言うなら、何より大切な「我」を奪って操作するんです。こんなに恐ろしいことないでしょう。自分が自分じゃなくなり、他人に好き勝手弄ばれる瞬間、想像すると身震いしますよね。『攻殻機動隊』は、どんどん義体化する世界において自分の感性を、直感を信じることを伝える作品でしたが、その直感が信じられないのですから、もう狂う一方なのですね。
+
+そういう意味で、現行の『デリシャスパーティ♡プリキュア』に登場するジェントルーは、ドツボです。普段は温厚で真面目な生徒会長が、悪の組織に洗脳され、珍妙な格好に身を包み、間抜けなポーズや発言を繰り返す。しかも、途中で「わたしを止めて……」と葛藤もある。満点！
+
+自分で自分を信じられない……身体が勝手に別の行動を起こす……もし、現実にそんなことができたら、この世界はどうなってしまうのでしょう？ 果たして、この文章を打っている僕は、今も自分の意思で行っているのでしょうか？
+
+毎日の日記をまとめた同人誌を販売中！
+ みんな洗脳されたと思って読んでみてね！
+
+商業エッセイ集の方も読んでもらえると、なお狂い悶えます。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-13 03:38\n一口随笔：催眠\n一口エッセイ:催眠\n\nたまには性的嗜好の話をします。単刀直入に言いますと、僕は生来の「催眠・洗脳」大好き人間として育ちました。恐らく、戦隊やライダー、プリキュアなどの悪堕ちや洗脳シーン、後はクレしんのハイグレ大魔王を見て、「心を……自我を操られる」こと以上の陵辱は無いと認識したのでしょう。正義のヒーローが闇に堕ちて市民を襲う姿、その精神の葛藤。それに興奮を覚えます。\n 「我思う、ゆえに我あり」なる命題がありますが、その理屈で言うなら、何より大切な「我」を奪って操作するんです。こんなに恐ろしいことないでしょう。自分が自分じゃなくなり、他人に好き勝手弄ばれる瞬間、想像すると身震いしますよね。『攻殻機動隊』は、どんどん義体化する世界において自分の感性を、直感を信じることを伝える作品でしたが、その直感が信じられないのですから、もう狂う一方なのですね。\n\nそういう意味で、現行の『デリシャスパーティ♡プリキュア』に登場するジェントルーは、ドツボです。普段は温厚で真面目な生徒会長が、悪の組織に洗脳され、珍妙な格好に身を包み、間抜けなポーズや発言を繰り返す。しかも、途中で「わたしを止めて……」と葛藤もある。満点！\n\n自分で自分を信じられない……身体が勝手に別の行動を起こす……もし、現実にそんなことができたら、この世界はどうなってしまうのでしょう？ 果たして、この文章を打っている僕は、今も自分の意思で行っているのでしょうか？\n\n毎日の日記をまとめた同人誌を販売中！\n みんな洗脳されたと思って読んでみてね！\n\n商業エッセイ集の方も読んでもらえると、なお狂い悶えます。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

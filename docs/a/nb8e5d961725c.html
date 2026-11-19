@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NicoNico动画与奇怪的家伙们的受容所</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-03-06 04:25</p>
+  <h1>NicoNico动画与奇怪的家伙们的受容所</h1>
+  <p class="ja-title">ニコニコ動画と変なヤツらの受け皿</p>
+</header>
+<main>
+  <article class="body">『レッツゴー!陰陽師』が15周年であるらしいです。あらゆる困難が科学で解決する平成の時代が終わり、陰謀論と混乱が渦巻く令和の世が訪れたことを矢部野彦麿はどう感じているのでしょう。
+ この動画はご存知の通り、ニコニコ動画の超古株です。歴史ですね。当時クソガキだった僕も携帯動画変換君でPSPに入れて視聴していましたよ。それが最も未来的なことだと思っていたから。
+ そんな自分が、時を経て大人になり、運営会社のドワンゴと仕事をした時は不思議な気分でした。2017年かな。僕がねこますさんのことを書いた記事が広まったことで、登場したばかりのVtuber文化について教えてくれとドワンゴのお偉いさんが夜中にやってきたんです。そのまま隣にいただけの友人の岡島と一緒にタクシーで運ばれた。それからしばらく、僕は企画などを、岡島は動画編集を担当した。社内はとても自由で、起きた時間に来て適当な時に帰る社員も多かったし、才能と実力さえあれば社会性は問わない大らかな職場でした。なにせ、急に僕のようなバカを引っ張ってくるくらいですから。
+ とはいえ、さすがに部外者が長くいるわけにいかないので、これ以上は社員にならざるを得ないタイミングで辞めました。ちょうど、流行の匂いに釣られた大人たちが集まってきて怖かったし。社会！
+ 「めちゃくちゃ面白いけど世間に馴染めない奴ら」……配信者もクリエイターもエンジニアを集めて混沌としつつもお祭り騒ぎをする良い環境だったと思う。今はネットの面白い人に課金する導線がたくさんあるけれど、その前の時代の変な奴らの受け皿としての場であったのは優しいことですね。
+
+毎日の日記をまとめた同人誌が販売中。きっとこの日々も、いつか良い思い出に代わる。
+
+商業エッセイ集もよろしくね。こんなバカが生きていきた証です。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-03-06 04:25\nNicoNico动画与奇怪的家伙们的受容所\nニコニコ動画と変なヤツらの受け皿\n\n『レッツゴー!陰陽師』が15周年であるらしいです。あらゆる困難が科学で解決する平成の時代が終わり、陰謀論と混乱が渦巻く令和の世が訪れたことを矢部野彦麿はどう感じているのでしょう。\n この動画はご存知の通り、ニコニコ動画の超古株です。歴史ですね。当時クソガキだった僕も携帯動画変換君でPSPに入れて視聴していましたよ。それが最も未来的なことだと思っていたから。\n そんな自分が、時を経て大人になり、運営会社のドワンゴと仕事をした時は不思議な気分でした。2017年かな。僕がねこますさんのことを書いた記事が広まったことで、登場したばかりのVtuber文化について教えてくれとドワンゴのお偉いさんが夜中にやってきたんです。そのまま隣にいただけの友人の岡島と一緒にタクシーで運ばれた。それからしばらく、僕は企画などを、岡島は動画編集を担当した。社内はとても自由で、起きた時間に来て適当な時に帰る社員も多かったし、才能と実力さえあれば社会性は問わない大らかな職場でした。なにせ、急に僕のようなバカを引っ張ってくるくらいですから。\n とはいえ、さすがに部外者が長くいるわけにいかないので、これ以上は社員にならざるを得ないタイミングで辞めました。ちょうど、流行の匂いに釣られた大人たちが集まってきて怖かったし。社会！\n 「めちゃくちゃ面白いけど世間に馴染めない奴ら」……配信者もクリエイターもエンジニアを集めて混沌としつつもお祭り騒ぎをする良い環境だったと思う。今はネットの面白い人に課金する導線がたくさんあるけれど、その前の時代の変な奴らの受け皿としての場であったのは優しいことですね。\n\n毎日の日記をまとめた同人誌が販売中。きっとこの日々も、いつか良い思い出に代わる。\n\n商業エッセイ集もよろしくね。こんなバカが生きていきた証です。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：任意广播的帅气</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-01-28 03:59</p>
+  <h1>一口随笔：任意广播的帅气</h1>
+  <p class="ja-title">一口エッセイ:任意ラヂヲのカッコよさ</p>
+</header>
+<main>
+  <article class="body">ゲームの発売前インタビューを受けた際に、影響を受けた本として、「任意読本」を挙げたので、今日は任意ラヂヲについての話をしましょう。詳細に説明すると長くなる上に混沌とするので、ひとまず「古のインターネットで流行した、濃いオタクコンテンツ・ネットネタが9割を占める放送」が存在した認識で。その台本をまとめたものが、任意読本。
+
+僕は、この本を手に入れてから今までに何度も何度も読み返し、殆どのセリフを暗記している。そもそも、このラジオはBGMとセリフのテンポを合わせることに重点を置いており、音MADのような聴き心地があるので、歌詞を覚えるように台本が暗記できるのですね。このMADな手法が、インターネットっぽくて良いんだ。拙作のDay11〜20の間に流れるBGMは、任意ラヂヲをイメージしている。
+ このラジオの濃さを説明するのは難しい。何故なら、これは本物の老人会であり、それもネットスラングが飛び交う程度でなく、当時の有名個人サイトの管理人の趣味嗜好や個人情報、当時のコミケの珍事件やサークル情報、当時はまだ珍しかったコスプレAVのタイトルなどを、いっさい希釈せずに原液をぶつけられる。あの時代のネットのカオスを凝縮した芸術作品でして、つまりは余程当時のネット文化に興味ないと何も伝わらないんだ。
+ 任意ラヂヲの一番カッコいいところは、その強い時代性ゆえに、続けるとネタが古びて陳腐化することを恐れ、大人気の中きっかり10回で終了したことです。引き際が良すぎる。惜しまれるうちが花、あまりにネット特攻すぎて太く短く生きる作品を、にゃるらは永久に忘れません。えんいー。
+
+ひたすら美少女ゲームの話をしているだけの同人誌や、毎日のエッセイをまとめた同人誌をboothにて販売中です。僕の日記も、いつか時代を感じるための資料になるのでしょうか。
+
+先月に発売した商業エッセイ集もよろしくお願いします。製作ゲームの思想として土台になっていると好評。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-01-28 03:59\n一口随笔：任意广播的帅气\n一口エッセイ:任意ラヂヲのカッコよさ\n\nゲームの発売前インタビューを受けた際に、影響を受けた本として、「任意読本」を挙げたので、今日は任意ラヂヲについての話をしましょう。詳細に説明すると長くなる上に混沌とするので、ひとまず「古のインターネットで流行した、濃いオタクコンテンツ・ネットネタが9割を占める放送」が存在した認識で。その台本をまとめたものが、任意読本。\n\n僕は、この本を手に入れてから今までに何度も何度も読み返し、殆どのセリフを暗記している。そもそも、このラジオはBGMとセリフのテンポを合わせることに重点を置いており、音MADのような聴き心地があるので、歌詞を覚えるように台本が暗記できるのですね。このMADな手法が、インターネットっぽくて良いんだ。拙作のDay11〜20の間に流れるBGMは、任意ラヂヲをイメージしている。\n このラジオの濃さを説明するのは難しい。何故なら、これは本物の老人会であり、それもネットスラングが飛び交う程度でなく、当時の有名個人サイトの管理人の趣味嗜好や個人情報、当時のコミケの珍事件やサークル情報、当時はまだ珍しかったコスプレAVのタイトルなどを、いっさい希釈せずに原液をぶつけられる。あの時代のネットのカオスを凝縮した芸術作品でして、つまりは余程当時のネット文化に興味ないと何も伝わらないんだ。\n 任意ラヂヲの一番カッコいいところは、その強い時代性ゆえに、続けるとネタが古びて陳腐化することを恐れ、大人気の中きっかり10回で終了したことです。引き際が良すぎる。惜しまれるうちが花、あまりにネット特攻すぎて太く短く生きる作品を、にゃるらは永久に忘れません。えんいー。\n\nひたすら美少女ゲームの話をしているだけの同人誌や、毎日のエッセイをまとめた同人誌をboothにて販売中です。僕の日記も、いつか時代を感じるための資料になるのでしょうか。\n\n先月に発売した商業エッセイ集もよろしくお願いします。製作ゲームの思想として土台になっていると好評。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

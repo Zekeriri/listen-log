@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>精选一口随笔：《便利店人间》与人际关系的恐惧</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-01-01 12:16</p>
+  <h1>精选一口随笔：《便利店人间》与人际关系的恐惧</h1>
+  <p class="ja-title">選り抜き一口エッセイ：「コンビニ人間」と人間関係の恐怖</p>
+</header>
+<main>
+  <article class="body">「コンビニ人間」を読みました。魂のこもった恐ろしい作品。社会に馴染めない登場人物たちの「ズレ」を徹底的に描き、人間関係のイヤな部分を延々と覗かされる。バックヤードで行われる狭い人間関係の陰湿さ、複雑さ。自分は耐えきれず即辞めたので、この苦しみには共感できました。
+ 僕は、コンビニの業務内容が覚えられずに追いつけなかったり、些細な不注意を連発してしまう問題もありましたが、何よりそれを笑って飲み会で話のネタにする店長の存在がつらかった。一人だけ無能な敵を作っておくことで、他の店員たちを団結させていた訳ですね。賃金をもらっているのにろくに役に立てない僕に非はあるので、八方塞がりでした。社会は恐ろしい。そうやって同僚をうっすら見下しながら成り立つ環境の描き方がリアルで、さらにこの小説では、アルバイトや未婚など社会的立場の弱い人間へ「アドバイス」をする、悪気のない人間たちの傲慢さまで高い解像度で描写されています。まともな大人たちによる「アドバイス」や「説教」の怖さたるや。文章の一つ一つから強い怨念を感じます。
+ ここまでなら他作品でも摂取できる恐怖体験かも知れませんが、コンビニ人間は、それでもコンビニに無理やり適合した、適合しすぎた主人公の苦難の人生が本題であり、その苦悩の日々は読んでいて胸が詰まる。是非、この歯車のズレによる絶望を読んで味わってください。
+ ちなみに、本作の「社会とのズレ」が好きなら、「推し、燃ゆ」も気にいると思います。あわせて読んで、どんどん社会からズレていこう。
+
+毎日のエッセイをまとめた同人誌をBOOTHにて販売中です。いろんな本の話もあります。宜しくお願いします。
+
+でたばっかりの商業エッセイ集もよろしくね。社会との話もいっぱいあります。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-01-01 12:16\n精选一口随笔：《便利店人间》与人际关系的恐惧\n選り抜き一口エッセイ：「コンビニ人間」と人間関係の恐怖\n\n「コンビニ人間」を読みました。魂のこもった恐ろしい作品。社会に馴染めない登場人物たちの「ズレ」を徹底的に描き、人間関係のイヤな部分を延々と覗かされる。バックヤードで行われる狭い人間関係の陰湿さ、複雑さ。自分は耐えきれず即辞めたので、この苦しみには共感できました。\n 僕は、コンビニの業務内容が覚えられずに追いつけなかったり、些細な不注意を連発してしまう問題もありましたが、何よりそれを笑って飲み会で話のネタにする店長の存在がつらかった。一人だけ無能な敵を作っておくことで、他の店員たちを団結させていた訳ですね。賃金をもらっているのにろくに役に立てない僕に非はあるので、八方塞がりでした。社会は恐ろしい。そうやって同僚をうっすら見下しながら成り立つ環境の描き方がリアルで、さらにこの小説では、アルバイトや未婚など社会的立場の弱い人間へ「アドバイス」をする、悪気のない人間たちの傲慢さまで高い解像度で描写されています。まともな大人たちによる「アドバイス」や「説教」の怖さたるや。文章の一つ一つから強い怨念を感じます。\n ここまでなら他作品でも摂取できる恐怖体験かも知れませんが、コンビニ人間は、それでもコンビニに無理やり適合した、適合しすぎた主人公の苦難の人生が本題であり、その苦悩の日々は読んでいて胸が詰まる。是非、この歯車のズレによる絶望を読んで味わってください。\n ちなみに、本作の「社会とのズレ」が好きなら、「推し、燃ゆ」も気にいると思います。あわせて読んで、どんどん社会からズレていこう。\n\n毎日のエッセイをまとめた同人誌をBOOTHにて販売中です。いろんな本の話もあります。宜しくお願いします。\n\nでたばっかりの商業エッセイ集もよろしくね。社会との話もいっぱいあります。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

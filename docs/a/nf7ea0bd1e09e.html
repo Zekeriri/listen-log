@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：超天酱T卡要发售了</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-10-12 03:45</p>
+  <h1>一口随笔：超天酱T卡要发售了</h1>
+  <p class="ja-title">一口エッセイ:超てんちゃんTカードが出るよ</p>
+</header>
+<main>
+  <article class="body">超てんちゃんがTポイントカードになるよ！
+とってもかわいいから、みんな9999999枚予約しなーhttps://t.co/I1SFy3Xy8A pic.twitter.com/8gbkO3wHhQ— 🎀超絶最かわ🎀てんしちゃん (@x_angelkawaii_x) October 11, 2022
+
+超てんちゃんTカードが予約開始されました。
+ なんでTカードとコラボ！？ と驚かれている方が散見されましたが、他ならぬ原作者の僕もビックリしています。いや、案件自体は嬉しいですけど。こういう「なんで！？」みたいな露出が増えると、人気が出ている実感が生まれて引き締まりますね。もっと色んなところで超てんちゃんを目にするようになって欲しい！
+
+しかも、TSUTAYA公式による超てんちゃんの説明文が「インターネットエンジェル、あめちゃんが配信時に仮装する姿である〜」と、あくまであめちゃんを主人格として解説してくれているので二度ビックリ。まあ既に一回監修としてテキストに目を通していた気もしますが。いかんせん、毎日なんらかのものをチェックしたり書いたりしているので、もう記憶が持たないよ……。ちなみにデザインとしてイラストを選んだのは僕です。可愛いでしょう。
+ さて、冒頭の話に戻ると、人が真に作品を「流行ってるな」と認識するのは、思いがけないところで知っている作品を目にした時ではないでしょうか。ふとした時にCMで流れるとか、あまり興味なさそうな友人が話題にしているとか。そういう意味では、Tカードになるのは、かなり流行ってる感ありません？ あるよね。
+ 監修に追われるのは疲れるけれど、みんながふとした時に、「あっ超てんちゃんいる！」と驚く様子を胸に頑張るね。
+
+毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-10-12 03:45\n一口随笔：超天酱T卡要发售了\n一口エッセイ:超てんちゃんTカードが出るよ\n\n超てんちゃんがTポイントカードになるよ！\nとってもかわいいから、みんな9999999枚予約しなーhttps://t.co/I1SFy3Xy8A pic.twitter.com/8gbkO3wHhQ— 🎀超絶最かわ🎀てんしちゃん (@x_angelkawaii_x) October 11, 2022\n\n超てんちゃんTカードが予約開始されました。\n なんでTカードとコラボ！？ と驚かれている方が散見されましたが、他ならぬ原作者の僕もビックリしています。いや、案件自体は嬉しいですけど。こういう「なんで！？」みたいな露出が増えると、人気が出ている実感が生まれて引き締まりますね。もっと色んなところで超てんちゃんを目にするようになって欲しい！\n\nしかも、TSUTAYA公式による超てんちゃんの説明文が「インターネットエンジェル、あめちゃんが配信時に仮装する姿である〜」と、あくまであめちゃんを主人格として解説してくれているので二度ビックリ。まあ既に一回監修としてテキストに目を通していた気もしますが。いかんせん、毎日なんらかのものをチェックしたり書いたりしているので、もう記憶が持たないよ……。ちなみにデザインとしてイラストを選んだのは僕です。可愛いでしょう。\n さて、冒頭の話に戻ると、人が真に作品を「流行ってるな」と認識するのは、思いがけないところで知っている作品を目にした時ではないでしょうか。ふとした時にCMで流れるとか、あまり興味なさそうな友人が話題にしているとか。そういう意味では、Tカードになるのは、かなり流行ってる感ありません？ あるよね。\n 監修に追われるのは疲れるけれど、みんながふとした時に、「あっ超てんちゃんいる！」と驚く様子を胸に頑張るね。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

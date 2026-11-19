@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>没有什么特别值得一提的照片 澳大利亚篇</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2024-10-15 04:03</p>
+  <h1>没有什么特别值得一提的照片 澳大利亚篇</h1>
+  <p class="ja-title">特筆するほどでもない写真 オーストラリア編</p>
+</header>
+<main>
+  <article class="body">今回の旅での、わざわざ深く書くこともないくらいの出来事など。オーストラリア編。
+
+メルボルンの大図書館。世界で最も美しい図書館のひとつらしい。たしかに荘厳なものの、この廊下部分では端から端まで女性観光客で埋まってSNS用の写真を撮っている。どちらかと言えば、その様子の方が印象に残る。螺旋階段が良い！
+
+オーストラリアといえばコーヒー。
+
+非常に小さな一口サイズのカップに、苦味もカフェインも凝縮して込められていたりする。
+ 一気に飲み干すとめちゃくちゃ目が覚めてビックリする。一撃必殺が本場か。
+
+そりゃカフェの椅子も逆さになる。
+
+泣く女。
+ 泣いてる女を放っておけないぜ！
+ それはそれとして、オーストラリアの美術館にはあまり統一性や拘りが見えなかった。
+ アジアと白人文化、すべてを飾ろうとし過ぎてきて全体的に偏りもなく見応えが薄い印象を受ける。
+ オタク的なカルチャーどころかコミックもほとんど見当たらず、あらゆる設備と平和が整備された国だからこそ、日常のメインな生活がなにより重視されており、フィクションやアートに関しては「飢え」が見えずのんびりとしている。
+ しかし、その良い意味での呑気さから生まれる独自の作品たちには、これまたなかなか他国で見ない味わいがあるので、キミもオーストラリアのインディー文化を覗いてみよう。コーヒーと同じ、フレーバーの差異で生まれた独特の味がある。
+ たとえば公園にいた遊具のセンスは、唯一無二の迫力があった！
+
+イエローアイズ・滑り台・ドラゴン。
+ ツイン・ブランコ・首なしキリン。
+ 次の伝説ポケモンはこの二人から選ぶらしい。そんな感じ。明日から通常の日記に戻すね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-10-15 04:03\n没有什么特别值得一提的照片 澳大利亚篇\n特筆するほどでもない写真 オーストラリア編\n\n今回の旅での、わざわざ深く書くこともないくらいの出来事など。オーストラリア編。\n\nメルボルンの大図書館。世界で最も美しい図書館のひとつらしい。たしかに荘厳なものの、この廊下部分では端から端まで女性観光客で埋まってSNS用の写真を撮っている。どちらかと言えば、その様子の方が印象に残る。螺旋階段が良い！\n\nオーストラリアといえばコーヒー。\n\n非常に小さな一口サイズのカップに、苦味もカフェインも凝縮して込められていたりする。\n 一気に飲み干すとめちゃくちゃ目が覚めてビックリする。一撃必殺が本場か。\n\nそりゃカフェの椅子も逆さになる。\n\n泣く女。\n 泣いてる女を放っておけないぜ！\n それはそれとして、オーストラリアの美術館にはあまり統一性や拘りが見えなかった。\n アジアと白人文化、すべてを飾ろうとし過ぎてきて全体的に偏りもなく見応えが薄い印象を受ける。\n オタク的なカルチャーどころかコミックもほとんど見当たらず、あらゆる設備と平和が整備された国だからこそ、日常のメインな生活がなにより重視されており、フィクションやアートに関しては「飢え」が見えずのんびりとしている。\n しかし、その良い意味での呑気さから生まれる独自の作品たちには、これまたなかなか他国で見ない味わいがあるので、キミもオーストラリアのインディー文化を覗いてみよう。コーヒーと同じ、フレーバーの差異で生まれた独特の味がある。\n たとえば公園にいた遊具のセンスは、唯一無二の迫力があった！\n\nイエローアイズ・滑り台・ドラゴン。\n ツイン・ブランコ・首なしキリン。\n 次の伝説ポケモンはこの二人から選ぶらしい。そんな感じ。明日から通常の日記に戻すね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

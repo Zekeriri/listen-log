@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>学习如何阅读美漫</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2026-08-12 09:20</p>
+  <h1>学习如何阅读美漫</h1>
+  <p class="ja-title">アメコミの読み方を知っていく</p>
+</header>
+<main>
+  <article class="body">気圧に負ける。
+ 逆に、台風が来た時レベルの気圧に負けない暮らしってどうしているんだと怒りすら湧く。カフェインでしょうか？
+ ほとんど風邪を引いたかのような怠さを引きずり、アメコミを読む。友人たちがマーベルの格闘ゲームにお熱なので、自分も引っ張られて色々読み漁っている日々。
+ アメコミは順番読むのが非常に難しい。スパイダーマンの4巻を読んだら次はヴェノムの7巻を読もう！ みたいなことが頻発する。これらを「複雑な鉄道地図」だと理解する。試しに、カーネイジが出てくる話だけを追っていく。気づけば線路はヴェノムの大きなストーリーと合流し、なんとアヴェンジャーズまで出動した。一人を追って電車に乗っているかぎり、いずれは巨大な駅へたどり着くようなイメージですね。
+ 今まで単巻で読みやすそうなものから追っていたので、こんなにしっかりと順を追って体系を理解しようと思ったのは初めて。みんなカッコいいから……。
+ なので、気になったヒーロー、ヴィランをできるだけ時系列で追ってみる。いずれドデカいストーリーと合流するので、その際にまた気になったヒーローやヴィランを遡る。下りですね。
+ こういうイメージで読んでおります。
+
+カーネイジは読める分だけ翻訳前でも読んでみたので、いずれもっと彼のことを脳内で整理できたら話してみたいですね。
+ 今はまだ気圧に勝って長文が書けるほど強くはない。
+ こんなボロボロでは立派なヴィランになれない。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-08-12 09:20\n学习如何阅读美漫\nアメコミの読み方を知っていく\n\n気圧に負ける。\n 逆に、台風が来た時レベルの気圧に負けない暮らしってどうしているんだと怒りすら湧く。カフェインでしょうか？\n ほとんど風邪を引いたかのような怠さを引きずり、アメコミを読む。友人たちがマーベルの格闘ゲームにお熱なので、自分も引っ張られて色々読み漁っている日々。\n アメコミは順番読むのが非常に難しい。スパイダーマンの4巻を読んだら次はヴェノムの7巻を読もう！ みたいなことが頻発する。これらを「複雑な鉄道地図」だと理解する。試しに、カーネイジが出てくる話だけを追っていく。気づけば線路はヴェノムの大きなストーリーと合流し、なんとアヴェンジャーズまで出動した。一人を追って電車に乗っているかぎり、いずれは巨大な駅へたどり着くようなイメージですね。\n 今まで単巻で読みやすそうなものから追っていたので、こんなにしっかりと順を追って体系を理解しようと思ったのは初めて。みんなカッコいいから……。\n なので、気になったヒーロー、ヴィランをできるだけ時系列で追ってみる。いずれドデカいストーリーと合流するので、その際にまた気になったヒーローやヴィランを遡る。下りですね。\n こういうイメージで読んでおります。\n\nカーネイジは読める分だけ翻訳前でも読んでみたので、いずれもっと彼のことを脳内で整理できたら話してみたいですね。\n 今はまだ気圧に勝って長文が書けるほど強くはない。\n こんなボロボロでは立派なヴィランになれない。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

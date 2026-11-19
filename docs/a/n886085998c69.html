@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：合租屋独特的氛围</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-06-10 13:01</p>
+  <h1>一口随笔：合租屋独特的氛围</h1>
+  <p class="ja-title">一口エッセイ:シェアハウス独特の空気</p>
+</header>
+<main>
+  <article class="body">中野のシェアハウスへ遊びに行きました。
+ 自分も以前はシェアハウスで数年暮らしていたので、ごちゃごちゃと人が一つの部屋に集まる感覚は久々。男6:女3くらいの割合で初対面の人間たちがぶち込まれる。
+ まるで合コンのように（合コンなんてまともに参加したことないので想像でしかない）一人一人自己紹介を始め、地理を勉強して子供向けに本を執筆している方、短歌を書いて国語の教科書に載っている方など、本来なら出会うことの無さそうな人たちとの会合が行われます。
+ この&quot;感じ&quot;は、とても懐かしい。なにもかもぶっつけ本番なので混沌としており、全員の倫理観やノリ、趣味嗜好の傾向を探りながら、それぞれが好きに話を展開していく。ある者はエログロの話がどれだけウケるか慎重に計りながらアングラな話題を出したり、ある者は（これは僕だが）シン・ウルトラマンの原作要素の解説をしたりする。先程は合コンを引き合いに出しましたが、「よき相手を見つける」合コンと違って、ただただオタク・サブカル寄りの人間がないまぜになった空間が出現するだけのシェアハウスはカオスでしかない。しかし、この一期一会で再現性のない雰囲気が心地よくもある。どうせみんな明日にはだいたいのことを忘れている。旅の恥は掻き捨てのような優しいようで冷たくもある微妙な人間関係を浴びることこそ、シェアハウスの魅力であるのかもしれません。
+
+毎日の日記をまとめた同人誌をBOOTHにて販売中！ 新刊手にとってみてね。
+
+商業エッセイ集もよろしくね。シェアハウスに居た時代に書いたものもあり、混沌とした愉快な一冊です。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-10 13:01\n一口随笔：合租屋独特的氛围\n一口エッセイ:シェアハウス独特の空気\n\n中野のシェアハウスへ遊びに行きました。\n 自分も以前はシェアハウスで数年暮らしていたので、ごちゃごちゃと人が一つの部屋に集まる感覚は久々。男6:女3くらいの割合で初対面の人間たちがぶち込まれる。\n まるで合コンのように（合コンなんてまともに参加したことないので想像でしかない）一人一人自己紹介を始め、地理を勉強して子供向けに本を執筆している方、短歌を書いて国語の教科書に載っている方など、本来なら出会うことの無さそうな人たちとの会合が行われます。\n この\"感じ\"は、とても懐かしい。なにもかもぶっつけ本番なので混沌としており、全員の倫理観やノリ、趣味嗜好の傾向を探りながら、それぞれが好きに話を展開していく。ある者はエログロの話がどれだけウケるか慎重に計りながらアングラな話題を出したり、ある者は（これは僕だが）シン・ウルトラマンの原作要素の解説をしたりする。先程は合コンを引き合いに出しましたが、「よき相手を見つける」合コンと違って、ただただオタク・サブカル寄りの人間がないまぜになった空間が出現するだけのシェアハウスはカオスでしかない。しかし、この一期一会で再現性のない雰囲気が心地よくもある。どうせみんな明日にはだいたいのことを忘れている。旅の恥は掻き捨てのような優しいようで冷たくもある微妙な人間関係を浴びることこそ、シェアハウスの魅力であるのかもしれません。\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中！ 新刊手にとってみてね。\n\n商業エッセイ集もよろしくね。シェアハウスに居た時代に書いたものもあり、混沌とした愉快な一冊です。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

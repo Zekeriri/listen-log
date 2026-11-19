@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>在澳大利亚看到了蝴蝶</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2024-10-11 12:11</p>
+  <h1>在澳大利亚看到了蝴蝶</h1>
+  <p class="ja-title">オーストラリアで蝶を見た</p>
+</header>
+<main>
+  <article class="body">オーストラリアで蝶を見た。
+
+青、黒、白、黄、緑。色とりどりの蝶を見た。
+ オーストラリアには二つの顔があり、区画整理された小粋で愉快な都市と、静かな自然。
+ 蝶が羽ばたく緑のなか。
+
+こんなに艶やかに舞う蝶々が居る場所に暮らせるなんて羨ましいね。
+
+この光景を前にしたら、誰もが箱に閉じ込めたいと願うでしょう。昆虫標本は彼女らの翅が欲しいと魅了された人間たちの罪と美の結晶です。
+
+大きな蜘蛛も遊びに来ていた。
+
+優雅に宙を行く蝶を狙う、地を這うことしかできない憐れでカッコいい捕食者。
+ 振り向くと誰も居ないメリーゴーランドが揺れていました。オーストラリアの思い出です。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-10-11 12:11\n在澳大利亚看到了蝴蝶\nオーストラリアで蝶を見た\n\nオーストラリアで蝶を見た。\n\n青、黒、白、黄、緑。色とりどりの蝶を見た。\n オーストラリアには二つの顔があり、区画整理された小粋で愉快な都市と、静かな自然。\n 蝶が羽ばたく緑のなか。\n\nこんなに艶やかに舞う蝶々が居る場所に暮らせるなんて羨ましいね。\n\nこの光景を前にしたら、誰もが箱に閉じ込めたいと願うでしょう。昆虫標本は彼女らの翅が欲しいと魅了された人間たちの罪と美の結晶です。\n\n大きな蜘蛛も遊びに来ていた。\n\n優雅に宙を行く蝶を狙う、地を這うことしかできない憐れでカッコいい捕食者。\n 振り向くと誰も居ないメリーゴーランドが揺れていました。オーストラリアの思い出です。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

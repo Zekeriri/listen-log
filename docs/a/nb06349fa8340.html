@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口散文：牙套矫正……差点失败</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2023-05-21 10:21</p>
+  <h1>一口散文：牙套矫正……差点失败</h1>
+  <p class="ja-title">一口エッセイ:マウスピース矯正……失敗寸前</p>
+</header>
+<main>
+  <article class="body">去年から歯医者でマウスピース矯正というものを行っており、これは従来のように歯にワイヤーを入れずとも透明なマウスピースを嵌めることで、他人が見てもわからないように矯正できる便利な手法です。しかもワイヤーより安い場合も多い！ やったね。
+ 僕はめちゃくちゃに歯並びが悪く、そして子供の頃は矯正させてもらえなかったため（金銭的事情）、みなさんが拙作のゲームを購入してくれたお金でようやく歯列をビシッと揃えていくぞと意気込んでいたのですが…………ものの見事にサボり始めてしまった！ そう、今僕は面倒くさくてマウスピースを嵌める工程を怠ってしまったため、その罪悪感とお医者さんに「なんで歯が動いてないの？」と訊かれる恐怖に苛まれ、次の予約を取らずに放置している！！！
+ しかもマウスピースを嵌めていない期間は少しずつ歯列が元に戻るので、このままだと無意味にお金と時間をかけたことになる。が、歯医者へ素直に「サボっちゃいました……」と報告するのが怖すぎる！ ジレンマは終わらない。
+ 周りに聞いてみると、同じ理由でマウスピースをサボった後、結局放置していても勝手に動いていくワイヤー矯正に乗り換えた方もいました。やっぱり怠けてしまうよね……。本来安くて見栄えもいいマウスピース矯正ですが、家で自分で嵌めなければならないという一点のみで、人によっては損をしてしまう寓話のようなオチなのでした。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-05-21 10:21\n一口散文：牙套矫正……差点失败\n一口エッセイ:マウスピース矯正……失敗寸前\n\n去年から歯医者でマウスピース矯正というものを行っており、これは従来のように歯にワイヤーを入れずとも透明なマウスピースを嵌めることで、他人が見てもわからないように矯正できる便利な手法です。しかもワイヤーより安い場合も多い！ やったね。\n 僕はめちゃくちゃに歯並びが悪く、そして子供の頃は矯正させてもらえなかったため（金銭的事情）、みなさんが拙作のゲームを購入してくれたお金でようやく歯列をビシッと揃えていくぞと意気込んでいたのですが…………ものの見事にサボり始めてしまった！ そう、今僕は面倒くさくてマウスピースを嵌める工程を怠ってしまったため、その罪悪感とお医者さんに「なんで歯が動いてないの？」と訊かれる恐怖に苛まれ、次の予約を取らずに放置している！！！\n しかもマウスピースを嵌めていない期間は少しずつ歯列が元に戻るので、このままだと無意味にお金と時間をかけたことになる。が、歯医者へ素直に「サボっちゃいました……」と報告するのが怖すぎる！ ジレンマは終わらない。\n 周りに聞いてみると、同じ理由でマウスピースをサボった後、結局放置していても勝手に動いていくワイヤー矯正に乗り換えた方もいました。やっぱり怠けてしまうよね……。本来安くて見栄えもいいマウスピース矯正ですが、家で自分で嵌めなければならないという一点のみで、人によっては損をしてしまう寓話のようなオチなのでした。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

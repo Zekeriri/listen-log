@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>夏季同人展C108</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2026-08-16 07:37</p>
+  <h1>夏季同人展C108</h1>
+  <p class="ja-title">夏コミC108</p>
+</header>
+<main>
+  <article class="body">新作リリースの話は改めて夜にでもしていくとして、夏コミへ。
+ なんとコミケにて頒布中にリリース時間だったので、てんやわんや。
+ いっぱいゲームをレビュしてもらえると嬉しいね。
+
+今回はVHSを頒布。趣味で……。
+
+どうしても価格を抑えきれなくて1本1万円の中、みんな来てくれたりサインを欲しがってくれたりして嬉しいよ。一生分サインしたね。VHSは海外も含めて通販できるようにたくさんあるので、これからのアナウンスをお待ち下さいね。
+
+Mintの自販機！
+
+Mintの水！？
+
+Mintのサイン！？
+
+本当に嬉しい……。
+ 数時間、朝から作業しっぱなしでつらいこともあったけれども、サインのおかげで収支的にはずっとHAPPYでした。自分が売り子で居るとも書いていないのに、それでも手紙まで持ってきてくれた方々、ありがとうございます。ただただ素直に感謝しかありません。
+ 最後に、ポスターなどのプレゼントのため、集まったファンとじゃんけん大会をしたのも面白かったね。またファンと交流できる機会があると嬉しいね。僕とお久しぶりさんのサイン、どうか大切にしてください。
+ ゲームのことについては明日書きますね。
+ よろしくお願い致します。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-08-16 07:37\n夏季同人展C108\n夏コミC108\n\n新作リリースの話は改めて夜にでもしていくとして、夏コミへ。\n なんとコミケにて頒布中にリリース時間だったので、てんやわんや。\n いっぱいゲームをレビュしてもらえると嬉しいね。\n\n今回はVHSを頒布。趣味で……。\n\nどうしても価格を抑えきれなくて1本1万円の中、みんな来てくれたりサインを欲しがってくれたりして嬉しいよ。一生分サインしたね。VHSは海外も含めて通販できるようにたくさんあるので、これからのアナウンスをお待ち下さいね。\n\nMintの自販機！\n\nMintの水！？\n\nMintのサイン！？\n\n本当に嬉しい……。\n 数時間、朝から作業しっぱなしでつらいこともあったけれども、サインのおかげで収支的にはずっとHAPPYでした。自分が売り子で居るとも書いていないのに、それでも手紙まで持ってきてくれた方々、ありがとうございます。ただただ素直に感謝しかありません。\n 最後に、ポスターなどのプレゼントのため、集まったファンとじゃんけん大会をしたのも面白かったね。またファンと交流できる機会があると嬉しいね。僕とお久しぶりさんのサイン、どうか大切にしてください。\n ゲームのことについては明日書きますね。\n よろしくお願い致します。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

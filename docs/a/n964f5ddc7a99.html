@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>那种卑鄙已经是傲慢了哦</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-01-13 18:50</p>
+  <h1>那种卑鄙已经是傲慢了哦</h1>
+  <p class="ja-title">そのヒクツさはすでに傲慢ですよぉ</p>
+</header>
+<main>
+  <article class="body">『さよならを教えて』で一番好きなセリフは「そのヒクツさはすでに傲慢ですよぉ」です。
+ 僕のような屑は、皆様の人生の夾雑物は、すぐに卑屈な態度で自虐し、下から目線で人々を眺めては、「貴方はこんなに恵まれているんですね」と不幸マウントを取ろうとしてしまう。でも、これって傲慢ですよね。見下されているつもりが相手を見下している。
+ 見下してしまってごめんなさい。と言っても、謝りながらも笑っているのです。頭を下げると表情が見えないのを良いことに、しっかり口角が上がっておりまして、内心でも表情でもニヤニヤとしながら、「死んでお詫びをしましょうか？」なんて思ってもないことが口に出るのでした。
+ 基本的にだいたいの人は僕より頭が良いので、劣等感を覚えます。これは本心です。常識とか学力とか気品とか、そういうものが僕にはありませんから。みんな頭が良くて凄いなぁ、僕みたいな胡乱でいやしいモノを実験動物のように眺めているんだろうなと思いつつ、こうして偏見の目で見ること自体が傲慢であることへの罪悪感もあるのです。
+ 誰かと話していても、「どうせ自分より全てが上の人間がまわりに居るだろうから、何話しても無駄じゃないか」と卑屈な考えが頭をよぎります。そうなると飽きられないように振る舞うのに必死で、その結果また失敗したり、相手を恵まれてるくせにと傲慢な態度で見ることで自己防衛したりを繰り返す。こんな人間が存在していてはダメですよね。死んでお詫びをしましょうか？</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-01-13 18:50\n那种卑鄙已经是傲慢了哦\nそのヒクツさはすでに傲慢ですよぉ\n\n『さよならを教えて』で一番好きなセリフは「そのヒクツさはすでに傲慢ですよぉ」です。\n 僕のような屑は、皆様の人生の夾雑物は、すぐに卑屈な態度で自虐し、下から目線で人々を眺めては、「貴方はこんなに恵まれているんですね」と不幸マウントを取ろうとしてしまう。でも、これって傲慢ですよね。見下されているつもりが相手を見下している。\n 見下してしまってごめんなさい。と言っても、謝りながらも笑っているのです。頭を下げると表情が見えないのを良いことに、しっかり口角が上がっておりまして、内心でも表情でもニヤニヤとしながら、「死んでお詫びをしましょうか？」なんて思ってもないことが口に出るのでした。\n 基本的にだいたいの人は僕より頭が良いので、劣等感を覚えます。これは本心です。常識とか学力とか気品とか、そういうものが僕にはありませんから。みんな頭が良くて凄いなぁ、僕みたいな胡乱でいやしいモノを実験動物のように眺めているんだろうなと思いつつ、こうして偏見の目で見ること自体が傲慢であることへの罪悪感もあるのです。\n 誰かと話していても、「どうせ自分より全てが上の人間がまわりに居るだろうから、何話しても無駄じゃないか」と卑屈な考えが頭をよぎります。そうなると飽きられないように振る舞うのに必死で、その結果また失敗したり、相手を恵まれてるくせにと傲慢な態度で見ることで自己防衛したりを繰り返す。こんな人間が存在していてはダメですよね。死んでお詫びをしましょうか？"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

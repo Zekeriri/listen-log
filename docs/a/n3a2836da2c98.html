@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>不合理与未来</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2026-05-29 16:29</p>
+  <h1>不合理与未来</h1>
+  <p class="ja-title">理不尽とこれから</p>
+</header>
+<main>
+  <article class="body">あまりに大きな理不尽がやってくる。
+ 僕らは全員作ったものを奪われ、ただただ皆が不快な気持ちになる。しょうもないおっさんによる傍若無人なうえで無知ゆえの放置をする様を眺め、皆で築き上げたものが落ちぶれていく様子に悲しくなるだろう。僕らが半生懸けた情熱はm決行するおっさんのデリヘル代になった。
+ いま連載しているジョジョが、人生で必ず起こる不条理に抗う話だ。たいへんに勇気が出る。不条理自体は仕方がない。反吐がでるほどにカスみたいな出来事で、関係者全員がただただ疲弊したが、自己愛を拗らせた人間の横暴への対策をみな学習できたことが収穫だ。｢みんなで逃げる｣。それしか自己愛性が強く、他人の痛みを理解できない者への対処はない。
+ 乗り越えられたら成長する。折れたら止まる。それだけ。
+ さいわい、今までのメンバーはみんなついてきてくれているし、昨日の日記のように新人も加わった。規模は大きくなり、戦った証として同士も増えた。これから僕が過労で倒れるまで、とにかくすべてを取り戻しに行く。
+ また全員が繋がれている事実が嬉しいんだ。次作の打ち合わせ中、悪徳なおっさんが邪魔してこない、金だけ取って放置もしない現状がありがたすぎて、久々に天に感謝したくらいだ。
+ 最低な人間たちが慣性で動いた残滓を喰らい潰すグロテスクな今後を尻目に。
+
+絶対に頑張り続けるからさ。
+ だから、たまには助けてね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-05-29 16:29\n不合理与未来\n理不尽とこれから\n\nあまりに大きな理不尽がやってくる。\n 僕らは全員作ったものを奪われ、ただただ皆が不快な気持ちになる。しょうもないおっさんによる傍若無人なうえで無知ゆえの放置をする様を眺め、皆で築き上げたものが落ちぶれていく様子に悲しくなるだろう。僕らが半生懸けた情熱はm決行するおっさんのデリヘル代になった。\n いま連載しているジョジョが、人生で必ず起こる不条理に抗う話だ。たいへんに勇気が出る。不条理自体は仕方がない。反吐がでるほどにカスみたいな出来事で、関係者全員がただただ疲弊したが、自己愛を拗らせた人間の横暴への対策をみな学習できたことが収穫だ。｢みんなで逃げる｣。それしか自己愛性が強く、他人の痛みを理解できない者への対処はない。\n 乗り越えられたら成長する。折れたら止まる。それだけ。\n さいわい、今までのメンバーはみんなついてきてくれているし、昨日の日記のように新人も加わった。規模は大きくなり、戦った証として同士も増えた。これから僕が過労で倒れるまで、とにかくすべてを取り戻しに行く。\n また全員が繋がれている事実が嬉しいんだ。次作の打ち合わせ中、悪徳なおっさんが邪魔してこない、金だけ取って放置もしない現状がありがたすぎて、久々に天に感謝したくらいだ。\n 最低な人間たちが慣性で動いた残滓を喰らい潰すグロテスクな今後を尻目に。\n\n絶対に頑張り続けるからさ。\n だから、たまには助けてね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

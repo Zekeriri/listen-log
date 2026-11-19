@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>精选一口随笔：也许只是工作而已</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-06-11 13:38</p>
+  <h1>精选一口随笔：也许只是工作而已</h1>
+  <p class="ja-title">選り抜き一口エッセイ: お仕事でやってるだけかもよ</p>
+</header>
+<main>
+  <article class="body">はじめて「林檎もぎれビーム!」を聴いた際に、「お仕事でやってるだけかもよ」という歌詞の部分で、物凄く怖くなった記憶があります。
+ 当時からオーケンのエッセイをそれなりに読んでいたのですが、歌詞はともかくエッセイは生の感情だと認識していたものの、もしかするとこれも「お仕事でやってるだけかもよ」なのか？ と、疑心暗鬼に陥ってしまったのです。
+ たしかに、鬱々しい歌詞や文章に惹かれてイカれたファンが寄ってきたという話を、オーケンはエッセイに書いておりました。戸川純もいわゆる不思議ちゃんから手紙が届いたと話していましたし、それらの断り方は「お仕事でやってるだけ」だったのかも知れません。
+ こんな残酷な真実を、ユーモラスに歌詞へ組み込める時点で、このセンスは凄いなとも感心もしました。やっぱり、自意識をお仕事に昇華できる時点で本物なんだと学びがありましたね。
+ 今では自分もこうして文章を書き続ける人生となり、「お仕事でやってるだけかもよ」を更に強く意識しております。ここはお仕事で割り切る時が、キャラクター性のために書かなければならない時というのがあるなと。それをいかに使い分け、どこまで紛れ込ませられるかがプロなんだろうなと、ぼんやり考えております。
+ ファンに夢を見せる職業の方が「お仕事でやってるだけかもよ」と一旦相手を冷静にさせる。なんて凄い言葉を、呪いをかけるんだと、きっとこの歌詞を聴いた時点でもうこちらの負けなんでしょうね。凄すぎる……。
+
+毎日の日記をまとめた同人誌を販売中です。最新刊、でたばかりなので手にとってね。
+
+商業エッセイ集の方もよろしくね！</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-11 13:38\n精选一口随笔：也许只是工作而已\n選り抜き一口エッセイ: お仕事でやってるだけかもよ\n\nはじめて「林檎もぎれビーム!」を聴いた際に、「お仕事でやってるだけかもよ」という歌詞の部分で、物凄く怖くなった記憶があります。\n 当時からオーケンのエッセイをそれなりに読んでいたのですが、歌詞はともかくエッセイは生の感情だと認識していたものの、もしかするとこれも「お仕事でやってるだけかもよ」なのか？ と、疑心暗鬼に陥ってしまったのです。\n たしかに、鬱々しい歌詞や文章に惹かれてイカれたファンが寄ってきたという話を、オーケンはエッセイに書いておりました。戸川純もいわゆる不思議ちゃんから手紙が届いたと話していましたし、それらの断り方は「お仕事でやってるだけ」だったのかも知れません。\n こんな残酷な真実を、ユーモラスに歌詞へ組み込める時点で、このセンスは凄いなとも感心もしました。やっぱり、自意識をお仕事に昇華できる時点で本物なんだと学びがありましたね。\n 今では自分もこうして文章を書き続ける人生となり、「お仕事でやってるだけかもよ」を更に強く意識しております。ここはお仕事で割り切る時が、キャラクター性のために書かなければならない時というのがあるなと。それをいかに使い分け、どこまで紛れ込ませられるかがプロなんだろうなと、ぼんやり考えております。\n ファンに夢を見せる職業の方が「お仕事でやってるだけかもよ」と一旦相手を冷静にさせる。なんて凄い言葉を、呪いをかけるんだと、きっとこの歌詞を聴いた時点でもうこちらの負けなんでしょうね。凄すぎる……。\n\n毎日の日記をまとめた同人誌を販売中です。最新刊、でたばかりなので手にとってね。\n\n商業エッセイ集の方もよろしくね！"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

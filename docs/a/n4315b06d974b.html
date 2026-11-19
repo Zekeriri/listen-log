@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：遇到帅气哥哥的那次</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-07-29 04:03</p>
+  <h1>一口随笔：遇到帅气哥哥的那次</h1>
+  <p class="ja-title">一口エッセイ:カッコいいお兄さんに会った回</p>
+</header>
+<main>
+  <article class="body">いつも通り、中野ブロードウェイを散歩して喫茶店で読書して帰ってきたのですが、帰宅して手を洗おうと洗面所を開けた瞬間、水がドバッと溢れてきまして、なんと洗面所が浸水してびちゃびちゃの海になっている。
+ たまたま本日読んだ本が、『ガチ恋粘着獣』と『明日カノ』の最新刊だったので、「ついに僕も誰かに住所特定されて荒らされたか！？」とビックリしましたね。引っ越し三日で！？ と。
+ もちろん、そんなわけもなく、よくよく観察すると洗濯機から水が溢れている。急いでタオルで拭き取ったものの、なぜか水がどんどん逆流しだす始末。パニックになって「水 トラブル」などで検索して出てきた業者へ来てもらうことに。
+ 調べた結果、「前の住人が排水管詰まらせてますね」とのことで、さらに「僕が来たことを言わずに管理会社と提携している24時間サポートに今から言うことを伝えてください」と言われ、従うまま通話すると無料で修理できることに！
+ 「じゃあ、わざわざ来てもらったお兄さんは、お金もらえなくて大丈夫なんですか！？」と訊くと、「この形でいいんですよ」とスッと立ち去っていく。カッコいい……。
+ その後に来たサポートのお兄さんにサクッと修理してもらって万事解決したわけですが、最初に来た業者のお兄さんのカッコ良さにベタ惚れして気持ちよくなってしまい、不幸中の幸いみたいな事件となりました（珍しく真っ当な日記）。
+
+毎日の日記をまとめた同人誌や、若い頃のエッセイをまとめた商業本をよろしくね！</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-07-29 04:03\n一口随笔：遇到帅气哥哥的那次\n一口エッセイ:カッコいいお兄さんに会った回\n\nいつも通り、中野ブロードウェイを散歩して喫茶店で読書して帰ってきたのですが、帰宅して手を洗おうと洗面所を開けた瞬間、水がドバッと溢れてきまして、なんと洗面所が浸水してびちゃびちゃの海になっている。\n たまたま本日読んだ本が、『ガチ恋粘着獣』と『明日カノ』の最新刊だったので、「ついに僕も誰かに住所特定されて荒らされたか！？」とビックリしましたね。引っ越し三日で！？ と。\n もちろん、そんなわけもなく、よくよく観察すると洗濯機から水が溢れている。急いでタオルで拭き取ったものの、なぜか水がどんどん逆流しだす始末。パニックになって「水 トラブル」などで検索して出てきた業者へ来てもらうことに。\n 調べた結果、「前の住人が排水管詰まらせてますね」とのことで、さらに「僕が来たことを言わずに管理会社と提携している24時間サポートに今から言うことを伝えてください」と言われ、従うまま通話すると無料で修理できることに！\n 「じゃあ、わざわざ来てもらったお兄さんは、お金もらえなくて大丈夫なんですか！？」と訊くと、「この形でいいんですよ」とスッと立ち去っていく。カッコいい……。\n その後に来たサポートのお兄さんにサクッと修理してもらって万事解決したわけですが、最初に来た業者のお兄さんのカッコ良さにベタ惚れして気持ちよくなってしまい、不幸中の幸いみたいな事件となりました（珍しく真っ当な日記）。\n\n毎日の日記をまとめた同人誌や、若い頃のエッセイをまとめた商業本をよろしくね！"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

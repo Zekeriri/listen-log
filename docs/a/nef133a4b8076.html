@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：夏天一定会抑郁的朋友</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-09-11 21:54</p>
+  <h1>一口随笔：夏天一定会抑郁的朋友</h1>
+  <p class="ja-title">一口エッセイ:夏に必ず鬱になる友人</p>
+</header>
+<main>
+  <article class="body">友達が夏のたびに必ず鬱になる。
+ それはもう高校時代からそうで、原因はまったく不明ですが、夏になると絶対に思考が曖昧になり、なにを言われてもキレるし、そもそも怠くてほとんど動けなくなる。米青ネ申禾斗でも根本的な解決はできなかったようです。
+ なので、先月までもずっとキレていた。十年来の友人なので僕は慣れっこですが、初めての方はそのギャップにビックリして引いてしまう。だから彼は友人があまり多い方ではないし、ずっとウーバーイーツの配達員をしている。ウーバーなら夏の間に休み続けてもいいし、特定の人間とのコミュニケーションが皆無だから。
+ 夏になると必ず一ヶ月休むことになるので、普通のアルバイトもできない。そんな話をしてもめったに信じられないだろうしデメリットがデカい。辿り着いた先が、一人で自転車を漕ぐだけのウーバー生活。
+ こういう生き方もあるのだから、僕らは偶然、ある程度の社会に適応できただけなんだと感じる。たまたま、大多数の人間用にチューニングされた世界の多数側に入っただけ。もちろん、その中でもたくさんの向き不向きがあるけれど。
+ だからこそ残酷とも、個性あって面白いとも言えるわけですし、この問題に答えはない。考えれば考えるだけ深みに入るのでここまでにしておいて、今はその友人が夏の終わりとともに元気を取り戻してきて良かったなぁと思っております。
+
+毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-09-11 21:54\n一口随笔：夏天一定会抑郁的朋友\n一口エッセイ:夏に必ず鬱になる友人\n\n友達が夏のたびに必ず鬱になる。\n それはもう高校時代からそうで、原因はまったく不明ですが、夏になると絶対に思考が曖昧になり、なにを言われてもキレるし、そもそも怠くてほとんど動けなくなる。米青ネ申禾斗でも根本的な解決はできなかったようです。\n なので、先月までもずっとキレていた。十年来の友人なので僕は慣れっこですが、初めての方はそのギャップにビックリして引いてしまう。だから彼は友人があまり多い方ではないし、ずっとウーバーイーツの配達員をしている。ウーバーなら夏の間に休み続けてもいいし、特定の人間とのコミュニケーションが皆無だから。\n 夏になると必ず一ヶ月休むことになるので、普通のアルバイトもできない。そんな話をしてもめったに信じられないだろうしデメリットがデカい。辿り着いた先が、一人で自転車を漕ぐだけのウーバー生活。\n こういう生き方もあるのだから、僕らは偶然、ある程度の社会に適応できただけなんだと感じる。たまたま、大多数の人間用にチューニングされた世界の多数側に入っただけ。もちろん、その中でもたくさんの向き不向きがあるけれど。\n だからこそ残酷とも、個性あって面白いとも言えるわけですし、この問題に答えはない。考えれば考えるだけ深みに入るのでここまでにしておいて、今はその友人が夏の終わりとともに元気を取り戻してきて良かったなぁと思っております。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

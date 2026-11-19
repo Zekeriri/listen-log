@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口散文：幸福、不幸与中道</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2021-12-28 03:35</p>
+  <h1>一口散文：幸福、不幸与中道</h1>
+  <p class="ja-title">一口エッセイ:幸福と不幸と中道</p>
+</header>
+<main>
+  <article class="body">このような質問が届きました。「私は、ときどきもっと不幸にならなくてはいけないのでは？ と思うよ（中略）それこそ鬱病になるくらい不幸を浴びなきゃいけないんじゃないかって思うんだよね」
+ なるほど。これは僕もよく分かります。というか、僕も落ち込んでいる時しか納得いく文章を書ける気がしないです。鬱々としていると勢いつきますからね。「どうにでもなれ！」って気持ちで、向精神薬漬けの曖昧な脳で打ち込んだ文字列の方が、どう考えても迫力あるわけで。そもそも、満たされている時にわざわざ長文なんて書きたくないから。
+
+それに、苦難を乗り越えてこそ脳内物質が分泌されるわけで、上手く進みすぎた際に得られる達成感って少ないですし。薬物で無理やり気持ち良くなる手段もあるにはある訳だけど。しかし、進んで不幸を浴びることが良い体験になるかは疑問です。
+ ブッダの教えに「中道」という概念がありますよね。極端な道を歩まず、真ん中を行きなさいという話で、苦行だけでは悟りに至らないし無益だ、もちろん煩悩に溺れてもいけない。バランスよく進むことが悟りの境地への近道。この説は、個人的に強く納得があります。自暴自棄になって不幸を選択し続ける状態って、要は思考放棄した楽な道です。
+ さらに、ブッダは「すべての生は苦に満ちている」とも言っている。どうせ生きているだけで苦痛はやって来るのですから、束の間の幸せを享受していて良いと思います。どうせ、しばらくしたら勝手にトラブルが起きるのですから。その谷を乗り越えられたら、さらに大きな幸福が訪れ、さらにまた不幸が襲う。人は死ぬまでこれを繰り返す。
+
+毎日のエッセイをまとめた同人誌をboothで販売しております。幸も不幸もすべて赤裸々に書いてある！
+
+めちゃくちゃ暗いと評判の商業エッセイ集も出ました。暗いってことは不幸を背負っているので、良い文章ということです。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-28 03:35\n一口散文：幸福、不幸与中道\n一口エッセイ:幸福と不幸と中道\n\nこのような質問が届きました。「私は、ときどきもっと不幸にならなくてはいけないのでは？ と思うよ（中略）それこそ鬱病になるくらい不幸を浴びなきゃいけないんじゃないかって思うんだよね」\n なるほど。これは僕もよく分かります。というか、僕も落ち込んでいる時しか納得いく文章を書ける気がしないです。鬱々としていると勢いつきますからね。「どうにでもなれ！」って気持ちで、向精神薬漬けの曖昧な脳で打ち込んだ文字列の方が、どう考えても迫力あるわけで。そもそも、満たされている時にわざわざ長文なんて書きたくないから。\n\nそれに、苦難を乗り越えてこそ脳内物質が分泌されるわけで、上手く進みすぎた際に得られる達成感って少ないですし。薬物で無理やり気持ち良くなる手段もあるにはある訳だけど。しかし、進んで不幸を浴びることが良い体験になるかは疑問です。\n ブッダの教えに「中道」という概念がありますよね。極端な道を歩まず、真ん中を行きなさいという話で、苦行だけでは悟りに至らないし無益だ、もちろん煩悩に溺れてもいけない。バランスよく進むことが悟りの境地への近道。この説は、個人的に強く納得があります。自暴自棄になって不幸を選択し続ける状態って、要は思考放棄した楽な道です。\n さらに、ブッダは「すべての生は苦に満ちている」とも言っている。どうせ生きているだけで苦痛はやって来るのですから、束の間の幸せを享受していて良いと思います。どうせ、しばらくしたら勝手にトラブルが起きるのですから。その谷を乗り越えられたら、さらに大きな幸福が訪れ、さらにまた不幸が襲う。人は死ぬまでこれを繰り返す。\n\n毎日のエッセイをまとめた同人誌をboothで販売しております。幸も不幸もすべて赤裸々に書いてある！\n\nめちゃくちゃ暗いと評判の商業エッセイ集も出ました。暗いってことは不幸を背負っているので、良い文章ということです。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

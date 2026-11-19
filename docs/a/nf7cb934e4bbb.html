@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：信用卡与人类</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-02-10 06:46</p>
+  <h1>一口随笔：信用卡与人类</h1>
+  <p class="ja-title">一口エッセイ:クレカと人間</p>
+</header>
+<main>
+  <article class="body">鼻と目と歯並びの手術費を払う準備のため、ようやくクレジットカードを作りました。数年前に止められて以来、なんど審査をしても即落ちであったものの、恐らくクレヒスなる信用情報が時効でリセットされ、無罪として扱ってもらえたのでしょう。
+ 上京してすぐ、お金のない僕は、大学入学から中退までの半年の間にクレジットカードを作成。そこから、すぐにクレカ現金化を行い、30万だか40万だかの借金を背負う。それと学生ローンを合わせて100万くらいの現金を手に入れたのですね。
+ 友人とルームシェアしていたので家賃は3万。食費は友人がバイト先からもらってくる廃棄で済むので、後は暇潰しの本とパソコンさえあれば、1.2年はゴロゴロ暮らすことが可能に！ もちろん、それを有言実行し、アニメ観て本読んでネットを彷徨い眠くなったら惰眠を貪るを繰り返す日々へ。借金は少しずつ膨らんでいくし、とうぜんクレカは止められるわけですが、感覚が麻痺しすぎていたので、ことの重大さを全く理解していない。とにかく自分が社会の歯車から外れ、信用情報なるものが完全にブラックになったことは分かった。けれども、黒い方がカッコいいぜくらいの認識である。
+ 印税やら原稿料で返し終えたあとも、真っ暗な信用情報のせいで身動きできなかったのですが、どうやら僕は機関から許されたらしい。晴れて18歳ぶりにクレカを入手し、ぶじ社会の一員として復帰したのですが、それは僕も経済を回す歯車のひとつとしてハメ直された証明であり、どちらかと言えば、国から信用されていないブラックで自由な生き様の方が、「人間」だよなぁと考えたりはします。
+
+毎日の日記をまとめた同人誌をboothにて販売中。日々の適当な暮らしっぷりがわかります。
+
+商業エッセイ集もよろしくね。印税がなかったら、今でも毎日怪しい業者たちから鬼電されていたのでしょうね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-02-10 06:46\n一口随笔：信用卡与人类\n一口エッセイ:クレカと人間\n\n鼻と目と歯並びの手術費を払う準備のため、ようやくクレジットカードを作りました。数年前に止められて以来、なんど審査をしても即落ちであったものの、恐らくクレヒスなる信用情報が時効でリセットされ、無罪として扱ってもらえたのでしょう。\n 上京してすぐ、お金のない僕は、大学入学から中退までの半年の間にクレジットカードを作成。そこから、すぐにクレカ現金化を行い、30万だか40万だかの借金を背負う。それと学生ローンを合わせて100万くらいの現金を手に入れたのですね。\n 友人とルームシェアしていたので家賃は3万。食費は友人がバイト先からもらってくる廃棄で済むので、後は暇潰しの本とパソコンさえあれば、1.2年はゴロゴロ暮らすことが可能に！ もちろん、それを有言実行し、アニメ観て本読んでネットを彷徨い眠くなったら惰眠を貪るを繰り返す日々へ。借金は少しずつ膨らんでいくし、とうぜんクレカは止められるわけですが、感覚が麻痺しすぎていたので、ことの重大さを全く理解していない。とにかく自分が社会の歯車から外れ、信用情報なるものが完全にブラックになったことは分かった。けれども、黒い方がカッコいいぜくらいの認識である。\n 印税やら原稿料で返し終えたあとも、真っ暗な信用情報のせいで身動きできなかったのですが、どうやら僕は機関から許されたらしい。晴れて18歳ぶりにクレカを入手し、ぶじ社会の一員として復帰したのですが、それは僕も経済を回す歯車のひとつとしてハメ直された証明であり、どちらかと言えば、国から信用されていないブラックで自由な生き様の方が、「人間」だよなぁと考えたりはします。\n\n毎日の日記をまとめた同人誌をboothにて販売中。日々の適当な暮らしっぷりがわかります。\n\n商業エッセイ集もよろしくね。印税がなかったら、今でも毎日怪しい業者たちから鬼電されていたのでしょうね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

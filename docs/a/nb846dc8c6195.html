@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：抑郁症的诊断</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-11-22 21:59</p>
+  <h1>一口随笔：抑郁症的诊断</h1>
+  <p class="ja-title">一口エッセイ:うつ病の診断</p>
+</header>
+<main>
+  <article class="body">うつ病だと診断が出ました。とは言え、別に現状で何かあるとかでなく、自立支援用に改めて言われただけなので、特に問題（？）はありません。いつもこんな感じなので、お気遣いなく。
+ 仕事上の文章やゲームシナリオに対して考え過ぎて症状が悪化したと判断されたのですが、むしろそれだけ真摯でいたことが誇らしいですね。あめちゃんを描くうえで、彼女の精神性に向き合った証拠ですから。それくらいじゃないとキャラクターって生まれないんだぞと言い張れる。まぁ、「クリエイターは不幸でなければ創作できない」とまでなるのは良くないですが、今回は題材が題材でしたのでね。
+ やっぱり、ゲームの延期時に流れてきた「やっぱりコイツには無理か」「どうにかなるよ頑張ろう」「面白いか心配だな……」みたいな、不安と失望とそれでも応援したいプレッシャーとか、とにかくたくさんの感情を一気に浴びた時がトドメであった気がします。とは言え、その時の心情を元に書いたルートもあるので、今思えば重要な経験であったと思いますが。喉元過ぎればなんとやらです。
+ しかし、今自分があまり精神的に良くないことは変わらないので、しばらくはゆっくり休んでいこうと思います。なので今夜の日記は短めです。
+ 最近わかったこととして、ネットでの反応がないとそれはそれでつらくあり、適度に何かを作っていた方が精神衛生に良い。なので、毎日日記を投稿しているわけです。承認欲求モンスター！
+ 良くも悪くも、他人に認識されないと生の実感がわかないタイプ。ですから、こうしてあなたが僕の文章を読んでくれるだけでも、少しずつ回復しております。ありがとうね。</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-11-22 21:59\n一口随笔：抑郁症的诊断\n一口エッセイ:うつ病の診断\n\nうつ病だと診断が出ました。とは言え、別に現状で何かあるとかでなく、自立支援用に改めて言われただけなので、特に問題（？）はありません。いつもこんな感じなので、お気遣いなく。\n 仕事上の文章やゲームシナリオに対して考え過ぎて症状が悪化したと判断されたのですが、むしろそれだけ真摯でいたことが誇らしいですね。あめちゃんを描くうえで、彼女の精神性に向き合った証拠ですから。それくらいじゃないとキャラクターって生まれないんだぞと言い張れる。まぁ、「クリエイターは不幸でなければ創作できない」とまでなるのは良くないですが、今回は題材が題材でしたのでね。\n やっぱり、ゲームの延期時に流れてきた「やっぱりコイツには無理か」「どうにかなるよ頑張ろう」「面白いか心配だな……」みたいな、不安と失望とそれでも応援したいプレッシャーとか、とにかくたくさんの感情を一気に浴びた時がトドメであった気がします。とは言え、その時の心情を元に書いたルートもあるので、今思えば重要な経験であったと思いますが。喉元過ぎればなんとやらです。\n しかし、今自分があまり精神的に良くないことは変わらないので、しばらくはゆっくり休んでいこうと思います。なので今夜の日記は短めです。\n 最近わかったこととして、ネットでの反応がないとそれはそれでつらくあり、適度に何かを作っていた方が精神衛生に良い。なので、毎日日記を投稿しているわけです。承認欲求モンスター！\n 良くも悪くも、他人に認識されないと生の実感がわかないタイプ。ですから、こうしてあなたが僕の文章を読んでくれるだけでも、少しずつ回復しております。ありがとうね。"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

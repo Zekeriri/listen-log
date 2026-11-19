@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔：见惯网络风波的年轻人们</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-10-18 06:43</p>
+  <h1>一口随笔：见惯网络风波的年轻人们</h1>
+  <p class="ja-title">一口エッセイ:炎上を見慣れた若者たち</p>
+</header>
+<main>
+  <article class="body">最近の若者は、年中なにかが炎上したりゴシップネタにされている様子を見慣れているので、有名人が燃えることに対して、ちょっとした盛り上がりイベント程度にしか捉えてない人も多いらしい。ひとしきり笑ったり、荒らしたり、心配したりした後、「まぁ、また頑張ろうや！」くらいに落ち着く。これは良いことだなと感じます。
+ ある意味では優しいですよね。燃えちゃったけど観客にとって誰かの炎上は日常茶飯事なんだから、次の挑戦で取り返せばいい。話題になった一瞬は弱ったものの心折れずに復活したら、闘志を認めて再び応援する。または遠くから見守る。つねに火種を探して隙を見つければ一瞬で火を焚べ出すゴブリンみたいな人間が大量に居るのですから、逆に人々が火属性に耐性がつき、火事をなんてことないと思えばバランスは変わってくる。
+ 人間、誰しも間違えてしまうことはどうしてもあるのだから、1.2回の過ちで全てを失うには釣り合わない。「有名税」で不当に叩かれることが止められないならば、有象無象が叩くこと自体が陳腐化すればいい。それを今の若者は無意識に理解しているのかもしれません。
+ 社会や学校に馴染めなかった人間が、傷つきぶつかりながらそれでも突き進んでいくことができる希望こそネットの美点なのだから、とにかく折れなかった者が勝つ。どんなに野次馬たちに踏み躙られようとも、ダイヤモンドは傷つかない。そんな時代がやってくる。
+
+毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-10-18 06:43\n一口随笔：见惯网络风波的年轻人们\n一口エッセイ:炎上を見慣れた若者たち\n\n最近の若者は、年中なにかが炎上したりゴシップネタにされている様子を見慣れているので、有名人が燃えることに対して、ちょっとした盛り上がりイベント程度にしか捉えてない人も多いらしい。ひとしきり笑ったり、荒らしたり、心配したりした後、「まぁ、また頑張ろうや！」くらいに落ち着く。これは良いことだなと感じます。\n ある意味では優しいですよね。燃えちゃったけど観客にとって誰かの炎上は日常茶飯事なんだから、次の挑戦で取り返せばいい。話題になった一瞬は弱ったものの心折れずに復活したら、闘志を認めて再び応援する。または遠くから見守る。つねに火種を探して隙を見つければ一瞬で火を焚べ出すゴブリンみたいな人間が大量に居るのですから、逆に人々が火属性に耐性がつき、火事をなんてことないと思えばバランスは変わってくる。\n 人間、誰しも間違えてしまうことはどうしてもあるのだから、1.2回の過ちで全てを失うには釣り合わない。「有名税」で不当に叩かれることが止められないならば、有象無象が叩くこと自体が陳腐化すればいい。それを今の若者は無意識に理解しているのかもしれません。\n 社会や学校に馴染めなかった人間が、傷つきぶつかりながらそれでも突き進んでいくことができる希望こそネットの美点なのだから、とにかく折れなかった者が勝つ。どんなに野次馬たちに踏み躙られようとも、ダイヤモンドは傷つかない。そんな時代がやってくる。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一口随笔: 死是救赎吗？</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <a class="back" href="../index.html">返回目录</a>
+  <p class="date">2022-07-11 05:04</p>
+  <h1>一口随笔: 死是救赎吗？</h1>
+  <p class="ja-title">一口エッセイ:死は救済か？</p>
+</header>
+<main>
+  <article class="body">「死は救済ですか？」「死んだらどうなりますか？」は、よく訊かれます。今日もスペースで質問された。みんな死後の世界について考えて不安になるのでしょう。
+ 端的に答えるなら、必ずしも「死は救済」ではないと思う。もし、本当に救済であるのなら、誰もが今すぐ死んだ方が救われるのですし。現世で「善く」生きた人にとっての死後が、救済であるべきだと思う。そう解釈することで、人は現世でどう生きるかの指標ができる。
+ 僕は、特定の宗教を信仰しているわけでないので、輪廻転生や極楽浄土を信じて生きているわけでないですが、そういったものがあると信じて生きた方が、結果的には幸福になるだろうなとも思う。それを指標と目標にすることで生き易くなるだろうから。そうなると、自害がそこへの最短ルートであってはいけないことも分かります。
+ なにが「善」かを判断し、それに向かって生きることこそ人生なのかもしれない。そうして目標に向かう方が、僕は精神的に楽なのです。
+ 自分は、そこに「シミュレーション仮説」への憧れも合わさり、この世界はゲームのようなもので上位存在（神のようなもの）が管理し、死後にその上位存在によっての評価があって欲しいとも願っています。国や社会が決めたルールなんかの枠でなく、自身の信仰する善にどれだけ近づけるか、そういうゲームとして現世があって欲しいと、そのように解釈しております。
+
+毎日の日記をまとめた同人誌をBOOTHにて販売中！
+
+商業エッセイ集もよろしくね！</article>
+  <textarea id="manual" readonly></textarea>
+</main>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="toast" id="toast"></div>
+<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-07-11 05:04\n一口随笔: 死是救赎吗？\n一口エッセイ:死は救済か？\n\n「死は救済ですか？」「死んだらどうなりますか？」は、よく訊かれます。今日もスペースで質問された。みんな死後の世界について考えて不安になるのでしょう。\n 端的に答えるなら、必ずしも「死は救済」ではないと思う。もし、本当に救済であるのなら、誰もが今すぐ死んだ方が救われるのですし。現世で「善く」生きた人にとっての死後が、救済であるべきだと思う。そう解釈することで、人は現世でどう生きるかの指標ができる。\n 僕は、特定の宗教を信仰しているわけでないので、輪廻転生や極楽浄土を信じて生きているわけでないですが、そういったものがあると信じて生きた方が、結果的には幸福になるだろうなとも思う。それを指標と目標にすることで生き易くなるだろうから。そうなると、自害がそこへの最短ルートであってはいけないことも分かります。\n なにが「善」かを判断し、それに向かって生きることこそ人生なのかもしれない。そうして目標に向かう方が、僕は精神的に楽なのです。\n 自分は、そこに「シミュレーション仮説」への憧れも合わさり、この世界はゲームのようなもので上位存在（神のようなもの）が管理し、死後にその上位存在によっての評価があって欲しいとも願っています。国や社会が決めたルールなんかの枠でなく、自身の信仰する善にどれだけ近づけるか、そういうゲームとして現世があって欲しいと、そのように解釈しております。\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中！\n\n商業エッセイ集もよろしくね！"</script>
+<script>
+const text = JSON.parse(document.getElementById("payload").textContent);
+const toast = document.getElementById("toast");
+const box = document.getElementById("manual");
+function selectPack() {
+  box.value = text;
+  box.style.display = "block";
+  box.focus();
+  box.select();
+}
+async function copyText() {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch (e) {
+    selectPack();
+    try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  }
+  if (!ok) selectPack();
+  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.style.display = "block";
+  clearTimeout(copyText._t);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+}
+document.getElementById("copy").addEventListener("click", copyText);
+</script>
+</body>
+</html>
