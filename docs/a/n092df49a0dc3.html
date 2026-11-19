@@ -36,9 +36,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-04-12 02:19\n一口短文：用数字舞动\n一口エッセイ:数字で踊る\n\nなんでも気軽に送ってみてください\n質問や相談などは、noteやエッセイで答えたりするかもしれません\n https://t.co/DfWFGz0j2d— にゃるら (@nyalra) April 11, 2022\n\nたまには、お前らの質問でも読むか……。「数字だけでは無いってのもわかるのですが、やっぱり数字に踊らされてしまうのが悲しいです」とのこと。\n 気持ちは分かりますが、とは言え僕なんてバリバリに数字に踊らされている側ですからね。こうして毎日文章を投稿し、自分の各SNSの数字が増えているのを確認しないと不安になる。誰にも見られていない不安に耐えきれない！\n ヒカキンだって、あの地位まで上り詰めていてなお、後輩に越されないよう強迫観念で動画投稿頻度を落とせないと何度も吐露しています。でも、そうやって数字の増減に合わせて踊り続けてきたからこそ結果がある。どんな時でも、その場で踊り続けたインターネット・ピエロだからさ。踊った分だけ観客は拍手してくれるんだ。\n もちろん気にしすぎは良くない。僕も毎日の日記を投稿し、ある程度の閲覧数はチェックするものの、その数字のために内容を過激だったり、伸びると分かっているあざといテーマを連続させたりはしない。「数字に囚われた」人間の末路は、たくさん見てきたでしょう。ブッダの言う「中道」ですね。極端に走らずに真ん中を歩く。数字を伸ばす努力をしつつ、それに集中しすぎて己を殺さない。\n\nどんな時でもその場で踊り出せるやつがインターネットで勝つ— 🎀超絶最かわ🎀てんしちゃん (@x_angelkawaii_x) April 2, 2022\n\n数字を伸ばすことをバカにする人間もいる。けれども、そうして野次を飛ばすアカウントを見てください。幸せそうに見えますか？ 学業や社会での鬱憤を晴らすため、目についた杭を打ってるだけ。もちろん彼らに褒められる数字は無い。だったら、例え言葉で打たれ続けるピエロであっても、数字で踊れる人気者の方が幸福だという確信がある。\n\n毎日のエッセイをまとめた同人誌を販売中！\n 日々の売り上げの数字を見て、僕の承認欲求が満たされるのだ。\n\n商業エッセイ集もよろしくね！\n Amazonレビューの数字が伸びていると、なお満たされていきます。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,10 +56,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

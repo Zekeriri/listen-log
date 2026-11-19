@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-09-27 04:36\n与喵拉拉熬夜 第2回 美少女游戏与恐怖的共通点 嘉宾：梨\nnyalraと夜更かし 第２回 美少女ゲームとホラーの共通点 ゲスト：梨さん\n\n僕がゆるりとゲスト相手にトークをする番組の第二回が配信されました。ゲストは梨さん。公でのコラボは２回目。ホラー作家として大活躍の梨さんと、「体験」や「当事者性」が重視された現代ホラーの在り方を語る。\n 梨さんは非常に拙作NEEDYを気に入っていただけていまして、ホラーやメタ構造の文脈から本編について熱弁。なんだかんだ、面と向かって内容を褒めてくださるのは久々で照れるぜ。\n 話に乗っかり、僕も「美少女ゲームとプレイヤーの関係性」への私見を語る。いつしか美少女ゲームの在り方に話題は移行し、ついに坂口安吾『白痴』の話に飛んだりもしつつ、「プレイヤー本人に体験させる」といった部分で主人公を「自身の主観」とした現代ホラーと美少女ゲームのメタ的演出の共通項へ、上手く着地していったように思えます。\n 梨さんが非常に聡明な若者で、話していて楽しい。というか彼も数奇者で、古のネット文化と美少女ゲームにお詳しい。ここでいう古のネット文化は、ニコニコ以前、なんならあやしいわーるど等を指している。あんな話、表で喋るなんて想像もつかなかった。気づけば用意されていた質問も読まずに１時間半、「ホラー」について語り合えた。後にスタッフが切り抜きまとめを作ってくださるそうで、ここまで順序立ててネットホラーを語る配信も貴重に思える。これは胸を張って「文化をした」と言ってもいいでしょう。\n 来月のゲストは原口沙輔さん。\n 次は、インターネットコミュニティやネットミュージックの観点からカルチャーを語るかもしれませんし、話があまりに脱線し続けるかもしれません。台本ないから、わからない！\n １回目の恐山さんとのアーカイブは予告通り非公開へ。記念すべき第１回目が闇へと消えている、恐怖の番組の方向性がじんわり決まってきた。\n 今後もニッチなカルチャートークを繰り広げ、非常に地味～に楽しんでいけたら幸いです。\n\nずっとみんなに観てほしかった、梨さんの腕を披露できて嬉しい。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

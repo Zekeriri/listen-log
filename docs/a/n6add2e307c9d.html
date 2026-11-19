@@ -21,9 +21,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-08-27 03:38\n一口随笔：被吐槽‘像游戏版的lain啊！’\n一口エッセイ:「ゲーム版lainみたいだな！」というツッコミ\n\n昔、友人が紹介した女性と連絡先交換したんです。僕のツイートが好きとかで。そしたら、わりと普通じゃない感じの子で、毎晩LINEで「今日彼氏とご飯食べてきたよ☆」みたいなことを画像付きで報告してきて、いや恋人いるなら他の男に構ってもらうな、というか急にほぼ他人の日常を見せてどうするんだ。仲良くなりたいなら少しずつ好感度を積み重ねるべきで急に100になるなよ！ と思っていたら、ちゃっかり虚言癖も兼ねていて、突然「わたし癌でもう少しで死ぬんだけど」と薄幸の少女設定が出現。それもっと相手が惚れ込んでいる時に陥れるための手だろ！ 初っ端からギア上げすぎだ。なんで知り合ったばかりの彼氏持ち女の生命の危機を心配せなあかんねんって、流石に無視していたら、次は通話かかってきたから直接「嘘とかつくのよくない、彼氏いるなら彼氏と話しなよ」と諭すと、予想していたけれど案の定キレて泣き出し、だから泣きギレもせめて多少の関係積んでからのイベントだろと、もうええわってブロックしたら、僕との通話内容を録音していたらしく、その手際の良さは最早プロのハニートラップだろってビビっているうちに、友人に「にゃるらに言われた酷いこと.mp3」を送信していて、それ見た友人が「断片的な音声ファイルが送られてくるのゲーム版lainみたいだな！」と笑ったから、「ゲーム版lainみたいだな！」ってツッコミこのタイミング以外で使われることないだろうなと嬉しくなったことある。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -42,10 +41,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

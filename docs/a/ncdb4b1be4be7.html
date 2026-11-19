@@ -21,9 +21,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-09-24 06:08\n来自委内瑞拉的御宅族\nベネズエラから来たオタク\n\nva11halla作者と対談イベントを行いました。アニメやノベルゲームまで熱心に追ってくれていて嬉しい。もちろんva11hallaがどれだけインディーやギャルゲー文脈に衝撃を与えたかの話はしつつ、Kiri氏が「アキハバラ電脳組が〜」「鉄男（映画）が〜」とじゃんじゃん固有名詞を放ってきてくれたので、「これは話のギアをあげていいんだな！」と直感して、どんどん話が濃くなっていく。\n 結果的には、インディーゲームの製作者であることを越えて、ただのオタク同士で会話した結果となって大満足。あくまで「ベネズエラのオタク」として呼んだ番組側の判断も光る。まず、僕らは互いに子供の頃から都会に憧れ、アニメ不毛の地で貪るようにネットやケーブルテレビでのレトロなアニメ・ゲームに齧り付いていた共通の体験があり、互いに「飢え」で創作をしてきた。\n それが通じ合えた時点で、もう立派な友達です。今度僕が南米に行くことがあれば、次はそっちで一緒に遊ぶ約束をする。嬉しいね。これからスペインのイベントへ登壇するため飛行機に乗ります。グローバルで楽しいね。今年5回目の海外です。大変だ。ヨーロッパは久々、スペインは初です。頑張るよ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -42,10 +41,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

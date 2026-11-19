@@ -45,9 +45,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-10-14 06:27\n安德烈·塔尔科夫斯基\nアンドレイ・タルコフスキー\n\n三連休は、名画座でタルコフスキー漬けな時間でした。世間が休みであることは、僕と関係ないのですが。\n\n『ストーカー』。\n 神にすべてを捧げるかどうか、信仰の正しさ、人間が真に望んでいるもの。非常にロシアらしい、生きるか死ぬか、信仰がすべてか実存か。ドストエフスキーが映像化されているような気持ちだ。雪国の彼らにしか分からぬ壮大な死生観を浴びる。\n\n『惑星ソラリス』をスクリーンで鑑賞する体験は、必ず人生で一度は通るといい。美術に溺れる。\n\nタルコフスキーを語る際に、映像美と詩を静かに褒めそやす以外の態度を好まない。ゴダールを政治面のみで語るような、本質から外れた言葉に意味を感じない。\n\n語りえぬものについては、沈黙しなければならない。タルコフスキーの描く「神」の尊さは、人間ごときが言語にできるものではない。画全体を詩として感じるしかできず、語りえない美しさそのもの。\n\n美術館に居るようなもの。2時間40分。定点で美術鑑賞へ臨む体験。それが好きなものにとって何より心地よく、薄暗い静寂がむず痒いものは席を立つ。僕は美術館に少しでも長く居たい。静かであればあるほどいいね。\n\nタルコフスキーは、場所と時間を切り取る。\n 詩とは、自身の視界と感性をどう切り取って言葉にするかだ。タルコフスキーの場合は映像だけれども。彼は「神の視座」から場所を描く。僕らは神の視点を通した、空間の時間を眺める。\n\n押井守は、「いい映画は眠くなる」と語った。心地良い時間が眠気を誘う。タルコフスキーがこだわり続けた水音と水面は、何より心地が良い。\n\n気を抜くと眠ってしまってもおかしくはない。\n しかし、それはとても心地が良いからで、いい映画だから。きっと押井監督は『天使のたまご』を、そうあろうと設計している。\n\n美麗な水面を眺めている。\n 絵画の一場面が揺れ動く錯覚に襲われる。\n\n詩と美しか存在しない世界。画面。詩情。\n 素晴らしい時間だ。劇場で観られてよかった。\n 『ノスタルジア』、一番好きだね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -66,10 +65,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -36,9 +36,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-10-27 04:57\n一口随笔：超天酱团体，现身秋叶原\n一口エッセイ:超てんちゃん集団、秋葉原に現る\n\nSwitch版『NEEDY GIRL OVERDOSE』本日発売しました♪\n記念に宣伝用動画を撮影してきました\nみんなインターネット・エンジェルとたくさん遊んであげてね pic.twitter.com/VfgRmuFMhv— にゃるら (@nyalra) October 26, 2022\n\nニディガSwitch版発売直前放送を実施。\n その際、記念に撮り下ろしWeb版CMを放送したのですが、これが「秋葉原で大量の超てんちゃんとあめちゃんが踊っている最中に警備員が来て解散する」という内容。そう、あの時期の秋葉原の空気感の再現ですね。\n\nせっかくCMを作るのだから、単純な紹介動画でなく何か仕掛けのあるモノにしたいと話し、紆余曲折あった末、「いまTikTokやYouTubeでホコ天が活気あった時代の秋葉原が\"古き良き時代\"として若者にエモいとされている」話になりました。これは面白いしニディガらしいと直感し、すぐさま撮影のための手配を開始してもらった次第。元から主題歌がTikTokで人気となっていた超てんちゃんですから、今回の秋葉原動画をTikTokに投稿することで、本家が乗り込んで宣伝しにいくのも趣がありますしね。初代プレステ時代のような映像が完成して一同にっこり。まあSwitch版の宣伝なんですけれども。\n\nそして10月某日。超てんちゃんの集団が秋葉原に集まり、たくさんの通行人たちを驚かせながらも撮影開始。たまたま通りかかったオタクの方が「秋葉原で大量に超てんちゃんがいたんだけど幻覚？」と呟いていたのが面白かった。あまりに堂々としていて、逆になにを行っているのか分からなかったようですね。強めの幻覚。\n というわけで生放送中や、その後にTwitter・YouTube・TikTok・Instagramなどに投稿し、いろんな人たちから反応してもらえました。「本当に令和？」みたいな驚きが多くて嬉しい。狙った方々に好評でよかったよ〜。\n 思うに、秋葉原の観光地化が急速に進み、そこへ流行病も相まって、どんどん「オタクの街」という概念が分散してしまったと感じます。それこそ、僕が秋葉原から中野に引っ越したのも、「オタクの夢の残滓」は中野ブロードウェイが最後の砦と確信したからです。\n もちろん、ホコ天で行われた祭りは、結局警察を動かしたほどの悪ノリでしたが、ああいった空気を一度体験してみたい若い世代も分からなくもない。強いていうなら歌舞伎町にあるのかもしれませんが、あそこはサブカル・オタクカルチャーよりはアングラ寄りでしょうし。\n ということから、今回の動画で「00年代の香り」を疑似体験してもらえると嬉しいなと。これだけヒットしたのだから腹を括って広告費をたくさん出しましょうとプロデューサーを説得し、超てんちゃん秋葉原ジャックが実行されたわけです。みなさん、ご協力ありがとうございました。\n\n撮影後、フリーになった超てんちゃんたちが各々遊んでいる様子が良かったです。一度さ、ファンもアンチもクリエイターも論客もインフルエンサーも老若男女ひっくるめて、みんなで秋葉原のど真ん中で踊り狂い、それを「萌え」のあった時代の最終回としたいですよね。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,10 +56,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

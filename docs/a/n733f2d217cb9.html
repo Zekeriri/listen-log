@@ -25,9 +25,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-08-22 02:36\n一口随笔：对话最多四个人\n一口エッセイ:対話は4人が限界\n\nよほど気心の知れた友人の集まりでないかぎり、人が集まったうえでちゃんと全員と向き合って対話できるのは4人が限度であると思う。ウメハラも配信で、「5人以上の飲み会開くやつは素人」と言っていたらしい。一対一で他者と向き合うゲームのプロらしい名言で納得しかありません。\n 世の中には、5.6人以上とぽこぽこ他人を誘って飲み会を開きたがる人間がいて、自分も若い頃はそのような会に何度か参加はしたことがある。が、総じて主催者の「人脈自慢」として消費されただけで、経験上、そのような場合はメンバー間の相性や雰囲気の忖度などはまず行われない。なぜなら、このような会の主催者は、「飲み会を楽しめないのは自己責任」と考えているに違いないから。つまり、「対話」でなく、「一部が酒の勢いで盛り上がること」を目的としているのです。これは偏見塗れですけどね、いろんな怨みが募っているから。もちろん、それが楽しい人がいるのも当然として。\n ワンピースの章のおわりで「宴だ〜〜！！！」モードに入っている際、輪に混じれず、遠くから鼻に割り箸刺して踊っているルフィたちを眺めて白けている自分を想像する。次第に、「白けている奴が居るだけで迷惑かもな」と気づいて帰宅したくなるものの、「帰ります」と宣言して水を差すのが怖くて、言えずに体育座りでじっとし続ける。ルフィたちは何も悪くないのも知っているうえでの孤独がつらくて、ただただ悲しくなる。\n 関係者を呼んで自分のゲームの打ち上げをしないかとプロデューサーに提案してもらいましたが、それも断ってしまった。大勢の場で各人と向き合える自信がなく、そこで自分が白けて場を沈ませる想像をしただけで怖くなったからです。原作者が居ない打ち上げもなんだという話ですが、とにかく僕抜きでやってもらう形となりそうです。それはそれでちょっと悲しい。まったく、うじうじして面倒くさいやつですね！ でも、怖いものは怖いのだ。乙女心は複雑。\n なんだか暗い感じで締めるのもアレなので、最後に「飲み会が社会人だらけだとつらいので、ダークサムスやリドリーみたいなやつも居てほしい」と願って作った画像を添付して終わります。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,10 +45,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

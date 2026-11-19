@@ -29,9 +29,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-07-25 07:01\n大量的鸽子\n大量の鳩\n\nジムの時間まで、のんびりと散歩。目に入った小路へ進みランダムに歩く。ふと、どんよりとした夏の曇り空を見上げると、たくさんの黒が視界を覆う。\n\n鳩が大量に！\n 電線を有刺にして鳥が止まらないよう対策しているものの、見ての通り一切効いていない。鳩たちは巧みにトゲとトゲの間に居座り、集団で道行く人間たちを観測する。ここまで組織化して力をつけた今、わざわざ地を這う生物の鈍重さを嘲笑っていることでしょう。\n 彼らの大量発生は近所も困っているようで、公園では「鳩に餌をあげないで！」と看板が。電線もこの通りなわけで、地域でもできるだけ抵抗してみたけれども無駄だった様子。\n\n周囲の家すらも彼らのテリトリー。自由にベランダや玄関を行き来する。実際、この一角の住人たちは相当な迷惑を被っていることでしょう。が、自然の脅威はどうにもならない。空の支配者たちには人間様の抵抗も届かない。\n\n真下の公園は、鳩たちの羽根で埋め尽くされており、これが雪のようで綺麗だった。あまりの鳩の多さに公園には人っ子一人おらず、元よりの天気も相まって、まるで人類が消え去った跡を天使が羽根で癒やしているようだった。\n たくさんの仲間達と一角を支配する。\n とても幸福な生を全うしているね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,10 +49,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

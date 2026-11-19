@@ -25,9 +25,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-11-15 12:44\n一口随笔: 自己的神秘习性\n一口エッセイ:自分の謎の習性\n\n今日はもうとにかく眠いので、内容皆無の日記です。\n 昔のCM動画を観続けていただけで、いつの間にか半日経っていました。もうひたすら呪われたように昭和のCM動画集を視聴していた。僕には、年に数回そのようなタイミングがある。あまりに自分の人生の中でも浮いている行動なので、なぜこういう状態になるのかに向き合う必要があると危機感すらあります。\n まず、シンプルに「ブラウン管でアニメを観ていたワクワクしていた幼少期へのノスタルジー」が思いつく。まだ解像度の低いモニターで音質も画質も悪い映像を観ていた体験があり、とはいえ特定の番組の何かというわけでないので、とにかくあの頃に流れていた「画質の悪い映像集」を観ると心が落ち着くのかもしれない。\n その上で、「インターネットが普及していない時代の映像」を有り難がる傾向にもあるのでしょう。もはや平成終盤からは、何を投稿するにも確実に脳裏をよぎる「ネット受け」の概念から解き放たれている映像が、このSNS疲れした脳みそからの視点では、とても高潔なモノに見えている可能性がある。\n つまり「昭和のCM集」は、次々とインターネットとは無縁だった時代のクリエイティブが矢継ぎ早に再生され、ネットで汚れた自分とは真逆の概念へのノスタルジーに浸れる、自分にとって最大公約数的なモノなのか……と、どうにか理屈をつけて言語化してみるものの、やっぱりしっくりこない。動機の言語化とは、自分を知る鍵になり得るとクロロも言っていましたが、この感覚は無理に言葉にしない方がいい気がする。\n とにかく、僕は昭和のCM集を観ると心が安らぐのだ。その事実は確固たるものであり、そこに理由なんて考えるのは野暮かもしれない。\n ただ、CM動画を漁るだけで一日を消費してしまうのは大変困る。でも、まあ身体が自然にそれを行っているのだから、それは真相意識での大切なことなのでしょう。幼児退行の手段の一種で、脳へ負荷がかかりすぎた時に、精神を調律するための儀式なのだ。本当に異常なことが起きている時は、そこに整合性なんて一切介在しないということなのでしょうか。不思議だ……。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,10 +45,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

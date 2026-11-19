@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-08-18 04:13\n一口随笔：宗教·灵性倾向\n一口エッセイ:宗教・スピリチュアル傾倒\n\n知人と話をしていたら、「立場がなければ今は陰謀論にハマりたかった」と言われ、理由としては「全員で何かに夢中になるのは絶対楽しいし、（その枠の中では）優しい人たちだから」とのこと。これには自分は強く納得がありまして、僕はどちらか言えばスピリチュアル・宗教方面に興味の大半を持っていかれつつあり、その理由は「グロテスクな現実を直視するより絶対楽しいから」です。つまり、行き着く先は違えど、両者とも向いている方向は同じなのですね。現実を真面目に生きていくことに対して、何の面白味や刺激を感じないのです。\n 宗教や哲学を知っていくことは楽しい（僕は、特に仏教思想に興味がある）。机に飾った仏像を眺め、般若心経を心に浮かべながら深く瞑想すると心が落ち着く。これから、いろんな宗教のいろんな「祈り」について知っていきたいと思う。ただ静かに祈っている間は、騒がしい頭が落ち着いて気持ちが良い。神や仏という巨大すぎる存在に身を預ける心地よさが、程よく現実を忘れさせてトリップに近い体験を与えてくれます。\n 死後の世界のことなんて分からない。けれども、自分は現世での業をできる限り振り払っていき、自分の信じる高潔さを身に纏いたい。これも間違いなく本心なのですが、結局のところ大きな存在に巻かれる体験の「酔い」が気持ちいいからなのだ。これは、現実ではまず得られない快楽ですから。もちろん、「快楽」に執着している自分は異端分子でありますが、僕は元よりマリリン・マンソンとクトゥルフの信奉者ですから。根底には欲望塗れの邪神への憧れがある。都合の良いところだけ学んでつまみ食いしていく。とにかく現実を忘れていたいからね。\n 逆に、真っ当な道を生きて真っ当な幸せで満足する方が怖い。僕は、絶対にそうはなれない。つねに何かに酔っていたい。砂糖菓子のような甘いことだけ齧っていたい。脳味噌が求める快楽に従って、わけのわからないサイケデリックなエクスタシーに包まれていたい。何が正しいかなんて誰もわからない世界なのだから、陰謀論だろうがスピリチュアルだろうが、なにかに酔っている方が正気でしょう。\n 僕は、これからも神だなんだと日記に書き続けていくのでしょう。それが最も気持ち良く、心が洗われる感覚がするから。\n 誰にも理解されなくてもいい。祈りが届かなくたって構わない。ただ、自分の精神世界に深く潜って神聖で巨大で真理のように深い「何か」に繋がっている「フリ」をするのは、解像度の高すぎる現実世界を見ることより、僕には大事なことなのだ。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくお願いします♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

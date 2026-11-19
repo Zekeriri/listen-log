@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-08-13 04:15\n因为我是那种喜欢开关游戏机盖的一代\nゲーム機の蓋をパカパカしてきた世代だから\n\n敢えてユーザーが少し苛つく要素も入れる。ウィッシュリストが66666と書いたけれど実際は7万を越えている。明後日には遊べるよ。これだけのユーザーが居るなら、きっとまたたくさんの毀誉褒貶に包まれるでしょう。\n ウチは頑固でやっているんで。そこはセガサターンの蓋をパカパカ開けたり閉めたりしてディスクを入れ替えたり、半分以上の確率で失敗するパワーメモリーに懸けてセーブを試したり、そういうことしてきた人間だから。\n ときにはユーザーに負担を強いることもゲーム体験の一つとして信じて送り出す。頑固サブカルジジイの矜持がある。エロゲー想い出語り老害ジジイが作ったゲームだから。\n ウチは面倒なタイプのラーメン屋だ！！！\n と言いつつ、一つだけどうしても譲れなかった部分以外はユーザーフレンドリーにしております。\n 思えばYU-NOやEVEでセガサターンの蓋をパカパカしてきたし、モンスターファームを通してプレイステーションの蓋もパカパカとしてきた。\n ディスク入れ替えという、現代であり得なさすぎる作業を経て大人になってきた。面倒さが思い入れを生むんだ！！！ PS版のlainを乗り越えた戦士だからね。\n 実際はどうだろうか……今もう一度また移動するたびに蓋をパカパカしなければならないゲームがきたら喜べるだろうか。ウルトラ怪獣モンスターファームは、蓋をパカパカすることなくSwitchで十分に楽しく最適化されている。\n 蓋をパカパカ、コード付きのコントローラー、メモリーカードがどうのこうの……すべて勝手に思い入れを感じてきた行為であって、もはや物理でゲームを持ち歩かない現代だって全然みんなそれぞれの作品に思い入れあることでしょう。そもそも、面倒な作業をしていないハデス2と相変わらずトロピコ6ばかり遊んでいた26年だったし。\n でも、ゲーム内でちょっとは面倒な仕様を入れたっていいじゃない。\n せめてもの、せめてもの老害っぷりをひとつまみくらい入れたいんだ。ゲーム的にも意味があるし、嫌がらせってわけじゃない。けれど、ちょっぴり面倒くさい。\n これくらいの塩梅が好きなんです。どうしたって。\n なんなら今だって暇な時に蓋をパカパカとしたいくらいだよ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

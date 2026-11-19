@@ -38,9 +38,8 @@ guraの魂が高潔でなければ、今の僕はこうなってはいない。�
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-04-23 14:17\n在note上宣布英文翻译实现\nnoteでの英文翻訳実装が告知\n\n来月末からnoteの記事が勝手に英訳されるようになるらしい。これにより、英語圏からの読者がスムーズに僕の文を読めるようになります。\n いま翻訳して自前のサイトに挙げてもいたのだけれど。\n\n日本からアクセスすれば日本語、海外からは英語で表示しております。noteもそうなるね。\n\n僕のnoteは今まで平均月30万人読んでくれていたのですが、Twitterの仕様変更によって減少。\n\n外部サイトに誘導するツイートは、著しくおすすめ欄への掲載率が下がるため、Twitterからnoteに人が流れず、なかなか拡散も伸びない事態に。\n とはいえ、それでも月20万人読んでくれているわけで、しかも今の戦場と化したTwitterから流れてこないことはメリットも多く、平和な数字で気に入っていました。\n 文章なんて必ずどこか揚げ足取りできる媒体において、Twitterのバトルフィールドに流れちゃったら即開戦。特に、自分はこの時代でもがんがん意見性を投げる方で、そのわりに数字が伸びて欲しくないという稀なタイプですから（素直に思ったこと毎日書きたいだけ）、変に悪目立ちするより、noteはnoteで隔離されて追える環境は悪くなかった。追う人からすれば、僕の近況や心情がわかる感じの。\n そこで、来月末からは、Twitterが自動に文章を英訳し、さらにはnoteも記事を勝手に翻訳してくれるため、ラグなしで僕がそのまま世界中に日記を毎日配信することとなる。今でも、日本語でのこの日記を翻訳してコメントしてくれる海外勢も少なくない中、この変化は海外読者からすれば結構大きなはずで、noteだってTwitterの翻訳機能で日英ない混ぜな環境が盛り上がっている今に便乗したのでしょう。\n\nその仕様に対して、僕はかなりの恩恵を受けている。アニメ放送中にシームレスに海外勢からの感想が届いてともに盛り上がれるようになったのは、シンプルに追い風。僕のアカウントはぐんぐん数字が上昇しており、唯一、日本人のみが主に追っていたnyalraのnoteという要素も言語の壁を越え、おそらくアクセス数もまた増えていくはずで。これは単純にnoteさんは良い仕事するねぇと感心。\n 数字が伸びるということは、やっぱりタイムラインの戦地へ再び赴くことになるわけで、今度は世界が相手だ！ と、僕も身を引き締めていくしかない。ただ、素直ではいたいね。\n\nTerima kasih pic.twitter.com/PLH6Soy1Xn— nyalra (@nyalra) April 22, 2026\n\n先日も、マレーシアのイベントに参加して現地民にチヤホヤされてきたものだから、妙なアドバンテージを得る、まさか僕がグローバルになるなんて思ってもいなかったわけで、初めは本当にguraの言葉を原文で理解したくて始めた海外交流でしたので、人生とは本当にわからない。僕はこの小さなサメとその親友の探偵を永久に忘れることはないでしょう。\n\nguraの魂が高潔でなければ、今の僕はこうなってはいない。初めは、本当に彼女の言葉を聞きたかっただけなんだよなあ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -59,10 +58,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

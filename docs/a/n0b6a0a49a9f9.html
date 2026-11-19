@@ -37,9 +37,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-07-30 11:26\n新的精神科与《Alien Alien》，MV却不左右翻转\n新たな精神科とエイリアンエイリアンなのに左右反転しないMV\n\nカウンセラーのことを信頼しているので、そのまま紹介された精神科へと通う。両者ともに熟練のおばちゃんタイプであった。紹介状まで出ると、なかなか「サボろう」といった気持ちにもなれない。カウンセリングは続けたいので、両方ともにきちんと通う必要がある。\n 希死念慮の話にきちんと向かい合ってくれたうえで、ADHDの検査も受けることになりそうに。ASD、自閉的な傾向ばかりに目がいっていたけれど、そっちも受けてみようという流れに。それと「薬を減らそう」と現実的な減薬を提案してくれた。いま、なんとなく薬さえもらえたらいいと通っていた場所とは、対応も時間のかけ方もまったく違う。\n 何度も聞かれたのは、「いま楽しいことはあるか？」だった。\n うつ病に対しての深度の測り方なのでしょう。\n 今は、少し楽しいことがあったとて、苦しい記憶へすぐ上書きされる。\n 死にたくもなる。\n 直近であった、薬のために飛び込んだ診療所のオウム返し、「そうだったんですねー。首を吊ろうとするんですねー」といった返答も一つのトラウマになっていることに気づく。\n 人生が楽しくないことへの回答として、仏教の解釈を選んだ。\n 一切皆苦。\n 生きることは戦うことで、基本的に幸せなんて存在しない。龍騎やローゼンだって、生＝戦いを直結させた人々の話であり、ある種の原点回帰のような嵌り方をした。\n よって、楽しくなくても仕方ないと多少割り切れてはいる。\n\nそれはそれとして、やっぱり楽しいことはあった方がいいよな。\n\n友人が急に、あるエイリアンエイリアンのカバーMVを送ってきた。「エイリアンエイリアンのMVなのに左右反転しなくてすごい」と添えて。どうでもよすぎて逆に開いてみると、たしかにエイリアンエイリアンのMVで一枚絵まで用意しているのに左右反転して踊っている感じをまったく出さない。\n なんの意志があったら、企業が絡んだエイリアンエイリアンのきちんとしたカバーMVで「左右反転をしない」なんて硬派な選択をするんだよと笑ってしまう。硬派なのか？\n これくらい適当で楽しいことがあるといいよなあと、まさか相手もそんな連絡で僕が結構な感動をしたとは思ってもいないでしょう。\n でも、エイリアンエイリアンのMVで左右反転しないのはすごいよな。\n どんな会議の末にそうなったのか、未だ気になる。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -58,10 +57,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

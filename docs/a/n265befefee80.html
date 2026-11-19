@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-09-29 22:35\n精选一口随笔：狼蛛\n選り抜き一口エッセイ：タランチュラ\n\nタランチュラを飼っていたことがあります。「アンティルピンクトゥータランチュラ」というピンクと水色が混ざった鮮やかな種族で、世界一美しい蜘蛛と呼ばれることもあるくらいです。実際、僕のアンティルピンクトゥーはとても綺麗で、殆ど動かないですが眺めているだけで全く飽きません。\n 蜘蛛って凄くカッコいいんです。餌のコオロギを食べる時以外は基本的に巣から微動だにせず、虫なので人間に懐くことなんて決してない。人間の腕を駆け上がることはあっても、人間に媚びたり馴れ合ったりする気は微塵も有り得ない。\n 死ぬなら、このタランチュラの毒で死にたいなと思っていました。散々こちらが餌や環境を用意してやったのに関わらず、感情のない蜘蛛はそんなこと一切考慮せずに、残忍に僕に噛みついて、全身に猛毒をかけ巡らせる。\n 当然、スパイダーマンに覚醒なんてヒロイックな展開になることもなく、愛したペットに裏切られて、いや蜘蛛からしたら裏切ったつもりもなくただの本能でしかなくて、そういう生物の、自然の無慈悲さや残酷さに殺されてしまうのって、なんだか素敵だなと思います。実際は、飼えるタランチュラにそんな猛毒ないんですけどね。\n いつか僕を殺してくれ、世界一美しい蜘蛛に殺されるなら、それは綺麗な最後だろうとワクワクしていたのですが、気づいたら蜘蛛の方が先に死にました。死体の横を餌用のコオロギが無遠慮に飛び跳ねている。想像したより悲しくもなくて、なんだか自分も虫みたいだなと思ったのです。\n\nむかし僕も飼育していた、「世界で最も美しい」と形容されるタランチュラ、アンティル・ピンクトゥーを見て pic.twitter.com/sdAmVKGq68— にゃるら (@nyalra) August 29, 2021\n\n※Twitterに連載していたエッセイからの抜粋です。↑で購入できますので、エッセイ集をぜひ読んでみてね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

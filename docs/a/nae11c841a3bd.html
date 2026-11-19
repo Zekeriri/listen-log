@@ -36,9 +36,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-05-12 22:59\n《奥特七》第45话“飞碟来了”\nウルトラセブン45話「円盤が来た」\n\n明日は、ガンQ・ケムール人・幻界魔剣ベリアロク・ゼットンさん・メトロン星人のメンバーで、『シン・ウルトラマン』観に行く pic.twitter.com/MW79124v45— にゃるら (@nyalra) May 12, 2022\n\n明日は、『シン・ウルトラマン』の公開日なので、気合入れてウルトラマンの話いくぞ！！！\n とはいえ、僕は初代よりもセブンの方を何度も観ていたので、今回はウルトラセブンの好きな回について書きたいと思います。\n\n実相寺昭雄が担当した『狙われた街』『第四惑星の悪夢』は、研究読本での人気投票でも1位・2位を飾った名エピソードですが、三本目の実相寺作品45話『円盤が来た』も意欲的な回ですよね。\n\n仕事が上手くいかず、あまり社会に馴染めてなさそうな冴えない青年が主人公で、彼が毎晩現実逃避のように星を観測しているうちに円盤を見つける。ウルトラ警備隊に報告するも、日々問い合わせだらけな警備隊に見間違いだと決めつけられ落胆する。その後も通報してみるものの、やはり出鱈目扱い。唯一、青年は話を聞いてくれる少年相手に河原で「星の世界に行きたいよ」と漏らす。彼はもう、現代社会に疲れた上で、ウルトラ警備隊にも袖にされて精神的に疲弊しきっていた……。そのまま少年の家に望遠鏡を覗きにいくと、実は少年の正体こそ、彼が観測していたペロリンガ星人だった！ しかし、青年の通報をウルトラ警備隊が信じることは無い……という悲しい回。\n\nこの回の見どころは二つあると思う。\n 一つ目は、「セブン世界の一般市民の哀愁」。当然、この世界にも社会に馴染めない労働者がいるし、ネットもないので現代のような仮想世界の楽しみもない。そうなると、趣味に没頭するしかなくなり、彼は孤独な天体観測に走る。夜な夜な一人で星を眺めては近隣住民に騒音で怒られる彼の背中からは、昭和の悲哀が伝わる。\n 二つ目は、「日常の侵略者」。少年に変装して青年に近づいていたペロリンガ星人のように、気づけば貴方の隣にも宇宙人の侵略が始まっているかもしれない……という恐怖と、通報量に麻痺して行動してくれないウルトラ警備隊の怠慢のコンボは、想像するだけで恐ろしい。結果的に、アンヌとダンの活躍によって助かり、青年には勲章が与えられることになるものの、それでも彼の人生が大きく好転することは恐らくはない。このリアリティこそ、この回の味でしょう。\n タブーとも言える「ウルトラ警備隊の怠慢」に踏み込んだ上で、モチーフとなる星空の美しさ、実相寺監督らしいクラシックの使い方もあって、すごく「綺麗」なものと観た視聴感が得られる、たまに見返したくなる好きなエピソードです。\n ペロリンガ星人が、もっと一般的に刺さるデザインであれば、さらに人気上位に食い込む回になったかもしれませんね。この毒々しい色好きだけどね。\n\n毎日の日記をまとめた同人誌をboothにて販売中。キモいオタクの自意識だらけですが、通報しないでください。\n\n商業エッセイ集もよろしくね。こちらは、若い頃の長文エッセイをまとめたものなので、もっと自意識ゴリゴリなので通報もやむなし。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,10 +56,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

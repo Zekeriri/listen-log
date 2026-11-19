@@ -36,9 +36,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-03-02 08:03\n不是人\n人間じゃない\n\nあまりに斜に構えてきた罰かもしれぬ。世の中は、もう僕を人間と思ってはくれないのだ。お薬を飲みましょう。\n\n休みたいと主張しても、どうともしない。「こちらは休ませているつもりなんですけどね」、で終わり。お薬を飲みましょう。ちょっと眠って起きたら、少しは落ち着くんじゃないですかと。無能はすぐ休みたいって言いますからねと。そう思っているんだ。\n 幻聴が聞こえたって、どうともしない。仮病ですよ。ちょっと疲れたからってウルさいやつですよね。お薬を飲みましょう。勝手に精神科に行けばいいんじゃないですか。もちろん打ち合わせを優先させるけど。\n 死にたいなら、そうさせたらいいんじゃないですか。どうせ、実際に死にはしませんよ。それに雪山で凍死したからってなんなんだ。ヘタレのくせに小うるさいヤツが消えた方が社会は上手く回りますよ。あいつに入る分のお金がこっちで回収できてラッキーでしたね。それだけ。\n\n適応するためがんばってみたじゃないか。\n 寝ないでたくさん原稿をあげたじゃないか。\n 必死に走り回って、人を集めてきたじゃないか。\n\nまあ、ちょっとは頑張ったかもしれないけど、あいつは世間知らずですから、たったあれだけで「助けて」って音を上げたんですよ。俺達の方が何倍も努力しているのに。まったく根性なしですね。死んではじめて世の役にたったんじゃないんですか。\n\n気まぐれに捕まえた部屋の虫と同じ。\n たまたま目の前にきたからケースに入れて飼ってみただけ。初めは少しおもしろかったけど、途中で鳴き声も餌の用意も面倒で、次第になんでこんなやつがいるんだって醜い畜生に憤り、放置していたら惨めにひっくり返って死んでいた。\n 死ぬ直前はバタバタして気持ちが悪かったなあ。死体もくねくねして不快だな。さっさと死んでくれてよかったな。\n 虫の死なんて、人間様たちからすればこんなものなんだ。\n 苦しいだとか悲しいだとか、クソ虫がそんな感情を持っていることがもう、人間たちからすれば滑稽でたまらないのです。社会人だから感情が無いんじゃなくて、社会人ともなると虫の一匹や二匹に感情を向ける必要が無いのだね。ちゃんと大切な仲間や家族の前では喜怒哀楽を見せるさ。立派に生きている人間だから。\n 死んでくれ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,10 +56,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

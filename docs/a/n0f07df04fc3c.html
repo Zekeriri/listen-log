@@ -34,9 +34,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-07-31 12:03\n干脆尝试用圣经学习英语\nどうせなら聖書で英語を学んでみよう\n\nせっかく英語を学ぶのであれば、同時に何かを読むと楽しい。\n\nというわけで、この和英対照の聖書をお勧めします。どうせなら一度くらいホーリーバイブルに目を通すのもいいことでしょう。まあ、学ぶ単語がかなり大仰になりますけどね。GodとかVoidとか。\n 和英対照とは、つまりこういうことですね。\n\n左側に日本語訳、右側が対応する英訳になっているので、合わせて読んでいるうちに変な単語を覚えられたり、そもそも原文での表現が一瞬で確認できたりするのですね。\n\nこれ一冊で創世記、旧約聖書、新約聖書が全部読めるのでお得！\n\n聖書が重めの場合に、\n\nヘミングウェイをどうぞ。\n\nヘミングウェイの文章は極めてシンプル。それゆえに英文にした際に、日本語訳と比較し易くて勉強にうってつけなのですね。これまた学びながら物語が読めるので、ただただ英語を学ぶよりは退屈をしません。\n\nそんな感じです。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,10 +54,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

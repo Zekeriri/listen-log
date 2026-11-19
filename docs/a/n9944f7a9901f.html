@@ -36,9 +36,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-12-27 00:26\n一口随笔：西成探访\n一口エッセイ:西成探訪\n\nなんの目的もなく、Aiobahnと一緒に関西へ来ました。本当に目当てのイベントも場所もないため、僕の趣味でレトロな風景を撮影しに西成へ向かいます。\n\n西成のレトロな風景を満喫…… pic.twitter.com/rGTGgDeBDc— にゃるら (@nyalra) December 26, 2022\n\n西成は好きな街です。大阪に来るたびに回っているので、今回が3回目。どこを見ても人々が飲んだくれており、目が合うとまるでポケモントレーナーのごとく近寄ってきて話しかけられるのが、故郷・沖縄の特にゴチャゴチャした街の空気感に似ている。初めて訪れたAiobahnは、ちょっとビビって引き気味でしたけど。\n 恐らく、毎晩「いつものメンバー」で労働後の酒盛りを繰り返しているためか、僕のような余所者の若者が好意的な雰囲気で歩いていると、特に話しかけたがる。みんな寂しいんです。とにかく誰かと会話をして、自分の話を聞いてもらいたい。そして、僕は他人の面白話を黙って聞くのが好きだ。互いの利害が一致しているため、向こうも気を良くして話してくれるし、「話を聞いてくれてありがとう」とお礼まで言ってくれる。優しい街です。\n 今日は、わざわざ遠くから自転車で近づいてまで、僕へ話しかけてくるおじいちゃんと会話しました。「このへんはyoutuberってやつがオレたちを撮ろうとしてくるから気をつけな！」とアドバイスしてくれる。そういう体験が何度かあったのでしょう、大変だ。こういう時は笑っていればいい。ただただ敵意がないことを示す。そうすれば酒の高揚感も相まって、自然と話が盛り上がっていく。\n\nスーパー玉出の外観と店内の、子どもの頃に見た夢のようなネオンの光りかた、落ち着く pic.twitter.com/nBWvXMzZiP— にゃるら (@nyalra) December 26, 2022\n\nおじいちゃんは続けて政治の話を繰り広げていく。次第に「にいちゃん、学校の教育で最も教えるべきことはわかるか？」と訊かれたので、自信満々に「わかりません！」と答えると、「平和だよ……」と続く。たしかに平和の重みに比べたら、他の授業内容なんて無価値に等しい。\n そのうち「俺、実は未来からきた預言者だからわかるんけど、世界から紙幣と労働は失くなった方が確実にみんな平和になる。でも、俺は中学も高校も漢字が書けなくて、このことを上手く伝えられねぇ。だからにいちゃんは、東京に帰ったらこの予言を百合子に伝えてくれ！」と頼まれてしまった。なんて重大な任務なんだ。「はい！」と自信満々に答えると、彼は「バカヤロウ！」と笑いながら拳を突き出したので、互いの拳をぶつけ合った。友情が育まれた瞬間である。\n 次の瞬間、もっと年上のおじいちゃんが近づいてきて、「お前がバカヤロウだ！」と彼の頭を叩き出した。彼は、もっと笑いながら「ちげーよ、親方！ 俺とコイツは仲良いんだよ」と言い訳を始める。親方と呼ばれた男は「お前は、仕事中は黙ってサボるくせに、終わったらこうして遊び回ってバカヤロウ！」と叱り続けた。もちろん、両者ともに満面の笑みで。なんだか両津と部長みたいに見えます。\n 親方が僕へ謝罪までし始めたので、「いえいえ。楽しいお話でしたよ」と返し、そのまま退散します。終始離れていたAiobahnと二人で駅を目指す。振り返ると、彼らはワンカップ片手に集まって酒盛りを始めていた。こんな日常を永久に繰り返するための場所。僕は、この街が好きです。\n\n帰りに、公園のど真ん中にブラウン管のテレビが設置されているスペースを見つけました。このモニターを通して世界のことを知っていく。未来から来た預言者の計画を、僕が東京都知事に伝えることで、この街にとって幸せなニュースが公園中に響きわたると嬉しいですね。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,10 +56,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -25,9 +25,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-09-10 07:47\n一口随笔：早上睡觉\n一口エッセイ:朝に眠る\n\n朝に眠る。これほどシンプルに社会から外れ始めていく行為は無い。\n 世界は規則正しくできている。日が昇った朝〜昼にかけてじんわりお店が開き、街に人が増え、経済が回り出す。多くの場所をめぐって有意義な一日にするためには、早起きすればするだけアドバンテージが得られます。\n 逆に、朝に寝て夜に起きたらどうだ。お店はみるみる閉じ始め、街はキャッチと酔っぱらいで溢れ始める。買い物の予定も間に合わなければ、役所なんて機能すらしていない。本来行うべき社会的活動の予定が後ろに倒れるにつれ、じわじわ社会のレールからズレていくことになるのです。\n 深夜のインターネットの静かな祭りを引き摺ったまま朝7時8時となると、次第に健全な起床をした人間とすれ違っていく。彼ら彼女らは、長い一日をフルに活用して存分に「生活」する。陽の光を浴びて、堂々とお天道様の下を闊歩し、健康と活気を回復漲らせるのだ。逆に生活リズムが狂った僕らは、ただただ自律神経を壊していく。\n 皆が出勤や登校で起き始める時間に眠ると、なんだか自分が不登校時に戻った気持ちになる。これから始まる一般的な楽しい一日の代わりに、僕らは静かな深夜の住民となる。世界から乖離していこう。暑苦しい太陽なんか放っておいて、優しく見守るだけの月を目指して、健常な人間に社会を譲ってあげるのだ。おやすみなさい。また静かな深夜のタイムラインで会いましょう。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集を発売中です♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,10 +45,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

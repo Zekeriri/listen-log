@@ -24,9 +24,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-09-13 13:40\n一口随笔：有趣的无业者\n一口エッセイ:おもしろ無職\n\nまた寝落ちしたので、質問でも読みます。最近やたらと睡眠薬による寝落ちが多く、ちゃんとした睡眠時間を確保しないとヤバい気がしていふ。\n さて、今回の質問は単純明快で、「働いたことがない実家暮らしなのを友人たちにつつかれることへの、メンタルの対処法」とのこと。それだけならありがちな内容ですが、なんと質問者の家庭は「全員が株の売り買いで生計を立てている」らしい。おもしろ一家すぎるだろ……。\n 結論としては、むしろ株の売買で生活している家族が面白すぎるので、堂々とその事実を述べた方が、相手も「オモシレー友人」って認識するのではないでしょうか？ 「なにやって暮らしてるの？」と訊かれて、「株の売買だけど？」と返していたら、自分は「オモシレー人」のフォルダに格納しますもん。そっちの方がサラリーマンより確実に話が広がるし。その特異性を汲み取れない人間とは、どうせ根本的に合わないので無視していきましょう！\n 別に無職であろうが、生き方次第で面白い人間（むしろ基本的に無職の方が面白い）になるわけで、「個性」の面で言えばむしろ有利まであると思う。僕もゲームを出すまでは「アニメ観て本読んで寝てます！」と自信満々に答える度に笑ってもらったものです。その方が話題も生まれ易かったですし。普通のサラリーマンと特殊な環境の無職だったら、僕は絶対に後者の方に興味を持ちますし、そういう方も世界にいっぱい居ますよ。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくお願いします♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,10 +44,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

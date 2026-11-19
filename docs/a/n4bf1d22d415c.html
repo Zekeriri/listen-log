@@ -30,9 +30,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-05-27 06:27\n一口随笔：幾原作品与从结构中的逃脱\n一口エッセイ:幾原作品と構造からの脱出\n\nいつだって、僕らは「構造」の中に入れられて、そこで役割を演じている。それは、インターネットだったり、社会だったり、いろんな形であるけれど、与えられた場所の居心地の良さに甘えて、変化を恐れるようになってしまいます。\n 人は、生活の変化を嫌がるものらしく、地位や給与、人間関係に住まいなどを崩してまで、新たな挑戦を行う勇気は、なかなか生まれない。人間は偉くなればなるほど、引き上げた生活水準を落とすのは難しくなります。そうなると、ますます決められた構造の箱から出ることを拒むようになる。\n そうして、狭い箱庭でいつまでも大人を演じているから、いずれ弱さが露呈して、若い光に打ち負かされることとなります。ある意味「若者に立ちはだかる大人」を全うし、役目を演じきったとも言える。あとは、箱から脱して自由へ飛び立つ若者の背中を、遠くから眺めることしかできない。そうなる前に自らの足で抜け出すべきなのですが、終わりとわりきって役割に落ち着くことも、また人生なのかもしれません。人は、いずれ若さを失うのだから。\n\n幾原監督の作品は、つねに構造から抜け出す話を描いているように思えます。作品によって見せ方は大胆に変わるものの、登場人物たちはつねに箱庭を出ようとするし、出れなかった大人が永遠に囚われる。繊細な演出が多くて複雑に感じるものの、こうして結果だけ見ると、伝えたいことはごくシンプルであるようで、そんな明快さが特に僕がイクニ作品を好きなところなんですね。\n インターネットで、死ぬまで王子様ごっこをしていたくはないものです。\n\n気持ちをピンドラ総集編に高めていくため、アニメ雑誌を切り抜いた漏れのウテナ資料コレクションを披露…… pic.twitter.com/oxhhyFmTFU— にゃるら 文フリ ト39・40 (@nyalra) May 23, 2022\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中です。いつか、この毎日からも抜け出す日が来るのでしょうか？\n\n若い頃の勢いに任せた文章で構成された、商業エッセイ集もよろしくお願いします。Amazon評価もしてもらえたら、とても嬉しいです♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,10 +50,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

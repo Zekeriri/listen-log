@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2020-08-01 03:28\n随笔：午夜时间线\nエッセイ：ミッドナイト・タイムライン\n\n深夜のタイムラインが好きです。\n いつもは告知やニュースで溢れる文字列の波も、深夜になるとすっと引きはじめ、代わりに1・2行のどうでもいいツイートであふれかえる。それに伴い、インターネットの喧騒もしばしの休息に突入する。もし、深夜に大事な告知が行われたとしても、それはそれで狂気の沙汰なので歓迎です。\n\n眠れない・または元から昼夜逆転している人間たちと毎晩顔を合わせていると、どことなく仲間意識が発生する。気分によっては、ふだん滅多に送らないリプライなんて送信してしまう。まるで、ひとつ屋根の下みんなで団結して夜を越えようとしている錯覚すら起きる。このダメな人間たちが集まった部室のような空気が孤独を和らげます。\n 夜の静寂がそうさせるのか、はたまた睡眠薬や不眠で曖昧になった脳みそのせいなのか、普段はお硬いツイートをしている人たちに感情が現れる。人が少ないからと油断して流れてくるポエミーなお気持ちや思い出話が長い夜の肴になる。\n 僕も睡眠薬の影響で何度も長文ポエムをツイートしてきました。こんなのスクショでさらされて未来永劫笑いものにされてもしかたない投稿も、真夜中のインターネットはそっと受け入れます。深夜のタイムラインは感情の墓場でもあるのでしょう。\n\nふんわりと睡眠薬と眠気で気持ちよくなっているところに、無意味な文字列たちが吐き捨てられていく。次第にインターネットから人は減り始め、朝日が昇ると働かないといけない人たちの嘆きが始まります。\n 社会人が起きてくると主役交代。深夜のポエムを消去し、アンニュイな気分の残滓を布団で覆い、無理やりにでも眠ります。それでもなかなか眠れない時もあります。しかし、朝のツイッターはその日のニュースで賑わい、忙しい人達が忙しく走り回っている。深夜のエモさを引きずったまま残っていると、現実世界の眩しさに焼かれてしまう。\n 動き始めたタイムラインを眺めているうちに、学校をサボった際に、通学する眩しい同級生たちをベランダから眺めた時の記憶がフラッシュバック。嫌なことには全て目を瞑り、現実でも必死に目を瞑る。そうこうしているうちに、目が覚めるとまた夜がやってくる。\n アニメの実況や生産的なツイートで埋まったタイムラインは、深夜に向かうごとに人が減り始め、また長い夜を迎える。なんてことのない日常アニメのような日々の繰り替えしが心地よい。\n\nこの記事自体も、そんな夜の魔力にあてたられたせいで、書いてしまったのでしょう。なんの意味もないポエムたちは時を経て、こうして一つの記事の形にはなった。ゆっくり、とてもゆっくりですが僕も深夜の穏やかなループの中で成長しているのかも知れませんね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

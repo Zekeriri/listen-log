@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-05-29 20:19\n随笔：人人最终都会平等地长大成人\nエッセイ：だれもが平等に大人になってしまっていく\n\n生きていくのだ。これからも、こんな感じで。\n 子供の頃は、自分が大人になる想像がつかなかったのですが、すでに年齢的には二十代後半。どんなに自身では子供のつもりだろうと、客観的に見れば十分に大人な歳でして、大人になる前に死ぬんじゃないかなんて甘い予想を裏切り、だらだらとみっともなく生きてしまっている。\n きっと、これからもそうやって生きていくのでしょう。幼少期に思い描いた立派な紳士からは程遠く、いつまでもインターネットでくだを巻き、日常に限界を感じつつも、実はまだまだ底は深いことを知っている。\n 結局、なにをしようとも時間は必ず平等に過ぎていくので、自分が寝転がっていようが珍しく頑張っていようが、同じだけ時は経つし、時間の力が過去のすべてを無にかえしていく。つらかったこと、いわゆる黒歴史、嫉妬や憎悪、悲しみも愛情も、時とともに薄れていくのを経験として知っていく。\n 若者から「今がめちゃくちゃつらくてしんどいです」という連絡が、それなりの頻度にきます。痛烈な体験がフラッシュバックしたり、悲惨な未来の妄想が止められないのでしょう。でも、それも悲しいほどに時間が薄めてくれるのです。どんなバッド・トリップだって一晩寝たら沈静化するように、時と睡眠は無敵です。そういった相談には、今がどんなにつらくても、耐えているうちにどうにか過ぎ去ることを信じてくださいと伝えております。\n その「薄まり」が嬉しくもありますが、反面寂しくもあって、色んなトラウマや感情の摩擦が少なくなるほどに、歳をとってしまったことを実感する。自分があんなに悩んでいた事実が馬鹿らしく思えてしまい、若い時代の過ちをしょうもなく感じるような達観ぶった自分がえらそうで辟易する。俯瞰なんてしないほうが、視野が狭くて一方向だけしか見ていない方がカッコいいし、素敵に決まっているのに。\n これから、どんどん若者と接することも増え、相対的に僕は大人にならざるを得ない。責任とか締め切りとか発生して、なんの意味もない社会性とか身につけて。多くの人間の羨望と嫉妬を受けて。所詮は「正常」の範囲で尖ったふりをし続けていくしかない。\n 悪ガキだった記憶や感覚もいずれは消えてしまう。僕はもっと、ただ大人が、学校が嫌で嫌で仕方ない気持ちを抱き続けていたい。教師や義父が自分のことを何一つ理解してくれない悲しみを、ありきたりな思春期の衝動を忘れたくない。でも、そんなの何度も擦ったってもう仕方ないのだ。言葉にするたびに、それは陳腐になっていく。\n まだ、まだ勢いだけでやれるはずなんだという気持ちを削り、代わりに常識を纏って武装する、適合する。いずれは僕が若者に叩かれる。「なにも理解してくれない大人の一人」と、「子供の気持ちを忘れたつまらない人間」だと認識されて。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

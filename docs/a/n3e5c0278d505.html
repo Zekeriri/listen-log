@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-04-15 06:57\n一口短文：梦见碾人\n一口エッセイ:人を轢く夢\n\nどうやら最近の僕は疲れているらしく、久々に気づいたら眠ってしまっていた。\n その時、見ていた夢が車を運転する夢でして、無免許の僕が調子に乗って自動車へ乗り込み、そのまま雰囲気で運転していたら案の定他人を轢いていた。どうしようもないので、ひたすら慌てているうちに飛び起きる。夢で良かったと安堵するものの、リアルな「人を轢いた感覚」の残滓が恐ろしい。\n 実は、他人を轢いて飛び起きる経験は今回のみならず、もう合計で10回は見ているんじゃないだろうか。それも、毎回絶対に「無免許なのに調子に乗って運転した結果」シチュエーションとなっている。『クレイジータクシー』のように、爽快な運転で暴れる時が一度もない。夢の中でくらい、格好良く車を乗りこなしてみたっていいのに。\n 轢いた瞬間に感じる、「とりあえず適当でもいけるだろうと思ってしまった後悔」が気持ち悪い。実際に他人を轢いた経験は一度もありませんが、夢で調子に乗った「無免許でもいけるだろう」と近い楽観でなんらかの作業を雑に行い、そのせいで失敗したことは無数にある。説明書を読まずに組み立てたせいで、取り返しつかなくなったこととかね。そういうのがたくさんある。\n 家具の組み立てミスで済むならともかく、これが無免許運転ともなると当然他人が死ぬぞ、という本能からの警告なのでしょうか？ もっと単純に運転そのものを恐れているのかもしれませんが。なんにせよ、調子に乗った結果として他人の命を奪った感触と、その後に慌ててパニックになる自分の滑稽さを定期的に刻まれる人生であるらしい。\n\n毎日の日記をまとめた同人誌を販売中です。飛び起きたばかりで元気がないので、特に言うことなし。\n\n商業エッセイ集もよろしくお願いします。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

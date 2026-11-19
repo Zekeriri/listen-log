@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-02-09 08:09\n给色情同人志的女主角\nエロ同人誌のヒロインへ\n\nエロ同人誌のヒロインに想いを馳せる。\n 成年漫画・エロ同人誌のヒロインに魅力を感じてしまうことは、若い頃の恋愛感情に近い。決して届かぬ一方通行。それも一瞬の。「あっ素敵な人だな」と気づいた次の日からはもう会えないような、恋愛未満の一瞬。\n 彼女たちは、基本的に続きは描かれない。純愛でも凌辱でも、だいたい30ページ持たずに消えていく。彼女たちは非常に記号的だ。「ツンデレ」「お嬢様」「メガネ図書委員」「妹」……さまざまな属性と容姿の組み合わせにより、高速でキャラが立てられる。エロシーンまでの導入をテンポよくするため。そんな無限に生成されていく美少女キャラクターたちから、ごくまれに、あまりに属性と容姿の組み合わせが、シチュエーションまで含め、自身にとって鋭い針のように心臓へ突き刺さることがある。抜きゲーでも同じ。おそらくは作者以上に惹かれてしまっているのではないか。もう二度と登場もしないと分かっているくらいの、そんな扱いの一人に。\n\n彼女たちは極めてインスタントに性行為を済ませていく。「性的対象」という役割をまっとうするため。花火のようなものだ。一度、たった一度夜空で咲くためだけに用意された存在。誰より見事に花開いて、次の瞬間には地面へ落下していく。そして多くの人たちにとって翌日には忘れられている。\n 山本直樹は、きっとエロ漫画以上に、その一瞬の煌めきを描く作家なのでしょう。だからエロ漫画であってエロ漫画では無いんだな。エロゲーのなかのエロシーンみたいな、ね。\n\n所詮は数ページだけの、ありきたりすぎる属性とシチュエーションの組み合わせでしかないけれど、その偶然に運命を感じてしまって、その先はつまらないメロドラマもどきにしかならないし、誰も描くつもりもないことなんて百も承知で、いやであるからこそ、一期一会の彼女を好きになってしまう。\n 描写が少なければ少ないほど、勝手に脳内で膨らませた理想の少女像を押しつけて。続きがないから妄想のファム・ファタールに裏切られることのない安心感を撫でながら。\n ただの性欲の気まぐれを、これは愛なんじゃないかと勘違いして。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

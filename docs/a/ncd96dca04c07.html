@@ -41,9 +41,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-08-06 05:44\n一口随笔：好像从WSS发表了两部新作\n一口エッセイ:WSSから新作2本が発表されたらしい\n\nwssから新たに2作発表されました。僕は関わっていませんが、ニディガのプロデューサーがプロデュースに関わっている作品です。僕は片方にイラストレーターの選定だけで関わっただけですが、せっかくなのでいろいろ書いてみます。\n\n【少年期の終り キャラクターPV】https://t.co/IVmvRFl0nk\nキャラクターにフォーカスしたPVを公開しました。\n二人の少年の心温まる（？）やりとりを中心に、この銀河を彩るキャラクターを紹介しています。\nそして……連載開始の延期もさせていただきました……！ pic.twitter.com/mKYYn6UdUS— WSS playground 公式 (@infowssJP) August 1, 2023\n\nまずは、こちら『少年期の終り』。タイトルからSFモノであること、キービジュアルから銀河鉄道がモチーフであることがわかります。こちらは僕は全くの無関係ですが、プロデューサーが企画にGoサインを出した理由として、ニディガ内のあるイベントで僕が『銀河鉄道の夜』をテーマにした際のユーザーの反応を見て、「これはいける！」と感じたからとのこと。\n たまにプロデューサーの様子を見にいくと、製作チームの方々たちが徹夜で死にそうになりながら作業しており、その修羅場っぷりが懐かしく感じます。ちなみに2ヶ月延期したらしいですが、大丈夫。僕なんてニディガを半年以上延期させましたからね！ ゲームなんてそう簡単に作れるものじゃない。ましてや、予定通りに行くなんて……。代表の作家の方が今にも死にそうな目で虚空を見つめてただソファに座っていた光景を目撃しているぶん、その努力が報われるといいなとは思いますが。いわゆるツクールゲーの雰囲気ですでに固定ファンも多く、発表時の反応はかなり良いらしいので何よりですね。\n もう一つがこちら。\n\n【大悪役令嬢 ストラテジーオブリリィ開発中】\n企画・原案をWSSでやっています！\nサイコーのキービジュアル・メインキャラクターはろるあさん（@Rolua_N）https://t.co/drGz4qG9Ye\n公式ホームページ：https://t.co/oFBbIvmQux pic.twitter.com/IvLQe7OPO7— WSS playground 公式 (@infowssJP) August 1, 2023\n\nこちらは、大規模な人数で開発されているらしい。ズルい。ニディガは基本4人だったのに。\n たくさんの大人が集まって製作している骨太なシミュレーションモノとのこと。こちらは、イラストレーターとして『ろるあ』さんを推薦させて頂きました。それ以外は全く関わっていませんが、プロデューサーが僕の目を信用して「メインビジュアル」について相談してくれたのですね。嬉しいね。企画書を読んだうえで、僕が「これならろるあさんがいいのではないか」と一方的に好きだった方の名前を挙げたら、即連絡を入れてとんとん拍子に話が進んだそうで何よりです。\n 出来上がったキービジュアルにビックリですね。文句なしに一目でカッコよくて、何よりキャラデザが素晴らしい。特に衣装とスタイルが良いなぁと感じますが、この宣伝画像だとタイトルロゴで隠れているので勿体無い。右下の爆発の塗りや、あらゆる小物が主人公二人の顔に集中する構図など、絵画的な迫力を感じさせます。\n しかし、実は元のイラストだと二人が向かい合っていたで、僕はそっちの方がめちゃくちゃに痺れるしカッコいいと直感したのですが、バナーや宣伝画像に使う際、どうしても顔がこちらを向いていないとクリック率が下がるらしく、泣く泣くプロデューサーが正面に修正してもらったらしい。絵の完成度としては、互いが向き合っている方が関係性も色濃くでて完璧だと思うし、プロデューサーもそれは理解しつつも、大人の事情で指摘せざるを得なかった。世の中にはこういう仕方ないこともあるのだなぁ。\n というわけで、僕はほぼほぼ無関係ですが（まだ未発表の作品でもイラストレーターだけ選んだりもしました）、そもそもこの時代に新規ゲームタイトルでの挑戦がどういう結果になるのか自体は楽しみなので、今後とも遠くからプロデューサーが精神を削って諸々の調整で疲弊していく様子を見守っていきます。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -62,10 +61,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

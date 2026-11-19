@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-01-09 14:35\n直到痛苦变成喜悦\n痛みが喜びにかわるまで\n\nあまりの疲労により短め。\n 疲労と言っても｢働きすぎ｣というわけでもなく、｢鍛えすぎ｣の方です。新年明けて年末年始はジムが休みであった分を取り替えそうとトレーナーと張り切り、100キロ越えの重苦しいバーベルを上げ下げし続けた結果、瀕死のリオレウスにのように足を引きずって歩くことに。そろそろ倒れるのでせめて優しく剥ぎ取ってね。\n 肩も背中も脚も激しい筋肉痛。おかげでもう去年の肉体を凌駕しただろうと体感でわかるけれども。いつの間にか、｢アニメを数年掛かりで作るための体力作り｣が｢鍛える｣だけのシンプルな目的に変わっている!\n 体力作りレベルなら、もっと頻度も強度も落としてもいい。最近の僕はフィットボクシングも重ねて体脂肪率も絞っている。トレーナーに｢もう少し絞れば筋肉系の雑誌モデルとして遜色ない（本人は何度もTarzanでモデル経験アリ）｣と言われ、どうせなら、どうせなら上を目指してみようと頑張っちゃっている。\n その結果、いま打ち合わせで新宿へ向かうために家を出ることすらままならない。マジで立てねえ。が、この状態でたんぱく質を摂れば、全身は一回り強くなって修復される。関節が痛むたび、苦痛とともに喜びも感じてしまっている!\n 元は、｢２年間ゲーム製作で座り続けて肩と腰が痛い!｣だったのに、いつの間にか痛みが喜びにすりかわっちゃってるよ!\n\n人間、わからないものだね。\n 打ち合わせ言ってきます。ヨロヨロだけど討伐しないでね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

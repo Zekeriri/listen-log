@@ -45,9 +45,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-03-24 11:47\n曼谷 地狱寺\nバンコク 地獄寺\n\nバンコク散歩。\n こちらはチェンマイと違って渋滞だらけなのでバイク移動なし。grabというタクシーアプリが主。安いし。\n\n公園。でかいトカゲがひなたぼっこ。\n 追いかけるとのそのそ水中へ逃げる。しばらくすると草むらからひょっこり顔を出す。こんな光景がタイの公園では延々と続く。\n\nそのへんに動物がわんさか居て、それぞれ好きに過ごす。\n 気づいたら道に寝転がっている様はタイ人と同じ。飼い主に似る。\n\n観光名所は人がたくさん。人が多いということは当然詐偽も多い。\n ｢寺（テンプル）は13時からだから、それまでボート乗りなよ｣と、タイの先生を名乗るおっさんが誘ってくる。無論、寺は午前中も開いている。これがもう寺の目の前であろうと行われる。ガッツありすぎ。\n ヒンドゥーも仏教も、とにかく人を集めて小銭を投げさせる。異教徒や無神論者も関係ない。タイはすべてを受け入れるし、人多すぎて放置しているだけとも言える。\n\nボートに乗ったり。途中、ミイラを見せてもらった。\n\n左の僧が右のミイラになったのはわかるが、写真は｢いまから即身仏になるぞ!｣という最期の瞬間なのか、それとは別に亡くなったからミイラにしたのか判断つかずちょっとモヤモヤ。写真の状態から即身仏になったなら座禅しているだろうし……と。考えているうちに時間なので再びボートへ。\n\n水の上に、生活があるんだねぇ。\n\n続いて遠くはなれた地獄寺。往復3時間かけて地獄見学。驚愕続きなタイでもトップクラスの満足度。\n\n｢地獄に落ちるとこのようになるぞ!｣という恐怖をビジュアルで体現。こんな像たちに囲まれているとバッドトリップ感が凄まじくて大満足。こんな悲惨で賑やかならば地獄も楽しそうだ。\n\n天国もあるし、\n\nバンブル・ビーも居る。\n 造形士がテンション上がって、エロもグロも版権モノも過剰に作りまくった様子がなんとなく分かる。地獄を見せるためという大義名分を背負ってエログロ造形できるのは人によって至福の時間でしょうし。こうして多くのサブカル野郎が反応もするし。感想や評価がモチベーションに繋がるのは、SNSも寺院も地獄も同じというわけだ。地獄の沙汰もいいね次第。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -66,10 +65,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

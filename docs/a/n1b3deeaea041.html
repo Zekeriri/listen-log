@@ -60,9 +60,8 @@ God bress you.
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-05-22 19:43\n仅为祈祷之岛 圣乔治马焦雷教堂\n祈るためだけの島 サン・ジョルジョ・マッジョーレ教会\n\nイタリアは陽気で愉快な代わりに人が多い。日本語が聴こえない分、だいぶマシではあるが都会の喧騒からは逃れていない。あと広告が多いね! 他ヨーロッパにくらべて比較的だけれども。広告が目に入るの嫌だよね。\n 大人数で朗らかな旅をするには、うってつけの国ながら、僕はいささかダウナー寄りだ。\n\nInstagramのフォロワーから、このようなアドバイスをいただいたので、\n\n船に乗って、ちょっとした島へ。船内の老夫婦たちとも、ちょっとした会話を挟み、旅っぽさの情緒が増す。人の少ない海へ向かっているからね。\n\n到着。\n 船乗りたちの溜まり場的に利用されているようで機能的だ。\n この小さな島は目的がわかりやすくて素晴らしい。見晴らしのいい教会と、他にはカフェと美術館のみ。そして今日はあいにくカフェも美術館もお休み。つまり、サン・ジョルジョ・マッジョーレ教会で祈る以外にできることがない。素敵だ。\n\nわざわざ、この対岸までやってきたということは、皆が教会を見に来たわけで。大きな聖堂にぽつぽつと人が居る。\n 鐘楼へ昇ろう。\n\nたしかに、この見張らしは小気味良い。大きな鐘の厳かさも気に入ったし、何より静かだ。\n\n母なる海。\n ここまで水が密接だと、｢この海に乗り物を浮かべて長い旅に出よう｣と企てた中世の冒険家たちの偉業が伝わる。水平線の向こうのロマンだけあれば命すら厭わない。ヨーロッパの人々は自信満々に帆船を飾るのは、そんな勇気ある歴史を重んじているんだな。\n\n宗教画の修復中。\n この場所を教えてくれた彼のためにも祈ろう。\n\nGod bress you.\n 磔ってすごいことだよ。3日後に復活したかはともかく、信念のために火炙りにされた精神家たちは実際に居たわけで。彼らの存在に思いを巡らせると少し楽になる。\n\n青い水面を気の済むまで眺めたので、さらに別の島へ。船から船へと波乗りしていくと、自由を感じる。適度な揺れが心地よい。海の透明感は故郷・沖縄に軍配があがる。\n\n今回の相棒。おまえも船に乗るのか。\n\nここはジュデッカという島らしい。ジュデッカって。『神曲』における裏切りの地獄。なぜ知っているのかと言うと、ダンテを読んだ訳じゃなく、スパロボαのラスボスの技名だったからだ。\n\nここも全然人が居ない。ようやく静かなカフェを見つけた。ヴェネツィアは人が多すぎる! 作詞を進める。来年、あなたたちにアニメを通していくつかに曲を贈るよ。\n\nここが地獄であってたまるか! 日本に帰ると待っている金銭を巡る生き地獄を思うと涙が出る。帰りたくない。帰りたくないよ。\n\nマム。イタリアの力強い女性たちは｢マム｣としか呼びようがない。\n 首に｢父｣のタトゥー。日本から来たと告げると、喜んで大好きな父親と、父が愛した日本について語ってくれた。\n 自分の娘が、自分のお気に入りの国の言葉で｢父｣と刻んだら跳び跳ねるほど嬉しいだろうな。\n\nまだ居るのか!\n\n帰りたくないよ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -81,10 +80,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

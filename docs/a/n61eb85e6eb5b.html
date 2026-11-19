@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-08-05 03:18\n一口随笔：绕远路\n一口エッセイ:遠回り\n\nいつも、「まぁなんとかなるだろ……たぶん」で生きていたので、明らかに本棚にならないであろう収納ボックスを繋げて本を並べてみたら、案の定重さで崩壊しました。\n\n今日一日、ひたすら汗水流しながらボックスを繋げて、必死で本を整理することに費やしたのに、全て終わった。終わったというか、片付けの手間やジャンル分けされていた本がまばらになったことを考えると、何もしなかった方が100倍マシな結果です。大人しく、横に長い本棚を探してちゃんと作ります……。\n 僕の人生は、この「楽しようと思ってどうにかなるだろうと手を抜いたら、わかっていたのに余計に面倒くさくなった」ことだらけです。生まれて二十数年経ったいまでも、この適当癖が全然抜けない。昼だって、一瞬晴れていたからといって、引っ越しの手続きのために役所へ行き、当然帰りは大雨の中をずぶ濡れで帰るハメに。「その場が晴れていた」からといって、数十分後に大雨がくることも分かっていたのに。\n ボックスの後片付けや本の整理しなおしで死ぬほど疲れ、体力的な消耗よりも、それが無駄でしかなかった精神の疲労の方が大きい。\n 賢明な読者の皆様はすでに理解していると思われますが、「遠回りこそ最短の道」であることは心に刻んでおくべきだ。僕は常人より明らかにポンコツなのだから、そのぶんゆっくりゆっくり丁寧に行動を積むことが正解なのだ。\n\nガチガチに疲れたので宣伝は略。みんな僕の本、読んでみてね！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

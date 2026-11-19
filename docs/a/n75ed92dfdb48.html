@@ -24,9 +24,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-08-13 11:26\n烟雾室\n煙の部屋\n\n夢の中で、質素で真っ白い、事務所のような部屋に集められた。\n どうやらこれから集団で練炭自殺をするらしく、中央の炭に火が灯され、部屋中を煙が覆う。みんなこれから死ぬんだと不安と期待が入り交じるソワソワとした態度に。\n 僕はといえば、夢が始まった瞬間ここに入れられただけで、煙で死ぬ気も集団で自殺する気もなく、死ぬなら一人で別の死に方をするだろうと、そそくさとドアを開けて出ていった。\n 夢の中で時間が経過し、部屋の様子を見に行った。みんな白い煙に包まれながら逝ったのだろうかと。\n なんと誰一人の死体も転がっていない。\n きっと、みんなも僕と同じく夢が始まった瞬間ここに居ただけで、誰も集団で死ぬ気はなかったのだ。良いことじゃないかと僕は煙に部屋をあとにする。質素な部屋の床に燃えカスが散らばっていた。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,10 +44,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

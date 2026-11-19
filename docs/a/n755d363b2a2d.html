@@ -31,9 +31,8 @@ Instagram始めたよ。よろしくお願いします。</article>
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-04-03 01:19\n一口随笔：侮辱罪\n一口エッセイ:侮辱罪\n\n「侮辱罪」が厳罰化でどうこうが話題になったり、ならなかったりしています。簡単に言うと、もし自分の言動が相手を「侮辱している」と判定された場合の罰則が重くなる。今まではこれが軽くて訴える方が損する状態でした。とは言え、訴える方が怠いのは厳罰化されても同じでしょうけど。\n 「侮辱」の適用範囲が広がるわけではなく、罪の扱いにならないラインはそのまま。なので、ちょっと小賢しい知識のある人たちであれば、今まで通り罪にならないレベルの攻撃を続けても問題ないのですね。そこまでして中傷したい精神も凄いが。\n 今の僕は攻撃性なんて殆どないので、どちらかと言えば叩く側よりも叩かれる側ですから、こうしてネットが平和に近づくと基本的には得です。が、現実世界では吐き出せない愚痴によるストレス解消もネットの機能の一部であるとは思うので複雑。もちろん、僕だって知らない人に攻撃されたくないし、されたら抵抗すると思いますが。\n 「見えないところでこっそり気持ちを落ち着かせる程度に」が落とし所かな。少数フォロワーの鍵垢でちょっと愚痴るくらいが良いのではないか。本人の耳に届くと事情が変わりますし、大抵の誹謗中傷って、やっぱり怒られた本人は「こんな一般人の発言まで見るとは思わなかった」と主張するんです。誰も本人と戦うほどの覚悟を持って攻撃していない。その覚悟があるのなら、きちんとした「意見」扱いになりますし。\n 見えない形でたまに毒吐く程度に感情を調整できないと、いずれ「こんな発言見てると思わなかった」と言い訳することになるかもしれませんね。\n\n毎日のエッセイをまとめた同人誌をboothにて販売中！ たまに書いている内容が調子乗っていてムカつくと叩かれることでお馴染み。\n\n商業エッセイ集もよろしくお願いします。こんなウジウジした人間、ムカツかれて当然な内容となっております。\n\nView this post on Instagram A post shared by にゃるら (@nyalra_)\n\nInstagram始めたよ。よろしくお願いします。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

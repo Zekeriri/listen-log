@@ -27,9 +27,8 @@ BOOTHにて、毎日の日記をまとめた同人誌が販売中です。買っ
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-04 23:32\n精选一口散文：梶井基次郎的《柠檬》\n選り抜き一口エッセイ：梶井基次郎の檸檬\n\n梶井基次郎の「檸檬」を読んだことはあるでしょうか？ 青空文庫でサクッと読める短編ですので、みなさんも是非読んでみてくださいね。\n さて、檸檬はあらすじだけ抜き出すと物凄い。「鬱気味の男がデパートに入り、もし今持っているレモンが爆弾だったら木っ端微塵になって愉快だな」と妄想するだけの話です。この、人間なら一度は考える突拍子もない想像をそのまま出力する発想も良いし、冒頭の主人公の憂鬱さが「漠然とした不安」として描かれ、それに明確な理由が示されないのも特に好きです。\n 「意味」にまで到達しないモヤモヤや心情が言語化されていて、こういう感覚ってあるよなと理解と共感ができて読後感が爽やかなんですね。やってることはただのテロの妄想であり、描かれていることは主人公の感性部分でしかない。ストーリーではなく、「感覚」を読まされている。\n 日々の不安なんて説明できないですからね。側から見たら、上手くいってそうな時期とかにも、内心では喜びより焦燥感の方が大きかったりする。それらを口に出しても、他人には理解されないし、「考えすぎ」としか指摘できない。しかも、考えすぎは完全に合っている。そんな時に、綺麗なレモンを手に取っただけで、なんだか救われた気になる。さらにそれが爆弾となってデパートを粉々にしたら、痛快でしょう。\n この作品に関しての感想に、「早く病院で治療してくださいね」と星1つをつけている人がいた。それもそうなんですが、この感覚を全く理解できない人がいるのは、そっちの方が怖いと思う。\n\nBOOTHにて、毎日の日記をまとめた同人誌が販売中です。買ってね！\n\n今月末には、長文エッセイをまとめた商業エッセイ本がでます。予約してくれると嬉しいぜ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

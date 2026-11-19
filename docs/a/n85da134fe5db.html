@@ -82,9 +82,8 @@ JAPANESE MEN&#x27;s BAU STYLE pic.twitter.com/sovVtu7lEM— nyalra (@nyalra) Aug
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-12-31 10:14\n喵拉拉 2024年度最佳购买 Top 10\nnyalra 2024ベストバイ トップ10\n\nライターらしく、今年買って良かったモノを10個選びました。\n みなさんの暮らしでの参考になれば幸いです♪\n\n1.CSMダークキバットベルト\n\nCSMだけあって、さすがの高級感。赤黒いメタリックな重厚感がカッコいい。これ一つで、いつでも自宅でダークキバ！ 誰も気軽に絶滅タイムを開始できます。便利！\n\nコウモリモドキの力を借りたい時にどうぞ♪\n なんと、あの紅正夫の音声まで収録されているぞ！！！\n\n2.ブラウン管\n\n僕でなく、仕事場で一緒に住んでいる友人が購入したもの。\n ノスタルジックな気持ちになるのみでなく、巨大サイズならではの発色と低音は現代の薄っぺらいモニターでは再現できない！\n 敢えて不便を満喫するからこそ手に入る自由がある。\n\n3.十字架にかけられたセブン\n\nウルトラマンAはいろんな意味ですごいですね。ゴルゴダ星って。\n 正義の巨人が張りつけでぐったりしている姿、多くの子供たちにいけない気持ちを植え付けました。\n このセブン一つで気分はジーザス♪\n\n4.シン・ゴジラのソフビ\n\nどちらか一方にしようと悩んだ末、この紫の発色の違いはどちらも美しく、選べなかった……。この紫の濃さはソフビならではなんですよ。禍々しくてカッコいい。\n\n5.タランチュラアビス\n\n出番なさすぎ！\n 一瞬でも登場したら商品化してもいいではあるけどさ！\n\n6.ダーク・ネクロフィア\n\nカッコよすぎるからって墓地のモンスター減らし過ぎに要注意です笑\n\n7.ゴッホモチーフの万年筆\n\n今年は初小説を出版したので、記念にご褒美を。\n なにかきっかけがあるたび万年筆を少しずつ増やしております。このうっすら残る青がゴッホですな。\n 小説、みんな読んでね。\n\n8.モンドリアンのパズル\n\nパズルでないとコンポジションの崩壊する様がこんなに綺麗なことを理解できなかった。\n モンドリアンを研究するに、なぜこの形であるかを身体で分かるためパズルは最適です！ 僕は2つ買いました。\n\n9.fumo saya\n\nfumo no uta.\n\n10.夜のカフェテラス\n\n詳しくはこちらで（手抜き）。\n\n11.イカルス星人のシャツ\n\n「分かる人には分かる」ファンアイテムとして完璧！\n そもそもイカルス星人というチョイスからもう凄い。ヨウジのコラボはきちんとファッション性も担保されていて素晴らしいですね。\n 着ているときは、「よく見るとイカルスなんですよ～」と自慢して驚かせています。普通に柄モノのハイブラシャツだと思われます。なんと絶妙なデザインであることか！\n\n今年の夏はBAUBAUで攻めろ！\nJAPANESE MEN's BAU STYLE pic.twitter.com/sovVtu7lEM— nyalra (@nyalra) August 21, 2024\n\nこれは誰が見てもオタクのTシャツ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -103,10 +102,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

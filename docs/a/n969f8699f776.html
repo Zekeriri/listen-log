@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-12-25 04:23\n一口随笔：对年末惯例活动的嫉妒心\n一口エッセイ:年末恒例イベントへの嫉妬心\n\nクリスマス時期になると、インターネットはカップルへの怨嗟の声でいっぱいになります。\n といっても、カップル叩きの風潮もだいぶ和らいだというか、オタクの嫉妬ネタも使い古されて飽きられつつあるし、配信者たちは孤独なオタクたちのために特別企画を行うのもデフォとなったので、なんだかんだみんな聖なる夜をエンジョイするようになった印象はありますけどね。\n ちなみに僕は今年もなんもないどころか、いわゆる恋人からプレゼントを貰う経験なんて、人生で一度もありません。クリスマスも誕生日も。でも、僕にはこれを読んでくれるおまえらが居るから……！ それでクリスマスを謳歌するカップルへ嫉妬があるかと言われるとそうでもなくて、実はクリスマスより年末年始の「帰省」の方を羨ましがっています。\n 恋人と過ごすクリスマスや誕生日は、いつか自分の努力によって経験できるかもしれない。さらに、この歳まで無かったイベントが楽しめるのだから、いざその時が来たらめちゃくちゃ幸せな筈。それはまあ、実現可能性がなくはないものですから、今後の僕の頑張り次第でしょう。カッコいい男になるよ。まずは嗅覚と不眠を治さないと、生活面で異性と時間を共有する資格もありませんが。\n が、問題は帰省です。これは僕にはできない。それをするには、精神的にも家庭事情的にもハードルが多すぎる。今さら僕が母親や義理の父親に笑顔で会いに行ける未来は数%もない。あるとすれば、義父が先に亡くなって母親一人になった場合（それを僕が知ることができれば）でしょうか。なんにせよ、できても数十年先のことになると思われます。恋人は作れるかもしれないけれど、実家は自分で作れないから。\n なので、友人たちやオタクたちが実家に帰っている様子を見るたびに、「自分ではもう届かない暖かみ」に羨望を覚えてしまう。なんかヤバそうな雰囲気だしている人たちも、年末年始は家族で団欒する。シェアハウス時代、10人くらい居た住民たちも年末年始は帰省をするので、広い部屋に僕一人になったこともありました。さすがに寂しかったね。\n そんな環境ですから、「沖縄帰らないの？」と訊かれるたびに、フェイタンの真似して「家族？なにそれ？」と返すことを楽しみに生きています。もう戻らないものは仕方ないからね。いつか、未来の妻と幸福な家庭を作り、息子にライダーベルトや娘にプリキュアの変身グッズを渡し、子供たちに「実家の安心感」を与える側になる日を夢見て暮らしていく。楽しみだ。あんたと同じ人生さ。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

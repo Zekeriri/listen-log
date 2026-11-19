@@ -33,9 +33,8 @@ View this post on Instagram A post shared by にゃるら (@nyalra_)</article>
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-07-19 06:59\n新桥大厦新探索\nニュー新橋ビル探訪\n\n珍しく新橋近くに降りる用事があったので、せっかくなので前々から気になっていた『ニュー新橋ビル』へ向かってみました。中野ブロードウェイと同じく、築50年以上の歴史があり、生きたレトロそのもののような雑居ビルです。\n\n駅から徒歩2.3分ですから、古いビルとはいえ、飲み屋やスーパー的な店が並ぶ1階と地下1階はそこそこ元気。あくまでそこそこ。シャッターが閉じられたテナントもたくさんあるし、盛況とは言えない。仕事帰りのくたびれたサラリーマンたちがのんびり飲み屋を回っている印象で、ごく稀に鉄道や釣り具など専門性に特化したお店もあったりする。が、基本的には昭和のおじさんたちが「当時の空気」を満喫する、あえて時を止めた空間に思えます。\n ここも中野ブロードウェイと同じく階を上がるごとに混沌としていく。中野がサブカルのカオスとするなら、新橋はサラリーマンのカオスと悲哀がある。\n\n2階のゲームセンター。ここはもう狙ってレトロな筐体しか設置しておらず、本当に時を止めることで成り立っているお店なのですが、驚いたのはその集客率。スーツ姿の50代、60代がみるみる店内に吸い込まれ、上海Ⅱや脱衣麻雀、懐かしシューティングなどにコインを投入していく。仕事帰りの中年たちが、家庭も仕事も忘れて「あの頃」に浸るための完璧なロケーション。需要も供給。ミカドの歴史を綴った『ゲーセン戦記』でも書かれていた、「大手じゃないゲーセンだからこそ新しい筐体以外を敢えて設置する戦略」の極端のような場所。沖縄にいた頃のゲーセンもこんなんだった。たまに調べると軒並み潰れている。\n\n2階、3階はとにかくチャイナ系のマッサージ店が多く、店の前に座っているおばちゃんたちが執拗に「お兄さんマッサージどう！？」と迫る。\n 他にもエロDVD店など、疲れたサラリーマンたちを狙った「性」に溢れている。ときおり懐かしい店構えの喫茶店やバーなどが存在してほっこりする。このアダルトさは、そのうえで若さは一切ない色気は新橋特有のモノなのでしょうね。そのうえでシャッターだらけな悲壮感もまた味がある。マッサージ店の島の店の前には、おばちゃんたちが店舗を越えて談笑し合っており（通行人を見かけるとすかさず客引きする）、儲かっているかはともかく、みんな仲が良さそうでなんだか羨ましくもある。このビル内でのんびりと過ごす余生の幸福もあるのだろう。\n\n4階は、マッサージ店すら無くなり、囲碁や麻雀サロンがぽつぽつ。鉄道グッズ専門店もある。この階までわざわざ登ってくる人用の店舗だけ生存しているのは、中野ブロードウェイとも同じ。ただ年齢層が圧倒的に老人寄りですが。\n たまに通り過ぎたバーの空気なども合わせて、「笑ゥせぇるすまん」で描かれた昭和サラリーマン像の欲望の捌け口……女、酒、麻雀ってぜんぶココに集約されていたのだなぁと感じます。昭和の男たちが追ってきた夢の残滓。\n 僕はまだ夢に飛び込んで現実を忘れるほど、年齢を重ねちゃいない。地下一階の誰もいない小さな飲み屋でビールを頼んだ。きっと、このお店で出させるキンキンに冷えた生ビールに救われた労働者たちの幸せが、何十年分も色褪せたテーブルに染み付いているのでしょう。\n\nView this post on Instagram A post shared by にゃるら (@nyalra_)"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,10 +53,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

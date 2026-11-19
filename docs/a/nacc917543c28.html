@@ -44,9 +44,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-06-02 15:25\n寻找永恒的自杀\n永遠を見つける自殺\n\n自分が写真を撮ってメモしていた、この本が寺山修司だったか澁澤龍彦だったかを失念した。\n それはともかくとして、『気狂いピエロ』のラストについて、「自分の顔にペンキを塗ってランボーの詩を詠みながらダイナマイトによる型破りな自殺を行う」と解説されると、たしかに型破りな死ではあるなと驚く。もはや古典を読むように観ていた映画なので、リアルタイムでの驚きにまで頭が回っていなかったというか。\n\nところで、他ならぬゴダール自身も自殺、というと語弊はあるものの、スイスで安楽死を選択している。\n ダイナマイトか安楽装置かの違いはあれども、自分で死を選択することには変わりなく、そこには「死」に対するなんらかの美学はあったはずで。例えば、老アカギは老いることで自分の思考が自分でなくなっていくくらいならと同じく安楽死を選んだ。\n\n坂口安吾は『堕落論』にて、\n\n数年前に私と極めて親しかった姪の一人が二十一の年に自殺したとき、美しいうちに死んでくれて良かったような気がした。\n\nと、書き残している。\n\nまったく美しいものを美しいままで終らせたいなどと希ねがうことは小さな人情で、私の姪の場合にしたところで、自殺などせず生きぬきそして地獄に堕おちて暗黒の曠野こうやをさまようことを希うべきであるかも知れぬ。現に私自身が自分に課した文学の道とはかかる曠野の流浪であるが、それにも拘かかわらず美しいものを美しいままで終らせたいという小さな希いを消し去るわけにも行かぬ。未完の美は美ではない。\n\n凄まじい文章です。\n このあとに続く、「六十の醜い老婆よりも二十の処女を好む」という文に本質があるように思える。これは決してオヤジの性的な目線の話ではないでしょう。美しい思い出のまま、この穢れた現実に汚されていく者たちへ無常を感じているというか。\n そもそも、現実が地獄であって、そんな場所で成長することと穢れることが同義だという感覚の話でもある。\n\n「こんな世界に適応できているやつは、ただ穢れから目を背けているだけ」といった感覚は忘れたくない。\n 大人が「社会ってそういうものだよ」と説得するときは、だから思考停止してともに穢れていこうぜという邪念と諦念が含まれている。ある程度のお金を受け取って納得しようぜと、そう言っている。\n ああ、そんな風に生きていくくらいなら、ダイナマイトの爆発とともに永遠を見つけたいものですね。\n 美意識に包まれたままで死ねる幸福もあります。\n 永遠を見つけようとしないまま、なあなあと醜い老人になって生き永らえる、「社会ってそういうものだから」と同調圧力を押し付ける自分を想像すると、早く死んでしまいたい。せめて、今の年齢でも「納得できない」ことはきちんと納得できないと主張していく他ない。\n 見つかった！\n 何が？\n 永遠が"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -65,10 +64,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

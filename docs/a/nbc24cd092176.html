@@ -36,9 +36,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-29 03:05\n一口随笔: 审美感\n一口エッセイ:美的感覚\n\n「感性」という概念は非常に曖昧で、僕はそれこそ思春期の男女の感性こそが輝きの最高潮であり、大人になってからその時の感情を想起してどれだけ取り出せるかが、「創作」や「活動」の鍵だと認識ております。\n なにかを見たときに生じる感情、感想を感性とし、そこから「美」の部分だけに焦点を当てると「美的感覚」となる。これは、なかなか鍛えようと思って鍛えられるものではないように思える。若い頃に形成された「何に美しいと見惚れ、何を醜いと避けてきたか」の美醜の価値観によるものが大きいのでしょう。詳しくは、哲学者であり作家であるウンベルト・エーコの『美の歴史』『醜の歴史』を読もう！ いまはめっちゃ高くなかったから図書館がいいよ！\n\nポケットモンスター\n美/醜 pic.twitter.com/x1algcZSID— にゃるら (@nyalra) September 6, 2021\n\n何故こんな話をしたかと言うと、端的に僕がプロデューサーから美的感覚を褒められて嬉しかったからです。一緒にゲームを作ってお金を出してくれる立場なのですから、能力の評価はシビアな人で、ダメな部分はハッキリ言ってくれる。そんなプロデューサーが見抜いた僕の長所は「詩的な文学性」と「美的感覚」であり、これがあるからゲーム製作用に巨額をベットしてくれたのですね。ありがたいよ。\n\nニディガの美術部分もそうだし、その関連でのイラストの発注などは概ね僕の趣味や判断で行われる。「この人に仕事を頼みたい！」という人選に文句を言われたことは無く、つねにスタッフたちから「いいね！」と言ってもらえております。前回の放送での記念イラストの人選もそうですし、自分が素晴らしいと感じるクリエイターへ声を掛ける瞬間に喜びを感じる。どうですか、今回の御三方のイラストも良いでしょう？ プロデューサーの判断で、他のゲームの美術部分のお手伝いも協力したりしました。「作詞と美的感覚」は太鼓判を押されてもらっている。嬉しいぜ。\n 特別、何かをしたとかではないのですけどね。生まれつきクリエイター信仰がものすごく、「とにかく何かを作っている人はカッコいい！ えらい！」といったリスペクトが根源かもしれません。先述した通り、これこそ「センス」と呼ばれる才能なのかもしれません。\n つまりなんだ、ただの自慢じゃないか！ と思われたかもしれませんが、まったくもってその通り！ 信頼する大人に褒められて嬉しかった！！！ ただそれだけです。ここは僕の日記帳。たまには自己肯定感を上げるための回があったっていい。\n 僕は子供の頃にマリリン・マンソンを見て、恐怖と美しさを同時に覚えました。それが闇の中から美を取り出す行為……つまり「ゴシック」嗜好の始まりであることを知ったのは、もう少し後に水銀燈を見て同じ感情を抱いた瞬間でした。僕の美醜の原点はそこにあるのでしょう。\n\n毎日の日記をまとめた同人誌を販売中！\n こうして日々の感情を書き留めておくことが、感性を養うことへ繋がっていたら嬉しいですね。\n\n商業エッセイ集もよろしくね！\n こちらは若い頃の文章すぎて感性びんびん！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,10 +56,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

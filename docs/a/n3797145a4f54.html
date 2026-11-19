@@ -30,9 +30,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-11-17 04:29\n因我的误会而产生的韩国哥特女孩\n僕の勘違いで生まれた韓国ゴスガール\n\n数年前、自分の作った作品のアパレルモデルを探していた際、ずっと応援してくれた韓国のコスプレイヤーの方が乗ってきてくれました。さくっと撮影する程度なので旅費は出せないが多少のモデル代ならと交渉し、日本旅行のついでに寄る感じにするので全然OKとのこと。\n 慣れた方だったので難なく撮影を終え、お礼を告げた後に雑談で飛行機代を聞いてみる。モデル代もそれなりにあるのでトントンくらいにはなっていたらいいなと思っていたら、なんと「急いで来たから30万かかった」とのこと。\n 30万！？ と驚きで飛び跳ねる。\n いくら作品を好きでいてくれるとはいえ、こんな大枚叩いて撮影に参加してくれたのかとあたふたし、とはいえ旅費を全負担するのも変だし、せめて自費で返礼できたらと欲しいものを聞いてみる。日本のロリータ服に興味があるとのことで、翌日の帰国前にちょっとだけ時間をくれませんかと新宿で待ち合わせる。\n 新宿にてロリータ服を扱うアパレルショップを案内。\n フリフリで煌びやかなラインナップがなかなか新鮮なようで、いろんな洋服を試着しては楽しんでくれた。中でも豪奢な黒いドレスがお気に入りらしく、彼女の墨を流したように綺麗な黒髪と漆黒のゴシックはたいへんお似合いだった。では、これを撮影のお礼としようと値段を見ると10万円！\n 普通、急に10万円分の洋服をプレゼントしたら完全に怪しいおっさんであるが、そもそも30万もだして日本へ来てくれたのだから、その3分の1で済むのならむしろ申し訳ないくらいだ。それでは旅費に比べて僅かですが是非ともどうぞとゴシックロリータを一式贈ることに。今までゴスロリに挑戦したことなかったので緊張しつつも嬉しい様子。\n それはもう、目に見えて喜んでくれてわかりやすく飛び跳ねてもいたので、良いことをしたなあ……と珍しく積んだ善行、とは言え30万には及ばない罪悪感にも苛まれつつ駅にて見送る。せめて韓国でゴシックロリータを楽しんでくれたらいいが。本当に飛び跳ねたいのは撮影のためだけに黙って大枚はたくほど応援された僕の方だ。\n が、なんかちょっとおかしい気がすると冷静に確認したら、なんと彼女が言っていた30万とは30万ウォンであり、日本円では3万円と少し。要するに3万程度で日本に来られて多少浮くくらいのモデル代も入ったので彼女にとって全く問題なかったのであり、その上でなぜか作者が高級なドレスを贈って文字通りお姫様待遇をしてくれた形となる。\n そりゃまあ異国でのあまりの熱烈歓迎に飛び跳ねもするわなと理解。\n と言っても僕が勘違いしたことによって、この世界に素敵なゴスガールが生まれたと思うと一切の後悔はない。僕は僕でゴシック・ロリータのためなら死んだっていいくらいに考えているのでむしろ得したとさえ思った事件でした。\n 今でも時折、応援のメッセージをいただけるので、人と人の縁は不思議なものだなあと感謝です。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,10 +50,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

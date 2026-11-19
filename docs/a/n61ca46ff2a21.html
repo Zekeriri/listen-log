@@ -50,9 +50,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-06-03 05:12\n强效抗抑郁药\n強めの抗うつ剤\n\nいつもより、強めの抗うつ剤。\n 脳内の神経伝達物質を増やして意欲を高める上に、鎮静効果もあってすっごく眠る。\n やる気に満ちたり、たくさん眠らされたり、いったいどっちなんだ。\n この強力な抗うつ剤を飲んで毎日眠り続けたら、たしかに精神はマシになってくることでしょう。\n 本当は、毎日眠り続けていたいけれども。\n そういえば、食欲も戻ってくるらしい。\n どうかな？\n ここ2、3ヶ月でどんどん身体はげっそりとしてきた。\n ここ一週間は急激に肉が落ちていった。\n あまり家からも出なくなり、食事をほとんどしなくなった。\n 打ち合わせがあれば、ついでに喫茶店で少し口にする程度はあったルーティンが外れ、帯状疱疹によって皮膚も真っ赤になったことだし、酒も飲まなくなった。\n みるみる身体は痩せ細る。\n せっかく鍛えていった筋肉が減っていくのは勿体ない。\n\nこれから強めの抗うつ剤で長めに睡眠をとる。\n 本来、三日くらい眠り続けていたって許されるくらいの過労に思えるが……。\n たくさん眠っている間に、脳内が元気に書き換えられていく。\n 頭の中の大工事が始まる。\n 強い抗うつ剤を飲んで、たまの長い睡眠をとることだけが生活の楽しみなんて、いろいろと間違えている。\n 起きている間は、苦しい出来事が脳内を乱反射して最悪だから、本当に眠る時しか幸福を感じられない。反動で、起きるたびに、また現実と向き合わねばならない絶望で死にたくなる。起き抜けは地獄だ。きっと、本物の地獄よりも地獄なんだ。\n 強めの抗うつ剤が効いている間は、起こさないでください。\n 人生とは理不尽なもので、人の精神をここまで追い込んだ人間の方はぐっすり眠ってがっつり食ってぶくぶくと肥えていくものだ。\n 悪い奴ほどよく眠る。\n なら、不眠人（ふみんちゅ）たちは、そんな悪たちの世界に抗って生きる善の生き方か。\n 起きたら、炭水化物を食べる気になっているのだろうか。\n 勝手に工事してくれた脳が健常なフリをして。\n クスリによる強力な睡眠と安楽死の境目がどこにあるのか。\n 静脈麻酔でとろんと夢に堕ちたまま目覚めなければ、すなわち死とかわりがない。\n この方法でしか現実を忘れられる時間がない。\n 眠っているうちに、脳が神経物質を書き換える。\n 眠る前とは別種の人格が用意されている。\n 悪い奴ほどよく眠る。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -71,10 +70,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

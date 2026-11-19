@@ -29,9 +29,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-30 22:42\n一口随笔：今天仍然不能变得普通\n一口エッセイ: 今日はまだフツーになれない\n\n今年良かったマンガをまとめるつもりが怠くて年内に間に合わなかったので、先に一作だけ紹介します。2021年で最も女性同士の関係の描写が好きだった作品、「今日はまだフツーになれない」です。\n\n二人の主人公、高橋と山下（ともに27歳）は、タイトル通り「フツー」になれない。高橋は可愛いものが大好きでメイド喫茶勤務のフリーター、空気が読めず周囲に合わせられない繊細な山下は駆け出しの漫画家。同級生たちは就職や結婚で「フツー」を歩んでおり、二人は自分たちが社会に適合できない事実を節々から感じ続けていく。\n\n漫画家として活動する山下はまだ良いが、かわいいだけが生き甲斐の高橋はさらに辛い。勤務先では最年長だし、同窓会に参加した際、自称「かわいすぎる髪の色（ピンク）」にしているような人間が自分だけであることを思い知る。昔はエゲツない腐女子だった友人ですらフツーになっているのに。僕は、彼女がピンク髪を「かわいすぎる髪の色」と認識しているのが好きです。かわいすぎる答えがあるのだから、自身がそれを纏うのは当然でしょう。\n 高橋の方も、イベントで昔の作家仲間に漫画を褒められるも、漫画を諦めて結婚した向こうは多くの体験をしているのに、自身は恋愛も仕事も知らない。しかし、体験が重要なはずの漫画家になったのは自分の方だと不思議に思う。\n 作品内では、このような「フツー」の現実が描かれ、それに対する二人のスタンスを表現していく。読者視点では、いつまでも変わらぬ二人で居て欲しいが、社会はいつも「フツー」を求める。何が正解か分からないまま、人は生き続けていく。\n\n毎日のエッセイをまとめた同人誌をBOOTHにて販売中です。同じく27歳のオタクによる、フツー未満なしょうもない人生を覗けます。\n\n今月発売した商業エッセイ集もよろしくお願いします。どうして、こんな27歳になってしまったのかが分かります。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,10 +49,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

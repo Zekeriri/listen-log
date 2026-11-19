@@ -59,9 +59,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-04-12 02:42\nNEEDY ANIME 第二话『Just the Two of Us』\nNEEDY ANIME ２話『Just the Two of Us』\n\n↑1話は、こちら。\n\nこのアニメの1.2話は非常に手探りで作られていて、作り手側の試行錯誤が視聴者にも伝わる中、それを敢えて潰さずに進んでいった。2話は「新キャラのキャラ立ちのために可愛いこと、女児アニメっぽいことを挑戦しよう」としつつ、やっぱりそこはNEEDYなので珍妙なエッセンスに溢れて変、それを平らにしないまま突き進む。\n まだ「怪獣プロレス」という概念もない中、初めてゴジラがアンギラスと戦っているシーンの、プロレスでないからこそ血気盛んな荒々しさが、後々を振り返ると良い。僕はそういう意味での2話が好きだ。\n\n自分は3話に対しての思い入れが強く、この1話2話でトンマナを皆で探っていけたからの3話以降だと思っているので、もしこのアニメに最後までお付き合いいただけた際は、ぜひそういった視点での2話を振り返って観てほしい。\n\n自分がどう迷ったかを具体的にいうなら、「新キャラの存在たちをどう立たせていくか」で、高速でカラマーゾフのキャラを成り立たせるため、個性を覚えてもらうための試行錯誤に対し、ある意味で週間漫画連載的なスピード感と、全体のストーリー進行と上手くハマっていけていたか、かなり四苦八苦している。監督もまたどう動くか悩んでいる中、背景美術のモンドリアン色がバッチリ決まって、美術面でのイメージはかなり固まった。\n\nモンドリアン風の背景に対しての画面から生まれる色の動きが、個人的にはすごく好きだ。\n 「かちぇ」という視点から、珍妙なハウスで個性的なメンバーに囲まれている構図が続くのは心地よい。\n 例えば、これが週刊漫画であれば、さらに高速でキャラを立てないといけないと思うと、連載って大変だなあと考えていた記憶が。どれだけ痛々しくてもキャラの個性だけでも覚えて帰ってもらうスピード感。構成。まだまだ学んでいくことは多いですね。\n\nもはや、ほとんどオリジナルアニメのようなイメージで観てもらっていきたいところ、カラマーゾフと超てんちゃんの関係の存在などを表現していけたかなと思いつつ、セリフや見せ方の面はもっと工夫していけたなと自分の反省点が大いにあります。\n その上で、彼女たちがわちゃわちゃ動き始めて、それをアニメーションらしく可愛くしてみようと僕なりの頑張りがむしろ可愛いなという視点でも不思議な回であった。\n カラマーゾフなる「女児アニメっぽいわざとらしさ」が深夜のアニメに居るってニュアンスが出ればいいなと思いつつ、この回全体のなんだかへちょっとした感じは正しくあの時代の深夜アニメになれている気がします。ふとテレビをつけた際に、なんだか観ちゃうような。また次回から毛色は多少変わっていくところ含めて、自由な作品です。\n\nあめちゃん……。\n やっぱりピと一緒に居て幸せな時の彼女は可愛い。\n Just the two of us、いろんな形での「たった二人だけ」が表現できていたら良いなあと思います。\n すごくカッコいい英文ですよね。曲としても名曲ですが、まずはタイトルが大好きですJust the two of us（たった二人だけ）。閉塞感があるCパートがお気に入り。\n\nキタニ、もああん（映像）、ありがとう。\n このエンディング映像に関して、プロデューサー稲垣さんがものすごく嬉しそうに自慢してくれたのを覚えています。\n\nこの人の笑顔のために一生懸命作詞作曲編曲をしたわけです https://t.co/OskGHeD5fI— キタニタツヤ Tatsuya Kitani (@TatsuyaKitani) March 10, 2026\n\nまた、ピザを食べに行きたいね。\n サイゼリヤ新中野店は、もう閉店するようですが……。\n\n「エンディングは静かにインターネットへの鎮魂歌をうたってほしい」とお願いしました。\nこの歌詞があがってきて、飛び跳ねるように嬉しかったです。\nアニメの終わりは、ただただ余韻に浸って欲しいので。 https://t.co/wDhBLAjvxE— nyalra (@nyalra) March 10, 2026\n\nカッコいいぜ。\n\nかわいい。\n 2話はとにかくロリポップが可愛く目立てばと頑張りつつ、彼女のキャラクター性がきちんとわちゃわちゃ立ったのは良かったなと思います。ぜひとも、魂込めた3話を観てもらえればと、切に願います。\n 3話『INTERNET OVERDOSE』を、よろしくお願い致します。\n\n↑3話。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -80,10 +79,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

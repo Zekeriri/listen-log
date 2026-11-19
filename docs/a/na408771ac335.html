@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-12-12 12:12\n在关键时刻衡量的价值\n節目で測られる価値\n\n「こいつら楽して（ズルして）生きやがって」といった憤り、もしくは嫉妬が消失したのは30歳になってからでした。\n 人は、きちんと節目で存在の価値を測られる。もちろん二十歳になった瞬間、三十路になった瞬間なんて、はっきりとした区切りではないものの、漠然と実力が見えてくるタイミングが人生に複数回ある。\n たとえば容姿だけ、口だけ、運が良かった山師、あらゆるプラスは日に日に擦り減り、数年経つと「今のこの人には実際どれくらい実力や実績があるの？」とごく自然に皆がステータスを測り出す。\n 30などになると、一度周辺人物の「答え合わせ」を見ることとなる。二十歳前後でまだ万能感と若さに身を任せて大きくでていた頃と、あれから十年経って社会に呑まれ実力が示される現在。この歳になると容姿が良かったとてそれだけではどうにもならない。口が上手いだけの者はボロが出て仕事や収入が減り、運が良かっただけの者は減っていく貯金に焦りを覚えている。言うまでもなく淡々と実力を発揮して輝く者も、競争社会に見切りをつけて円満な家庭に精を出す者も居る。いわゆる立派な人間が。\n 現時点のプラスマイナスも、また数年後、なんらかの節目で総括される。年をとり、あらゆるイベントが振りかかり、人生はそれでも続くと知っているため、生についてロングスパンで俯瞰するようになる。少しだけ、悲しくもある。嫉妬もまたパワーであり、「こいつら楽して生きやがって！ 自分は違うぜ！ 今に見てろ！」と荒々しい行動力の消失も意味している。「数年後も活動していたら互いに答え合わせしよう……」これだけ。SNS社会の功罪により、他者の近況を容易に知ることができる。読者がまだ10代20代で、キラキラとした同期に羨望や嫉妬を感じた際、5年後のことを思うと多少落ち着く。しかし、｢劣等感に苛まれているのは今なんだよ!｣といったルサンチマンも否定しない。むしろ、その比較と怒りこそ生命エネルギーだ。\n 太く短くカッコよく死ぬ。\n そう信じていた若い自分が遠くなる。「30までに死ぬ」、みんなそう思ってしまう。そんな歳になっている己を想像できないからだ。しかし、30になると「40までに死ぬだけさ」なんて考えはしない。どうせぬるりと40、50になっても生きている肌感覚を、うっすら体力が減り続けても生を真っ当せんとする脳味噌の重みを、経験として刻まれちゃったからだ。\n みんなが三十代後半となり、一般的には「成長や思想が固定される」時期がきた時、人格の固着に関するタイムリミットが訪れ今以上に実存の価値へ直面した時、互いに「生きたねえ」と無意識に答え合わせをするのだ。\n\nエッセイの新刊が出ていますよ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

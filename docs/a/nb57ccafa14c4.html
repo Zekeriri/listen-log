@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-05-09 05:44\n一口散文：氧气舱 阻塞感 安眠\n一口エッセイ:酸素カプセル 閉塞感 安眠\n\n最近あまりに眠気と怠さが抜けないので、見かねたプロデューサーが打ち合わせの後に酸素カプセルへ連れて行ってくれました。カプセルの中に入って酸素を補給することで適度に気持ち良くなって体力回復がうんぬん。\n\nいろいろ考えた結果、酸素カプセルになった。僕は鼻がまったく使えない病気のため呼吸が弱く、酸素の供給量が少なくて睡眠時間にめちゃくちゃ支障がでる。ストレスや時期によって中途覚醒は酷くなり、5月はつねに睡眠不足となってしまった。なら、酸素が充満したカプセルの中で眠れば気持ちよくなれるのではないか。\n 結論から言えば、眠れました。カプセルの中に閉じ込められて中は真っ暗。空気が心地良くて睡眠には最適。この静寂と闇は良いものだ。自宅ではどうしても雑音と僅かな光が発生する。この閉鎖空間にはそれがない。完全に世界と遮断され、ただ暗闇だけが広がる。酸素がどうより、この閉塞感が良い！\n 思い出した。僕はユリカ様と双一（伊藤潤二）の影響で棺の中で眠ることが夢だったんだ。このカプセル内での感覚は棺に近いかもしれない。暗くて冷たくて窮屈で、でもこの狭さに安心感を覚える。自分が世界と接している面積が最小限の状態だからか。外界との遮断も。ユリカ様は毎日このような気持ちでクソったれな朝の陽射しから隠れていたのだ。太陽は残酷だから逃げなければならない。\n できればずっとカプセルの中に居たかったものですが、残念ながら今は自室で、しかも朝で、あのクソったれ太陽の陽射しがカーテンの隙間から漏れている。早く棺に戻して欲しい。暗くて狭くて冷たい棺桶のなかで眠りにつき、外界の出来事なんて一切関知しないまま永久の刻を独りで堪能する。僕が静かに目を閉じている間は、あなたたちは好きなだけ忙しく忙しく体や口を動かし、今日も元気に争ったり泣いたり笑ったり、幸せと不幸を比べ合わせて寿命を勘定していて下さい。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

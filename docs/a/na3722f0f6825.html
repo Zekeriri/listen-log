@@ -44,9 +44,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-06-29 12:51\n苯二氮卓依赖 想死\nベンゾ依存　死にたい\n\n耐え難い苦しみや不安がやってくる。\n 人間は、喜びよりも痛みの方が倍以上に感じられる生き物だ。痛がり屋だ。いいことだってあるはずなのに、もうそれどころではない。\n 耐えられないので、薬を服用する。\n デパス……向精神薬の作用により、興奮がおさまってくる。筋トレで疲れた筋肉も弛緩されていくのでさらに都合も良かった。ぽわぽわと世界から現実味が消えていく。「むしろ、よく素面でこんな世界を直視できていたな」と脳みそが語りかけてくるようだ。優しい。今もそうなっている。\n そういえば、僕は涙を流さないな。作品では泣くのに。こんなに酷い目に遭ってなお。なぜだろう。現実を「苦行に耐えるための修練の場」と捉えているからかな？\n 人生は上手くいかない。それを受け入れるだけの作業。\n そう思うと、落胆と鬱々とはすれども、涙は流れなかった。\n 死にたいとは日々思っている。\n 日常で「自殺」というワードが明らかに増えた。\n 他人にも「自殺します」と増えた向精神薬の量によっては送ってしまう。実行までの間にどきどきと緊張した感覚だけ残っているけれども、おそらくそれから薬が効いて、躊躇しているうちに眠ってしまった。\n 言葉には力がある。\n 繰り返すと、どんどん現実味を帯びる。\n 「死にたい」「自殺します」と繰り返しているうちに、いずれ脳裏にべっとり「死」がこびりついて、ぽやぽやと夢見心地の気分なうちに実行できるかもしれない。いや、そうなるよう、自分へ意識させるためにそのようなワードを頻繁に書くようになったんだな。\n 死にたがっている。この生き地獄に居るよりかは。\n 相当に酷いことをされたと思う。作品と関係者のため、表に出すのを止めただけで。裏では多くの方々が解決に向けて協力してくれているけれど、それも含めて精神が持たない。SOSをどう出せばいいかわからず、薬は増えます。\n\nベンゾを使うと眠くなるので、カフェインも摂る。\n 抗不安と刺激による焦燥がちゃんぽんだ。\n 今、ベンゾがない世界が怖い。ベンゾ依存は恐ろしいくらいに地獄だ。脳が溜まっていた現実を直視してしまうため、数日寝込むくらいに禁断症状と戦うこととなる、僕はそこへカフェインも加わって。カフェインもやめたいなあ。でも、ベンゾ中にカフェイン抜きで原稿書くの、難しいんだ。\n 人に依存したい。\n こういうことを分かち合える恋人が欲しいなと、切に願っている。\n ただ、特に何もしないだろう。こんな死にたがっている人間かつ精神不安定なやつは、他人様へ迷惑しかかけません。しかも泣きはしないから不気味だし。ねえ、誰か僕に優しくしてください。\n 早く死にたいですね。\n 早く死にたいですね。\n ベンゾ依存。\n 増えた。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -65,10 +64,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

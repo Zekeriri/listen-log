@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-02-19 18:44\n三大欲望与生命的意义\n三大欲求と生の意味\n\n自分へのご褒美を考えた(実質、この日記を書いている今日が誕生日なので)結果、いま最も必要としていることが睡眠であった。とにかくたくさん寝てみようと、僕にとって比較的早め(深夜3時)に眠ってみる。\n アニメ放送直前で仕方のないことですが、かなり眠い。集中のためにカフェイン量が異様に多くて、どんどん睡眠時間が減ってきた。デエビゴを多めに飲んで強制的に睡眠。副作用で悪夢を見る。\n 結局、ここまで頑張った(通常人は13話分のアニメを作ることはない)己へのご褒美が、深い睡眠なる、言うなれば誰にだって可能な要求であることについて考える。じゃあ、最初から何もせずにいっぱい眠ればいいのではと思うとその通りである。\n いやいや、精一杯努力してからのご褒美としての食事や睡眠こそ至高だろうと言う人が居たとしたら、それは若干綺麗事だ。だって、ここまで限界だった自分にとって｢やりきったなあ｣なんて達成感はまったくなく、とにかく久々に長めに寝たいという本能的な欲求のみで動いた。それでもやっぱり緊張して心は落ち着かないから悪夢寄りの光景を見る。\n 人生に意味はない。\n 殺人しまくって利己的に金を稼いだマフィアと国民のために生涯を尽くした為政者も、睡眠の心地よさは同じはずだ。生物には遺伝子的な答えがあり、それが三大欲求である。そして、本能に従い番となって射精と受精を行い、子供が生まれる。地に満ちる。要するに、子供を産んで次の世代へのバトンを繋ぐのみが人生であり、それを達成するかどうか以外に生物的な尺度は薄い。\n 勝手に意味を感じることができる。人間は基本的にどんなことへも勝手に因果を感じて意味を見出だしてしまう。単なる記憶のシャッフルである悪夢へ深層心理を探り出すように。\n きっと三大欲求以外に生きる意味があるはずだと考えるのは、人間の傲慢だ。仮に神様が居たとして、本当に徳や善なんて分かりやすいステータスを用意するだろうか。なら、積んだ徳に応じて来世が決まったとして、それは他人であることをどう捉えるか。そこまで「魂そのもの」へ重きを置くことが無宗教の日本人に可能と思えない。\n 既に、生まれ落ちた瞬間からアカシックレコードによって適当に｢来世は虫｣だと決められているとしたら。現世で何をしようがただ巨大な宇宙の輪廻に乗るだけで内容に意味はない。だとすれば、せめて生物として欲求にしたがった結果、なぜか子を成して遺伝子が継がれていく方が賢く効率的だ。\n 努力なんて自己満足でしかなく、楽して恋愛なり性欲なりに溺れている方が人間と言える。時に、生殖に有利となるためそれなりの努力は必要でしょう。つまり、その最低限の努力で程よい試練を受けて生きることが最高率だ。\n ここまで特異な環境で物を作ってたどり着く結果が睡眠あるのだから、人の幸福や価値とは、他者が勝手に測る無理やりな意味付けに過ぎない。\n 来世があるなら蜘蛛がいい。\n 立派な巣を張り、獲物が引っ掛かるまで己が城で待ち構えているだけの、地獄に糸を垂らす蜘蛛がいい。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

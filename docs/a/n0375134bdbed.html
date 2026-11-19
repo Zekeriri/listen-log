@@ -30,9 +30,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-05-11 14:42\n清晰梦与逆行\n明晰夢と逆走\n\nいろいろ大変なので昼過ぎに登校している時は感情がぐちゃぐちゃになっている。悲しみや苦しみ、やる気なども含めて。なんにせよ、無理やり眠るために睡眠薬を多めに飲んでおり、ねむり自体は浅くそのせいか明晰夢の確率が上がった。\n 明晰夢。「夢の中で夢と気づく夢」。\n みんな一度は明晰夢をコントロールしようと色々調べる時期があったりするものだ。GTAのように街中で暴れ回ってみたいだろうし。が、僕の場合は明晰夢となっても地味だ。\n 「夢だと気づいた時点」で用意された人物や場所の設定は変えられない。ので、自由度はぜんぜん高くない。夢のリアリティラインがほぼ現実準拠であればできることは移動先を決められるくらいだ。今回もそうだった。\n 今回はどうやら街に『モンハンタワー』なる巨大施設が誕生し、モンハンを200時間程度プレイしていると入れる。恐らく、中ではモンハンプレイヤーたちにとってめちゃくちゃ楽しいことが待っている。友人たちはPSP（古いね）片手に受付でセーブデータを見せて入場していく。このあたりで夢だと察した。\n けれども、どうしようもない。\n 夢なのだからいざとなればタックルなどの強行突破で入場してもいい。が、そもそもモンハンをあまりプレイしていない僕は別に入る気もない。というかPSPがありならセーブデータをコピーしてもいいわけで。それでも夢の強制力は、どことなくモンハンタワーに入ってシナリオを進めようとしてくる。なんでもありといえど、それなりに話の筋は存在するわけで、明らかに天がそのように導こうとしてくる。\n なので、逆らってみた。僕はせめてもの自由としてモンハンタワーを後にし、まったく関係ない街中をぶらついてみた。しかも夢なのに徒歩で、なんの工夫もなく。夢側もモンハンタワーを利用しないとはまさか予想していなかったのか、街中の風景も適当で、モブ以外出てこないしイベントもない。準備が足りてないのだ。RPGツクールでオブジェクトに何も設定してないままの街を歩いている感じ。\n それが結構楽しかった。普通ならいけない空間へバグで進んだような、かといってそのバグ空間には子供が喜ぶ刺激的なイベントは皆無な感じの。今後も明晰夢を見たら、目の前で起きている「夢のあらすじ」に全力で逆らってみようかなあと思う。\n 起きて気づくが、これは現実でも可能なのだ。別に、今目の前で会話している人間を放って突然逆走していもいいし、今から松屋に入ろうとしていたのに急に上の階のヨガ教室に乱入することもできる。モンハンタワーに行く流れを一人だけ断ち切ってもいいんだ。\n 結果、夢の中でさえ誰も登場しなくなる。\n ワザップだったらこの裏ワザは見向きもされんね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,10 +50,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

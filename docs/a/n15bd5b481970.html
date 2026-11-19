@@ -36,9 +36,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-12-04 04:57\n眼部化妆\n目化粧\n\nメイクをしてもらった。\n\n以前に、こちらが「謎」をデザインしたアパレルの撮影モデルやらと、単純に自分のアー写なるものをセットで。その写真は現在レタッチ中なので後に投稿することでしょう。\n 今回からメイク&カメラマンをしていただいたトキキル紹介の方は、とても僕のファンで居てくれており、家具なりの状況を日記を通して把握してもらえていたので説明が早くて助かりました。以前にサインを施したカメラが数十万円級で、そのサイン部分にラップをして保管しているらしい。せっかくの高価な機材なのだから、僕のサインなんて気にせず使ってもらえたら嬉しいけれども。\n\nなんにせよ、好かれていることは嬉しい。\n 「推しが尊くて嬉しい〜！！」的なハイテンションのはしゃぎようで、着せ恋のような若いノリにビックリしつつ、若者が喜んでいるならまあいいでしょう。\n なによりメイクもカメラも充分に腕前のある方で、ここまで目元を綺麗にしてもらえたらのだから、何回サインしたってお釣りがくる。ありがとうございます。\n 鼻や唇に立体感が生まれるよう、色んな工夫も施されている。僕には軽く行ったので計20分くらい。女性は自身に何倍もの時間をかけて化粧するのだから大変だ。美しさの裏には多大で地道な努力がある。\n\nトキキルの方たちも含めて、何度も睫毛の長さを褒められた。こうして写真にして改めて見ると、自分でもその長さに驚く。ものすごく目立つなこれは。\n 母親譲りの自慢の目だ。ぼくの瞳はとても大きく、そして睫毛は何より長い。そのせいで彼氏を取っ替え引っ替えしたり、挙げ句の果てには再婚したりが嫌だったが、母も大きなひとみで、睫毛がくるんとしていた。さぞかし異性の目を引いたことでしょう。\n 家を飛び出して以来、一切何ももらっておらず、沖縄時代の物も全くないので物理的な繋がりは皆無ですが、この両目こそ真の宝物で、そして唯一の血の繋がりをもった家族の証。\n 化粧の途中、「女の子みたい」と声をかけられる。やっぱり僕は母の子だ。\n ずっと一緒に、赤子の頃から母と二人きりで暮らしてきた。狭いボロアパートで。互いの部屋すらないワンルームで。\n\n僕と母の精神は、親子というより一心同体であった。あの人が悲しむことは手に取るようにわかる。あの人が好きなものも、嫌いなものも。次第に顔つきも、表情も同じになったのでしょう。\n 僕は美術と物語を観る感性を持って育った。間違いなく、この瞳と睫毛のおかげだ。「女の子みたい」と言われるような、母から受け継いだ両の目が、たくさんの綺麗なものを教えてくれる。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,10 +56,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

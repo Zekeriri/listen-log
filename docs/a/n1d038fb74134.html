@@ -36,9 +36,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-11-26 03:49\n喵拉拉 颜色变化\nnyalra Color variations\n\nもっと色について知っていこう。\n そのためには、まず自らが色を纏う必要がある。今までの僕は黒すぎた。これからはカラーの意味を真に知る旅が始まる。\n\n色味を吟味し、たどり着いたのはDRIES VAN NOTEN。色と幾何学模様を探求するブランド。ここでカラフルを纏っていく。\n この黄緑は良い。模様の不安定さと合わさって、映画のワンシーンのような不思議な心地に包まれる。黒だけでは発揮できない明度の世界が存在しています。\n\n透明なベージュ。\n 透けているのでインナーによって印象も僅かに変化。ちょっぴり暗めなグレーで明るさ控えめ。\n たしかにここまで白いと朗らかな人間に見える。そこへドリス・ヴァン・ノッテンらしき模様の異質さによって、爽快さのなかに澱みがちらちらと生まれてかなり良いですね。\n 白の清潔へ、どう違和感をほんのり込められるかが試される。\n シンプルなネイビー。\n\n先ほどとは打って変わって真面目そうなイメージに。黒から少しコントラストが変わるだけでも堅苦しさが違った味わいに。\n これはこれで悪くないけれども、やはりブランドの特徴である幾何学模様の感覚がない。代わりに素材がツルツルとしてテカりがいい。濃紺だからこその高級感。明度が暗いなら暗いなりに光ることができる。\n 最後は別のブランドだけれども、思いっきりの花と白。アレキサンダー・マックイーン。今年、黒からの脱却を試行錯誤したなかで、白地だからこそ冴えるプリントが分かってくる。青の花びらは純白の上でとても華やかに咲く。\n\nスト4のエフェクトみたいだね。\n それにしたって今年の夏は暑すぎる上に、急に寒くなったので、ぜんぜん半袖シャツの期間がなかった。冬は冬の色を探していこう。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,10 +56,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

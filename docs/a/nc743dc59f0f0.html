@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-01-27 05:14\n宅人的本怀\nオタクの本懐\n\n毎月読んで面白かった本を5冊、聴いた音楽を8曲選んで記事にしている。その中から毎年一度さらに厳選したものも記事にし、漫画も15冊選んでいる。特に誰かが強く反応することもないですが、これが密かな楽しみとしているのです。\n\n本当に対して反応がなければビュー数があるわけでもない。稀に「にゃるらさんが紹介してたから読んだ！」という声があると少しだけ嬉しくなる。読んだものの感想を記し、後世に残すことはオタクの本懐であり、テキストサイトに影響を受けた者としての役割とすら感じている。\n 実は、この時が一番楽しい。\n やっぱり自分の好きなものの話をしている時が最も高まり、さらに言えば僕はそこに他者を必要としていないらしい。もちろん「その本読みました！」と報告れると少し嬉しいが、かといって他人に「◯◯（書名）自分も読みましたよ！」と言われてもあまり乗り気ではなかったりする。僕の中で感想や見方が固まっているものに対し、余程のことでないと他人の意見を入れたくない。友達とかなら別だけど。要するに面倒くさいやつ。\n 月一、読んだ本をリストアップしたあと、「うーん今月はこの5冊だな！」「今月はこの8曲をよく聴いたなあ」としみじみしながら簡単な解説なりを書いていると、「テキストサイトをやっている」感覚が湧き、ネット上に情報の断片をアップロードすることで、もしかしたら誰かが、たとえ僕が直接観測できなくとも、この世界の誰かの頭の片隅に僕の文章が入り込み、バタフライエフェクトのようにいつか何かに繋がったら……と妄想を膨らませるのが楽しいのだ。\n\nそれこそ、僕が小学生時代に漁ったテキストサイトの筆者たちも、まさか暇つぶしに書いたB級ビデオの紹介文たちを、穴が開くほど何度も何度も読み返し続けたバカガキが居るとは思わないだろう。そういうことだし、それでいい。「もしかしたら誰かがふとした時に何かと繋がる情報のカケラ」。それを毎日日記の形で流し、テキストサイトの灯火を絶やさずいることが、もはや僕みたいなカスが背負った唯一の存在意義である。\n あんまり書いたことがなかったが、実はこの読んだ本・漫画・音楽などを投稿することを人生の楽しみとしているのであった。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

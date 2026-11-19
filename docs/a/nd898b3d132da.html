@@ -21,9 +21,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-05-02 19:05\n近况0501\n近況0501\n\n日記の投稿時間がガンガンに崩れてもはや一日の終わりに書かれていることの方が稀に。それだけ時間的な余裕がないけれども、それでも色々誘ってもらえたら嬉しいです。もはや、ここで何も気晴らしのイベントがなければ、ただ原稿を書き続けるだけの人になるから……。\n 少し前に、「相互の人で通話とかで雑談してもいいよ〜って人連絡ください」と呟いたら、優しい方々が数名連絡を送ってくれて嬉しかった。けれども、そのタイミングで生活リズムがさらに崩れて深夜すら居ないことも増えたのでなかなか都合あわず。今は若干早寝早起きですが、毎日少しずつ睡眠時間がズレているのでどうせいずれ深夜が活発になる。気軽に話しかけてもらえるとたいへん助かります。\n ここまでくると回復手段は人とのコミュニケーションだ。これはようやく芯から理解できた。打ち合わせで他人と話してるから寂しさは薄まっているのではと考えていたものの、仕事の話と気楽な会話は完全に別腹であり、なんなら仕事の話＋軽く雑談の形も、結局は仕事の話を含んでいるので気を張る。気づけば仕事抜きに他人とのんびり喋ったのいつだっけ……と悲しくなる。余計に寂しくなる。とはいえ、打ち合わせや会議も無ければもっと他人と話す機会も減るので、それはそれでいいんですけど。あとなんだかんだ通話でなく会って進めた方がすべて早くいくね。日記も急場凌ぎ。もう少し余裕を作ってみます。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -42,10 +41,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

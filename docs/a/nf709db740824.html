@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-07-01 15:56\n一口随笔: 精神药物与消力（小力）\n一口エッセイ:向精神薬と消力（シャオリー）\n\nまた寝落ちした。最近はずっとこうで、恐らく睡眠薬でなく、エアロバイクにより数年ぶりに運動している健康的な疲労と、常飲している向精神薬のおかげだと思います。\n どうやら、僕は日頃から心身ともに気を張って力が入っているらしい。整体でも脱毛でも、美容院ですら、「力抜いてください」と注意される。僕はベッドに横になっている時ですら固くなっており、つねに緊張状態なのだ。おかげで身体はガチガチで両肩は基本的に凝りまくりなのである。身体に引っ張られ精神も敏感なのかもしれない。\n なので、筋肉弛緩の副作用がある向精神薬がガンガン効く。勝手に全身の力が抜けて、本来人間はこれくらいの力の入れ方でも行動できるのかとビックリするし、それに伴い心も楽になる。エアロバイクで疲れた身体にスーッと薬が効き、頭がぼーっとしている間に睡眠が行われているのです。この一瞬の微睡が心地よい。\n 問題としては、向精神薬が効きすぎてすぐ眠くなるので、不安を緩和したいけど起きて作業もしたい微妙なバランス調整が難しい。僕はスマホを通して世界中から監視されている感覚があるため、そこでの圧迫感で緊張が生じているのでしょう。でも、弱めの向精神薬だと緊張が取れなくてどんどん強くなっていく。この絶妙なバランスが成り立つ生活や薬を試行錯誤していくのが当面の目標ですが、消力（シャオリー）で生きていくってなかなか難しいものですねぇ。\n\n毎日の日記をまとめた同人誌を販売中！\n 最近、寝落ちで更新時間が乱れまくり！\n\n商業エッセイ集の方もよろしくね!"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -30,9 +30,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-24 00:00\n超艺术汤玛森\n超芸術トマソン\n\n家の近くにトマソンがあるので、遊びに来た方に「あれトマソンだよ」と指差して紹介することを生き甲斐にしております。体感的に「トマソン」が通じる打率は2割程度です。\n\n自宅付近にあるトマソンは、壁に浮き出たドア。建物2階に設置されているものの、これでは開けた瞬間に地面へ真っ逆さま。このパターンは、トマソンの分類的には「高所」と呼ばれ、物体自体は正常だが高いところに存在するため違和感のある構造物を指します。恐らく、設置されていた階段が取り壊されたため生じた無意味なドアなのでしょう。\n つまり、トマソンとはこのように実用性のない構造物のこと。また、それらから感じる芸術。トマソンの語源は、過去に実在した野球選手「ゲーリー・トマソン」が四番打者ながら二年間空振りをし続け、まるで空振りを見せるために四番に据えられているような姿が、無意味に保存されている謎の構造物たちと同じ芸術性を感じることからきています。\n\n80年代に起きた路上観察ブームの中、トマソンの概念もニッチな人気を博し、「超芸術トマソン」として本まで出版。嬉しそうに全国のトマソンを紹介を行う、特殊すぎる趣味を持った作家たちによる軽快な文章が読めます。本当に凄い本だよ。\n ちなみに、本書の中では、トマソンの無意味さを死体に例え、トマソンへの興味も、この「死」に対するものだと説明している。死への恐怖が好奇心に変わり、それが専門家たちをトマソンの探索……死体漁りへ向かわせる。\n いずれは必ず訪れる「死」を理解するため、僕らは今日もトマソンの芸術性に見惚れ続けるのだ。\n\n今日のエッセイのように、大した意味を持たない毎日の文章をまとめた同人誌がBOOTHにて販売中です。この無意味さから芸術性を感じて頂けると幸いです。\n\nちなみに本日から商業エッセイ集も購入できるようになりました。こちらは商業らしく、多少の意味が含まれています。たまには意味があってもいいよね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,10 +50,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

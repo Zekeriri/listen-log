@@ -30,9 +30,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-11-20 02:11\n一口随笔：摇滚地活吧！\n一口エッセイ:ロックに生きろ！\n\n髪を切った。なぜなら、明日は文学フリマに参加して人前に顔を出すので、スッキリしておこうと思い立ったからです。そして、せっかく容姿が変わったのだから、それを見てもらおうとInstagramに投稿しました。案の定、フォロワーさんたちから「いいですね！」「似合ってますね！」と褒めてもらえた。なんと健全な一日でしょうか。そう、完全に今回の行動はすべて「一般的な感性」に支配されていた！！ 僕は愚かだ。\n\nこのメッセージで正気を取り戻した。僕は、もう三十路になるのだから「ふつう」でいいと油断していました。髪を短くするたびに、明らかに初対面の人間からの第一印象が良くなった（どちらかといえばロン毛で他人に会った時の「面倒くさそうなのきた！」感が消えた）ことで、じゃあもう髪は黒で適度な長さの方が生きていき易いなと甘えていたのですね。やっぱりそんなの味気ないなー、でも歳ってそんなもだしなーと。\n が、このメッセージはどうだ。「普通に好印象な人にならないで」と訴えかけている。普通になっていく僕へ解釈違いを感じながら、それでも応援したい複雑な心境が読み取れる。そもそも、他人へ本音を送るだけでも結構なことなのだ。これは真摯に受け止める必要がある。\n イベントに出るからなんだ。むしろ、イベント時だからこそ飾らない自分で行くべきなんじゃないか。なに美容室なんか行ったんだ。「好印象を持たれる話しかけ易そうなやつ」じゃなくていい。逆に「一目で変なやつだと分かる危険人物」でないとロックじゃない。マリリン・マンソンは天地がひっくり返っても白塗りを落として爽やかショートヘアーにならないだろ。凶悪犯罪者としてインタビューされても、椅子に足を乗せて「黙って犯人の話を聞いてやれ」と言う真の男だぞ。\n\nカッコいい……。マンソンは、文学フリマに出るからって髪をさっぱりしないし、仕事のために好印象を与えようなんて気は1ミリたりともない。こうあるべきだ。今後の打ち合わせは、白塗りに悪魔的なメイクして「恐怖」そのものになるくらいで生きる。コンタクト入れて白目にする。ライブ中にコカインも吸う。なんなら同人即売会も薬物キメながら臨むくらいで丁度いいんだ。マンソンはライブ中に聖書を破るんだから、僕も会場にある本を片っ端から破って歩くべきだぜ。\n\nマンソンが存在もせぬ神の奴隷じゃないように、僕も社会のご機嫌取りじゃない……！！\n と決意を新たにしたものの、要はまた髪を伸ばすだけだし、Twitterや Instagramで応援されるのはつねに嬉しい^_^。また、マンソンから大切なことを教えてもらいましたね。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,10 +50,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

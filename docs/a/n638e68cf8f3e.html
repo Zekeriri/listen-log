@@ -33,9 +33,8 @@ pic.twitter.com/RJEdnodUMQ— にゃるら (@nyalra) June 25, 2017
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-02-23 06:05\n一口随笔:世嘉土星\n一口エッセイ:セガサターン\n\nセガサターンの上で、セガサターンを使って、セガサターンのゲームをプレイする、ねんどろいどセガサターンさんです pic.twitter.com/FeOpTpl3UP— にゃるら (@nyalra) January 15, 2016\n\nガシャポンでセガサターン型の腕時計が登場したので、さっそく回してみたところ白サターンが出てきました。家にあるセガサターンはグレーであったので惜しいですが、こちらは開くと中から「サクラ大戦2」のディスクが出てくるので面白い。ちなみにグレーの方の腕時計は、開くと「バーチャファイター」が出てくる。ちなみに、本体の上に乗っているねんどろいどは、ゲーム機を擬人化した「セガサターンさん」です。\n\nさて、僕は世代的にはプレステ2やゲームキューブであるのですが、それでもセガサターンに拘り続けたガキだったのですね。セガサターンさんの後ろに取り付けられたカセットは、パワーメモリーというものでして、本体電池が切れたサターンでは、この僅かでもズレたら即読み込めなくなる記録装置を駆使してゲームデータをセーブするのである。「ズレ」対策のために、ゲームに付属するアンケートハガキを後ろに差し込んで真っ直ぐにしたりもする。\n 何故、そんな旧時代的な苦労をしてまでサターンを遊び続けたかと言うと、ひとえに過激な美少女ゲームは基本的にサターンのみで遊べる状態だったので、プレステでもパソコンでも物足りない狂った美少女ゲームオタクは、わざわざこのハードを引っ張り出して、EVEやYU-NO、慟哭そして…をプレイしたわけです。今なら全てSwitchで事足りる。あとは、スパロボなどはこっちの方が音質も良くて快適だったりするので、サターンでやったりとか。\n こんな機械ではあるが思い入れは強い。家庭用なのに美少女の乳首が見えるという優位性を誇る変なヤツだが、結果的に最も好きなハードなのですね。\n\npic.twitter.com/RJEdnodUMQ— にゃるら (@nyalra) June 25, 2017\n\n「イントロがセガサターンの起動音に似ている曲ランキング」があったとしたら僕の中でぶっちぎり一位のAnother Part of Meを聴いて、そのセガサターンっぷりを体験してみて下さいhttps://t.co/drr8PpRTLK— にゃるら (@nyalra) May 2, 2021\n\n毎日のエッセイをまとめた同人誌や、美少女ゲームに関する話だけをまとめた同人誌などをboothにて販売中！ サターンと出会わなければ、この本もできなかったんだなぁ。\n\n商業エッセイ集もよろしくね。僕の生い立ちがたくさん掲載されていますが、その裏ではセガサターンを遊ぶ日々があったのだ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,10 +53,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

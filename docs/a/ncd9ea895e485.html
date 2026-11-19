@@ -36,9 +36,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-04-14 02:05\n『咖啡与香烟』与他人的谈话所带来的不适感\n『コーヒー&シガレッツ 』他者との会話という違和感\n\n不思議な映画を観た。\n\nコーヒー&シガレッツ。\n カフェインとニコチンに溢れた煙臭い映画。オムニバス。\n\n非常に卑怯な映画だ。\n モノクロの会話劇。10分程度の映像が連続し、それぞれのつながりは薄い。ただ、カフェでたまたま目撃した妙な人物たちの会話へ聴く耳立てているだけのような映画で、もはや「こんな変な映画へ辿り着くような観客」にとって好物でしかない。頑固に客を選び、それでも来店する数奇者へ、望み通りの逸品をお出しする。まるで濃いめのカプチーノ。\n\n先日、恵比寿あたりで打ち合わせの後、ふらりと寄った駅前のルノアールが全席喫煙可の珍しい形態で、白髪のマスターが出迎えられ、ちょっぴり無愛想な接客を受け、煙漂う灰色の店内で過ごすこととなった。周囲の客層もなんだか独特。喫煙者だけの楽園で、のんびりとカフェオレを堪能する。目の前には共にゲームを作っている友人が居て、創作に関することゆえに話題も加熱する。きっと、側から見た僕らは、この映画の一幕のように珍妙であった筈で。\n\n喫茶店で目撃した、レアな話題や独特なユーモア。\n それだけをブレンドした一作。\n\nこの頃、「人間なんて全員が変な筈だ」と確信を持ってきた。変であることを悟られるぬよう、できるだけ目立たず偽装して社会に馴染むかの度合いが測られ、「会話」によってヴェールが剥がされる。人と人のコミュニケーション内ではアルゴリズムを越えた不意な話題の繋がりがあって。どんな人間であれ会話に100点、パーフェクトコミュニケーションなぞ存在せず、ただ特筆すべきほどでもない小さな違和感なんてどうでもいいだけ。\n つまるところ、勝手に覗いていいなら、大抵の会話は基本的に面白いんだ。知らない人と知らない人だけの、その場でのルール、立場の擦り合わせ、着地点への誘導。違和感同士をぶつけ合って、まるできちんとわかり合ったふりをする。もしくは、その場では納得をしたと錯覚をする。\n 一見まともそうなサラリーマンでも、数分質問攻めをされたら、だんだんと常識とズレた綻びが生まれることでしょう。この世界には「すべてが平均値で構成された一般人代表」なぞ存在しない。SNSで見かけた適当な一般人であろうとホームを遡ったらたいてい面白い。わざわざ文章にしてまで投稿している内容に「ズレ」がないわけがない。何もかもが平均であるなら、むしろ自覚して黙っているから。\n\n会話というものは、側から見ればどれも滑稽で、だからこそユーモラスで刺激的だ。そんなニッチな面白さへ焦点をあてた映画があってもいいし、そんな内容を1時間半浴びるためにわざわざ名画座へ足を運ぶ奴が居てもいいんだ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,10 +56,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

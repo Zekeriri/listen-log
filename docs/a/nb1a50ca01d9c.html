@@ -32,9 +32,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-03-21 16:47\n收集稀有物品以及默默面向世界在做的事情\nレア物収集と地味に世界へ向けてやっていること\n\n生活保護の友人が、その無限大の時間を利用してひたすらにアニメを観ている。最近はネオランガにお熱なようで、国会図書館へネオランガ関連の資料を漁りに行こうとしたら、なんと運悪く電子化作業中だったので読めなかったと残念そうに帰ってきた。電子作業で本が一週間程度読めないことは稀にあるが、まさか偶然ネオランガの資料が一週間読めないタイミングで訪問するとは、なんと運の悪い男だろうか。\n そんなやつなので、一度ハマったものに対して異常と言える収集癖があり、時にそれが高じて彼がゆるゆる集めていた本やグッズがプレミア価格になったりもする。あまりに生活がままならなくなったら泣く泣く貴重なコレクションをまんだらけへ売り払う。最近は、勿体無いので代わりに僕が買い取ると申し出ている。そのせいで、僕の部屋によくわからないプレミアモノが増えていく。しかし、数奇者として貴重な資料が市場に流れていく様を見逃すことができないのだ！\n\nというわけで、瀬戸口さんのレア本などがウチに回ってくる。\n 思えば、こういったものを集めて紹介したり、創作に活かしたりする10〜20代だった。それらは目に見えて現在製作中のアニメに影響しているわけで、なんと素敵なことなんだ。\n\n大昔に書いた、こちらの記事を中国語訳して向こうのSNSへ投稿したら、びっくりするくらいに反響が大きかった。これも嬉しいね。こんな形で文化交流をしている日本人なんてほぼ居ないからね。\n\n自腹で月数万円払ってまで、過去記事の中国訳を無償で投稿し続けている。英語圏でも行っている。人間、歳をとると未来に向けて何か文化を語り継いでいこうとするのかもしれない。自分がアニメを通した演出や引用も含め、この世にはそういうタイプの僕みたいな数奇者が居る。\n\nさて、友人は中野ブロードウェイへ急に掘り出し物を持って行くので、店員と仲がいいっぽい。\n レア物の価値がわかるショップでは、在庫が2点になるまで店頭には出さない。のちのち高騰していくことを考え、一点しかない場合は倉庫へ保存しておくのだ。なので、彼がようやく手放したおかげで在庫が2点となり、満を持して中野ブロードウェイのディスプレイに「わかる人にはわかる商品」が並べられる。\n 彼は「もっと家にあるレア物持ってきださい！」とお願いされており、そんなことを歴史あるオタクショップから言われるのは数奇者として誉れ高いことだ。この調子で、各地からネオランガグッズを収集し続け、満足いった数年後に手放す際、きっと今以上にレアモノとして値段がついていくのだろう。\n この世界は不思議な奴らだらけだ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,10 +52,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

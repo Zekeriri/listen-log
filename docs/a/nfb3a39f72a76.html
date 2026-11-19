@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-03-26 17:21\n「Menscare」这种说法\n「メンケア」って言い方\n\n「メンケア」なんて言い方が気に食わない。\n たとえば、僕があらゆる苦しみに苛まれている状態で助けを求め、話を聞いてもらうまでの流れを「にゃるらのメンケアしてやった」なんて言われたら、そんな陳腐な感情だと思われたのかとショックを受けるでしょう。\n だいたい、相談なんぞは聞いている方も気持ちよくなる行為であって、むしろ相手を悩ませた上で巧みにコントロールして搾取する、それをあらゆる見せ方で誤魔化しつつこっそり気持ちよくなる奴らが居るんだ。他人に頼られるのは承認されて満たされるから。神様気取りなんだな。\n それなら他者に頼られないと生きられない立場の奴らは、頼られることで逆にメンケアをされているわけだ。メサイアコンプレックスに浸されてやっているというか、役割を与えているというか。\n 人の感情に触れることを「メンケア」なんて略称でシステマチックに言い表すヤツは嫌いだ。僕は毎日日記を投稿しているので、自身の記事を検索すれば「使わない」言葉が分かる。僕はそんな略称を使用していない。嫌いなんだよ、ケアの部分が特に。傷つき合うつもりもないセーフティの効いた方の言い分じゃないかケアって。感情を平らにして社会にならそうとしているだけで、尖った部分をそのまま抱きしめるつもりは毛頭ない。\n 感情や意見と向き合った結果で、勝手にスッキリとするならともかく。マニュアルのカウンセリングなら誰でもできる。人と人のぶつかり合いで、真剣にこれからを見つめようとする過程にわかりやすい名前をつけ、まるで話を聞いてやったから収まるんだと捉えられるのは苛つく。\n わかりやすい呼称に甘えて、システム化による感情や精神の理解はなんでもムカつくぜ。\n イライラするぜ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

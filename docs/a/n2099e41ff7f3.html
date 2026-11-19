@@ -36,9 +36,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-08-14 03:37\n“脱掉衣服可不是万能的！”\n「脱げばいいってモンじゃない！」\n\n『脱げばいいってモンじゃない！』。\n\nだまってハダカで横になりなさい\n何も言わなきゃメチャクチャいい男なんだから\nだからどうして怒られてるかホントにわかってる？\nここでどうしてホントにだまるかな それじゃ、おやすみ\n\n初音ミクなるクリーンな存在が、みるみると市民権を得ていく当時の波に逆張りしていた思春期ボーイにとって、この一曲は衝撃だった。未知の海域からやってきた黒船だった。\n 初音ミクを「ダメ男に引っかかるリアルな恋愛女」として歌わせてもいいんだ！ 革命だ。あのミクさんが「セックスは単に脱げばいいものではない」とい男女の機微をテーマとしている！ これがものすごいロックンロールに思えたんですね。ダメ男に振り回される、しかしそれも恋愛の一部だと受け入れてしまっている、それはそれで幸せそうなミクさんの感情を。\n\nそんなんじゃホントに嫌いになるわよ？\n何をされても我慢できる女じゃないんだから\nまたそうやってアンタはちゃんと話聞いてるの？\nそこでだまって私を抱きしめないで\n\nそれは「初音ミクはこんなに自由でいい、解放されてもいい」という宗教革命だった。\n この歌詞で描かれる女性像がまた絶妙に可愛い。結局、黙っていれば顔がいい男に奉仕はする、けれど余計なこと言われると喧嘩することも自覚している、別れる直前なような、このまま倦怠期のまま上手くいっていくようなアンバランスな人間関係。途中で挟まる付き合いたての初心な感情が切ない。このパートがあることによって、ミクを通した女性像の奥深さがぐっと増していく……ように思春期ボーイにとっては稲妻のごとき衝撃。\n 昨今では、初音ミクがどれだけ隠語として性的なワードを匂わせられるかのチキンレースのような楽曲も少なくない。ここまでストレートなセックスは情緒がないのでしょう。僕らは、そこがむしろ退廃的で一番カッコよく思えたんだなあ。そこも含めた青臭さが青春だったのですね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,10 +56,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

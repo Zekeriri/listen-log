@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-05-24 11:19\n一口散文：VTR先生与机械怪人的悲哀\n一口エッセイ:ミスター・VTRと機械の怪人の悲哀\n\nCCPのミスター・VTRが届きました。ミスター・VTRは、僕が最も好きなデザインの超人です。人格や活躍は別に好きじゃない。あくまでキン肉マンの見せ場用の敵1であり、機械を活かしたギミックは面白いものの気合いで突破されるための攻撃でしかなく、肉体を使ったプロレス的な部分はめちゃくちゃ弱い。間違っても大人気になるような超人ではない。そんな立ち位置なので、今回の立体化は非常に貴重なのです。\n\nそれでもミスター・VTRはカッコいい。一目でわかるメカメカしさが素晴らしい。ステカセキングと違って表情すら読めない冷たさが良い。僕は、こういう人間型の形をしているわけわからん機械が大好きだ。昭和の怪人であれば、仮面ライダーV3に登場する『テレビバエ』が好きなんです。こいつもあまり人気はない。見りゃわかるか……。\n\nこのシーンの取り返しのつかない手術をしちゃった恐ろしさが強烈なんですよね。テレビだけなはまだしも、蝿とも合成されてテレビバエ。どう考えてももう悪の組織以外で暮らしていけないでしょう。僕はその悲哀が好きなんだな。\n そう、ミスター・VTRにしろテレビバエにしろ、眺めているとなんだか悲しくなる。ミスター・VTRはビデオを再生する攻撃、テレビバエはテレビ画面を使った攻撃をするしかないし、そのためだけのデザインをされている。機械なので使用目的がハッキリしている。そこが好きだ。なぜ存在しているか子供でも分かるくらい、生き方が明確なのは機械の超人・怪人ならではなでしょう。ウォーズマンなんて人間部分の割合が大きすぎて、何やっても絵になる。一方、こいつらはヤられる以外に見せ場なんてないのだ。そう考えるとターボメン戦のステカセキングは頑張ったよ。あれはキン肉マン史に残る名試合だった。\n こうありたいって気持ちもあるんです。自分に何の機能があって何をすればいいか分かりやすく、そして異形。人間でもなければ機械でもない。なのに人格が与えられてしまっている。強制的に尖った生き方をするしかなく、ふと見せる後ろ姿が物悲しい。そういう魅力がある。テレビバエのソフビも早く手に入れたいものですね。机の上に飾って、こいつらのカッコよさも悲しみも全部受け止めてやりたい。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -41,9 +41,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-01-28 17:35\nHaze Denki采访与约定之地动漫博览会\nHaze Denkiインタビューと約束の地アニメエキスポ\n\nAutomatonにてインタビューが掲載されました。\n 僕と友人の田中くんが共に会社を立ち上げた経緯とか、これから作っていくノベルゲームの話とか。\n ずっと僕らを気にかけてくれて取材も申し込んでくれた赤野さんには、たいへんお世話になっております。\n\n僕らはゲーム云々だけと言うより、世界のカルチャーとぶつかり合って融けていきたいと考えています。いろんなことに挑戦するなか、とにかく自分の言葉を伝えようと英語対応のブログを運営しました。\n\nなかなか英語圏では見られないタイプの話をすると、\n\n皆が目に見えて反応してくれて嬉しい。\n\nなぜかブログはブラジルからのアクセスも多く、ブラジルのアニメイベントに来てくれと熱いオファーを受けたりも。嬉しいね。\n\nビジュアルノベルは中国人気が高く、僕が美少女ゲームについて書いた記事や開発日誌を中国訳してコミュニティへ届けんと小黑盒というSNSへ乗り込みます。こちらは中国のなかでもゲーマーに特化したSNSです。\n\n初日で1000人のフォロワーが来てくれました。僕はともに情報や感想を共有しあってよりよい作品に出会っていくテキストサイト育ちですから、ビジュアルノベルを愛する中国ユーザーたちとの交流でどんな化学反応が起きるか楽しみですね。\n\n英語圏のDiscordサーバーも開き、今は3000人くらいのユーザーが日々のんびりと雑談しています。そういう気楽な場は、このSNSの監視と数字社会から解き放たれるためにあるべきだから。\n\n開発のかたわら、そういった運用などを田中くんにも大いに手伝っていただいています。おかげで、僕の活動もワールドワイドとなっていきます。ひたむきな仲間へも感謝です。\n\n今回のAutmatonの記事も英語圏の方が多く反響がありました。アニメエキスポなるロサンゼルスのイベント、アメリカでのコミケのようなイベントへの参加意思が書いてあるからかもしれません。\n ここまで自分たちが言語の壁を超えて戦ってきた集大成がロスで見せられる可能性がある。ようやく様々な国のファンと触れあえる。そこで新作ビジュアルノベルを頒布し、僕らは新たなスタートを切る。\n そんな未来を目指して、頑張っております。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -62,10 +61,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

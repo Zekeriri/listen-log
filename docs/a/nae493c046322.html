@@ -41,9 +41,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-09-29 12:01\n“路易丝·布尔乔亚展” 从地狱回来时 顺便说一下，真是太棒了\n「ルイーズ・ブルジョワ展」地獄から帰ってきたところ　言っとくけど、素晴らしかったわ\n\n森美術館へ行きました。\n\nルイーズ・ブルジョワ展。\n 副題は「地獄から帰ってきたところ 言っとくけど、素晴らしかったわ」。六本木の中心に構えるあの大きなタランチュラを作った方です。\n I HAVE BEEN TO HELL AND BACK.\n AND LET ME TELL YOU,\n IT WAS WONDERFUL.\n あの素敵でカッコよくて逞しく優しい蜘蛛は、いかにしてできあがったのか。\n 彼女の創作は、つねに痛みを伴う。\n 初期の作品は主に性と家族をテーマとし、グロテスクな人体やカップルが表現されている。つがいとして激しく抱きしめ合っているのに、少しも幸せに見えないような。\n\n彼女は創作をしなければ怒りや悲しみに呑まれ、攻撃の代わりに芸術へ身を投じた。浮気をしていた父親への不信感から、他者を信じられずに精神を病み続け、精神科医との対話のなかで見つけた多くを作品としている。\n\nそれでも人間を愛してしまう彼女は、どんなものにも二面性、光と闇が同居することを表現し、母性と優しさの複数の乳房を備えながら攻撃的な陰茎も付いた異形を作り出す。\n 憎しみと愛着の間で苦しみ続けた彼女も、精神治療を通してだんだんと芸術性が多方向へ開花し、その完成の一つとして「蜘蛛」がある。\n 素晴らしい地獄から帰ってきた彼女の心象風景がある。\n これは今回の展示で体験した彼女の世界観を通しての僕の解釈でしかないですが、すべての者が持つ二面性。優しさと暴力性の共存について、しかしそれを否定的でもなく、彼女の持つ美しさをない混ぜにして生まれた巨大な蜘蛛。\n\n蜘蛛は自身の身体を盾に卵を守る（この像でも卵を宿している）母性と穏やかな優しさがあり、反面、脅かす者には容赦なく飛びかかる攻撃的な暴力性を宿しており、六本木のアイコンとなったこのタランチュラは、正しく優しさと激しさが同居している。\n 精神、家族、セックス、母性、陰茎……多くの概念をアートとして解釈した答えの蜘蛛。素晴らしい。\n 僕の飼っていたタランチュラは、じっと動かない。一日中、ただ動かない。代わりに、本能的に巣にかかった「何か」を攻撃する。蜘蛛とは非常に静かに、スマートに生存する生き物なのです。\n\n帰り道、広場に巣を張るタランチュラの足下、六本木ヒルズへ遊びに来た世界中の子供たちがはしゃぐ。これが彼女の望んだ光景であるなら、なんと幸福な景色でしょう。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -62,10 +61,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

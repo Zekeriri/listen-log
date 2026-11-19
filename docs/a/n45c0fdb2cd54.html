@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-09-24 23:11\n精选短篇随笔：因为脑子不好\n選り抜き一口エッセイ：頭の出来が悪いので\n\n本当は勉強した方が、社会の仕組みとか理解していた方が正しいし、得だし、そうじゃないと大人になれないことくらい分かっているのです。\n 僕は鉛筆転がせば入学できるような沖縄の工業高校出身で、学校で学んだことといえば、木材を削って枕を作ることくらい。それ以外は何も覚えてこなかったし、その枕の作り方すら今は覚えていないので再現性はない。\n 授業で作った木の枕を文化祭で親御さんに販売する手筈になっていたのですが、僕の母親が文化祭なんかに来るわけもなく、僕が作った木製の枕は知らない母親が記念に買ってくれた。とても優しい人なんだなと思いました。\n テストは殆ど赤点でした。一度、教師が僕を説教しながら泣き出しそうになったことがあります。「そんなに学校嫌か？」と。学校がというより、勉強が分からないので無理なだけだと説明するのも面倒で、「すみませんでした」と中身ゼロの謝罪をしました。僕は何に謝ったのでしょう。\n そのまま僕らは卒業し、みんな勉強しないまま身体だけ大人になったので、右も左もわかりません。ガンダムのアーケードゲームのコンボやパチンコの攻略法がちょっと頭に入っているくらいで、税金とか就職とか方程式とか常識とか、そういうのは空っぽです。インターネットの人たちはとても頭が良いので、なんだか怖いなって思っています。\n 勉強ができる人に憧れます。ウソです。実際は、すべてどうでも良いと思っています。\n\n※Twitterに連載していたエッセイからの抜粋です。↑で購入できますので、エッセイ集をぜひ読んでみてね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

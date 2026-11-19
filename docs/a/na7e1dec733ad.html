@@ -32,9 +32,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-11-02 10:11\n上海ZX大厦 再次\n上海zxビル 再び\n\nせっかく上海へ来たので、こちらで言う秋葉原のような場所へ。\n\nやっぱり中国は規模がすごいな。\n 前回行った記事でも書きましたが、このzxには誰でも自由に落書きができる壁。こんなにたくさんのオタクたちが元気な事実に勇気がもらえます。文化というノンフィクションだなと。人が、現実や社会に耐えながらもフィクションを愛し続けているノンフィクション。\n\n地域名が｢新世界｣なので、新世界の神ネタがちらほら。\n ふざけ方も日本と同じ。うれしいね。\n\n本来、秋葉原や中野ブロードウェイも、若者のオタクたちが｢ここに来たらなにか交流ができるかも知れない場所｣というコミュニティの機能があるべきだなあと切に願う。さまざまな事情で都内でオタクのリアルコミュニティは散り散りとなった。女子は池袋で独自の文化を形成しつつありますが。\n\n廊下スペースで、一般人たちが露店商を開いちゃっている。\n 逞しさから生まれる、日本と似ているようで違う発展をしていく海外オタクカルチャーの進化が愛おしい。\n NEEDY のポップアップストアも開かれていたが、いまは見たくはなかった。中国ファンたちも困惑をしているし、どうにかなっていくといいけれど。\n 永远支持您!"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,10 +52,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

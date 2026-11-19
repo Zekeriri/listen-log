@@ -30,9 +30,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-07-07 01:16\n一口随笔: 青春期特有的烦恼\n一口エッセイ:思春期特有の悩み\n\nフォロワーの質問に答えるぞ！ それはネタが無い時にとても楽なことだから……。\n 「わたしはいま思春期真っ只中なもので、この思春期特有の愛されてるだろうけど愛されたい、などといった上手く言葉にできないものは大人になれば改善されるのでしょうか？」とのこと。\n 思春期って、やらなければならない（と大人が押し付けてくること）や同年代と自分の比較、ホルモンバランスによる不安とかで喜怒哀楽がジェットコースターのように変動しますよね。それはどうしようもないし、その感性が磨耗して鈍感になるのが大人になる一歩で、成長と同時につまらなくない人生を受け入れることでもある。悲しいね。\n さて、話の主旨とは逸れますが、思春期の頃の僕は、再婚相手の義父が憎くて憎くて仕方ありませんでしたし、母親を奪ったうえで自分を排除しようとする悪魔だと本気で思い込んでいました。自分の最愛の母を取ったうえでオタク嫌いですからね。一生相容れることのない宿敵。\n が、今思うと部屋に引きこもりで不登校寄りのガキなんて、オタク趣味関係なく説教してきて当たり前で、母親だって人間なのだからいつまでも一人で居られない（僕が将来地元を出て行く気満々であることは知っていたし）。冷静さと落ち着きを持った今なら、もっと義父と相互理解を深められるのでしよう。しかし、拗れに拗れた関係値的にもう何もかも遅いですけどね。\n もちろん義父だって高圧的な方でしたが、僕自身の幼さゆえの甘えや悲観も大いにあった。自分でも、それは当時から薄々感じてはいましたが認めたくなかった。ザ・思春期ですよね。義父は義父なりに、義理のキモオタな息子へ愛情を示そうとしていた可能性を無視した罪は僕にある。思春期過ぎて立派なアラサーになってようやく認めることができたわけです。\n 話を戻すと、つまりは思春期のアレコレなんて感度がビンビンな時期だからこそのモノであり、悲しきかな加齢とともにそれらは落ち着いてしまう。落ち着いた人間が創作活動に尖った味付けをするのは難しいですから、僕としてはあなた方の感性が羨ましくて仕方ない。自分はずっと義父を憎んでいたかったし、義父の苗字を名乗らねばならない苦しみを背負い続けたかった。それすらも、時とともにどうでも良くなってきた。書きやすいから生い立ちの話はたまにするけど、既に自分の中で両親＝過去の人で決着がついている。\n それが良いか悪いかの判断は読者に委ねますが、この質問者の悩みの感覚ですら、いずれ社会に塗れてどうでもよくなってしまう。心配しなくても人はいずれ強制的に大人にされていくのだから、「愛されているのに愛されたい」ような若々しいフレッシュな悩みを精いっぱい大切に悩みまくってもらいたい。こうして悩み苦しむ日々も幸福の一部であったと今なら分かります。\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中！ 少しずつ大人になるのかな。\n\n商業エッセイ集もよろしくね！ 過去の話に縛られまくり！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,10 +50,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

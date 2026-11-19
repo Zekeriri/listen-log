@@ -25,9 +25,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-04-24 03:15\n“仅仅活着就伟大”吗？\n「生きているだけでえらい」のか？\n\n「生きているだけでえらい」という言説が嫌いだったけれども、こうして精神の病へ再び戻った状況では、わかる。たしかに生きているだけでえらい。どうしようもない板挟みに悩む中、もはや生きているだけでえらいでしょう。「自殺」が選択肢にない人間には無い状況で、人は悩めるからこそ自殺が脳裏に浮かぶ。謂わば「楽な選択肢」を選ばずに居るだけでえらいと言われると、そう。\n 『完全自殺マニュアル』には、さまざまな死に方が掲載されている。そのなかには比較的楽な方法も説明されており、「いざとなればこのような方法もある」とごく一部の人間を勇気づける。あの本は一見、露悪的に見えるが、真に悩めるものへ選択肢を与える優しい唯一無二の一冊でもある。僕もまた、この死に方なら最後に気持ちよくなれるだろうとあたりをつけた。それを実行しないのは、もはや「えらい」のかもしれない。\n つまるところ、「生きているだけでえらい」といった文面が目に入った全員が「えらい」と褒められる言葉に意味があるのか、エクゾディアを初手で５枚引いただけのヤツが強いか？ という苛つきもあるが、特殊な環境においては「生きているだけでえらい」が成立する。どれだけの苦悩を背負おうとも、いつかはちょっといいこともやってくる。その大前提に立ち返る強さを称賛するのは悪いことではない。\n 「今」と向き合った証拠と言える。\n どんなに苦しい過去と未来であろうと、思考のできる「今」と向き合った時点でえらい。幸福とも言える。仏教は常に「今」を見つめさせる。将来、どうあっても引き落としで借金が待っているとしても、まず目の前の皿洗いはしていたほうがいいような、そういう「今」なのだ。「今」を見つめると、基本的にはまず小さなことから始まる。ゴミ捨てとかね。それはまあ、自殺を選ばなかっただけで思考を放棄しなかったとイコールで。\n どんな宗教だって単純な自殺は罪だ。死んだだけで天国行きなら、現世で徳や善を積む必要もない。宗教観で言えば、実のところ死は救済じゃない。善く生きた者ならともかくね。果たしてキリストの弟子たちは無条件で天国行きでしょうか？ じゃあ、生きて思考しただけで一歩前進だね。そういうことかもしれない。\n マリリン・マンソンは、「あなたの影響で自殺した者がいる」と叩かれ、「そんなバカは死んで当然だ」と返している。恐らく、僕だって「生きていてよかった」と実感する瞬間も今後多々あるだろう。未来の自分からの数少ない褒め言葉なのでしょう。「生きているだけでえらい」。少なくとも、未来の自分はそのおかげで存在しているのだから。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,10 +45,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

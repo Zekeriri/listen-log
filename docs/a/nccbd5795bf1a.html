@@ -48,9 +48,8 @@ Dancing away #rkggk #Immergination pic.twitter.com/xLrNKoBd3T— Edialex (@Ediia
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-02-14 17:15\n跳舞的场景\n踊るシーン\n\n僕がNEEDYアニメの脚本を書き終えたのは、もはや2年近く前のことで、その時と今ではやはり2年分感覚が違う。今の自分はよりロマンティックというか詩に振っていくことでしょう。要するにエンタメ性は薄れ、加齢とともに静かになっていく。それを進化や成長とも呼べるかもしれないし、売れ線から外れると言えるかもしれない。\n まあ、要するに過去よりも更にゴダール的な感覚に近づけたような傲慢さを身につけ、フランス映画でありたいなーってだけなんですが。\n\n努力の跡が垣間見える。本編でもできる限りのヌーヴェルヴァーグを試行錯誤してもらったつもりではある。ただ、2年分若いため、その若さ分のエンタメ（騒がしさ）が散りばめられており、それくらいの塩梅が結局ちょうど良いんだろうなあとも感じる。\n\nA romantic moment, straight out of a Godard film pic.twitter.com/BXuABPW5OD— nyalra (@nyalra) February 14, 2026\n\n先日のカラオケ配信にて、Fly me to the moon に合わせて即興で踊るCCGGの姿を観て、なんて映画チックなんだと感銘を受けた。シネマだ。まるでゴダールの映画みたいだなと思わず唾を飲んだ。\n\nダンスとは、登場人物たちの関係性や感情を最も詩的に、視聴者へのご褒美として見せ場とする、映画で最も大事なシーンなんだと驚く。曲に合わせて即興で飛んだり抱き上げたりする二人の様子が美しく、あまり踊りなんかに詳しくない僕でも意味がわかる。二人は曲に合わせて関係を深めあい、音を楽しんでいる。\n\nそれこそ、はなればなれのように突然で、\n\nカメラの遠さが、これまたポンヌフの恋人のような詩情を感じさせる。\n ダンスを真に描写する時、カメラはあまり動かず、できるだけ全身を映すべきで、主眼は人物がどうシンクロしているかであり、ぐりぐりとした大胆なカメラワークやライティングでは無い。\n NEEDYアニメは、あまりに派手派手であり、それもまた一つの演出として通る道であるべきだし、よくもまあここまで真っ当なアイドルアニメのような宣伝の仕方できるな！ と、他ならぬ僕が驚くようなPRだけれど、こうした彩度を経て、僕もまた考え方が変わっていくからこそ、次もなんかやるのだろうなあと思う。\n\n内容は全然こんなんじゃなくて、中身を作った側からすると面白い。ぜひ観てね。\n 僕もAiobahnも、ここまで小うるさいことは良くも悪くもあの頃の勢いでしかできないでしょう。\n\nそれにしたって、今回のCCGGは完璧だった。歌いながら多くの画角を試し、奇跡的にFly me to the moon時に思いっきり引いたカメラが良い！ ライブ配信とは、偶然が起こす芸術に触れることができる。\n\nフワモコがオタクたちの部屋の写真内に遊びにいく回もよかったね。3Dモデルでの魅せ方は、まだまだこれからかもしれない。特にEN圏ではVR Chat含む3D空間での演出は、どの子も全力で研究して独自の進化が行われている。これからが楽しみだ。\n\n🎥 #autofister pic.twitter.com/hewZ2f6OUH— 所属 (@3gosandesu) February 13, 2026\n\nDancing away #rkggk #Immergination pic.twitter.com/xLrNKoBd3T— Edialex (@Ediialex) February 14, 2026\n\nやっぱり、みんな今回の配信は「ここ」のファンアート描くよね。\n 素晴らしい！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -69,10 +68,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

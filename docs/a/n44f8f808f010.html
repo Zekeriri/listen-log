@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-10-12 03:22\n一口随笔: 特异点的婴儿\n一口エッセイ:特異点の赤子\n\n気まぐれに深夜に長い文章を呟くと（と言っても所詮は140文字内なので3.4行であるが）、本文とまったく関係なく、ファンの中国人や韓国人が「早く休みましょう」「おやすみなさい」とリプライを送る。\n 別に嫌なことではない。向こうと大して時差がないため、深夜〜早朝に僕が起きていること、そして何やら長い文章を書いているので、おそらく精神が安定していないのではと考えているのだ。僕の書く長文の意味は理解していないが、きっと早く寝た方がいい状態なんじゃないかと気遣うきもちだけは贈りたいのである。\n となると、僕は夜泣きする赤子だ。\n 赤子が深夜のタイムラインで泣いているのである。向こうは赤ちゃんの言語なんてわからないけれど、とにかく彼が不快や不安であることはわかるから、理由はなくともあやす他ない。それをされている。\n しかし、実際そうなのかもしれない。\n もはや僕はTwitterで140文字以内に「意味」を投稿すること自体に疑問を感じている。こうして日記の形で別媒体に長々と投稿したり、絵や写真、音楽などの創作物ならともかく。あとは身内とコミュケーションするとか、か。とはいえ、たまに何かについてちょっぴり書いちゃう夜もある。地球上に存在する誰か一人でも反応してくれればいいさと。だとすれば、それは極めて抽象的に表現すれば「夜泣き」なんじゃないだろうか。赤子も闇夜が怖くて暴れているだけだ。そこへお母さんが優しく抱き上げてくれれば解決する。空腹や室温などの機微も見ないといけないが、まあ何はともあれ誰かがそばに居て欲しくて泣いているだけです。\n 夜泣きをしているのだから、あやすのが正しい。いや、向こうだって不安なだけで、そんな孤独な夜のタイムラインに僕が現れたから、とにかく話しかけてみたかったに過ぎない。赤子も独りが嫌で泣くのだし、あやす側が寂しくて子供の様子を見に行ったっていいだろう。なので、文脈を無視して僕へ「おやすみなさい」とだけ送信する人もいる。誰かへ話しかけて、そこに他者がいたという結果が欲しいんだ。\n まったく変な場所です。深夜のタイムラインは特異点だな。同じ日本人だって月にあてられて様子が変だし、単純に不眠や寝不足でハイになっていたりする。みんな夜泣きをするんだ。ただ社会性があるおかげで、「寂しい」とバレないように、意味ありげだったり、クールだったり、キュートだったり、様々なかたちで大人らしくコーティングして。そんな余裕すら失い、いや敢えて子供騙しなハリボテをパージして素直に泣く人間もいる。毎晩「寝れない！！！」と誰かが呟く様子を観測している。別にそんなものです。そのように利用できるから「呟き」なんですね。\n おやすみなさい。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

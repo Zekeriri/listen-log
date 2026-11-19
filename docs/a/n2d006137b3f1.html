@@ -34,9 +34,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-10-22 19:16\n网络的通过仪式\nネットの通過儀礼\n\n人間は皆、変なところも悪いところもあります。ひどく調子に乗ることもあります。\n そのような部分を親しい友人や家族・恋人くらいの範囲で見せながら、または孤独に抱えながら、多くの人はサラリーマンとして生きているのでしょう。一見まともそうな人でも、急に表舞台に引っ張り出されたら、あたふたして滑稽な姿を晒してしまうはずで。\n そんな「変なところ・悪いところ」を晒し続けていく覚悟がなければインターネットで生きていけず、残念ながら現代では「目立ったタイミング」で確実にそこを突かれます。些細な発言・行動を針小棒大に膨らまされ、ちょっとのやらかしをきっかけに燃やされる。ネット世界の多くは「気に食わない奴が叩かれ始めるタイミング」を狙って裁きの剣を研ぎ澄ませております。\n 人気になり始めた段階から順番にやられていくものです。\n 誰にだって脛に傷はあるもので、まるで無から小蠅が発生するかのように、よくわからない難癖や過去から引っ張られ、「こいつ前から嫌いだったんだよね」といった風潮が一時的に生まれます。数日経てば終わります。が、それを踏まえても初めて「ネットの敵」になる経験は強烈で、人によってはそこでギブアップ。もしくは、そんなステージになるほど表で目立つこともなく消えていく。\n アンチは人気の裏返しとも言いますが、現代では人気に火がつくタイミングで、同じく経歴にも火をつけられる通過儀礼は避けられないのでしょう。「なんか調子に乗っていて気に食わない」なんて印象論は回避不能。それが一度始まったことを皮切りに、どんどん「俺もそう思っていた」と粗探しが行われる。\n だいたいのクリエイターは三十前後で花開く。10年続けてきた何かの種が実り出していく。\n 僕は、色々あって早期からあらゆるものを食らい、もはや一周して叩かれてない部分がないくらいなのですが、周囲の同期たちは今から作品や活動の範囲が広がり、インターネットの儀式によって一波乱起きることでしょう。じゃあどう対策すればという問題でもなく、これは順番であり通過儀礼であり、修羅の道への入場チケットのようなものです。\n 言うは易し。\n 「3日後にはみんな飽きているよ」と散々言われても、いざタイミングが来たら心が乱れて大変なことだ。\n 意外とどうにかなるもんだぜ。\n みんなちゃんと変な奴だし悪い面もあるけど、あいつらは目立たないからこっそり隠せたまま墓に持っていけるだけで、人間そんなものだぜ。\n わざわざ言わないだけで、実際みんなそれくらいに考えているものです。\n でも、その時はやっぱり世界中が敵に見えて心臓バクバクで脳みそぐるぐるフル回転。\n ぜったい大丈夫だよ。\n 現世なんて苦痛だらけなのだから、いずれ痛みに慣れてしまうぜ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,10 +54,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-09-23 10:57\n夏天的你没错\n夏のキミは悪くない\n\n涼しくなってきたので生活の快適度がまったく違う。特に、妙に代謝がいい自分にとって（沖縄人〜うちなんちゅー〜だから？）、「汗を掻かずにすむ」ことへの安心感がすごい。生きてるってこんなに楽なのか。もう少し涼しくなるとなお良い！\n 今年の夏は異常だった。\n あんなに暑いのに活動するほうがおかしい。今年ではっきりと決めたこととして、来年以降、夏には仕事も遊びもほとんど入れない。どうせ日差しのせいで著しくパフォーマンスも悪く、どうにもならない。どうにもならないことをやらずに済むのがフリーの長所なわけで。この利点を活かさない理由がない。夏は家から出ない！\n そう決め込んだら一気に心が楽になったぜ。やりたくないことをやらない、まあ今回の場合は「暑くてもどうにかなるだろ」と出かけたら無理だったの繰り返しが多く、仕事というより外出そのものを舐めていた、気温上昇を侮っていたが近い。僕は二度と日本の夏を甘く見積らない。はっきりと、あんな気温で活動することをバカバカしいと割り切るぜ。\n 7〜8月は、なにも上手くいかずに激しく落ち込んでおり、デエビゴが手に入ったつい先日まで不眠もピークで白髪増えまくりだったところを、一昨日ついに14時間眠ることへ成功した。今日は6時間眠れた。これから少しずつ7〜8時間睡眠を目指し、睡眠薬の力も借りて頑張る。とはいえ、夏が過ぎた以上どうにかなる。\n やはり睡眠は無敵だ。\n 「眠ってもどうにもならない」なんて声はいっさい無視していい。イコール起きててもどうにもならないわけで、だったら一度寝てスッキリしたほうがまだマシ。寝ても不安が募るかもしれないが、起きて余計なこと考えているほうが不安は高まる。睡眠時間の心地よさは生物にとって平等なのだから、幸福度と睡眠時間の長さは相関がある。そんな安眠を夏の日差しは妨害してくるのだから、なんと唾棄すべき季節であることか。\n 「日本の夏はもはや何もかも狂っており、どうせそのほうが後々楽になるのだから、夏の間はみんな距離を置いて休もう！」と宣言したほうがいい。僕は来年から絶対にそうする。「こんな季節にとやかく言ってくる方が悪い」と開き直る構えを見せる。\n 人生は眠るためにある。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

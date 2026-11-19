@@ -22,9 +22,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-03-07 10:10\n一口随笔：浅睡的早睡早起VS充分睡眠的昼夜颠倒\n一口エッセイ:睡眠が浅い早寝早起きVSたっぷり眠る昼夜逆転\n\n先日の一人旅中、ホテルのチェックアウト時間的に無理やり早寝早起きをせざるを得ないこととなったので、それを引きずって家でも生活リズムが若干良くなりました。\n が、代わりに睡眠時間が極端に減った。せっかく昼夜逆転が治りつつあるのだから、この状態を維持したい！ と欲張ってしまった結果、朝の8.9時に起きるために毎日4.5時間の睡眠になってしまったのです。\n 1.2日睡眠時間が少ない程度であればなんともないものの、その状態が一週間近く続いた昨晩は睡眠不足がピークで、21時くらいからずっと全身がピリピリして、特に頭部には明らかに寿命を削っているタイプの頭痛が響く。具体的には電流が走っているのようなビリっとした痛みに定期的に襲われ、そのたびにビクッと身体が跳ねた。でも、『いぬやしき』が無料公開していたら、先が気になって結局読み終わるまで夜更かししてしまった（ ; ; ）\n さて、それはもう早寝早起きが叶ったボーナスタイムを諦め、そろそろたっぷり夕方まで眠る生活に戻ることで解決するとして、「睡眠時間が少ないけど早寝早起き」と「昼夜逆転しているけどたっぷり寝ている」場合、どちらが健康なのかと気になる。いま自分は前者ですが今までの後者の時の方が頭が回る。気になってチャットAIに訊いてみたら一般的には前者らしい。じゃあこれでいいのか。珍しくまったく普通の日記でした。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -43,10 +42,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-02-01 02:44\n一口随笔：哥布林突击部队\n一口エッセイ:ゴブリン突撃部隊\n\nめちゃくちゃ攻撃的なリプライを送ってくる捨て垢が居て、アイコンを見てみたら「ゴブリン突撃部隊」で笑ったことがあります。\n ゴブリン突撃部隊は遊戯王カードの中でも面白い一枚で、攻撃力が高い代わりに、攻撃を終えた瞬間に守備表示になる上に、守備力が0ときた。つまり、その名の通り「突撃」するために生まれた、使い捨ての脳筋たちを集めた駒なんです。\n\n彼は、目についた呟きに暴言を吐くことでストレス発散する自分を、凶暴だが守備力のないゴブリンだと自覚している。攻撃的な人って「自分は賢いのに、バカたちの方がチヤホヤされて稼いでるのはおかしい」と認識していると思っていたから、自身をゴブリンにするほど客観視しているのは珍しい。\n だって、「攻撃的なバカ」って自覚しているのであれば、効率で言うならネットで他人を攻撃する時間を読書や動画、なんなら散歩にでも回した方が100倍有意義であることが分かっているはず。これは、「アンチは良くない」なんて道徳的な話でなくて、粘着行為に回す時間の虚無性は冷静に考えれば分かる筈です。本人も気づいているから、ゴブリンをアイコンにする自虐をしている。\n なのに、人生を有意義にすることよりも、刹那的なストレス解消を選んだ。そのアンチ行為によって、自身の魂がどんどん穢れていくと知りながら。他人を攻撃する刺激の快楽に呑まれているのだ。ある意味、真のネットの被害者であるわけですが、彼は恐らく今日もどこかで誰かと戦っているのでしょう。そうすることでしか生きられない、SNSに召喚された悲しきゴブリン突撃部隊なのだから。\n\n毎日のエッセイをまとめた同人をboothにて販売中です。美少女ゲームについて語るだけの本も出たよ。\n\n商業エッセイ集の方も、よろしくお願いします。妙に重々しい、独特の読書体験があると評判。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

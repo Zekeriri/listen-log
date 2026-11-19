@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-03-15 07:21\n走到新宿\n新宿まで歩く\n\n新宿まで歩いてみる。\n 中野からなので40分くらい。散歩に興が乗った際は徒歩で新宿へ向かい、大都会を一周して帰宅する。新宿散歩のメリットは、とにかく人口密度が凄まじいので「人間が生きているんだ」と実感することでしょうか。家に居続けてコミュニケーションをスマホ越しに頼る時間が長いと、自分以外の人間が本当に生きているのか不安になる。\n\n徒歩ならではの面白さがある。\n もはや新宿なんて慣れたもので、その場所自体になんら驚きは無いのですが、家から歩いて到着することにより、自宅という現実とこの日本で最も栄えていると言っていい超々大都会が繋がっている「地続き」な感覚は、もう10年以上都内に住んだ今でも新鮮に感動する。\n いざとなれば歩いてこの場所の一員になれる。\n 昔は代田橋という場所に友だちと家賃6万のボロアパートに住んでいて（つまり一人3万）、そこからも新宿は徒歩40分くらいで着く。あの頃は、そもそも電車賃もケチりたいから歩いて新宿へ向かっていたくらいで、それでも少し歩ければ自宅からでも信じられないほどにギラギラな都会に着く事実がワクワクで何でも楽しかった。\n なんなら歌舞伎町のキャッチに捕まることすら楽しかった。本当にお金がないので「マジで金ないけど、それでいいなら」とそのまま伝え、怪しいジジイや黒人に案内される。連行されたぼったくりバーやらグレーなえっちなお店のロビーで「はやく入場料だせ！」と怒鳴られるものの、言った通りジュース代すらないことをアピールするとめちゃくちゃイラつきながらも帰される。新宿まで歩いて来ているほどだからね。半グレたちでも、逆立ちしたって500円もないガキから金銭を奪う手段はない。\n 失うものがなく、無敵だった。\n 新宿まで散歩をすると、あの頃の刺激的な若さがちょっとだけ取り戻せて、嫌いじゃない。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

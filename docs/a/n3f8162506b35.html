@@ -39,9 +39,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-02-23 01:28\n一口随笔：寻找泪游的风景\n一口エッセイ:泣きゲーの風景を探して\n\n一人旅4日目。養老に泊まったので、そのまま朝はアーティストが製作した異様なギャラリー『養老天命反転地』へ。\n\nあまりに複雑な構造から、みるみる平衡感覚が狂っていく異常アート空間\n養 老 天 命 反 転 地 pic.twitter.com/0Sd8mL6RFV— にゃるら (@nyalra) February 22, 2023\n\n広大な土地をふんだんに活用し、あの手この手で人間の平衡感覚を狂わせる仕掛けがたくさん。まさに天地が反転したような感覚。実際、足元をすくわれて怪我する人も少なくないらしい。これはアーティスティックで面白かった。そのまま山を降りて、名古屋から島へ向かいます。せっかくなので行ってみるか……離島！\n というわけで港町から船に乗ってやってきたのが『日間賀島』。歩いて1時間程度で一周できる程度の小さな島です。ここで、まるで夏の泣きゲーのような風景を撮ってみようと考えた。今は冬だけど。\n\n流石は、島パワー。どこを切り取っても美少女ゲームの背景感がすごい！ あと真冬なのに関わらず夏。周囲の観光客がみんなカップルなので、独り身の自分が浮いているのが悲しいが……。\n 意味深なドア。これもヒロインの心象風景を暗喩したギミックっぽくて良い。\n\n海が見えるベンチ。きっと、ここでヒロインと急に複雑な家庭事情を聞かされたりして、そっと肩を抱き寄せたりするのだろう。しないか。\n\n夕暮れをバックにボール遊びに夢中になる現地民の少年たち。これ自分でもビックリな良い写真すぎ。\n\n泣きゲーのCGすぎる写真たちを撮影…… pic.twitter.com/2EbLey2Lyt— にゃるら (@nyalra) February 22, 2023\n\n一番良かったのが、この思い出のブランコ。こんなの絶対満面の笑みのヒロインの背中を押しているCGが表示されるやつじゃん！ そして世界の秘密が明かされていくうちに、彼女が消失してギコギコと誰もいないブランコが揺れる……。\n なんて写真を、カップルたちを掻き分け撮影してきたのですが、旅館が2人用の部屋しかなかったためベッドが２つな上に2人分の料金。ここしか泊まれないのだから仕方ないが、この空間の余り方は寂しい。極めつけは、独り身を想定してなかったらしくカップルに囲まれた食堂にて一人で2人分食べることに。周りや仲居さんは、僕を「旅行直前に振られた憐れな男」として気を遣っていてつらい。並んだベッドに独りで転がると、なんだか本当に失恋した気がして存在しない恋人の幻で胸が痛む。というか食べ過ぎでめちゃくちゃ吐いた。たくさんお金払っていっぱい吐いて孤独を感じて、これでは僕の一日が泣きゲーだよ。にはは……にゃるらちゃん、間違えた……。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -60,10 +59,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -43,9 +43,8 @@ pic.twitter.com/sudh1GThTj— 2（ツー） (@nyalra_copy) February 24, 2023
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-02-25 06:47\n一口随笔：note一万人与各个账号们\n一口エッセイ:note一万人と各アカウントたち\n\nnoteのフォロワー数が一万人を超えていました。僕のような人間の自意識を読んでいただきありがとうございます。なにかもを赤裸々に書いてありますから、「コイツこんなキモいこと日々考えているのか！」「同情を誘っているような自分に酔った文章がキショすぎる！」と怒りを感じている方もおりましょう。が、なにぶんここは僕の日記帳ですからね。\n 「自分語りは日記（チラシの裏）でやれ！」という教訓が古のネットで伝えられてきましたが、まさしく自分の日記（チラシの裏）でやっているので反省はしませんし、今後もこの調子で続けていきます。それどころか3年目の今や一日の文字数は開始時の二倍が平均となっていて、僕の中の自意識モンスターはこんなに大きくなっているのです。ついつい深夜テンションだ書いたことの後悔は無限にあるものの、だからこそ時間が経てばでてくる味もありますね。「よくこんな恥ずかしいこと書けたな」「これは、\"にゃるらさんは頑張ってるよ待ち\"でしかないな」とか。それを振り返ることも一興ですのでね。その日の僕の嘘偽りない感情は、その瞬間を切り取った大切なものだから。\n\nちなみに、月3回程度の購読者向け近況も配信しており、これは日々の日記のファンディスクみたいなもので月500円です。毎日頑張ってて偉いから投げ銭してやるか、あまり表では書きづらさそうな本音まで覗いてみるかって方はどうぞ。大したものではないので、よほど余裕があればで大丈夫です。一度入れば今までのログも全部読めますので、遡ることも含めたら500円分の読み応えはあると信じております。\n さて、僕のnoteのフォロー数は0ですが、Twitterの本垢以外は全てそのようにしています。例えばInstagramは、\n\nView this post on Instagram A post shared by にゃるら (@nyalra_)\n\nフォロー1。超てんちゃんのアカウントだけ。家にあるオタクアイテムやファッション、気に入った風景などを投稿していて、最近はストーリーズにわざわざツイートするほどでもない画像や質問への回答を載せたりしています。\n 他人をフォローすることでの人間関係の忖度が苦手で、「Twitterでは相互なのに他ではダメなの？」とか、はたまた逆だったりとか思われそうだなと考えているうちに、じゃあ誰もフォローせずに投稿だけに注力しようと考えました。noteにせよインスタにせよね。\n なので、他人の投稿もほとんど見ていません。完全に自閉したツールとして使用していますが、他者が居ない世界で細々自分の好きなものにだけ囲まれるのは僕向きです。それにしても、インスタの人たちは毎日ストーリーズや投稿で優しくチヤホヤしてくれるので、なんと民度が良いのかと感動……。こういうSNSもあるのだ。もちろんnoteでのサポートや感想も嬉しいですし、海外の読者が翻訳してまで読んで意見を述べてくれるのもたいへん嬉しいです。これからも頑張るね。\n\npic.twitter.com/e9wnldqNtU— 中野ブロードウェイで見つけたもの (@nyalra_uso) February 6, 2023\n\nこっちは、中野ブロードウェイを散歩して見つけた興味深いものを毎日投稿しています。たまに、このアカウントを見て購入しに行ったと報告があって嬉しい。これからもゆるりとサブカルのメッカを散歩していくぜ。ヘッダーは、中野ブロードウェイの天井に広がる嘘の青空。オイラ、いつか中野を抜け出して本物の空を見るんだい!\n\npic.twitter.com/sudh1GThTj— 2（ツー） (@nyalra_copy) February 24, 2023\n\nもしもし？病院ですか？\nフォロワーちゃんが、動かなくなったんですけど\nはい。ちゃんと電池を替えたつもりなんですが— 2（ツー） (@nyalra_copy) January 27, 2023\n\nこのアカウントは……。とりあえずそんな感じです。以上、僕のSNSアカウント事情でした♪\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -64,10 +63,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

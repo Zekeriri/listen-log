@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-12-22 04:03\n一口随笔：最好不要想得太深\n一口エッセイ:深く考えない方がいいですよ\n\n『幽☆遊☆白書』最終巻での、ゆったりとした穏やかな雰囲気がとても好きなのですが、中でも蔵馬が言った「深く考えない方がいいですよ」という台詞は、幼少期から今までずっと頭に残っております。もはや、生育に影響していたレベルといっても過言ではない。\n\n文脈としては、妖怪側は実は洗脳されて悪事を働かされていた者も多く、自分が倒した妖怪の中にも、洗脳されていただけのヤツも居たのかと幽助が考えてしまったところで、蔵馬が「深く考えない方がいいですよ」と、そっと宥める。実際、考えたって仕方ないことであるし、悪を倒してきた幽助自体には何の落ち度もない。他ならぬ蔵馬も「考えない方がいい」と勧めているのですから、やはりそれが正解なのです。こんな複雑な後味の設定を最後の最後で明かし、読者の少年たちに正しさについて考える余韻を残す1コマ。素晴らしい。\n 「考えるのをやめる」こと自体は、必ずしも消極的な選択肢ではないわけですね。人間、焦ると余計な思考や行動ばかりに走りがちですが、そこでの最善策はたいてい「まずは冷静に落ち着いて、じっと待つこと」だと思う。あなたも、あの時いったん止まっていればと後悔した経験の心当たりはありませんか？ または、不要な深読みでむやみやたらに不安になったりとか。僕は、たくさんありました。\n いま自分が考えたって仕方ないことは無数にある。または、うだうだ考えているより、さっさと手を動かした方が何倍も効率がよかったり。僕は、他人の悩みに「いっぱい寝ましょう」と返すことが多いですが、なにも適当に睡眠を促しているわけではない。とにかくたくさん寝て忘れる/落ち着くことが大切だろうと判断しているからです。寝て起きたら、意外とどうにかなったりもします。寝逃げでリセットです。起きてもどうにもならなかったら、その時考えましょう。まあ深夜に思考をぐるぐるループさせるよりは、どちらにせよ一度寝ていた方が楽ですよ。それでも、やっぱり悩んでしまうからこそ人間であり、仙水のような繊細で魅力的な悪役が生まれるわけでもありますけどね。\n ですので、この蔵馬のセリフには、何度も助けられた。上記のように言語化できたのは大人になってからですけど、小学生の頃から「こんな無駄なこと蔵馬は気にしない」と感覚的な理解はしていました。飛影はそんなこと言わないし、蔵馬は余計なことを深く考えない。みなさんも、この文章を読んでいる深夜に漠然とした不安に襲われてしまったのなら、深く考えずにまずはスマホを遠くに置いて布団に入ったほうがいいですよ。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

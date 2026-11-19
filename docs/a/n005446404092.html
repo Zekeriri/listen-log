@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-12-29 04:24\n一口散文：深夜电视节目与自我\n一口エッセイ:深夜のテレビ番組と自我\n\n深夜アニメを観終わったあともテレビを点けっぱなしにしていたら、深夜の通販番組が始まりました。ダサいフォントに大袈裟な反応の役者たち。次々とメリットだけを強調して紹介される家電。この番組にいっさいの自我はない。\n 深夜の通販番組は、落ち着く。子供のころ、夜更かしした際に、バラエティが終わって、通販番組という虚無に変わることが、なんだか「エンディング後の世界」に感じられたのですね。今日という日を満喫しきって、もうなにも楽しみがないから、おじさんおばさんが便利な道具に喜ぶだけの無が流されるんだと。だからもう寝るべきですよ、とテレビから告げられているような気がした。\n それにしても、なんと自我が見えない構成なのでしょう。ここに映る人間たちは、誰一人として本音を喋らない。ひたすら台本通り感情のないベタ褒めを繰り返す。目が笑っていない笑顔が続く様は、不気味ですらある。睡眠の質が深くなる枕、見えないところまで細かく吸い込む掃除機。この人たちは、こんなに紹介する商品を褒めるものの、実生活では絶対に使用しないはず。視聴者のごく一部だけがその気になって電話して、番組内で言ってたほどの利便性ないものの、効果がないって程ではないので返品やクレームをつけることはなく、「こんなもんか」と微妙な体験としていずれ忘れ去る。そのためだけの時間。\n シェアハウスに居たとき、同じく深夜アニメ後に通販番組が始まった際、急いでテレビを消す住民がいた。恐らく、彼は通販番組特有の欺瞞で満たされた空気が不快で仕方なかったのでしょう。茶番って、どこまでいっても茶番でしかないのだから。\n こうして久々に一人で観てみると、人間は自我の消滅と死はイコールなのだと感じます。台本通りに動いて喋るだけの存在は、生きているとは言えません。しかし、社会とはつねに自我と引き換えにお金や安心を得る行為の繰り返し。視点の角度さえ違えば、自分たちの日常の中にも欺瞞と茶番は溢れている。ネットの世界にも、botかAIなんじゃないかと疑うくらい、インターネットの空気に合わせた、まとめサイトそのままの意見を書き込む人も見る。生きるための必需品を得ようとすると自我は擦り減るのに、自我が無くなるとそもそも生きているとは言えない。バランスを崩さずに橋を渡りきれるかどうかのゲーム。\n 今日も、深夜の通販番組にならないために、自分が自分であることについて考えながら眠る。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

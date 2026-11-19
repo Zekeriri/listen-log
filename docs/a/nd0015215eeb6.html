@@ -29,9 +29,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-02-11 06:23\n构图\nコンポジション\n\n壁に飾ってあるモンドリアンのパズルのガラス面の指紋が気になり、壁から外して拭いているうちに勢い余ってピースをバラバラにしてしまった。\n\nけれども「完璧な均衡」を目指したモンドリアンのコンポジションの下半分が崩壊している「欠けた」状態が綺麗で、これはこれでと見惚れていたのです。\n これが作為的にできあがった状態ならば、どちらかと言えば嫌悪感を示してしまうかもしれないが、今回はガラスを拭こうとした際に起こした偶然の結果である。それも自身が数時間かけて築き上げた大事なパズルで、だ。絵の具をビシャっと撒き散らして一枚の絵とする「アクション・ペインティング」のように、無意識が作り上げた意図せぬ崩壊。\n まあ、このままにしておくわけにはいかないので、結局は再び作り直すし、半分のみとはいえ、また数時間かかるだろうから大変なのですが。しかし、見慣れたモンドリアンの画を別角度から切り取れたこと自体は、ただ壁に飾り続けているよりも満足感がある。\n そういえば僕は本来なら今ごろ、背景美術の取材という名目でオランダへ行き、この目でモンドリアンを体感している予定であった。何故まだ日本で座り込んでいるかと言うと、誤ってパスポートを燃えるゴミに捨ててしまったからだ。今回のパズル崩壊の件とあわせ、僕はしょうもないミスの連続でできている。\n\nボールチェアの隣に暖色のフロアランプを導入した。これで真っ暗な部屋をぼんやりとした灯りが照らし、視界が狭まってより読書へ没入できる。近隣住民、タイムラインの人間たちが寝静まった深夜から早朝へかけ、青く大きな卵の中へと籠り、一つのランプだけを頼りに内へ内へと世界を閉ざす瞬間が好きだ。今も卵の内側から世界の外へ向けて日記を書いている。\n モンドリアンのパズル、パスポートの紛失、ボールチェアとフロアランプ、頭の中では全てコンポジションの格子のように直線で繋がっている話題なのですが、みなさんには無軌道に直近の出来事を書き出しているだけとしか見えないでしょう。\n 全て同じことなんだけどな。\n 昨晩の日記に「体育座りをする美少女キャラクターに促されて隣に座る夢を見た」と書きましたが、あれは印象深い夢の中でもきっと永遠になる。思い返すと、エッセイなんかに書いておくべきでないくらい自身の本質であり、コンポジションだなとも感じるし、それも含めて、先ほど挙げた要素たちと点と点で結んで直線なのですが、それは僕だけにしか認識できず、僕だけのモノであるからいいのだ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,10 +49,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

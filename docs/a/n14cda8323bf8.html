@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-05-28 04:23\n高烧\n高熱\n\n元より帰国前から熱っぽかったものの、深夜になってからどっと汗が噴きでた。ものすごい量。肉体の内部でウィルスと細胞が格闘していることがわかる。戦いが始まっている。\n 身体が勝手に戦っている感覚は嫌いじゃない。急に息が切れ、体力がめきめきと減少し、思考がどんより重くなり、まぶたがとろんとする。目に見えて弱る。怠い。この状態に人体の神秘を感じます。\n すごいね。肉体の内部でエラーが発生、またはストレスによって膨張しても、このように防衛機能をフル回転させれば体温を熱し、悪いものを次々と排出できる。カラダは本人の意志と関係なく怠けない。生物って、ここまで便利にできている。\n 身体が、こちらの事情なんてお構いなく熱を出させまくるのが好きだ。向こうは「生きたい」だけであって、生存のために高熱を発生させる。普段、「生きたい」なんて思わず生きているなか、身体はただただ本能的な生存に従っているだけ。\n 人間は所詮、生物である。\n 生きる価値・答えなんて大仰な話と関係なく、生物であるがゆえに人々は今日も暮らす。明確な答えなんか誰も見つからないまま、遺伝子的には産んで、増えてという命題が存在する。人類は今日も遺伝子に従い増加する。あらゆる問題を無視して。増えることが生物の本能で。そんなことに興味のないエラー品も数割抱えながら、結局は本能的な遺伝子に従う者たちの方が多いから、地に満ちていく。\n なんにせよ子どもが居る親たちはすごいなと感じる。\n 答えのない人生でありながら、わかりやすい「産めよ増やせよ」をクリアしたわけで。少なくとも種の本能は満たしている。細かいことを抜きにして、きちんと正解を辿ったのだ。\n 僕は、できるだけ「生活」のない日々をおくるため、生活臭を徹底的に消して暮らしているのに、肉体はちゃんと生存しようと頑張っている。当然、言うまでもなく僕も人間である。僕の遺伝子が地に満ちるかはわからないけれど。人間だなあと、今も額を流れる汗に想う。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-10-30 19:01\n文章与情感\n文章と感情\n\n人間が「良い人」または、もっとわかりやすく「仕事したい人」と認識するのは、「文面でのテンション」ではないか。なんだかんだ現代はテキストでのコミュニケーションが多く、その機微によって人間関係が右往左往する。表立って活動する者はSNSでの評価に関わる。今では文末の「。」がついていると怒っているように捉われて嫌がられる時代です。小学館の漫画は全滅しますね、フリーレン様。\n 良い人に見えるかどうか、関わりたいと思える愛嬌があるかどうか。これらは要件以外の部分にどれだけ余白があるかで決まる。感嘆符によってだいぶ印象は変わる。「。」だと冷たいのだけれど、「！」なら朗らかに見える。人間は本来ビジネスなんてしたくないわけで、表面上だけでも「人と人とのつながりである」空気を演出するために、要件の最後を「よろしくお願いいたします！」にすると仕事っぽさが多少は薄れる。致すをひらがなに開いておくかどうかも、どういった空気感で仕事をしたいかに微量な影響を与える。\n 要するに、要件以外の部分でちょっとした演出を入れこむことで個性が生まれ、個があることによって「自分はビジネス相手でもありつつ人間でもある」と伝えられるわけですね。それでちょっぴりでも話しかけ易いかもと認識させていくことで、次第に「良い人」扱いに収まっていく。もちろん、こんな小手先の小細工関係なく見事な仕事っぷりを発揮する前提ですが。\n こうした僅かな人間っぽさがあるかないかで、AI時代の印象は結構変わっていくと個人的に感じています。\n AIが直した文章は、破綻がなさすぎて人間味が消失している。または、妙にドラマチックな修飾するせいで安っぽい表現が多用される。企業が共有してくる企画書っぽいやつのオンパレード。「こうしてグローバルにIPが展開されていきます」みたいな、いや人間がこんな無機質な言い回しするかよと。部分部分でそうなっているのであればまだわかるが、全体がその感じであれば、メールでも企画書でもすぐにわかる。まあ企画書なんざ上が気持ちよく騙されるための夏休みの宿題でしかないからいいんだけれど。多人数でなく個と個相手の文章だとすっごい浮く。\n こうした「僅かな人間っぽさ」までAIが獲得するのは、まだ先と思われる。なぜなら人間でも苦手な奴というか、文章から与える印象を考慮できない者は、まだまだ人にもたくさんいるからで、そもそも違和感に気づかないから直しようもない。完璧な線だけで引かれたイラストを送られ続けるといずれ辟易するような。\n とはいえ、イラストの出力であれば、もはやAIたちは侘び寂びを含めた「ラフっぽい絵」も作り出すことができる。動画界では敢えて一昔前のAIで映像を出すことで、そのガバガバさを個性として笑う段階にもきている。\n 文章でこれが起きるか？\n これは相当難しいと思われる。\n 人間が仕事を重ねて無感情になっていく問題とAIの無機質さは相性がとんでもなくいいのですから。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

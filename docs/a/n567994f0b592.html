@@ -29,9 +29,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-02-20 17:19\n新闻总是阴暗的故事 永恒无限幸福\nニュースが暗い話ばかりであること 永遠無限幸福\n\n適当にニュースの配信を開いてみたら、いいコメントを見つけた。\n\n「ニュースって暗い話ばっかりなきがする」。\n おっしゃる通りだ。というか名前すごいな。永遠無限幸福……。\n 永遠に無限の幸福を望む者からすれば、たしかに暗い話は嫌だよな。\n そもそニュース、報道なんて、結局は数字が取れるかの話であり、そのためならショッキングだったり他人の感情を煽っていくのが基本なわけで、ネットニュースなんてどんどん過激化して毎日SNS煽りまくりな状態なわけで。大衆が暗い・刺激的な話へ反応していく以上、自ずと暗い話ばかりが世間へ拡がっていく。そのメタとして、「ほのぼの」「かわいい」など、人々が「こういうのでいいんだよ」と言いやすいニュースも出てくるけれども、あれはあくまでメタカードである。\n そうした構造を仕組みでなく感覚で読み取って、「なんかニュースって、ずっと暗いな〜」と感じているなら、それは大正解かつ感性豊かに思える。それをわざわざ、ふと開いた24時間とりあえず流し続けているニュースチャンネルでコメントするユニークさ含めて、いいコメント読んだなあと感じます。\n タイムラインだろうがYoutubeだろうが、自動的に脳内へ刺激的な話題が流れ続けて避けようがない。\n これはもう、構造がそうなっているので仕方のないことで、対策方法は「そもそもネットを見ない」以外にはありえない。「嫌な話題ばかり続くなあ」と感じてしまう際、それはシンプルに情報の取り過ぎであり、要するに暇つぶしのためインターネットやテレビを垂れ流して情報を全て受け取ってしまう状態にある。\n そんなじんわりとストレスがかかっていく状態は、永遠無限幸福の真逆でしょう。しかし、ストレスもまた刺激であって脳内の報酬系を刺激する。結果的に、本人と関係ない暗いニュースを進んで摂取していく意味不明な状況が生まれていく。気づけばSNS中毒の出来上がりだ。\n 永遠無限幸福さんは、僕らに永遠の幸せを授けるため、こうしてニュース配信のコメント欄を通じてそっと警鐘を鳴らしてくれているのですね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,10 +49,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

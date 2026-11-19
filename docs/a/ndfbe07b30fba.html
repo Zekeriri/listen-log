@@ -23,9 +23,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-09-29 01:40\n一口随笔：精神还是睡眠\n一口エッセイ:精神か睡眠か\n\n寝不足だかストレスだか理由は不明ですが、起きたら両目が腫れていた。目をぱちぱちするだけでひどく痛い。そして見た目が醜い。\n そんな状態で米青ネ申禾斗へ行ったため、先生から睡眠薬を増やしてもらいました。現在服用しているデエビゴと合わせることで、睡眠時間が伸びるらしい。とにかくたくさん眠ります。\n 薬局で処方薬を受け取りに行くと、その薬は鬱を和らげる効果がメインで、副作用に眠気があるらしい。薬剤師から「精神ですか？睡眠ですか？」と訊かれ、「精神」安定目的か「睡眠」時間目的か尋ねられたことが本質的な気がして面白い。大切なのは精神か睡眠か、はたまた両方か。\n 薬局を出ると、すぐ前に金髪の女性たちが地べたに座ってたむろしており、治安が悪いなーと思っていたら、大声で知り合いの男性の悪口を叫びだした。どうやら、嫌いな知り合いが決してカッコよくないものの顔の作りだけは推しているイケメンアイドルに似ているのがムカつくらしい。別に地べたでたむろう若者になんて何も感じないですが、外に出てすぐ大声で愚痴を聞かされるのはSAN値が若干削れた。\n 家に帰ってスマホを開くと、つい先日の政治的イベントをめぐってネット中が大喧嘩していたのでそっと閉じた。両目の腫れが痛い。早速、処方された薬で今夜はゆっくり休もうと思う。結局、精神にも睡眠にも効く形で飲むことにする。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -44,10 +43,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

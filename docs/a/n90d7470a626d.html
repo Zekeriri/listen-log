@@ -43,9 +43,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-21 21:32\n我负责故事的漫画要出版了，所以来说说妄想美少女的故事\nお話を担当しているマンガがでるので、妄想の美少女の話をします\n\n12月23日に、自分が携わっている本が3冊同時発売します。\n 上記に掲載した、ゆめつき先生が作画で、僕がお話を担当している『アタマのナカの鈴せんぱい』が、1・2巻同時発売です。\n\n僕のためだけのユメカワ彼女!? 鈴せんぱいに僕は夢中!\nクラスで人気者でもないどこにでもいる中学生・九段くん。今日も今日とて平凡な学校にいつも通り登校するのですが唯一の非日常が……、脳内で作り出した二次元美少女と同居しているということなのです!\n\n脳内で作り出した美少女と暮らす少年の話……①(1/8) pic.twitter.com/FpaBXKgSdD— ゆめつきママ🤱12/23単行本🎉 (@teno_hito) December 18, 2021\n\n↑こちらのツイートを開くと、1話と2話がタダで読めちゃいます。やったね！\n\nゆめつき先生の絵柄が好きで、以前に絵日記を描いていただいた際、自分の担当さんも先生の可愛らしいイラストを気に入ってもらえたので、今回一緒に漫画をやってみることに。\n\n内容としては、内気で友達のいない男子中学生の男の子が、「タルパ」と呼ばれる特殊な儀式により、脳内で作り出した理想の美少女の幻覚と暮らしていくお話。\n 「妄想の美少女」には、子供の頃から強い興味がありまして、幼少期がら膨らませてきた「人生をどう頑張ろうとも美少女ゲームのヒロインと結ばれることない絶望」は、中学生の頃にピークを迎えました。\n\n例え、どんなに勉強しようが、必死に部活に励もうが、そこで得られる幸福は現実の範囲でしかない。美少女ゲームのように、世界と運命を巻き込んだ壮大な物語を乗り越えた末に、その過程で心通わせた孤独な美少女と結ばれることなんてあり得ないわけです。\n もっと身も蓋もない話をするなら、教室の女子たちは「この感情はなに……？ にゃるらくんと話すと、暖かい……」みたいなことを絶対言わないわけだ。何百人の女生徒が集まる空間なんだから、一人くらいは無感情なアンドロイドだったり、夜な夜な魔物を狩り続ける魔法少女が居て然るべきだろ。\n\nそんな想いを抱えたまま、ただ生きていくだけでは耐えられない。そこで知った概念が「タルパ」だったり、薬物摂取による幻覚体験でした。やれることはいっぱいやってきた。でも、まだ僕はその領域には達していない。信仰が足りないのでしょう。\n もっと敬虔に、謹んで生きていく必要がある。\n 現世で徳を積みまくれば、死ぬ寸前に愛する二次元キャラクターたちが笑顔で（無感情アンドロイドは無表情で）迎えに来てくれることを信じて。\n\nちなみに3冊同時発売と書きましたが、3冊目はこちらです。どれも楽しんでもらえると嬉しいです。詳細は下に。\n\n大晦日のコミケでは、岩倉文也との同人誌の新刊もあります。来月には、ついにゲームも発売する。いっぱい頑張ってパソコンカタカタしました。締切が複数重なっていたので死ぬかと思いました。今朝、同人誌を入稿したばかりなので、いま48時間起きています。あまりに入稿がギリギリ過ぎて、ついに岩倉文也が敬語をやめて怒ってきました。人ってこんな明確に好感度が下がった合図を出すんだなってビックリしましたね。早く僕を楽にしてください。地獄で悪魔崇拝主義者なゴスロリ美少女と毎日優雅に過ごすんだ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -64,10 +63,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

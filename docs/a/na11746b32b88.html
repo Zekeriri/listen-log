@@ -33,9 +33,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-09-02 04:03\n持续雕刻佛像\n仏像を彫り続ける\n\n我王と同じことをしている。\n ただただ、自身のために同じ仏像を彫り続ける。\n いま、自分がなにかへ到達するために、新たな仏像へ挑戦しているけれども、それも大枠で言えば今までと似たような形でしょう。\n でも、今回はもう何体目かの仏像であり、僕の中では相当な差異がある。毎回毎回大きく違う必要はなく、細かな機微の調整を永久に続けてきた。ごく一部にしかわからない形で。\n\n自分の中での理想の女神像に近づけ続ける。そういった意味では、最新作いもたぱの女性キャラは、敢えて好みから多少のズラしを行い、そのおかげで見えたものがあった。遠回りこそ真の近道である。いもたぱは僕自身があらゆるモノを掴むために非常に重要な作品なので、興味があれば遊んでみてください。恐ろしいくらいに評価が真っ二つです。お気に入りです。\n\n何に挑戦しているのか？\n やはり、自分自身としか言いようがない。\n 理想の女神が生まれるまで、黙々と生涯を捧げ続ける。\n 僕は同じことの繰り返しを恐れず、この日記でも何度か同じテーマを書いている。そのたびに微妙な差異があり、その僅かな違いを変化と捉えている。少しずつ、少しずつ、成長をしている。\n いもたぱにて、天竺牡丹なる女性キャラクターを描いたことによって、自身のなかで「女」の幅が広がり、遂にまだ進んでいなかった輪郭を捉えられた。\n これは僕にしか到達できない地点だと信じている。\n 我王は他人のために行動をしたわけでない。\n 毎日毎日、子供の頃から美少女ゲームに憧れ続け、自身で仏像を彫ってきた謎の男の、誰がためにでなく、内なる女神を、ファム・ファタールへと夢を見続けた結果の答えとしたい。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,10 +53,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

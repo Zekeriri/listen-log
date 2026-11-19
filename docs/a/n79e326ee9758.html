@@ -28,9 +28,8 @@ NEEDYに関して権利問題は置いておけば、別にゲームもアニメ
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-12-06 14:20\n从现在起\nこれから\n\nゲームを作った時は、「このゲームにすべてを懸けよう」と全力を尽くしたけれど、その後にすぐアニメ化の話が来て、「今度はアニメにすべてを出し切ろう」と数年を費やした。\n しかし、アニメはきちんと放送されるものの、現実を見ない人間が居て面倒くさいので、脚本と総監修をした実績をもとに次を作ろうと励ましていただき、自身の会社を立ち上げ、いろいろスタッフやお金が集まってきた。嬉しいことに今回は元ゲームスタッフたちに加えアニメも作れる人々も協力してくれている。あとグッズやイベント系もね。\n ということは、僕はもうアニメからも頭を切り替え、それらを総合した「次」に向かっていく。毎回毎回すべてを吐き出してきたつもりであるものの、今回は英語圏……海外をまわってネット上でも彼らと交流してきた「カルチャーと宗教への理解」が武器となる。\n\n僕の見立てでは、ここまできちんと英語圏・中華圏のクリエイターやオタクたちと直接交流している者は殆どいない。そもそも海外まで作品が届いた者が0.1%の世界で当たり前なんだけれど。結局、僕はこうした経験と新たなメンバーたちを監督して何を生み出すか、今後数年も頭を悩ませ続けるでしょう。アニメが放送されたら、感化された一部の作家たちが味方としてさらに増えるかもしれない。今度は僕も会社があるから気合いの入ったやつは生活の面倒も見られる。家も借りた。\n\nNEEDYに関して権利問題は置いておけば、別にゲームもアニメもすべてを作ったのは僕なわけで、実績面としては問題ないでしょう。また仲間は増えていくさ。\n やっぱり、「今度こそ死ぬ気ですべてを懸けるぞ」と思ってはいる。けれど、チームメンバーが居るからにはなおさら止まらず、これまでの何もかもを注ぎ込んでいる途中で学んだことをまた次に回していく。次回作の後も「次こそもう最後の気持ちでいくぞ！」と考えているかもしれない。\n ものすごくポジティブに考えれば、作品を強盗されるようなトラブルがありつつ、おかげで自分の会社やスタッフが出現して将来的には大万歳じゃんと、足るを知ることもできる。できれば、今回のアニメで新たに生まれる娘たちもアニメ後の活躍をもっと羽ばたかせてやりたいけれどね。\n 今年、あまりの苦難の連続で鬱病が非常に長引き、別にいまも解決したわけですらない。でも、人はそれでも強欲なので僕へさらに大きな次回作を作らせようと寄ってくる。チヤホヤされているうちが花だ。まさか、ここまで全部を入れたNEEDYアニメすらも、「この経験を踏まえて次のオリジナルいこうぜ！」という展開になるとは思わなかった。「なんか揉めたし、それはそれとして今から次仕込むよな？」と。コイツら……と新たな人々含めたガッツや貪欲さに複雑な感情を抱きつつ、こうして何だかんだ僕の人生も続くのであった。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

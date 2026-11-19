@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-03-30 13:46\n精选一口随笔：死亡笔记中最喜欢的场景\n選り抜き一口エッセイ：デスノートで一番好きなシーン\n\n友人からデスノートで一番好きなシーンを訊かれたので、死神の殺し方を知ったミサが「素敵な殺し方」と返すところが好きだと話しました。\n ご存知の通り、デスノート序盤の魅力と言えば、月とLによる頭脳戦です。Lが仕掛けた高度な心理戦に対し、月がそれを巧みに躱したり、ときには熱くなって挑発に乗ってしまうのを、ハラハラしながら見守り続けていく。そんな時に、ミサミサという第二のキラ……両者にとっても完全なイレギュラーが登場する。\n 彼女はすべてがめちゃくちゃであり、二人が論理によって築き上げた推理を、感情によってハチャメチャにしてしまう。月とLの高知能を、ある意味では愛情の力で上回る。子供ながら、おバカな女が恋愛なんかで何もかもを破壊していく様子に、恐怖と快感を覚えました。\n\n（图片：画像1）\n\nそんなミサに対して、レムは死神の殺し方を授けてくれます。それは、「人間に恋をさせること」でした。今まで、神秘的かつ人間の上位種的な描かれた死神の存在に、唯一の弱点が明かされる。この時点で衝撃であるのですが、それを聞いたミサの「素敵な殺し方」と真顔で感想を述べるのが凄く印象に残ったのです。\n この子は、月とLと真逆で「感性」で生きており、なおかつ展開として死神を愛情で殺すことが起きるのであろう。それは月が利用するのかもしれない。これまでの展開ではあり得なかった死神への反逆。なおかつ、それがミサからすればロマンチックな「素敵な殺し方」であること。このシーン、いいよね……。\n\nエッセイ集の最新刊が出たので、その中のお気に入りを投稿です。よかったら、エッセイ集の新刊を買ってみてくださいね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

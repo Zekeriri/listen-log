@@ -30,9 +30,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-03-06 04:15\n误以为话能够通\n話が通じるのではないかと勘違いする\n\nずっと頭が痛くて手足が痺れている。寝不足と低血糖の症状。糖分が必要で何かを食べたいけれども、まったく食欲が湧かない。身体はみるみる痩せて力が入らないので一週間ジムを休んでいる。倒れないために一年以上通ってきたのに、肉体でなく人間関係に筋肉は効かないね。\n ここまできて幻聴や憎しみの原因を頭の中でも殺せない。なぜ自分が罪悪感を覚えなければいけないのかで踏みとどまる。どうせ誰かを殺したら自分も耐えきれずに死ぬ。だとすれば自分が死んだ方が分かりやすい。自殺者が悩みの種を解決せずに自死を選ぶのはこういった心境なのでしょう。死ね！死ね!と呟こうとも自分が呪われるだけで己が死ぬ以外に選択肢はない。死ね！ それでも話を聞いてくれるかもしれないという無い希望を抱いてしまう。あり得ないことを期待でもしていないと本当に自分が死んでしまうから。助けてください。こんなことを考えていても糖分が減って頭が痛む。\n\n手足がものすごく冷たい。\n\n今日も原稿と打ち合わせがある。人に会いたくない。全身がピクピクと震えているし、どうせまともに会話もできないのに。頭が痛い。なんで僕が死ななければならないのか。数日寝たきりで、深夜にだけ原稿のために起きている。この時間だけが生きている。朝になると社会人様たちが起きて連絡をしてくるから。あいつらが寝ている今だけ心が楽になる。死んでくれ。朝はあいつらの時間だから気持ちが悪い。\n 昨日も、提出したものに労いの言葉一つなかった。知り合いの漫画家も編集が「お疲れ様」と一度も言わないことに悩んでいた。なんで礼節の無い方が生きていくのだろう。仕事だから気持ちなんて要らないと思っているのかな。その方が出世しそうだしな。ありがとうとか、ごめんなさいがあれば、それだけでいいと話したのも無視されている。嘘だと思っているのだ。社会人様たちの頭では感謝や謝罪が契約や金銭を上回るものと認識できない。けど、家族や組織とともに生きて社会を回すのはあいつらの方だ。礼も言わないのに。\n 足がとても冷たい。\n 暖房は好きじゃないのでつけない。ここ数日は雪が積もるほどの寒さで余計に悪寒がする。けれどいい。熱さがあると生活をしているようで気持ちが悪い。今の僕は深夜以外は死体なのだから冷たい方が納得できる。なんで僕が死ぬことになるんだ。頭が痛い。でも、どうしても殺せない。もしかしたら次は話を聞いてくれるんじゃないかと、社会人特有の嘘のごり押しが止むのではないかと、間抜けだから信じてしまったりするんだ。もうこんな思いはたくさんだ。\n 腕が冷たい。どうせ感覚がないなら切り落として武器を埋め込もう。ライダーマンになってデストロンへ復讐してやるのだ。でも、なれないね。僕はデストロンにも話が通じるんじゃないかと勘違いしてしまうから。\n\nこの拷問シーン怖いよね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,10 +50,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -32,9 +32,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-09-25 03:32\n一口随笔：会觉得平凡的小事曾经很幸福\n一口エッセイ:なんでもないようなことが幸せだったと思う\n\n数日前、家の排水が構造上ダメになったので退去になるのか不動産と相談していたら、「ウチなら一日あればできるかもしれません！」と名乗りでてくれた最強の業者が登場し、僕の部屋でガションガションと大工事が行われました。\n\n朝9時。数名の男性たちがぞろぞろと自室前に集まって作業開始。当然、この時間はふだん寝ているので徹夜。自室の隅々の床を開いたり、ベランダで高圧洗浄が行われているなか、流石に来客がいる状態で眠るわけにもいかず、かといってうるさいので動画も観れないし、寝不足で読書もままならない。仕方ないので、8時間ひたすらソファでじっとして、たまにネットサーフィン（死語）する苦行に耐えました。本当につらかった。座りながら意識飛んだのは久々の体験です。\n が、8時間に及ぶおじさんたちの必死の工事のおかげで排水管は新たな排水ルートを獲得。無事にお風呂やトイレの水が流れるようになり、もう公園のトイレや銭湯に通う日々から解放されたのです。ありがとうございました。\n それから数時間寝て、土曜の深夜アニメを嗜み、『エンゲージ・キス』って良いアニメだったなぁとしみじみしつつ、数日ぶりに家の浴槽へ入ります。\n\n本日の読書は『本田鹿の子の本棚』。\n 思春期の娘による独特なチョイスの本棚をお父さんが漁って毎回ドギマギする\"だけ\"の漫画なのですが、この\"だけ\"というのが素晴らしい。毎回どんな変な本を娘が読んでいるのかワクワクの短編集となっております。\n\n途中、「私の時間だぜ」とジョジョ7部のパロディをしたコマがあるのですが、それを発見して大喜び。なんと、僕はまだ未発表の原稿で同じシーンのパロディを書いたものの、編集さんに「7部のシーンを選ぶのはマニアックですね！」と言われ、自分の中では誰しもに通じる最高のシーンだと認識していたので、意外と分かりづらいネタだったか！？ と不安になっていたところに、奇しくも鹿の子のお父さんは同じパロを行ったのだ。いいよね7部……。\n そうこうしているうちに数時間が経って、浴槽内の僕の身体はゆでだこ状態。良い漫画に巡りあえたせいで、ページを捲る指が止まらなかったのです。\n 「久々に入れた自室の浴槽で、時間を忘れるほどに面白い漫画に夢中になってのぼせる」。こんなに幸せなことがあるか。人生とは無限にイベントと起伏があるが、結局は家で本を読んだりアニメや映画に一喜一憂している時こそ真の幸福なのだ。なんでもないようなことが幸せだったと思う。それを再確認できるような、特にオチもないからこそ有意義な一日なのでした。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,10 +52,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

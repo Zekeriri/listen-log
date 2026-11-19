@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-02-18 05:33\n处女作之可爱\n処女作かわいさ\n\n『蜘蛛』の感想が届くたびに嬉しくなる。やはり、（小説での）処女作には特別な思い入れを感じているらしい。もちろん、どんな作品でも感想は喜ばしいものですが、今作はもっと敏感に読者の読後感に一喜一憂していることがわかる。要するに自作に甘くなっている。他作品においては良くも悪くももう少し俯瞰で見ている。\n\nタランティーノもデビュー作『レザボア・ドッグス』には甘くなってしまうらしい。監督・作家の初作品はだいたい2作目以降に比べて粗い。初めての挑戦だから当たり前だ。初々しく、後に確立されるであろう作家の持ち味とも微妙に違う。良く言えば型にハマることのない豪快さ、若々しさがある。押井守も北野武の初期作品、特に一作目の荒々しさをたいへん気に入っていた。\n はっきり言って、自作の『蜘蛛』なんて拙いところだらけでしょう。読み直せば必ず修正したくなるので、できるだけ開かないようにしている。ただ、修正すればするだけ大人しくなってしまう、角を丸くヤスリがけする作業になるわけで、原型の持ち味を殺す野暮な行為であることも分かっている。自分では「やりすぎたなぁ」と感じている箇所ほど、作家性が垣間見えて読者の印象に残るシーンとなっているのではないか。\n すでに今回の反省点はたくさん見つけており、「初めての小説を出版する」リビドーも満たされたいま、次作は「勢い」の代わりになる要素を入れ込まなければならない。今回、敢えて「この荒々しさこそ処女作の特権なのだからこのままいこう」と残した箇所も、別の技巧で補う必要がある。または勢い、荒々しさと呼ばれる部分を個性としてさらに伸ばすか。なんにせよ、衝動だけで再び書き切るのは芸がない。\n\nで。次回はどうするかと言われると、実はまだ何も考えていない。書いてみたいものが別の企画に吸い取られていった分、小説での次回作の案は何もない。ざっくりとはあるけれど。今作の評価点や編集側の視点も含めて、ゆっくり打ち合わせていこうと思う。現に、すでに頂いた感想の中に、僕がまったく狙ってない部分が評価されていたりする。もちろん狙い通りの箇所に引っかかってくれてもいますが。特に僕は善悪や倫理のことを頻繁に書くので（この日記上でも）、倫理観なる千差万別、十人十色の要素に対して、各々の読者が予想外の反応を示してくれるのです。\n こう振り返ってみると、「善悪や倫理はつねに変動し、その場での行動の結果が数年後に明かされるのみ」という現実の無常さが好きなのだろう。次は、そんな諸行無常をもっと突き詰めてもいいし、逆に意識的に外してみてもいいのかもしれない。とにかく、万年筆を走らせている間は、紙と文字と自由だけがあることだけが望ましい。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

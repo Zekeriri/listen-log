@@ -65,9 +65,8 @@ https://www.reddit.com/r/NeedyStreamerOverload/comments/1fsc86d/so_the_author_of
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-09-11 02:48\n梦二与女人\n夢二と女\n\n名画座に通っている。\n 本日は、『夢二』を観た。タイトル通り、竹久夢二を描いた大正ロマン。\n\nポスターには、大事なことが書いてある。\n\n絵描きはたいてい女好き。\n惚れろ惚れろ女ども。\n男は甘えて膝枕、\n夢の話を繰り返す。\n\n女が好きだからこそ、竹久夢二は誰より美しく、「女」を描く。\n\nそれにしたって、沢田研二は、女好きの狂った絵描きになったり、太陽を盗んでみたり、わかりやすくストレートなイケメン役じゃなくて一癖も二癖もある色男役ばかりで凄い。どんな役であろうとジュリーが演じれば「色気」が保証されてしまう。竹久夢二がなぜ破天荒なのに、ここまで行きずりの女を惑わすか。その答えであるセクシーな生き様を、言葉を使わず表画面で表す。\n\nわかる人にはわかり、わからない人にはわからない。\n この映画は、それだけである。\n すべての場面が比喩表現。「詩」そのものを映画にしたような一作。\n 僕以外の観客のほとんどが老人であった。彼らは、竹久夢二の「詩」と「絵」を鑑賞しにきたのだ。己が親が過ごした青春。大正時代に想いを馳せて。\n\n幻想的な映像が続き、終わった頃、2時間ただ「花と水を観ていた」ような心地に包まれる。\n\n夢二は、たくさんの女性たちを愛した。\n\n絵描きはたいてい女好き。\n惚れろ惚れろ女ども。\n男は甘えて膝枕、\n夢の話を繰り返す。\n\nこの世界には、「女を描く」ことに生涯を費やす男たちが居る。\n 絵でなく文であれば、現代の僕も近しい立場かもしれない。僕は、一人の女性が「生きる」様をゲームとして表現し、喜ばしいことに世界中の女子たちから評価を受けた。\n\nhttps://www.reddit.com/r/NeedyStreamerOverload/comments/1fsc86d/so_the_author_of_nso_is_a_man/\n\n海外の大型掲示板では、あまりに現実的な女性キャラクターを男性ライターが作り出したことがスレッドとなり、性別や立場を越えてリアリティを演出できた事実が話題を呼んでいた。\n 言語の壁を越えた女の子たちが、僕がキーボードを叩いて生まれたキャラクターに対して、「これは私だ」と言い放つ。\n 僕は、18年間、血の繋がった唯一の女性である、お母さんをずっと見てきた。誰よりも女性を見て、女性と育ってきた子どもでしょう。\n\n以降、僕の人生を多くの女性が通り過ぎた。\n 僕はといえば、ひたすら「ロリータ服」に囚われていた。ずっと、ずっと、ゴシック&ロリータを男性作家の身で描くことの意味を考え続けた。時折、僕の生活にもゴスロリの似合う女性がやってくることがある。素敵な時間であるものの、僕は、ドレスの似合う女性に、僕のことなんて見つめてほしくないのだ。僕は遠くで眺めているだけでいいから、暖色のランプの下でひとり優雅にスカート揺らして踊っていてほしい。\n ふと、それでも僕の視線に気づいて目が合ってしまったら、いたずらに微笑んでそっと立ち去ってほしい。\n そのように生きていたら、共に多くの時間と秘密を共有する「恋人」なる関係と無縁になっていった。僕は、誰より女性が好きであるゆえに女性と付き合うことのない男だ。それでも、たまに僕の人生を翻弄するように白と黒のクラシックなドレスに身を包んだ妖精にめちゃくちゃにされることが二度三度あるのなら、幸福な生涯だったと言えよう。\n\n夢二は、誰よりも美しく女性を描く。\n 赤く、艶やかな和服の美人を描く。\n\nつまるところ、筆であろうがキーボードであろうが、「理想の女」を紙の上に残そうとする、狂った「女好き」たちが存在し、稀に偶然がいたずらして物語を生み出すのだね。ルイス・キャロルや寺山修司のように、物語や詩が「女好き」によって生み出される。なんの因果か、美を求める少女たちの目に留まり、女好きの生んだ物語に惹かれていく。\n 不思議な因果が芸術の世界には、在る。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -86,10 +85,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

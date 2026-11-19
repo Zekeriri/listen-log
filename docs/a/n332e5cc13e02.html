@@ -23,9 +23,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-02-14 15:45\n成年人的业（业力）\n大人の業（カルマ）\n\n風邪をひきました。とにかく頭が痛くてたいへんだ。寒気もするけどもそれは暖房が苦手（自室でもほとんど使用しない）である以上、通常時も同様であるし、鼻が詰まっているのは生まれつきである。なので、基本的には発熱に伴う怠さと頭痛、あとは多少の咳か。\n それにしても、「風邪の理由」……体調不良のきっかけがここまで明確なのは人生で初めてかもしれない。要するに多忙による徹夜でしかないのだが。体力の限界を超えて潰れたものの、今夜も打ち合わせと締め切りがあり、それを休むと「クオリティが下がったうえで気にするのはお前だけだからそのまま進行する」と明言されているため、次の企画のために意地でも出席する必要がある。インディーの性質上仕方がないとはいえ、このシステムのせいで、安静に眠ったところで「休んでいる」より「問題の先送りをしている」感覚になって不眠が加速する。2.3時間寝たら起きて作業を終わらせてからぐっすり寝よう……とするたび、2.3時間の睡眠では足りず、かといって寝直して時間を消費することも恐ろしく、どんどん体力と精神が削られていく。\n というわけで、どうせ休んで打ち合わせを休むと、未来の自分がより苦しむわけで、ならばどうしても会議へ向かわなければならない。「休まないとクオリティは落ちるがそれは本人しか気にしない」「けどオレはヤバい時は休めとも言った」の二段構えは社会の最強コンボだ。ティンベーとローチンのように武器相性がよく、攻めと守りを同時に行える。これで僕がなにかあったとて、「休めとは言ったんだけどね」と心配していた事実が適用される。このような人間のコントロールが上手ければ上手いほど社会で高い地位を得ることができる。人間が人間を「駒」と扱うのは、一部の訓練を積んだ者しかできない。\n 繰り返しになるけれども、恨んだところで仕方がない。それぞれ事情と役割があり、それを果たすためなら相手の発熱を「見なかったこと」にする勇気も必要なのでしょう。向こうも向こうでお金と立場がかかっているわけだから、何も好きで他人を詰めているのではない。罪悪感だってある程度はありつつ、それでも「俺たちがお前の年齢の頃はもっと働いてたから今がある」と言わざるを得ない。このセリフをまんま言われた時は、「ああ。これを言われると、黙り込むか完全な反逆者になるかな二択しかなく、コイツはここで後者を選択するほど愚かじゃない」と認識されているのだなと、一回り上の大人だからこそ発動できる必殺技の威力にたじたじだ。せめて、「こちらも苦しいけれど今はこう言うしかない」と業（カルマ）を背負ってくれればいいが。\n 社会で生きれば生きるだけ、人間は必ず誰かを傷つける。僕らみんなで地獄に堕ちよう。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -44,10 +43,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

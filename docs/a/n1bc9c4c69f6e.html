@@ -35,9 +35,8 @@ DOUBLE BIND pic.twitter.com/wM1VGHwl3j— にゃるら (@nyalra) May 17, 2022
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-05-18 03:34\n一口随笔：角色的父母\n一口エッセイ:キャラクターの親\n\n数日前、「『SPY×FAMILY』の作者は、キャラクターに思い入れがない」といったツイートが流れ、すぐさま「この説は、一部の人間が作者の発言の文脈を無視して切り取って誇張しているだけ」と訂正されていました。Twitterらしい日常ですね。\n\n作者とキャラクターの関係といえば、「にゃるらさんより超てんちゃんが人気になっていくのが悲しい。心臓がぎゅっとなってしまいます」という可愛いメッセージが来た。僕を昔から好きでいてくれる気持ちは嬉しいですが、超てんちゃんの活躍や人気は原作者として望んだことなので、心配しなくて大丈夫ですよ。娘みたいなもので、子供が人気になったからには、親は後ろから支えるのみ。できる限り子供に余計な口を出さず、しかし時には厳しく接するのが役目です。今日なんて、インディーゲームのライブイベントのゲストの一人に、超てんちゃんが発表されました。こうして、少しずつ彼女がメディアに進出して楽しそうならば、僕のことなんてみんな忘れたっていいんだ。\n\nでるよ〜 https://t.co/N1AYIJuJT0— 🎀超絶最かわ🎀てんしちゃん (@x_angelkawaii_x) May 17, 2022\n\nそれより、Twitterでは超てんちゃんのアカウントしか露出できない関係上、「あめちゃん」の存在が薄くなっていくことの方が可哀想。光と影は二つで一つなのに、良い子ちゃんの超てんちゃんが目立てば目立つほど、あめちゃんの自我は霞む。これはどうにもできないから……。たまに、あめちゃんのことを忘れないよう僕が呟くしかない。\n\npic.twitter.com/86thD0DJya— にゃるら (@nyalra) May 9, 2022\n\nこのまま、メディアが分かりやすくかわいい超てんちゃんだけを求め、案件のために企業に都合の良い正しいことしか言わない女の子と化したなら、あめちゃんを殺したのは理解のない大人たちだ。\n\nDOUBLE BIND pic.twitter.com/wM1VGHwl3j— にゃるら (@nyalra) May 17, 2022\n\n毎日の日記をまとめた同人誌をboothにて販売中です。よろしくね！\n\n商業エッセイ集もよろしくね。僕の昔の病んだ時期に書かれた、影なる部分ですね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -56,10 +55,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

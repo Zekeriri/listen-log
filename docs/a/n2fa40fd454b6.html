@@ -42,9 +42,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-07-03 04:34\n“女孩在身边的日常”这样纯净的幸福\n「女の子がそこに居てくれる日常」という真水の幸福\n\nToHeartの魅力とは、なんでもない日常にある。\n\nストーリーやキャラクターデザインは極めて王道でいいんだ。\n この役割は始祖であるTo Heartでしか満たされない。\n いわば、以降の美少女ゲームはTo Heartの真改造である。なんでもない日常だけでは満足できないから、大袈裟な感動を足そう。ヒロインの生死に関わる試練を与えよう。戦闘シーンを入れ込もう。\n 少しずつ、少しずつ、「平和な学校で過ごすヒロインたちとのちょっぴり愉快な日々」が、大仰なシナリオゲームと変化していった。\n もはや、現代で「女の子と一緒に登下校するだけの楽しみ」をメインにした日常のみを描く新作が登場して注目されることは稀でしょう。美少女ゲームは進化しきってしまった。\n\n現代なら寝取られじゃないかと焦るくらいの展開。もちろんTo Heart時代には「寝取られ」なるジャンルで呼ばれてはいない。まあelf作品は、この空気感で本当の寝取られ展開があったりするけれども。\n\n新しくいい感じになった女の子から、「あの人ってただの幼馴染ですか？」と牽制される。これがTo Heartの大きな山場の一つ。これ以上に劇的な展開は各ヒロインのラストくらいだ。でも、それがいんだ。毎日一緒に登校する幼馴染の女の子に対し、改めて「ただの幼馴染だけど？」とはっきり答えきれるか。\n 高校生が直面する等身大の問題。\n 世界を救うとか、奇跡が起きなければヒロインが死ぬとか、そういう話じゃないんだよ。\n\n一周して、「何気ない日常」をシミュレーションできる貴重な機会となっている。\n 僕も、「女の子と一緒に二人だけの同棲生活を楽しむ」だけの非常にシンプルなゲームを、敢えて令和にリリースしたんだ。あまりに濃くなりすぎた味付けに対し、「女の子がそばに居ること」だけに向き合う時がきた。一周して、To Heartが最も新鮮に思える。\n\n感覚を取り戻すんだ。\n 朝起きたら、いたいけな幼馴染が迎えに来て、教室に入れば小うるさい元気娘に絡まれ、放課後になると学校で浮いた孤独な後輩少女の面倒を見る。“たったそれだけ“の幸福を。真水の飲める幸せを全身で感じるんだ。\n 思い出してくれ。初めて好きになったゲームの女の子を。\n 彼女と話した一言一句を噛み締めた、青い春に響く鼓動の高鳴りを。\n\n親友のルートがDLCで追加されてひと笑い。\n 僕らは、ここへ戻る必要がある。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -63,10 +62,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

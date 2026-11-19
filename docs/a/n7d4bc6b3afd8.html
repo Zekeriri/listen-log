@@ -32,9 +32,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-05-15 05:07\n一口随笔：天生的教养\n一口エッセイ:生まれ持った教養\n\nなかなか眠りにつけないので試行錯誤しているうちに、優しい声で文学作品を朗読するVtuberの動画を再生しながら布団に入る習慣ができました。という話を前に書きました。\n 『銀河鉄道の夜』、『女生徒』、『鼻』、『檸檬』、『瓶詰地獄』……僕が好きな小説たちを、砂糖菓子のように甘い声で丁寧に朗読してくれるので、とても助かる。気づけば、朗読動画が全て視聴済みとなってしまったので、次は彼女が雑談をしている動画を流しながら眠ることにします。\n\n基本的には、オタクでサブカルだったりする些細な日常をハイテンションで溌剌と語っており、深夜の自室に沈殿した孤独と静寂を一気に吹き飛ばす楽しげな声が響く。好きなジャンルの話で興奮するに連れて、はげしく揺れるピンク髪と青い瞳が可愛らしい。元気なことは、良いことですね。\n 特に感心したのは、するりと出てくる語彙と知識。さぞかし教養ある家庭で育ったのではないかと尊敬の念が生まれる。朗読用に選ぶ文学のセンスから只者ではないと察していましたが、好きな音楽の話をする際、ごく自然にクラシックのピアノ曲を挙げ始め、ショパンやベートーヴェン、ドビュッシーなどの素敵な曲を僕らに教えてくれる。あまりに流暢に語る様子がカッコよく、こんな若い（中学生）のにいっさい嫌味を感じさせずにクラシックの解説ができる姿が眩しくて、立派で暖かく、格式高い両親のもとで育った方なのだなぁと感嘆。\n 「ベートーヴェンの月光は、後から評論家が曲名をつけたから、ベートーヴェン自身は月光と思いながら弾いてなくて〜」と補足をしつつ、好きな曲から感じた第一印象を嬉しそうに話す桃色の少女。僕なんかは、クラシックなんて完全に門外漢であり、「曲名に引っ張られる前に感じた印象の大切さ」すらも、この雑談を通して初めて気づいたくらいです。なるほど、僕は「月光」を初代バイオハザードのジルの演奏で知ったので、先に曲名のテロップを見て自動的に「月の光」を連想していたのですが、ベートーヴェンの意図とは違うわけだ。学び。\n 僕は沖縄の風俗街生まれの片親一人っ子なんて環境ですから、こういった生来の豊かさ、貴族的な誇り高さって、真逆の概念なので、ただただ尊重するしかないのですね。どんなにディオが派手に着飾ろうとも、ジョースター家のノブレス・オブリージュには決して届かない。彼女の小さな口から放たれていく隠しきれない気品が心地良い。『カードキャプターさくら』を観た幼い頃、知世ちゃんが纏う正しく養われた品性に惹かれた時と同じ衝撃……。\n とは言え、トークとしてはオタク特有の早口ですので、全く眠るには適してないな！ と笑いつつ、年相応の幼さを残したパジャマ姿の彼女が勧める『タランテラ』の旋律を聴きながら、今夜も眠りにつくのでした。\n\nオタクが早口で喋るのは、それでもお前は全部聞いてくれると知っているから— にゃるら (@nyalra) July 13, 2021\n\n毎日の日記をまとめた同人誌をboothにて販売中です。これが文章でなく配信だったら、つねにオタク早口だったでしょうね。\n\n若い頃の長文エッセイをまとめた商業本もよろしくね。生い立ちの最悪さがよくわかる。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,10 +52,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

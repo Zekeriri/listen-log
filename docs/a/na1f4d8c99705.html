@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-05-24 09:58\n一口随笔：服用会减少感性的药物的意义\n一口エッセイ:感性が減る薬を飲む意味\n\n米青ネ申禾斗へ通っていた時、僕の自閉症的な部分をいろいろ話した結果、とりあえず「社会に適合するための薬」を渡されたんですね。それを飲めば、いわゆる「社会人らしい」行動がとり易くなるわけです。事務作業に集中できたりとか。\n こういう薬もあるのかと副作用を見てみると、「感性が薄くなります」のような文が書いてある。同じ薬を服用している方のレポートを見る限りでも、やはり感性が鈍化するらしい。これはどういう感覚なのだろうと自分でも試してみますと、なるほど、アニメや音楽……いわゆる「文化」に対して、通常時より突き動かされる衝動が弱くなりました。これが「感性が薄くなる」ことなのか。\n 毎日アニメや本を嗜むことだけが生き甲斐の自分にとって、これを飲んでいては人生の大きな損失になる。感性が薄くなることで得られる社会性ならば、そんなもの自分にはいっさい必要がない。ですので、僕はその薬は飲まなくなったのですね。\n そもそも「感性が薄くなる代わりに社会性が手に入る」って、緩やかなロボトミー手術とイコールではないのか？ この「感性」の部分こそ「個性」であり「個人」であり「自己」なのだから、あなたの「自己」を削りとり、そこを「社会性（群れ）」で埋めますよって変な話じゃないか？ と妙に考えすぎてしまった。時に、人生は己よりも社会を優先すべき場合はあるのだけど。\n 大事な感性……自己を失ってまで掴むべきモノなんて現実にないと思うのに、それを掴もうとするための薬が存在することに、不思議だなあって考えたりするのでした。\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中です。感性が鈍くなってしまうと、日々の記録もできなくなってしまいます。\n\n若い頃の感性ギトギトで書かれた商業エッセイ集もよろしくね！！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -23,9 +23,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-11-25 05:08\n一口随笔：《苍穹的法夫纳》\n一口エッセイ:蒼穹のファフナー\n\n「蒼穹のファフナー THE BEYOND」最終章を観ました。もう17年になるんですね。蒼穹のファフナーというシリーズを追ってきて、そして一騎と総士の物語を見届けられて、感無量です。\n 「蒼穹のファフナー」、長い物語かつ登場人物や固有名詞が多く、途中で認識がこんがらがることもあり、難解な作品のイメージがあるかもしれません。しかし、ファフナーのテーマ自体は単純明快で、蒼穹……つまり「青空」です。彼らは、澄み渡る青空のため戦っているのです。それさえ忘れなければ、後はみんなの感情の動きだけ追えばいい。\n 途中、「空が綺麗だと思ったから」感情や人格を得たキャラクターが登場する。彼の行動原理は「綺麗な空を見る」ことであり、この作品で最も純粋な存在です。彼は、傷ついた他人に対して「自分が綺麗だと思った空を相手が見れないのは悲しい」と感じる。正しく感性のみで動くキャラクター。人類が生き残るかどうかの極限な世界観で、「青空の美しさ」を中心としていることが、とても素晴らしいことだと思います。\n 他にも、主題歌担当のangelaは、冲方丁の次にファフナーという物語の理解者です。困った時は、angelaの作詞を聴くと良い。特に「君と僕が 諦めぬまま 世界を巻き込んで行け」という歌詞は良い。この作品そのものが凝縮されている。青空を取り戻すため絶対に諦めず、世界を巻き込んでいく人間たち。その生き様を見届けていく話なんだな。\n 少しでも興味あれば是非視聴してみてくださいね。そうすれば、君は知るだろう。苦しみに満ちた生でも、存在を選ぶことの尊さを……。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -44,10 +43,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

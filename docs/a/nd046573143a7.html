@@ -29,9 +29,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-15 07:31\n一口散文：一想到冬天，我就觉得那家伙肯定喜欢美少女游戏\n一口エッセイ: 冬考えたらヤツは絶対エロゲ好きだと思う\n\n冬考えたらヤツは絶対エロゲ好きだと思う。\n 全体的に漂う薄暗くて切ない空気、厚着による美少女たちの服装のバリエーション、クリスマスや年越しなどのCGを表示させ易いイベント、極めつけは名シーンを印象づけるために降り積もる、雪。\n 僕は沖縄生まれなので、上京するまでの18年間いっさい雪に触れたことがなかった。なので、PS3に移植された「WHITE ALBUM」をプレイした時も、歪な人間関係を優しく包み込む綺麗な雪の存在が羨ましくて気持ちが乱される。どんなに現代風のストーリーに感情移入しようとも、雪が降った瞬間、これは自分が体験できない物語になるのです。\n 例えば大好きな佐倉紗織さんの「淡雪」で歌われる「愛しさに焦がれて もし雪がとけたら なにが残るの？」という歌詞にも、沖縄にはそもそも積もりすらしないんだから、自分たちって「無」だなと感じる。エロゲソングを聴くのも一苦労。\n\nちなみに、僕と同じく雪を見たことがない沖縄人には「パティシエなにゃんこ」をオススメします。冬が舞台で、めちゃくちゃヒロインルートで雪が降りそうな雰囲気なのに、雪が降るCGがないので、沖縄人（うちなんちゅ）の心を傷つけない。みんな冬っぽい格好しているのに、これは嬉しい。\n まあ、そこまで深く考えてはいなかったですが、雪への憧れを18年間培ってきたのは本当です。だから、上京して初めての雪はビックリしたな。東京に一人、友達も居なければまだネットでの知り合いもいない自分に、この興奮を伝える相手はおらず、孤独な人間の肩を濡らす雪って、こんなに冷たいんだと、凄く悲しくなったのを覚えています。\n\nそんな哀れなオタクの沖縄時代のエピソードも沢山載っているエッセイ集がboothにて販売中！ これは読まなければ……。\n\n商業版のエッセイ集もよろしくお願いします。長い文章が読めて楽しいかもしれません。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,10 +49,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

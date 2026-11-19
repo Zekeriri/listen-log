@@ -34,9 +34,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-07-03 01:08\n夜晚的洛杉矶 市中心\n夜のロサンゼルス ダウンタウン\n\n夜のロサンゼルス、ダウンタウンを歩く。\n 言うまでもなく、治安が悪い。治安というか、もはやシンプルに糞尿の匂い漂う。\n\n糞尿の隙間に大麻の匂いが入り混じる。\n この州では合法だ。と言っても、この状態なら規制したって大して意味はないのだろうけれど。\n\nアメリカの夜の危うさ、静けさ、仄かなギラギラは好きだ。『アイズ・ワイド・シャット』を思い出させる。大好きな映画です。\n\n歩いていたら、黒人の女性に｢ファッキンチャイニーズ or ジャパニーズ!?｣と煽られたので、｢ジャパニーズ!!!｣と返す。僕がファッキンジャパニーズだ。こういうふざけた世界が好きだ。\n 道路の脇で目があった男は、これまたギラギラとガンギマリで｢３ドルでいいものやるぜ!?｣と大声を出した。いっしょにキマってやりたいが、明日はアニメエキスポに登壇があるのでスルーする。\n\n実際、３ドルで売ってくれるモノはなんだったんだろう。\n\nすべてが一夜かぎりの夢である。\n そんな街が大好きだ。\n ここでは糞尿と大麻の匂いだけが漂い、窮屈な正しさや倫理なんてものはない。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,10 +54,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

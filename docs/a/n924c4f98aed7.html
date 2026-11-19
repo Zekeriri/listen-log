@@ -36,9 +36,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-11-25 10:22\n大阪演讲会\n大阪トークショー\n\n大阪で新刊発売記念トークショーを行いました。\n\n大阪に呼ばれたら、大阪に行くぜ。もう編集とは10年の付き合いであるなか、こうした小旅行は初めてで嬉しい。この人に拾われ長いときが経ち、ともに関西遠征するほどにはなった。\n\nララテルさん。\n 病み上がりの僕にも優しい。司会として、専属のようなよしもとのお笑い芸人さんが居て大阪を感じる。都内のLOFTでのトークショーは慣れていたけれど、大阪自体が初めて。ちょっとネタがアウトローに寄ると｢にゃるらさん、ウチよしもとなんで!｣とツッコミ入れてくれたりと愉快。\n\nこれくらいまったりした雰囲気が一番いい。\n ファン層は予想外に古参の方々で、質問コーナーやサイン時の会話が真剣。創作への姿勢や美少女ゲームの話が主で、｢ライター｣としての僕が求められている印象。大阪で今まで機会がなかった分、数年越しに｢今回くらい顔見ておくか｣となってくれたのかも。アニメ放送後はどう変化していくでしょうかね。\n うれしい感想。\n\n本の出版イベントだからというのもあるでしょうけれど。\n ちょっと薄暗い会場でのんびり配信もせずに観客に向けてあーだーこーだ。サブカル文化人ってこれでいいんだよなあ、と原点に還る。これ以上のことって嘘だ。\n ｢天使のたまご観てきたので解説お願いします｣と質問あれば、｢押井守が～タルコフスキーが～｣と早口で語る。こうした時間が過ぎていく。\n\nこんな回もまた良いですね。つぎは東京でもうちょいカジュアルな回があっても、それはそれでいいですね。人間は自由。ロリータ服で来た子立ちも数人いて嬉しかった。かわいいです。｢nyalra さんと将来仕事をしたい｣と話してくれるフリフリの専門学生。服飾かな？と訊いたらCG系だった。いっしょにアニメ作ろう。先画を任せたよ。\n\nありがとうございました♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,10 +56,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

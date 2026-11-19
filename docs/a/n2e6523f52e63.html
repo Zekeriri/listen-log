@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-02-06 14:51\n精选一口随笔：讲述《漂亮旋律·彩虹演唱会》OP在第二季度换成《EZ DO DANCE》的震惊经历\n選り抜き一口エッセイ：プリティーリズム・レインボーライブのOPが2クール目で「EZ DO DANCE」に代わった時の衝撃の話をします\n\nプリティーリズム・レインボーライブのOPが2クール目で「EZ DO DANCE」に代わった時の衝撃の話をします。\n プリティーリズム・レインボーライブは、プリティーシリーズのアニメ3作目。終盤以外は明るめの雰囲気であった前2作と違い、レインボーライブは人間関係から恋愛模様、登場人物の過去まで全てが複雑に絡み合い、土曜日の朝からハードな展開を突きつけ、そして悲しみや苦しみを乗り越えた先の感動は多くの人を魅了しました。基本的には明るく振る舞っているのに、どこかつねに曇りがかっているような雰囲気は、漫画版パトレイバーを彷彿させます。\n 閑話休題。そんなレインボーライブは、OPに毎回TRFの名曲をカバーを持ってくる大胆さで、小室哲哉大好きな僕は、1クール目OP「BOY MEETS GIRL」の時点で大興奮。TRFといえば、必ず来るであろう、あの曲に思いを馳せていると……。2クール目、キャラが出揃い、対立が激化して盛り上がってきた時に使用される「EZ DO DANCE」。もう完璧！ 最高！ 天才！\n 本来、女児アニメにしては重々しい歌詞に乗せて展開していくテンポ良い映像、イントロに合わせて揺れるキャラクターたち、これからのストーリーに期待を持たせる敵側の葛藤に焦点を合わせたカット、そしてサビで次々とダンスが展開されていき、そこに流れる「踊る君を見てる」の歌詞。あー、このフレーズひとつの納得感に全てを持っていかれる。もう、100点です。素晴らしすぎる。ずっと見てられる。君だけを見ている。\n\n毎日のエッセイをまとめた同人誌を販売中です。美少女ゲームの話だけしかしていないニッチな本もあるよ。小室哲哉が大好きなので、よく名前がでてきます。\n\n去年末にでた商業エッセイ集もよろしくお願いします。こうして自分の人生を振り返ると、女児アニメのおかげで生かされているのを感じますね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

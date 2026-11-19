@@ -42,9 +42,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-07-24 02:26\n《霸王别姬》 性别与角色的混合\n覇王別姫 性別と役との混合\n\n国宝と覇王別姫を同日に上映するなんて、粋な名画座だぜ。\n\n覇王別姫の迫力は凄まじい。\n 「執念」の映画である。\n ここで描かれているのは、ただただ一人の男が、役に没入しすぎて人生と運命を演劇に呑まれてしまう「執念の末路」だ。\n\n美しい。\n そりゃ天国のレスリー・チャンに「おやすみなさい」と言うために中国語を学びたくもなる。\n\n覇王別姫の姫は、女型を全うせんとのめり込むあまり、自身と役が一体化し、いずれは女形を越えて「女」となってしまう。女となった男による恐ろしいほどの愛への執着。それが覇王別姫だ。なんとも美しすぎる映画だ。\n\n性別の混合は、自分には起きていないが、海外では、僕のジェンダーについては何度か議論されている。男性がこのような文章・作品を作ることへの理解度に対して好意的に、特異点的に受け取ってもらえていると認識しております。\n 種を明かせば、自分は単に母子家庭が長かった、それも母親と二人きりで育ったので、母の感性と精神が半分憑依しているからと言えるでしょう。もう彼女の感覚とない混ぜになっていて、どっちがどっちだかわかりません。\n 狼に育てられた少年が狼として振る舞うように、僕は母親しか他人を知らない期間も長かった。特に意識せずとも、真似する所作と感性はすべて女性となるし、母は感情の振れ幅が大きく、わかりやすく「女性らしい」と呼ばれるタイプであった。\n 女形の英才教育があるとすれば、僕もまた天然で教育を施されている。\n 男性が演じることで、また一つ違ったレイヤーのリアリティが増すのかもしれない。それらは、文章や作品の個性となって体現されていると信じたい。ちなみに、僕がどれだけAmeと自身が混合されたかは、各々で解釈してください。結構互いに呑まれていった存在で、だからこその唯一無二の迫力があったキャラクターだったと思います。\n\nいもたぱ プレイ動画 pic.twitter.com/40o1art4ft— nyalra (@nyalra) July 23, 2026\n\nといった視点でも、覇王別姫は好きだ。\n どこまでが「役」で、どこまでが「本物の性別」か。\n 覇王別姫では、そこへ「リアリティ」の役として強い女性が登場するが、レスリー・チャン、女形の方が過剰なまでの女として誇張された美しさを魅せ続けてしまう。ある種、女性である所作が極まって女性を越えている瞬間が訪れる。特に、愛する男を前にしてしまうと。\n そのような「揺らぎ」が3時間分の圧倒的なスケールで、中国近代60年の歴史とともに描かれるのだから、なんと壮大な映画なのだろう。あまりに大きすぎる歴史とミクロな「愛着障害」へのフォーカス。\n 恐ろしい、本当に恐ろしくも美しい一本です。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -63,10 +62,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

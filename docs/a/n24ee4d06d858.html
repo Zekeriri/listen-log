@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-02-15 06:10\n一口随笔:喵拉拉的诗意感受\n一口エッセイ:にゃるらの詩情的な感性\n\nゲーム製作後、プロデューサーから真っ先に褒められた点は、僕の詩的な部分でした。全く意識してなかったところを褒められてビックリ！\n というのも、僕は製作中に、主題歌「INTERNET OVERDOSE」にて、初作詞に挑戦したわけですが、この時に僕がすらっと歌詞を書き上げたことが衝撃だったようなんですね。プレイ後の方は知ってのとおり、あの曲の歌詞には世界観やメッセージ性をできる限り詰め込んだのですが、それを音楽に乗せて一発で表現できたことは間違いなく才能だと言ってもらえた。思い返すと、「よくオレの曲に合わせられたね」とAiobahnも驚いていましたね。\n 「短い文章に感情を乗せられることが、にゃるらの真の才能だよ」と言われて、どちらかと言えばゲーム内テキストとエンディングに集中と苦悩し続けており、作詞は本当に一切の苦もなく仕上げられたので、あぁこっちの方が本来難しいところなのかと理解し、「作詞家としての道もあるかもね」と言われて嬉しかったです。そもそも、今作はゲームならではのテンポを優先するため、できる限りテキストを削る作業をしてきたし、こうして毎日のエッセイも制限文字数があり、そもそもTwitterは140文字。思えば、無意識に「短い文章で感情を動かす」訓練を積み続けてきたのかもしれない。\n どこに自分が適した分野があるのかわからないものですね。ツイート自体が、すべて短い詩といわれたら、そう思えてくる。あの主題歌がなければ、ゲームの雰囲気や解釈が全く違ったと思うと、最も作品に込まれたのは、僕の人生経験やインターネット観でなく、詩情的な感性だったのでしょうね\n\n毎日のエッセイをまとめた同人誌をboothにて販売中です。ゲーム製作中の心情がわかる。\n\n商業エッセイ集もよろしくお願いします。こんな文章を書く人間から、あの歌は生まれたんだなぁ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

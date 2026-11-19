@@ -29,9 +29,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-05-27 14:29\n无论是诈骗还是事实\n詐欺でも真実でも\n\nイタリアの空港で、ものすごく焦っているおじさんから声を掛けられた。とんでもない早口の英語で「どうしても60ユーロ貸してくれないか。出発が近いけどATMは使えないし、職員はイタリア語しか通じないがわたしは英語しか喋れない！」といったニュアンスのことを。僕もここまで捲し立てられると半分も理解できず、なぜお金が必要かまで聞き取れない。\n こういう詐欺かなと思いつつ、詐欺師にしては見た目が紳士的すぎるし、「どこから来た？ 必ずメールでお金を返す」と必死さがリアル。こんな飛行機のゲート間際で詐欺をやる人間もあまり居ないだろうし（市内と違ってすぐ捕まる）、その時、精神的に疲弊して発熱していた僕は、なんだか他人の役に立つことで自己肯定感を上げたくなった。余ったユーロをちょろっと換金するのもアレだし。\n 60ユーロを渡すとものすごく感激してくれた。これが真実だとすれば、一万円もの金額を信じて貸してくれる人間に巡り会えたのだから感動もするでしょう。この60ユーロって金額が高すぎてリアリティがある。そこまで計算していたなら騙された僕の負けでいい。\n 向こうは、僕のメールアドレスを聞き出そうとしている。「どうやって返せばいい？ とりあえずメールを教えてくれ。ごめんね、急いでいる！」と。詐欺ならお金を渡したうえで個人情報すら渡すバカモンだし、そこまで他人につけ込むとしたら凄い。まあアドレスを聞くだけ聞いて放置とかもあるけれど。\n メルアドは教えなかった。\n いいんだ。何かの時間が近いなら急いで向かってください。困った時はお互い様だから気にしないで。\n そのようなことを告げると、おじさんは深々とお辞儀をして颯爽と人混みへ消えた。あの紳士な振る舞いを信じようと思う。\n\nそれに、どちらでもよかったのだ。\n 実際、人混みに消えた後は「詐欺だったのか真実なのか」たしかめることもできない。つまり、僕の中の納得以外に答えはなく、僕が「異国の見知らぬ誰かを隣人愛で助けた」と善行を抱えて気持ちよくなればいい。イタリア現地民に優しくしてもらった愛をここでわずかに返せた。ならもう騙されていても、騙されてなくてもいいんだ。\n そうやって徳も善も回っていくのだね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,10 +49,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-19 05:59\n一口随笔：善良地生活\n一口エッセイ:善く生きる\n\nたまには大仰は話でもしてみましょうか。\n 今日は、僕が生きる意味と目標でも語ってみましょうか。早朝5時って、他人が見てないから恥ずかしい独白も許容される時間ですので。\n 基本的には、仏教に倣って「欲を捨てる」「他者との比較をしない」ことに努めるタイミングを待つ。僕らは修行僧でないので、急にそんな解脱を可能としていない。若いうちは好きなように煩悩のまま生きて、少しずつ欲求を満たしたのち、なんらかの成果を持って「自己」を確立する。\n 「自己」さえあれば、他者との比較は減るでしょう。スマホを開けばSNSを通して嫌でも他人の数字と自分を比較してしまう現代において、例えば「ゲームを製作した」などの実績があれば、それが個性……アイデンティティとなって、他者ではできない知識や経験をもって劣等感に抗う。そのうち、老化とともに欲望も捨て去れたら、あとは満足してゆるりと死ぬだけです。\n その際、現世で背負った業（カルマ）が少なければ少ないほどいい。自分の中で許せない行為を極力避け、清らかな身体になる。輪廻転生や天国地獄を信じられるほど強い信仰はありませんが、自分が築いたモラルは守るべきでしょう。例えば、僕は匿名でなにかを攻撃するようなことはしないとか。そういう陰湿さを持つと、魂が穢れる感覚がある。他人がやっている分を止めるほどではないけれど。それに線引きは犯罪でもなく、知的好奇心のためなら犯罪をおかしても僕は嫌悪感を持たないと思うし。あくまで魂という抽象的な部分の感触によるのですね。\n そうして欲や業（カルマ）を捨てつつ、目標としては「善く生きる」。「善く」なる曖昧な指示が自閉症の自分を悩ませましたが、だんだんと哲学の本を読むうちに、そうして知識を吸収して世界の解像度を高めることが「善いこと」の一種であるのではと思えてきました。\n 必ずしも「知識＝善」とは限りませんが、それを信じて生きていくのは、生来の自閉的な僕にとってはたいへん楽な選択なのです。毎日、読書してアニメ観てゆっくり解説を漁る暮らしを続けていれば、それが「知識＝善＝幸福」に繋がって非常に楽だ。難しいことを考えずに済むのです。\n ですので、個性を確立させながら、自分なりの品を磨き（この二つはとてもゆったりなペースではありますが）、中野ブロードウェイなるサブカルのメッカを巡礼し、読書とアニメ・映画コンテンツで知識を養う（オタクが暇つぶししているだけですが）今の日々は、自分としては善行を積み、幸福に生きている証であるのです。\n こう書き連ねると本当に偉そうでなんだという話ですが、幸せに向かって歩めていると信じていなければ、生きるなんて、とても正気ではやっていけないですからね。\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中！ 買ってもらえると、僕が読む本が増えます。\n\n商業エッセイ集もよろしくね。レビューや評価までしてもらえると、なお魂が救われます。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

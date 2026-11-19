@@ -36,9 +36,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-01-07 13:23\n如果找找看还能找到一些安眠药\n探せば少しは睡眠薬が出てくる\n\n先日、睡眠薬や向精神薬が切れた。\n 面倒くさくて通院をサボった結果さもありなん。以降、久々の不眠に苦しむこととなる。どれだけデエビゴによる楽なシャットダウンに頼りきりであったか身に沁みる。\n とはいえ、そう簡単にあきらめてはいけない。たいてい鞄や棚をゴソゴソと漁ればワンシートくらい在庫が見つかるものだ。ゴソゴソ、ゴソゴソ。せまて一錠でも見つかったなら今夜は安心なのにと鞄を漁ると……\n\nキター！\n なんと外出用のカバンには宿泊時にすんなり眠るためのお泊まりデエビゴが数シート入っていた。これは助かる！\n というわけで早速、服用だ。必死に残り香を漁り、ようやく手に入れた非常にケミカルな宝物をあますことなく堪能。ジャンキーそのものな行動と結果である。\n 合計10錠くらいでしょうか。\n 去年は5回、海外へ渡ったので、海の向こうで眠れなくて苦しまないよう、トラベルグッズをまとめた巾着に大事なデエビゴが潜んでいた。\n こうして無事に眠れる間で再び病院へ通えるといいのだけれど、そう簡単に精神科の予約ができればこうも悩むことはない。決められた時間、しかも昼夜逆転にとって非常に厳しい時間帯の予約を行い、赴く。真に苦しい時にこの工程を行うのはかなりの気力がいる。支えてくれる身内の居ない人間は、この状況での挫折がつらい。\n ケミカルの力によって強制的に脳がシャットダウンされる魔力に抗えない。僕らは枕の上で無限に何かを考え、その日の一人反省会をしてしまう。脳は動いている間はなかなか入眠できない。そこを薬がガツンと幕を降ろさせ、気づけば強烈な冷たさに包まれ数時間後となる。毎晩、死を実感しているようなものだ。脳機能の停止には誰も逆らえない。神様が唯一平等に示した動物の絶対的なルール。\n たとえば、これが安楽死装置の成分としても過程はまったく同じ。体内に侵入した成分が血管を巡って優しく脳を休ませる。眠りの後に起床が来るか来ないか、睡眠と死の違いはそこにしかない。\n 起きないかもしれない。\n 僕らは、自らの意思でなく薬によって眠らされている。いつか起きない時が来る。\n 死を自覚することはない。\n それは起きないだけだから。いつもより長く夢を見ているなと、遂にあちら側から帰って来れなくなるだけで、僕らは毎晩死んでいる。朝が来るたび、太陽を憎んで堪らなくなるたび、逃げるように服薬し、僕らは擬似的な終わりを体験する。\n\n僕のエッセイ集です。眠れない夜にでもどうぞ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,10 +56,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

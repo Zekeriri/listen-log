@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-10-25 05:26\n社团室\n部室\n\n友人がシェアハウスのリビングへ住み込んだ。\n 当然、一人分の荷物が増えたことで部屋は混沌とする。煩雑は賑やかさと同義で、寂しさが薄れる。オタクは、結局のところ部室を求めて生きている。\n 深夜にアニメ会社へ訪れると、それでも机を囲んで談笑する人々が居た。集団製作こそ、永遠の部室で居続ける最適な手段だ。みんな同人サークル規模が幸せなんだ。過ぎたるは及ばざるが如し。持ち過ぎるとサークル規模が手に入らなくなる。どんなにお金を手に入れたところで、朝まではしゃいで一緒に死んでもいいと信じている部員たちは集まらない。どんなに売れても作品を作り続けるのは、部員とまた部室で集まれるからだ。\n\nといっても、僕らはもうちょい大人になった。やはり4人で住むにはちょっと狭そうだ。昔はリビングに2段ベッドを置いて、そこだけがパーソナルスペースでよかったのに。一般的な時の進みから何周差をつけられていても、どうやら非常にゆっくりのペースで成長をしてなくもないらしい。\n また一緒に住んでくれる友人がもう一人居て、ここまで大人数なら結局また昔のようにボロボロで広い一軒家でも借りていいんじゃないかと。早速、引っ越し先の目星もつて、築50年くらいの民家を発見する。内見予約を入れ、よほどのことがなければそこへ越す。2階建て。家賃を払いたくない順から狭い部屋を割り当てる。\n リビングにソファを置いて、向かいにテレビ。みんなでわいわいテレビゲーム。端にベッドがあって、眠くなったら寝転がる。共用の本棚に怪しげなサブカル本が並ぶ。今回はガレージがあり、近くに住んでいるAiobahnに一台分を貸すことができる。彼も車に興味を持っていた。そうなったら夜に気まぐれなドライブへ駆ける夜もあるでしょう。\n 10年、そうしてきた。\n たまに離れて、また集まって。そんなこんなの繰り返しでどこへ辿り着くなんて誰も知りやしない。どうせ、普通に生きたって意味不明なトラブルは起こり続けるのだから、最初から歪な環境の方が手っ取り早い。\n\n何が起きてもいい、ただ友情だけがある逃避の楽園。\n 部室を求めて生きていく。サークル規模で、身内ネタで、内輪の集まりを重んじる。\n 人生の一種の答えを、10年前から実践してきた。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

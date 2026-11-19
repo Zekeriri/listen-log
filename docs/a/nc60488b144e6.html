@@ -37,9 +37,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-02-15 13:51\n回忆中的美少女游戏话题 野々村医院的人们\n想い出のエロゲー話 野々村病院の人々\n\n※数年前に同人誌に書いた内容の掲載です。\n\n急に自分語りですが、僕は鼻がイカれていて嗅覚を失っている関係上、子供の頃は長期で入院していました。よくアニメのキャラクターに「幼少期はベッドの上で過ごし～」なんて語る病弱っ子が登場しますが、僕もそれなりにそんな感じの過去を背負っている。\n\nなので、ちょっと病院には思い入れがある。特に病院の夜には。夜勤病棟ではなく、ね。\n\n母親も流石に毎日泊まり込むわけにいかないので、基本的には僕は子供ながら一人で眠ることになる。年齢一桁のガキにとって、知らない施設での夜は恐怖でしかない。しかも怪談の定番である病院で。\n\n長い入院期間中では、たまに深夜に目覚めることもある。その場合、トイレに辿り着くまで、がらんとした深夜の廊下を一人で歩く羽目に陥る。そりゃもう、怖いってレベルじゃないですよ。ぼやっと光るナースステーションの輝きが、逆に不気味で印象深かったことを今でも覚えているくらい。\n\nホラーというジャンルは、美少女の艶やかさをより引き立てるのでしょう。ゴシックとは、深い暗闇から美しさを取り出す概念だと解釈している。闇があってこその美貌なんだ。深夜の病院で生活するドット絵で表現された看護婦たち。想像しただけでもドキドキする光景でしょう。\n\nという訳で、『野々村病院の人々』の話をします。プレイヤーは探偵となって、怪しげな病院の謎を解明するわけですが、この作品はエンディングがたくさん用意されたマルチシナリオとなっております。この作品の前作『河原崎家の一族』は、マルチシナリオ・マルチエンディングの元祖と言われているほど、歴史的に重要なゲーム。実際は5ヶ月前に発売された『奈緒美 美少女たちの館』なる作品が先らしい。さらに、この作品よりも昔の80年代からマルチエンディングの作品は存在しておりますが、とにかく『河原崎家の一族』のヒットによって、美少女ゲームユーザーへ、マルチエンディングの面白さが植え付けられたのですね。\n\nそんなマルチエンディング要素を引き継いだ上でパワーアップ（主にストーリー性が）した『野々村病院の人々』。選択肢によって分岐していくシナリオと探偵主人公の相性は抜群で、後に発売される『EVE burst error』へ多大な影響を与えます。\n\nちょっぴり捻くれた探偵が、美少女看護婦や患者たちを巻き込みながら、夜の病院を舞台に巨大な謎へ挑む。それも多数の選択肢によって構成された複雑なシナリオの中で。個人的には、ゲームオーバー時に登場人物たちがそれとなくヒントを教えるコーナーが嬉しかった。かなり原初に近いメタ要素の発見に心躍ったのです。\n\nこの時代の名作たちは軒並みリマスター化されてSwitchに移植されておりますが、本作はアダルト要素が強すぎるのでセガサターンのみ。サターンでも乳首が表示されて驚いたね。PC版なら今でも手軽にプレイできると思うので、マルチエンディングの歴史に触れたい方は、ぜひ遊んでみよう。何年経っても色褪せないグラフィックと、今では王道となった革新的なゲームシステムが待っている"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -58,10 +57,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

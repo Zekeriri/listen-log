@@ -39,9 +39,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2019-12-30 23:36\n随笔：冬天的寒冷和父亲不在的现实是无论如何也无法抗衡的\nエッセイ：冬の寒さと父親が居なかったという現実にはどうしても敵わない\n\n令和になって初めての冬を体験したことで、自分の中でも色々と発見があり、やはり沖縄の母子家庭に生まれたからには、冬の寒さと父親が居なかったという現実にはどうしても敵わない。\n\n気温と鬱には関係があるかも知れない。実際、沖縄に居た頃は寒さを感じることがほとんどなかったため、自身の人間関係などではなく、自然環境で憂鬱にはいることがなかった。というより、人生で深く落ち込んで塞ぎ込むことがなかった。\n\n僕は今、いわゆる鬱の時期なんでしょう。ここ最近のnoteが無意識にダウナー系なことを振り返って、ようやく自覚できました。自分がアスペルガーの自閉症だとはっきり診断されたことも相まり、25年生きてやっと理解できた。冬の寒さは僕の精神に強く影響を与える。\n\nそして、僕はこの時期のことが好きなのも再確認できた。なぜなら、労せずこうして駄文を並べることができるから。どうしようもなくメチャクチャになったり、俗な表現だとバッドに入ることがそもそも好きなんだと思います。\n\n冬の経験が浅かった。これは沖縄人以外では中々感じない感覚ではないでしょうか。ただ寒いのでなく、もう少し根本的に感覚で例えるなら全てが寒色系になる。こんな誰もが肌感覚でわかっていることすらわかっていなかった。面目次第もない。汗顔の至り。寒さで汗はでませんが。\n\n布団の中で身動きもできず、ただただ瞑想し続けて気づけたのですが、冒頭でも書いたとおり自分の歪みは母子家庭にあります。家庭が性根に強く影響する。家族と縁を切った身なので、あまり認めたくはなかったですが、それは確かにある。\n\n特に父親がいないため、強い存在から褒められたことがない。特に僕の母親は国からのお金で毎日遊んでいるだけの人でしたので、しっかりした人間が僕を褒めたことなんて一切なかった。これは、僕がなにもできないゴミであることも勿論そうなのですが。もっと本質的な、例えば初めておつかいできたとか、算数で100点とっただとか、そういうところからです。尤も、おつかいなんて完遂できた試しがないですが。\n\nなので、ただこんなことを自分ができる、こんなことを知っていて、こういう観点もあるということをインターネット上で発露している。そして他人から評価されたい。\n\nただそれだけだったのが、気づけばTwitterなりnoteなりのフォロワー数に結びついている。それは良いことですが、実は強い誰かに僕の存在を認知されたいだけなんですよね。\n\n寒さのおかげでそれもわかった。これから僕ってどうしていくんでしょうね。幸せになると、他人から認められると目標達成して、文章を書く力が減っていくのが怖い。それならいっそ、ずっと真冬の中、精神にしんしんと降り積もる淡雪に埋もれていたい。その方がなにか書けるから。天使のいない12月の歌詞、いまやっと骨の髄から理解できた気がします。\n\n夢を見ていたい心地よい温もり満たされたい、叶うならせめて寒い冬が通り過ぎるまで。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -60,10 +59,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

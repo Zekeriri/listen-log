@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-03-28 14:05\n适应障碍的按钮边缘\n適応障害のボタンの縁\n\n二度、去年にもなっているから、適応障害の前触れがどことなく分かる。けれども、いま自分が限界近いよと伝えるのが難しかった。感情は複雑な形をして、「適応」なので世界と合わせようとしたうえで無理だった結果が障害で、あまりに適応できない社会のルールとの闘いが激化すると起こる。\n まあ、そんな大仰なものでなく、怒涛の勢いで一個人を攻撃して排除しようとする人間に皆どうもどきない状態で、つねに自分が死ねば皆がハッピーなんだぞと圧迫され続けている状況に対し、「頭おかしくなるな」と言われ続けていく時点でどう考えたって無理だろうと思いつつ。僕は先日、明確なエラーを起こしている。エラーに対して｢発生するな｣って注意するのも変じゃない？ と毎回考える。\n 3回目の予感に怯えながらも、2回乗り換えた身として次は強大な覚悟を持って耐え抜くかもしれないし、また普通に倒れるかもしれない。ブチャラティのように死体のまま7月までは動いてる可能性もある。\n 三度目の学習なので分かっている。\n 社会人には限界があり、SOSに対して「助けられることはしたいんですけどねぇ」で止まる。これは、所属していない人間に対する限度を現しており、以上のことは身内がすることとなる。\n 身内とは所属か家族であり、究極的に社員は同じ会社の者しか守れない。家族または恋人でないと踏み込めない領域があり、その見えない壁を全員が張らざるを得ないことと、そんな世界で生きていく圧力に対して「適応」が解けた結果が障害で。皮肉屋の自分は｢こんな社会に適応してる方が異常だよ｣なんて言って、まともな人々へ遠くから嫌がらせすることしかできない。\n この世界には強大な理不尽があり、回避する方法は身内である中、社会に適応していたフリが解けると脳味噌が耐えきれなくて爆発する。\n 理不尽への対策はできない。\n ニュースでは、数多くの事故が報道され、その被害者たちは何の責任もないことだってある。多少問題があったとしても、罰の大きさは必ずしも適正ではない。\n 理不尽は必ず起こる。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

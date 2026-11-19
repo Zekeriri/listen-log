@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-07 03:02\n一口散文：《无敌级*信徒》和镜中的自己\n一口エッセイ: 「無敵級*ビリーバー」と鏡の中の自分\n\n「ラブライブ!虹ヶ咲学園スクールアイドル同好会」に登場するスクールアイドル、可愛いかすみんこと、中須かすみさんの曲である「無敵級*ビリーバー」の話をします。\n この曲はラブライブ!関連の中でも特に好き。アニメでかすみんを観た際、自分のかわいさに固執する彼女は、もっと分かりやすくキュートな曲のイメージでしたので、「無敵級*ビリーバー」の明るさの裏に切なさや努力を感じさせるギャップに惹かれました。作曲したDECO*27さんの高い理解度が伝わる。プリチャンでも素晴らしい仕事ぶりでしたし。\n この曲は、恐らくマイケルジャクソンの「Man in the mirror」を意識している歌詞だと思います。マイケルの方は、「より良い世界のために鏡の中の男から変えてみなよ」と、まずは自分を見直そう！ といった歌詞。意識の高さがマイケルらしい。\n 一方、かすみんの方は「Mirror on the wall Who Woh ほら笑って」と、ひたすら鏡の中の自分に笑ってと言い続けるんですね。その後も、へこたれそうでもうダメだと感じるたび、鏡に映ったもう一人の自分と「自分が誰より一番（かわいい存在）であることを忘れるな」ということを自問自答する。\n マイケルが「世界のために鏡の中の男を変えよう」と「他者」を前提とした歌であるのに対し、かすみんは「世界一かわいい自分のために鏡の中の女性を笑わせよう」と歌っている。彼女の「自分の可愛さ」を前提に行動する在り方がたいへん素晴らしいと思う。世界でなく「鏡の中の自分」を第一にする少女。まさに、かすみんの生き方が表された、魅力あふれる一曲だと感じたのでした。\n\n表紙が素晴らしくかわいい同人エッセイ集がboothにて販売中です。毎日のエッセイが収録されております。この努力を是非手に取って感じてください。\n\n月末には、長文エッセイ＋書き下ろしをまとめた商業エッセイ集も発売予定です。こちらも、表紙がとてもかわいいので、予約してくれると嬉しいです。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

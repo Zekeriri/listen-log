@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-02-25 23:50\n一口随笔:系统与剧情\n一口エッセイ:システムとシナリオ\n\nスペースにて、若木民喜先生の話をして欲しいとのことで「神のみぞ知るセカイ」について話しましたが、自分が一番好きな点は、ギャルゲーをテーマにした作品で、ギャルゲー最高峰の一つである「この世の果てで恋を唄う少女YU-NO」をモチーフにした展開で締めたことです。作者もブログにて、はっきりとYU-NOへの愛を語ってらっしゃった通り。\n YU-NOの素晴らしい点は、なんといってもゲームシステムとシナリオの融合にあります。マルチエンディングの美少女ゲームにおいて、フローチャートとセーブ&ロードは確実に存在するものですが、それらをマップ状に可視化した上で、シナリオの進行やセーブ機能すらも、「ゲーム内の設定」として組み込んだ衝撃はすごかった。たしかに、このゲームシステムとシナリオの融和の完成度は、ゲーム史において永久に語り継がれていくべきでしょう。\n YU-NOを手掛けた菅野ひろゆき氏は、徹底してシステムに拘り続けており、他作品たちもゲームとしての手応えがあった上で、そのシステムとマッチしたシナリオが展開されていく。「ゲーム性」を重視した作品の多さが、90年代美少女ゲームの特徴でしょう。葉鍵の爆発的な流行により、どんどんシナリオを快適に読ませる方向になっていきます。僕のゲームも、システムとシナリオのバランスを最優先にしましたが、それはまぁ遊んで確かめてください。\n ちなみに、このシステムとシナリオの融合という意味で、「仮面ライダービルド」の最終回は凄いですよ。シナリオが凄いライダーはたくさんありますが、番組のお約束を活かしたギミックはビルドだけ。あのラストの衝撃は、ぜひ体験して欲しい。\n\n毎日のエッセイをまとめた同人誌をboothにて販売中です。美少女ゲームについて語っているだけの本もあるよ！\n\n商業エッセイ集もよろしくね。重たい話がたくさん載っている！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

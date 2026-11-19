@@ -52,9 +52,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-05-13 04:06\n从网络论文思考延展到现在\nインターネット論考から連なる今\n\n今回のCONTINUEはNEEDY特集だ。僕を含めたプロデューサー陣とのインタビューなども載っています。が、それはまた次回の話として。なぜなら、まだ冒頭の梨さんの寄稿しか読んでいないから。\n\nで。梨さんの文章を読むぜ、と思っていたら……。\n\n「にゃるらさんは初代INTERNETに関する論考の3−5−1において、」と書いてある！\n 初代INTERNETに関する論考！？\n 梨さん、いったい何の話をしているんだ？？？\n 狂っちゃったのかな……そういうフェイクドキュメンタリーなのかな、梨さんだしとスルーしていたが、よくよく思い返すと、心当たりがあった！！！\n\n過去に岩倉文也と共に作った思い出の同人誌！\n 表紙は、亡くなった焦茶さん。ああ、焦茶さんに僕の作ったゲームで遊んでもらったり、アニメを観てもらいたかった。あなたの引く線と色を真似たイラストレーターはごまんと生まれた。あなたはゴッホのように「世界がそのように見えるからそのまま絵に描く」人であった。\n ちなみに、この同人誌はフリマで頒布した小規模なモノなのに1000冊以上も出回ったすごいやつだよ。\n\nちょっと検索したらシリーズがプレ値になっていた。\n 文也ともたまに話すけれども、いずれまたこれくらいふざけたことやろうぜと誘いたいものだ。\n\nで。\n たしかに、この本で僕はインターネット論考を残し、インターネットがどのようなものかを確かに書き記した。7年前。25歳の頃ですね。ということは、梨さんは19歳くらいか。この頃から読んでいただき、ありがとう。\n\n三・五・一。\n たしかに書いてありました。インターネットの人間は弱点を隠し通すか、逆に自分からさらけ出すことでダメージを抑えている！ なので、相手にダメージを与えるには的確にコンプレックスを突けとまで書いている。さらに、もはや闇雲に物量で厄介をかけて消耗させる術まで書いている。その通り、まったくもってその通りなのだが、そんなことまで書くな。\n 全部理解していますよ、と堂々としちゃっているところまで含めて青臭い。けれど、それで梨さんは気に入ってくれているわけで、それに今僕がフラットに読んでも面白い。おまえは頑張っている。\n\n7年前の時点で、「インターネットは感情が優先されるようになる」と予想しているのは、結構すごいんじゃないかな。\n いまなんて、もはや「こう不快に思いました！！！」と声を大にすれば、とりあえず人は集まってくる時代だし。いや、実はたまに僕のこの文章は引用されることあるのを思い出した。25歳の自分がこの時点で匿名掲示板、SNS初期を経て観察したすべてが載っていて、その上でまだ若さのある（凝り固まっていない広い視点）脂が乗った論考気取りで、これは確かにすごい。いい文章書いたと思うね。\n\nそれをさらっと現代で、NEEDYアニメへの寄稿で引用してきた梨さんも凄まじいよ。\n ものすごい恥ずかしいけれども、梨さん僕と作品のこと心から好きなんだろうな、とここで伝わる。\n いやはや、現代のホラー小説界を引っ張る若者に応援されるのは素直に嬉しいですね。\n\n裏表紙はエロゲーの山。\n そうだった。まだインターネットとエロゲー的な空気感が密接だった時代の残り香だなあ。\n ヴィトゲンシュタインをパロディしたインターネット論考にエロゲー、たしかにコイツは後にNEEDYなんたらを作る男だな。\n 必死に、生きてきたんだな。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -73,10 +72,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

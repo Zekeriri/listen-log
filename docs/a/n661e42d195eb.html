@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-21 21:06\n精选一口随笔: 治抑郁症有效的《瓦里奥制造》\n選り抜き一口エッセイ：うつ病にはメイドインワリオが効く\n\nよく、「つらくてつらくて何もできないです、どうすればいいですか？」といった質問されます。そんな時期は誰にでもある。何をしようにもトラウマや不安が想起されて手につかない状態。\n その状態で、深く考えれば考えるほど負のスパイラルに囚われるだけなので、「頑張って寝ましょう」と伝えています。どうせ何やってもつらくて無理なんだから、もう無理やり寝る他ない。\n が、本当はもう一つ攻略方法があります。あるんだが、これがなかなか信頼度が薄くて、伝えてもどうせ実行されないので黙っている。その方法とは…… メイドインワリオに集中することです。\n どうせ、これを読んでいる人も疑っているんだ。僕がふざけて言っていると思っている。お前らはいつだってそうだ、そうやって何事にも捻くれやがって。その点、ワリオはどうだ。コイツは貪欲なだけで素直だ。素直に「死にたくない」の一心で不死身にまでなった男だ。そして、好きに生きるうちに人が集まり、最新作では社長に就任。みんなワリオの豪快さを見習うべきなのだ。\n というのもありますが、「単純作業」は苦痛に効く。何も考えずにミニゲームを淡々とこなす作業によって、画面と指だけに意識が移り、悪いことを考えずに済む。難しいゲームだとダメだよ。思考しているうちに負の方向へいくから。次から次へと作業が降ってくるゲームが一番いい。パズルゲームでも良いが、僕は先述した理由でワリオが好きだし、ワリオの人格は「鬱」の対義語と呼んでも過言ではない。悩んだらメイドインワリオをやるんだ。僕を、ワリオを信じろ。\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中！\n 気に入ってくれたら購入してもらえるとうれしいです♪\n\n商業エッセイ集を手に取ってもらえると……さらに嬉しい！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

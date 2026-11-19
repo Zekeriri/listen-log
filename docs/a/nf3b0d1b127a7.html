@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-07-05 04:39\n一口随笔: 魔法少女与巧克力\n一口エッセイ: 魔法少女とチョコレゐト\n\nピノキオピーさんの『魔法少女とチョコレゐト』は、SNSで活動する際の教科書に載せたいレベルで素晴らしいと思う。\n この曲は、魔法少女として活動している女の子が、匿名の心無い発言でうんざりして「正直もう魔法少女やめたい」と本音を吐露するような悲しい曲。匿名の無責任さ……絶対許さない。\n\n\"「本当は〇〇なんでしょ？」「ぶっちゃけ〇〇なんでしょ？」自分がそう思うからみんな〇〇であって欲しいんでしょ\"\n\n特に、引用した部分の歌詞が大好き。これ本当にみんな言われるんですよね。「本当はビジネスなんだろ？」とか「ぶっちゃけお金のため/モテるためなんでしょ？」みたいな。それに対してのアンサーに「自分がそうだからそうであって欲しいんでしょ」と返せる魔法少女の精神の強さが気持ち良い。\n 実際、人間はそう単純ではないから、全ての行動に多くの意味が複合されている。そりゃ創作活動の理由の中には、お金欲しさやチヤホヤされたいって部分も数%あるでしょう。でも、それだけのためにネットで活動したり、創作物を発表するなんて博打に踏み切るわけがない。そうすることで自身の魂が救われる別の理由だってあるわけで、それを想像できないなら、活動者に対して「悪者であってほしい」ために理由をつけているだけに見えます。そういった心情が分かりやすくかわいい音楽の形にまとまっていて百点満点！\n\n匿名の攻撃に負けずに、毎日の日記や商業エッセイ集を頑張っています。みんな読んでね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

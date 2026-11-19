@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-07-12 06:28\n一口随笔：对抗中暑与VS系列\n一口エッセイ: VS熱中症とVSシリーズ\n\n熱中症になって一日中ダウンしていました。諸々の疲れで体力が低下していたところで、この暑さでしたから。\n 特に書くことはない。何故なら一日中眠っていたし、熱中症の対策なんて家で涼んで水分補給するだけなのだから。「みんなも気をつけてね」程度で、しかも夏はなる時はなるのだから、あまり気をつけようもないことに思える。そういえば、僕は面倒な時に日記のタイトルへ「VS」とつけてしまうが、これはゴジラの影響だ。\n VSシリーズは、ゴジラの歴史の中でも特に味がある。毎年一本という製作期間の短さ、毎回「これで最後だ」とスタッフたちは認識している油断、SFなり冒険活劇なりと毎回変わりまくるテーマ、あらゆる意味でスタッフたちの創意工夫と疲弊を感じさせるなか、ラストをメルトダウン寸前の赤く輝くバーニングゴジラで締めくくってくれたのは、とてもカッコいい。ゴジラもスタッフも限界であったことが「爆発寸前の輝きと迫力」という奇跡を生み出した。\n 本当に頑張ったのだなと感じるのは、予告編でしょうか。毎年ギリギリまで粘っているのだから、予告を上映する時点での素材は僅かなはずで、その数少ない映像を切り貼りして、どうにか次作も期待してもらうため、あらゆる手法で面白そうな数十秒を演出する。時には昭和時代の映像もガンガン使い回す。そもそも昭和ゴジラの時点で前作の映像をこっそり使いまくり（子供でも使い回しに気づくレベルで全然浮いている時もある）なのだから、ある意味では原点回帰。\n 技術は進化しているけれど、まだまだ昭和の大らかさも残っている平成初期を感じさせますね。僕の生まれた時代なので、その時期の映像を観ると心安らぐ。\n\nゴジラVSモスラのCMはいい。どでかく表示される「極彩色の大決戦」。いい煽り文句だ。実際、VSモスラは画面の美しさへ特に拘っている。モスラの羽化や夜の観覧車、トゲトゲしくてカッコいいキングギドラやメカゴジラと違い、最初に「綺麗」だと認識する怪獣がモスラですから、「なんか……とにかく良いもの見たな」と不思議な感覚にさせることが正解な気もするし、僕はそのように感じた。良い映画です。\n そんなノスタルジーに浸るために、VSシリーズと学校の怪談は観返すことが多い。もう夏だ。夜の校舎へ忍び込むジュブナイルな冒険を浴びて、熱中症なんかキッズパワーで吹き飛ばすのもアリかもしれない。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

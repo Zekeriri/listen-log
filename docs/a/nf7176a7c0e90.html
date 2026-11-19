@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-30 11:15\n精选一口随笔：关注者，让我们开动脑筋\n選り抜き一口エッセイ: フォロワー、頭をよくしてあげよう\n\n筋肉少女帯の曲では、「香菜、頭をよくしてあげよう」が一番好きです。初めて聴いた中学の時から現在まで、常に刺さり続けています。\n と言うのも、この曲はサブカルオタクな主人公が、おバカな恋人の香菜ちゃんに対して、いろんなサブカル作品を教えたり、生きるための知識を教えてあげることで、いつか恋が終わる時が来ても生きていけるようにしてあげる曲なのですが、僕はすべての人間関係がそんな感じです。\n 僕は基本的にアニメや漫画の話しかしないし、できないので、会話はそれに終始します。「この前観たあの作品が面白くて」「それが好きならウルトラマンのこの回も観た方がいいよ」とか、そんなんしか言うことができません。その上、社会的な存在である大人を恐れているので、自分が何かを教えてあげられる相手としか、主な人間関係を作りません。自分の話を興味深く聞いてくれる相手に対して、まさに香菜へ接する主人公のように「頭をよくしてあげよう」と、一緒に映画を観たり本を読んだりするのでした。\n ある程度はインターネットの空気感に対する知識もあるつもりなので、その話も良くします。「ネットで生きることにキミが怯えぬように」と、偉そうに話をしてしまう。それしか自分には無いから。こんな人間、次第に見限られるに決まっているのです。「いつか恋も終わりが来るのだから」とは、その通りなわけですね。いずれは、誰だって一人で生きていきます。その時に、僕のように「頭をよくしてあげよう」なんて言う傲慢な人間はもう必要ありませんから……。\n\n毎日のエッセイをまとめた同人誌を販売中です。読者さんの頭が良くなる保証はありません。\n\n今月に発売した商業エッセイ集もよろしくお願いします。僕の頭も良くなってないことがわかります。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

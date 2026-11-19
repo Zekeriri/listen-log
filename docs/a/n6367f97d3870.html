@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-04-10 14:31\n精选一口短文：现实的有轨电车问题\n選り抜き一口エッセイ:現実的なトロッコ問題\n\nネット上で日夜擦られ続けているトロッコ問題ですが、一応こちらにも内容を書いておくと、「トロッコがこのままだと目の前の5人を轢き殺してしまうが、傍観者の自分がレバーを引けば別のルートに移行し、そこに立つ一人の人間だけ轢かれることになる。あなたはレバーを引いて死傷者数を抑えますか？」という思考実験です。もちろん、この思考実験に答えはなく、そのまま5人を見殺しにすることも、自らの手によって一人だけを犠牲に選ぶのも、どちらが正しいとは言えない。\n この思考実験は状況が特殊なので現実味がなく、ピンとこない方も多いと思います。そもそも、そんな場面にならない訳だから考えても仕方ないと割り切るのも一つの答えかもしれません。\n しかし、この問題に悩む技術者たちが存在するのですね。それは、車に搭載するAIに対してです。近い将来、自動車はAIによる自動運転によって操作されると言われておりますが、その際、車が事故に遭う寸前になった場合、自分を犠牲にするか他人を犠牲にするかの判断を迫られる。手動であれば悩んでいる間に事故が発生してしまいますが、AIなら直前まで選択することができる。つまり、トロッコ問題のような状況が成立するのです。しかも、自身を巻き込んで。\n もちろん自動車メーカーとしては操縦者の安全を第一にしたいものの、それで他人を犠牲にして許されるのか。AIにはどう判断させるべきか。人間による「正しい倫理」が設定される。\n この答えがどう着地するのかが、僕が最近興味のあるトピックです。\n\n毎日のエッセイをまとめた同人誌をboothにて販売中です。是非ぜひ、手に取ってみてくださいね。\n\n商業エッセイ集もよろしくお願いします。評価までしていただけると、大変嬉しい。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

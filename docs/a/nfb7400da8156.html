@@ -41,9 +41,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-05-08 07:04\n一口散文：ANIME\n一口エッセイ:ANIME\n\n超てんちゃんの短編アニメ〜ションが投稿されました。やったね、綺麗だね。\n\n製作して頂いた、ヨースターピクチャーズさん。そして総監修兼・作画監督を引き受けてくださった平山寛菜さんに感謝……。\n ヨースターピクチャーズさんとは奇妙な縁から始まりまして、ゲームリリースから数ヶ月経ったくらいの頃、いつものように中野ブロードウェイの喫茶店で本を読んでいたら、近くの席から「ニディガが〜にゃるらが〜」と聴こえてくるではありませんか。元から業界人やクリエイターの多い土地ですから、これはと思って話しかけてみたところ、それがヨーピクの代表の方だったのですね。そこからたま〜にアニメの話をする仲となり、今回の短編へと繋がった次第。\n 運命とは、案外身近なところにあるのかもしれませんね。\n\n夢充夜 pic.twitter.com/FRzzrUjqeX— 🎀超絶最かわ🎀てんしちゃん (@x_angelkawaii_x) May 7, 2023\n\n短編とは言え、ずっと鑑賞する側だったアニメを脚本として製作する側になったことに達成感を覚えています。すごいね。\n\n自分の頭の中にある絵面を文章に起こし、それが優秀なスタッフたちによって絵コンテとして創造される。妄想が形になる。この快感が堪らない。ありがたすぎる。この絵コンテという設計図さえあれば、キャラクターに命が吹き込まれる。\n ある友人は、「アニメの好きなところは動くことだ。アニメーションの語源は生命を与えることだ」と語っており、その意味が製作を通して実体験で理解できる。画面狭しと動き回る超てんちゃん（と無職男性）に、映像を通して生命が宿されたのです。なんて重く、神聖な所業なのでしょう。たいへんなことだ。そして、偉大なことです。アニメーターって凄いぜ。\n\nたくさん見てほしいです！ https://t.co/7rwd4G0Vmw pic.twitter.com/CALdrfHLyj— kappe（ひらやま) @新刊通販中 (@kaaaaaappe) May 7, 2023\n\nさて、今回の短編アニメは『夢充夜』なるタイトル通り、「夢」をテーマにしています。完全に僕の手癖でしかない。自分が無意識になにかを書いたら、だいたい夢だの幻覚だのの話になる。敬愛する押井守の影響でしょうね。初めてのアニメ製作ですから、己の手癖を、無意識を信じたかったのです。\n そして気づけば夢から醒める話になった。夢幻には終わりがある。本当は誰も夢から醒めたくない。ずっとインターネット・エンジェルと部屋の中で踊っている方が幸せなんだ。けれども、彼女はオタクを突き放す。これは自分でもペンを走らせて驚いた結論だ。どうしてこうなったのか考えてみると、自分が善いとするものが見えてきた。\n 夢や幻は好きだ。若い頃の僕はそれこそあらゆる方法で幻覚世界を求めた。でも、それ以上に深層心理……無意識の集合体である居心地の良い「夢」から脱出してしまうくらいにあり余る人間の自我（エゴ）の方が好きなんだろう。\n クラスの凡人たちはラムという「夢」を体現した美少女と永遠に日常をループすることを願った。ラム本人すらも。が、諸星あたるは都合の良い夢から抜け出そうとする。その原動力は異常なまでの性欲と愛情で、つまりはエゴだ。ただ肥大化したエゴのみで完成された夢のループを突き破る。だからあたるはカッコよくて、あたるは誰より主人公で、あたるはラムから惚れられる器なんだ。僕はそれが好きなんですね。\n だから僕らも夢から醒めないといけない。すごくすごく嫌で仕方ないけれども。その方がカッコいい、ただそれだけの理由でね。実際のところ、むしろ今から眠りについて夢の中へ入り込む番ですけど。ちゃんと起きてみせるますから、またタイムラインで会いましょう。\n おやすみなさい。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -62,10 +61,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -61,9 +61,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-06-11 01:52\n对现代的理解\nモダンへの理解\n\n少し前のことですが、国立新美術館で行われている『リビング・モダニティ 住まいの実験 1920s-1970s』へ。恐山さんからの強いお勧め。\n\n夕方に行ったので、よき一枚が撮れた。あんまり閉館時間に近いのも勿体ないので、実際は夕方に行かないほうがいい。\n\n展示名通り、モダンな現代の建築が覗けます。\n 実在する建物をミニチュアで再現した展示を眺めていると、自分ならどのような家を建てるだろうと夢想してしまう。\n\nやっぱり「構造」はいいですね。わくわくします。\n とはいえ、僕は最も美しい構造を観にオランダへ行きましたけどね。\n\n浴びたい者は、上記の記事を参照しな。\n\n展示にあったのは資料だけですが、ダイマクション・ハウス目指した近代の方向性もいいですね。\n\n空間だ。\n 実在する邸宅の間取りを再現したものとのこと。日本人は空白の美を感じることができますからね。ぜひ、皆さんのお宅にもこのような白の空間をご用意ください。\n\nモダンと言えば家具だ。\n 僕は、家具の展示をたいへん楽しみにしていたのだ。\n\nいいですな。\n 今回の展示も、最終的にバウハウスの話になる。結局のところ、僕の考える理想のモダンこそモンドリアンに収束され、先程のリートフェルトが建てたシュレーダー邸こそ究極にあると思う。\n 観れてよかった今回の展示は、カンディンスキーの生徒が授業で描いた色彩のテストかな。カンディンスキーでなく、生徒。「このようにして色を知っていきなさい」と教わったのかなと想像する。\n\nこれはイタリアで偶然出会ったカンディンスキー。\n\n話をモダン家具に戻そう。\n\n同行していた梨さんに、識者ぶって軽くモダンの説明をしている際、「つまり装飾のないシンプルなものですかね」と非常に的確な理解が行われた。\n なるほど。近代そのものすぎて、感覚では理解していたけれども、時代の流れとしてロココ調などのヨーロピアンな派手派手しい装飾の家具から一新されたシンプルな機能美まで、説明というか脳が繋がっていなかった。やっぱり作家の洞察力はすごいぜ。\n\nデ・ステイルが生み出した、シンプルな線に強烈な色。余計なもののない機能美から生まれた引き算の美学が、僕の好きなモダンの、延いてはモンドリアンらが極めた抽象画のコンポジションの魅力でしょう。\n 僕はロココ調の豪勢な輝きも愛していますがね。\n\nこのワゴンいいなあ。\n\n背景の白に合って素晴らしい。いい家具たち、特にチェアを見た。満足。\n\n僕の読書スペースもまた、モダンとシンプルな色の拘りで選び抜いているのですが、どうでしょう？ ここでいつも本を読んでいるよ。\n\n帰りにぶらぶらしていたら、ゴジハムくんが居た。\n これは嬉しい。\n いずれ、イタリアで観た現代建築とアートな建物のことも日記にしよう。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -82,10 +81,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

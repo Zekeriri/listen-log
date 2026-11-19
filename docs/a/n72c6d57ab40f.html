@@ -33,9 +33,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-07-08 15:33\n『きゅびびびびずむ』\n『きゅびびびびずむ』\n\nモンドリアンの絵を追って、何度か作詞をするようになって以来、作品を見た時に「この人は抽象画の人だな」と少し分かるようになった。ちなみに僕は抽象画やそれに伴うテクノが好きなだけの愛好家であり、どちらかと言えば理屈っぽい方ですね。足りないから求めているのでしょう。\n\n原口さんの『人マニア』を初めて聴いた際、この人はとても抽象的なモノの見え方をしていると驚かされました。\n\n進行している仕事の途中、意外なところから原口さんと顔をあわせる機会があった。こんな生き方をしていると、偶然に勝手な運命を感じて乗っかかる方が何より面白い。せっかく会えたのなら一緒に曲を作ってくれないかとお願いしてみる。結果、『きゅびびびびずむ』が生まれたのですね。この時すでにAiobahnとは、さくらみこさんの曲、しぐれういさんのアルバム曲で組む予定があり、新しい人と挑戦してみる良い機会に巡り会えたと感じたこともあり。\n 僕は、原口さんの抽象的な表現が好きだと話した。原口さんは保存している幾何学模様のような現代のデザインたちを見せてくれて、やはり僕はこの人のセンスに惚れているなと再確認する。原口さんが「一度真っ当に曲をつくった後にぐちゃぐちゃにしたい」と語ったので、それは「きゅびずむ」だなと直感する。脳内で詩が膨らんでいく。\n\nオランダに行き、最も敬愛する画家モンドリアンから影響を受けた建物、シュレーダー邸をこの目で見た。それからゴッホ美術館へ（どちらも同じリートフェルトの建築物）。キュビズムとは直接は関係ないが、美術を題材にした作詞へあたるに十分なコンディションが整う。\n 作詞後の収録。オリジナル『きゅびずむ』は非常にスムーズに録り終えた。小慣れたディレクションを行う原口さんの手際の良さもあり、真っ当な曲として満点なものが生まれたと思う。\n が。それは今回僕らが作りたいものの原型でしかない。原口さんは宣言通り、既に完成された音楽、MVをぐちゃぐちゃに、彼が愛する音MADのように再構成する。今回イラスト（MV）をお願いしたPandaさんのキュートでダークな超てんちゃんが切り貼りされ、曲に書かれた歌詞のキャッチーなフレーズたちが誇張されていく様子は最早アートの域に思える。\n\n「真実」を描くだけなら美ではない。目の前の真から何を美しいと感じ、どう切り取るかが「美術」でしょう。とうぜん写実的に描く能力にも長けたセザンヌやピカソがだんだんと抽象的な表現が極まっていくように。\n 今回の歌詞・映像の切り貼り、「インターネット・エンジェル」なる誇張の塊は、原口さんの編集技術を持ってキュビズムとなる。伝えたい美を持った作家には、写実的な真を飛び出して作品を描くことができる。\n まだ20を越えたばかりの原口さんがこの速度で生きてどこへ辿り着くのか、その一部に触れられたことは幸運です。\n どうでもいいですが、セザンヌを知ったきっかけが『銀と金』なので、その遺伝子は今回の作詞へ大いに活きている。画家を志した若い頃、ふと立ち寄った美術館の一枚のセザンヌにうたれたという、その頃の中条なら簡単……。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,10 +53,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

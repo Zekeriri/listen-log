@@ -36,9 +36,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-10-06 13:44\n极彩色的暴力！印度教圣地“巴图洞”\n極彩色の暴力！ヒンドゥー聖地『バトゥ洞窟』\n\n昨日は、厳粛とも言える色遣いのイスラム建築の話をしたので、今日は秩序とは真逆の混沌としたヒンドゥーの観光スポットへ。この温度差を体験し、多民族・多文化・多宗教が入り混じる調和こそ、マレーシアの魅力そのものではないかと分かってくる。\n\nマレーシアが誇るヒンドゥー教聖地『バトゥ洞窟』。バカすぎ！\n もはや言葉は要らないほどにカラフル。色の暴力。こちらは2018年にすべてを塗り替えて色塗れにした寺院。なぜそんなことをしたのか？ そうすることでネットで話題になって観光客もたくさん来るからでしょう。このスポット周りには商売っ気の強い……というかぶっちゃけ観光客からぼったくるためのお店や施設が大量に並ぶ。\n\nこの生命力の逞しさこそがヒンドゥー教そのものであり、細かいことは気にせず、自分たちの文化が極彩色の映えスポットになろうとも、それで儲かるなら誰一人気にせず受け入れる寛容さ……なのかな？ なんにせよパワフルに溢れている。\n めちゃくちゃデカい像とレインボーすぎる階段。この光景はぜひその目で見て欲しい。ここまでやられると、人は「オレの負けだ……」ってなるから。しかもありえないほど暑いし、そこら中に猿や鳩が溢れて、観光客の食事を狙い続けている。ここまでの「数」を支える混沌ゆえの秩序こそヒンドゥー。\n\nこの階段に配慮なんてない。急な上で洞窟から滴る雨水のせいでつねに濡れており、後ろに転んだらぜんぜん死ぬ。十億以上の人口に対し、一人二人の生命なんて気にしてられない広大なインドに思いを馳せる。\n 階段を登ると巨大な洞窟が！\n\nこの光景の感動は間違いなくすごい！\n 修行僧らしき上裸の男たちが何やら修行的なことに励む姿も散見され、素直に大自然と宗教の融合に心踊らされる。まあ目の前にはまた七色の階段なんだが。\n\n洞窟内でも、記念グッズや持ち帰り用仏像を現地民が屋台にて販売。しかもビカビカとネオンライトを光らせながら。商魂逞しく、生きるためなら景観や情緒なんか気にしてられない世界観が伝わってくる。ここまで来ると、この混沌とした在り方にも別種の美しさを覚えます。\n\nすごいかすごくないかで言えば間違いなくすごい。同時に「こんなんアリなの！？」とも思ってしまう。しかしヒンドゥーの神々はそんな下々の細かいことなんか何も禁止してないのも事実。\n 最もマレーシアで印象に残った体験であったのは間違いない。あなたもぜひ極彩色の世界へ！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,10 +56,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

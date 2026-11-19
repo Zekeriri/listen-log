@@ -35,9 +35,8 @@ YouTubeのコメント欄で、ローゼンメイデンとしゅごキャラの�
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-16 07:29\n一口散文：萝森梅德与犬神家族的关系\n一口エッセイ:ローゼンメイデンと犬神家の一族の関係\n\n多感な時期に「ローゼンメイデン」と出会い、それから数年間は薔薇乙女で頭がいっぱいに。思春期を水銀燈に殺された少年と言っても過言ではない。\n そんなローゼンのアニメ版はオリジナルの嵐。今では人気作がここまでアニオリで進むなんて有り得ない。原作が未完である事情もありますけど。なので、ファンはアニメの展開に一喜一憂。この頃は原作も雑誌と一悶着あったりし、もう気が気でない。\n そんな時、水銀燈の過去を描く特別版「ローゼンメイデン オーベルテューレ」が放送。OPで水銀燈が草刈りしているやつです。これがまあ恐ろしい程に賛否両論で、当時のオタクたちは荒れに荒れた。大人気キャラと主人公（真紅）の過去話なので、そこが解釈違いだと本編の全てが崩れてしまうから。\n 沖縄住みの僕はリアルタイムで追えず、実況スレなどを駆使してどうにか内容を把握しようとしました。前述の通り、賛否が別れていく様子に気が動転する中、次第にスレが「犬神家の一族」の話題で埋まり始める事態に。もう何もかも意味がわからず、ローゼンと犬神家になんの関係があるんだよ！ と怖くて仕方なかった。水銀燈の上半身が埋まってジャンク化が進むのかと思った。\n 後に本編を観ても謎は解けず、幼い日に視た悪夢だと思ったんですね。ググっても分からないし。しかし、思い立って最近ツイート検索したら、一つだけ「オーベルテューレ後に犬神家のCMが流れてみんなそれがツボった」と呟きがあり、おかげで全て納得したのです。ありがとう、あの頃の空気を今も語ってくれた人。貴方がいなければ、ローゼンと犬神家の関係は、記憶の闇に消え去るところでした。\n\nオマケ\n\nYouTubeのコメント欄で、ローゼンメイデンとしゅごキャラの作者が同一であることを知って驚いてるガキでも見るか…… pic.twitter.com/yNtcQ9YUgy— にゃるら (@nyalra) December 15, 2021\n\nスペースでもお話したのですが、PEACH-PIT先生は「ネオ寄生獣」で、シンイチとミギーを、ほぼジュンと真紅に近い関係性や空気感として描いており、PEACH-PIT先生ともなると寄生獣をこう解釈できるのかと感動しました pic.twitter.com/W46mjAcMX2— にゃるら (@nyalra) May 27, 2021\n\n↑各作家たちの作家性にあふれていてオススメです。\n\n多感な時期のオタクの思い出もたくさん収録した毎日エッセイ集をBOOTHにて販売中！\n\n今月末には、商業エッセイ集でも痛く切ないオタクの思い出を堪能できます。両方買ってくれると嬉しい！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -56,10 +55,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

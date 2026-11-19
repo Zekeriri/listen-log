@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-07-14 01:49\n《通向死亡的疾病》克尔凯郭尔与信仰\n『死に至る病』キルケゴールと信仰\n\n宗教や信仰関連のニュースが散見されるので、キルケゴールの話をしましょう。\n キルケゴールは、誰より敬虔なキリスト教徒でした。数多くの著作を世に出したキルケゴールですが、その大半はキリストの教えが前提であり、キリスト教を布教するために書かれたものです。\n\n熱心なキリスト者であり、信仰のために生きた方ですので、彼の思想は「善」に向かって一直線で美しい。特に、僕が好きな本のタイトルは『死に至る病』『美しき人生論』『美と倫理』。どれも、当然のようにキリストの素晴らしさを伝えるための本。読者ウケの良さそうな部分では、『死に至る病』での絶望についてでしょうか。さまざまな「絶望」に対して解説されている一冊ですが、中でも「自身の自己肯定感の低さをアイデンティティにしてしまう絶望」の怖さは、誰しもが留意しておくべき。SNSによって自虐がもてはやされる現代では特に。「自分は不幸でないとダメだ」と思い込んでしまう絶望、それもまた「死に至る病」につながるのだ。\n\nそんな絶望と向き合う正しい道として、キルケゴールは「信仰」の大切さを説き続けます。これには、彼の奇妙な生い立ちが関係しており、キルケゴールの父親は大金持ちでしたが、彼はお金持ちになる直前に何もかも上手くいかず、神を呪ってしまったのですね。その後、とんとん拍子に出世する父親ですが、代わりに身内に不幸が襲いかかっていく。この偶然を神が仕掛けた運命だと認識してしまった父は、息子のキルケゴールをスパルタに教育し、神学を学ばせた。息子もキリストと同じく34歳で亡くなると信じきっていたため、それを回避するために信仰を強いたのです。\n 締め付けと真相によってキルケゴールは逆に荒れてしまいますが、一時期の退廃生活を乗り越えた末、35を越えても生きのびることができ、それからは一層キリストへの信仰に磨きがかかります。そして、最愛の恋人と別れるくらいに執筆活動へ没頭し、さまざまな著作を通し、哲学者としてキリスト教を広めていきました。僕は、その宗教的な生き方に強く惹かれている。\n キルケゴールの出した結論は、キリストを絶対的な高い者とし、低さ（低俗で感情的な生き方）に流れないよう善く生きることですが、僕ら日本人は殆どが無宗教。では僕らは「絶望」して死に至る病に進むのかと言えば、必ずしもそうではない。宗教の代わりに信ずる「善」に向かう力があれば、キルケゴールと信仰の対象は違えど同じ「美と倫理」を持てるかもしれません。\n キルケゴールの日記まで買いましたが、その内容も驚くほどに「信仰」のことばかり。宗教観の薄い我が国だからこそ、このような人間が存在した事実は頭に入れておくべきではないでしょうか。巷ではカルトがどうだといった話で持ちきりですが、それに伴い信仰自体を否定する事は、僕の価値観では美しくないと感じます。\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中！ ごく稀に真面目な話をしているよ。\n\n若い頃のせいいっぱいな文章が載っている商業エッセイ集もよろしくね！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

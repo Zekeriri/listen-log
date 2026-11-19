@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-11-24 02:19\n脱衣室的加热器\n脱衣所のヒーター\n\n寒い脱衣所には、こいつだ。\n 脱衣所程度がちょうどいいサイズのちっさいヒーター。お風呂に入る前に起動し、出た頃には室内を適度にあっためてくれるすごいやつ。\n こうしたちょっとした暖かさが生活に優しい。僕の数少ない「生活感」である。部屋は暖房使わないからね。あったかい風ってウソすぎるから。寒い分には構わないし。暑いことに比べたら。\n しかし、脱衣所は別だぜ。脱衣所が寒かったら死んじゃうよ。\n 最近、たまたま『香港97』の実物を見せていただく機会があり、以来、クーロン黒沢先生のことを考え続けている。具体的には書籍を再び掘っている。シックスサマナ。黒沢先生の大親友は、ある冬、風呂場と脱衣所の寒暖差でポロッと死んだ。老人にとってよくあることらしい。\n 脱衣所は冷やすな！\n かといってヒーターをつけっぱなしだと危ないので、お風呂入る直前だけ回すんだ。まだあったまってない状態で脱ぐから脱衣時は寒いぜ。風呂場から帰ってきたらあったかいから良いんだぜ。火事になるよりいいよね。\n 普通はあったかいほうが、体温に近いくらいが何事もいいんだ。\n 僕は、ずっとずっと寒くたっていい。部屋に暖房はかけない。冷たくったっていい。悲しいくらいが冬はいい。僕と違っておまえらは風邪をひくな。インフルエンザのワクチン行っておきな。今週の僕みたいに一週間震え続けることになるぜ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

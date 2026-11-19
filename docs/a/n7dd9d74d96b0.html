@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-12-19 05:06\n一口随笔：喵拉拉 2022年最常听的歌曲与艺术家\n一口エッセイ:にゃるらが2022年最も聴いた曲やアーティスト\n\nApple Musicで今年最も聴いた曲やアーティストを調べられるというので、確認してみたところ、びっくりするくらいインストだらけでした。\n\n６位は『Omori』のスイートハート戦のBGMですね。あのバトル画面とバイオリンの合わせ技は痺れました。素晴らしいゲームです。\n 5位『オリエンタルダークフライト』は、霧雨魔理沙のテーマ曲で、夜空を飛び回っているようなサビの浮遊感が心地よい。恋色マスタースパークの溌剌なイメージから、こんなしっとりしたBGMまでの奥行きある魔理沙の内面世界に涙。\n 4位『カノン』。これは説明不要ですね。シンプルに、この世界で最も美しい祝福の音楽です。\n ３位『風の情景』は、言わずと知れたクロノトリガーの名曲。男の子は、いつまで経ってもスーファミ時代のRPGが忘れられないのです。一生ロマサガやFF6の話するでしょう。\n ２位『夜空の虫とどこまでも』。かまってちゃんは当然歌詞も素晴らしいのですが、このように歌詞のない曲で言語でない音声から伝わる優しい歌声も魅力なんです。\n 1位のみボーカルありで『メイド・イン・アビス』のOP。しかも一期。これは僕が心折れそうになるたび「憧れは止まらない」とナナチの発言を元にした歌詞を言い聞かせるように繰り返したからです。ゲーム関連の仕事に追われて疲弊し苦しいと感じた時、深く昏い穴の底にこそ光を見つめる彼女たちのように、僕も「理想の美少女ゲームを作りたいという憧れは止められない」ことを再確認していたんですね。結果、無事に今年を走り切ることができました。愛ですよ、ナナチ。\n こちらは、今年最も聴いたアーティスト。\n\nかまってちゃんも、ほぼ『夜空の虫とどこまでも』をリピートしていたわけで、すべてインスト曲ですね。僕は、ボーカルありの曲を聴くと歌詞の意味が頭で膨れて体力を使うのです。それが効くタイミングもありますが。というか今年の曲もアーティストも全く入ってない。きっと、死ぬまでZUNやYMO、久石譲、ここには入ってないけどクラフトワークの話をしていくのでしょう。それはそれで悪くない人生に思える。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -25,9 +25,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-11-15 15:12\n幸与不幸\n幸不幸\n\n幸福と不幸は表裏一体に思える。幸せに対し、それを失う不幸を同時に抱え、幸せだけがやってくることもなく、どこかでバランスが取られる。自身の幸せを受け入れられない人は、その後の不幸を予期不安の形で察しているからでしょう。\n たとえば結婚なる大いなる祝福があれども、きっとそれからは「離婚」の不安に怯え続ける日々となる。崩壊が現実味を帯びるに連れ、キリキリと胃が傷み始め不幸の帳尻が合う。\n 逆に言えば、苦しみに飛び込まなければ喜びもあり得ず、うだうだと無気力に大衆として過ごすのであれば、その両方が薄くやってくる生活となる。そこそこのラッキーと、それなりの苦労で日々を消化する。足るを知るとも言うわけで、人間なんてそれで十分とある種の悟りを開ければいいのだけれど、残念ながらSNSは他者との比較を迫る。キラキラ光るスターに憧れてしまったら、大きな幸せに向かうために連動する不幸を噛み締めなければならない。\n\n大まかに人間の生きるルートを二分するのであれば、「大きな幸せと大きな不幸を同時に抱える生き方」と「小さな幸せと小さな不幸を愛し、他者と比較せず穏やかに暮らす生活」のどちらかに割り切る必要を感じます。たとえば、SNSに囚われている限りは一般人は後者とも言い難く、スマートフォンの邪悪さはそこにある。\n 前者の場合はアイデンティティがより独特な位置に置かれ、身の回りが事件だらけすぎて他者との比較に意味を見出さなくなる。良くも悪くも注目され続け、己の価値に不安を感じる暇がない。それは、ある意味で特典のようでもある。自身の無価値に向き合い死にたくなる時間が軽減されるのは、楽なことだから。\n 巨大なプラスに巨大なマイナスはつきものであるのだから、人間はどの位置でも同じなんじゃないか、あとは目指す先の違いだけで、あんまり環境として変わらないんじゃないか、賢くなければ凋落を恐れもしないだろう。そういうことを、よく考えます。ともすれば、幸不幸の揺れの中で何を残せるか。それがぼくにとって大切なものになるように思えます。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,10 +45,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

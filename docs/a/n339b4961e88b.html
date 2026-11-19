@@ -24,9 +24,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-10-15 05:20\n一口随笔：稿件全被淘汰\n一口エッセイ:原稿全ボツ\n\n恐らく自身の精神の不調が反映されたのか、仕事で提出した原稿があまりに陰鬱であったため、ほぼ全没の形となりました。もう、この時点で恥ずかしくてかなりこの世から消滅したいものの、とにかく原稿はあげないといけないのでプロデューサーがとても親身になってくれまして、それがまた恥ずかしくて今すぐに死にたい。といっても、自ら死を選ぶことで地獄にいくのは怖いので、なんらかの事故とかで自分に責任のない形でお願いしたい。まあ、そんな薄っぺらな希死念慮はどうでもいいことでしょう。\n こんな状態でも原稿は必要だし、自分の書く文章を他人が代わりに書く・弄ることに耐えきれないという身分不相応な面倒くさい無駄なプライドもあり、プロデューサーが明日、執筆中に通話を繋げてくれるという。誰かと話しながらであれば死にたさも和らぐだろうと。\n そこまでさせてしまう事実が本当に情けない。なんとプロデューサーは現在夫婦で海外旅行中であり、その合間に僕なんかの原稿を手伝ってくれるのだ。申し訳なさすぎる。家族で海外を満喫しているときに、こんな日本のゴミカスキモオタの面倒なんて絶対みたくないし、念頭に置きたくない筈。僕がさっさとまともな原稿を提出すれば、向こうは幸せ夫婦の円満旅行で終われたのだ。それが悲しすぎて、今すぐに失踪したい……。けれども、当然このタイミングで逃げ出すことが最も大勢に迷惑がかかるのですね。\n 今夜も、ついさっき（深夜4時）に軽く電話をかけてもらった。僕の精神が心配なのでしょう。向こうはいま朝らしい。起き抜けにキっショい無能なオタクのご機嫌を窺う仕事、なんて過酷なんだ。これが大人の男が成せる技なのか。\n 気持ち的には、「すみません！！！ 責任とって腹を切ります！！」って感じだが、そんな勇気もないし、それはそれで相手を困らせるしと八方塞がり。どうにかキーボードに向かっても、出力されるテキストは「今すぐ殺して」という文字列。これを通話しながら、常識のある文章に直していく予定なのです。いい歳した大人が、海外旅行を堪能中の上司の時間を奪って、小学生の読書感想文に赤を入れてもらうようなことをする。ごめんなさいごめんなさいごめんなさい。\n つらい消えたい終わりたい、この気持ちを米青ネ申禾斗にぶつけたら処方薬は増えたものの、そのぶん副作用の眠気がひどくて頭が働かない。とにかく全てに謝りたいですが、自分でもなにに謝罪しているのか不明で、こんなに他人を舐めたやつは、やっぱり今すぐ社会から消え去るべきなのだ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,10 +44,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

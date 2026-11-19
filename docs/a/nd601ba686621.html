@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-10-01 01:28\n一口随笔：好制作人、坏制作人\n一口エッセイ:良いプロデューサー、悪いプロデューサー\n\n僕へ一方的にDMを送ってくる新人シナリオライターの方が、「自分がいま仕事で関わっているプロデューサーが大言壮語のゴロタイプだ。クリエイターのことを数字としか見ていない、noteに書いていいから助けてくれ」と投稿してきたので、へ〜って思いました。\n 残酷に聞こえるかもしれませんが、イヤなプロデューサーに引っかかったと感じたらそっと離れればいいだけで、自分が真に気に入っているメーカーや人物に企画・シナリオを送り直すほうが何倍も幸せであり、それを本人も理解しているからこそ、無関係の僕に背中を押して欲しいだけなのですね。とは言え、こうしてちゃんと自分なりの正解を答えたのだから、僕は結構優しくてワロタ。まあ日記のネタができて丁度良かっただけですが。\n 僕はニディガのプロデューサーを信頼しているし、クリエイティブに関する縁の下の力持ちとして素晴らしい方だと、ゲーム製作を通じて感じました。僕のダメな部分をそれとなく補助してくれて、テキストやアートの要素など得意分野はとことん任せてくれる。クリエイターを数字として見るタイプと真逆で、人格や作品を重視するタイプです。僕は、相手の「人格」と向き合わずに話す人が嫌いだ。互いに向かい合って話すことでしか生物は分かり合えない。そうダブルオーで学んだからね。\n ちなみにニディガのプロデューサーの哲学としては、「プロデューサーはお金や人集めに徹するべきで、内容に大きく口を出したいならクリエイターになるべきだ」とのことで、暗に世の中にはプロデューサーなのに中身まで踏み込むせいで、企画をめちゃくちゃにする例も少なくないってことなのですね。\n そう考えると、大言壮語で他人を数字としか見ないプロデューサーも、見方によっては悪くはないのです。実際お金を集めるためにはビッグマウスが必要で、夢や人脈を語らねばならない。その上で数字があるクリエイターを逃さない執念はあり、恐らくその人たちに任せて自分はクリエイティブに対し一歩引いて見守るでしょう。お金や数字が大好きだからこそ美意識が薄く、中身に触ったり拘る気は無さそうに思えます。であればクリエイターの「引き」によっては、奇跡を起こすかもしれない。少なくとも、見栄のために何度もサイコロを振るガッツはある。まぁ僕はそんなタイプの下では活動できないし、このライターさんも肌感覚で無理だと直感したのでしょうけど。\n 変にクリエイターに寄り添って「創作分かります」面する人より、数字しか見ない割り切ったプロデューサーが勝つことも少なくないのですね。悲しいことに数字は企画の上で大事なのですから……。社会は複雑で怖い。けれども、賽を振り続けるかぎり、いつしかゾロ目は揃うことだけは共通しております。戦わなければ生き残れない！\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -76,9 +76,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2020-05-02 22:10\n从“睡眠不足”中感受到的奇怪恐惧感的真相\n「すいみん不足」から感じる妙な恐怖感の正体について\n\n今日もいつもの睡眠不足です。からだが火照ってきちゃったよ。\n 正しくは睡眠薬の副作用による眠気の取れなさと倦怠感に悩まされており、睡眠時間的には十分どころか過眠です。\n\n眠ろうと思うも眠れず数時間をムダにし、その後に多めに睡眠薬を飲むことで過眠が起きて十数時間をムダに。更に起きても眠気がぬけずに筋肉も弛緩して何のやる気も出せずに、また数時間をドブに……。僕の人生はこれの繰り返し。\n\n最近は主にベルソムラを飲んでいるのですが、この薬の副作用の説明が面白くて、\n\n傾眠（4.7％）\n頭痛（3.9％）\n疲労（2.4％）\n悪夢（1.2％）\n異常な夢（0.8％）\n\n「悪夢」と「異常な夢」が別々にある。合わせると2％の確率で、ヤバい夢が見られるので、毎回ガチャでレアを狙う気持ちで就寝できる！\n 異常な夢、見て～～～～～～～。\n\n僕の睡眠事情なんてどうでも良くて、すいみん不足といえば、キテレツ大百科のOPなのですが、このOPは色々と凄い。\n\n（图片：画像1）\n\n基本的に歌詞はネガティブ。ただ睡眠不足に悩んで苦しんでいるだけの内容で、冷静になるとなぜこれが子供向けアニメのOPなのか全くわからない。絵面を見ても「頭が痛くなっちゃうよ」と言いながら、めちゃくちゃ楽しそうなキテレツとコロ助が空を飛んでいる。\n フルで聴くと最初にチャイムの音が鳴り響くことや、後半のサビがスローになること、アニメ版のミスマッチな映像を総合すると、「さよならを教えて」のような狂気を感じる。\n\n（图片：画像2）\n\n藤子F先生のFだけ赤字という妙な演出も浮いていて怖い。キテレツ大百科でこんなシャフトのOPみたいなことされても困る。\n\n更にこの曲、実はキテレツ大百科で流れるのはアニメ用に歌詞を調整したバージョンで、原曲はかなり政治寄りのロックな歌詞。\n\n社会が私を悩ませる\nあの娘が私を困らせる\n政治がみんなを困らせる\nみんなは心を痛めてる\n\n太陽はとってもあかるいのに\n人の影はどうして薄いの\n\nないドラえもんの都市伝説よりも、ちゃんと形として存在している「キテレツ大百科」の方がよほど闇だったりする。\n\nアニメ版では睡眠不足のせいで自分が周囲を悩ませ全員が心を痛めるわけですが、原曲では社会によってみんな心を痛めている訳ですね。これは前者の方がリアリティあって好きです。\n\nあとは単純に、\n\n（图片：画像3）\n\n（图片：画像4）\n\n（图片：画像5）\n\n（图片：画像6）\n\n自分に向かって手を振っていると勘違いして反応したら、実は後ろの女生徒に対してだったことに気づいて、あまり気にしていない素振りで誤魔化した後に落ち込むキテレツの姿が悲しい。この一度平気な感じを出しておく仕草も妙にリアル。\n こういう勘違いを実際に何度か経験しているだけに、このシーンは涙なしに視聴できません。\n そもそも「みんなは、心を痛めてる～」なんて歌詞を明るめの曲調でお茶の間に流れる異常性もすごい。\n\nこんなに社会風刺が強い歌を無理やりアニメ用に落とし込んだ歌詞と、歌手の不自然な明るさ、ちゃんとアニメらしく作られた絵コンテがあわさり、絶妙なバランスで成立した奇跡的なOPな訳ですね。\n\n今回もどうでもいい記事でした。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -97,10 +96,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

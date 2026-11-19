@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-05-16 09:07\n一口随笔：成功实现早睡早起的奇迹……\n一口エッセイ:早寝早起きの奇跡に成功……\n\n5月に入って以来、驚くほど体調が悪くて、不眠と昼夜逆転による生活リズムの乱れを繰り返した結果、なんと日付が変わる前に眠って朝8時に起きる、極めて正しい早寝早起きに成功しました。やったね！\n 『魔法使いプリキュア！』は、魔法の世界と人間の世界が重なり、人生の一瞬だけ本来出会う筈のない女の子二人に関係が生まれる奇跡の話ですが、僕にとって一年に一度あるか無いかの偶然が重なって「早寝早起き」が発生するタイミングも奇跡のように感じる。けっして狙って行ったわけでなく、ただ慢性的な睡眠不足によって、限界を迎えた身体が0時前に意識を失い、そのまま朝になっただけ。\n しかし、結果的にそうなったとはいえ、早寝早起きの爽快感はものすごい。顔洗って朝にシャワーを浴びてもまだ午前中なわけで、起きた瞬間にだいたいのお店が閉まってなんのやる気も出ない昼夜逆転時と違い、なんでもできる。頭もスッキリ。これができるかどうかで精神状態は大きく左右される。精神科がうるさく早寝早起きや適度な運動・食事・入浴を勧めるわけだ。その生活もできないから鬱傾向ではあるのですが、「正しい生活習慣」を完遂できた時の体調の良さは半端ない。基本的には、そんな生活リズムを目指すべきでしょう。\n が、どうせ三日後くらいにはまた早朝まで起きて夜起きるようになる。なんなら眠れなくなる。深夜のアニメとインターネットは楽しい。健康なんか放り出しても楽しむ価値がある。「夜はちゃんと寝た方がいい」という絶対の真理があるからこそ、正しさに背いて夜に遊ぶ快感が最高なのだ。\n\n毎日の日記をまとめた同人誌をboothにて販売中です。ここ数日の内容は、頭がろくに働いてなくて個人的には気に入ってません。\n\n長文エッセイをまとめた商業エッセイ集もよろしくね。この頃は若かったから、勢いだけで文章が書けたのだ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

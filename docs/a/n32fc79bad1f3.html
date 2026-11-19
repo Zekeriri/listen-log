@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-08-04 12:51\n视野\n視野\n\n胃痛と頭痛がすごい。頭痛というより強烈な眠気かな。頭が重いので気づけば横になっていたりする。\n こんなのストレス要因しか言いようがないだろうに、不思議なもので、ストレスなる概念が目に見えなさすぎて、「実際そこまで疲れてはないだろう」と妙な考えが浮かぶ。いざ「大丈夫ですか？」と訊かれると、なんか気合いで突破できるんじゃないかと対抗心が生まれる。\n 不安と緊張で交感神経が刺激され、つねに臨戦体制をとっているからかもしれない。どうせリラックスできる副交感神経優位なタイミングが日常から消えたのだから、なら仕事を進めていくぜ、と。実際は神経が過敏になりすぎて結局動けないのに。\n 2日くらい強制的に不安や仕事から解放される日が無いと現状は死ぬでしょう。また無理やり海外に行くしかないね。「いま目の前の状況を解決しないと他のこと考えている場合じゃない」とまで、海の向こうで己を追い込む。視野が狭くなると、そこにだけ集中していればいいから楽だ。日本での小さな事件に頭悩ますより、今そこかしこに潜むスリや詐欺へ気を張っていないといけない。あの感覚が好きなんだな。どんなに胃や頭が痛くても、宿まで歩かねば死に直面する可能性もあるような。\n それにしたって頭が痛いです。\n\nエボルト、ハザードフォーム、シャドウ、デスピサロ、デンジャラスゾンビ、テト、千年パズル、ダーク・ネクロフィア……❕\n みんな、助けてくれ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

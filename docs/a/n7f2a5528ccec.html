@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-03-05 12:17\n试映会结束\n試写会終わり\n\n試写会でした。連日。自分の感想のコピペ。\n\n数日間、NEEDYアニメ先行上映の試写会でした。\n信じられないくらいの大人たちからたくさん褒めていただき、なにひとつ評価されたことのなかった子供の頃の僕がショック死しそうな日々でした。\n僕はこのアニメに全身全霊を込めてたいへん気に入っていますが、こんなアニメが人気になるとしたら、この世界は終わりだと思います。\nおまえらが観られるのは６日からです。\nスクリーンで動き回る僕らのインターネット・エンジェルを、\nよろしくお願いいたします♫\n\n一旦、恐山さんが言ってくれた感想の、これは面白いとかでなく「毒」「復讐」という表現、というかもはや作家たちがこれだけの熱量の文章を書いてくれることが嬉しい。毒、ですね。毒。面白いとかエンタメみたいなところは二の次で。今日はちょっと疲れているから、長いことは皆さんが観てくれた6日以降に。\n\n席予約してねー。舞台挨拶埋まってしまったですが。。。\n 来場者特典、いいよ！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

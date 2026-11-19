@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-12-13 06:47\n一口随笔：文章的节奏感与对推文习惯的恐惧\n一口エッセイ:文章のテンポ感とツイート慣れの恐怖\n\n今日は、雑誌の編集さんから「にゃるらさんの文章はテンポが良いのが特に好き」といった褒めを頂いたので嬉しかったです。\n で、文章というのはシンプルにリズムで決まると思っています。すらすら気持ちよく読めるために、あえて特徴的な言い回しを挿入できるかとか、漢字の開きかたとか、そういった部分で読者の脳を気持ち良くさせられるかどうか。ある意味、音楽に近いかもしれません。こうして、あなたに僕の長文を読んでもらえるのも、言葉選び、句読点の場所などの調整の結果でしょう。声に出して心地よいかどうかは、時に内容以上に重要であると思います。僕は、宮沢賢治の詩で実感しました。賢次の詩は、文面から受ける優しさもそうですが、なにより声に出して読んだ時のテンポ感が抜群に良い。これが「詩」というジャンルの持つ意味の一つなんだなと理解しました。\n Twitterは、140文字内での疾走感が求められるため、句読点の置き場が本来の文章より独特です。なんなら敢えて句読点をいっさい使わない方が正解な時もある。それはそれで面白い文化ではありますが、呟きのノリで長文を書いてしまうと、テンポ感が微妙になってしまう危険性があるなと懸念しております。それはちょっと怖かった。一時期、その恐怖でツイートを少なめにしていたことすらあった程。\n Twitterに最も適した書き出しとなると「○○、△△が□□で××だね」みたいになる。最初に名詞を書いて、それについての感想や補足を端的に並べてまとめる要領です。140文字といった制約上、どうしてもこうなりがち。別にツイート上では問題ありませんが、制限のない長文ではあまり使えない構文だと思われます。それに慣れてしまうのが嫌だったんですね。まぁ今も面倒な時は、この形でツイートするけどね。\n テンプレ、簡潔に何かを書いた気になれて楽なんだよな。\n ↑ツイートだと、こんな感じですね。これを膨らませるか、そのままこれでいくか。できる限りコンパクトの方がテンポ感がでますから、140文字内の中でさらに縮めていったりもする。少ない文字数に意味を凝縮する謎の技術だけ培われていきますが、そんなことツイート以外で活用できるか？ と疑問ではある。\n あったのですが、ゲーム製作で分かったこととして、ゲームもまた文章と同じくテンポが超重要ですので、できればテキストは短めで連続させたい。ポケモンなども基本は数行のメッセージですからね。いかに短い文字数でキャラ立ちと説明ができるかの勝負。ああこれ、実はツイートで磨いた技術が応用できるなと気づいてビックリでしたね。毎日のくだらない呟きたちも、見えないところで栄養になってくれていたのだなぁ（ ; ; ）\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

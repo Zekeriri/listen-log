@@ -24,9 +24,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-07-26 04:04\n作为人生集大成的“墙”\n人生の集大成としての「壁」\n\n引っ越しをしました。保証人となる家族がいないため手間取りましたが、ニディガのプロデューサーが保証人となってくれたことで解決。本当にありがとうございました♪ まず第一に飾るのは、大槍先生による『白詰草話』の特大イラスト。借金してでもこの絵を飾ろうと決めたあの日があったからこそ、折れずに今まで生きてこれた。家に圧倒的な美がある暮らし、素晴らしい。\n この部屋の面白いところは、天井が約4mありまして、写真ではわかりづらいのですが、部屋の中に階段があったりと、とにかく複雑な造りをしている。そのピーキーさ故にまともな借り手が見つからなかったそうで、じゃあ僕が使いこなしてやろうじゃんと契約し、壁を本棚に改造して4m分フィギュアと本を飾ることにしたのです。\n\nまだ荷解きの途中で雑に置いておりますが既に壮観で、こうしてコレクションを一挙に眺められる至高の空間が作られつつあることは、オタク冥利に尽きる。自分がこれまでに何を綺麗だと思い、何を刺激的で面白い本だと感じたかが全て詰まった巨大な「壁」。まさしく、自分が生きていた証の集大成なのですから、これから時間をかけて、僕はこの壁を最高のものとして創り上げていく。まるで、そのために生まれてきたかのような高揚感を覚えており、ああこうしてたくさんのフィギュアを飾ることが自分の一番の喜びあることを理解し、それを愚直に実行できる生き方で良かったなと嬉しさで悶えております。\n\n毎日の日記をまとめた同人誌をよろしくね。若い頃に書いたエッセイで構成された商業本もよろしくお願いします♪ これらこそ、僕の生きた証そのものだから。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,10 +44,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-03-31 01:11\n薛定谔的钟\nシュレディンガーの時計\n\n時計がうるさい。\n\n秒針がうるさいので外してみた。それでもカチカチとうるさい。内部から響いている。\n が、突然針の音がほとんど聴こえなくなる。30分くらい。なんなんだと思っていたら、また30分くらいうるさく響く。たしかめてみたら、分針が下っていく30分はうるさく、逆に上っていく30分は静かみたいだ。おそらく。\n つまり、眠るときは分針が上る30分～59分に絞る必要がある。ただでさえ不眠なのに、針の音が気になっちゃったらノイローゼだ。\n\nなんで時間を知らせる機械の機嫌を伺って寝なきゃあかんのだ。なんだか本末転倒な気がする。しかも、盤面が真っ黒ですから、真っ暗な部屋の中で中途覚醒した際、まったく時間が読めない。かといって、再び眠るためにできればスマホの光を浴びたくない。どう時間確認すればいいのか。夜中に光るデジタル時計を買えばいいのか？ じゃあ、この時計要らないじゃん！ うるさいし！\n\nでも、いい時計なんだ。\n 時計なんて1000円のものだっていいのに。わざわざデザインを優先する。毎日、目に入るものだから。時間は観測した瞬間に決定される。僕が「いまどれくらい経っただろう？」と、ふと時計に目をやるから時間が決定されるのだ。それまでは不確定を生きている。\n つまり、暗闇で覚醒したとしても、暗くて時計が読めないまま再び眠ってしまえば、僕は今が何時かまったくわからない。時の狭間に居る。就寝するまでの間、完全な不確定を揺蕩っているのだね。\n なんだかそれが好きなんだ。\n 僕だけの時間だぜ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

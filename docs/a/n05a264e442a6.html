@@ -33,9 +33,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-02-02 14:27\n二月\n2月\n\n2月は自分の誕生日もあるのでなんだか嬉しい。とはいえでも、実際に19日が近づくに連れ、生涯で一度も誕生日になんらかのイベントがあったこと（特別に祝われたこと）も無いなと少し落ち込む。そんな季節だ。\n 年末年始による多忙のしわ寄せが若干、解決されだしてくる。1月の僕は忙殺気味であったが、これから多少マシになる予感はしている。ならないかもしれない。今日もアニメ製作用に資料集め的なことで一日が終わる。どうせ平日もフリーな身分で、わざわざ休日に出かけたくもないし、なんなら小雨が続いているし、どっちでもいいけれど。\n\nなんだか身内にも鬱々とした人たちが増えた気がする。寒いからでしょうか。あんまり仕事が上手く行ってなさそうな雰囲気を察知し、ちょっとだけ優しくしている。年末年始の仕事が続いて苦しんでいるというのもあるだろうし、30ともなると昇り調子な人間の方が少ないってだけかもしれない。\n\n気分転換に誘ったとて、この気温の低さでは散歩も乗り気じゃないはずだ。疲れているのだから休みたいだろうし、2月はあまりイベントもない。全体として「タメ」の期間と言える。3月の温かな陽気とともに僕らも明るくなれるかは怪しい。\n 個人的には、汗だくになる夏に比べ、というかここ1,2年の暑さは比喩表現でなく2年連続倒れたので、そもそも冬のほうがマシだし活動的だ。ちょっとくらい寒くたって熱中症のように意識朦朧となりはしない。戦うなら今だ！！！\n といったことを考えていた折、さっそく転職についての相談的な連絡が既に2件きた。みんな大変なんだ。春を前にして心機一転したいと思っている。「この仕事そろそろ限界かな」って寒波に包まれ確信したのだ。一方、意外に僕は先述の通り一年でだいぶ活気ある時期を迎えている。エネルギーの向きが逆方向を進んでいることにより、なんだか不思議な心地である。\n\nどのみち来月からは逆転する。\n 街に人が増えると僕のほうが落ち込みだす。新入社員だか大学生やらが賑やかな様子に精神が削れる。夏までくると今年も倒れてしまうのだろう。その時には2月の快適さが怨めしくなるでしょう。\n こうして多くのことがベストマッチするなんてありえないまま一年が過ぎる。加齢を伴うと余計に。僕らも常に誰か一人はなんか潰れていることも多く、全員が元気なタイミングなんてほぼ無い。\n そうして気づけば死んでいく。\n 「思ったより元気じゃなかったなあ」と、あらゆる後悔を背負って死んでいく。\n 総ての人間が。未練がなければそこは涅槃。僕らは「なんか怠いなあ」と、この2月の雰囲気を死ぬまで薄く引き伸ばしながら、特段良くも悪くもないまま死んでいく。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,10 +53,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

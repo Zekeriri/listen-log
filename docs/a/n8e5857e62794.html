@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-09-19 05:03\n一口随笔：奴隶市场与《一千零一夜》\n一口エッセイ:奴隷市場と千夜一夜物語\n\n友人が、毎日僕がこうしてエッセイの形で小話を投稿していることを、「まるでシェヘラザードみたい」と話しておりました。\n シェヘラザードは『千夜一夜物語』の重要人物で、奥さんに裏切られた怒りで夜になるたび女性を処刑する狂った王に対し、毎夜続きが気になる興味深い物語を聞かせることで延命し、1000日分の物語を語り終えた頃には王を改心させていたというイスラムの説話集です。\n 今や自分は約700日も毎晩読者に話を聞かせているのですから、たしかにもう少しで千夜一夜語り続けた人間になるのですね。すごいことだ。暇人すぎる……。\n ということで今夜のお話ですが、僕が千夜一夜物語を意識した作品の話をします。\n\n00年に発売した『奴隷市場』なる美少女ゲームが存在しまして、タイトル通り中世が舞台で奴隷の女性を購入し、あれやこれやの凌辱を楽しむ典型的な抜きゲーです。しかし、本作の真骨頂は抜き部分にない。なんと、この作品はこんなタイトルながら、各ヒロインたちに純愛トゥルーエンドが用意されているのですね。\n\nこれがまた、全てにおいて「良い」。主人公である貴族の軍人が奴隷市場で女性を一人見繕う。選んだ女奴隷にはそれぞれ複雑な事情があり、ヒロインたちに身分の差を越えて愛情を覚えてしまった主人公の取った行動は……という、王道かつハードな物語が展開されるのですが、純愛ルートの中でもエンディングが複数ある厚みや、一歩間違えば性処理の道具としか扱わない残酷さと隣合わせであることが、本作に他とない深みを与えている。『奴隷市場』のタイトルの印象に過激なエロを期待したユーザーが、予想外に繰り広げられるラブロマンスに、下半身でなく上半身で涙を流していくのだ。\n 本作の主題歌『To lose in amber』がまた素晴らしくI'veサウンドしていて満点。島宮えい子さんの儚げな歌声が、貴族と奴隷の過酷な運命を感じさせ、ラスサビの「貴方がくれたぬくもり抱きしめて 信じる 千夜一夜の夢」のフレーズがとても綺麗。ぜひ、聴いて欲しい一曲です。\n 話は戻り、元の『千夜一夜物語』は、イスラム圏の物語だけはあり、多くの話がアッラーへの信仰が描写される。数多くの登場人物たちが正義を貫き奇跡に救われたり、悪に流され道を踏み外したりしていく。各物語のキャラクターの行動を善とするか悪とするかは、すべてアッラーの判断次第というわけですね。\n 僕が『奴隷市場』を特に好きな点も、純愛と凌辱の二つの道があり、主人公とヒロインの未来は、プレイヤーの「善性」が試されることです。物語の中でいかに自分が愛を理解できるか、選択によって変化していく希望と末路こそ、シェヘラザードが語った千夜一夜の一つの説話のような、一夜限りの夢なのです。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくお願いします♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

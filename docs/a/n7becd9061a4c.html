@@ -36,9 +36,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-07-06 11:13\n一口随笔: AI写的喵拉拉日记2\n一口エッセイ:AIが書いたにゃるらの日記2\n\nあまりに忙しい時に寝落ちしたので、今回の日記はAIに書いてもらいました。\n 寝落ちしてしまった。\n 23時47分 夢の世界では、相変わらず自分が主人公の物語が続いていた。\n しかし、いつもの悪夢とは少し違う。主人公が自分の意志で動いていて、 しかも自分の意志で物事を決めている。どうしようもなく、心の底から嫌な予感がしていた。\n 目覚めたくないと思ったのは初めてかもしれない。でも、目が覚めたらまたいつも通りの日常が始まる。現実逃避したところで、何の意味もないのだ。それならば、せめて夢の続きを最後まで見届けよう。そう思って、目を開けた。\n 目の前にあったのは、巨大な怪物の口。ああ、食べられてしまったのか。そう思った直後、意識が途絶えた。\n***\n 目を開けると、そこは森だった。視界いっぱいに広がる緑。空を見上げれば木々の葉が重なり合い、青空は見えない。森の中にいるようだ。\n体を起こし、夢からの脱出を試みる。辺りを見渡すと、すぐそばに自分と同じくらいの背丈の少女が倒れていた。\n 長い金髪が地面に広がっている。彼女はまだ眠っているらしい。恐る恐る近づき、顔を覗き込んでみる。整った顔立ちをしているが、どこかあどけなさが残る少女。歳はおそらく同じくらいだろう。とりあえず、肩に手を置いて揺すってみた。すると、ゆっくりとまぶたが開き、澄んだ青色の瞳が現れる。\n ぼんやりとしていた視線はやがて焦点を結び、僕の顔を捉えると大きく開かれた。そして、勢いよく抱きついてくる。あまりの衝撃に尻餅をつくと、少女は胸に顔を埋めながら泣いていた。一体全体、この状況は何なのか。そんな疑問が頭に浮かぶと同時に、ある違和感を覚えた。\n それは、自分の声が出ないということ。試しに何か言おうとしてみても、口からは空気が漏れるだけだった。喋れない。どうして……？ 混乱する中、少女は泣き止みこちらを見る。\n ようやく落ち着いてきたらしく、涙で濡れた頬を拭うと笑顔を見せた。その表情を見て、なぜかドキッとする。彼女の名前はクロエというそうだ。クロエは、この世界について知っていることを話してくれた。\n ここはアステリア王国と呼ばれる国であること。今は西大陸にある小さな村に住んでいること。家族は両親だけ。父は商人であり、母は薬師であるという。僕の名前はユーリだそうだ。……本当に？ 自分の名前が思い出せない。そもそも、今までの記憶がほとんどない。ただ一つ言えることは、僕はあの場所で死んだはずなのだが、こうして生きている。\n クロエの話によると、魔物に襲われて死にかけていたところを助けてくれたのだという。その時のことを思い出すと体が震えてくる。恐怖からか、それとも別の感情からなのかはわからない。\n気がつくと、クロエは心配そうな眼差しを向けてきていた。大丈夫だと伝えるように微笑んでみせる。\n それからは、二人で森を歩いた。\n AIによると、このままユーリとクロエが森を脱出するために、だんだんと心通わせていくそうです。これからは、僕の日常なんかよりユーリたちの冒険のことを書いていこうかな。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,10 +56,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

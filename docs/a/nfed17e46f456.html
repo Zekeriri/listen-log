@@ -25,9 +25,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-11-20 18:53\n发热与怜悯\n発熱と情け\n\n熱がある中、リモートなども含めて取材を2件受ける。みんな、真実を究明し、味方になってくれようと優しい方々です。あまりの無法はきちんと世間が修正していくのかもしれません。そうあって欲しい。さすがに、今年はずっと頑張ってきたと思う。去年も、いや一昨年も、NEEDYリリース後は次にアニメを成功させるために必死だった。\n それはそれとして、少し油断するとものすごい量の汗が噴き出て、一時的に体温が凄まじいこととなる。この瞬間は、好きだ。かなり苦しいけれども、そのぶん体内がウィルスと戦っていることがわかる。自分なんかのために細胞が必死になっている。\n 僕の肉体は、残念ながら僕の精神と一心同体。悲しいことに何があっても僕を守らなければならない。自分の身体はなぜか暴走して僕の鼻を塞いで嗅覚を奪ったけれども、それもまあ悪気はないんだからなぁと割り切っている。必死に戦う者は応援せねばならない。特に、今は自分も理不尽に抵抗し続けている現状では。何か困ったことのあるやつは僕に連絡してみてくれ。話くらいは聞くぜ。困った時はお互い様だ。\n 今回、多くの人に助けられて、なお噛み締めている。情けは人のためならず。この言葉が大好きだ。\n 身体が落ち着くと、「今ならいける！」と発熱して体内の毒を追い出さんと躍起に体温を上げる。ずっと引いて、汗だくなせいで次は寒気に襲われる。忙しいことだぜ。でも、生を実感するんだな。生きるために戦うことは避けられる。が、胸を張って生きるには戦う必要が絶対にある。どこにも所属していなければなおさらね。\n 頑張る。とりあえず、熱なんかには負ける気はしない。僕の肉体はおせっかいなほど僕に優しい。\n 受けた恩は返す。それさえあれば、人は利己的に他人へ優しくする理由ができる。いずれ己が救われるのだからね。隣人を愛しなさいよ！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,10 +45,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

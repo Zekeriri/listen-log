@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-02-03 05:55\n非常平淡的道路\n非常に地味な道\n\n今の僕のアニメ作業として、プロップリストを埋めている。プロップ……小道具ですね。本編内に登場する細かいモノたちをひたすら「これで！」と指示していく。その数400。今も寝不足で非常につらい。\n 代わりに400個分の努力は反映される。\n すべてのシーンにおいて背景の小物や家具、それこそモニターの種類やら何やらまでを指定させてもらっている。たいへんなことだよ。どこまで反映できるかはともかくとしてね。\n\nたとえばこう、ここ数年で撮ってきた一人旅の想い出を参考に、この椅子の感じでお願いしますといった形で。400。家具に関しては、これまで僕が実際に集めてきたコレクションたちが活かされる。すべてのプロップに血が通っているのです。\n\n製作において、ただただ物量なことは大いにある。ニディガの時だって、あれだけの呟き・動画コメント量に対して驚かれたものの、種を明かすとアレは計14万文字分、数カ月かけてカタカタとキーボードで打ち込んだに過ぎない。ただただ時間をかける以外に解決法の無い問題。\n プロップだって、「適当で」「お任せで」で済むっちゃ済むわけで。登場するタオルやブラシなど、その全部をいちいち指定していくのですが、そのたびに拘りの精度が0.05%上がるとしよう。使用されるタオルに、にゃるらの監修が入っているかどうか。たしかに0.05%くらいの影響度だ。塵も積もれば山となる。400個なら？ 掛け算すると20%だ！！！ 僕が400個の小道具に魂を込め終わると、アニメの完成度が20%上昇する。2割はとても大きな数字ですよ。まあ何の根拠もない漠然もいいとこな数値ですけど。\n アニメが放送された時、「この事細かさはどうやっているんだ！？」と驚いている方がいたら、そっと当日記を引用して、「ひたすら地味～な努力が詰まっているらしいよ」と教えてあげてください。\n いちばん頑張っていただくのは作画の方なんですけれども。\n この前、絵コンテさんとお会いした際、よりによって初めて挨拶した方の担当回が、僕がもっとも複雑な指定をしてしまっている回だった。「あの回です」「本当にごめんなさい……」と先に謝る。悪いとは思いつつも、だからといってストーリーに遠慮したって意味がないわけで。もはや「ごめん！」と頭を下げている他ない。このように胃がキリキリしたり、それでも完成が近づくにつれて苦労以上にワクワクしてしまったりな一年を過ごすのでしょう。\n 400個分の苦しみが、それ以上の完成度として作品に反映されることを願い、少しずつ、少しずつ、文字通りに寝る間を惜しんで戦うのだ！\n ……一刻もはやく休みたい！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

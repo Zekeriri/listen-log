@@ -41,9 +41,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-09-28 20:28\n欧洲的感觉\nヨーロッパな感じ\n\n基本的な暮らし易さは日本を越えることはない。治安の面でも環境的にも。僕らはもっともイージーな国で生きていると感じるし、それゆえに多くの問題が村社会な人間関係へ集約されていく。どちらがマシかは人によるでしょう。\n\nスペインのエスカレーターは、結構な確率で止まっていた。\n 駅だけでなくショッピングモールでも止まっている。エレベーターも故障で特定の階を押せないこともある。こんなことは日常茶飯事なので誰も気にしていない。もはや当たり前なので修理が来る様子もない。\n\nこうした｢細かな不便｣は多く、電車に関しても自分が乗るホームが確定するのも直前だ。電光掲示板を何度か覗き、いつの間にか自分が乗るべき電車が表示されて初めて何番線に向かえばいいかが分かる。これがまたゆるく、1.2分前にようやく確定するので同じ電車を待つみんなで判明したホームへダッシュしたり、そのうえで別のホームに来たりもするらしい。日本がどれだけきっちりしているかが分かります。\n\n偶然にも配色や配置がまんだらけと一致している駅の売店。中野ブロードウェイへ帰ってきたようで一瞬嬉しくなる。\n\nアイスのカフェラテを頼んだ際、ホットのカップと氷の入ったカップを渡され、自分でホットを冷ますという過程が必要となる。\n\nそのまま淹れると氷の分で溢れそうになるので表面張力に頑張ってもらっています。\n ちびちび飲んでいると一人一人に声掛けしているホームレスがやってきて小銭をねだってきます。店員の目の前どころか会計中でも(財布を出している会計時のほうが小銭もらいやすいでしょうし)日本では確実に注意される事態もここでは自己責任。目の前で小銭をねだる老人が居てもいいし、渡してもシカトしてもいい。\n 英語しか喋れないおばちゃんがスペイン語のみのおばちゃんとコミュニケーションが上手くとれずに手間取っている。結局、注文は行き違って別の商品が届くが、店員のおばちゃんの｢言葉通じないんだしこれでいいだろ｣といった強気な姿勢が勝ち、アメリカ人のおばちゃんも｢それもそうかも」という具合に納得して想定と違うメニューを食べ始める。なんとも緩い空間が続く。\n\nみんな優しくて暖かいが、電子機器や接客も緩い。\n 海外の柔らかさと、堅苦しいゆえに律儀な日本の安心感。どちらが良いかは人それぞれ。\n\nちなみにIKEAは世界どこでもいっしょ。\n\n3時間かけて電車で移動。ひたすらに荒野が続き、日の光が差し込んで暑い。\n チケット通りの席に座ろうとすると、車内でさっそく｢友達と隣に座りたいから場所をかわって欲しい｣と頼まれる。というか最初からその気満々で友人と僕の席に座っていた。こちらは一人だしどこ座ってもいいから別に構わないのだけれど。\n ここまで書いて、僕にはこういう「旅で起きるよくわからんこと」すべてトラブル含めて好きだなと感じる。特に違うのはただ歩いているだけで発生する一般人との会話の量でしょう。僕はそれが嫌いじゃない。夜の街で話しかけられたら気まぐれにホームレスへお酒を渡すこともある。僕はこの感じで良いと思っている。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -62,10 +61,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

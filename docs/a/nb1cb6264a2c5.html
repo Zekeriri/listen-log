@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-05-05 16:04\n崩塌\n崩す\n\n精神と腰がたいへんなので、打ち合わせ時に編集さんたちにウチへ来て頂いている。今日も14時から打ち合わせなので、そのままチャイムで起こしてもらった。生活リズムが（夕方まで寝ているよりは）よくなって助かる。\n 腰が痛いと言えども、ぴしゃっとした姿勢であれば痛みはでない。どうせ姿勢が良い方が将来的に得をするので、背筋を正す練習のような気持ちで座っている。油断すると痛みでわかるから、むしろ矯正する機会だなとポジティブに捉える。\n いろいろ失うものもあった数ヶ月であったが、少なくとも今はそれなりに楽になった。みんな来てくれるし。アカギの言う通りで、積み上げたものをいったん崩したほうが再び挑戦ができる。思ったより自分自身が明るくなっていることに驚いた。まだまだ「人間社会」への憎しみは大きく、そうした根本の怒り・苦しみが変わっていない、むしろ新たなガソリンも充填され、それが変わらぬからには生き方に変化はないと気づけたこともあるでしょう。いいことではない。\n 今後は、あまり他人に頼らずいけるといいなと、出資のようなことを受けず、なにか大きなものを作るにも自分が権利元になることにした。瞬間、今の貯蓄もすべて予算として出し切る必要があるので、ある意味で何もなくなった。あとは完成しなければ死ぬだけとなっていく。その方が「定まっていて」楽だ。余裕のある生活が嫌だった自分に気づく。心と身体をダメにして、ようやく。\n 40歳になるころには、体力的にも枯れて落ち着くようになるのでしょうか。まったくそんな気がしない。40なりの怒り・憎しみが湧いている自分しか想像できない。おかげで安心もできている。どうのみち迎合はしないだろうと。今は、弱者だ強者だと二元論でしか喋らない者たちを軽蔑してムカついてもいる。40が近づくに連れ、また別のことが気に障っていく。許せねえから、再度なにかを崩してでも立ち上がる。\n こう考えると、登っていくだけしか選択肢のない社会側の人間のほうが見栄や立場を気にして当然だ。理屈として理解ができる。それはそれで不幸なんだろうと思いつつ、まだまだ僕自体もたくさんのことを知らねば真にわからない。\n SNS部分をほとんど捨ててnoteに隠居したいま、思ったよりアイデンティティの一つを崩してもどうにでもなるなと確信した。「崩せない」というのは固定観念でしかなく、人は何かを捨てると次のモノを拾いに行くメカニズムがちゃんとある。捨てることへの恐れが減るとだいぶ楽だ。仏教的で健康だね。\n それがどんな清い形でも、何かを積み上げること自体が業（カルマ）だ。通常、人はカルマを溜めて自陣を狭めながら歳を重ねる。いろんな生き方がある。途中、僕は「解脱を目指さなくてもいい」なんて思うのだろうか。そこまでいけたら、どこまでを捨て、なにを拾おうとしているのか。得ることすら必要ないのか。\n 将来が楽しみだ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

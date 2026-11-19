@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-03 16:47\n一口随笔：德艾比哥\n一口エッセイ:デエビゴ\n\n米青ネ申禾斗で新しくもらった睡眠薬、『デエビゴ』のおかげでめちゃくちゃ寝た。深夜に眠って夕方の今起きたので、久々にお薬の力を頼れたことにより、日頃の睡眠負債を一気に解消できたのかもしれません。できてたらいいな。\n デエビゴは、僕が以前に飲んでいた『ベルソムラ』と同じく、強制的な意識のシャットダウンというより、自然な眠気を促してくれる感じで、前者の場合は健忘が発生して、知らない間に知り合いに連絡しまくったり、意味不明なツイートを行ったりする危険があったのですが、後者のタイプは自然に眠くなるので安心。前者でやらかしまくった自分にとっては（意識が無い間に量を増やしまくり、起きて暴れ出す）、たいへんありがたいのですね。しかも依存性も薄い！\n\nとはいえ、自然な眠気に頼る分、効き目がそこまで強くないのは短所ですが、今回のデエビゴは効きもよくて安心。慣れて効かなくなり始めてからが怖いですが……。少なくとも、しばらくは安眠できそうで安心です。最近、出かけた際にアニメのパネルの隣で撮った写真を投稿したところ、アニメパネルに関することより、目のクマがヤバすぎて「とにかく早く寝て欲しい」と海外のファンたちから指摘されまくりましたから。昨晩は、たくさん眠れたよ！\n もう一つ問題としては、デエビゴには「悪夢」の副作用があり、悪夢というより「夢を記憶してしまう」が正しく、たいていの夢って悪夢なので困ること。今日も学校の夢（9割学生時代の夢）を見たので、目覚め自体は最悪でした。誰か夢の中で僕を学校から連れ去ってくれ！！！\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中。最近出たばかりの最新刊を買ってね！\n\n商業エッセイ集もよろしくね！\n Amazonレビューや評価をしてもらえたら、なお気持ち良く眠れるようになります。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

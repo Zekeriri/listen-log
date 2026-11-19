@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-04-20 00:09\n一口随笔：最脏的你最可爱\n一口エッセイ:きたない君がいちばんかわいい\n\n『きたない君がいちばんかわいい』の最終巻を読みました。百合姫連載ながらもイジメ問題を中心とするダークな共依存のテーマが意欲的かつ、ブレーキをかけずに描きたいことを描き切った迫力ある作品でした。全5巻で丁寧にまとまっていますので、是非みなさんも読んでみてくださいね。以下、ネタバレ薄めな感想。\n なんといっても、とても繊細に「思春期の少女の感性」が描かれている作品だと思います。若さの勢いに身をまかせた、剥き身のナイフな少女たちの物語。冷静な第三者である大人の読者の視点からすれば、誰かがもっと素直に、またはプライドを捨てて行動すれば、ここまで大きくボタンが掛け違うことはなかった。しかし、それはつまらない大人の感性が擦り切れた意見です。彼女たちは、教室内の人間関係やカーストが世界の全てであり、そのためなら命をかける。それが思春期なのでしょう。教室内の環境に支配される生活をくだらないと一蹴するならば、子供の悲しさを忘れた寂しい大人でしかない。\n\nそんなすれ違いから発生したイジメ、自傷、リョナなどの過激な行為は、決して「綺麗」なものではありません。むしろ、常軌を逸した彼女たちの思考や行動は、世間一般で「きたない」ものと扱われる。が、それでも彼女たちの感性の爆発は色褪せない。それこそタイトル通りに「きたない君が一番かわいい」ことがわかる。目まぐるしく変化していく教室内の人間関係についていけず、次第に彼女たちも何が正解なのか見えなくなるが、共に道を踏み外していく相手を「かわいい」と認識していることだけは、どんな時でも間違えない。\n 互いが「きたない」存在であるからこそ、そんな相手を理解しようと共依存は深まっていく。他人から見たら過ちの連続でしかないけれど、その過ちに全力でいられるからこそ、少女なのかもしれません。どんなにきたなくとも、互いを信じ続ける逃避行の果てにあった「永遠」は、二人にとってなにより「綺麗」なものである筈です。\n\n毎日の日記をまとめた同人誌をboothにて販売中です。決して綺麗な内容ではありませんが、新刊を買ってもらえたら嬉しいかぎり。\n\n商業エッセイ集もよろしくね。こっちは、かなりダークで汚い！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

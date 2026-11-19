@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-01-14 06:52\n一口随笔：绝不想秃头的强烈意愿\n一口エッセイ:絶対に禿げたくない強い気持ち\n\n僕はもう十数年髪を伸ばしてきた筋金入りのロン毛です。その上、何度も派手な髪色にしてきた蓄積ダメージがあってもおかしくない。そしてゲーム製作という過酷な現場により、ストレスを感じたことも自覚しております。何より、僕は父親を知らないので、遺伝的に禿げるかが判断できないのですね。\n 一度不安になると止まらない。自分で分からなくとも、実は薄毛が始まっていると想像して怖くなる。という訳で、地元の大手クリニックで無料カウンセリングをしてみた。が、これが超怪しくて、入室した瞬間カウンセラーが金の話をしてくる。「頭部に注射をするメソセラピーなら80万円で〜」と語られ、いや先ずは髪を見ろよと思い、途中で帰った。最初から薄々分かっていたが、無料で釣った後、雑に不安を煽ってさっさと契約させる手口です。まぁ世の中、こんなものだ。\n なので、しっかり調べてみた。基本的に薄毛対策は、「男性ホルモンを抑える薬」「血行をよくして育毛する薬」の2種類を飲む以外に意味はなく、それ以外のオリジナルサプリやらメソセラピーやらを紹介する病院は全て怪しいことが分かった。\n そういうことをちゃんと書いてある病院に行くと、マイクロスコープで精密に検査してくれました。診察料は取られたけど、その方が逆に安心だぜ。結果的には禿げてなかった。薬を飲み始めると耐性がついて増やし続けることになるので、まだ生活習慣の改善で対策する段階とのこと。親切だぜ！\n 「禿げる心配のストレスで禿げるかもだから先に精神科行くべき 笑」という先生の冗談に、「もう通ってます！」と爽やかに返して退出したのでした。\n\n毎日のエッセイをまとめた同人誌をboothにて販売中です。買ってくれると、ゲーム製作で負った僕のストレスが軽減されるぞ！\n\n先月に出た商業エッセイ集も、商業らしい読み応えがあるので宜しくね。Amazonレビューまで書いてもらえると、さらに僕のストレスが減ります。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

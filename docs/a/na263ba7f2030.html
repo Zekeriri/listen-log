@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-09-22 19:54\n新鲜的风\n新鮮な風\n\n発表前の作品では、昔いっしょにゲームを作ったメンバーたちに加え新たな若いクリエイターにも協力していただいています。このバランスが一番いいなと気に入っている。\n 良くも悪くも僕らは初めに集まってから５年経ち、それぞれの人間が各分野で大きくなった。あらゆる意味で熟れて、各々が仕事もたくさんある。そこに、自分らの作品を好きでいてくれる若手がフレッシュに下から追い上げてくれるのはありがたい。\n 「勢い」が大事ですね。\n 若い方々はエネルギッシュだ。やっぱり連絡の量が違う。こうしたい、あれやってみた、いろんなことの報告があがり雑談にも全力。一回り下の人たちをサポートしたり、逆に支えられたりが増えてきた。とにかく元気でやる気があるので、こちらも引っ張ってもらえる。反面、チームから若手が居ない場合を想像すると怖くなる。フレッシュな風が入らないチームは凝り固まって鈍重になる様も想像できる。\n 連絡の応答速度が最終的にもっとも大事な要素となり、要するに「どれだけ作品のために時間を使ってくれるかの熱意」は見えないステータスとして存在する。若ければ若いほど時間があり、加齢とともに人は背負うものが増えて一つに懸ける要領が減っていく。最悪、全部を抱えてパンクして沈んでいく者もいる。\n 社会がなぜ若者を大事にという話を繰り返すかも体感でわかる。エネルギーと時間は有限で、中年になればなるほど静かに擦り減ったものは若者しか持っていない。中年がそのおこぼれをもらうために若手をチームやコミュニティに取り入れていく。結果的に「若者に優しい」場所を作っていくしかない。でないと集まらないからね。若い人こそ「自分たちが暴れられそうか」「どれだけ自分たちのことを見てくれるか」を無意識に測っている。\n 新鮮な風が吹き交う間に、信じてついてきてくれた若者たちに威厳を示せるか。\n 折れずに居るのも大変だ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

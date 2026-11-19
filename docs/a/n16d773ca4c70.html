@@ -35,9 +35,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-03-13 17:07\n从算法中逃离 偶然的综合艺术\nアルゴリズムからの脱出　偶然の総合芸術\n\nNEEDYアニメで、ほぼ最初に完成した背景が、こちらのモンドリアンチックな部屋のCGであった。\n 自分がユトレヒトで訪問したシュレーダー邸を現代チックにアレンジしたような内装で大層気に入っています。\n\nモンドリアンが織りなす、赤・青・黄のトリコロール。三原色の持つ力についてずっと挑戦したかった。ゴダールの映画ほど自然とカラーが表現できるとなお良い。せっかく映像作品を作るのだから、自身が追ってきたアートへの探究はセットであるべきに思えて。おそらくNEEDYアニメで「◯◯（往年の名作）アニメっぽい」と言われている部分は文脈が異なっていて、キューブリックとフランス映画をイメージした演出で、むしろ往年の作品たちに受け継がれたキューブリックとゴダールの因子です。実相寺監督（ウルトラマン）経由で日本が継承したもの。\n\nカラマーゾフのPV監督やってました！にゃるらさんのゴダール愛を拾って作ってみた感じです！劇場版も本放送もよろしくお願いします！#ニディガ https://t.co/HnTmMMslMl— 安部保仁(Abe Morihito) (@Coppurin) March 10, 2026\n\nアートとはアルゴリズムで分解できる。\n 分解した「良い要素」たちを、どのように組み替え、または偶然の結果を楽しむかどうかに芸術性が問われる。一般的に「良い」とされるアルゴリズムの集合体からどう離れるか、もしくは敢えて王道の快楽原則を突き進むか。このバランス調整の果てが総合芸術だ。\n 総合された結果で生まれる予想外の出力を愛でようと、アニメ製作に向けての密かな楽しみで、そこから生まれる偶然の産物を愉しむのだ。\n\nというわけで、自分だけが感動した瞬間が先日出したPVでの一枚。\n\nキャラクターが毒々しい配色であるおかげにより、本来のコンポジションではありえない「紫」が混入し、僕の中では革命的な絵面となった。これは、用意された背景に、用意されたキャラクターを重ねただけの結果であり、赤と青の混色としての紫が、鮮やかなトリコロールを覆い隠すように前面に配置される、定石では、たとえばモンドリアンを意識したアルゴリズム上で出ない結果であり、こうした化学反応が積み上げられていく様子を「芸術」だと解釈する。\n なぜ、それが生まれたのかを読み解かせることに芸術性がある。アルゴリズム産では、その文脈を簡素にしてしまう。\n どのような思考とプロセスの果てに、コンポジションへ紫の美少女が乗っかっているのか。\n こういったことを考えながら、どんどん美術への道、神と対立する茨道を一歩ずつ進もうと思う。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -56,10 +55,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

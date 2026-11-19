@@ -33,9 +33,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-05-31 07:48\n二次元的救赎\n二次元の救済\n\n原罪について意識しながら生きているから、つねに救済について考えてしまう。自分だけじゃない。同じ罪を背負ったオタクたち全員での。お節介なくらいに。だから、ずっと「二次元キャラクターによる救い」だけを祈って生きている。\n\n昨日、僕が作詞した曲のMVが公開されたけれども、改めて僕は二次元という偶像だからこそ起こせる、無宗教の国・日本に住む、僕と同じくじめじめと、陰鬱と、屈折した人間たちの救いを信じている。\n だから、この曲だって、プロレタリアな人生にも女神が居るだけで世界の見え方は一気に変わるだろうと、労働者たちを乗せた巨大な船について書いたのですね。なぜ、現代の人間が一切皆苦を生きていけるか。なぜ働けるのか。僕はずっと疑問なのだ。\n 鎖国を経験し、独自の文化と宗教観を培った日本ならではの奇跡がここにあるのだね。非常に倒錯しており、それがいい。かねてより、二次元なる単語が略されて「虹」と呼ばれるようになった偶然について考える。必然かもしれません。\n 近くて遠く、こんなに美しいことは子どもにだってわかるのに、誰も触ることができない。二次元と虹は根っこから同じなのかもしれません。七色のグラデーションは人を狂わせます。狂わせ、幸福にも不幸にもします。\n けれど、人は雷雨を抜けた先の虹を信じなければなりません。\n その光景があるなら、故郷を捨てて現代の船に乗る覚悟ができることでしょう。\n 実際に天国があるかどうか。\n そんなことより、目の前の偶像が「天国行くぞ」と一言叫ぶだけで構わない。結果じゃないのだ。神様が気まぐれで行動したってなにも悪いことはない。苛烈で苦しい船旅に、信ずる芯が通ればいい。\n 死ぬ直前。脳内麻薬が見せた幻覚であったとて、黄金のうい麦畑に漂着したなら、それより幸福なことはない。麦畑で迷わぬように「ゴミ」集めをしてくれる不思議な存在が在るのですから。うい麦畑には、きっと素敵なキャッチャーが居るのです。\n\n社会全体が過酷な海であっても、配信一つ始まれば、それは荒波を照らす灯台となる。しぐれさんは、ファンのことを愛を込めて「ゴミ」と呼ぶ。なら、ゴミを集めて鎮痛剤のように言葉を与えるしぐれさんが最も人を救っている。信仰のあり方は様々で、しぐれさんがゴミからのラブレターを一刀両断、愉快に、軽快に、ちぎっては投げ、ちぎっては投げていく姿は、それこそが人々の望んだ、いっしょに遊んでくれる等身大の女神に思える。\n\n一瞬でも幸福な夢を見せられる者が、キャラクターであろうとする偶像が。もはや己の存在なんて塵芥でも構わぬ人々にとって、ゴミ拾いより優しいことがあるのかなと。慈愛を感じるのです。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,10 +53,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

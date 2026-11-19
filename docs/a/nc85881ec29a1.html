@@ -33,9 +33,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-08-09 12:04\n对基督壁画修复的误解 艺术与祈祷\nキリストのフレスコ画修復の誤解 芸術と祈り\n\n修正後のキリストのフレスコ画に対する云々の話が再びちょっと話題に。\n\n「左のフレスコ画をおばあちゃんが修復したら右の形になり、それに対して非難殺到。が、最終的にこの状態でのグッズが人気となって、おばあちゃんも周囲もハッピー……」というツイート。実は、右の状態は修復途中を切り取られたものでしたが、まあそこは一旦おいておくとして。\n 次に、その投稿に対して「元の絵を勝手に改変されてみんなが幸せになったは芸術を冒涜している（意訳）」といった作家側のオリジナルを尊重する意見も。それは実際にそうで、変に弄られたものが広まることでの恐怖は創作者として不安に駆られるのも当然。ですが、そもそもフレスコ画の一件については不幸なボタンの掛け違いがあり、誤解は誰かが解かねばならない。むしろ、僕はこの件に対して芸術や文化の一つの発展と祈りを感じており、けっして「原作改変」という土台にあるものではない。\n\n実際に、例のフレスコ画の修復を行ったセシリアさんへ会いに行った方の記事がある。見てわかる通りセシリアさんは絵画を愛しており（風景画は彼女の作品）、自身も個展を開いている。そして、修復途中の仕事がスキャンダルとなったことで心を痛めて痩せ細った様も分かります。\n そもそも、あのフレスコ画は街の教会に飾られた小さな絵で、さらにはオリジナルの絵をなぞったような模倣品である。パクリ云々とかでなく、街の小さなキリスト画の一つであり、恐らく多くの人が想像している美術館のオリジナルではありません。街外れの小さな教会での出来事。\n 次男を亡くしたセシリアさんは、その教会へ何度も祈りを捧げてきた。毎日毎日、絵を描けることに幸福を感じながら。敬虔な彼女の様子を見て、教会側は修復を依頼する。フレスコ画の修復は初めてで手こずりながらも教会のため、信ずる神のためへの作業中、修復中の写真が拡散されて誤解を生み、世界中を騒がせるニュースとなりました。\n 彼女は、間違いなく誰より芸術と信仰に生きた人だ。\n 偶然、この顛末を知っていたからには、こうしてこっそりと書いておかねばならない。僕はセシリアさんを尊敬しています。\n 似たような似てないような話で、少し前に「美術館がモンドリアンの絵を数十年間真逆に飾っていた」と話題になりました。\n\nそこで人々は「あの上下がわからないなんて美術館もそんなものか」と馬鹿にしていた。\n が、そもそもモンドリアンの絵の上下左右なんかファンでも答えきれないでしょう。ではアナタはこの絵を見て向きを正しく答えられるか。というかモンドリアンの在り方から考えて、上下がそんなに重要か。この絵の向きの根拠も、この位置でモンドリアンが部屋に置いていた写真があったかららしく、それすら本人がとりあえず一旦この向きにしていた可能性だって全然ある。そんな堅苦しさとは違う次元にいるからモンドリアンは不変の芸術ではないのだろうか。\n なんにせよ、芸術とSNSは相性が悪い。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,10 +53,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

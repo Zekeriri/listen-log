@@ -38,9 +38,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-03-27 05:10\n专家喜爱的刀 Galaxy Z Fold5\n玄人好みの刀 Galaxy Z Fold5\n\nみんなにずっと隠していたことがある。\n 実は、もう半年くらい前からGalaxy Z Fold5を使用しております。\n\n上のスマホが真ん中からパカっと開いて下のようにデカい画面になるのだ。未来のガジェット感がカッコいいでしょう。\n 購入の決め手は漫画の読み易さ。\n iPhoneだと画面が小さくて、なかなか漫画を開く気になれない。漫画はどうしても見開きで読みたく、しかしiPhoneを横にしたとてどうにも迫力に欠ける。そのうえでiPadを持ち歩くのは怠い。僕はできるかぎり手ぶらで外出したい。もし、カバンを持って歩いている僕を見かけたらそれはわりとレアだぜ。僕は両手のどちらかが塞がっているだけでもムズムズしてしまう、\n で。周囲の人たちも僅かにGalaxy Z Fold5を使用しており、これなら外出時や寝転がっている時に電子で漫画が読めるぞと勇気を出して来店。パカパカ開いて試したあと、大きな画面で見る写真の美麗さに確信を持つ。近づく店員は、まさかこのキワモノを選ぶとは思わず「こちらは癖が強いスマホで慣れるのが難しく……」と定番機種へ案内しようと促す。\n が、既に腹を括っていた僕はドラゴンころしを見つけたガッツのごとく「あるじゃねぇか俺好みのやつが」とGalaxy Z Fold5を突き出す。お店に置いてはあるものの、玄人好みでなかなか購入されないらしい。担当した店員さん曰く「この店舗では初めて」とのこと。\n ……使用感。\n たしかに、これは癖が強い。画面が広すぎて通常のアプリのほとんどはバランスが悪く、一般的な使用方法であればiPhoneに軍配があがるでしょう。しかし、漫画を開いてみるとこの通り。\n\nおお。大迫力の画面を堪能。これなら気兼ねなくベッドのうえで漫画を読み出す機会も増える。ジャンプの定期購読でワンピースを読んでいる時など、見開きが多すぎてiPhoneだとまったく楽しめないですからね。そういった不満を一発で解決！ 他機能の複雑さを差し引いても、それだけでGalaxy Z Fold5を選んだ甲斐がある。\n あと、ペンで直接画像に文字を書き込めるので、なんらかの発注の際に細かい指示を入れる時に便利だったりもする（まともな使用方法）。\n 店舗での決め手となった、フォトの豪快さも忘れてはならない。\n\nこうして片手で持てる限界の大きさのモニターでイラストや写真を表示すると、一気に画面へ引き込まれる。こればかりは直で体験しないとわからないでしょう。パソコンの大きすぎるモニターとも違い、この手で顔を目いっぱい近づけ絵画や写真を堪能する。これだけで絵を眺めることが趣味の人間にとってお釣りがきます。タイムラインに流れてくる画像たちをじっくり大画面で開くだけで、その感触は従来の片手サイズで鑑賞する際とは全く異なる。\n 暇な時に保存した画像たちをパラパラ眺めているだけで一二時間潰せる。あとYouTubeで街並みの散歩動画を観る時の没入感も変わります。\n 要するに、視覚体験に唯一無二のメリットがあり、漫画や画像の表示にどれだけ価値を見出せるかだけが肝といっても過言ではない。他の機能は間違いなく普通のスマホの方が使い易いから……！\n\n画面を分割してタイムラインを開きながらYouTubeも観れる！ 最初はテンション上がるが正直滅多に使わなくなります。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -59,10 +58,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

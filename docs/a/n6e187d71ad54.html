@@ -30,9 +30,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-05-23 05:06\n所需的只有双眼\n必要なのは両の目だけ\n\n「オレなんの準備もしてないんだよね」と怠けもの自慢をしつつ、実際はわりと準備か余裕があることは定番ですが、今から海外……ついに芸術の国オランダへ行くのですが、本当に、本当に準備が無である。もう面倒なので全て現地で揃えることにした。\n\n浪漫飛行はトランク一つですが、僕はこのモバイルWi-Fiが入っていた小さなカバンのみ（空港でもう少しマシなの買うかもですが）で勝負する！ パスポートと財布、好きな遊戯王カード、以上だ。\n というのも、出発ギリギリまで作詞の仕事をしていたこと、それ以前もいっぱいいっぱいであったため、驚くほど用意する暇がなかった。みかねたプロデューサーが海外で使えるモバイルWi-Fiを送ってくれたので、じゃあそれだけで行くかなと決意。せっかくだから服は現地で買うし、念のためのスマホさえあれば美術館や建築物を観るに何も必要ないのさ。母親譲りの大きな両の瞳さえあればね。\n マジな話、リュックサックを背負っておどおどした日本人は高確率でスリに遭うらしい。そのうえで僕はカバンが非常に苦手でほとんど持たない。余計な荷物にイラつくのも、ファッションのスタイルが崩れるのがイヤなんだ。リュックサックなんて絶対に御免だね。\n 今まで追いかけ続けた究極の均衡、抽象画の極端であるモンドリアン、そしてゴッホと対峙するのだ。最も自由で、ありのままの自分のスタイルで臨むべきである。スリや事件を恐れてアクセサリーを外す小細工もしないし、入念に荷物を用意したりもしない。\n\n要はおどおどとしなければいいのだから、手ぶらで堂々と夢にまで見たシュレーダー邸へ乗り込む。それが僕なりの芸術への誠意だ。\n 相手はモンドリアンなのだから服装はサンローランだろう。あとは、この目で、自身のアニメのために最も必要だと感じた、その美を直接目に焼き付けるのみです。ちなみにドイツもいくよ。僕は音楽はクラフトワークしか知らないんだ。\n ここが確実に僕の精神性のターニングポイントとなる。その瞬間は独りであるべきだ。孤独と寂しさだけが創作の友であったのだから、一人で向き合う。行くぜ。僕は僕の信ずるすべてをオランダに懸けていく。君たちは日本から指を咥えて見てなさい。\n\nそして必ず僕の望む理想のアニメーションの形でみなさんに披露する時が来る。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,10 +50,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

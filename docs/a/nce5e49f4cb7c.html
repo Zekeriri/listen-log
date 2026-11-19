@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-08-15 03:40\n一口随笔：信件与网络上的角色\n一口エッセイ:お手紙とネット上のキャラクター\n\nコミケで何通かお手紙を頂いた。嬉しいね。\n 僕の創作や文章への愛が書き連ねられており、読むだけで励みになります。かわいいお手紙たちをありがとうございます。\n\n中でも一通のお手紙に書いてあった、「しょせんインターネット上のにゃるらさんしかしらないけど」という文章が気になり、これに関して言いたいことは分かる。オーケンだって「お仕事でやっているだけかもよ」と歌詞に書いてあるように、ネット上のキャラクターなんてパフォーマンスの可能性はありますからね。現実の性格まで含めて知らないのに好きと言っていいのか。\n 結論から言えば、僕の場合は特殊で、なにしろ自分のことなんて、毎日の日記を通して何度も何度も言語化して文字に起こしていますから、殆ど「にゃるら」と僕本人の自我は一体化しています。もちろん、それでもネットに書けないことはあるけれど、それは死ぬまで誰にも言わないことですので、僕のイメージに関しては、僕の文章と創作が全てで問題ないでしょう。たまに、「本当の自分なんて誰も知らないんだ……」みたいなテンプレな傷心をすることもあるけれど、それは誰にでも不意にくるやつで、リアル含めた人間関係も合わせて全人類への気持ちなので。\n そもそも、ネット上の活動がパフォーマンスであったとしても、「このようなパフォーマンスをするキャラクターで生きていきたい」と決定したのは自我ですからね。わかりやすいので拙作で例えると、超てんちゃんとあめちゃん、どちらが言っていることも本心でありパフォーマンスでもあるので、人の精神はそれだけ複雑ですから、どちらも自分であって自分で無い。だったら、難しいこと考えずに、「自分から見えるアナタ（の一部）が大好きだ」と胸を張って言ってあげても問題なく相手は喜ぶ筈です。\n ……が、世の中には本気で怖い人もいるので、インターネット上の発言はすべてビジネスでしかない人も居たりしますけどね。まあ、それは僕のようなポエミーなふわふわしたバカの文章を読むのが好きな変わり者の皆さんの前には、めったに現れない存在でしょうけど。\n こうして今日も皆さんに飽きられないように、どうにか文章を書いたり、裏で企画を進めたりする。僕の人生ってそれだけ。でも、もしこれを読んでいる中に「それ」が好きで、手紙まで出してくれる方がいたのですから、幸せなことですね。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね。いつも読んでくれてありがとうございます。感謝。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

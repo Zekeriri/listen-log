@@ -25,9 +25,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-04-04 07:15\n哥特\nGoth\n\nオタクだ、サブカルだ、って枠で見るから芯を捉えきれない。ゴスの精神はそう簡単に理解されはしない。ナードでもギークでもない。仄暗い教室の隅で一人黒魔術に耽るGothだ。\n 真っ暗な闇の恐怖の中から美しさを取り出す行為が唯一の行動原理。明るいところじゃ眩しくて何も見渡せやしないから、朝はできるかぎり見たくない。太陽なんかと仲良くする気は一ミリたりとも持ち合わせてはいない。\n あなたたちに「痛々しい中二病」だと嘲笑われる対象なのです。人は自分と違う世界を持っている人間を恐れ、攻撃する。「痛々しい」とは、多くの人間が共有する常識から外れていることを指している。要するに、こちらの刺々しい部分を理解できず、針を打ちつけて平べったくしようとしてくるんだな。棘を抜いて個性を殺せば理解できるから。そうやってあなたたちはすべてを「同じ」にして安心を得る。芸術や感受性を犠牲にしてまでも。\n 深淵たる恐怖は、暗黒の大魔術は、そんなことに屈しはしない。屈してはならない。こちらの世界に干渉させてなるものか。僕らは平らな世界において悲しいほどに無力で、「痛い」棘を鋭くさせていくことでしか身を守る手段がないのです。あなたたちに折られてなるものか。太陽のもとに照らされてなるものか。\n 痛くて結構。好きなだけ後ろ指さされても構わない。このような生き方しかできず、信念を曲げてでもゾンビとして暮らす惨めさに比べたら、教室の端の毒電波でいいんだ。互いに近づかない方がいい。僕らは、この棘のせいで同じ感性の者たちとすら傷つけ合う。\n それでもいいんだ。闇の中の美しさしか分からないのだから、寂しく、醜いいきじまも望んだ姿である。あなたたちがそうして油断しているうちに、研究してきた黒魔術は完成し、召喚された悪魔たちによって地球は混沌の黒に呑まれる。今に憎き太陽すらも黒に染まる。月は許してあげよう。静かに青々と見守っているうちは孤独な仲間だから。\n 僕の感性を、世界を、理解できない「他者」を恐れ、それを誤魔化すように攻撃し続ければいい。嘲笑すればいい。ゴシックの魅力はあなたを照らさなかった。残念だ。陽のあたる明るい地獄を平べったくしながら平和に暮らせばいい。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,10 +45,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-07-13 04:03\n一口随笔: 90年代如理念般的动画曲\n一口エッセイ:90年代のイデアのようなアニメ曲たち\n\n90年代のイデアのようなアニソン・ゲームソングが大好きで生きています。今回の日記はニッチ過ぎて殆ど伝わらなさそう。\n 例えば、有名どころであればロックマン8の『ELECTRICAL COMMUNICATION』。映像付きのOPと合わせて「ロックマンがPS時代にやってきた！」感が嬉しく、ビリビリなエレクトロと女性ボーカル、近未来的な歌詞が90年代過ぎて100点！ 「二人だけのシグナル 盗み出して 飛ばそう」ってフレーズ良すぎ……。X4のOPも、DASHのEDも素晴らしいし、みるみるデジタル化が進んだ時代とロックマンの相性が最高なのでしょうね。\n アニメならビーストウォーズⅡの主題歌たちもいい！ 『GET MY FUTURE』なんて曲名から漂う90年代……儚げな女性ボーカルとビンビンなサウンドが令和の世では再現できない空気感に。\n 特撮では、『千年王国Ⅲ銃士ヴァニーナイツ』のOP！ まず「深夜特撮」なるマイナーなジャンルが満点。みんなタイトル聞いたことあるかな？ 内容はエヴァの影響丸出しで逆に面白いですし、ボーカルが林原めぐみなのがもうオタク臭さに涙でるほど。歌詞の抽象的な感じも世紀末感でまくりだぜ。メガレンジャーの挿入歌、『COSMIC WORLD』もいいですよ。戦隊ながらメガレンジャーは大人っぽいオシャレさを内包していたので、せいいっぱい当時の子供番組なりの未来感が良い味だしている。これ以上に洒落っ気を出しすぎたタイムレンジャーのOPは、もう子供置いてけぼりでしたね。\n そんな僕が最近ハマっているのが、90年代アニメ『SHADOW SKILL』の主題歌『born Legend』。実際に聴いてみたらわかるのですが、もうあり得ないくらいに90年代。今だと気恥ずかしいくらいにザ・ファンタジーな作詞が美しい。1番サビ「あなただけに許されてる 伝説が今始まる」も「おお！」となりますが、僕が特に好きなのは2番サビ「分かりなさい 憎みなさい 私など忘れなさい」。この「私など忘れなさい」という達観したヒロインぶったフレーズは、まさしく世紀末にしかでてこない美しさがある。映像も合わせて本当にいい……。\n 皆さんのおすすめ「90年代」があれば、遠慮せずドシドシ教えてくださいね。傷つく事は怖くない、だけどけっして強くないから……。\n\n毎日の日記をまとめた同人誌を販売中です。よろしくね！\n\n商業エッセイ集もでた！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

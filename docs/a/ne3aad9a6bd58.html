@@ -24,9 +24,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-07-30 02:55\n一口随笔：对孩子叛逆期的担忧\n一口エッセイ:子供の反抗期への不安\n\n自分の将来の夢は、子供とドアサ・ニチアサを楽しむことです。息子とともにウルトラマンやライダーで興奮し、娘とともにプリキュアを可愛がる。そんな日常が来ることを夢見て生きている。\n が、ここで問題があり、「子供はいずれニチアサを卒業する」ものである。小学校に慣れた頃には、子供向け番組よりもジャンプや少女漫画、ゲームなどを嗜むようになるでしょう。それはそれで良いことですが、ちょっぴり寂しい。\n そればかりか、中学になるに連れて、親が好きなものをダサいと感じるようになるでしょう。なぜなら、僕も思春期の頃は、母親が好きなもの＝おじさん・おばさん臭いと認識していたのを、はっきり覚えている。いつまでも父親がウルトラ怪獣のソフビを集め、プリキュアの追加戦士の参入を楽しみにしている様子、反抗期からすれば最悪以外の何者でもない。\n 健全な子供は親に反抗するものだから、僕がいつまでもウルトラマンを視聴して一喜一憂する姿がダサくて仕方なく見えるだろう。父さんのことは嫌いになってもいい、でもウルトラマンや画面ライダーのことは嫌いにならないでくれ。なんなら一緒にゴジラを初代から観てくれ。平成ガメラの感想も聞かせてくれ。鎧モスラも観たいよな？ ……なんてやっている間に完全にクソ親父と化すのだ。怖すぎる……そんな想像を一切結婚の予定もない今から繰り広げ、勝手に傷つく夜を繰り返しています。\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中。商業エッセイ集もよろしくね。いつか、僕が生きた日々を子供が読む日がくるのかもしれません。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,10 +44,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

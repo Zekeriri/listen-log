@@ -38,9 +38,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-12-23 07:46\n视觉小说，到现在。\nビジュアルノベルを、今に。\n\nSteamのストアページ開設に向けて準備しつつ、やはりビジュアルノベルを待つ多くの客層が中国にいることを知り、協力的なバプリッシャーやら現地ファンやらと交流をしていく。どうすれば、僕らのノベルゲームが海を越えた潜在的ユーザーに受け入れてもらえるのだろうか。\n ちょうどよく、英語圏のファンたちからノベルゲームの話題が振られた。\n\n「このゲームをやったことある？」と尋ねられ、僕が「そのメーカーなら、この作品が一番好きだぜ」と返す。伝わってくれたようで喜んでくれている。\n\nそうだよな。\n 美少女ゲームをプレイする人口の時点で少なく、その上でアニメ化もしていなければいわゆる全盛期以降の作品で盛り上がれるのは、広大な電子の海と言えども稀な出来事なわけで、そのニッチさが共有できた時の嬉しさったらないよなあ。\n こういうことが楽しかったんだな。\n エロゲーとは、視覚と聴覚、触覚を使った総合芸術だ。総合ポルノと言えるかもしれない。感動とかバイオレンスとか、そういった部分も含めて総合ポルノでしょう。そこへテキスト主体なる文学性が入り混じり、90年代から温められてきたオタクたちの欲望が最も効果的な形に昇華されたものです。\n 純文学より可愛らしく、ライトノベルよりハードで、アニメよりも体験がある。そんな奇跡が20年くらい歴史を紡いだ。奇跡だから、次第に萎んだ。\n 地球上の誰かがふと思ったのだ。「坂口安吾の描くような世界観で、ヒロインがピンク髪ツインテの萌えっ娘なら最高じゃない？」と。こうして既存の文学をバレない形で巧みに調理し、濃いめの味付けとして萌え萌えヒロインがブレンドされる。インターネットの発展とともに、思えば珍妙なレシピが許されていた、そんな奇跡の時代。\n 僕は、そこから更に美少女攻略、いわゆるギャルゲー要素を薄め、テキストウィンドウも画面を覆う形で、美少女よりもストーリーへ集中させる触感にしている。あくまで文章を追うためのゲーム。美少女ゲーム、ギャルゲーでもなく、ビジュアルノベル。\n そんなものを好いてくれる方々が、こんなニッチを待望する数奇者が、世界中を掻き集めたら結構なレジスタンスが潜んでいるのだから、そこはどうにか各地の現地と盛り上がりたいよね、と。そんな説明をパブリッシャーや同業者へ展開する。\n すると、みんな優しいのだ。\n 大義名分を理解していただき、お前らがやりたいダークなことは世界の一部にとって救いなんだなと、ゲームを愛する者たちは大いに乗ってくれた。\n こう言ってはなんだが、世界規模でヒットしたインディーゲームからの次作が、大ヒットなんて見込めないジャンルのさらに深いところである。真っ当に王道を進むだけで「挑戦」と呼んでいい茨道。\n 棘だらけの道を傷だらけで進む冒険者に、みんな優しい。\n あなたが文学と美少女とキーボードの妙な歪みを信じるなら、きっと遊んでもらえると嬉しいなって、僕はそう思うのでした。\n\nエッセイ集がでとるよ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -59,10 +58,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

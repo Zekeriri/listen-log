@@ -34,9 +34,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-03-22 05:14\n人生过的书架\n人が生きた本棚\n\n明日、観に行きたい展示会があるので一旦移動だけするため埼玉へ。お金がなかった頃は友達と所沢に住んで家賃4.5万を二人で住んでいました。奇遇にも、その時の友達の長い時間を経て再び所沢付近にてビジネスホテルを取る。\n 泊まれればなんでもいいと適当に選んだものの、ビジホのわりにロビーに妙な人の暖かみがあって「ご自由に部屋へお待ちください」本棚が存在する。それがまた定番の漫画や小説を揃えてくれた感じでなく、誰かのお古感マシマシで予想外の漫画が飛び飛びで置いてあり絶妙な味となっている。具体的には……。\n\n『咲』の20巻だけが置いてあったりする。\n 従業員の私物や、客の忘れ物なのでしょうか。ホテルの本棚に咲が一冊だけ刺さっている魅力に逆らえず、ついつい部屋へ持ってきてしまった。お姉ちゃん大活躍の先鋒戦だ。\n\nそんなことあってたまるかよ、なカラーページ。カラーでの見せ場を用意してくれるため、前の回からごく自然に水着で試合観戦を行っている。そんなことあってたまるか。後ろにあるのは飛び飛びで刺さっていた『BADBOYS』。この2冊を読んで夜を過ごす。ゆるいビジネスホテルになんとなく置いてあったから以上に理由のない組み合わせ。\n\nテレビをつけると、ちょうど東京の電波がギリギリな境目にいるのか、TOKYO MXがノイズまみれでまともに観れない！\n そのせいで今夜最終回のアニメたちを泣く泣くリアタイ断念。グリッチ塗れな画面も、これはこれでかっこいいけれども。\n ちなみに、前述したように所沢のボロアパートに住んでいた際も、ギリギリTOKYO MXが映らず絶望したため、わざわざ電波を広くキャッチできるテレビアンテナを購入した。キミはわざわざどデカいテレビアンテナを買ったことがあるかな？\n 素人設置なので、適当にベランダに置いておくしかない。電車が通るたびに一瞬電波が途切れてモニターへノイズが走る。しかも通過音がやたらとうるさい。2DKで4.5万なだけはあります。\n 毎日はともかく、たまにはこの埼玉特有の緩さも悪くはない。特に、どういう場合であれ、人間の営みが感じられる本棚は、眺めているだけでワクワクする。先日、中野を散歩している際に見つけたコインランドリーの読書コーナーの「生っぽさ」も堪らないので見て欲しい。\n\nいい。精神の本からギエピーまで、また平成初期までの感じをだしつつ、カバーのないケンガンアシュラも混じっていたりと、あまりの法則性の無さに人間を感じさせられる。果たして、このコインランドリーの待ち時間で暇つぶしに般若心経の図解本を読み耽る客も居るのでしょうか。\n というかもうすぐ夜明けなのに全然眠れない。ここはカラスがうるさい。早く米青ネ申禾斗で睡眠薬もらわねばね。おやすみなさい。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,10 +54,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

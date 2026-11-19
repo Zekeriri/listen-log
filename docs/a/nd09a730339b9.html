@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-12-17 06:33\n一口随笔：THE FIRST SLAM DUNK\n一口エッセイ: THE FIRST SLAM DUNK\n\n『THE FIRST SLAM DUNK』を観ました。端的に言って最高です。本当に素晴らしい。あまりに良くて上映後に放心していましたし、今年で一番泣いた。劇場の人もたくさん泣いてた。凄すぎる……。\n ちなみに絶対ドルビーシネマで観た方がいいです。音響の効果すごすぎる。ドリブルのたびにボールがズンズン跳ねる音が響いて、こんなに相性いい作品他にあるのか？ とビックリ。\n さて、内容に関する感想ですが、びっくりするくらい「試合」そのものすぎて、途中から完全に「試合観戦」している感覚で、なぜか歴史に残る最高の名試合を最も良いアングルで、各選手たちの回想シーン付きでまで観ているような。ああ、井上雄彦先生は本当に試合そのものを作りたかったんだなと。アニメ的なセリフや演出も極力減らして、現実の試合中に起こりうる範囲での動きや会話に拘ったんだろうなと。これは凄い体験ですよ。ありがとう……。\n 井上先生は、とても芸術家肌なんでしょうね。「山王戦」を俯瞰してリアリティを持たせるには、この構成しかない。この構成でいくなら予告もできる限り情報を絞ることが最適解だし、そこで前評判が揺れることを恐れない。原作者だからこそ許される大胆な組み立て方と削り方。もっと大衆にも理解と評価されやすい道もありながらも、「こう選んだか！」というのも合わせて興奮しましたね。\n それにしても山王戦、こうして映像として見ると怖いですね。今回は、山王側のキャラクター描写が少ないため、彼らの高校生らしい日常がなく、試合だけで見るコイツらマジで怖いな……と、最初のゾーンプレスで囲む時点で、「こんなデカいやつらに視界塞がれたら絶望だろ……」と震えますね。そういう動きが3Dのおかげであますことなく発揮されていたのも良い！ こんなにデカいのにこんな速く動くのか！ 勝てるわけない！ って恐怖が伝わります。\n 改めて湘北側が、奇跡的に正解を引き続けた結果なことがわかる。まず三井の存在が向こうからすれば異質で、もはや体力が残ってないからマークしても意味ないはずなのに、何故かボールを持つたびスリーポイントを決める。途中で流川がパスを覚える。素人の桜木がリバウンドを拾い続ける……などなど。特に、三井がバテて舐められているところに、「そんなタマじゃねーよな」と信頼されてパスされ、三井がまたスリーポイント決める流れで泣く。チームメイトの誰もが三井があの頃を超えた実力を信頼している。それが最低限のセリフとボール運びで演出されていく。もうつねに男泣きですよ。\n 現実のスポーツも、漫画みたいに選手の回想シーンがあればいいな〜と呑気に呟いたら、現実では「昔から応援していた選手の見せ場で高校野球時代の回想してしみじみするファン」という楽しみ方があるとリプライで教えてもらいました。なるほど、本気で追っていたら、脳内で自動で名シーンが再生されるわけですね。\n 自分は人生で一度もスポーツ観戦したことがないので、まるで今日は初めて満足に試合を見終えたような気持ちです。嬉しい。最高の初体験をありがとう、湘北高等学校……。\n\n毎日の日記をまとめた同人誌と商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

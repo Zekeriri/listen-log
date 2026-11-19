@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-11-03 04:37\n一口随笔: 《MONSTER》与终章的风景\n一口エッセイ:『MONSTER』と終わりの風景\n\n浦沢直樹『MONSTER』の話をします。\n 自分がMONSTERを初めて読んだのは、小4〜6くらいの時期で、理由は「歯医者にあったから」です。本棚に並べられているアンパンマンやドラえもんなどの児童書の中に混じる『MONSTER』の文字。そりゃ誰だって浦沢直樹を選ぶでしょう。内容は難しくて子供に理解できませんでしたが、時間をかけて中学の頃に読破しました。\n\n『MONSTER』にはヨハンというイケメンかつミステリアスで聡明なトリックスターが登場し、基本的には主人公たちが数々の謎を解き明かしながら彼へと辿り着くまでの物語。多感な時期にこんな魅力的な悪役に出会ってしまったのですから、もう脳味噌を撃ち抜かれたような衝撃。\n さて、彼には悪役の例に漏れず壮絶な生い立ちによる、孤独や寂しさを抱えており、それらを相手に共有することで『終わりの風景』を見せる。全部がカッコよすぎるだろ。しかし、ヨハンの信奉者であろうとも、小汚いおっさんには見せてくれないわけですね。彼の心情とは程遠い、浅ましい存在だから。\n\n「君には……見えないよ」と冷たく突き放すヨハン。僕は、このシーンに大きな恐れを抱いたんです。何故なら、読者である僕もヨハンの虜なわけで、つねに主人公でなくヨハンを目当てに読み進めていたわけです。つまりは、信奉者の一人なのだ。僕だって、彼の言う『終わりの風景』をともに見たいと願っていた。しかし、ヨハンは生半可な人間にそれを許さない。では、ブックオフで立ち読みして最終巻まで辿り着いた中学生の僕はどうだ？ 言うまでもなく「君には見えないよ」と言われる側でしょう。それはそれで嬉しいけれども（厄介ファン）。\n だいたい物語というのは、魅力的な人物たち、つまりここではヨハンなどメインキャラクターと、それらの輝きを際立たせるためのモブがいるわけで、このおっさんも、主人公がヨハンに終わりの風景を見せられるまでの前座なわけですね。つらすぎるだろ、そんなの。もっと高潔でカッコよく信念を持ちつつ、好感を得られる人間でなければメイン側にはなれない。学校や社会で目立つ「優秀な立ち位置」には興味ないが、「ヨハンに終わりの風景を見せてもらえる人物」では居たい。はっきりそう思ったのを覚えている。\n\nそう、言われたいのだ。「あなたには見える……」と。そのためには、ヨハンの信者でなく、彼に銃を向けられるような覚悟のある人間でなければならない。人間は、それを目指さなければならないのではないか。\n という衝撃を、MONSTERを読み返すたびに思い出すのですね。果たして、今の僕がヨハンに認めらるほどの人間になったかは定かではありませんが。それにしても、「ここを狙うんだ」と自ら額に指を向ける所作がカッコよすぎる……。僕も死ぬ時額に指をあてるから、あなたは怪物（モンスター）となった僕に、覚悟を持って銃を構えてくださいね。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

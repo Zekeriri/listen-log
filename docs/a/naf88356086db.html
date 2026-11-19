@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-04-19 03:05\n一口随笔：超越规则后的美学\n一口エッセイ:ルールを越えた先の美学\n\n久々に友人の岡島と話した。「ゲームが発売したいま、次は何をやるの？」と訊かれたので、「宗教のことを調べたり、近くの宗教施設を回ろうと思う」と答えます。僕は、規則など「正しさを強制される状況」が苦手で、例えば学校で時間割通りに行動させられるのが嫌で仕方ない。勉強方法は教科書に沿わないといけないのも嫌だ。そんな学校生活がつらくて逃げている時に、マリリン・マンソンやクトゥルフ神話を知る。\n\nマンソンも僕と同じく学校が苦手で、熱心なキリスト教徒である家族や周囲に反発し、タトゥー・麻薬・に傾倒。ミュージシャンとなってからは、アンチクライスト・スーパースターとなり、聖書を燃やすパフォーマンスを行う。マンソンは、神に従い救いを待ち続ける人生に価値を感じない。彼のロックな生き様は、規則を破った先のアーティスト性という美学を植え付け、僕を強く勇気づけました。\n クトゥルフ神話は、「冒涜的な」邪神たちのお話です。冒涜……宗教性の薄い日本人ではなかなかピンとこないでしょう。神聖な存在を犯すような行為なのですから、これまた神への信仰心がない限り、その恐ろしさを真に理解するのは難しい。人々が信じる神を恐怖として描く自由な創作性もまた、僕の興味をとても引き出します。\n そのような理由から、勇気と自由をくれた二つの要素を深掘りして愛するため、もっと宗教について知りたい……そんなことを話したら、岡島は変なヤツだなぁという顔をしたので、他人からそう認識されているならば、僕はまだまだ普通でない偏屈側の発想で創作を続けられると自信を持てたのだ。\n\n毎日のエッセイをまとめた同人誌を販売中です。\n 毎日連載というルールを守っていて偉すぎる。\n\n商業エッセイ集も、よろしくお願いします。Amazon評価も押していただけると、大変喜びます。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

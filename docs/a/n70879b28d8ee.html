@@ -45,9 +45,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-06-23 13:44\n胃肠炎 水很美味\n胃腸炎 水が美味しい\n\n胃腸炎になった。\n 実際のところ胃腸炎かどうかはわからないのだけれど、とにかく何を食べても飲んでも吐いてしまう。\n 吐くと、身体の水分が足りなくなって脱水症状がでる。\n なので水を求めてぐいっと飲むのだが、胃が全てを敵だと認識しているのか、すぐにそれを吐き出してしまう。結果、飲めば飲むほど水分が減り、ダメ押しで高熱による発汗でさらに体から水が抜けていく。\n ギリメカラが大量に出てきたのに物理攻撃しかないような、とにかく何をやっても反射される絶望にうなだれた。\n 身体が水を強く求めているのに、飲んだら吐いてさらに減っていくなんて「詰み」だろう。\n 水分不足で、ずっと頭とお腹が痛い。\n 仕方ないので寝転がる。\n 20分に一度くらいの頻度で起きて、一口だけ水を飲む。こうする事で胃を驚かさずに水分を補給するしかない。\n 飲むたび吐くのがトラウマになっており、非常に恐る恐る水を含んでいく。\n これがとんでもなく旨い。\n カラカラの喉を潤す一口の水。\n もっと飲みたい……けれど、これ以上飲んだら吐くので次は20分後だ。慎重に補給しなければすべてが無駄になる。\n 寝転がる→起きる→水を含む→また眠る。\n 人間が生きるための最小限の動きを行う。\n 元から水は大好きだ。\n その水が、さらに貴重に感じる。\n 次第に胃がゴロゴロと盛んに工事を始めた。\n あとは、胃腸が勝手に問題を解決して、いつもの日常が戻ってくるのを待つ他ない。\n それにしたって、なんでこんなことに……。ストレスだろうか。\n 胃の工事も空腹も脱水症状もすべてが辛い。\n 12時間、そんな感じで起きたり寝たり、水を飲んだりで過ごす。いまは多少マシだが、かと言って吐くのは嫌なので結局は、ちょびちょびと水を飲んでいる。\n 水が飲みたい。\n 「飲むと吐く」。\n こんなシンプルに生命へダメージを与える構造すごすぎるな。\n これだけで人間は相当に弱る。脱水症状は苦しい。\n 水使いには気をつけろ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -66,10 +65,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -35,9 +35,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-07-22 19:13\n手淫日26\nオナニーの日26\n\n30代も少し過ぎて、だんだんと性欲は落ちたものの、筋トレなどによって多少の回復をせんこともないが、全盛期に比べたときの衰え具合に落ち込みはする。\n もう、ひたすら自分好みの画像や本を探すために一晩かける情熱は失われ、抜きゲーなんて怠くてほとんど起動をしない。DLsiteの手頃さに驚く日々。\n 鬱々としていると勃たないのではないか、という話に自分は少し違って、いや広い目で見るとほとんど同じことではあるのですが、なんというか扱いている最中でも嫌なことを思い出して虚しくなるというか、しおしおになる。これもなんだか悲しい。\n あとスクワットを結構な負荷で続ける習慣があるからか、明らかに遅漏というかコントロールはかなり上がったとは思う。若い頃にあった興奮しすぎて早漏で恥ずかしい、といったことが無い安心感は、筋トレ＝男を色んな意味で強くする証左だなあと感じます。\n あんまり言うこともなくなったので、「下ネタとか大丈夫ですか？」と雑談の場で確認されることも増えた。\n 薬物やら海外アングラ事情とか書いている人間が、もはや下ネタでドン引くことなんてないのだれけど、世の中はちょっとしたことで「変態だ～」と盛り上がる文化があるため、そこに与するのもなんか癪だなと思って黙っている。\n 総じて、年相応に枯れていくことを感じる。\n それを「余裕」と呼ぶのかもしれない。\n そりゃがっつかない方が異性も安心だろうと思いつつ、一回り上の人たちなんかは一周して恥が消えたのか、恐ろしいほど異性へがっつくこともあり、その場合はドン引く。そういうバランスが30代、中年からはある。\n まだ「義務感で抜く」ってほどのことはない。\n 習慣として2次元エロ用のタイムラインとDLsiteは巡回する。ただ、相変わらず「動画」と3次元エロに食指は伸びない。結局、自分の妄想で十二分に補完できるので、動作は必要ないのかもしれない。3次元エロに関して、全裸というものになんだかなと感じる。下着とか布面積とのバランスとか、いろんな工夫があって欲しいなと思うし、そういったものも探せば必ずあるのだろうが、女優の顔の区別もつかないし、根本的に自分の自慰の99%を2次元が担っているので、わざわざ次元を進む必要もない。\n 「そろそろ抜かなきゃ」と焦ることもないのを誇りにしている。\n 自慰。自分を慰めるという行為の虚しさは好きなままだ。\n\n去年も同じことをほぼ考えていた。\n つまり、この一年で2次元に対する情熱や自慰への認識はいっさい変化なし。うつ病が去年よりはマシだったり、タイミングによっては酷かったりなどの差異はあれども。\n 自分で自分を慰めきれない、それでなんらかの狂いを起こす人に対して、「二次元の方が好きじゃなかったのかよ！」と裏切られた感覚は続く。三次元への憧れや肉欲もありつつ（そうじゃないと人としてつまらないので）、「もうオタクじゃない」ということにはなってほしくない。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -56,10 +55,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

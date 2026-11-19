@@ -30,9 +30,8 @@ pic.twitter.com/s85E2quy3q— 中野ブロードウェイで見つけたもの (
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-02-11 04:30\n一口小随笔：广告狂热\n一口エッセイ:CMマニア\n\nYouTubeでひたすら昔のCMを眺め続けて、ついに海外のCMまで観るようになりました。以前は、この趣味がある理由に「インターネットのない時代の映像にノスタルジーな趣を感じているからでは」と自己分析していましたが、最近はホビーやゲームのCMがきた時にワクワクする童心の残滓を求めているからな気がしてきた。\n たとえば90年代CM集という括りだと、化粧品やアイドルのCM中でたまにオモチャやゲームが混ざり、そのランダム性がリアルなテレビ放送感を醸し出している。子供の頃、ブラウン管を眺めていたら不意にプレステや64のCMが流れて「欲しい！」となる快感。美少女アニメのCMにドキドキするオタク心。とにかくインターネット黎明期くらいまでのCMが好きです。\n で、CM集なんて、それこそオタクどころか「マニア」と呼ぶべき一部の人間たちがアップロードしているおかげで成り立っている。彼らはひたすらVHSからCMだけを抜き出し、ジャンル別にまとめる。1円にもならないけれど、とにかくその作業が好きなのでしょう。気になってCM集投稿者のTwitterアカウントを覗いたことがありますが、家庭から出てきたVHSを無差別に募集していた。その番組自体ならともかくCMまで含めた録画映像なんて、ネットを漁ってもけっして手に入らない。ただただ一般人が偶然残していた物を収集するしかない。これは凄い根性だ。僕は、彼らのことを心から尊敬しています。\n 幼少期、街の小さな中古ショップで、「ナウシカが録画されたビデオ」が売られていたことを覚えており、「市販品でなく録画したビデオまで売るのはダサすぎる！」と子供ながらに感じたものである。逆に欲しいとも思った。テープに直筆で貼られた「風の谷のナウシカ」というシールは粋かもしれないと思ったのですね。サブカル的な発想です。買わなかったけど。今だとCMマニアが一部は欲しがりそうだ。\n 中野ブロードウェイには、VHSの映像をディスクなどにダビングする専門の個人店があり、たまに覗くとお爺ちゃんが大量のブラウン管に囲まれながら、ビデオをなにかと弄っています。きっと、こういう人たちがレアな当時の映像を保存し、後世の似たようなオタクになにかを感じてもらうための資料としてアップロードしてくれる。なんと立派な人たちなのでしょう。\n CM丸ごと放送時に録画することは、作品でなく「当時の時間」そのものを保存しているわけで、そう考えると録画VHSってとてもロマンチックなアイテムに思える。\n\npic.twitter.com/s85E2quy3q— 中野ブロードウェイで見つけたもの (@nyalra_uso) October 21, 2022\n\n中野ブロードウェイで見つけたベータ用のテープも、マニアたちの魂が込められた夢のカケラなのですね。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,10 +50,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

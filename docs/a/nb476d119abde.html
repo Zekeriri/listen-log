@@ -48,9 +48,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-09-04 12:33\n看过各种龙骑\nいろんな龍騎を見た\n\nいろんな龍騎を見た！\n\n仮面ライダーだ！！！\n アドベントカードがまるで国旗みたいに飾られている！\n\n遠いバージョンだ！\n 龍騎さん、ファイナルベントのポーズとかお願いしたかったです！\n\nそれか、このポーズしてください！！！\n\n余りスペース。\n\n漏れの占いは当たる？\n\nデッキ欲しいぜ。\n それにしたって、龍騎は児童向けオモチャのターニングポイントですね。カード、デッキ、召喚モンスター……どこを切り取っても男児を興奮させてしまう完璧な布陣。これでストーリーはバトルロワイヤルモノでシリーズ随一にシリアスなのだから、本当にすごいよ。具体的には、後年のライダーが困ったらオモチャのモチーフをカードにしまくるくらいすごい。みんな絶対に欲しがってしまうから。\n 子供って、カードのカッコよさに逆らえないんだよ。特に、龍騎の頃って遊戯王ブームと丸被りですからね。キラキラのダイヤモンドよりシークレットレアの輝きの方に惹かれてしまうのです。\n\n主人公を黒くしたコンパチの悪役ライダーを登場させればいいんじゃないか？ その通り！ 完璧。男の子は、カードゲームと同じくらいに「闇堕ちしたヒーロー」に逆らえません。まったく正しい。黒けりゃ黒いほどいい。\n\nちらっとカーテンの影から見えるのは……\n\nもしかして、仮面ライダー龍騎！？\n\nこれも全部、龍騎！？\n\nファイナル弁当！？\n\n祭りの会場、終わり。\n こちらのドリンクは、生卵をイメージした果実が入っている。役者繋がりネタですが、シャンゼリオンもイベントやるみたいですね。子供の想い出が搾り尽くされる。どんどんやってくれ！！！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -69,10 +68,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

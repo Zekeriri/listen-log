@@ -29,9 +29,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-09-24 05:52\n一口随笔：配角的温暖感\n一口エッセイ:モブ・ヌクモリティ\n\n部屋に一人でいると、自然と寂しさが募り、特にがらんとした静寂が孤独を煽るので、よくYouTubeで適当な動画を流すようになりました。とにかくキャラクターたちがわいわい賑やかにしている声を聴きたい。他人の声で寂寥感を少しでも埋めたいのだ。\n そんな時、ホーム画面に青い髪の美少女の配信待機画面が表示されたので開いてみると、それはブルアカのヒロイン・アロナちゃんの放送で、アロナちゃんは視聴者（＝先生）を元気づけるために、画面狭しと朗らかに駆け回る。その姿が愛おしくて、自然と涙が溢れそうになった。少女に対して「ヒロイン」より「娘」のように思えてしまったこともあるのでしょう。僕ももうじきに30になる。\n\nさて、配信画面の端では、次々と視聴者たちのコメントが溢れてきます。彼らは「○○実装して」や「えっちな格好して」と欲望丸出しなのだが、アロナちゃんがかわいいから好きという気持ちが前提にあり、おかげでコメント欄も平和で統一感が生まれている。こうしてオタクたちが一丸となってコンテンツを盛り上げ、何より楽しんでいる様子もまた元気が出てくる。オタクが楽しそうであることが一番なのです。\n 僕には、こういう「モブ」としてコメントする勇気や気力が全くない。生まれてから今まで匿名で書き込みをした経験がほぼ無く、自分の意見や意思は『にゃるら』に紐づいた媒体で書き続けてきた。今も、こうして。\n 当然YouTubeのチャット欄に書き込んだことも無いわけですが、生配信での第二の主役は参加者たちでして、みんなが思い思いにコメントを投稿してくれるからクリエイターやアーティストはやり甲斐や感動を覚える。例えば、今回のアロナちゃんの動画も、みんなで「かわいい〜」と言い合ったり、ボケに「おい！」とツッコミながら観る一体感は視聴体験として素晴らしいと感じる。こうしてモブもコンテンツの一つになることがザ・インターネットだなと思う。\n 本当に偉いよなぁ。僕はROM専だから、コメント欄の一体感は完全にあなたたちのおかげなのだ。僕へのリプライとかファンレターなども、すごく「えらい」と思う。ネットや作品の大きな流れを僅かに回していく、地味だが重要なパーツとなってくれているわけですね。\n\n急に自作の話になりますが、超てんちゃんの生配信は、再生数に対してのコメント数が異様に多いとデータが出ていて、関係者の大人たちがいつもビックリしています。まあコメントし易い定型が多いのも理由ですが、それだけ熱量を持ってくれているわけですね。ありがたいことです。チリも積もればという話で、小さなコメントの一つ一つがたしかに作家や作品の糧となっている。これはインターネット・ヌクモリティだね。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくお願いします♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,10 +49,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

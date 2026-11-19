@@ -40,9 +40,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-04-13 14:05\n捷克 布拉格 立体主义建筑之旅 “黑圣母之家”“跳舞的房子”\nチェコ プラハ きゅびずむ建築の旅 ｢黒い聖母の家｣｢ダンシング・ハウス｣\n\nといわけでチェコ到着。良くも悪くも活気に溢れまくるアムステルダムとちがい、非常に静かな印象。治安もまったく問題を感じない。物思いに耽る場所として適している。素晴らしい。\n\nお気に入りの服装で訪れてみたものですが、空港からさっそく｢nice jacket !｣と褒められた。嬉しい。まあ空港の従業員って陽気さを演じている部分もあるだろうけれども。いい服だと思ったら通行人にも｢いい服装をしているね!｣と一言声をかけられる世界。僕もそれを望む。\n\nどこを切り取っても街並みが精悍。ゴシックやバロックに溢れ、誰もが物語の登場人物になってしまう。そりゃ馬だって道を走る。ヨーロッパだもの。\n\n歩いているだけでも気分がよくて、半日歩き回ってしまった。3万歩越え。城内の階段を必死の思いで登りきったりもしたので、実際のカロリー消費はもっとあるはず。痩せたいならプラハ城を登り降りし続けると良い。\n\nこの螺旋階段を気が狂うほど登った。ユリアを助けに行くときのケンシロウだね。最後に崩れ落ちる。プラハ城のことは次回に割愛。今回はキュビズム建築に絞ろう。チェコといえば、その特異な建築たちにある。\n\n『黒い聖母の家』。名前がすでにカッコいい。一応、わかりやすくキュビズムミュージアムとも表記されているね。文字通り、そのぐにゃぐにゃ可愛い世界観が建物全体で表現されている。\n\n素晴らしい! 型にはまらない自由さ、八角形の織り成す奇妙な幾何学模様がたいへん気持ちがよい。同日に城や教会も回り、もちろんそちらの歴史的建築物も刺激的であったが、やはり僕はモンドリアン的なパターンの抽象チックな近代美術に最も興奮するらしい。\n\n２階はカフェに。こちらもまたキュビズムを全身で表現しており、なによりこの淡緑が良い!\n 一人でゆったりしていると、店員が気を利かせて他の美術的な観光名所を紹介してくれる。芸術と建築がこんなにも日常と融合している国。そりゃカフカも生まれる。僕らは八角形に歪んでいたって、こんなにも文化を愛せるのだ。\n\nアイスコーヒーを頼んだはずが、なにかを間違えてアイスとコーヒーがきちゃった。そういえば海外では、基本的にアイコンタクトだけで店員を呼ぶけれども、あの感覚にもすっかり慣れたな。この席はあの人が担当で、だいたいこのタイミングで回っているだろうと。その際、注文がなくとも軽く世間話をする。カフェって本来こういう役割なのか。\n\nもっとわかりやすい迫力のダンシング・ハウス。\n 外から見る分に大興奮でしたが、中はふつうの商業施設でちょっとガッカリ。それにしたって、この外観は素晴らしいけれど。\n こうしてはしゃいでいるうちに一日が終わり、作詞も原稿も一切手をつけていないのであった。満足。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -61,10 +60,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

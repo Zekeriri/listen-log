@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-06-03 06:28\n一口随笔：如果从露天温泉掉下去\n一口エッセイ:露天風呂から落ちたら\n\n深夜の露天風呂へ入りました。\n 季節もあってか夜の河の流れは激しく、その先に生い茂る仄暗い木々もおどろおどろしい。大自然の恐ろしさを目の当たりに感じる。山だ。\n いま、この場から転げ落ちて河に流されたらたいへんなことになる。濁流に飲まれて慌てふためく。生きるのに必死で夢中で地上にたどり着いたとして、そこには刺々しい謎の植物たちが待ち構えている。というか暗すぎて「植物のようなものが目の前にある」しか分からないでしょう。怖すぎる……。\n 逆に言えば、こんな状況からもし命からがら生還できたとした場合、それは神や精霊、大自然の意志のようなものを信じるでしょう。偶然、ほんとうに偶然、科学的に様々な確率を乗り越えた結果助かっただけでこれは運命でも奇跡でもないと理屈はつけられるとしても。自分が助かったことに「意味」を感じてしまうだろう。\n というのも、水木しげる先生は戦時中、こんな激しい河や生い茂る大自然を彷徨い、片腕を失ってなお日本に帰還した漫画家でして、そこでの半狂乱を通した神秘的な体験や匿ってくれた不思議な民族との交流があったからこそ、先生の中で「妖怪」という目には見えない存在への確信を持ったわけで。いま僕の目の前に広がる大自然の脅威に加え飛び交う銃弾の嵐すらも乗り越え、生き延びた。なんと逞しい生命力！\n たしかに、そんな命を賭した大冒険を「偶然」と片付ける方が難しい。たとえば水木先生はラバウルのジャングルで『ぬりかべ』に命を守ってもらっており、暗闇の中で「目には見えない霊的な壁」にぶつかってなければ断崖絶壁に落ちていたのだ。これを科学的に説明することもできなくはないでしょう。脳の混乱が見せた幻覚やら自然現象がどうとか。または、その組み合わせ。\n とはいえ、そんなことがあれば「自分が生きたのは神（的な存在）のおかげだ」と納得する方がむしろ正しい。針の糸を通すような複雑だが「現実でありえる偶然」をクリアした結果でしかないと思うより、針の糸を天から通すよう手解きした上位存在を感じる方が知性的ではないか。実際、水木しげる先生はそうした目には見えない「妖怪」に物語を与えたことで世界的な作家になったのだし。\n なんにせよ、こんな河に落ちて大自然の中サバイバルするなんて絶対に無理だな……とそうこう考えているうちにのぼせてしまったので露天風呂はこれにておしまい。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪ 同人誌は最近新刊がでました。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

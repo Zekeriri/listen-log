@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-04-10 04:42\n一口短文：真正的混沌时代\n一口エッセイ:真の混沌の時代\n\nニディガの若いファン層を見ていて思いますが、今の中学生って、YouTubeやTikTokを堪能し、学校やSNSで「推しの○○があんな企画してさ〜」とか「△△と□□のコラボが本当に最高で」と配信者の話とかで盛り上がっているわけじゃないですか。上質なコンテンツが毎晩供給されて、それを純粋に応援できる喜びに満ち溢れている。\n 一方、僕が中学の頃ってニコ厨全盛期ですから、みんな拳を突き出して「フタエノキワミ、アッー！！」とかやるわけですよ。馬鹿すぎるだろ。今や配信サイトで高画質の最新アニメが視聴できるのに、僕らは低画質のるろ剣を各国語で翻訳したもの（しかも削除対策で手書きになる）を観て、腹抱えて笑ってるんです。クソガキにも程がある。\n 音楽だって千円あればサブスクで聴き放題。歌い手文化は紅白にまで影響し、ボカロも世界中に浸透している中、僕らはロックマンのBGMに無断で歌詞を載せたやつを携帯動画変換君でPSPに入れて聴く。悲しすぎる。なんだよ「ウルトラマン ウルトラマン セブン！」って歌詞。とりあえず付け加えました感全開のセブンも可哀想だし、そもそも原曲はロックマンだろ。これは当時から思っていました。\n カオスなコンテンツにしても、今はバーバパパの動画など、狂気を孕みつつもオシャレなBGMと高クオリティなCGでアーティスティックじゃないですか。僕らは、『おどるポンポコリン』に合わせてブロリーが暴れつつ松岡修造が混ざるとか、真の混沌ですからね。なんだったんだよ、あの時代……と思いつつ、振り返るとなんだかんだ楽しいことがいっぱい過ぎて、涙が出てくるのが一番困る。\n\n毎日のエッセイ集をまとめた同人誌をヨロシクノキワミ、アッー！！！\n\n商業エッセイ集の方もよろしくお願いします。当時は貧乏すぎて、奴隷人生を考えさせられます。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -36,9 +36,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-01-13 11:37\n电子剪辑\nテクノカット\n\n年も明け、鼻の手術も終えたいま、心機一転ついに髪を憧れのテクノカットに切りました。\n ビシッと真っ直ぐもみあげまで同じ長さで揃えられた、名称通りクラフトワークやYMOなどのテクノが流行した時代の、無機質なシンセサイザーの音と等しい長さの整然とした髪型のセットは、まるでロボットかのような印象を与える。\n\nこのぐってりとした鴨のぬいぐるみは上海のUFOキャッチャーで入手したもの。\n 良い服を纏い、良い髪型や色によって自身の魂をより理想の輝きへと磨き、挑戦することは文化を生きるうえでとても大切なことだ。精神は肉体に引っ張られ、憧れをファッションで体現するからには身なりに倣った努力と振る舞いを心掛けなければならない。己の魂を新たなステージへ導くために、テクノカットは必要な儀式であった。横顔が鏡に映るたび、線を引いたように真っ直ぐな横髪がキリッと黒光りして身が締まる。\n さて、日本でのテクノカットの印象といえば、やはりYMO……というか特に一時期の坂本龍一でしょう。それくらい、このお三方のファッションへの影響はものすごく、音楽のみならずビジュアル方面からも世界中へ強烈な刺激を与えました。\n\nカッコいい。赤単色の背景で並ぶ三人。もみあげまで三者三様、それぞれの輝きを放つ中、センターを張った坂本龍一の髪型は時代を象徴するセクシーなまでの色気すら漂う。\n YMO以降、この髪型は『テクノカット』として愛され、しばらくは男性アイドルの間で定番となるものの、00年代に近づくにつれて、逆にテクノカットにしないことが個性となる。今やテクノカットを見ても、まず『センターパート』が先に頭に浮かぶのではないか。\n この髪型は単純な小顔でなく、縦に長い……面長寄りの方が似合うらしい。幸いにも僕は馬面であったので、整った横髪がなお映える。\n\n↑ディーヴォの話ちょっとしてる。\n\n日本でのテクノカットの話を書きましたが、さらに遡ると、そもそもYMO以前に巨大なテクノのアーティストは2つあった。YMO自身も「僕たちは三番目」と話している。クラフトワークとディーヴォですね。クラフトワークについては、僕もしょっちゅう書いているし、なんなら今からも書くのですが、ディーヴォはディーヴォで、クラフトワークやYMOとも違った「ポップでシュール」なテクノをやっているので、皆さんにもぜひ聴いてもらいたい。\n\nここまでくると言葉が不粋すぎて面倒なので急に貼った。これがクラフトワークによるテクノの体現だ！\n こちらは前髪まで後ろに回して、よりシリアスに、人間味の薄いマシーンなイメージを際立たせている。ドイツ人らしい制服や並びの「統一感」と非常にマッチしており、シンセサイザーなどの機械の前でメンバーが等間隔に並ぶと、人間離れした「美」を感じざるを得ない。日本はもう少しカジュアルに取り入れられ、それが功を奏してファッションの進化に一役買いましたが、本場は極めて「厳格」なのだ。最終的にこうなりたいが、それにはまずビシッとしたスーツも必要で、まずはドイツへ足を運び、その国民性と背景をより身体で理解してからでしょう。\n 焦ることはない。少しずつ、少しずつ魂を磨き、理想のファッションへ近づけばいいさ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,10 +56,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

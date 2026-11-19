@@ -36,9 +36,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-05-10 04:46\n“◯◯很痛苦”的全解答\n「◯◯がつらい」全解答\n\nフォロワーからのリプライで、「学校がつらい」と言われることがある。\n 学校にほとんど行かず、大した学歴のない僕からすれば、本当に苦しいなら行かなくてもいいんじゃないかと思う。\n 「勉強がつらい」も同様で、テストをほとんど受けていない。たまに出席したらテスト日だった時もあるくらいの感覚なので、テスト勉強もしたことないのだから、つらいならしなくていいんじゃないかと思ってしまう。\n 「就活がつらい」。まったく同じ。僕は就職をしたことがない。もし、履歴書を今後書くことがあったとしたら、職務部分はすべて空欄でもウソじゃない。\n 「バイトがつらい」、これはわかる。僕はコンビニ夜勤で発狂し続けたからね。「もう来なくていい」って実際に言われたことすらある。それくらい、僕は単調な作業、というかアルバイトのような行為ができない。なので、こちらに関しては同情をしています。\n\n「仕事がつらい」。これもわかるけれども、フリーランスなのでニュアンスが違うでしょう。サラリーマンが「つらい」と言っているなら、そりゃ辞めたらいいんじゃないかと考える。僕らフリーランスは辞める先がないから余計に苦しいわけで、辞表を出せば解決するなら出しているかもしれない。締め切りなどが重なってパニックは共感ができる。ヤバいよね。\n 「生きるのがつらい」。これは微妙だ。タイミングによる。いま僕も精神の病気を患って療養中であれども、生存そのものには若干前向きである。何故かはわからない。\n\n総じて、僕自体が「やりたいこと」でしか力を発揮しない人間ので、やりたくないならやらなくていいんじゃないか、学業や就職をしなくても生きてはいけるし、誰でもすぐに辞めることはできる。推奨はしないが、つらいのなら休めばいいと率直に思う。\n でも、本当はわかっている。とりあえず話のとっかかりのため具体を述べているだけで、これらは要するに「生きていて楽しくない・不安が続く」わけで、「それでも生きていくしかないのがつらい」と同義。\n なので、最大公約数のような解答は以下となる。\n 「生きていくことはつらいので仕方がない」。\n 一切皆苦。仏陀も初めから気づいている。\n\n生きることは必ず苦しい。\n 楽しさが前提にあるから歪むのであって、2000年近く前のインドからもう、「生きているとつらいことだらけだ」と王族の逃亡者は悟っているわけなのだ。苦しいのは当たり前で、それでも生きるか。\n ここまで抽象化すると、少なくとも僕は「生きるしかないよなあ」と腑に落ちたりする。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,10 +56,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

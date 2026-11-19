@@ -32,9 +32,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-10-07 23:16\n只有在SNS上的输出结果才会被评价\nSNSへの出力の結果だけが評価される\n\n残念ながら、現代では「SNSへの出力の結果」がコンテンツ業界で最も強く評価される。\n どんなに過程で研鑽したとて、世への出し方に失敗する、またはSNS周りを疎かにすると「仕事をしていない」とすら評価されてしまう。「結果がすべて」と言われると当然のことでもあるのですが。\n SNS周りの肌感覚とは残酷で、露骨にネットに触れている時間が現れる。それも、「ネットを眺めている時間」でなく「自分で投稿をしてプレイヤーとして立っている時間」が。結局、SNSでどう見えるか、どのような声は拾うか、無視するかは、不器用なりにも自分で戦ってきた者にしか身につかない。そう考えるとSNS発信必須の若者たちは、良くも悪くもちゃんと自分の手足で怪我した経験があり、最低限のラインを直感で判断できる。\n 「SNSが弱いと仕事をしているとすら思われない」感覚は残酷ですが、現代でのSNSの強さはあらゆるステータスを底上げする。どれだけ特定のSNSが廃れていくとて、どこかのSNSは盛り上がる。総合的にネットでの駒の動かし方を知っているかどうかは腐らない。\n こう考えると「10代のうちにネットで戦場に出て傷ついておく」ことは、誇張抜きに大事なことなんだなと感じます。どんな痛い経験も若いうちに済ませておく分マシというか。なんとなくでネットを眺めてきた層が30前後になり、いざ実戦に投入された際、緊張によって右往左往する光景も珍しくない。\n 要するに、これは自己ブランディングをしたことがあるか。その結果をコンテンツに反映させられるかどうか。自分で自分をブランディングすることで、ある意味で誰にでも平等な機会がある時代に、その領域へ挑戦したことがあるか。\n 動物は痛みによって学習する。\n 人間もネットで痛い思いをして大きく学ぶこともある。\n 30くらいからコンテンツ業界に入る人々は戦々恐々でしょう。\n どうあってもSNSから逃れられない世界で、ネイティブに戦場を駆けた若者たちから追い上げられ、日々評価されていく。30代から怪我をするのは相当な覚悟がいる。傷の治りは若者ほど早くない。見ているだけでのメタ認知では、全員がギラギラと輝く戦場でまだ一歩ぬるい。\n 「SNSが上手いかどうか」は、直接は参照されない裏ステータスとして社会の評価軸に根付く。\n どんなに過程を詰めたとて、世への出し方を間違えたらすべてが台無しになる。\n これは「ネットに青春を捧げた胡乱なオタク」が勝利を収めるチャンスでもあるので悪いことではない。\n 戦場では撃たれる覚悟がある者が、すべてにおいて強い。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,10 +52,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

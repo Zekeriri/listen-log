@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-04-26 19:39\n精选一口随笔：伏龙凤雏\n選り抜き一口エッセイ:伏竜鳳雛\n\n「伏竜鳳雛」という言葉があります。字面からもうカッコ良さに溢れて素晴らしいのですが、意味も最高にカッコ良い。「伏竜」は諸葛孔明を表し、「鳳雛」は龐統のことを指している。どちらも三国志において重要かつ有能な軍師ですね。\n 伏している竜と鳳凰の雛のように、飛び抜けた能力を持ちながらも、世間から隠れてまだ発見されていない大物の例えが「伏竜鳳雛」。誰よりも才能がありながら、それを発揮せずに隠れて暮らすギャップに誰もが憧れることでしょう。\n 何を隠そう、僕も大学中退して無職であったころ、自分を「伏竜」だと思い込む妄想に浸っておりました。今はまだ何もやっていないだけで、いざ何かやらせたら意外とこなせるんじゃないかと考えていたのですね。とうぜん、自分が孔明でないことなぞ充分承知であり、自宅に劉備が三回も頼み込みにやってくることなどあり得ない。代わりに電気や水道を止める通知だけが届いた。\n それでも、たとえ電気や水道は止められてたからようやく支払う生活でも、ネットで培った知識を活かして人の役に立てると思いたかった。思い込みとプライドだけは高い自称軍師、これでは孔明でなく阿Qに近い。阿Qとは、プライドだけが高くて、実際なにもできないくせに、あれこれ他人に難癖つけて「自分の方が偉い」と脳内で納得する「精神勝利法」を駆使する愚か者である。\n しかし、阿Qはバカなりにも働いてはいた。つまり、僕は中国のバカ代表である阿Q未満の存在であった。自分を伏龍と信じて部屋に篭り続ける、救いようのない若者がそこに居た。\n\n毎日のエッセイをまとめた同人誌を販売中です。新刊よろしくね！\n\n長文エッセイをまとめた商業エッセイ集もよろしくお願いします。Amazon評価も入れてくれたら最高！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -34,9 +34,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-03-16 15:39\n早晨的公园\n朝の公園\n\n収録の関係で早起きが多くなってくる。\n せっかくなので朝日を浴びるため公園でのんびりする時間が、ある。ほぼ徹夜の目覚ましに。\n ここまで昼夜逆転すると、もはや日光を恨んでいる余裕もない。信じられないかもしれませんが、太陽を浴びると明らかに体調が回復する感覚が起こる。「日光だ、すごい！」と本能的に浴びようとするのだ。僕は自室で一切窓を開けないため、余計に陽の光が珍しい。\n\nベンチに座ってカフェインを摂取していると、目の前で子供たちがボール遊びを始める。この子たちはお天道様のもとでストレートに紫外線を浴び、自律神経をごくごく自然に整えていく。登下校を行う、公園で遊ぶ。なんと健康的で正しいことなんだ。\n 子供の一人がふざけて一人にボールをぶつけ続ける。\n 5、6回ぶつけ続け、これっていじめか？ と心配になるも、流石にぶつけられ続けた方が大袈裟に「こらーっ！」っと言った感じに怒り、皆が「ぎゃー！」とふざけながら逃げ出した。その後、結局みんなで仲良くポケモンか何かの話で盛り上がってから自転車に乗って風のように去っていく。子供は風の子。\n 「弄り」って難しいラインだなあと思う。\n 例えば、今のボールぶつけを「いじめ」だと言えなくもないわけで、ただそのように騒いだら、ぶつけられた方も驚くはずだ。これは「5、6回ぶつけられて遂にキレる」というギャグ、あるいはイチャつきの前振りであって、男子なんてこんなもんである。ボールを何度もぶつけても許されるような信頼関係の確かめ合いであり、友情の証。\n 関係性やコミュニティでの立ち位置って外からは測れないものだ。\n 弄りといじめの境界線について、ネットを眺めて考えることは多々ある。インターネットでは、やらかした人間を皆で弄り倒しているうち、愛着が湧いて好感度が上がっていくこともある。もちろん、当人がどう認識するかはともかく。これはこれで愛されているなと。\n かといって、人間はちゃんと傷つく。気心知れた友人ならまだしも、まったく知らないやつからぶつけられる球は、ただただ不愉快だ。\n 結局、人は公園で遊ぶ程度の人数でのコミュニティが最も幸せだろうと考える。そこで弄って弄られて。｢身内ノリ｣より笑えるものはない。その円の内側にいるかぎり。\n 切られたばかりの樹を覗く。\n\nがらんとした空洞が、それでも長らくこの地で巨体を支え続けた風格と年月を感じさせる。春の訪れを感じさせる強烈な日の光が、がらんどうな中身を照らし、子どもたちの消えた公園に差し続けていく。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,10 +54,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

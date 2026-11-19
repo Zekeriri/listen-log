@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-29 00:57\n一口随笔：假的姓氏\n一口エッセイ:嘘の苗字\n\n未だに、自分の苗字に強い拒否感があります。\n 僕の今の苗字は二つ目です。一つ目は母親の苗字でして、生まれ育った沖縄らしい珍しさがあって気に入っておりましたが、母親が東京から来た男と再婚したことにより、現在は義父の苗字になりました。沖縄らしさはカケラもない、ありふれた苗字。\n 苗字が変更された際、友達は弄って笑いましたが、僕はそれがとても嬉しかった。弄るということは新しい苗字に違和感がある証拠であり、同時に以前の苗字の方がしっくりきていたからでしょう。こういう場合、親しい人がネタにしてくれた方が気が楽と言いますが、正しくその通りだったのです。\n 自分の苗字が知らない男の苗字に塗り替えられた事実は、今でも慣れない。書類の記入をするたび、本来の血縁でない嘘の苗字を書かされることが屈辱に感じる。家族と断絶した人生を歩む今でも、この姓が変更される訳ではない。死ぬまで知らない男から勝手に受け継がれた苗字を名乗らねばならない。\n もはや「烙印」のようにまで感じます。ユダに「UD」の文字を刻まれた奴隷の気分。今では、本名より「にゃるら」と呼ばれる機会の方が遥かに多いし、地元の友人は僕を名前で呼ぶ。苗字のことなど忘れた頃に、身分証明という現実に向き合った瞬間、義父から刻まれた陵辱の証が目に入る。\n 結婚して相手の姓に塗り替え直すことが人生の目標の一つです。結婚生活なんて無縁と思っていましたが、義父の呪いから解放され、愛する人の苗字を貰う未来を想像すると、僕は結婚するべきと考えるようになった。その時こそ「にゃるら」でも「嘘の苗字」でもない、本当の名を名乗ることができる。\n\n毎日のエッセイをまとめた同人誌をboothにて販売中です。明るいことも暗いことも、全部書いております。\n\n今月は、商業エッセイ集もでました。生い立ちのことがいっぱい載っていて、読むと暗い気持ちになると好評です。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

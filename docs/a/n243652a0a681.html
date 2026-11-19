@@ -25,9 +25,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-09-18 05:57\n一口随笔：不停地睡觉\n一口エッセイ:ひたすら眠る\n\nひたすら眠い。\n もう、とにかく眠い。日記を書いている今この瞬間も意識が朦朧としているうえに、なんだか頭が痛い。この状態が1週間ほど続いております。\n 睡眠時間としては、めちゃくちゃに寝ている。デエビゴという睡眠薬を飲み、向精神薬の副作用もあるので、ちょくちょく起きながらも10時間以上寝ている日もあるものの、それでも日中つねに眠くて何も手につかない。\n 服用している向精神薬の効果で、不安や緊張が多少緩和された感覚はあるのですが、代わりに平常時に副作用の眠気がきて頭が働かなくなるので、結果的にまともに動ける時間がほとんどないのですね。\n 脳みそが、全身が、とにかく眠り続けろと命令しているのでしょうか？ たしかに安眠している時こそ、いやむしろ夢も見ないくらい深く眠っている時だけ、幸福であるのかもしれない。この幸福な睡眠を行うために、「現実」という過酷で残酷な時間を過ごしているのかもしれません。\n であるなら、やはり「死」は究極の安眠とも言えます。生への執着や後悔を捨て、現世での業（カルマ）を落とし、安らかな死を受け入れる瞬間を迎えるため、僕らは日々の生活を過ごしているとも考えられる。\n なんて、本当は死に意味なんてないこと分かっているのですが、とにかく今の僕は深い眠りを全身が求め続けて仕方ないのだね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,10 +45,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

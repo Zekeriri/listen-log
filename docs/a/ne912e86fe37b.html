@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-17 13:38\n精选一口散文：耳环\n選り抜き一口エッセイ:ピアス\n\nピアスを開けたのは中学生の頃で、それにはいろんな葛藤と理由がありました。\n まず、大嫌いだった学校への反抗心。Tシャツの色が黒いだけでも激怒される世界で、ピアスを開けるなんてとんでもない悪行だ。内申点がもの凄く引かれて、まともな高校に進学するなんて許されなくなるでしょう。だから開けた。\n 規律を守る人生から脱却して、自分の信じるカッコ良さを優先する。明るい未来を強いる大人たちへの反抗の証。人体改造というのはゴシックな行為であり、大好きなマリリン・マンソンへの憧れから、こうすることが最もカッコいいことだと思った。僕はただ校則を守るだけの人形じゃないと証明したかったのです。\n もちろん、デメリットについてはよく考えた。わざわざ痛みを伴ってまで身体を傷つける。その結果、学校では不良扱い、ネットのオタクからは背伸びした猿と揶揄され、進路も大きく狭まれる。それらについて想像を膨らませたが、そんなことより耳元で宝石が輝く方が大事だと覚悟を決める。\n 細長い針を耳元にあて、一気に貫く。思っていたより痛みはない。丁寧に消毒して、ファーストピアスを嵌める。自分がもう「正しい生徒」の道は歩めないことにゾクゾクし、恐怖と誇らしさを同時に感じて身震いする。規律や痛みより、ファッションを、美意識を優先した瞬間。鏡に映る小さな光を目にした時、自分が初めて大人になった気がしたのでした。\n\n毎日のエッセイをまとめた同人誌を販売中です。読んでね。\n\n今月末には、商業エッセイ集もでます。いっぱい書き下ろしもあって楽しいです。やったね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

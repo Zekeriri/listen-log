@@ -32,9 +32,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-03-15 04:49\n中野站南口\n中野駅南口\n\n人と会う予定があったのでついでに散歩に成功。外出したことや他人と話したことで精神が少しずつ健やかへ。\n それはそれとして、中野駅南口の巨大なビルがようやく完成したらしい。少しずつ一階にテナントが入ってきているものの、まだまだ上の方は空いていて、わずかな間になってしまうでしょうが現状は無を堪能できる。\n\n案内が設置されているうえで新築の建物なのにがらんとしていて趣がある。19時くらいでもまったく人がおらず、稀に同じくがらんどうな空間を楽しむ男子小学生とすれ違う程度。『パークシティ中野』というらしく、きっと数ヶ月後には街の住人たちから愛される便利な商業施設となるのでしょう。\n 無を堪能するなら今だ。\n 工事中は気づかなかったものの、この新品ピカピカな建物の向かい側には、昔から南口を支えてきたビルが存在し、何十年もの重みが感じられる外観をしているため、比べてみると光と闇のようになる。\n\n左側がパークシティ中野。近未来的でいかにもなデザイン。ここは最近まで工事中だったので、向かいのビルの壁をまじまじと見る機会があまりなかったのですが……\n\n工事が終わって全貌が見えるようになった今まじまじと見ると年季の入った壁がとてもカッコいい。このビルが中野の再開発によって建てられた大型商業施設と併設されたタワマンの向かい側にはそびえ立つ。このギャップがすごく良い。いずれ商業施設の中身が本格化してきたら、こちらの壁も交渉して塗り直されたりするのだろうか。サブカルチャー塗れの混沌とした中野らしくて好きな光景です。\n 南口にはどうやらバニーガールがお迎えするコンカフェだかバーがあるらしく、夜は逆引きのバニーガールが立っている。冬は寒そうでちょっとかわいそう。入店する気はないが。ガードレール下には車椅子のおばあちゃんがいつも座っていて、通行人が横切るたびに腕を伸ばしている。一度、何もかもダメになって深夜の南口で寝転がっていたときに至近距離で時間をともにしたので妙な親近感を覚えている。いつか話を聞いてみたいものですが迷惑でしょうか。忙しく中野をいく人々に腕を伸ばして何を訴えているのだろうか。\n ちなみに、寒空の下寝転がっているときにキタニタツヤから雑談がきたので、「いま駅で寝転がってる」と返したら、真剣に心配して状況を訊いてくれたので良い奴すぎて怖くなった。ありがとう……。特に理由はなく疲れていました。\n\n誰もいない新築ビルの広場でのんびり座っていたら散歩中の犬たちがやってきた。彼らも広々とした無の空間を堪能中。春とともに広場も人で溢れかえる。今のうちにたくさん駆け回るといい。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,10 +52,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

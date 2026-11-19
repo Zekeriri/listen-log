@@ -35,9 +35,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-10-31 00:02\n电气幻影·情感\nエレクトリック・ミラージュ・感情\n\nエレクトリック・ミラージュ・感情。\n\n原口さんへ、CDsの方を紹介していただき、今回namitapeさん。まさしく王道なテクノポップを若くして探求している方で、シンセちゃんの一枚目の曲のイメージに合致。\n いったい、今後何が起きて、何をするつもりなのかは、もうちょっとだけ秘密です。\n 作詞と合わせ、ちょっとしたコンセプトだけ。\n テクノを知っていきたいと考える途中、歌詞に困った。言葉には意味があり、言葉はメロディと合わせりインストよりも重要性を帯びることがある。機械の織りなす電子音楽の心地よさに対し、作詞がどう邪魔をせずに済むか。\n 敬愛するクラフトワークのように、非常にシンプルに、モンドリアンのたどり着いた究極の均衡のように、一切の無駄のない直線であるべきだ。\n 今回の企画では、幸い、そのような挑戦を多く許してもらえる座組で、何より共に創っていく原口さんも同じ志を持ってくれている。文字通りに同志だ。\n\nという話をエッセイとして寄稿したり、\n\n喋ったりをしている。\n\nそこで、今回のエレクトリック・ミラージュ・感情では、どれだけ文字の連なりを「意味性」から解放できるかを試す。結果的に、どんどん詩に近いようなものが出来上がっていく。何より、音ありきな。\n その挑戦に対しnamitapeさんの素直さ、映像を担当していただいた、えいりな刃物さんのトリッキーな表現の幅は、非常に理想的に演出できたと思っております。まだまだキャラクターが発展途上ゆえに、まだまだ結果が拡がるまでに時間がかかるけれども、僕らの出発の原点として愛される記念碑に、この一曲が在り続けると嬉しい。\n\nテクノポップ・有機・シンセサイザーちゃん - nyalra pic.twitter.com/zR4iYwuZ83— テクノポップ・有機・シンセサイザーちゃん (@Synthesizerchan) October 28, 2025"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -56,10 +55,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

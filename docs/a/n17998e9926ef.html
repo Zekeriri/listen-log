@@ -32,9 +32,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-10-11 12:11\n在澳大利亚看到了蝴蝶\nオーストラリアで蝶を見た\n\nオーストラリアで蝶を見た。\n\n青、黒、白、黄、緑。色とりどりの蝶を見た。\n オーストラリアには二つの顔があり、区画整理された小粋で愉快な都市と、静かな自然。\n 蝶が羽ばたく緑のなか。\n\nこんなに艶やかに舞う蝶々が居る場所に暮らせるなんて羨ましいね。\n\nこの光景を前にしたら、誰もが箱に閉じ込めたいと願うでしょう。昆虫標本は彼女らの翅が欲しいと魅了された人間たちの罪と美の結晶です。\n\n大きな蜘蛛も遊びに来ていた。\n\n優雅に宙を行く蝶を狙う、地を這うことしかできない憐れでカッコいい捕食者。\n 振り向くと誰も居ないメリーゴーランドが揺れていました。オーストラリアの思い出です。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,10 +52,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

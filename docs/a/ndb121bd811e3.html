@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-09-06 20:34\n对话的电压\n会話のボルテージ\n\n大雨による不調もあるのか、ずっと寝転がってうなされています。\n 探偵ナイトスクープを数か月分流す。新探偵もすっかり馴染んだ頃で、もうちょっと後にはたんプリとのコラボもあるらしい。探偵ナイトスクープを通して、たくさんの「街の面白い人」を眺め、その合間に鉄鍋のジャンの続編や外伝を読み進めている。こうして書くとなんだか楽しそうな時間にも思える。実際は、結構ぐったりとしているのに。\n 探偵ナイトスクープを観ていると、「街に人々がいるなあ」と安心します。ぐったりしている時に垂れ流すと孤独が薄まる気がしていきます。\n 街の人々との会話って、ずっと困ったままだったなあと感じる。最近も美容室でドキマギした。妙にテンションが高くて、こちらの話を「えぐーっ」と朗らかに返される元気なノリにたはは……とたじろぐ。こういったテンションのすれ違いを延々としていくのだなあ。\n 世の人間たちが会話のボルテージを上げるために、エグい〜と言い合うことは知っていたものの、たしかにいざそう出てきた時に、次の会話のステップまで想定していなかった。目を瞑って「眠りますよモード」で切り抜ける。別に会話が嫌ではないのだけれど、反射的にノれるほどでもない。周囲の客は、もはや会話しにきているのかというくらいの好感度で美容師と談笑。これもこれですごい。両方タメ口だ。\n 探偵ナイトスクープに出てくる街の人々たちは、このテンションの感じですぐに対応できたりするのだろうか。\n 美容室が初めに行うアンケートで、どれくらいの比率で「会話は控えでお願いします」に丸をつけるんでしょう。今回、自分は控えめに丸をつけて、その上で「エグい〜」と結構叫びが出てきたのだから、いざ会話OKの状態にまるつけていたらどれくらいエグかったのか。\n こうした「一般的な基準」を観測するために、探偵ナイトスクープは非常にちょうどいい。と思って観ていたら、31歳一般女性としてあいみょんが依頼してくる回だった。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -29,9 +29,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-11-04 11:30\n人权与革命、奴隶\n人権と革命、奴隷\n\nどのような環境だから邪智暴虐の王が刺されるのか。革命が起きるのか。それは「人権」までも踏み躙った時だ。人間を人間と扱わなくなった瞬間。奴隷は敏感だ。生きるために何より必死なのは、ぶくぶくと裕福に膨らんだ王ではなく、日々にもがき苦しむ奴隷側。\n 人権を奪われたら、復讐せねばならない。\n 守るべきものがないのだから生きていても意味がない。なら、相手を殺すしかない。どうせ人として扱われることがないなら、人が人であるために悪人の血で生き様の証明をする必要がある。\n 貴族は、奴隷の扱いが巧みだ。\n 自分のために働いてくれる奴隷がなければ優雅な暮らしも成立しないと知っている。なので、召し使いたちにも相応の教育や格好を施す。となると愛着も湧き、身分の差はあれども共依存と信頼が発生する。人権を尊重し、それでも労働と奉仕に殉じてもらうための塩梅を学ぶ。自身に仕える者が誇りに思えるよう己が魂を磨く。身分とは上に立つかぎり、誰よりカッコよく立ち続ける責任がある。\n そうした機微も、人間の感情も分からず生きていると、平気で人権を奪える。「知らない」から。誇りや魂について考えたこともない。世界に自分しか居ないから下にはいくらでも搾取していい。人が人である権利を剥奪し続けた末、自身が最も人間から遠ざかる。\n 人が人であるために奴隷は邪智暴虐の王を刺す。\n この歴史は必ず、いつどんな時であろうとも繰り返す。ノブレス・オブリージュとは、気高さとは、奴隷を奴隷にしないための自己防衛でもある。奴隷は他人の醜さを視ている。他人のプライドを重んじる。醜き豚は、なぜ権力に応じて高貴を磨かねばならないか気づかぬまま、ぶくぶくと肥えて異性を貪る。その醜さは暴力となる。\n トランプの大富豪は、よくできた皮肉だ。\n 最も弱いカードたちが徒党を組んで最強となる。王やお姫様たちが弱体化して立場を追われる。革命は必ず起こる。\n 人権を大切にするのは相手のためだけではない。国が逆転されないように守る、全人類にとって都合のいい世界を演じるための地球ぐるみなエクスキューズなのですね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,10 +49,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

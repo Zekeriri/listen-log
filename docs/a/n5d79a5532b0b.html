@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-01-25 05:55\n不良少年的外观\nヤンキーのビジュアル\n\n沖縄に居た頃は、右も左もヤンキーだらけでしたが、彼らはカーストが高くなるにつれて顔も良かった。沖縄なので自ずと肌が黒くなり、生まれつき顔のパーツが濃い人が多いというのも相まって。そのうえで、見てくれが重要な世界なのでファッションを気にしているからであると思われる。今思い返すと、かなり合理的なステータスの伸ばし方だなと感心します。\n 思春期時の教養やお金周りは、自分の力で大きく変えるのは難しい。生育環境がモロに出る。では、学もなくてお金もない子供たちがどうやって戦うか。そこで「ビジュアル」を利用する。\n もちろん、不良でなくてもカッコいい/かわいい人はたくさんいるわけですが、学生の頃に「派手」まで挑戦すると浮いてしまう。が、元から浮いている不良たちなら、むしろ個性的であればあるほど評価される軸に居る不良であれば、派手派手で問題ない。ピーコックに思われないギリギリを攻めることができるし、派手過ぎても、それはそれで好む人もいるでしょう。若いうちからピアスや派手髪に挑戦できる強み。東リベヒットの理由として、登場するヤンキーたちの過去と現代を行き来する尖ったファッションセンスは大きいはず。\n\n24巻の現代マイキー好き……。人気投票の結果、ほとんど顔の順だろ！ と思った！\n 特に、SNSの普及でルッキズムが強まった現代ですから、若い頃からファッションに慣れた人たちが、そのまま夜の世界や動画文化にシフトし、顔の良さで大成することもある。勉強大好きで不良を下に見ていてインテリたちから、ビジュアルの力で上に立つのはさぞや快感でしょう。こう書くと皮肉めいた書き方になりますが、人生にはたくさんの逆転チャンスがあるべきなので、必ずしも学歴や育ちが全てでないのは良いことです。まあ、この世界には全てのセンスも頭の回転も備わった超人だって存在しますが。何億も人がいるのだから、ステータスMAXで生まれたチート個体だっている。\n しかし、基本的には、僕ら凡人はなんらかのステータスが欠けまくっており、たいていそれは苦手な項目なので伸びも悪い。僕はモンスターファームが大好きなので、伸びの悪いステータスのために時間を費やすことを良しとしない。ゴーレムに賢さと回避を求めない。その思想を現実に反映させ、学力や収入よりもビジュアルに全振りすることで、この過酷な現代社会でポジションを確保する動きを、無意識に理解している者たちは、ある意味で頭が良くて効率的だなと感じます。シュっとしてなければ、デカく大きくなることで強さの個性を得ることもできるし。\n 何にせよ、欠けた部分は気にせず、自分が伸ばし易い分野で勝負する人たちは、見ていて気持ちが良いですね。いろんな戦い方がある。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

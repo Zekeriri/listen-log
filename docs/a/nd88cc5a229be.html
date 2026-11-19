@@ -24,9 +24,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-07-31 17:28\n招募各种助手类型的人\nいろいろアシスタント的な人を募集\n\nアニメ作業で連日徹夜……といっても隙を見て数時間寝ている形ですが、とにかくここ半月くらい精神の追い込まれ方が顕著。端的に言えば、アニメ製作なりニディガ企画に集中したいため、その他（資料集めなどもありつつ）を手伝ってくれる方が居たらありがたい。平たく言えばアシスタント募集か。\n 中野に近くて時給＋α（ご飯くらい）で、それなりに動いてくれる方なら他は特に無し。仕事の通じ易さ的になんらかの作家を目指しつつ、棚とか作ったりがあるので男性だと望ましい、くらいでそこも一応程度かな。相互の方でそういった人、またはめちゃくちゃやる気があって身元がわかりやすい方なら適当に連絡ください。\n 最近は仕事部屋的な空間を作ることに成功したものの、部屋のレイアウトや家具集めがあまりに好きすぎて、原稿への現実逃避も兼ねてそればかりしてしまう。リビングや脱衣所などの家具の配置を試してしたり、足りないものをホームセンターで集めて微調整しているうちに3.4時間経っていることもザラにある。なんなら壁紙の色とかも試行錯誤するため、リメイクシートを貼ったり剥がしたりを繰り返している。結果的に全て元に戻すことも多く、完全に無意味なことも多い。\n 収集家なのだから、棚を作ったり並べたりするのが趣味で良いのですが、原稿に追われつつあると自重せねばならない。僕は部屋の整理が大好きすぎて、これを封印する必要がある。放っておけば一日中掃除をしたり、フィギュアのポージングを考えたりしている。これは流石に対処せねばならない。\n あとはシンプルにあらゆる資料はあればあるほど助かる。単純にやる気の起きない事務作業もままあるわけで、もはや安くない時給を払ってでも時間を優先した方が効率が良くなってきた。この作業量から見てアシスタント的な人が居て然るべきで、でないと睡眠時間すら確保できず精神的に耐えられない。週3のジムのおかげで肉体的には日々引き締まりつつあるのが救い。\n まあ普通にアルバイトするよりは楽でお金も払うし……あとは特殊なことも多いので、なんらかの知識や刺激を授けられはするでしょう。特別なスキルは要らないので、気軽に話しかけてもらえたら嬉しいです。相互フォロワーの方優先で、なんかそんな感じでゆるく、とはいえ僕としては精神的にかなりギリギリですが、とりあえずやれるだけやってみましょう。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,10 +44,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

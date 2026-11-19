@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-04-24 03:50\n一口随笔：《初次独自出门》豪宅篇的天才儿童\n一口エッセイ:『はじめてのおつかい』タワマン回の天才児\n\n『はじめてのおつかい』が海外で人気らしいです。2〜5歳程度の子供が、一人で街を歩いて平気な環境が用意されているのですから、日本の安全性に驚くらしい。折角ですので、これを機に視聴開始。テンポ良くサクサク進むので、だらだら観ていく。\n 視聴中、11話目で都内のタワマン生まれの利発そうな男の子が登場。まだ4歳ながらも、品行方正に立ち振る舞い、年相応な我儘さを一切感じさせない。同じくタワマン住みの友人を率いて、二人で都内を歩くセレブっ子。信じられないことに、家を出た瞬間、瞬時にカメラマンを発見。怪しく感じたのか、自ら「なにしているの？」と話しかけることでスタッフを揺さぶり心理戦を仕掛ける。「測定をしているんだよ」と誤魔化すも、すぐさまカメラが複数ある不自然な点まで指摘。今までの田舎っ子ではありえない、優れた洞察力。これが英才教育。\n さらに、友人の不注意で転んでしまっても、進んで謝罪して喧嘩を回避する寛大さまで披露。さらには、友人が公園に寄り道しそうになった際に、「叱られるよ」と注意もできるし、それでもしぶった相手に対してすかさず元気にカバンを揺らし、公園に行かずとも楽しげな様子を見せて誤魔化すことに成功。計略までも完璧なのだ。おつかい後も、自室内に仕込まれたカメラすら察している。銀英伝だったら、「後世の歴史家は、こう語る〜」と評価されるレベルの貴族的な気高さを感じさせます。\n 4歳でありながら、この子が既にたくさんの部下を束ねる大物になるビジョンがはっきりわかる。末恐ろしい。人生とは、こんなタイミングから明暗別れているのだなぁと恐怖を覚える回でした。\n\n毎日のエッセイをまとめた同人誌を販売中！\n 新刊買ってね。おつかいのつもりで手に取ってみてください。\n\n商業エッセイ集もよろしくお願いします。馬鹿な子供が書いた、一切知性を感じさせない内容です。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

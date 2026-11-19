@@ -29,9 +29,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-12-02 07:51\n一口随笔：对网络整体感的态度\n一口エッセイ:ネットの一体感へのスタンス\n\n日本がサッカーで何かすごい感じに勝ったらしい。朝まで黙々とスプラをしたあとタイムラインを開いたら、誰も彼もがお祝いムード。朝からなんとめでたいことでしょう。\n ここで問題なのは、自分のスタンスです。大きく分けて二つの選択肢。\n ①素直に日本の勝利を喜んで、タイムラインに参加する。\n ②「サッカー？興味ないね……」と斜に構えて、はぐれものを気取る。\n または、完全スルーという手もありますが、タイムラインが同じ話題で一色の際に、敢えて関係ない内容で勝負するのは、かなりのテクニックを要する。「世間の一体感」以上の何かを展開しなければ、②と同じ逆張り野郎の失敗例となる。\n 当然、①が無難です。試合内容なんて一切観ていないし、誰と誰が戦ったのかも知らない。なんなら、今行われている大会がなんなのかも不明。たぶんサッカーなんだからワールドカップじゃないか？ と睨んでいるが、なんかスポーツの大会ってたくさんあるから違う可能性もある。そのレベルの理解です。そんなオタクが、急に「日本おめでとう！頑張った!」なんてツイートするのは流石に怪しい。興味ないのに勝ち馬に乗った感じがダサい。こういう場合、ちゃんと事前に「応援してるよ！」「興味あるよ！」と呟いておく必要があるのです。ネットの監視員たちは厳しいからね。\n ならば消去法で②ですが、これは修羅の道だ。修羅というか、盛り上がっている人たちに水をかけるだけのみっともないオタクでしかない。中高生であれば、「世間の関心に反抗する俺」を演出し、斜に構えた同士との仲間意識を深めることもできる。が、僕はいい大人だ。いい大人がいつまでも、他人が楽しんでいる行事に「フン……くだらん」と腐すのはダサい。スルーすればいいわけだから、わざわざ言及している時点で大人気ない。しかも、世間の流行に反発する姿勢を見せているくせして、自分は全然スプラにハマっている。なんの格好もついていない……。こんな発言してしまうと、恥だけが残る。\n となると第三の選択肢、「わけわからん文章で誤魔化す」を行うしかない。つまり、この状態がそう。日本の勝利を認識しているが、それを喜んでも怒ってもいない。ただただ訳わからんオタクの自意識をだらだらと並べる。こうすることで、「祝杯ムードを真っ向から言及しつつ、肯定も否定もなく、かと言って別の話題で逸らすような空気の読めなさも隠したまま、穏便にタイムラインに馴染む」ことができたのですね。あっぱれ！\n なので、今日の日記はまったくもって無意味な文字の羅列に終始しているし、せっかくのお祝いムードの中、こんな文章に時間を費やした貴方は数分を損をしただけです。素直に歴史的な瞬間（めっちゃすごい勝利なことも予想でしかないけど）で盛り上がった方が千倍有意義ですよ。\n\n毎日の日記をまとめた同人誌（さいきん新刊がでました）や、商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,10 +49,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

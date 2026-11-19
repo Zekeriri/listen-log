@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-03-20 11:16\n一口随笔：熟睡\n一口エッセイ:熟睡\n\n友人が二人泊まりに来たので、今日は日記を書くのが遅くなりました。こういう理由で遅れるのは幸せなことですね。友人たちが、自分の部屋で就寝している様子は安心する。眠るって、警戒心を解く行為ですから。友情の証のように感じます。\n 自分は無音に弱い。就寝前、読むものも観るものもない暗闇だと、どんどん自身の現在や将来について考えて不安が押し寄せる。不眠の原因として、脳味噌のごちゃごちゃは大きい。常に読書かアニメ観ているかでないと、余計な思考がループし始める。\n 不安のない穏やかな人生を歩むルートもあるのかと昔は考えていましたが、そんな都合良いことは人間が人間である限りあり得ない。どんな人間だって必ず悩み続ける。溢れるほど貯金をしていようが、価値観の合う恋人が側に居ようが。誰もが苦しみを背負っている事実は残酷で、結局はみんな努力や苦労を経験しているから、言い訳ができない。人間は悩める豚なのです。\n 穏やかな人生を目指すといえば吉良吉影ですが、吉良の人生観こそ、異常な殺人衝動の裏返しであり、彼のとても不幸な面です。人間は「平凡」では満足できない。その場では普通を享受できていても、日によって精神のバランスは変動するのだから、どうしても何らかの欲が芽生えて期待してしまう。吉良の場合は、それが殺人衝動と化す。その衝動に苦しみ、平穏は崩れ去る。\n 十分な睡眠こそ最も至福な時間であると思う。それくらい安心しているのですから。悩みのない人生は成立しないけれど、せめて熟睡できる夜が一日でも多くあることを願いながら生きるしかない。\n\n毎日の日記をまとめた同人誌をboothにて販売中！\n こうした積み重ねが、いつか幸福に繋がると信じて。\n\n商業エッセイ集の方もよろしくね！！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

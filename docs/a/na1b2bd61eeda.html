@@ -38,9 +38,8 @@ Twitterだけで見られる雑なにゃるらと、noteで活動や考えにつ
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-01-21 08:13\nnote的月访问量增加了十万\nnoteの月間ビュー数が10万増えた\n\nnoteの月間ビュー数が10万増えた。なぜならTwitterで記事内容をメモ帳に転写したものを貼らず、そのままnoteへのリンクを貼るようにしたから。なんて単純なことなんだ！\n\n変えてよかった。上記記事以降、自分でもぐっとエッセイの強度が高まったと自負しております。メモ帳という窮屈な足枷から解き放たれ、文字数や画像添付の制限がなくなったからでしょう、ここ一ヶ月の記事にはだいたい満足がいっている。まさか、ここにきて目に見える進化ができたとはね。むしろ今まで４年間、メモ帳でよく頑張ってきたものだ。\n\nで。投稿スタイルを変えてから一ヶ月。今までの平均月間ビュー数から１０万伸びる結果となった。単純にnoteで僕を追ってくれる方々が増えたというわけで。嬉しいことだね。\n 逆に言えば、10万ビュー分、Twitterのみで閲覧していた人たちが読む機会が減った。そこまで単純な相関関係ではないけどね。日記を投稿する際、メモ帳のスクショによってnoteへ飛ばずに済んだ、Twitterだけで完結していた層が10万ビュー分ある。\n それも含めて正解だ。\n きちんとnote上で長文を読んでもらえる人たちに絞ることで、精神衛生はだいぶ安定することでしょう。Twitter上でよくわからんやつらに揚げ足取りされる可能性がぐっと減るのだし。読者が勝手に選別される。「能動的に文章を読みたい層」へ届けられる。10万ビュー分、ね。\n\nTwitter上では目に見えて数字が落ちている。アルゴリズム変更のあおりだ。外部サービスへ誘導するURL付きのツイートは露骨にインプレッション数が減る。そりゃTwitter側はいつまでもTwitter内をぐるぐるさせなければ儲からないからね。なので、僕がぱっとnoteへのリンクだけを貼ったツイートはTwitter民の視界に入ることが極端に減少。\n この前、久々に主張性のある呟きをしてみた。あれは、このままだとnoteの人になるなと寂しさを覚えた部分もあったと今にして思う。ここで日々の思考や感情を文章にしているぶん、Twitterアカウントはほとんど無意味な投稿を繰り返している。それこそ「つぶやき」らしくていいじゃない、と。\n Twitterでの存在感が減った代わりにnoteがきちんと伸びていく。何も悪いことではないけれど、正しいことが身にふりかかると何だか嫌な気持ちになる。逆張り根性、極まれり。うーん、そのほうが絶対に得をするし、ちゃんと読んでもらえる人たちの存在はありがたく、誤解を受けることも減るはずだ。なぜなら、難癖野郎どもはわざわざnoteまで追ってこない。Twitter社の策略通り、タイムラインで怒りや嘲笑をぐるぐると回転させ続ける。こうして煽ったって届かないのだから気楽なものだ。\n\nとなると、次に起こるのは「にゃるらという存在」の乖離でしょう。\n\nTwitterだけで見られる雑なにゃるらと、noteで活動や考えについて綴っているにゃるらは印象が別物と言っていい。とくに騙しているとかではないけれど。Twitterのみの場合、僕が何を考えているのかわからなくなる。\n\nわけのわからん僕の立ち位置は、ただでさえハイコンテクストなのに、さらにレイヤーが重ねられ、「noteでのにゃるら」が生まれる。こことは別に「英語圏で交流するnyalra」も実は居るわけで、そこも日本側だと見えにくい。別にすべて自分で問題ないけれども、簡単に全容を把握できないのはたいへんだよね。\n\nなんにせよ、こうしてnoteでまでも駄文を追っていただける方々には感謝をしています。それはそれとして、この状況が正しすぎることが何だか気に食わないのだけれど、いずれどうでもよくなるのでしょう。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -59,10 +58,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -32,9 +32,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-05-08 04:18\n独裁者游戏最喜欢！\n独裁者ゲームだいすき！\n\nもう生涯のベスト5に入るほどトロピコ6にハマっちゃっている。ハマるとかでもないわな。モンスターファーム2みたいな、現実逃避役のライフワーク。「これを遊んでいると無条件で幸せになれる」くらいにピッタリと人格に嵌った一作だ。\n トロピコというのはカリブの小さな島で独裁者となるゲーム。もちろん島一つを巨大な国家にするまでは一筋縄でいかない。観光業やら武器輸出やらと右往左往だ。そういうことが好きな謎のオタクたちにとって夢のような名作となる。\n で。僕は完全に「善悪とは何か」に悩むロールプレイをしている。ダンバインのラスボスが、主人公サイドにとっての悪行でも本心から「善だよ」と言い張るような、そういう政治の複雑さを身をもって知るために今日も島を眺める。富野由悠季はすごいな！\n 島を運営するため、刑務所を作る。どんな世界でも犯罪者はでちゃうからね。捕まえたのち、金がないので囚人に労働をさせる。となると、治安が悪くてもそのぶん捕まえた犯罪者が牢屋で労働してくれるからいいやと自由度が増す。\n 治安が悪化するので犯罪者が増える。となると犯罪者の中でも知能が高い「犯罪王」なる人物も頭角を表す。そいつも捕まえたっていいが、島のためにお金が欲しいので犯罪王と裏取引を行う。この金で島は強くなり国民は幸せになるからいいじゃんね！\n といっても、さすがに犯罪者が増えすぎてしまい武装ゲリラも登場。見張りの軍隊も作り始めて対抗するが、そろそろ収拾がつかない。やむを得ないので犯罪王の一人を「黒幕」として逮捕する。すべての原因は捕まえたのでもう大丈夫だぞ、と。今までそいつから裏金をもらっていたのに。\n 黒幕が逮捕され、一時的に平和になる。黒幕も働く収容所から労働分の収入がはいる。その金で軍を強化して治安を守る。島は豊かになる！\n\nこれって悪なのか？\n 観光業もレジャー施設も増えて、国民の幸福度は目に見えて上がった。深いこと考えなければそこそこ幸せに過ごせるだろう。独裁か？ 僕はみんなのことを考えて動いているのに！\n\nそういうことを考えてコントローラーを握っているうち10時間が過ぎている。ああ、これは生涯通して忘れられないゲームだろうな。\n ああ、人は、人はみな善であり悪だ。\n 善人ぶるやつに気をつけなさい。善悪は表裏一体。どの角度から覗くかでしかない。僕の島は幸福ですよ。僕は善人で、悪人です。裁きますか？"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,10 +52,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

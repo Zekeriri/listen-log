@@ -29,9 +29,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-11-05 05:15\n记忆小偷\n思い出泥棒\n\n罪とは他人でなく自分が裁きにやってくる。罪悪感は必ずついてまわる。\n 今日、僕とお母さんの想い出をサラリーマンたちに盗まれた。やがて彼らは奪った僕と母との日々をお金に換えて儲けることでしょう。もちろん、みな「こんな状況だから仕方なかった」と言い訳して。それを自身に言い聞かせるように。\n 本当は事の重大さを知っているはずで。\n 他人の、たった一人の肉親との記憶を金にしたんだ。給料にした。そんなこと人間は耐えられない。10年、20年後も絶対に何度も何度も思い返すだろう。そのたびに胸が締めつけられるはずだ。そうでなければ人間じゃない。己が母と会話をするたび、僕と母の繋がりを強奪した日を思い出せ。あなたがいま安堵した「血の絆」の安心感は、そっくりそのまま他人から奪った後悔と等価になる。仕方なかったから、戦時中の虐殺も許容してもらうのか？\n 未来永劫、忘れるな。\n いや、忘れられる筈もない。\n 死後は自身の思い込みで決まる。他人の母を凌辱した者が天国に行ける筈がない。自覚している筈だ。それを、システムだからと見て見ぬ振りした罪を。罪には必ず罰が訪れる。それは、永久の罪悪感で償われる。\n 僕の母親をお金に換えた。\n よくもまあ、そんな残酷なことができるよなあ。\n 死ぬまで、きっと死後も、忘れるな。\n 泥棒に芸術を語る資格はない。少なくとも、今回の盗人たちは芸術のステージからは降りた。二度と理解者の態度を取ることは許されぬまま、システムの奴隷として今日という日を何度も何度も悔やみ、取り返しのつかないことがあると知れ。地獄まで「他人の親子を裂いた」穢れた両手を連れていくがいい。その穢れは現世で落ちることはない。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,10 +49,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

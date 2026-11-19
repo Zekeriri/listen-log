@@ -61,9 +61,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-06-12 18:31\n系统化的米青申禾斗\nシステマチック米青ネ申禾斗\n\n飛び込みができる米青ネ申禾斗へ行く。\n 飛び込みが可能ということは、多少はシステマチックになっていることでもある。\n 過去、自分は己の自閉症スペクトラムに向き合うため、自閉症に関する著作に心打たれた先生のもとへ通っていた。その先生は、自身の自閉の具合を相当に相談していただき、「アスペルガー」という生き方を大きく学べた。\n 「自分の殻の中に籠る」ことでしか得られない世界もあるわけで、自分は自ら卵の殻へ入っていく生き方を愛するべきと決意ができた。\n 飛び込みで入れる米青ネ申禾斗では、そのように深く向き合う先生と出会うというよりも、ある程度の悩みから判断された薬をもらう「フロー」であるなと感じます。それでもいいくらい、今はこの生き地獄から解放されるような薬が欲しかった。\n\nバウムテスト。\n 一応、書いてみたけれども、特に先生から触れられることもなかった、一応、根が描かれていない、枝がきちんと描ききられていないことから「心に大きな傷を負った不完全さ・不安定さ」を読み取れなくもないらしいが、まあ……うーんレベルのものではあるでしょう。\n そりゃ誰だって心に傷はあります。\n きちんと精神分析はもっと受けないとなあ。自閉症の時はきちんとWAISテストもありましたね。\n\nうつ病を少しずつ改善していこう！\n 毎日、頑張る！\n エブリディ、ファイト！ だからエビリファイ。そんな薬をこれから毎日服用していきます。\n\nあまり期待はしていなかったけれども、診断士とのやりとりは少し苦しみもある。\n 基本はオウム返に対して、「そうだったんですねー」と返ってくる。\n 「去年からずっとモヤモヤと意識に曇りがかっているんですか。そうだったんですねー」\n 「タオルを結んで首にかけてみたけどドアノブが滑って失敗したんですか。そうだったんですねー」\n 「低い階に住んでいるから飛び降りができなくて安心なんですか。そうだったんですねー」\n\nはい、はい。\n そうなんです、そうなんです。\n 話を聞いていただきありがとうございます。それでは、対応する向精神薬と睡眠薬をください。\n 希死念慮がまだまだ残るならカウンセリングどうですかー？\n\nカウンセリングでは、どうにもならない。\n テンプレートな会話が返ってきて余計に苦しいだけである。もはや、だいたいの返答パターンを知っている。\n「それでもあなたにしか作れない、立派な作品や仲間がいるのだからゆっくりあなたらしさを貫こう」\n\nはい、おっしゃる通りですね！\n エブリディ、ファイト！ エビリファイを飲んで頑張らせていただきます！\n\n「創作側」へのカウンセリング、それもある程度の著名な人間に対しては、カウンセラーと話が合うこともなく、「待っているファンのために頑張りましょう！」と綺麗事に収斂される。そうですね、そうですね。\n\n『巨匠』という漫画があり、心が壊れて不眠症となって入院した巨匠の深層心理に、長い時間をかけて向き合っていく名作だ。非常に面白いテーマ。\n\n僕の脳みそを助けてください。\n 僕の話をきちんと聞いてください。\n\n「話をきちんと聞いて欲しかったんですか。そうだったんですねー」\n\n今日もデパスが増える。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -82,10 +81,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

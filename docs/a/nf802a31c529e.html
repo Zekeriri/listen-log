@@ -25,9 +25,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-11 04:32\n《库库鲁斯·多昂的岛》，享受像看Kirara系动画电影版的感觉\n『ククルス・ドアンの島』は、きらら系アニメの劇場版を観る感覚で楽しむ\n\n先日、『機動戦士ガンダム ククルス・ドアンの島』を観ました（じゃあ、その日に書けよという話ですが）。原作に存在した妙に味付けと作画の濃いエピソードを、劇場版サイズに膨らませた映画です。「劇場三部作でも描かれなかったエピソードを映画化！」のような煽り文句が書いてあり、物はいいようだなと感心したものです。\n これがまた満足感ある内容だったのですが、どちらかと言うとガンダムというより日常アニメ……きらら系の劇場版を思わせる作品に。壮大でシリアスな物語性は薄いものの、「無人島で子供たちを守りながら暮らす元ジオン兵と、彼に拾われたアムロ」という関係から予想される展開を裏切らず、丁寧に視聴者が望む昭和レトロな人情話と戦闘シーンが展開される。心温まる日常のふれあいとガンダムの暴れっぷりの恐ろしさのギャップが魅力。まさに白い悪魔。\n そういった具合ですし、本編の合間であることで主要キャラが死なないことも分かっていますから、日常アニメの劇場版を観た印象なのですね。それはそれで面白いし、メディアではシリアスな場面だけ切り抜かれがちなファーストにおいて、久々に原作序盤〜中盤のゆるい雰囲気を味わえて新鮮。ですので、感覚的にはごちうさやきんモザの劇場版を観た時と同じ気持ちになりました。「何はともあれ、アムロが楽しそうで良かったな」みたいな。そんな仕上がりの映画です。個人的には、マ・クベが嬉しそうだったので満足。\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中！ 新刊でたばかり。手にとってもらえたら、僕が映画を観に行けます。\n\n商業エッセイ集もよろしくね！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,10 +45,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

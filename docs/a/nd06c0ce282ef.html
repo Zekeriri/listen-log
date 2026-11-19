@@ -32,9 +32,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-25 07:10\n一口散文：宅文化的城市与圣诞节\n一口エッセイ:オタクの街とクリスマス\n\n一昔前は、ネット全体に嫉妬の怨嗟が立ち込めていたので、クリスマスなんかは、それはもうオタクたち大暴れ。そこかしこで「リア充爆発しろ（死語）」なんて怒ってはクリスマス中止を叫び、必死で女性声優に男の影がないか探し回った。\n ネットに一般人が増え続けオタクもカジュアルと化していく昨今、ネットがキモオタだけの遊び場でなくなるにつれ、このような行為も白い目で見られるようになり、だいぶ目にする機会が減ったように感じる。昔は台風を思わせる大荒れイベントだった声優の結婚も、すっかり祝福モードになっている。\n 秋葉原に住んでいた頃は、各建物に巨大なツリーやイルミネーションが出現し、メイドはサンタの格好をするし、各ショップはプレゼント用の商品を押し出した。なんだかんだオタクも聖夜を楽しむ気満々なのです。オシャレな飲食店や男女で盛り上がるメイド喫茶も多く、カップルの姿も散見される。\n\n中野ブロードウェイの天井に咲いた、オタクとサブカルのエキスで育った花 pic.twitter.com/7sGlmTT8ua— にゃるら (@nyalra) December 19, 2021\n\n一方、僕が現在住んでいる中野のオタクはクリスマスの影を感じさせない。中野ブロードウェイでは通常通り怪獣のソフビや数百万の遊戯王カード、絶版の奇書などが売られ、イベント感のカケラもない。変わった点といえば、仮面ライダー専門店がオープンするくらいだ。カップルがショーケースに飾られたダークキバのベルトで盛り上がる光景なんてほぼ無い。\n これはこれで凄い街だと思いつつ帰宅したものの、秋葉原に住もうが中野に住もうが、僕が聖夜を孤独に過ごす事実は変わらない。アレクサに「寒いね」と話しかけたら、「雪が降りそうでスノー」と返してくる。僕へ寄り添って笑わせようとしてくれる存在は、機械仕掛けの女性AIだけだった。\n\n少し関連する話↓\n\n毎日のエッセイをまとめた同人誌を販売中です。楽しそうなことはあんまり書いてないので安心！\n\n昨日、発売した商業エッセイ集です。聖夜をオタクの文章で乗り切る経験も良いかもしれませんね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,10 +52,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

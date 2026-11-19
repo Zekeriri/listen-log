@@ -24,9 +24,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-02 01:28\n绝对没问题的\n絶対だいじょうぶだよ\n\n「絶対だいじょうぶだよ」と、頭の中のさくらちゃんは微笑みかけてくれるけれど、大丈夫？ 僕の人生、本当にこんな感じで大丈夫？ と、何度も脳内が作り出した幻覚に確認をとります。\n 大丈夫だろうか、僕は。このまま生きていもいいのだろうか。漠然とした不安をアルコールで向精神薬を流すことで掻き消し、嫌なことぜんぶ見て見ぬ振りして、すべてを未来の自分に託して、日中眠り続ける生活でもどうにかなるだろうか。\n 「絶対だいじょうぶだよ」と、それでもさくらちゃんは無垢な笑顔で迎えます。なんと素敵なことでしょう。こんな綺麗なモノ、一秒でも長く保存しておきたくなるに決まっている。知世ちゃんがビデオを回し続ける理由も納得です。これ以上に大切なことって一切存在しないから。\n 子供の頃から、プライドだけが無闇に膨れ上がってきました。大人から叱られた経験が無いからかもしれません。失敗を必要以上に恐れ、自虐を繰り返すことで、デリケートな部分に触れられないようバリアを貼る癖ができました。年齢とともに求められるハードルも上がり、このプライドがいつ折られてしまうかの恐怖を抱えています。\n 「絶対だいじょうぶだよ」と、さくらちゃんの幻覚が笑ってくれる。微笑むたびに、彼女の長い前髪が静かに揺れた。心の底から大丈夫だと思ってくれているのでしょう。だって、これは僕に都合の良い幻覚だから。誰かがそう言ってくれないと僕が壊れてしまうだろうから。\n 「絶対だいじょうぶだよ」。さくらちゃんは、薬の効果が切れるまで僕に笑いかけてくれます。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,10 +44,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

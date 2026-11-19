@@ -22,9 +22,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-09-04 13:23\n一口随笔:睡眠失败\n一口エッセイ:睡眠失敗\n\n頭痛がひどいと思ったら、鏡に映った自分の目がものすごく黒い。クマができてブラックホールのような深い黒が広がっている。誰がどう見ても寝不足です。\n わからないものだ。最近、自分が何時間眠っているかどうかあまり気にしていなかった。ここのところ不眠が強く、緊急時のゾルピデムを飲むようになった。恥ずかしながら強い健忘に弱く、頭がとろんとしてきたら、気が緩んで友達にウザ絡みしてしまう。本気で困らせているほどではないと思いたいが、起きて確認すると赤裸々な自分と向き合って紅潮してしまう。ゾルピデムは怖くて捨てた。緊急時の強力な睡眠薬は便利ですが、やはり僕は眠気に抗ってしまうのでダメ。僕に使いこなせる力ではない。\n そもそも眠れないほど弱っている時に飲むのだから、そのタイミングで寂しさで不安になり、誰かに連絡をとり、その連絡のふにゃふにゃさ（本音でしか書いてなくて味はあるが）に起きて後悔するのループは、余計に精神に悪い。大人しくデエビゴによる自然な眠気を掴む方向で頑張ろうと思う。\n それにしても、人は頭痛が激しくなるまで睡眠不足に気づかないものなのですね。思えば、頭も身体もあらゆる不調を発していたのに、なぜか問題ないと解釈してしまう。生活リズムがズレにズレていくので、自分が何時に眠って何時に起きたかすら把握できない。とにかく反省です。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -43,10 +42,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

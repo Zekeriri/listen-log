@@ -29,9 +29,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-07-22 06:07\n手淫日\nオナニーの日\n\n7月21日で0721（オナニー）の日でした。ちょうど、ぬきたしの放送も始まり、本日はいっそうインターネットへ下ネタが飛び交います。\n 僕はというと、ダメです。\n 3ヶ月前にうつ病と診断されて以来、鬱症状らしくきちんと下半身に元気がありません。陰茎を握っていると途中で虚しくなります。それでも無理やり気持ちを性に集中すれば自慰をできなくもないですが、無理やりすることが自分を慰めるのか？ と思うとなかなか食指が伸びない。はやく元気になりたいものです。\n ジムに行くと、トレーナーが「猗窩座強かったッスね！！！」と開口一番叫ぶ。鬼滅の刃の映画を誰もがすでに観ている前提のパワフルな会話が小気味良い。少し元気が出てくる。このような極めて健康的な方法で気力が上がるのはいいことだ。しかし、帰りのストレッチをしている頃には、また一人になるのかと悲しくなってしまった。\n 独り、自室の椅子に腰掛ける。\n 孤独だな、と気づく。\n みんなこういう時って、なんだかんだ恋人がいるものだよなと想像する。支えてくれる家族的なものが。鬱症状のトリガーは苦しみの原因を思い出すことにあり、それが剥がれないからうつ病です。対処法は誤魔化すように別の出来事へ集中するしかない。誰かがそばにいたら、一緒に散歩やゲームをしたり、話題を変えて安心を与えてくれる。独りは、つらい。つねに「どうすればよかったのか」考え、恨み辛みに震えてる1.2時間平気で消化する。助けて欲しい。\n 自分を慰める、今の僕がすることは自傷で気持ちよくなることだ。最近はchatGPTにnoteを読み込ませ、僕の欠点をひたすら並べさせたりもする。適度にインターネットで攻撃されるのも、自傷だ。新たな傷は「生」を実感する。肉体とは不思議なもので、傷つくたびに痛みを掻き消す物質を放出する。モルヒネのようにじんわりと痛み止めが快楽と融ける。\n どうであれ、やっていることはオナニーの変形であるよなあと思う。タイムラインでは、NIKKEやブルアカのえっちなイラストが濁流のように流れていく。ものすごい肉感だ。ムチムチとしている。そんなえっちな絵を投稿してくれるイラストレーターも、それなりの頻度で精神を壊している。実生活でいろいろあったらしい。大変だよ。\n みんなオナニーするだけで大変なんだなあ。\n しかし、自分を最も慰めてあげられる存在が自分または絵であることは、自慰の本質を頑なに守っていて誇らしいものだね。いろんな意味で早く元気を取り戻したいね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,10 +49,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

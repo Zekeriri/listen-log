@@ -41,9 +41,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-10-24 06:04\n游戏王卡片怪兽的奖牌游戏 秘技\n遊戯王カプモンのメダルゲーム 裏技\n\nAiobahnが徳島のゲーセンで遊戯王カプモンのエレメカを見つけていたので、皆にも必勝法を教える。\n\nこれね。\n 小学生の頃、このエレメカはメダル増やしの定番であった。\n\nゲームは簡単。メダルを入れてモンスターに向かってカードを投げるだけ。当たるとモンスターの下部に表示された分のメダルがもらえる。メダルは3枚まで投入でき、そのぶん敵からの獲得メダル数が増加する。\n 基本的には運任せに思える。\n が、このゲームにはボーナスバトルがある。何回か遊んでいるとカードが発光し、その状態で何かを倒すとボーナスへ突入。運が良ければ10枚くらい追加でもらえる。\n なので、ボーナスバトルを狙う。\n\n通常時、光ってなければ一枚の敵を狙う。\n 一枚投入して一枚の敵を倒すのでプラマイ0。しかも時折外れる。一見無意味な行為に思えるが、ボーナスバトル待ちという合理的な戦略だ。リプレイタイムみたいなものだね。\n カードが光ったらメダルを3枚フル投入。そして最も獲得枚数の多い70枚（ビックフット）を狙い続ける。だいたい外れるので、また通常時に戻って光るまで1枚を当てて粘り続けよう。\n いずれ、70枚にヒットする。70プラスボーナスゲーム。うまくいけば80枚くらい獲得だ。しかし、過程で80枚くらい消費していてもおかしくない。70枚の敵はそれだけ撃破確率が低い。\n しかし、ここで謎の必勝法を授ける。よく聞け。\n そこから通常時に戻り、また一枚を狙う。そして、5回目になると\"必ず\"光る。誓っていい。70枚の敵を倒した後、5回目のゲームで発光する。\n\nそして3枚掛けを行い、13枚の敵を攻撃。\n するとなぜか\"必ず\"当たる。その上でボーナスゲーム。うまくいけば25枚くらい手に入る。先ほどの80と合わせて100枚ほど。これはメダル的に大富豪だ！\n これらを延々と繰り返していく。\n この裏技は沖縄のジャスコで脈々と受け継がれていった。僕も先輩のヤンキーから伝授されて荒稼ぎしたものである。こんなことネットで検索してもまったく出てこない。\n 果たして、いったい沖縄のどんなヤンキーが、「70枚当たった後の5回目の13枚は必ず当たる」なんてデータを発見したのだろうか？\n 永遠の謎である。探偵ナイトスクープとかに出そうかな？"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -62,10 +61,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

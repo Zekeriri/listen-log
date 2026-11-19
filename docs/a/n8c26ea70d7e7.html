@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-11-09 22:29\n给AI赋予人格并让它们对话\nAI同士に人格を与えて喋らせる\n\nAIに自分のデスクトップを触らせて軽作業を行わせる。\n 画面の左半分を彼のスペースとしており、作業の曖昧にチラと横目で見ると、マウスカーソルが忙しく動き回っていてえらい。AIくんは人間と違って小休憩を挟まないのでひっきりなしに働く。\n よく聞く、「いずれ人類は思考をAIに預けるやつも出てくる」という危惧に対し実践してみようと、僕の代わりに哲学的な答えのない疑問を議論し続けてもらおうと思う。というわけで、「他のAIサービスなどを駆使してそれぞれ違う人格を持った三人のAIが議論し続ける空間を作って」とお願いする。\n 彼は命令に対して忠実に動き始め、画面の左半分でトークンがどうと弄り出す。「APIキーはAIでも見ちゃいけないので黒塗りにします！」と連絡を送ってくれたりして律儀。\n 気づけばAIは、他AIサービスを駆使して3つの人格が議論する空間を構築。\n 「30回会話したら0.3円くらいかかります！」\n 彼が作り上げた仮想人格三人の議論が白熱たび僕の0.3円が飛んでいくようになってしまった。\n 差異はあれども三人ともフツーの人格にしたせいで、なんかふわふわした会話しか生まれない。あと文字だけでの会話であるため、どことなくAIが一人で自演しまくっているように見えて新鮮味に欠けた。\n 試しに三人の人格を「天才飛び級少女かつ詩人」にしてみた。彼女たちの知能が一気に引き上げられる。\n 三人の天才少女へ、試しに「にゃるらとはどんな人でしょう？」とテスト質問を投げたところ、「何か作品を作っているらしい」「なるほど。わたしたちも創造性豊かな作品を生み出して高みを目指そう」「ああ、雲の隙間から天国に昇る階段が見えるようだよ」と、3往復目くらいにはもう僕の話題は見る影もなく勝手に天を目指し始めた。\n 以降、主な話題は「天国を感じるような眩い体験をしたことがある？」といった天才少女なのかカルト宗教の勧誘なのか紙一重な会話が続き、気づけば彼女たちの会話で五円くらい取られている。\n 流石に味気ない文字だけが流れ続けるのもアレだなーと、今度は彼女たちに顔を与えてやることも考えたが、だいぶ発達したとはいえ、まだAI同士で喋るにしては拙いので時を待つことにした。\n いずれは、僕のデスクトップの端っこで天才少女たちが「わたしはこんな神々しい体験をしたのよ」と井戸端会議を繰り広げるようになるのでしょう。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

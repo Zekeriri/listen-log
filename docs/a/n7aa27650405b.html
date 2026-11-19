@@ -35,9 +35,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-11-13 19:32\n英语学习 第1个月\n英語の勉強 1ヶ月目\n\nちまちま進めていたDuolingoが1ヶ月目に。\n\n英語の勉強は、Duolingoで単語や文法、週一の英会話で実践、あとはやっぱり現地での会話と好きな配信者の言っていることのリスニングが最も学者効率が高い。元からguraやBIBOOが本来のニュアンスで何を言っているか自分で確かめたくて始めたのだから。恋心は何よりも勝る。\n\nこいつはもう壊れている。\n Duolingoで単語や文法を学べるのだから、英会話については、英語圏の先生から海外の文化や流行を質問するような時間にしている。それを基本的に英語のみで行うようなイメージ。宿題的に何かを教わるより、ただただ興味あることを喋っているほうがいいと互いに考えているし、実際そうだと思う。先生はSteamでめちゃくちゃインディーゲームを漁るタイプで、Steamでめちゃくちゃインディーゲームを漁る人でないと出てこない英単語も飛び出す。こういうことの方が大切なんだ。実際、欧米での会話は略語とスラングまみれで、いかに「これは一旦聞き逃してもいい単語か」の判断が問われる。略称やスラングは一人で考えても答えが出ないから。\n\nシアトルにて。ハンバーガーが2000円もするうえにデカすぎる記念の一枚。\n まあ、細かいこと抜きにひたすらDuolingoやっているだけで充分に思える。話すと周りが思ったよりDuolingoユーザーで、「おまえら裏でこそこそ語学の勉強してやがったのか……！」と本当に受験勉強なぞしなかったのは自分と数名のヤンキーだけだった中学時代を思い出すね。\n\n「ゲーム感覚」ってこんなに大事なのか。Duolingoはひたすらゲームっぽく愉快に英語を教えることに拘る。その「ゲーム感覚」っぷりを味わうために一度インストールして欲しいくらいだ。お堅い雰囲気なぞ誰も必要としていない。\n そして、このダウナーな紫髪の子がかわいい。この子は皮肉屋で、なぜか自分に人生相談が届くコーナーがアプリ内にある。めちゃくちゃ怠そうに他者の人生観をdisる様は爽快。あとダウナーだけにゆったり喋るので難易度的にも助かる。\n 英文はランダムに決まるので、稀にこの子がおばあちゃんやお母さん大好きっ子になったりする。急なギャップ萌えにドギマギさせられて悔しい。英語学習アプリのくせに。\n 初めて一週間くらいは、ずっとマフィンとサンドウィッチの話だらけで、アメリカン人のマフィン好きっぷりにひたすら恐怖を抱いていたものの、だんだんと文法の裾野が広がり、1ヶ月目はさすがに難易度が高い。いつまでも「one muffin please」だけでは居られないのだ。\n\nフン……英語話者の道はまだまだ長いけれど、おまえらが喜んでくれるなら続けてやってもいいかな……！\n bye！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -56,10 +55,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

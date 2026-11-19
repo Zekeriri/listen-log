@@ -28,9 +28,8 @@ SNS覚えたての時は僕も10代でしたから、日々のトラブル含め
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-09-04 03:22\n一口随笔“与过去相比，现在的Twitter真的变得不有趣了吗？思考问题”\n一口エッセイ「昔と比べて本当に今のTwitterは面白くなくなったのか？　問題」を考える\n\n質問箱の存在を思い出したので、久々に質問を読むぜ。「今のTwitterは嫌なものばかり目に入って、呟く気が失せる。ポジティブな感想を書いてもネガティブな反応が目に浮かぶ」とのこと。\n これは分からなくもないですけどね。みるみるうちにTwitterの争いも先鋭化されて、毎日男女が喧嘩している謎のSNSですから。最近では、AIに仕事が奪われるがどうこうで集団ヒステリーになったりも観測できましたね。\n とは言え、これは自分が何度も同じ議論や荒れネタを観測するほどループして老害化しただけで、実は昔からTwitterなんてこんなものであり、自分の視点が変わっただけじゃないか。だって今のTwitterを楽しんでいる若者もたくさんいるのだから。と考えるようになってきました。\n 湾岸ミッドナイトでも「昔のクルマは楽しかった」と呟く老人に対し、「昔のクルマが楽しかった……ではなく、その時の自分が楽しかっただと思いますよ」「クルマは今も変わらず楽しいと思います」と正論をぶつけるシーンがあるじゃないですか。もしかしたら、それと同じで「昔のTwitterは良かった」と思い込んでるだけの可能性がある。\n\nSNS覚えたての時は僕も10代でしたから、日々のトラブル含めて何もかもが楽しかった。けれど、それは10代ゆえに何でも初体験で刺激的であったことが大きい。自分が今のネットの流行りに乗れてないだけで、じっさい素直な気持ちで新鮮なコンテンツに身を任せたら、また視点が変わって視界が拓けるのかもしれませんね。\n それとは別に、ネットを見過ぎて、脳内にインターネットが棲みついている場合もある。\n こびりついた脳内インターネットは最悪なので、例えば路上で綺麗な石を見かけたとしても、「どうせこんな石に値段なんてつかねぇよ」「路上の石に価値を見出す自分に酔ってんのか？」と様々な難癖をつけてくる。インターネットは終わってるから。\n だからこそ、「インターネットやめろ」は不変の真実であり、変に思考が偏って勝手に苦しむ前に、適度にネットを離れて、一人で本や映画を嗜み、何故か無意味に偉そうな匿名がカスみたいな揚げ足取りしてこない環境に身を置くと良いでしょう。\n ネットが好きだからこそ、適度にネットと距離を置いて、SNSの悪意に呑み込まれないようにする。それさえ守っていけるなら、きっと今も変わらずTwitterは楽しいですよ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

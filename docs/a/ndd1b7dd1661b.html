@@ -25,9 +25,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-07-23 12:43\n一口随笔: 未来的大物Vocaloid制作人\n一口エッセイ:未来の大物ボカロP\n\n引っ越しの準備で、まあまあ忙しかったりします。それは置いておき、自宅の近くに、主にクリエイターの方が集まるバーがありまして（知り合いしか入れない感じ）、そこにYouTuber関係の人が集まるので挨拶に来ないかと呼ばれたのですね。びっくりするくらい家から近くにあるので、じゃあ一杯だけ引っ越しの休憩にと寄ってみた。\n 主にポケモン系の実況者が多く、自分の知らない界隈ですがみんな凄いなぁと感心していたら、ボカロPの若者が話しかけてくれたので、彼の話をじっくり聞くことにします。\n 彼は、ある日投稿したボカロ曲が100万再生を超え、その瞬間に仕事をやめて曲作りに専念して今に至るらしい。一度、作曲でお金が入ってきたのだから、普通に働いてお金もらうことで満足できる気がしないとのこと。素直にカッコいいぜ。\n その後も何曲か投稿したものの、まだ2回目の100万再生がとれずに悩んでいると相談してくれたのですが、21歳で仕事辞めて創作に専念する決意を実行した時点でカッコいい。100万再生という実績で才能が花開く可能性への切符は手にしているのだから、あとは登っていくだけ。\n 今は貧乏であることがプレッシャーらしく、たしかにここにいる20代後半以降のYouTuberたちは凄すぎて比較すると落ち込むかもですが、若さを考えるとそれも合わせて今の主人公枠は君だ！ と思い、人生これくらいの勢いがないとなと未来の大物ボカロPを眺めて感じた一夜です。\n\n毎日の日記をまとめた同人誌や、若い頃の文章を掲載した商業エッセイ集、よろしくね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,10 +45,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -33,9 +33,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-26 11:21\n一口随笔: NIDIGA获得游戏系统奖！？\n一口エッセイ:ニディガがゲームシステム賞 受賞！？\n\nまた寝落ちした上に、ニチアサ開始前に勝手に起きた。エアロバイクを漕ぎ始めた僕の健康な睡眠よりも、ニチアサのドキドキの方が勝るらしい。ふざけた体質。\n\nニディガがCEDECという凄そうなゲームデザインのイベントで優秀賞に選ばれました♪\nアルセウスやエルデンリングに並んであめちゃんが表彰されていてワロタhttps://t.co/zh2Rfg2wyX pic.twitter.com/9RxQ3eTAYk— にゃるら (@nyalra) June 24, 2022\n\nそれはどうでもいいとして、このたび拙作『NEEDY（以下略）』がCEDECという権威ある（らしい、プロデューサーたちがめっちゃ喜んでいたから）団体のゲームシステム部門の優秀賞にノミネートされたようです。ここから最優秀賞をアルセウスやエルデンリング、project: ;COLDらの4つと争うらしい。あめちゃんにそんな逞しさがあるかは不明だが。\n ニディガなんて非道徳的で社会やゲーム業界の敵みたいな作品に賞なんてあげて大丈夫か？ とビックリしましたが（正しい場での賞をもらったら変な空気になるだろうし辞退するつもり）、「ゲームシステム」に限っているのであれば問題ないかもですね。たしかにシステムは凄いよ。これは、プログラマーの方の地道な努力で成り立っていますからね。僕は「あれしたい」「これしたい」と騒ぐだけで、プログラム部分はまったく理解していないし。\n 僕は、ノベルゲームとシステムの融合が大好きで、EVE burst errorやYU-NOの素晴らしいゲームシステムがうんぬん（割愛）であり、そこから企画を出発しています。ニディガでも特に闇を表現できたと手応えを感じたルートの演出は、完成時に小躍りしたほどです。\n せっかくなので、システム小話ですが、ニディガは「おでかけ」を選んだ際、デートの過程は省略され、二人でお出かけした「結果」だけが残るのですが、これは僕の発想に全くなかった。完全に美少女ゲーム脳だった僕は、デートで甘く切なく情熱と官能を秘めた時間をヒロインと過ごすことが「サビ」であると認識していたため、いかにデート中の描写をあのシステムに組み込もうか躍起になっていたのですね。\n そんな中、美少女ゲームに強い思い入れのないスタッフたちは、「デート中は飛ばしましょっか♪」とさらっと提案したのです。もう脳内に電流が迸りましたよ。「サビをあっさり捨てる！？」と。その瞬間、美少女ゲーム脳の固定概念をばっさり斬り捨てられてめちゃくちゃ気持ち良かった。元より、ゲームシステム部分を捨てた昨今の美少女ゲーム業界への反抗心はかなりあったので、こうして斬新な発想で古臭い思考を粉々にしてくれたのがすごく嬉しかったのですね。あめちゃんとどんなデートをしたのか、ユーザーの脳内だけにある。これはこれで美しい。\n まさにシナリオよりシステムとの調和を優先した瞬間です。おかげで、「サビ」が「配信」なる今までの美少女ゲームに存在しない場所に移動し、それがかなり綺麗にハマったと自負している。これはゲームシステム優秀賞を取って当然。もっと僕らのことを褒めていいですよ。真っ当なゲーム業界の敵ですけどね……。\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中！ ゲーム発売までの躁鬱や苦悩、ぜひ読んでくださいね♪\n\n商業エッセイもよろしくね。この若さがあったから、今のゲームが存在する。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,10 +53,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

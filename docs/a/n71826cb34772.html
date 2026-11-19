@@ -24,9 +24,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-02-25 08:05\n对抗无力症候群\nVS無気力症候群\n\nシンプルにやる気が出ない。\n 病み上がりでまだ体調が若干悪いこと、久々にジム通いを再開したことで筋肉痛が激しいことに起因する。あと日頃の睡眠不足を取り返すように睡眠時間が長い。たくさん眠ると怠さが増す。\n 大麻の真に怖いところは、依存性や健康被害以上に無気力症候群らしい。ちょっと煙を肺に入れるだけで数時間気持ちよくなるのだから、そりゃ働く気もなくなる。別に薬物がどうとかではないが、いま睡眠がめちゃくちゃに気持ちが良いタイミングで、とにかく眠っていたい。特に、僕は冬場も暖房をめったに入れたくないので布団の温かさがいっそう心地よいのです。要するに布団から出たくない。\n 明らかに眠っていた方が気持ちいいのだから、それを選択しない理由がない。刹那の快楽を素直に享受することと逆らってまで身体を動かし未来に懸けること、どちらがより幸福で、どちらがより人間的だろうか。薬物とちがって睡眠は健康被害もうすい。というか場合によっては回復すらする。そりゃ無気力にもなるでしょう。\n 怠い……ベッドに転がりながら漫画を読むのが楽しい。こんな状態でも漫画や本を読んだりすると、なにかをやった気持ちになる。漫画を読む、アニメを観る、本を読む……なんならネットのよくわからん記事を追ってみるなど、とにかく何らかのことを摂取すると、それがいつか何かに繋がる可能性もあるわけで、まるで将来の自分のために仕事を果たしたような感覚になれる。願うなら永久にゴロゴロ漫画を読んでいたい。最近までは発熱がひどくて漫画すら無理だったのだから、今が最ものんびりしていて楽しい。この期間が永遠であると嬉しいが……まあ月曜にはシナリオ提出せねばならないので動くしかない。けれども、どう考えても今未来に投資するより、布団の心地よさに浸っていた方が気持ちがいい。確実に幸福がその場に用意されているのに、それを捨ててまでわざわざ苦労することは生に反しているのではないか。\n まあ、この考えが極端になってしまうと、それこそ薬物が最も効率がいい生き方になるのだが。落とし所はアルコールか？ うーん、結局睡眠かお酒かって答えになるのはつまらないな。つまらないけれども、面倒くさくて続きを考える気は無い。今からニチアサ観るから……今日はキングオージャー最終回だし……流石にニチアサ観る方が布団・睡眠より優先される。こうして、薬物や睡眠よりも大切にする要素を見つけていくのが人生なのか？"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,10 +44,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

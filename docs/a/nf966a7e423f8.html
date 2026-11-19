@@ -24,9 +24,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-08-31 05:20\n一口随笔:草 和 笑 时代的涌动\n一口エッセイ:草とワロタ 時代のうねり\n\nひょんなことから、もう15年くらい前のニコニコ動画の名MADを開いたら、なんだか僕が中学の時に初見で感じた印象とコメントのノリが微妙に違う。なんだ。動画のテンションに対して、みんなが笑っているだけであることに何も変わりはないはずなのに。\n じっと2分くらい見つめていてから気づいた。コメントの「wwwwww」のなかに、ちらほらと「草」が混じっているのです。僕が中学生だった頃には「草」とコメントする人間はいなかった。誰もが「wwwww」とwを連打し、「コメント自重しろw」と誰かが注意するまでがセットであった。たまに「ワロタ」がいたりはするけれど。\n 驚いたことに、中学生の頃のあの日のノスタルジーに包まれているのに、「草」が数個あるだけで脳が誤作動を起こし、動画全体に違和感を覚えせてしまうのだ。本来、あるはずのない漢字一文字が出現するだけで、こんなにも見え方が違うのか。幻覚の中に閉じ込められて、ようやく抜け出せる糸口を見つけたような気分だ。なぜなら、僕の想い出の中に「草」は無いのだから。\n さらにコメントは流れる。「この動画俺が生まれた月に投稿されたらしい」「この動画の時って俺2歳だ」と、次々と視聴者の年齢に関するコメントが表示された。これは当時から叩かれ続けたユーザーのしょうもない承認欲求コメだ。動画の主役は当然映像であって、一視聴者の情報なんて誰一人興味がない。考えたらわかるだろう、と思いつつもコメント通りであれば、こいつらは15〜17歳。悪目立ちしたくて仕方ない盛りだ。厨房だ、厨房。15歳であれば、あの日の僕と同じ年齢なのである。完全にこの動画は時を越えて一巡した。\n 「⚪︎⚪︎が何年前」ネタはインターネットでひっきりなしに流れてくるが、自分が見ていたMADのユーザーが一巡している事実が、なにより加齢を感じた。もう彼らは、わざわざwなんて連打しない。そもそもスマホじゃアルファベットを連続で入力し難いし。別に「草」と打ち込むだけでいいのだから、そうするに決まっている。\n 僕は、「草」を使用したことがない。恐らく、このまま死ぬまで使わない。今でもなお馴染めていないのだ。しかし、想い出の動画のコメントはすでに「草」に入れ替わる。もう老人の時代ではない。スッと身を引こう。今は彼らが笑う番だ。僕らはもう15年前にたくさん笑ったからいいのだ。若者が草を大量に生やしている裏で、想い出に浸りながらひっそり「ワロタ」と呟こう。それでいいのだ。これからは君たちがインターネット文化を新たに築いていくンゴねぇ……。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,10 +44,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

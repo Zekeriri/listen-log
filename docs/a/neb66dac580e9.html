@@ -32,9 +32,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-11-11 04:07\n过去\n過去\n\nいろいろと大変なことがあるものの、中にはよかったことがある。\n 今日は、ひとつ過去の自分を褒められることがありました。\n\nどうやら、上海でのイベント時、サイン会の終了時刻となって退出しなければならないタイミングで、僕があめちゃんのぬいぐるみを持って「ありがとう！」と日本語で叫んでくれた女性と、ぬいぐるみ同士で交流したというのだ。\n 正直、この出来事自体はまったく失念しています。思い出せない。\n けれども、想像するとその場の僕が絶対にそうするだろうなと確信がある。たとえ時間が過ぎていたとしても、相手がぬいぐるみを振って遊びたがっていたら一緒に遊ぼうと思うだろうと、自分のことだから容易に分かる。\n 「寂しそうにしている人が居たら遊ぶ」という命題がある以上、寂しかったから自分もインターネットへ逃げた歴史がある以上、僕は同じぬいぐるみを持つ同士を見捨てることはないだろう。\n もはや無意識に行動していたので、特に記憶もない。それもまた打算でなく動いた証左として自身を誇れるね。\n この子は、ずっと熱心に僕を応援してくれている。その原動力がサイン会時の一瞬であるなら、それは僕が間違いなく「善いこと」をした。無自覚に人を救うことは善行だ。少年の頃の自分を救いたかっただけの利己的な行為であろうが。\n 実のところ、僕はもう一段階捻くれているから、たとえどんなに好きな作品であったとて、子供の頃は絶対にリアルイベントなんて参加しないけどね。\n めぐりめぐって、自分が落ち込んでいるタイミングで、このように良い励みとなる。情けは人の為ならずを地でいくリプライに、珍しく過去の自分を褒めてあげたくなったのです。\n\n恐らく、彼女が撮った僕の姿。黒いね。\n また、あめちゃんのぬいぐるみ同士でファンと遊べる日が来るといいねえ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,10 +52,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

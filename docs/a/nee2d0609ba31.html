@@ -29,9 +29,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-06-20 06:33\n一口随笔:《烏龍派出所》全卷女孩子的单相思\n一口エッセイ:こち亀全巻女の片想い\n\nはじめにこちらのDMを見ていただきたい。こちらは決して晒してバカにするためでなく、むしろ後に褒め称えたいために許可をもらっているので、ぜひとも第一印象で済ませないでもらいたい。\n\n知らないフォロワーからのDM。本人も言っておりましたが、なんとまあテンプレな恋の悩みだ。他人の恋愛なんてどうでもいいので、この内容も心の底からフーンでしかなく、もはや殆ど読んでいないし、返信もしていない。が、この女性はこうして恋愛の危機に陥る以前に一度送ってきたDMがめちゃくちゃに面白いのです。\n\nこの方、三ヶ月前は急にこち亀を全て読んだ中でおすすめの回を送ってくれたのですね。すごい。僕も過去に全巻読破しており、両津と本田がオタク化していく変遷を記事にしたりしてきたので、恐らく「この人なら通じる」と知っての行為と思いますが、それにしたって突然こち亀全巻の感想がくるのは面白い。この時もスタンプをつけただけで特に返信もしませんでしたが（完璧すぎて何も言いようがないし）、内心では\"オモシレー女\"と嬉しかった。ありがとうございます。\n あれから数ヶ月、すっかりこのDMを忘れた頃に、今度は冒頭の極めてテンプレな片想い女子あるあるな内容が送られてきた。「好きな人が振り向いてくれないどうしよう（ ; ; ）」といった文章の上に、こち亀全巻のお勧め回がレシートのように表示されている。面白い。なので、素直に「こち亀全巻の下に心の底からどうでもいい恋愛の話があるギャップが良いので日記に書いていいですか？」と許可を頂いた。本人も恋愛部分が言葉にするとしょうもないことは自覚しているらしい。他人から見たらどうでもいいことに本気だからこそ恋かもしれない。\n 適当に読み飛ばしたので現在彼女の恋愛模様もどうなっているか全然知りませんが、このこち亀を活かしてオモシレー女路線を是非とも貫いてもらいたい。まあ、9割の男性は恋愛の駆け引きで「こち亀全巻読んだんだけどさ……」と言われてもビビるだけでしょうが。逆に、こち亀全巻の話についてこれる男を選抜してやるくらいの気持ちで強く生きてほしいものです。200巻に及ぶ両津勘吉との体験は、そこらの男よりも確実に濃い力と知識を与えてくれているでしょう。\n せっかくですので、彼女の努力が水泡に帰してしまわぬよう、DMに残されたお勧めエピソードを全文掲載します。今の僕には、彼女のためにこうすることしかできない……。\n 見ろよ青い空、白い雲。そのうちなんとかなるだろう（天童よしみ）。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,10 +49,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

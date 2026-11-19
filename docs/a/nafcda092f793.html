@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-02-13 08:11\n一口随笔:安眠药的舒适与恐怖\n一口エッセイ:睡眠薬の楽さと怖さ\n\nここ数日、睡眠不足が続いていたので、薬を入れている箱をひっくり返したら出てきた強めの抗うつ剤……トリプタノールの25mgを服用したのですが、これがまた効果抜群で、本当に丸一日寝た。\n 服用から24時間経った今でも眠たくてふらふらするレベルで、第一世代の遠慮なく効果をぶつけてくる抗うつパワーを感じます。こんな小さな錠剤一つで、何百倍も体積がある人間の身体に影響を及ぼすのですから、科学の力は凄い。\n 久々に感じた、「睡眠薬による強制シャットダウンのような入眠」は心地よく、これに慣れきってしまったばかりに、なにも服用していない状態で、ゆっくり目を瞑って睡眠を待つことができなくなってしまった。\n 布団の中で眠れないまま漠然とした不安と戦い、せっかく意識を失ったと思えば2時間で起きてしまうより、錠剤一つ二つ飲むだけで、気づいた時には10時間経っている方が遥かに楽なのです。\n 人間、一度覚えてしまった利便性は中々抜けないもので、薬物の効果で一時的に助かれば助かるほど、それが切れた時の反動が大きくなる。そのせいで、僕の脳味噌はシャットダウンされずに熱が篭り続けるパソコン状態となっているのですね。\n 薬物による副作用の不健康などよりも、脳味噌が「楽」を記憶し、それを求めてしまうことが一番怖いと思う。例えばODや違法薬物だって、副作用による健康被害よりも、その「楽しさ」を覚えたばかりに、じゃあ人生それだけでいいじゃんと脳が無意識に判断することの方が、真に恐ろしい部分だと思う。よくできたバランス調整だよな。\n\n毎日の日記をまとめた同人誌を販売中です。よろしくお願いします。\n\n去年の年末に発売した、商業エッセイ集もよろしくお願いします。睡眠薬でラリった勢いで書いた文章がたくさんある！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

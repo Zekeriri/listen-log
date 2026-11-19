@@ -38,9 +38,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-03-14 01:28\n激发御宅心理的压倒性数量 八万四千佛\nオタク心をくすぐる圧倒的な数 八万四千仏\n\n山へ行く。理想の仏像を見に行く。\n 今回見に行くのは、巨大な大仏がどんと鎮座しているお寺でなく、大量にずらっと並んでいることで迫力があるタイプ。京都で見た三十三間堂の人間サイズの仏像群もすごかったですが、今回はもっとコンパクトなサイズの仏像が大量に飾られている感じです。オタクの推し無限回収みたい。\n\nやはり「数」というのはカッコいい。『宝石の国』でも、このページがいちばん好きなんだ。仏像はわかりやすく「偶像」として信仰を集めるため、説法がなくとも大衆がありがたみを感じるくらい、巨大であったり数を並べたりする。つまりはフィギュアやプラモと同じ。カッコいい/かわいいければ何でもいい。現に海外のお寺はパチンコ屋並みにネオンライトが光って仏壇をド派手に彩っている。他の主な宗教は偶像崇拝を禁じてあるので、これは仏教ならではの趣。\n\n寝台列車に揺られて島根へ。島根と言えば「島根にパソコンなんてあるわけないじゃん」のイメージですが、それもデジモン無印の時代であって現代では……と思っていましたが、いざ駅を見る限り無いかもしれないな、島根にパソコンは。\n 本来なら駅からお寺までバスが走っているのですが、実は昨晩僕が乗っていた寝台列車が朝方に鹿と接触事故を起こしたため1.2時間遅れてバスに間に合わなかった。なので1.2時間くらい徒歩で山を登って向かいます。これも仏様が与えた試練だと思えばなんのその。トラブルを都合よく「試練」と解釈して前向きに臨めるのは宗教のいいところですね。ちなみに僕以外の参拝者である老人たちは全員車で来ていた。悲しすぎる。\n 山って登っている時に景色が変わらなすぎて挫けそうになりますね。ようやく道を抜けたと曲がってみたらまた同じような道が出現。ぐんぐん車が僕を追い越していく。負けないぜ。\n\nどうにか山頂に到達したら犬がいた。この光景は良いな。\n\nなんと休憩所でも僕を出迎えてくれる犬が居ました。ももちゃんと言うそうで、もう10年近く店主のお婆ちゃんと二人で山頂近くの休憩所にて参拝者を案内している。素晴らしい方だ。\n\nそして、こちらが八万四千仏。これを見にきたのだ。説明不要の数の力。 ここまでくるとバグ技みたいで笑いすらでてくる。ちなみに一体五万でここに自分の仏像を一体増やせる。なんてありがたいんだ……。\n やっぱり仏像にはコレクション性がある。オタク趣味だ。ウルトラマンのソフビやSDガンダムのプラモがずらっと並んでいる光景と同じ興奮を覚える。やはり物量は童心を刺激する。それでいて善の光で包んでくれるのだから、わざわざ歩いて見に来て良かった。少なくとも、登山中や参拝中の数時間はインターネットの喧騒から離れられた。ネットを忘れて仏像に浸る。文字にすると素敵なことすぎるだろ。善行すぎ。ちなみに賽銭はPayPayで受け付けていた。帰りにまたお婆ちゃんと犬の様子を見に行きましたが、山奥でお客さんをもてなすだけの二人の生活には煩悩や欲のカケラも感じられない。人はこうあるべきだ。最終的にはこの境地に辿り着くべきだ。そう確信できただけでも大収穫でしたね。\n\n最強数字バグりすぎ仏像群\n八 万 四 千 仏 pic.twitter.com/SgcWxmIPjH— にゃるら (@nyalra) March 13, 2023\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -59,10 +58,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

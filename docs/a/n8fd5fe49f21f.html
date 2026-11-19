@@ -32,9 +32,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-02-12 04:31\n一口随笔：25万本与团队制作\n一口エッセイ:25万本とチーム製作\n\n超てんちゃんのファンが25万人になりました\nわたし、まだまだ未熟だから これからもたまに壊れたりすることもあるかも知れないけど\n今日の幸せな気持ちを忘れなければ、どうにかなる気がするよ\nどんなにデコボコな道でも、100万の夢を諦めないからな！！！\n記念のイラストは @imlllsn さんからだよ https://t.co/gHg4vtmO89 pic.twitter.com/XXyd1z3Gsr— 🎀超絶最かわ🎀てんしちゃん (@x_angelkawaii_x) February 11, 2022\n\n「NEEDY GIRL OVERDOSE」の販売本数が、25万本となりました。ありがとうございます。いろんな展開も考えておりますから、これからも応援してくださると嬉しいです。超てんちゃんを好きになりましょう。さて、今回は内容でなくゲーム製作で学んだことの話をしましょうか。\n 当然ながら、僕一人で作れるはずもなく、基本はプロデューサー、プログラマー、ドッター、シナリオや監修的立ち位置の自分の4人で製作してきました。キャラデザのためのイラストレーターや音楽も加わりますが、必要な素材だけその都度頂く形でしたので、密で連絡していたのは4人ですね。\n マスターアップ時、一人が「空中分解が全くなかったのが凄いですね」と呟いたのが印象的で、やはりチーム製作の一番の難関として、「誰かがギブアップ/揉めて中止になる」ことがあるでしょう。1年以上、同じ人間と意見や仕事ぶりをぶつけ合い続けるのですから、むしろトラブルが起こる方が自然。それが発生しなかった勝因（まぁ延期はしたけどね！）は、「これは面白い！」と確信してくれていたかもしれません。\n 友人や尊敬するクリエイターと仕事をする際、最も怖いことは「話題にならずに終わる」ことです。こりゃダメだって空気が流れた瞬間、やる気はみるみる落ちて最悪ケンカになる。みんなで一つのものを作る経験はとても良いものですが、空中分解する可能性の方が高いことは留意しておき、なおかつ関係が壊れるのも珍しくないので、一緒に仕事するということはみんなで笑うか、みんなが泣くかのギャンブルであることは覚悟すべきだと思いましたね。\n\n毎日のエッセイをまとめた同人誌をboothにて販売中です。ゲーム製作中の苦悩もいっぱい載っている！\n\n商業エッセイ集の方もよろしくね。表紙に超てんちゃんもいるよ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,10 +52,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

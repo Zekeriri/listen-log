@@ -48,9 +48,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-12 02:28\n妹妹\n妹\n\n「お兄ちゃんっ！」\n あたまにでっかいさくらんぼのアクセサリーを付けた、二つ結びの少女が目の前で髪を揺らす。\n 「お兄ちゃん、今夜はわたしがご飯作るね！」\n 「今どき、そんなテンプレ妹キャラ流行らないぞ」\n 「だって、お兄ちゃんがわたしを創った時は、こんな感じがデフォルトだったんだもん」\n 中学の頃、母親と2人きりで過ごした十数年のマンネリに耐えきれず、僕はタルパ……脳内妹を創造することにした。\n 「もう独り身にも慣れた。自分にしか見えない妹なんて要らないよ」\n 「本当に、独りで困ったことはないの？」\n 血の繋がりに飢えていたんだと思う。地元に母を置いて上京してから数年後、家族欲しさが加速したのか、脳内妹の現実感は厚みを増していった。本当に作るべきだったのは、家族と同じくらい信頼できる恋人という名のパートナーだったのかもしれないが、生来のオタク気質が蟻地獄のように空想の穴へと逃避させたのだ。\n 「あえていうなら、眠れなくて困っている」\n 「……嘘つき」\n 最近、妄想の具現化からも逃げようと試みている。\n 「お兄ちゃん、ホントは眠れないフリしているだけでしょ？」\n 自分の頭の中の存在だから、僕の思考はすべて筒抜けで、それが恐ろしくなったから。\n 「違うよ。お兄ちゃんは、本当に眠れなくて毎晩くすりを飲んでいるんだよ」\n 「結果的に不眠になっただけで、最初は違ったでしょ？」\n 「……」\n ここまで人生を共有することが家族なのか。そんな大きすぎる存在（もの）、僕にはとても抱えきれない。\n 「最初は、ちょっと落ち込んで眠れなかった程度だったのに、みんなの前で不眠がどうって大げさに騒いでいるうちに、だんだん言葉の力に負けて、病気を本気で思い込んじゃっただけなのにね」\n 「不幸にならないとみんなに嫌われると思った。気づいたら眠れないことで幸せが逃げて、今に至る。ある意味で病気だったのは真実だよ」\n 「不幸にならないと、っていうのも思い込んだだけだよ。自分の能力のなさを、不幸って言葉に包んで誤魔化してたんだ」\n 彼女の目を真っ直ぐに見れない。きっと、僕のわがままに困惑している母と同じ表情をしているから。\n 「死にたくなってきた」\n 「その死にたさすらも嘘で、希死念慮持ちの自分に酔ってるだけ。お兄ちゃんは、いっつもそう」\n 「今の死にたいは冗談のつもりだよ。でも、たまに心から消え去りたい時があるけどね」\n 「そっか」\n 僕のしていることはコミュニケーションなんかじゃない。誰が相手であろうとも、投げかけられた言葉のパターンを認識して、それに応じた回答を機会的に返しているだけ。妄想で創り出した相手とだってそう。どこまでいっても、自閉症の積み木遊び。\n 「僕に芽生える消えたさすらも偽物で、本来の自分はもっと幸福で元気いっぱいなのかな？ 僕の本心ってどっちにあると思う？」\n 「さぁ？ わたしは所詮妄想だから、お兄ちゃんが分からないことは分からないな」\n 僕は、この妹をけっこう気に入っている。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -69,10 +68,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

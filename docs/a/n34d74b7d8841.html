@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-03-04 03:08\n一口随笔：对战包间录像店\n一口エッセイ:VS個室ビデオ店\n\n夜の街を歩いていると、ぽつぽつ「個室ビデオ展」なるお店を見かけたことはないでしょうか？ 個室ビデオ店は怪しい場所でなく、ざっくり言えばネカフェのアダルト版。ネカフェでは漫画などをレンタルして楽しみますが、個室ビデオ店は選んだAVを個室で視聴して\"楽しむ\"わけです。もちろん、ただ眠ってもよくて、それで一晩1500円くらいなのだから（シャワーや軽いご飯付き）コスパはとても良いぜ！ 終電後の選択肢の一つとして便利。\n 若き日、終電を逃したにゃるら青年。1500円で一晩明かすぞとドキドキしつつ入店すると、店員から「まずAVを6枚選んで」と注意されてしまう。「強制！？」と驚く僕。何を隠そう、今も昔も僕は本来の用途でAVを見ない。ピュアぶっているわけでなく、単純に一人で使う対象が二次元なだけである。\n これは予想外。まさかAVを厳選しなければならないとは……。店内には無数に並べられたディスクたち。困ったことに、本当にどれも同じにしか認識できない。興味なさすぎて「良し悪し」が判断不能。ゲームを全てファミコンと呼ぶ老人状態である。\n 適当に選んで、「コイツよっわ！」と見下されるのも嫌という妙なプライドもある。スカトロ6枚積みして「特殊勝利」を狙いにいくか？ 敢えてエロアニメだけ積んで「テーマデッキ性」を魅せるか？ など、クソどうでもいい思考が逡巡する。結果、ランキングの上から取る「グッドスタッフ」で攻めた。正直さっさと寝たくて怠かったから……。店員からは「ランキングを盲信する\"情報を食っている客\"だな」と舐められたことでしょう。安眠と引き換えに敗北感に覆われる、惨敗といえる夜だった。\n\n毎日のエッセイをまとめた同人誌を販売中です。三次元の話をしていること全然ないな！\n\n商業エッセイ集もよろしくお願いします。終電を逃した夜のおともに最適です。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

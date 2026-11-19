@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-09-05 19:28\n想像JUMP一样日常用K行高喊\nジャンみたいに日常的にカ行で叫びたい\n\n『鉄鍋のジャン!』を読んでいて、特に気持ちがいいのはジャンが嬉しそうに奇声を発してる様子を見ている時だと気づく。\n\nカカカカカカーッと、およそ主人公と思えない奇声とともに悪役顔でピカレスクロマンを謳歌するコマを見ると嬉しい。カ行の叫び声を連呼するのは基本的に悪魔超人側なので、ケケケーッと主人公が料理を使った悪巧みをしているたびにこちらも笑顔になる。\n\nアトランティスのような叫び方を\n\n人間どころか主役で披露してくれる、我らが主人公の秋山。\n 今期アニメで所見の視聴者たちが、料理を通したジャンの非道に驚く様子をコッソリ眺めております。料理勝負で幻覚キノコや後攻が不利になる量の糖分を用いては……いけない。この漫画では主人公の登場シーンでの観客の第一声は｢死ねーっ!｣である。\n そんなジャンが鍛練には誰より一生懸命で、負けると発狂するくらい落ち込んでは努力を重ねる姿に、やっぱりカッコいいぁと惚れてしまうのだ。クククク……。\n\nでも、すぐカカカーッ、ケケケケケケーッ、キキキキキー!とカ行の奇声をあげる。基本戦法も｢勢いで先攻をとって審査員の味覚を破壊しておき、後攻の料理を不利にさせる｣などだ。とはいえ、｢勝ち｣に関して貪欲で一貫性のあるジャンの強烈な美学に読者は惹かれていく。まあこの世界はジャン以上の極悪非道もいっぱいいるのもあるけれど……全然相手の腕折ってきたりするし。ライバルキャラも料理に毒を入れてくるから(ジャンも同じ事している)両方倒れたりする。絶妙なバランスでキャラの好悪が調整されているのは、作者の技巧だなあとあっぱれ。\n 僕らもどうせ社会では浮き続けているのだから、日常的にケケケー!と叫んでいくべきじゃないか。Zoom会議なんかに遅れたときも、｢スケジュール気づかずすみません!｣ でなくて、｢カカカカカーッ! アホヅラ並べて素直に待機しやがってるな!｣と堂々参加する方が両者にとって気持ちがいい。\n みんながケケケケケケーッと雄叫びをあげられる、悪魔超人にも優しい社会が訪れることを願います。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

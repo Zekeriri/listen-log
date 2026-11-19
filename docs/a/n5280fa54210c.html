@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-09-16 02:10\n一口随笔：最喜欢的富野监督的爆发\n一口エッセイ:好きな富野監督のキレっぷり\n\nアニメージュの富野由悠季への質問コーナー『富野に訊け！』が大好きです。\n 富野監督といえば、そのキレっぷりが伝統芸能化している印象も強く、昨今はファンサービスで「キレてあげてるな」というイメージすらあります。実際、この質問コーナーでブチギレている割合は……半々くらいでしょうか。意外と少ない気もしますが、2回に1回は質問者に説教してると考えると元気のGすぎるだろ。\n そんな中でも、特に見事なキレっぷりの回答があり、まずは「最近のアニメが楽しめません」といったアラサー女性のお手紙が登場。それに対して富野監督は嬉しそうに「最近のアニメはおっしゃる通り工業製品なので\"本物\"を観よう」とアドバイスしています。\n\n\"本物\"ってなにを指しているんだよと、あまりにテンプレな頑固ジジイでファンとして嬉しくなりますね。ちなみに僕は、せっかく放送されているのだから清濁併せ呑む方が良いという考えです。まあライン維持のために、なにかの原作を引っ張ってきてとりあえず製作したアニメも、1クールに何本かある事実は否めませんが。\n その後、勇気あるオタクが「前号の答えは失礼ながら乱暴であるように思えます」と苦言を呈する展開に。長いアニメージュの歴史の中でも、一般人が富野監督に噛み付いたのは初の事態ではないでしょうか？ 手紙は、「過去の名作を味わった上で新作を見ると発見もあって面白いですよ」と続く。僕もまったくの同意見です。自分の気持ちを伝えられて偉い！\n これには、さすがの監督も「たしかに、それも答えですね」と引き下がるのではとページを捲ると…………めっちゃキレてる。今までに無いくらい相手をなじっていて、さながら「お前の全てを否定してやる」状態。こんなことある？\n\n「新作を見ると新たな発見があるのは当然ですが、本当に新しい発見ができているか、実を言うとかなり怪しいですよね？」と反論しており、実を言うとと言われましても……とビックリ。僕らレベルの新しい発見は全てまやかしなのか！？ その後も「本物の違いを見極めるために見聞を広めろ！」と続く。そうでもあるがぁぁぁ！！\n ここまで面倒くさい老人を徹している姿に感動。監督は「俺のことがムカつくなら、それを作品にしてこんな老人を超えろ！」といったスタンスであり、この頑固さが生き様なのですね。若者に説教し、苛立たせ、怒りや憎しみをパワーへ変換させる。まるでZガンダムの在り方そのもの。\n いつか僕も「ニーディーなんたらとかいう甘えたゲームは正直ゴミです！！！」って監督に怒られてぇよと思いつつ、それをファンは求めていると知っているのだから、リップサービスで流行りの作品に怒ってあげている富野由悠季は優しい人だなぁとしみじみしたのでした。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪ 買ってもらえると、僕が新たな本を買うことができます。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

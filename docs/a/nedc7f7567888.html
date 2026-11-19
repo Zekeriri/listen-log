@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-07-08 20:11\n精选一口随笔: 小奏鸣曲与颓废之美\n選り抜き一口エッセイ: ソナチネと退廃の美\n\nソナチネは、「死」そのものを描いたような映画でした。\n 内容は、「アウトレイジ」三部作を一作に纏めたような構成に感じたのですが、徹底的に暴力と悪を描いたアウトレイジと違い、ソナチネからは、日常と退廃の美しさを感じさせます。\n ソナチネの登場人物たちは、非道なヤクザながらも、沖縄の田舎の雰囲気にあてられ、まるで小学生のような無邪気さで海を遊び尽くす。相撲勝負に、穴掘り、ロケット花火……。もちろん、彼らはいつ殺されたっておかしくないヤクザなわけで、登場人物も視聴者も、彼らの平和な日常が突然崩されてしまうことは分かっている。だからこそ、彼らが純真無垢な気持ちで遊んでいるだけで、そこに儚さと美が生まれる。\n\n彼らの日常と死が隣り合わせであることは、有名なロシアンルーレットのシーンで強調されます。主人公であるたけし演ずるヤクザの組長・村川は、微笑みながら自身のこめかみに拳銃をあてる。いつの日か、その光景がおふざけでなく、シリアスな現実になることを分かっているように、どこか無感情に見える表情で笑う彼の姿から、この作品全体に漂う「死」の緊張感が如実に表され、このカットだけを切り抜いただけでも十分に伝わる迫力を生み出している。\n 終わりがあるからこそ美しいと言いますが、ソナチネは正しくそれそのものであり、僕らは彼らの終わりを静かに見守る。とても悲しいのに、すごく綺麗な画面が続く、掛け値なしの名作です。\n\n今までAPEXのことよく分からなかったけど、試しに実況動画観てみたら、まず味方とふざけて銃口向け合ったりして笑うような日常パートがあり、そこから敵との激しい殺し合いで皆死んで終わったので、死が隣にあるからこそ日常の美しさを際立たせる「ソナチネ」と同じ構造だから人気なのかと思った— にゃるら (@nyalra) February 22, 2022\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中です。気に入ってもらえたら、ぜひ覗いてみてください♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

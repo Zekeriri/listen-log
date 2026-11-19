@@ -37,9 +37,8 @@ good（良い）な睡眠だからグッドミン。字面だけ見るとグリ�
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-08-13 03:45\n安眠药的名字是Goodmin\n眠剤の名前がグッドミン\n\n眠剤の名前が……\n\nグ ッ ド ミ ン\n 心地良い眠りを提供する薬の前がグッドミン。\n 以前、日記に書いた睡眠薬の名前はミンザイン。眠剤の名前だからミンザイン。こちらは良き眠りを与えてくれるからグッドミン。\n グッドミンを飲むと……\n よ く 眠 る\n それはとても……\n グ ッ ド な 睡 眠\n ありがとう、グッドミン。\n 不眠で苦しいあなたもグッドミンがあればもう大丈夫。なぜなら一錠飲んで布団に入れば即グッドな睡眠の世界へと導かれる。\n グッドな睡眠とはなにか。いい悪夢（ユメ）見れる条件とはなにか。夢すら見ないくらいに熟睡できることだろう。デエビゴは健忘の起きない素晴らしい睡眠薬だけれども、悪夢の副作用だけが難点。一方、グッドミンはグッドな睡眠。きっと夢の中までグッドな世界を広げてくれる。\n なぜなら、この薬は……\nグ ッ ド ミ ン だ か ら\n とはいえ、グッドミンのグッドが全然GOODとは関係なく、なんならミンもいっさい眠（みん）と無関係だったらどうしよう。勝手にグッドミンという名称から安直に良い睡眠を連想しているだけなら恥ずかしい。\n そこで由来を調べてみますと……\n\ngood（良い）な睡眠だからグッドミン。字面だけ見るとグリッドマンに見えてビックリするね。\n おやすみなさい。良い夢を。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -58,10 +57,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -35,9 +35,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-01-21 11:07\n回忆中的美少女游戏故事 妈妈与小孩\n想い出のエロゲー話 ママトト\n\n※数年前に同人誌で書いた内容の転載です。\n\nアリスソフトと言えばなんだ！ 「ランス」シリーズや『大悪司』か！？ はたまた抜きに特化した「超昂」シリーズや『妻みぐい』か！？ もちろん全部名作だ！ こんな同人誌読んでいる暇があったら、いますぐアリスソフトを漁れ！\n\nそして、たっぷりアリスソフトについて知った後は、一緒に「にょ」シリーズに狂ったように時間を捧げよう！ 20とか30時間の話じゃないぞ、桁が一つ増えて100時間単位で消えていく。一つの美少女ゲームに、100時間以上、消えていく。\n\n「にょ」シリーズは、アリスソフトの集大成のような作品で、今までに登場したアリスソフトの人気キャラクターたちが大集合。ストーリーは殆どなく、無限に駒を右に進めていく。無限に、無限に……。途中でランダムにキャラクターが開放されていき、今まで知らなかった思わぬキャラクターが成長し、その作品を好きになってしまうこともある。\n\nエロゲー業界広しといえども、この中毒性は真似できない。なぜなら、この面白さを担保しているキャラクターの魅力は、何十作を作り上げた歴史あるアリスソフトのパワーだからこそ。そして何より、もはやオーパーツと呼んでも良いレベルの鮮やかなドット！\n\n「にょ」シリーズについては、ここまでにしておくとして、じゃあ『ママトト』とはなんなのか。簡単に説明すると、そんな無限に遊べちゃう「にょ」に対して、ゲームクリアとストーリー性を実装したSRPG。90年代らしい、真っ直ぐにファンタジーな世界観やキャラクター、その上でアダルトゲームらしく陵辱的なシステムもある。このバランスがアリスらしい。\n\nなんといっても、評価すべきは「王道」であること。これが00年代以降の作品であれば、必ずプレイヤーを驚かせるための捻りが加わるだろう。舌が肥えた客には、味付けの濃い食事で満足してもらうしかない。が、ママトトにそんな小細工は無い。ド直球なまでに王道ファンタジーな世界は、ねじ曲がった現代のオタクにとって、逆に新鮮に映る。\n\nもちろんグラフィックも最高だ。ジャケットの美しさが本当に良い。引き算の美学を感じる。そして本編のCGもたいへん美麗なんだ。まだ「萌え」と合流していないキャラクターデザインからは、90年代だからこそ摂取できる良さが溢れる。\n\nむせ返るほどの90年代を浴びたい！！！ という気持ちがあるなら、自信を持ってオススメする一作。そうでなくても、90年代を勉強するつもりで遊んでほしい！ たくさんの可能性に満ちた、あの時代の光を受け、純粋な冒険心を今いちど呼び起こすんだ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -56,10 +55,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -25,9 +25,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-05-04 14:15\n利博替利尔\nリボトリール\n\nリボトリール。\n 大袈裟には「悪魔の薬」とまで呼ばれる由縁は、シンプルにベンゾ系最強だから。\n 心が楽になっていく代わりに、用量を間違えるとみるみる耐性がついて量が増えていくベンゾ系。その最も効果が強く、効き目が長い。27時間くらい？ 眠って起きて、それでも丸一日、ぼけーっと過ごすことができる。\n とにかく感情全体がボリュームダウンするような印象で、緊張や不安が薄れていく代わりに、感情全体もぼんやりしてくるので現実感が消失する。うっすら夢の中にいる感覚が複雑なことを忘れさせてくれる。あと食欲減退。\n 通常の向精神薬は寝て起きたら現実に戻っているけれどもお、リボトリールは、まだまだ、むしろ起きてからの方が本番なようなもので。興奮がおさまる。何も考えずに済む。その感覚への依存からの脱出は非常にハードなものだ。僕はもうデエビゴ無しで眠るのは難しい。脳が、自然な入眠を忘れてしまった。ベンゾ系に依存していくと、いずれは「自分の力で精神を整える」感覚を忘れてしまうかもしれません。\n なにか、楽しいことはないかな。\n 生きていて。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,10 +45,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -33,9 +33,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-02-10 12:22\n回忆中的美少女游戏故事 直到春天，来吧。 小说化\n想い出のエロゲー話 はるまで、くるる。 ノベライズ\n\n※数年前に同人誌に書いた内容です。\n\n『はるまで、くるる。』という美少女ゲームが発売されました。発売前は予約数に伸び悩んだものの、いざ発売すると、そのクオリティの高さからじわじわ口コミが広まり、萌えゲーアワードにて「ユーザー支持賞」「シナリオ賞」など6部門の月間賞を獲得、さらにはシナリオ賞も銀賞にまで選ばれる程に評価は高まり、最終的には『なつくもゆるる』『あきゆめくくる』『ふゆから、くるる。』の3作も続編が作られることに。これら4作をまとめて「SF四季シリーズ」と呼びます。四季シリーズって。まるで森博嗣だ。\n\n瞬く間に人気作となった『はるまで、くるる。』ですが、現在では珍しく「エロ」目的でないノベライズ版が『はるまで、くるる。 春の日のような、甘くて果ての見えない、悪夢と終末のハーレム』と副題がついて発売。しかも原作から4年経って。つまり、それくらい自信と意味のあるノベライズなんです。\n\n何が良いかって、まず全ヒロインルートが網羅されている。これは、本作が特殊なループモノであるからこその構成であり、「ループ要素」が巧みに活かされている証です。それでいて一冊で完全に完結しており、原作プレイ済みの僕から見ても過不足ない出来に。\n\n要は一冊完結のSFモノとして単純に出来が良い小説になっているんです。ライトノベルが適切かな。ゲームにはゲームの長所がありますが、小説には小説の長所がある。こちらのノベライズ版には、小説の形に落とし込んだからこその、整理され凝縮されたストーリー展開を楽しむことが可能となり、「美少女ゲームは長くてちょっと……」という方にも、安心してオススメできる一冊となっております。嬉しいね。\n\n内容について触れていないことに気づきましたが、「ループ」「SF」とか「悪夢」「終末」といった単語から諸々を察してください。それらの要素から期待した内容が、予想以上のクオリティで殴りかかってくれますから。\n\nここまで『はるまで、くるる。』を推しておいてなんですが、僕は『あきゆめくくる』が好きだったりする。土織キスというキャラクターの設定が凄く刺さったんです。オタクは量子力学の話をされると無条件で興奮するから。\n\nとは言え、なんにせよ先ずは『はるまで、くるる。』を知るべきでして、先程は「どんな作品も原作をプレイするべきだ！」なんて言っちゃいましたが、本作に限ってはノベライズ版から入ってもオーケー。そこから気になったら続編を購入し、美少女ゲームで四季を体感してみよう！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,10 +53,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

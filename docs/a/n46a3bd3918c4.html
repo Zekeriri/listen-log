@@ -29,9 +29,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-06-24 14:14\n精神科系统\n精神科システム\n\nまだまだ心が苦しい。\n 精神科へ行った。\n あまりに鬱々として一回分すっぽかしてしまったので、「前回予約を破ってすみません」と謝ったけれども、先生は心底どうでもよさそうに「あ、ぜんぜん」と一言で済ます。\n 当然、精神の不調によりまともに通院もできない患者だらけの場所にとって、予約のドタキャンは日常茶飯事なのでしょう。ポジティブに捉えれば、それでもまた来てくれたので良い、といった心情なのかと勝手に思い込める。\n けれど、「ぜんぜん」とだけで流された時、なんだかショックを受けてしまった。自分のしょうもなさを一瞬で赦されるシステマチックな儀式に、「お仕事だからなあ」と思ってしまった。わがままな感覚ではあるけれど。\n 心の話について、システムや技法が持ち出されると萎えてしまう。マニュアルで返されてると気づいた瞬間、「薬をもらうだけの儀式」でしかないなと悲しくなる。もはや互いの労働だ。\n 自閉症スペクトラムについての本を出した尊敬する先生のところへ帰りたい。あの人は、僕と他者とのズレを興味深く聞き、笑い、驚き、時に雑談をしてくれた。\n システムは肌に合わないけれども、そもそも一度すっぽかした僕が悪いし、そんなこと気にしてられないほど院が患者で溢れているのだから、当然の流れでしかないのに。\n 心のお薬を飲もう。\n\n精神の病院の近くに咲いた、紫の花。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,10 +49,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

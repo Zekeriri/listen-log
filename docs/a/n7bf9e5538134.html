@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-08-12 21:55\n一口随笔：从未找过工作……\n一口エッセイ:就活したことなし……\n\n時期が時期なのか、ラブレター（質問や応援を投げられるサービス）やスペースでも、「就活が上手くいかなくてつらい」という悩みで埋まってきました。不合格通知がくるたび、まるで自分が社会から必要とされてないと言われているようで悲しくて仕方ないとのこと。\n ……が、僕はこれに関してほとんど何も言えない。なぜなら、単純に僕は就活をしたことがないから。というか、大学一年も通ってないし！ なので、「つらければ辞めてもいいんじゃないか」くらいにしかアドバイスもできない。したことない事を応援するのも無責任ですから……。\n とはいえ、道としては就活以外でもなんとかならないかとは考えてまして、例えば僕の本を出版してくれた編集さんは、学生時代に編集のバイトをしてそのまま正社員に上がりましたし、サブカルチャーやコンテンツ業界は、学歴以上に実績や知識を優先する筈です。まともな勉学に疲れた際は、興味のあるなんらかのサブカルで特異なバイトを始め、そこで得た経験や知識を利用するとかどうでしょう？ バイトでなくても、例えば今どんどん動画コンテンツは伸びていくと思うので、音MADの作者なんてめちゃくちゃ重宝されるでしょう。MADなどを通して動画編集を楽しく学んでいるだけでも、即戦力として欲しがる企業はたくさんある。いろんな現場でその様子は見てきたから……！ 配信まわりの知識もあるとなおよし！ 大好きだった配信者が嫌いになる可能性は大いにあるけどね。\n しばらくフリーターなり無職になって、モラトリアム期間を趣味に打ち込み、その趣味の力を使って就職なり仕事なりを手に入れる！ 少なくとも自分ならそうすると思います。大学辞めてずっと文章書いてきた結果が今なので、これは実例を伴って言える。似たようなルートの友人も少なくないですし。\n まぁ、これはこれで当然茨の道ですけどね。次は、学歴でなく実力だけで測られる世界に飛び込むのですから。うーん、社会においてどのポジションにいるかが幸せかは、その人次第すぎて難しいですね！ 新卒カードが消える不安とか、就活を諦めたことでの人間関係とかあるかもですし。僕は、そのあたり他人にどう思われても気にしないタイプでしたが。\n 僕は通常の就活をまったく知らないので、「好きなことに夢中なうちにそれが仕事になる」ルートは確実にあるということだけ書いておきます。みんなも毎日文章を投稿して、僕と同じ苦しみを背負おう！\n\n毎日書いている文章、本の形でも手にとってね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

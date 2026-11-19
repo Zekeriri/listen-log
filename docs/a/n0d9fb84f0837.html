@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-08-18 14:04\n非常琐碎的现实\n非常に細々とした現実\n\nここしばらく、あまりの原稿漬け（今回はアニメ脚本）で、区切りのタイミングで我慢できずに倒れるように眠るを繰り返しており、ついに昨日提出した今日も限界で眠りこけてしまい、こうして昼に投稿することに。\n 元より、深夜まだ起きている人たちに向けて、一瞬な暇つぶしになる読み物を意識していたので、昼に日記を書くのも、また起きたばかりでのテンションだと筆が乗らないこともあり、それも合わせて微妙に精神を圧迫されていた。\n 連ねて、毎月読んだ本や聴いた音楽をまとめて記事にするのが密かな楽しみであったのですが、それの投稿も遅れていたのもストレスに。毎日投稿も毎月のまとめも己で課したルールでしかないのに、だからこそ苦しめられる。\n なんにせよ、今までの負債を取り戻すかのようにめちゃくちゃ眠ったので、これからは原稿に向き合って放置していた地味な作業に向き合っていく。それがいやで、なんなら原稿中自体はどんなに苦しくても大きな目的と物語の渦中にいるわけで、その夢の先に待っている、支払いとか請求書とか出版社への連絡とか監修とか、なんとも「現実」が溜まっていることへの逃避行動して原稿があったとも言える。「原稿に集中している」と言い訳があれば、みんなそれ以上手出しできないからね（事実だし）。\n せっかく大きな山場を越えたのに、次は地道な坂道を一切のドラマなく登る。人生は山場よりも、地味に、極めて地味な作業に悩まされる時間の方が長い。まあ、小さな成果が重なることで巨大な喜びの塊にもなり、逆に言えば小さな課題を積み重ねている間に山となって急に崩れることもある。\n 地味な悩みの例。\n なんか洗面台の水捌けが悪い。流れないわけじゃないが、顔を洗っている間、気づけば水溜まりが生まれている。待っていたら全部流れる。パイプユニッシュを流してみたもののあまり改善されない。水道管そのものの問題な気がして管理会社へ連絡しなければならないけれども腰が重い。あと更新手続きもせねばならず、それには連帯保証人としてプロデューサー（家族がいないので上司役）のサインも必要となり、そのためになんか色々やるのも非常に怠い。\n しかし、生活には、このようなドラマにならない怠さが9割を占める。それに気づくと非常に嫌気が差すので、細々とした苦痛を見て見ぬふりするため、本や映画の世界に引きこもり、少しでも夢の中に、大きな物語の中へ閉じていくのです。\n\n中野の図書館にある展示が良かったのでみてね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

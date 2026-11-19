@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-10-25 03:13\n一口随笔：在Twitter发布文章会被挑刺的原理\n一口エッセイ:Twitterに文章を投稿すると突っ込まれる原理\n\n「InstagramはTwitterに比べて平和」と日記に書きました。これは、Twitterを下げたいわけでなく（多少その意図もあるが）、感じたことをそのまま書いただけであるとご留意ください。\n すると、わくさん（僕が好きな文章を書く方）が同意してくれて、「Twitterでも画像のツイートが拡散されても変な人に絡まれないが、文章のツイートだと絡まれる（意訳）」と補足してもらえました。仰る通り。のほほんとした平和な画像や、クスッと笑えるような画像が拡散されても、めったに酷いリプライはこない。それが文字ベースとなるとどうだ、どうしたって野暮なリプライが無限湧きするのです。\n 思うに、オタクは匿名文化でのレスバトル精神が身体に染み込み、知らない人間の書いた文章を読むと無意識に揚げ足取りするのではないか。それが140文字でしかニュアンスを伝えられないTwitter上では余計に。みなさんも、実際はリプライや口にはせずとも、流れてくる他人のツイートに脳内でつっかかる癖はありませんか？ それこそ紛うことなきオタクの本能なのです（大胆な仮説）。\n 文章上では感情まで読み取れないし、書籍と違って己のみで完結しておらず、ネット上では相手の文章に反論ができる。良くも悪くも。そうなると、人はマウントを取りたい・揚げ足を取りたい欲望に駆られてしまうのではないか。もちろん、大半の人間はそんな余計なことを脳内で済ませている。しかし、一部の人間はやっぱり我慢できずに本人は伝えてしまうのでしょう。「いくらなんでも、それは野暮じゃない？」と言ったことを。\n 匿名掲示板全盛期はそれでも良かった。なぜなら「個」ではないのだから、煽って煽られても一期一会で無責任だ。が、今は誰もがアカウントという「個」を手に入れた。そうなると、いつまでも匿名ノリで喧嘩売られたり難癖つけられると普通に厄介に感じる。もしかしたら、これを読んでいるあなたも、既に僕の持論に対して反論したくて疼いているのではないでしょうか。ここは僕の日記帳ですから好きに書きますけども。\n この仮説が正しいならば（ふと思っただけなので粗だらけでしょうが）、Twitterから若者が離れて、どんどんInstagramや TikTokなどの画像・動画文化に人が移るのも頷ける。だって、変に難癖つけられる可能性が低いのだもの。絵があるから感情も正しく伝わるし。\n とはいえ、例えそうであったとしても、何がどうって話ではないですけどね。一つ確かなことがあるならば、確実に匿名掲示板の陰湿なノリは今のインターネットから疎まれていく。それに対して僕ら20代後半以上はどう振る舞うか、といったことだけでしょうか。この変動していくネット社会の中で、いつまで匿名掲示板ノリを貫けるかな？（斉藤対宇水戦）。\n 今回、注釈がやたら多いのも、野暮なツッコミを減らす実験だったりします（種明かし）。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくお願いします♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

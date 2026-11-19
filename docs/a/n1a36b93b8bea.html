@@ -25,9 +25,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-18 09:44\n一口随笔：龙珠超 超级英雄与在街上看到的有名YouTuber的故事\n一口エッセイ:ドラゴンボール超 スーパーヒーローと有名YouTuberを街で見た話\n\n『ドラゴンボール超 スーパーヒーロー』を観に行きました。今回はピッコロさんと悟飯に焦点を当てた作品でして、敵もレッドリボン軍ということから、色々と想像はできるのですが、その「せっかくピッコロさんと悟飯が目立つのだからこうなったらいいな」が、予想の倍のクオリティが出てくるような、ファンの期待を裏切らない最高の作品でした。『超ブロリー』から、ドラゴンボール映画のストーリー性高くなりすぎる……。特に『超』時代の悟飯って、学者になって修行を怠けていましたから、タメの期間長かった分、その解放が見れて嬉しいですね。戦わずに研究に没頭できるのも平和の証で好きでしたが。\n それはともかく、劇場を出るとなんと同じ回に有名YouTuberの方々が同席していたようで、目の前に見覚えある派手な頭が並んでいてビックリ。観客たちが彼らを中心に円となるので、覇王色の覇気のせいで近づかないような雰囲気が出るんですね。勇気を出して声かけた人間には一緒に写真撮ってあげていて優しいし、気づかれても堂々と歩く強さは、ちょっと惚れそうになってしまう。僕もたまに街で声かけられて一緒に写真撮っていますが、やっぱりちゃっと「え、あ、はい」みたいな受け応えになるんですね。慣れが違うなーだと思った。\n あまりにビックリしたので、書きたいことが二つになって内容ぶれぶれ。日記なんだからこんな回があったっていいか。\n\n毎日日記書いて頑張っているので、同人誌版も手に取ってね。新刊もあります。\n\n商業エッセイ集もよろしくね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,10 +45,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

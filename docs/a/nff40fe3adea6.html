@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-03 10:35\n精选一口散文：被邀请虚拟性行为的经历\n選り抜き一口エッセイ: バーチャル・セックスに誘われた回\n\n長年の付き合いのある友人が、VRCにハマって以来、現実よりもバーチャル世界で美少女として存在している時間のほうが長くなり、すっかり電子世界の住人となっている。\n で、バーチャル世界で何百時間も過ごしていると、だんだんと男声が気にならなくなるらしく、美少女アバターから男性の低い声が出るのも、当たり前のように認識するようになるとのこと。美少女アバターの男性に、女の子のような可愛い声を出させるのが何より好きらしい。\n そうなると、当然行き着く先は性行為になるわけですが、僕の友人はバーチャル上でのセックスの場数をかなり踏んでおり、相手の美少女アバターの下半身を巧みに触ることにより、「存在しない子宮」の感覚を与えて、相手に思わずえっちな声を出させることを可能としています。ある意味、未来的な話ではある。僕は、彼のことを心から尊敬しております。\n 最近、彼から「セックスしたいから早くにゃるらもVRCに来てくれ」と誘われるようになり、視覚的には美少女アバターが映るとはいえ、現実で顔を知っている相手を平然と犯そうとする心意気に感動したのですね。ここまで直球かつ強引だと、たしかに「えっ……///」と乙女になります。実際、僕もリアルにドキッとしましたからね。彼の性格的に、VRCに入ったら本当に襲ってくるつもりでしょうし。\n 男は時にこれくらい豪胆な方がモテるんだなぁと勉強になりました。いつか僕も弄ばれる時がくることでしょう。心の子宮を犯されて。\n\n毎日のエッセイをまとめた同人誌などをboothで販売しています。買ってね！\n\n今月末には、長文エッセイをまとめた商業エッセイ集も出版されます。予約していただけると幸いです。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -25,9 +25,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-08-29 04:26\n一口随笔：日曜早晨动画的渔夫\n一口エッセイ:ニチアサ漁師\n\n『仮面ライダーリバイス』の最終回放送直後、『ドンブラザーズ』が冒頭でリバイス最終回を視聴し「いい最終回だった……」としみじみしたあと、「ドンブラザーズも今回で最終回にしよう」とキレキレなメタギャグを飛ばし、この予想外な悪ふざけ感は、ギャラクシーエンジェルみたいでめちゃくちゃ良いなと感動しておりました。\n\n前に友人が泊まりに来た際、8時半に起きてニチアサを視聴し始めた僕を見て「ニチアサって面白いの？」と訊いてきたので、「面白いとか面白くないじゃなくて、もう習慣としてとにかく観ている感じかな」と答えると、「漁師みたいな目つきだ……」とビックリされたことがあります。\n そう、漁師は例え今回の収穫が少なかろうとまた海に出る。そして、次も収穫量に関係なく絶対に海には出る。いつか訪れる大収穫を信じて。ニチアサ視聴はそれに似ているかもしれません。\n もちろん、僕も手放しで褒められない回だなと思うこともあるし、あまり心に残らなかったな……と惜しむ作品もある。しかし、一年も追い続けたのだから、ストーリーはともかくキャラクターには愛着が湧いていたり、要所要所で興奮した演出などは、どの作品にも必ずある。僕は、そんなヒーローや怪獣、ヒロインたちの輝く瞬間を逃さず目に焼きつけるために、ひたすら朝番組を視聴し続けるのでしょう。それこそ早起きして漁に向かう男たちと同じ精神で、生き甲斐のために真っ直ぐ船を漕いでいくだけなのだ。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,10 +45,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -24,9 +24,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-05-23 14:31\n在经历巨大失落后的生活\n大きな喪失をした後の人生\n\n自分の娘が殺された人間が、その後の人生を楽しめることはあるのかな。\n たとえ、その場その場で嬉しいことはあったとして、すぐに娘の死を思い出して沈むはずで、あらゆる場所に関して娘との記憶が紐づいているはずだ。\n 結局、何しても楽しくない、つねに「どうすれば殺されずに済んだのか」なんて、殺人犯が発狂して刺しにくることへの対策なんかできるはずもないのにぐるぐるとして、周囲を恨んで、羨んで、「助けてください」と言ったところで「どうにもできません」としか返されないのをわかっている。\n 遺族が何年経っても犯人を糾弾し続けるニュースに、「まだやってんだ」と言うコメントもつくのだろう。しかし、それは永遠にそう叫び続けるのも頷ける。頭の中ではずっと後悔や怒りがリフレインしていて、周忌になると唯一人生でそれを表で言葉にして許される日となる。それは毎年、己がせめて生き延びるためにそうすることでしょう。\n この喪失感の中で生きていても楽しくはない。\n そんな状態で自分が死ぬことを選ぶのは何が悪いのだろうか。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,10 +44,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

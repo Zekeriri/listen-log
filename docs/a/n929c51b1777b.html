@@ -32,9 +32,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-09-15 04:46\n一口随笔：安乐死\n一口エッセイ:安楽死\n\n一日中、ゴダールの安楽死について考えておりました。\n 映画監督・ゴダールを知ったのは、押井守監督がことあるたびにゴダール作品を嬉しそうに語るからでした。美意識の塊のような押井守が、「美意識の塊」のように解説する人物がゴダール。そんな男が安楽死を選択したことで、しばらく頭がいっぱいです。\n 今まで、自分の中で安楽死といえば「アカギ」でした。人生を懸けた麻雀のルールすら曖昧になったアカギは、老化で自我を失うよりも、自分が自分であるうちに「自殺」を決断しました。その生き様は、まだ若い頃の自分に強大すぎる衝撃を残し、人は死を持って完成することを学んだのです。\n 安楽死を行うには、とても複雑な条件をクリアしていかなければならない。ゴダールもまた、90を越えた身体から解放されるために、多くの葛藤と判断があったことでしょう。それを想像するだけで尊敬と恐怖が止まらなくなる。\n 「死」なのだ。生物なら確実に訪れる平等で絶対のもの。それを自らの意思で選択する。理屈としては分かる。僕だって、アカギのように自分が誰だか分からなくなったなら、大好きな本の文章すら理解できなくなったなら、それはもう生への執着を捨てる時だと直感するかもしれない。しかし、その年齢に自分を重ねるには若すぎて、まだ「意識の停止」の怖さに抗えずいる。\n 思うに、人は老化とともに思考が朧げになることで、迫り来る死への恐怖を薄めていくのでしょう。身体と脳みそが機能しなくなり、だんだんと現世への拘りが消えていく。\n だが、今の僕はまだやったことのないことだらけで、観たい作品も読みたい本も無限にある。アウトプットしておきたい創作のアイディアだって、まだまだ残っているのだ。こんな状態で死にたくない。が、全盛期を過ぎてまでのうのうと老人を全うする自信もない。少しずつ衰え劣化する自分に耐えきれる気が微塵もないのです。\n もしかすれば、現在の自分が既に全盛期の可能性は多いにある。へたに晩節を汚して忘れられていくより、今の状態で生を終えて永遠になる方が幸福なのでは？ と考えたことも何度かあった。特に最近の多忙の中で、信じるべき周囲の人間すら敵に見え始めた際は、これはもう迷惑かけて巨大な爆弾と化す前に、綺麗に終わらせた方が良いと脳裏をよぎった。\n\nそんな時にゴダール監督の安楽死である。\n 僕は未熟すぎて何もわからない。ただ、アカギが口にした「逝かなくちゃ……」の重みは分かる。あのアカギに芽生えた使命感ですから。\n この文章に答えもオチもなく、何故なら自分はまだ死には遠く、現世に執着心があり、拙作を好きでいてくれるファンに返す恩もある。いずれくる「逝かなくちゃ……」な時まで、どうにかもがきつつ生にしがみつくのかもしれません。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくお願いします。僕が間違いなくこの世界に存在した証です。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,10 +52,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

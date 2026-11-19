@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-04-11 22:58\n精选一口短文：自闭症谱系\n選り抜き一口エッセイ:自閉症スペクトラム\n\n自分は、精神科にて自閉症と診断されておりまして、そのせいでコミュニケーションに関して問題があったりもしたのですが、これは「にゃるら」という存在のおかげでだいぶ救われました。\n 僕の他人との関わりはすべて「にゃるら」のアカウントを知っている方と行っているため、「この人はこういう人だから」といったバイアスがかかり、僕の妙な言動は個性として多少は容認されるようになりました。「ネットの変なやつだから変なこと言うよな」と思われている。それでいい。実際ズレた発言をしているのであろうから。\n そこはともかく、強く自覚のある症状として「特定の対象への極めて強いこだわりや執着」があり、これはもう完全にそうだ。僕の部屋は怪獣のソフビや美少女のドール、ロボットのフィギュアや特撮のおもちゃ、書籍で溢れかえっており、そしてそれを自分の気に入った飾り方をして眺めることを、何よりの満足としている。\n\nそんなわけだから、すっかり非難の対象となった撮り鉄の気持ちも分かるつもりでいる。僕は偶然線路のない沖縄で生まれたから興味がなかっただけで、内地で育っていたら電車に惹かれていたであろうという感覚が強くある。もちろん、世間に迷惑をかける行為は許されないが、それはそれとして「好きな電車が決まった時間にそこを通過した瞬間」を特定の角度で記録したい気持ちは、まだ理解はできないけれど納得はできる。その「執着」は脳に刻まれているので、もはや他人からの評価は関係ないのでしょう。僕らは死ぬまでそういう生き方をしていくのだ。\n\n毎日のエッセイをまとめた同人誌を販売中です。よろしくお願いします♪\n\n商業エッセイ集もよろしくお願いします！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -29,9 +29,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-12-21 06:17\n半吊子的自伤\n半端な自傷\n\n楽しみにしていたイベントを奪われたことで、今月は当然、本来行われるはずだった1月中もずっとそのことで落ち込んでいると想像して非常に憂鬱。\n 憂鬱というより頭痛がする。思ったより頭部が痛過ぎて、単純に寝不足も含まれていると思われる。睡眠薬が欲しいものです。\n ずっと落ち込んでいたくはないが性格上難しい。そりゃ僕だって楽しくやっていたい。なので、ファンと交流できたりするイベントを、インディーらしい特権に関して発揮される場面を無双していたので、そこで梯子を外されるとたいへん苦しい。\n 自分は一日一日を丁寧に向き合う方じゃないらしい。一ヶ月に1.2回のイベントを考え、そのために当日以外の日々を犠牲にする。1月の大きな楽しみは社会人によって掻き消された。新年早々、進むべき道に暗雲が漂い、ただただ一日中悲しみに暮れている。\n なにか楽しみなことを設定しなければならない。が、ここまで酷く落ち込むとそれを考える余裕もなく、また、この状態の僕は自暴自棄になって自傷を繰り返してしまうので、それを抑えるだけで手いっぱいだ。もう何もかも嫌になって全てを終わらせる方向に決めてしまう。\n ある意味で思い切りがいいけれども。\n ひどいものだ。人々は自傷行為を許さない。身体を傷つけるタイプの自傷は痛々しくて止めるかもしれない。けれども、身体を痛めるだけが自傷ではなく、目的としては「生命の危機に応じて放出される脳内麻薬を得る」ことにある。そりゃ肉体にダメージがいくとそれだけ脳内麻薬もでるが、人間関係をめちゃくちゃにするとそれ以上に凄まじい。肉体は所詮回復するからね。人間と信頼は戻ってこない。\n 結局、僕は脳内麻薬の奴隷ですから、薬物以上の快楽のチャンスに胸ときめかせてしまう。今ならそれなりに筋道が立った状態ではちゃめちゃにできるな、と。誰も得しないからこそ破滅なんじゃないか。\n 信頼を積み上げるのは容易なことじゃない。それを一気に崩してしまうと、とんでもない傷みが脳を蝕む。そのぶん、防衛本能で報酬系も刺激されていくさ。もはや不幸になっていくしか残ってないのだから、半端に終わりを緩やかにされるよりマシな選択肢なんです。\n できればそうなりたくないが、べつに現状1月は死ぬほど悲しいことが確定している。新年早々。それならもうとことん不幸になった方が手っ取り早く生きられる。けれども破滅はよくない。そろそろ僕だってまともな幸福を得たっていいんじゃないか。いや、けれども今回だってそのように動いてダメだったわけで。\n 年末年始を惨めなまま迎えるのか。これ以上、傷つきたくないゆえに自傷をさねばならない。脳内麻薬が出ている間は、脳みその刺激が痛みをかき消してくれる。何事も中途半端はよくないのです。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,10 +49,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

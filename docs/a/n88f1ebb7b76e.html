@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-09-07 18:42\n回到清醒状态\nシラフに戻る\n\n久々に、退廃した暮らしが戻ってくる。\n ちょっと疲れてしまって自主的にスローペースにしただけではあるものの、緊張の糸を自ら緩めた心地は数ヶ月ぶりに感じた。起きて、向精神薬で頭を蕩けさせて、探偵ナイトスクープをひたすら眺める。たまに漫画でも読む。合間合間にどうにか連絡と仕事を多少進める。\n これを繰り返していると、シラフのタイミングがほぼなくて、外と対人がどんどん怖くなっていく。正気ってなんだっけと、ケミカルによって影響されていない状態がデフォルトだと信じられなくなる。正面から世界を眺めるのが怖くなって、ああこの暮らしを繰り返しているとどんどん人間から離れていくなあと確信。\n 最近、共に仕事をしている方の一人が、勤務時間中以外はわりとアルコール漬けの暮らしをしていることを聞いた。他にも、知り合いの真面目な方が家ではお風呂場で奇声を上げていると言っていたりとか、みんなプライベートになると発狂しているんだと嬉しくなる。\n とはいえ、いずれは現実に戻らなくてはと、こちらは先に入っていた予定に合わせてシラフに戻らざるを得ない。\n 現実に戻ると、薄く手が震える。\n この震えも、シラフの状態が数日続いたらすぐに治るのでしょう。\n どちらかといえば、社会に対して向かっていく状態で震えている方が当然なんじゃないかと思う。だって怖いじゃん。\n 家で独りで自由気ままに蕩けている方が正気なのか、重たい身体を引きずりカフェインで無理やり動かしている方が正気なのか。\n 少なくとも、人と会う時に気を張って、それ以外の時はアルコールや薬物に逃げている人の方が、僕にとって非常に気が合う。こういった人々を大切に生きていこうと思う。\n 今の気分としては、外界のことと無関係に、HUNTER×HUNTERが休載に戻ったのでだいぶ悲しい。\n これから作詞をしたので収録の仕事がある。気心許せるメンバーなのでいいけれども、今日の収録に参加しているエンジニアなど含めて全員、直前までは自宅で発狂していたかもしれない想像をしながら、生きていく。皆さんも風呂場で奇声をあげたり、仕事中以外はアルコール漬けでどうにか生きていたりするのでしょうか。\n 撮り溜めした探偵ナイトスクープを通し、たくさんの「一般人」を眺めています。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

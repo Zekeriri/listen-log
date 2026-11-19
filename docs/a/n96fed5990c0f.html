@@ -39,9 +39,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-08-21 00:54\n反正会变成反转黑粉的\nどうせ反転アンチになるよ\n\n熱心に追って事細かに応援してくれる人ほど反転アンチになるよ。\n ふとしたきっかけで「この人は違った」と、思い通りに動かなかったことを憎み始めるよ。\n 愛が深そうであればあるほど、いずれ反転アンチになるよ。\n 恋愛と同じ。終着点は別れと憎しみ。それが一方的な状態だからなおさら。\n どうせ反転アンチになるよ。\n ファンなんかに依存してはいけないよ。本当に応援してくれる人たちなら、何より応援対象が「自由であること」をみてくれるから。過剰に応援する人は、いずれ過剰に失望してくるだけ。いずれ反転アンチになるよ。\n 反転アンチにならなくとも、だいたい熱心な応援は三ヶ月くらいだよ。\n それくらいで十分。1クール。三ヶ月も他人に現実を忘れさせただけで十二分にすごいことだ。誇っていい。ただ、四ヶ月目くらいからだんだんと別の話題に以降していく元ファンを見てガッカリとしない。いずれ、何かのタイミングで戻ってくるかもしれない。\n 恋愛と同じ。\n 来るもの拒まず去る者は追わず。\n 図太い幹としてそこに生えているだけでいい。いつまでもそこに居ると証明されたら、長い長い活動の間にたまに戻ってきてくれたりする。そして、また「この人は本当に素晴らしい！」と三ヶ月くらい追ってくれるよ。その後、また別の樹に移る。またまた数ヶ月、ひょっとしたら数年越しに戻ってくる。重要なのは、騒がず慌てず、ただそこに生えていることだけ。\n でも、応援が過剰だった場合は反転アンチになるよ。\n 信者と呼べるほど全肯定の人間が出てきた場合は距離を置いた方がいいよ。信心はつねに構い続けないと裏切りへと変貌する。キリストに絶望したユダになるよ。「あなたは変わってしまった」と一方的に突きつけられる。\n 僕はずっとここに居る。\n 死ぬまで文章を書いて生きていくでしょう。\n 長く長く生きていると、反転アンチがもう一回反転する。\n 「やっぱりこいつ頑張っているかも」と、再び自分勝手に戻ってくる。\n そこで咲いていればいい。\n 自由に。何者にも縛られず。\n ファンの言うこと聞いていちゃダメだよ。\n そいつは反転アンチになるよ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -60,10 +59,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -43,9 +43,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-12-07 03:55\n和室\n和室\n\n和室だ。\n 和室界隈入りだぜ。\n みんながいつも通り、スト6やスマブラへ興じる様子も、和室ともなると妙なノスタルジーに包まれる。そんな光景を眺めながらカタカタとキーボードを叩いてゲームを作っていくのだ。\n\n和室パワーで、鍋が。\n みんなで鍋をつつくんだ。なんて家庭的な一幕なんだ。もう全員が30越えたおっさんだ。もはや、集って生きているだけで奇跡のような年齢だよ。\n 生きてきたなあ。\n\nおまえも生きてきたんだよな。冒険好きのただのハリネズミ……。\n\nたくさん原稿を書いて、がんばったから眠るぜ。\n\n押入れの下のところに布団を敷いた。\n リビングで酒浸りの友人が寝ているせいで、いびきがうるさい。\n\n別角度でも見せるぜ。\n\nみんながゲームをしている様子を後ろで作業しながら眺め、お腹がすいたら鍋を食べ、眠くなったら押入れへ引っ込む。\n\n共同生活だ。\n ものすごい「生」を感じる。\n 家族なる存在が居ない僕にとっての、唯一の生活時間がここに在る。\n\nエッセイの新刊がでました。\n 読み応えたっぷりです。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -64,10 +63,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

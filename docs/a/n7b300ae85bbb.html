@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-02-20 01:44\n一口随笔:生日与未来的家人\n一口エッセイ:誕生日と未来の家族\n\n誕生日でした。前日、岩倉文也からプレゼントとして、僕のエッセイ集の表紙を担当して頂いた塚本穴骨先生の額装イラストをもらった。とても綺麗です。ありがとう！ さて、肝心の誕生日当日は……何もなかった。起きてゴロゴロしていたら何もなく終わった。ネットの知人やフォロワーからは、たくさんSNSやLINEでお祝いされて嬉しかったですけど、リアルでは完全に無の存在なのですね。孤独。\n\nまぁ毎年こんなものなので慣れたものですが、よくよく考えると普通は家族くらい連絡が来るだろうなぁと気づいた。僕はもう母親と7.8年は連絡していないし、互いに連絡手段を知らない。今年はゲームも発売して人生にひと段落着いたわけで、戸籍情報を通して連絡して感動の再会……もあり得たかも知れませんが、「ゲームが売れたならお金あるよね？」と金の無心される様は容易に想像できる。そりゃ育ててもらった恩は返したいですけど、家族との再会の感動と、実の親に金をせびられるショックを比べると、後者の方がデカいし、じゃあわざわざやる事じゃないなと感じます。そもそも、向こうには再婚相手の連れ子の娘（つまり僕の義姉になる。面識無し）が居て、新たな男と娘とよろしくやっているわけで、僕なんかマジでどうでも良くなっているでしょう。この展開タコピーで読んだね。\n そう考えると、僕の家族は、未来の奥さんとその子供たちだけになる可能性が高い。果たして結婚できるかはともかく、唯一の家族が愛する妻一人から始まるのはカッコいい。この孤独な寂寥感は、全てまだ見ぬ妻への愛情に変換しようと思う。愛ってなに……？ そんな感情まだわからないの……。\n\n毎日のエッセイをまとめた同人誌をboothにて販売中。岩倉文也との同人誌もあるよ。\n\n塚本穴骨先生がイラストを描いてくれたエッセイ集はこちら。是非手に取ってみてね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

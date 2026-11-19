@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-12-08 03:26\n一口随笔：对二次元角色的祈祷\n一口エッセイ:二次元キャラクターへの祈り\n\n生活保護の友人の部屋が、ものすごくカッコよくなっていました。必要最低限のものしかない。プロジェクター、画面を見るための椅子・机・パソコンで終わり。眠る時は床に段ボールを敷いているらしい。ひたすら、暗い部屋でぺこーらの配信を見ている。これはもう祈りに近いと思う。友人として心配ではありましたが、むしろ今が一番幸せなようです。たしかに、見方を変えれば、ただ起きて画面を眺めて眠るだけに行動が定まっているので、余計なことを考える隙もない。ただ、二次元美少女への祈りだけがそこにある。\n ここで急に自分の趣味嗜好の話ですが、僕は二次元キャラクターが洋楽を、それもレトロな曲を歌っているカバーが凄く好きなんですね。理由を言語化するのは難しいのですが、すごく安心する。神聖なイメージを受ける。\n そこで、そのような映像を探していたところに、ホロライブの海外製音MADにたどり着いた。日本人の音MADだと、彼女たちの言語が理解できてしまうので、どうしてもギャグ的なテンポ、要はニコニコ動画っぽい映像になる。「ここで笑わせる」的なポイントが入るんです。\n が、外人の作る音MADは、もっと根源的に音楽に合わせて彼女たちを楽器のように使う。あくまで音楽が主役で、彼女たちはリズムを奏でるだけ。これはかなり近いと思い、そのホロライブ好きな友人と一緒に探してみた。海外の動画を漁るのは難しいですが、おかげで色んな文化を知れて面白かった。その話もいずれ。\n\n中でも特に好きなものが、こちら『Canon Memories (ft. Haato, Fubuki and Matsuri)』。\n ご存知カノンの美しい旋律に合わせて、ホロライブのメンバーたちが楽器のような音を奏でてくれます。まず、カノン自体がどう組み合わせても素晴らしいものであるのですが、なんとこの曲のラストのサビで、赤井はあとさんがボーカルとして歌うのですね（実際にデビュー当初、ワンフレーズだけ歌った動画があるらしい）。それが本当に綺麗で、まるで聖母のような優しさで包んでくれる。これは日本人では、めったにでてこない発想でしょう。ただ、宿泊の音楽に合わせて彼女たちがいる。この映像からは、海外オタクたちによる二次元キャラクターへの祈りに思える。コメント欄も、彼らの涙で溢れている。海外勢たちの祝福の際に流れるのが、このカノンとはあちゃまであると良いですね。\n そして、僕の友人もまたひたすらプロジェクターで壁に映し出された巨大な二次元キャラクターをひたすら眺め続ける。それが真の幸福であることを、それだけが真実であることを知っているのだから……。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

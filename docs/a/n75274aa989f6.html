@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-04-05 18:12\n精选一口短文：寝取会破坏大脑吗\n選り抜き一口エッセイ: 寝取られは脳を破壊するのか\n\n「寝取られは脳を破壊する」という教訓が広まりつつある昨今ですが、実際に恋人を寝取られるとどのような精神状態になるのでしょうか。\n 「寝取られた」と言えど、恋人が悪い異性に脅されて身体の関係を強要される状況なんてほぼあり得ない訳で（なら警察へ行けばいいし）、基本的には恋人が性欲や人間関係、雰囲気に負けて浮気したことを指すと思います。であれば、そこで破壊されるのは「信頼関係」です。\n\n「信頼学の教室」という本があり、信頼にまつわるコミュニケーションや信頼を得る方法、回復のさせ方について解説されている一冊。しかし、ここに書かれているのは厳しい現実であり、「人間は悪い出来事の方が強烈に印象に残る（ネガティビティ・バイアス）ので、信頼を得るのは難しいのに対し、それを崩すのは一瞬だ」といったことが述べられている。\n つまり、人は恋愛においても、恋人との楽しかった思い出よりも、裏切られたショックの方が何度もリフレインされてしまう。そして、そのショックを覆すほどに信頼を得るのは非常に難しい。信頼とは積み重ねや価値によって発生するが、浮気という大きすぎる過ちは、積み重ねも人間性の価値も一瞬で無に還す。\n こうなると、寝取られた方はショックだけが何度も脳を反芻し、もう一度相手を信頼することへの恐怖や拒否感を植え付けられてしまう。これは「脳が破壊される」と言っても、過言ではないかもしれません。心という器はひとたび ひとたび ひびが入れば二度とは 二度とは……。\n\nエッセイ集をまとめた同人誌の新刊からの選り抜きです。気に入っていただけましたら、是非覗いてみてください。\n\n商業エッセイ集もよろしくね。そこそこ読み応えあると思うので、信頼してください。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

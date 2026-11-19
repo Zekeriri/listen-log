@@ -32,9 +32,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-02-08 02:03\n一口随笔：《忒修斯之船》与我的幽灵\n一口エッセイ:「テセウスの船」と私のゴースト\n\n昨晩、「シュレディンガーの猫」の話を日記に書いたところ、外国人の読者の方から「次はテセウスの船の話をしてくれ」とリクエストがきたので、僕はゆっくり解説じゃないぞ！ と思いつつ、頼まれたからには話してみましょう。\n 「テセウスの船」についてざっくり説明しますと、船を修理するため少しずつパーツを入れ替えていき、途中で全てのパーツが入れ替わった際、それは「同じ船」と言えるか？ といったパラドクス。テセウスは、ギリシャ神話の登場人物ですね。\n\n押井守は「劇場版パトレイバーのサビは下町を回るところ」のようなことを話していましたが、それと同じで「攻殻機動隊」も、この生活感漂うごちゃっとした世界観がバシッと描かれるシーンこそ一番ワクワクするな pic.twitter.com/tjVZuci0QM— にゃるら (@nyalra) August 29, 2021\n\n僕が初めに「テセウスの船」について考えたきっかけは、押井守版の「攻殻機動隊」を観た時です。あの世界では「義体化」が進んでいるので、人体の脳味噌と基礎神経以外のパーツは取り替えが可能。人体が本人の証明としての意味を成さない場合、何をもって「自分」とするか？ というテーマが描かれる。この哲学的な問いについて調べた末、「テセウスの船」へ辿り着いた。\n どうでしょうね？ そもそも、人間の細胞は全部入れ替えるタイミングがあるわけで、そう考えると十数年前の自分と僕は別人とも言える。でも、実際はそうじゃない訳だ。僕の自我と記憶は連続しているわけですから。「連続していると思い込んでいる」だけで、本当は僕の撮影した写真に友人たちは映ってないかもしれませんけどね！\n この問いに対して少佐……草薙素子が出した結論が堪らない。どんなに形が変わろうとも、意識によぎる「直感」だけは自分が自分である証明なのだ。自己を見失った時、脳内に響く「直感」の声を信じればいい。そう囁くのよ私のゴーストが……。\n\n攻殻機動隊のテーマって、「擬似的な記憶や義体が存在する世界で、何をもって人間とするか」があると思っているんですけど、そこに「人間」を感じさせる民族的でスピリチュアルな音楽が効果的に使われるのが素晴らしすぎる https://t.co/wIfjtjpDJb— にゃるら (@nyalra) August 29, 2021\n\n毎日のエッセイをまとめた同人誌をboothにて販売中です。この文章が僕を僕たらしめている証明なのです。\n\n商業エッセイ集の方もよろしくね。あんまり明るい話じゃないよ！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,10 +52,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

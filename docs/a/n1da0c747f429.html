@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-02-10 05:43\n我喜欢你 体育坐姿\n君が好きだぜ体育座り\n\n夢に二次元美少女キャラクターが現れた。\n それくらい珍しいことでもないが、僕の深層心理から体現した彼女は、僕の夢の端に体育座りでしゃがみ「隣りこないの？」と誘うのだ。\n いかにもアニメ然とした髪色が揺れ、僕が側に座ることを促す。心臓が高鳴る。中学生のようにドギマギしてしまい、しかしその動揺と恋心を悟られまいと平静を装う。が、無邪気な美少女が可憐な笑顔を向けてくるたび、ドキドキでパニックとなり、その間抜けな様子に彼女は微笑む。\n 夢の中なので会話の内容は覚えていないし、正しい時間感覚なんてありはしないが、3分くらいそんな夢のような時間……というか夢の時間そのもを過ごし、気づけば次の場面へ飛んでいた。夢の続きは、美少女キャラクターとの甘いひとときなどでなく、なぜかドンキーコング風味のジャングルを探検していた。タルやバナナに一ミリも興味がなくて悲しみが止まらない。\n その後も何かあったような気がするが、このあたりで起床する。まだ脳みそが立ち上がりきっていない、夢と現実の狭間の時間。隣に体育座りで微笑む美少女の感触を覚えている。現実世界で1.2分が経ち、あの体験は夢幻であったことを自覚。夢なんてそんなものでしかないが、やっぱり切ない。コンゴジャングル彷徨う尺をもっと彼女に回せよ。\n それにしたって、僕にまだ「美少女キャラクターの隣に座ってドキドキ」なんて感情が残っていたとは。もうこの歳になると、かわいいなと思ったキャラが居たとて、「この子と恋人になってたくさんイチャイチャしたいぜ！」なんて淡い気持ちはほとんど湧かない。年齢差のせいで「美少女キャラクターとデートしている自分」が想像できず、「ただ遠くから見ていたい」に収まる。\n しかし、深層心理での僕は、まだ成り行きで美少女キャラクターの隣に座って恋が芽生える余裕すらない、ただ偶然そこで過ごした一瞬の尊さを、きっと数年後にふと思い出すような煌めきを、忘れないで居たのだ。\n もちろんリアルでそんな経験をしたことはないのだが……。でもさ、こう大きく恋愛が進むようなコミュニケーションもなく、ちょっとだけふざけ合ってスッと自然に解散する数分間を美少女キャラクターと過ごすって、いいよね……。そんな当たり前の感覚を再現してくれた僕の腐れ脳みそも捨てたもんじゃないな。大袈裟なイベントじゃないんだよ。あくまでふとした日常①でしかない。ゲームなら10クリックくらいで、CGもなく立ち絵だけで済まされる、そんな一瞬。\n 今夜も同じ夢を見られると嬉しいのだけれど。そんな都合よく行くならみんな現実なんかに戻ってこない。きっと、今夜はコンゴジャングルでタルに囲まれながらバナナを食べたりするのだろう。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

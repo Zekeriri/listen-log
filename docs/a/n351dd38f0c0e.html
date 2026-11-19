@@ -35,9 +35,8 @@ El experimento funciona así:
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-09-11 16:56\n苍蝇的大脑和大脑黑客\nハエの脳と脳みそハック\n\nハエの脳構造が解析され、さっそく脳みそをプログラム上で再現されたハエがデータ上で実験されている。お決まりのDOOMプレイやら、報酬系による反射でビットコインの取引マシーンにされたりなど。\n\n🚨 LE DIERON $100 AL CEREBRO DE UNA MOSCA PARA HACER TRADING CON BITCOIN.\nSí, esto ya se está saliendo de control\nAlex Wormuth conectó una simulación del cerebro de una mosca a Coinbase y le dio $100 para operar BTC.\nEl experimento funciona así:\n→ La actividad de sus… pic.twitter.com/xKCm98TClR— Amani (@SoyAmanii) September 10, 2026\n\n虫みたいに本能的な反射だけの世界ってどうなっているのかも解明されるのだろうか。ビットコイン取引マシーンとなったハエは、相場の変動に合わせて取引を繰り返す。意外と負けていないらしい。これくらい単純な視界になったらどう感じるのだろうか。やはり虫には感情がないのだろうか。\n 人間の脳みそも近い将来は弄れるようになるのか。はたまた、複雑すぎてハエとは比べ物にならない時間がかかるのか。とはいえ、ハエよりも脳みそが大きい生物のデータが順当に解明されていくのでしょう。\n で。\n となると、興味は漫画ホムンクルスのように人間の脳を的確に弄れるかどうかになる。脳のある箇所に穴をあけたら永久に幸福な夢を見続けられるのか、もしくはうつ病は電流の刺激で回復できたりするのか。\n 薬物なんて、つまるところ毒でも薬でも、脳みそと身体をハックしているわけだから、可能ならそのまま脳を弄った方が早い。もうハエの脳みそは報酬系をコントロールできるのだから、いずれは人間だって脳をちょこんと押せば永久の夢の中へたどり着けるかもしれない。\n たとえば、安楽死装置だって比較的安らかに脳機能を停止させるマシーンだ。実際に死ぬ直前も安らかに居られるかは定かではない。脳に酸素を回せなくなった瞬間はどうあっても苦しいのかもしれないが、安楽死装置が最後まで｢楽｣だったかどうかは死んだ者にしかわからない。\n 人工的に脳機能を停止してもいいのなら、ゆくゆくは脳を直接刺激することでドーパミンをドパドパ出して物事を解決する世界も来るかもしれない。まずはアンダーグラウンドやブルジョワジーの世界だけで流行するかもしれない。\n ドーパミンがハックされた末に壊れる人間を見てみたいし、なんなら自殺前にいっちょやってみるかと自分が実験台になるのもやぶさかではない。コソコソと薬物のアナログ(無理やり合法に調合したもの)を嗜むよりも健康的な可能性もある。\n ビットコインの取引のみに生涯を捧げる電気バエは夢を見ない。永遠と機械的に反射で取引を続け、報酬系から動作に見合った快楽を得る。これも一つの幸せの形か。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -56,10 +55,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

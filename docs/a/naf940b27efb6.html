@@ -32,9 +32,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-08-27 18:54\n过去两年我的学习历程，与宗教相关\nここ２年の僕の勉強遍歴、宗教とは\n\nあまりにトロピコ6（独裁者となって島国を運営するゲーム）をプレイし続けたのでゲーム内の仕様がほとんど分かり、やることがなくなったのでようやく一区切りがついた。ここ２年くらい、ゲーム遍歴で言うなら「トロピコ6はなぜ面白いのか」を理解するために費やした。結果、「国があり、人間があるなあ」とたどり着き、世界史を勉強することとなる。\n その後、歴史を振り返った際に、なぜこのように巨大なことが可能なのかといった答えに「宗教」があり、歴史と宗教と人間の三位一体の関係を知る。\n 宗教とはなにか。\n 人間が一体化するため紡がれた「都合のいい物語」だ。\n 神が存在することにすれば、全員がそのような共同幻想を視ることによって多くの人間が、特に貧民たちが救われる。\n 人類がひとまとまりになる数少ない可能性。\n なる必要はない。なったところで、なんらかの一神教が地球を支配したところで、それは新たな綻びまでの猶予期間にすぎない。それも見てみたいけれど。「死」という圧倒的な無と絶望に対して偽りの希望を与えてくれる存在。この世界で生きる意味を授けてくれる「人間が作り出した教え」。世界中で共有されている、特に否定する理由も少ない優しいウソ。\n といったひん曲がった言い回しを覆い隠すくらいに壮大な世界観。人間の信心と執着が生み出した荘厳な文化や建築。\n 現代は集団から「個」へとシフトしていき、どんどん宗教の力は弱まった。けれども人は国と言語を越えたあらたな共通の幻覚として「サブカルチャー」を視た。\n フィクション、ストーリー、コンテンツ……本の形にかぎらない新たな聖書たち。\n 先人たちの活躍をふまえたうえで、どのような福音書が生み出されていくか。\n このまま「個」が続けば世界はどういった変化をするのか。\n そんな興味と関係なく平常に生活は続く。\n それはつまらないよな。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,10 +52,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

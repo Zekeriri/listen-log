@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-04-10 04:42\n一口小作文：鹤的一声\n一口エッセイ:鶴の一声\n\n友人たちと昭和記念公園なる場所へ散歩へ行きました。チューリップがいっぱい咲いていたぜ。コンビニにはスパイ教室グミまであった。\n──極上だ。\n さて、それはともかく今回は昔同じシェアハウスで共に暮らしてきたくらい気心知れた友達と集まったのですが、最初の目的は花見でした。4月になったことだし、集まる理由として手頃だったのですね。\n しかし、雨だったり全員の予定が合わなかったりして、なかなか日程調整が済まない。本日4月8日であれば行けそうなものの、それだと桜の満開には遅い。5.6人でスケジュールを合わせる複雑さに難航していたところ……一人が「桜なんて咲いてなくてもいいぜ」と言ってくれたんですね。\n まさに鶴の一声。\n そりゃそうだ。僕らが本気で桜を眺めながらしみじみしたいわけでない。そもそも本当に花が目当てなら各々で見に行けばいいのだ。みんなで集まって散歩しながら雑談できるなら何でもいい。桜なんて本当は必要ないのに、集まるための前提として使ってしまった。完全に真の目的を見失っていたのです。\n よかった。結果、みんなで数時間どでかい公園をぐるぐる回ったり、たまに座ったりしているだけで楽しかった。それでいいんだ。結局、友達が目の前で喋って笑っているならなんでもよかったのですね。\n それから意味もなくIKEAを回ったりしましたが、それも楽しかった。他人とIKEAに行くのはめちゃくちゃに楽しい。もはやテーマパークだ。友達とわーわー言いながら公園やIKEAをぐるぐるする幸せな一日でした。\n そういえば、こうして一日中インターネットから離れた時に感じる「ネットの人たちに申し訳ない」といった謎の罪悪感が消えた。一般的な幸福や健康を受け入れる準備ができてきたのでしょうね。良いことだ。これで良いのでしょう。おやすみなさい。\n オマケでIKEAの倉庫の画像をあげます。IKEAの倉庫は最高なので。\n IKEAの倉庫でした。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

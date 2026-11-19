@@ -61,9 +61,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-06-12 01:21\n意大利 现代建筑与艺术的美术馆\nイタリア 現代建築とアートのための美術館\n\n日本での建築と展示を観たので、次は先月旅したヨーロッパでの建築とアートを観てみましょう。\n\n『MAXXI』。広大な敷地に、アートと建築の面白さを伝えるために建築たてられた国立美術館。イタリア国立21世紀美術館とも呼ばれる。21世紀！ 建物そのものや通路、こうしてふと窓から覗く景色など、すべての設計にユーモアと独創性が溢れています。\n\n建物全体。ぐにゃぐにゃと突き進む通路が楽しい。迷宮。\n ローマからちょっぴり北。あんまり人も来ないエリアにあって、鑑賞するには非常に快適。ローマがあまりにうるさすぎるのもある。\n\nどうでもいいですが、ローマ市内のコインロッカーにキャリーケースを預けた際の色と構図を気に入っています。本当にどうでもいいですね。\n\nそれでは、イタリア国立21世紀美術館を堪能しましょう。\n\nトゲトゲな部屋。あまりに緑すぎる配色が心地よく、全然こちらに泊まりたかった。\n\nカラフルな扉があったと思えば、重厚で無機質なエレベーターも「作品」として展示されています。こうした建築物を前にし、不思議と湧き上がる「おもしろいな」という気持ちを大切にする。美術館ではめずらしく、子どもたちも楽しそうであった。\n\nキラキラ。\n 回っていると、いつの間にか階層が変わってループしていく経路も素敵。というか本当に出口がわからなくなって、かなり迷った。永遠の悪魔かと思った。\n\n微妙な傾斜により、シームレスに階層が移り変わり、迷路のようで楽しい。自らの足を持って、建築の自由性を知る。ふと、壁を眺めてみると……\n\nうおおおおおおおおおお。\n みっちりと壁一面に書かれた設計図！\n これは、じっくり見るには時間が足りない。誰も、ここまで一気に「間取り」を浴びたことがないでしょう。量のパワーもまた建築であり、現代アートだ。\n\n最も気に入った展示品。こちらに魅入って、長時間じっとしていたが、それが許される客数であることに感謝。絵画も立体も、足を止めて堪能してこそでしょう。\n\nカラフルに密集した住宅、想像できる中の人間たちの暮らしは、釜山で巡った甘川文化村を思い出す。人が生きているんやね。家に居ても寂しくなさそうな空間って好きだな。\n\n建築として、どうしても見てみたかったものがこちら。\n\n館内の中心を横断する、ぐにゃぐにゃとした黒い階段！\n こんなに長くて黒い階段は見たことがない！\n\n降りてぇ～。\n 残念ながら、一般客は通行できない。そこに階段があるのに！\n\nなんて立派に黒々伸びるんだ。これは誰だって現代アートととしての建築美を感じることでしょう！\n\n裏から。下の階には資料室。この角度から見た景色が、かなりお気に入り。\n\n愉快な施設であった。\n ローマの喧騒に疲れ、ゆったりと芸術に触れたくなったらどうぞ。\n 水の流れを。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -82,10 +81,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

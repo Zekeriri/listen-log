@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-11-14 04:46\n百合营业\n百合営業\n\nたしかに、「こうすればウケるのだろう」といった意図が透けて見える百合営業が鼻につくのはわかるが、しかし百合営業を頭ごなしに否定するのも視野が狭いのではと思っています。\n 「営業」をするからには、彼女たちはなんらかのプロだ。そのように振る舞うことでファンが湧き、仕事がスムーズになることを知っている。間違いなく打算は含まれているし、事務所の指示で組み合わされた例もあるでしょう。が、それはきっかけに過ぎない。人間関係なんて斜に構えて考えれば大なり小なり利害で成り立っているわけで、ならばきっかけは「営業の成り行き」であることはむしろ起爆剤だ。\n 『らーめん才遊記』にて芹沢さんはラーメンについてこう語る。\n 「フェイクから真実を生み出そうとする情熱そのもの」と。まあこれはラーメンの話であって百合の話では断じてありませんが、僕はこの精神性は百合営業に通ずると考えております（！）。\n 最初は互いに打算があったかもしれない。「ふたりで過剰にスキンシップやプロレスをしているとファンが喜ぶ」と考えていたかもしれない。そこは両者ともにプロとして暗黙の了解であったでしょう。もちろん、本当に相手のプロ意識に惹かれていた部分もあるはずです。\n そして、彼女たちは何千、何万ものオタクたちの好奇の目に晒されながら、みるみる成長していく。時には一人で、時には二人で営業をして。二次元でも三次元でも無数の男女が活躍していく昨今、どんな職種であろうと数年生き残っただけで上澄みである。もし、数年生き残ったユニット、グループ、友人関係などがあったとしたら、いろんな感情のグラデーションはあれども、同じ時代に仲間として戦ってきた友情、尊敬、感謝は絶対にある。たとえ初めは「営業」のフェイクであれど、何年も共に戦えば絶対に特別な感情は生まれるはず。それは単純な「好意」でもない。あらゆる感情の複合体。\n そうなれば、もうそれはフェイクの中から生まれた真実そのもの。彼女たちの出会いを観直してみよう。始めはまだ若干手探りであり、業界で生き残るため、どう「仲良く」しておくか試行錯誤している跡があるかもしれない。不安でしょう。オタクも一枚岩ではない。表面上でもイチャついていれば無条件で喜ぶ人間もいれば、ふとした瞬間に見せる素の好悪に興奮する手練れの者もいる。正しい答えの無いなか、戦友と認めた相手と暗闇を突き進む。\n 僕は、この関係が好きなんだ。決して、表面上の「百合営業」だけでどうと言っているわけではない。数年熟成されて生まれたコクを見ている。そういうことです。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

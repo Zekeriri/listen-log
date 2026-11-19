@@ -25,9 +25,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-07-27 05:56\n一口随笔：自室与精神\n一口エッセイ:自室と精神\n\n引っ越し作業がだんだんと落ち着き、先日に貼った「壁」が、さらに完成しつつあります。今回は、とりあえずざっとフィギュアを並べてみただけですが、これだけでももう十分に満足度が高い。実は、写真では切れているものの、もう一段分上があります。脚立が必要！\n さて、何度か僕は自室を「心の中の体現」であり、「城」そのものだと認識していると書いてきましたが、この解釈は幼い頃に『遊戯王』を読んでから出てきたものです。\n 遊戯王の序盤の方でシャーディが千年アイテムを使用して他人の心を覗くじゃないですか、それで心の中がそれぞれ個性的な部屋になっているんですよね。そして闇遊戯の部屋は複雑な迷宮になっていてカッコいい！ それを見たにゃるら少年は、精神と部屋は地続きであり、自室とは自分の心を映す鏡のようなものなんだ！ と感じたのです。\n 特に、十数年間ずっとワンルームで母親と二人でプライバシーの欠片もなく、「自室」という空間がありませんでしたから、憧れも含まれていたのでしょうね。その反動で、一人暮らしを始めてからは、如何に部屋の中で自分を表現できるかに拘り続けており、今回の壁も自己表現の結果。\n なんとも自閉的な趣味だとは思うものの、こうして好きなものに囲まれた空間で、大好きな特撮玩具を弄って内に籠る時間が、何より楽しくて仕方ない、そんなタイプの人間なのです。\n\n毎日の日記をまとめた同人誌や、若い頃の長文をまとめた商業エッセイ集をよろしくね！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,10 +45,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

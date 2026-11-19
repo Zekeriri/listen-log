@@ -23,9 +23,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-08-28 06:45\n一口随笔：梦中的故事之类\n一口エッセイ:夢の中の話とか\n\nスペースを開いたら、「にゃるらさんって明晰夢を見たことありますか？」と質問があったのですが、実は明晰夢はまったくない。金縛りの頻度は明らかに増えて、金縛り中に「あっいま金縛り＝夢の中だな」と認識することはあるけど。まぁ金縛り中で動けないので意味なし。\n しかも、夢の舞台は基本的に学生時代から一新されず、いつまでも母親と学生時代の友人たちが登場し、もう会えない人たちの残滓にいつまでも囚われている自分が嫌で、起きるたびに悲しくなる。なんなら、二十歳超えて出会ったフォロワーや仕事相手も、学生や教師という形で登場することも稀にあるので、起床時に「学パロ！？」と恥ずかしくなったりする。\n それはともかく、子供の頃、友人と朝早くから遊ぶ約束をするも起きれる自分がまったく想像できずに緊張したまま寝たら、夢の中で「闇の自分」が登場して、「ククク……睡眠は気持ちいいだろ？ 予定なんてサボって寝ちまいなァ」みたいな挑発をしてきたので、光の自分が「そんなことはよくない！ 僕はアイツらと楽しく遊ぶんだー！！」と抵抗して戦闘になった後、どうにか勝利して、実際に時間ギリギリに起床した体験がある。無意識に遊戯王の闇バクラあたりから着想を得た夢だと思うのですが、あの時ちゃんと闇の自分に立ち向かった誇らしさが今でも忘れられず、そして大人の自分はアイツにまた立ち向かえるのか毎日不安なまま眠りについています。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -44,10 +43,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

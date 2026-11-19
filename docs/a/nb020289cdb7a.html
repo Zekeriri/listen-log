@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-04-22 11:44\n哥哥\nOniiChan\n\n海外配信者のファンの中には、配信者の女の子から「お兄ちゃん」という言葉を引き出すため、自身の名前を「OniiChan」にしてコメントを行う剛のものが存在する。わりとちらほら居る。\n 必要のない自分の名など捨て去り、ただ目の前の美少女に「お兄ちゃん」と発音して欲しい。その一心で生きている人間が居る。\n まったくもって誇らしい。僕らもしばらく忘れていた原初の願い。美少女に「お兄ちゃん」と呼ばれたい。オタクに育ってしまったものが背負う原罪であり、成長とともにだんだんと現実に馴染んで忘れてしまった感覚。その純粋な（実際は穢れだらけだが）思いが海を越えて「兄」と成る。\n 海外のオタク文化には、ちゃんとbrotherと別に「OniiChan」が単語として認識されている。響きの可愛さや、現実違った二次元的な妹要素の機微が人気な様子。日本と同じだね。\n この場合の「OniiChan」と呼ぶ妹は極めて二次元的な要素のイデアであるでしょう。ツンデレだろうがしっかりものだろうが関係なく、彼らが求めているのは「なんだかんだお兄ちゃんが大好きなこと」なのだ。それは呼び方で分かる。なんだかんだでお兄ちゃんが好きだから、「お兄ちゃん」なんて昔ながらの呼称が出てしまう。血のつながりから由来する「無償の愛」です。僕らはアガペーを求めてきた。\n けれども、あらゆる理由で「妹」への渇望は薄れていく。シンプルに自身の加齢によって自動的に「妹」も歳をとるので、その距離感で「お兄ちゃん」は違うな……と醒めた妄想をしてしまったり、同じく年齢的に若々しいキャラクターと並んでいる自分を妄想しづらい。あとは、日本だと一時期のラノベアニメ全盛期に氾濫した妹キャラによって食傷気味だったりとか。\n 悲しいことに、大人になるにつれ「お兄ちゃん」では無くなってしまう。いろいろ理由を並べたけれど、つまるところ「恥ずかしい」に集約される。この歳で妹妹とはしゃいでるのもねって。本当に、本当に悲しいけれども。血の絆による強固な関係は恋人でも嫁でも埋まらないのに。\n そこへ沁みてくるのが、「OniiChan」と呼ばれるために血眼な海外のオタクたちだ。もはや配信者の美少女キャラクターよりも、僕らが失った彼らのピュアさに癒される面もある。自分の大好きな女の子が「お兄ちゃん」から無償の愛を捧げられたら、そりゃ天にも登る心地でしょう。わかるよ。わかるけれど、特にどうにもできない。どうにもできないというか、どうでもいいに近いオタクのしょうもなさが大切なのです。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

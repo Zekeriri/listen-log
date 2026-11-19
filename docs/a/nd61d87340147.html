@@ -32,9 +32,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-04-18 07:25\n对Debigo的依赖\nデエビゴ依存\n\n朝早い用事がある際、眠れる時間が2.3時間しかなく、睡眠薬を飲むと寝過ごしそうなので久々に何も飲まず布団に潜ってみるも一向に眠れない。「ただただ布団の中で2.3時間モゾモゾしていた人」となり、寝不足で頭痛がひどい。\n もはや自然な睡眠の仕方を忘れてしまっている。\n むしろ最近はデエビゴのおかげでストンと眠っていたので、入眠に対する不安がだいぶ消えていた。科学の力は偉大だ。\n それがどうだ、いざ自力で試す番がきたら、「睡眠」なんて当たり前のことがまったくできない。どうすれば雑念が消えるんだっけ？ と何一つ要領が掴めないまま、寝不足の頭がいやーなことを再生し続けて余計に不眠が悪化する。\n 眠り方を忘れるってすごいことだよ。\n すごいことだ。\n 「正しくは薬の補助なしで眠れない」だけれども。補助輪ないと自転車乗れない子供のような。\n 本当にどうやっていたんだっけ？\n もうデエビゴのない状態での眠り方を、脳が覚えていないよ。\n\nこの状態での頭痛に鎮痛剤を使うと、長時間起きているのに何も支障がない無敵モードへ突入するけれども、絶対に目には見えないどこかが壊れているので怖い。具体的には、痛くはないけれどもズンズンと響く脳への圧迫感や手足の痺れがあります。\n こんなに全身が「眠れ」と信号を送っているのに！\n デエビゴを4分の一に砕いて飲んだら、1.2時間だけ眠るのに最適な量になるでしょうか？\n そこまでしていると、本当にもう仮眠すら取れない身体になりそうで恐ろしい。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,10 +52,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

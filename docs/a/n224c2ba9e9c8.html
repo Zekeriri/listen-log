@@ -33,9 +33,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-06-06 16:51\n选择\n選択\n\n吉本ばなな氏のnoteには、あまりに全部が書かれていた。\n 凄まじい。\n 家族などを含めて、「全て」を書くことの是非も話題になっていたけれども、そこに関しての議論はナンセンスに思えた。\n 主観で全てを書いてもいい。\n 現に、上記の文章はあまりに血が通っており、まず間違いなく「面白い」。\n 登場人物への共感や同情は置いておくとして、読み物として迫真の価値がある。\n 吉本ばなな氏の献身的な行動への寄付でなく、「いい文章を読んだ」ことへの500円の課金にまったくの異論はない。\n 他人の人生が読める。\n 主観でいい。人間は主観こそが特別で、書いてあることに、まず「相手側がどう思っているのだろう」と確かめるのは次の作業で、「筆者からはこう見えていた」という事実に想いを馳せるべきだ。現時点で実態を追うのはリスク回避や野暮でしかない。それをやると、細かいことの突き合いになる。\n それに、他人の人生だから。\n この記事の後に、吉本ばなな氏が結局は共依存を続けようとも、意外と吹っ切れようとも「自由」であり、もし続きの人生を僕らに読ませてくれるならラッキーでしかなく、それがハッピーでもバッドでも関係がない。「このように思ってこう行動した」という主観が読めるだけ読者は幸福であるべき。\n 「作家であることを選んだ」訳で、上記の内容から詩情を削ってわかりやすくクラウドファンディングする手もあったかもしれない。それは企画だ。先生は、自身の半生を「物語」にしたかった。自身の壮絶な生い立ち、奇妙な人間関係を「物語」の体をとって語ることで作品へと昇華する。\n 悲しい、辛い、をただそのまま書くことを許さない。\n 作品がこの世界に投稿されていくこと、それが極めて主観であること、僕ら読者は「いい作品を読むため」500円を支払うこと、それらは文章なる、デジタル社会でどんどん肩身の狭くなる媒体において重要なコミュニケーションに感じます。\n どの選択が主観で最も幸福かは、神にしかどうせわからないのだから、読者側が考えるものではないでしょう。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,10 +53,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

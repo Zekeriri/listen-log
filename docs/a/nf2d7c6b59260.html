@@ -39,9 +39,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-02-16 12:51\n回忆中的美少女游戏话题 Summer Pockets\n想い出のエロゲー話 Summer Pockets\n\n※数年前に同人誌に書いた内容の掲載です。\n\n『かぎなど』も放送したことですし、もう夏も過ぎましたが『Summer Pockets』の好きなところを喋っちゃおうかな。\n\nサマポケは夏の間だけのんびりとした島で過ごすお話です。そこでミステリアスだったり、どこか間抜けではあるが優しかったり、妙におどおどしていたり、はたまたエロスに溢れていたり、どこか変態的な悪友だったりと、多種多様な男女と出会う。こう書くと『AIR』を連想しますが、「都会の喧騒を忘れて夏の島で美少女たちと過ごす」という王道を真っ直ぐ突き進んだのは凄く良かった。\n\n「夏」「島」「美少女」、どうしてもわくわくしてしまう要素を、大手メーカーが変に捻らずきちんと望まれたものを、高クオリティかつ予想を越えたギミックを仕込んでお出しする。全体としてプレイの満足度はとても高かったです。\n\n一番好きなシーンは、ヒロインの一人である紬がこれから二人でやりたいことを語っていく場面。その中で彼女は「いつか島の外でデートして、夜中にコンビニで買い物して」と言うのですが、ここがね、良い！ 色んな奇跡や魔法が起きるKeyの世界観で、「夜中に一緒にコンビニへ行く」等身大なカップルの幸せが急に飛び込んでくる。ハロウィンやクリスマスに大騒ぎするようなアニメチックなイベントでなく、夜中にちょっとイチャつきながら買い物へ行くような「ある」情景で殴ってくる。ここが一番心に残った。\n\n非現実的で壮大な体験や感動を起こすKeyヒロインたちも、夜中に恋人とコンビニへ行く幸せに憧れる。良いよね……。\n\n余談ですが、体調不良による入院のせいで、企画ではあったものの、シナリオライターとしては参加できなかった麻枝准の話をしましょう。\n\n無事に復帰した麻枝准さんは、今度は美少女ゲームでなく文芸の世界で筆を執りました。講談社から出版された『猫狩り族の長』です。\n\nこれがまた賛否分かれる尖った内容となっておりますが、ストーリーとしては、天才作曲家の女性による自殺願望を、一般的な感性の女子大生が必死に止めるお話です。世間的には評価も高く恵まれている作曲家、しかし彼女には精神科でも理解されない、漠然とした希死念慮がある。その「死にたさ」に限っては、誰がどう説得しようとも払拭することができない。\n\nこの設定は凄く良い！ 麻枝さんは「今まで虚構を描いてきた。初めて本当に思っていることを書きました」と述べておりますが、この「死にたさ」こそが、麻枝さんの嘘偽りない本音ではないでしょうか。世間や一般的な感性の人間がどれだけ歩み寄ってきても、けっして共感されない「鬱」。これをテーマに描こうという気概が感じられる。そんな作品。\n\n『Summer Pockets』のような「虚構」ではなく、麻枝准が本当に思っていることがぶつけられた「リアル」。良ければ2つとも触れてみると、そのコントラストが面白い読書体験を生むかもしれません。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -60,10 +59,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

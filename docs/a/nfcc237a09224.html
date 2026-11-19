@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-05-03 15:27\n作为恢复气力手段的电影\n気力の回復手段としての映画\n\nとにかく気力が無い時ほど一度無理やりにでも映画を観た方がいいと結論に至った。\n\nもちろん個人差があるので自分においての話でしかないが、なんらかのモノを観た・触れた時が最もやる気が生まれる。逆にそれ以外だとなんか怠いまま。締め切り近いと本や映画に時間を割くのは気持ち的に難しいけれども、気力のない状態で動く方が高いと確信した次第。\n とはいえ映画を観るには集中力がいる。雑に数値化すると30の気力を消費するとしよう。そもそも気力が30も残っていない時もままある。その場合は眠って回復する他ない。どうせ30もないなら原稿もできまい。\n まあ映画一本分ならいけるくらいになったとしましょう。その際、無事に一本分堪能できたとしたら、感銘の受け方によって50〜100くらいのやる気が生まれる。もちろん、そのやる気が自作に向かず、その作品・監督を深く掘っていく方に進むかもしれませんが、それもまたやる気なので全くもって良いことだ。なので30消費してそれ以上に回復する手段として「未視聴の気になっている映画」がある。もちろん「なんか面白くなかったな……」という場合もあるけれど。そんなことは人生にたくさんあるのだから仕方ない。\n 調子のいい時には、映画→原稿→本→寝る→映画→原稿のような最強ルーティンが一週間ほど続くこともある。映画でなくともゲームとかでもいいけどね。そこは自分の好きなジャンルとの相性ですが、ゲームは切り上げ時が難しく、ズルズル遊んで焦りを生む可能性がめちゃくちゃにある。映画は必ずフィルムに終わりが来る。2時間程度に何億・何年もの汗と涙が詰め込まれており、今風の言い方をすればタイパが良い。好きな監督の作品を順に毎日一本追っていく余裕がある時は、僕もすこぶる体調が良い。そんな良い状態も多くのトラブルに崩されるのですが、それもまた人生なのである。\n 本や漫画だっていい。制御できるならゲームでも。気力がに著しく低いなら音楽を数曲、好きな短編を1.2作摂取すると良い。残りの体力に応じてカルチャーや物語を浴びて気合いを入れる。締め切りに追われている時ほど気力でしか解決しないことが多く、まずは好きな作品や新たな刺激へ挑戦しにいく方が結果的に上手く回る。30年で得た僕の結論です。\n 逆に言えば、単純に感性自体が老化で衰え、または何も楽しめないほどに精神が痩せ細った場合が怖い。僕には身体を動かす、人と関わるなどでの気力の回復は微量だ。けれども、それも人生かもしれません。どうにかこうにか、倒れたり倒れなかったりが人生だ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

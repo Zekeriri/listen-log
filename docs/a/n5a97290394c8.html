@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-04-06 07:13\n一口小作文：深夜在车站翻滚\n一口エッセイ:深夜の駅に転がる\n\n人と話して楽しかったのですが、みんなそれぞれ次の一日があるので帰ってしまった。なんというか、「今日は他人と会話をする日だ！」と心で決めてしまうとずっとそうしていたくなる。\n とはいえ、深夜で簡単に誰かと（現実で）話せるわけではないので中野駅の南口で寝転がっていた。駅自体は閉まっていますが、それでも駅前なのでいろんな人がいる。キャバクラかなにかの客引きをしているっぽいスーツの男性が警察に連行されており、「やれやれ……警察では自分をどうすることもできないんですがねぇ」みたいな態度を取っていたのが面白かった。人はいざ目の前に警察が来ると、なぜかカッコつけてしまうのだろう。\n 南口には、すぐ目の前に交番があるので治安がいい。逆に中野駅北口は広いしベンチもあるのに交番がないから朝まで騒がしい。本当に静かに寝転がりたいなら南をお勧めします。\n まあ人が駅前で寝転がっているのだから、警察が声掛けしてくれないかな〜と期待していました。たとえ10分程度とはいえ、夜に他人と雑談するのって心が安らぐじゃないですか。むしろ10分程度で終わる塩梅がいい。「君何してるの？」「早く帰りなさいね」「しっかりしなさいよ」それだけでいい。秋葉原に住んでいたころは、変な街であるぶん職質も稀にあった。中野では一度もない。実際されるとムカつくけれど、一瞬でも他人に構われることはタイミングによっては嬉しい。\n ……が、何もない。眠いのはたしかなので、水を片手に目を閉じたりを繰り返すものの、めちゃくちゃ寒いので睡眠できるわけもない。横目で交番を見ると、中では警官たちが暖かそうに談笑している。僕もそっちに入れてくれ。黒沢清の大傑作『CURE』のように、交番の中で警察官たちの本心を聞かせてくれよ。\n\n、 くそ〜と寝転がること一時間、ここに凍えた男がすぐそこで横たわっているのに、警察たちは道路の向こうにいる自転車男に職質していた。目の前に僕もいるのに、ちょっと離れた善良な自転車乗りの愛車が盗難車でないかどうかそんなに気になるか。気になるのか。じゃあ仕方ないです。盗難車を見つけてあげるのは大事なことですからね……。日記用に写真を撮ったものの、見返したらちょうどタクシーが通っていたので何もわからん。アニメの演出か？\n さすがに虚しさだけが募ってきたので、寂しいけれど帰ることにしました。帰路、同じく道に横たわっているおじさんが居て、彼は大声で「女はなぁ、十人十色だぞ！！！」と叫んでいました。別に男も十人十色だろ……と思いつつ、あの人も寂しいだけなのだろうなぁと勝手に想像した。もう少し僕が元気なら「やっぱ人間って十人十色ですよね！！！」と話に乗ったかもしれないが、もう寒くて帰るモードだったので全然無視して帰った。帰ったところで一人だ。暖かくして眠るしかやることがない。そんな感じの夜でした。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

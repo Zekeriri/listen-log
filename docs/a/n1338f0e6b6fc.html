@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-08-19 12:32\n一口随笔：在提及中舒适的陷阱\n一口エッセイ:言及で気持ち良く罠\n\nインターネット上で起きた事件に関する裁判の内容に興味があるので、まさしくそれを題材にした『しょせん他人事ですから』という、いま勢いのある漫画を読みました。数々の事件を「他人事」扱いする弁護士が、極めて冷静にネットにまつわる依頼を解決する、面白い作品です。\n\n感情を入れずにジャッジする「冷静な第三者」になれる人は素晴らしい。弁護士にしろ、精神科医にしろ、相手の状況を俯瞰して客観性を授けてくれる。冷静なジャッジは本当に頭が良い人にしかできないことで、その上で「事実を述べてあげる」残酷な優しさを放てる強さもある。カッコいいことだ。この作品の流行によって、活動者が誹謗中傷で訴えられる現実的なラインを学び、彼ら彼女らの心が楽になるのは、単純に良いことだなと感じますね。\n\nそれはともかく、本作で一番的確でビックリしたことが「SNSにどっぷり浸かるとモノ申したくなるでしょ？ そこから書き込むまであと一歩だよ？」なる台詞。これは非常に分かりやすく、SNS初心者の心理を表している。そう、人は炎上やニュースに対して、上から目線で語りたくなる病気に罹る場合があるのだ。何故なら、やらかした者に対しての言及は、ただ小馬鹿にするか、なんか知ったような口を利いて解説（ごっこ）すればいいだけなので、死ぬほど簡単に承認と自己肯定感が得られる。\n そして、面白いことに、この漫画では炎上なら言及して「文化人ごっこ」しているアカウントたちが、次々訴えられていく。この流れを漫画として分かりやすく、その上でフローを現実的に描いているので、たいへんバランスが取れている作品なのです。\n このシーンは、ネットで陥りやすい罠として、もっと広まるべきセリフに思える。下手にSNS見すぎると、余計な言及して気持ち良くなってしまう。が、それはだいたいの場合に幸福に繋がるルートではない。この世界は、インターネットによって、つねに気楽な刺激を得られる危険性と隣り合わせなのですね。気楽に快楽を得られる行為は、それはもう麻薬と同じで、一度覚えると抜け出すのは大変ですよ。\n それこそ、侮辱罪を厳罰化され、国も少しずつインターネットを清らかにしようと動き出したいま、羽目を外して訴えられる可能性は、確実に増してきているのですから。沈黙は金。答えは沈黙なのですね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

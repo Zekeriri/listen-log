@@ -30,9 +30,8 @@ PSで映像が観れるなんてすごい！ と、意味もなくこのCMをひ
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-09-20 19:08\n灼热的火焰舞蹈\n灼熱のファイヤーダンス\n\n灼熱のファイヤーダンスを聴くと90年代そのもの過ぎて、グッとくる。ジャケットにぷよぷよキャラたちがわちゃわちゃしている時点でもう「良い」。楽しかったんだろうなあ、この時代と陽気な音楽、ちょっぴりぷよと関係ありそうで全体としては全く関係ない歌詞が、良すぎる！\n\nMVの画質や雰囲気も完璧。\n 曲や声を社員が担当していた緩い時代だからこその奇跡。PS版ぷよぷよ通決定版は何度も遊んだ名作ですが、熟れてないからその味が素晴らしい。そんなPS版ではオプションで、この曲が流れるCMを再生できる。すけとおだらが駅のステーションにいるやつ。\n\nPSで映像が観れるなんてすごい！ と、意味もなくこのCMをひたすらに繰り返し再生していた。ゲーム機で動画が観れることがものすごい未来に思えたのだ。その技術を駆使して眺める映像が、ホームの向かいですけとおだらが踊っているCMなんだが。灼熱のファイヤーダンスがノリノリで、この製作陣楽しそうだなあと子供ながら伝わってきたものである。実際、この頃のコンパイルはきっとイケイケだったのでしょう。『灼熱のファイヤーダンス』は、(会社で働いているような)真面目な大人にも愉快で楽しいやつらがいるもんだなと希望の象徴でもあった。\n 「ザ・子供向けのゆるい雰囲気なのにセクシーな男性の声でちょっぴり大人っぽい歌詞をうたうヘンテコさ」が、子供からすれば愉快でツボにハマったのかもしれません。同様の理由でSDガンダムのふざけた曲たちも好きなんですよ（大人の恋愛の虚しさについて映っているだけでガンダム要素皆無）。\n\nこれまたジャケットが緩くていいですね。\n ちょっと時代が経って00年代になってからは、「こいつら楽しそうだなあ」と感じたのは、クラッシュバンディクーやサルゲッチュのCMでした。着ぐるみがポイントなのかもしれません。\n\n作っている奴らが「愉快」って、子供にとっては透けてわかるものなのでしょう。愉快でありたいね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,10 +50,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

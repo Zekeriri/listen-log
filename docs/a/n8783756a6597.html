@@ -25,9 +25,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-07-22 10:05\n一口随笔：必须有偏差\n一口エッセイ:ズレなければいけない\n\n最近、夜に寝て朝に起きています。と言っても健康を意識したわけでもなく、単純に睡眠サイクルがズレ続けていく過程で、偶然早寝早起きのターンに入っただけ。一年に1.2回こんな時もある。\n 夏真っ盛りなことも相まって、世界が明るい。普段は日が沈みかけている時間に起きるのだから、こんなに長い時間、空を太陽が占拠している事実に驚く。一日が長い。飲食店以外は20時には閉まるので、夕方起きは一日一行動になりがちなものの、朝に起きると3.4軒くらいぶらぶらできる。しかも視界は底抜けに明るい。恐ろしい。\n ちょっと前に部屋のカーテンを黒から白に替えた日記に書きましたが、そもそも基本的に人間は目から入る情報量に頼っているのだから、「色」によって精神が左右されるのは認めざるを得ないとわかってきました。部屋を少し白くするくらいで気分が明るくなってたまるかと斜に構えていたが、部屋が若干広く見える効果もあって、正直スッキリ思えなくもない。この言い切らない感じが斜に構えている弱さを醸し出していて悲しい。要は白いカーテンもアリだと内心で認めてしまっている。\n ならば、外出するとめちゃくちゃ明るい「朝・昼」は、夜に行動することに比べてポジティブに引っ張られることも認めなならばならない。そりゃ暑いし人が多いしでイヤなことも多いが、日陰など快適な場所をのんびり散歩しているぶんには、「昼ならではの良さ」も確実にある。いつもは誰もいない深夜の街を散歩し、のび太のように夜の街の王様気分で道路を闊歩していたのだが、幸せそうな親子や暇そうな老人たちとすれ違いながら歩くのも悪くない。それも一長一短とは言え、「今は自分も街の一部なのか」と背景に馴染んでいく感覚があります。\n さらなる変化として、朝に起きると全然ネットを見ない。ニュースで溢れて人口も多いため、「今じゃないな」とすぐに閉じて、Kindleで本とかいう著者と読者の狭い世界へ引き篭もってしまう。人の少ない深夜に、そっと一日の出来事を振り返り、あとは眠れない人間たちがぽつぽつ嘆いているくらいの温度が落ち着くのだ。昼は健康的で吐き気がする。\n 街を適当に散歩して、ネットも見ずにのんびり喫茶店で本でも読んで、夕方に映画でも溜まったアニメでも観て眠る。寝る直前に騒ぎが収まったインターネットへ飛び込んで、その日の出来事を「へ〜」と眺める。こう書くと、ますます健康的で吐き気がする。健康なことが幸福であるとわからされるたび、これまでの人生を否定されるようで悲しいのです。\n 早くまた睡眠サイクルがズレてほしい。社会の時間とカチッとハマってしまうと、自分がそのまま現実世界の歯車になるようで怖いんだ。真っ直ぐに立って直視するより、ズレにズレてふにゃふにゃしていないと苦しいでしょう。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,10 +45,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

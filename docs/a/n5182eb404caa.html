@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-04-06 13:34\n低气压、胃痛、头痛\n低気圧、胃痛、頭痛\n\n連日の雨により、低気圧のせいで体調が著しく悪化。手足が冷たく頭痛が響き、へなへなと倒れる。ここ数年でめっきり気象に弱くなった。\n 頭痛薬を飲む。\n 薬は胃を痛める。ストレスも相まってか、頭痛が軽くなった代わりに胃が荒れ始めた。お腹へ熱が籠る。脳みそと胃袋、どちらへのダメージの方がマシか。\n ここ最近、1年半に及ぶ鬱々から回復した友人が遊びに来る。彼は生活保護で、誰とも会わずに己と対話する日々を一年送ってきた。彼が社会で人とやっていけない理由として、異様にお腹が弱いことが挙げられる。\n 彼は少し味の濃いものを食べると、ほぼ確実に腹を壊す。彼の普段の食事は、カロリーメイトとオートミール的なもの、ベーシックなパンで構成されている。そうなってからは輪にかけて胃を弱くしており、外食で味が濃いものを食べると必ずトイレへ引き篭もる。あとカフェインもダメ。\n もちろんストレスでもダメで、僕は付き合いの長い友人なので何とも思っていないけれども、これが職場であったら扱い難くて大変であろうし、気を使う空気もまた刺激なわけで、生来の人間嫌いと合わさって、他者との交流を極力避ける暮らしへ落ち着くのもさもありなん。\n 身体のSOSは最強のシグナルだ。頭が重いと何もできない。重い理由は単純に「いまは休もう」と神経が訴えているからで、危険信号が発せられるまでの上限値は年々下がる。僕はジム通いのおかげで多少は上がった気もするけれども、空が曇ると途端に気圧に押し潰されるのだから自律神経は悪化の一途を辿る。もはや雨の日はすべての予定をキャンセルさせて欲しいくらいに。彼にとっての社会的な生活は、僕にとっての低気圧と同じ「どうしようもない時間」なのでしょう。\n 苦痛や苦悩こそデフォルトであり、たまに運良く「現実は苦しいこと」「いつか死んでしまうこと」から解放されるタイミングがあるだけで、やっぱり生活というものはずっとこうなんだろうなと、そればかり考えるゆえに多少覚悟もついてきた次第であります。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

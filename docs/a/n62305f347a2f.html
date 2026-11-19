@@ -30,9 +30,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-07-28 13:56\n与不擅长交流的人们之间的重要核心\nコミュニケーションが苦手な人々たちとの大切な芯\n\n人間同士が、特に気難しい奴らが円満なコミュニケーションを取れるはずもなく、それらを担保するための統一性として「良い作品づくりを目指す」という芯を通すことが大事に思っている。どんな齟齬が有ろうとも、「良い作品」が第一であれば方向性を見失わない。\n 逆に言えば、僕がものすごく拒否反応を示すのがそこで、良い作品よりも保身や安全、「これくらいでいいや」といった適当さ、または拘りと執着のない雰囲気を出されると、「うーん……」と嫌になるんだなあと分かった。\n いま自分で会社を作って以来、基本的には自分の裁量と、やる気に溢れた極小数で行動ができるので非常に助かる。組織化すると、上の連中がやたらとふんぞりかえるだけで何もしないことも少なくない。彼らは作品よりも立場を優先する。\n 統一感は大事だな。\n 一神教の強さは、宗教文化を体験して著しく理解ができる。宗教建築や絵画の美しさは、皆が同じ神を見ているからだ。集団制作において、「共通の神を信仰する」気持ちがどれだけ大事か。\n\n僕は、ガァララの青さが星月夜に見える。\n ゴッホの真価に気づいたのは、むしろガァララの青さに見惚れ、もっといろんな青が知りたいと思ったから。\n ガァララやゴッホの「青」を同様に美しく思える人たちと共に居たい。\n\n「同様のやる気を保持している人間だけで集まる」、たとえコミュニケーションがどんなに苦手な連中となろうとも、進路が同じであればスローペースでも宝島へ辿り着く。\n 同じ志を持つ人間だけを集める旅を、人生と呼ぶのかもしれません。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,10 +50,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

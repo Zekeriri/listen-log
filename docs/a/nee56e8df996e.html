@@ -29,9 +29,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-11-30 07:27\n可实现的梦想追求者\n実現可能な夢追い人\n\n友だちが明らかに「海外の広い道路でバイクを走らせる夢」を抱いている。どことなく、その夢が年々膨らんでいるのを感じます。\n 恐らく、彼の頭の中では「アメリカの広大な土地をバイクで駆け抜けない人生って嘘だよな」となっているわけだ。働いている時も、遊んでいる時も、頭の片隅には「だだっ広い一本道」が浮かんでいる。イージー・ライダーを夢想する。\n 不可能な夢ではないものの、それなりに実現ハードルは高い。どうせならハーレーに跨りたいだろうし、一人で行くかどうかも悩みどころでしょう。イージー・ライダーだって二人組だし。「夢」なのだから最大を狙いたいわけで、その場合は「友だちと走る」があるかもしれない。\n このまま彼が「今はタイミングじゃないなあ」と思いながら老人になったらと想像する。どんなに無理してでもハーレーで飛ばしておけばよかったなぁと、老眼になり始めたあたりで諦める。それはとても悲しい。\n が、別にそれは人生の目的って程でもない。友人として接してきたかぎり、彼の生活でバイクの優先度は高くない。なんなら数年乗っていない。僕が気まぐれに買ってきた雑誌のバイクを見て、ほんのりライダー熱が燻ってきた程度。けれどもバイクに慣れ始めた頃の「日本の道路狭すぎ！」という感覚も消えてはないはずだ。\n 誰しも「これを経験せずに死ぬのは嘘だろ」って憧れがいくつかあるでしょう。でも、結局は途中で挫折する。挫折というか、海外でバイクを走らせることはいつでも実現可能なものの、「一ヶ月程度の休みと少なく見積もって100万近くはかかる出費」への踏ん切りがつく可能性は低い。そこへ「もう1人2人一緒に行きたい」まで望むとさらに0へ近づく。\n どうする？ 僕らは、そのような「これやらないと嘘だよなあ」という希望を抱え落ちして死んでいく。したいことリストに言い訳をする。「意外と楽しくないんじゃないか」「休みをこんなに割けないから」と。それもギリギリ実現不可能じゃない事項たちへ。\n 逆に他人の夢を奪ったら面白くないだろうか。僕が急に一言も告げずにカルフォルニアをハーレーで爆走するのだ。相手もめちゃくちゃビックリするだろう。僕はバイクで風を切る爽快感よりも、「友だちをビックリさせてやった」少年心で嬉しくなる。または「他人の夢を奪う」といった夢を達成することができる。悔しくなったら彼もカルフォルニアへ飛べばいいのだ。その気になれば今すぐにでもできないことはないのだし。\n じゃあ初めから2人でカリフォルニアへ行けばいいんじゃないか。それもそうかも。本物のイージー・ライダーになるな。\n みんなは「ギリギリ実現できはする夢」を抱えたまま死ねますか？ 夢は夢だからいいのか？ 「絶対やりたいことリスト」を書き出し、その実現のために人生を捧げてみるか。それもまた妙な生き方だ。あまり自由に楽しい様子が想像できない。\n 夢なんて憧れたままどうにもしないくらいがいいのでしょうか。とりあえずハーレーに跨ってから考えてみようか。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,10 +49,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

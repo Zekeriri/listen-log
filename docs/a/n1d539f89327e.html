@@ -30,9 +30,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-01-22 05:08\n阿加佩\nアガペー\n\nあとはもう、自分を愛するしかない。僕が僕を好きでなければ進まない段階へ来てしまった。そりゃ僕は気持ちの悪いナルシストの塊だけれども、それって自分を肯定しきれず脳内で自己否定が乱反射した結果じゃない。本当に己を真っ直ぐに好きなら、もっと素直な形で自信がつくよ。\n 虚勢というか、そんな人間らしい歪みまで含めて好きだった、というか斜に構えてあろうと徹した。どうしたって罪悪感との勝負だから。でも許されちゃったら誰もかまってくれないし。許されることすら恐れて過ごしてきて、さすがに限界も近かった。\n 世界に対しての罪悪感を、原罪のような十字架を背負って生きていることの証明を続けてきたのでしょう。けれども、その生き方しかできないし、そうして勝手なプレッシャーに苛まれている自分は愛おしい。ちゃんとバカみたいで。現に、罪の意識は結果的に良きブレーキになった。多くの間違いを犯してきつつ、それでもこの世に留まっていられたのは十字架が滑走路を塞いでくれたから。\n\nそれでもまあ、そろそろいいでしょう。\n 他者との卒業って、自分を愛する以外にあり得ない。真の精神的な成熟には、自らを許して抱きしめる過程を踏む。誰の罪だって実は他者に裁く権利なんて無い。「生きているだけでえらい」なんて言説はアホらしいと思うけれども、自分を好きで居られる境地に達したなら、それは「生きているだけでえらい」と言える。\n\n自分を愛することに理由がどこまで居るのか。畢竟、なくていい。己という器に対して自我は神で、神の愛は極めて無償なものだ。アガペー。無償の愛を自分へ贈ることが一つのゴールなのでしょうね。自分を好きになってから、寛容を他者へ広げてもいい。恋とか、家族とか。このステップにいつまでも僕が進めなかったのは、自分すら抱きしめてやれない証左。ずっと自己否定と自己嫌悪でぐるぐると、そこで発生する怒りと悲しみに気持ちよく酔っていたナルシズム。\n\nとても怖い。誰も好きにならなければ、永久に自己責任の世界で完結できる。好意を持った瞬間、理屈を越えて感情が先立つ。不確定すぎる未来を歩まされてしまう。神は己の中にしか存在しない。きっと、本物の神様は人間なんてどうでもいいのだから。\n 無償の愛と利己的な遺伝子は、つまるところ同じ概念ではないか。\n 十字架を降ろそう。己の神にふたたび憎悪を覚えてしまったら、次は逆さまに突き刺せばいい。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,10 +50,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

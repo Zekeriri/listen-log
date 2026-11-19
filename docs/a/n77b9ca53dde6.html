@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-21 23:14\n一口散文：分享让人容易入睡的必杀小技巧……\n一口エッセイ:どうにか眠りやすくなる必殺の裏技を共有……\n\n睡眠薬による強制シャットダウンのような就寝に慣れすぎて、薬が切れた今、つらい不眠が続く。早く精神科に通うべきですが、引っ越し後なので新たな医者を開拓する必要があり、知らない人に「日曜朝に特撮と女児アニメを観ることが大好きな、自閉症のオタクです」と説明するのが嫌で仕方ない。前のお医者さんは自閉症に関する書籍を執筆していた方で、内容に感銘を受けて受診したからすんなり進みましたが。それはともかく、入眠方法を探った末にコレは良いぞと辿り着いた方法を共有……。\n 眠れない原因は大きく２つと考えており、「静かになると漠然とした不安に襲われる」「スマホ弄りを我慢できない」だと思う。特に後者は多く、深夜に「眠れなくて困ってます……」とDMが届くことがありますが、正にスマホのライトで眠気が半減しているからに他ならない。今すぐスマホを遠くに置いて目を閉じるべき。「睡眠薬の副作用でラリらず」「スマホを見ない」ため編み出した手段、それが「使い捨て蒸気アイマスク」でした。\n\n通常のアイマスクは適度な洗濯が必要な上に紛失する。その点、使い捨ては箱がデカいので机に置いておけばどうにかなる。洗濯も不要。「アイマスクしてもスマホを触るためすぐ外すんだが？」という方も、冬の間は蒸気の暖かさのおかげで「もうアイマスク外したくねぇ〜」といった感覚が勝るので安心。睡眠薬でラリって暴れる原因は眠気に逆らって活動しているからなので、そもそも暗闇に覆われた視界なら安心！ この方法でそれなりに良くなりました。オススメです。まぁ「漠然とした不安」に対しては、無力ですけどね。毎日不安、不安よな。\n\nそれでも眠れなさそうであれば、こちら↑も読んでみてね。\n\n毎日のエッセイをまとめた同人誌を販売中です。電子版もあるので、眠れないときはスマホから読んで楽しめる。本末転倒。\n\n明後日には、商業エッセイ集もでます。こちらもKindleがあるので、布団の中でも安心して読める。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

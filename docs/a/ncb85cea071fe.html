@@ -75,9 +75,8 @@ Adventのダークな雰囲気と重めな音のラップが見事にマッチ�
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-03-10 00:23\n喵拉拉觉得好的曲子 2025年1月\nにゃるらが良いと思った曲2025年 1月\n\n↑前回の。今年も書いていくよ。\n\n宣伝。\n\n作詞した曲のカバーが収録されているよ。\nTr.03 INTERNET YAMERO\n作詞：にゃるら 作曲：Aiobahn\n歌：夢見りあむ\n\n・Alva Noto\n\nどの曲が、というよりアルバムが。というか存在そのものが。坂本龍一の展示へ行くので、気持ちを上げるために改めて聴いていた。\n 様々な研究を重ねた結果、非常に最小限な音の形に辿り着いた事実が美しい。そして、実際にイベントへ足を運び、信じてよかったと確信した。\n 引き算の美が最もわかるユニットであると思う。\n\n・アストラ・ヤオ MV「楽園夢遊記」\n\nソーシャルゲームやアプリゲームを遊ばないので全然詳細はわからないけれども、ビバップみたいな絵柄のMVがいいね！\n 本当に何も知らないので、特にそれ以上は言えないけれども……。いいアニメーションが観られると嬉しいね。\n\n・Too Shy/Kajagoogoo\n\nここから下はほとんど懐かし洋楽。作業中に垂れ流していると、どんどん良い曲たちが見つかっていくので……。\n 特に聴いている曲。再生回数を観るに、当時（1983）はものすごく流行った曲なのでしょう。MVのセクシーでグラムロックな妖しい雰囲気にダウナー寄りな曲調がいい。ディスコ的な熱狂がカルチャーの最先端であった時代をこれでもかと浴びられる名曲。\n\n・Smack Jack/Nina Hage\n\n似たような雰囲気の一曲。こちらの方がよりアングラ味が強い。寺山修司を感じる……。ニーナ・ハーゲン、ドイツのそういったサブカルスターですな。\n\n画質の粗粗しさ、サイケデリックな雰囲気。すべてがいいですね。作業中にあまり画面に張り付きたくないのだけれど。見ちゃうよ。悪夢みたいで心地良い色使いだ。\n\n・チーム友達/hololive English -Advent-\n\nAdventのダークな雰囲気と重めな音のラップが見事にマッチし、向こうのオタクたちを熱狂させた歌ってみたカバー。メインビジュアルの絵柄がクールながら、おなじみの脱力なSDアニメーションのギャップも彼女たちの多様性が伝わってきていいね。\n Advent贔屓な面もあるかもしれないけれども、それを差し引いてもVtuberの歌ってみた文化の指標の一つになるであろう言語を越えた歌ってみた成功例です。\n\n・Maniac/Michael Sembello\n\nこちらも80年代名曲。マニアックという曲名でありながら、今回紹介している曲のなかでは最もストレートにカッコいい！！！\n この年代の曲はノリノリな曲調でも電子的な激しさの音が少ないため、落ち着いた作業にも向いていてありがたいですね。歌声が低くて穏やかだからですかね。あまり声が好きだと思ったことがない生涯でしたが、この系統の優しい声好きだなあ。日本人だとジュウレンジャーやグランゾートのOPの人とか。急にマニアックな話題へ飛んだ。\n\n・Papa Don't Preach/Madonna\n\nここで好きなマドンナの曲をひとつまみ……。サムネイルが美人すぎる。\n 歌詞もMVも非常にシリアスなテーマを扱っている挑戦的な一曲。\n\n\"未婚、未成年での出産\"という、アメリカ社会が抱える問題がクローズアップされている。設定は父と娘だけの中流家庭\n\nスリラーがMVなる概念を確立させて5年でこの曲が生まれている。向こうで急速に音楽業界が、ひいてはサブカルチャーが進化していく様が聴こえてくるようだ。\n Papa Don't Preach……パパ、お説教しないで。\n\n少女が大人を自覚する瞬間。パパ、お説教しないで。わたしだって苦しいの。\n それでも彼女は進むことを選択するのだ。\n\n・We are Number One/Lazy Town\n\n古の教育番組のテーマ曲で、みたまんなユーモア溢れる力強さが現代でもミーム化して大人気。聴いたらみんなも「日本でいうところのあんな感じの枠ね」とわかってくれるはず。正しくあの枠。時代を問わずに愛される、極めて原始的にノリノリな、世のお子さんら大興奮なナンバー。We are Number One！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -96,10 +95,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

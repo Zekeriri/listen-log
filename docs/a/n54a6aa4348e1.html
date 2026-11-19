@@ -34,9 +34,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-05-16 19:29\n文本网站狂时代\nテキストサイト狂時代\n\nテキストサイト大好きクンとして生きてきたことは何度も書いてきたのですが、今回はもう少し具体的に記してみよう。\n 小学生時代から何故か妙に文章を読むのが好きで、それも小説とかでなくオタクのゆるゆるとした人生が特に好きだった。昔のインターネットにはテキストサイトに限らず、ブログ文化のおかげでたくさんの商業的でない文章が読めるので天国。今はみんなSNSに慣れて長文は投稿しなくなった。\n ちゆちゃんことちゆ12歳は全ての記事を5周以上は読んできたんじゃないか。なので二次元ドリームマガジンでコラム連載しないかと誘われた際、ちゆちゃんと同じ雑誌に載っている嬉しさを感じていた。今にして思えば現代で20代前半にして二次元ドリームマガジン行きは中々なネット人生である。色濃く影響を受けすぎて、20歳くらいに書いていたブログは、ちゆちゃんの別名義だと思われたりもした。\n 他にもBLACK徒然草などのコアな作品紹介系や朝目新聞、現ラノベ作家やエロゲシナリオライターの鬱々とした日記を嗜む。彼らのせいで電子の海にどうでもいい文章を投稿し続けることこそオタクの生き甲斐だと植え付けられ、その灯火を絶やさぬよう毎日日記を投稿している。\n\nコレットさんも好きでした。ぱすチャのキャラクターをアバターに、あまりにオタク臭い日常を絵日記にする。タイトルは当然『コメットさん』のパロディであり、このあたりのパロディの塩梅（現代ではやりすぎくらいな）が僕は未だ抜けずにいる。\n オタクのニッチな日常は間違いなく面白い。が、そのままお出しすると見るに耐えないので美少女化して漂白する。なるほど誰も損しない。\n そんな中、日記として特に読んでいたのはNumeriというサイトのpatoさんの文です。\n\n2001年から数年続いたNumeriは、ネットらしい陰気さ、ユーモア、サブカル、小粋な言い回しの全てが詰まっている。\n くだらないのに読み応えのある謎の文章はテキストサイトにしか存在しない。文化を引き継いだうえで独自進化を遂げたのはオモコロでしたが、今は勢いの面白さに特化したことでテキストサイトの面影はあまりない気がする。もう画像も動画も気軽に高画質で貼りまくりの時代なのだから、テキストが添え物になるのは当然なのですね。\n 数年前にpatoさんが匿名で投稿した名文は、そんなテキストサイト狂いの血を大いに滾らせた。\n\n『Yahoo!チャットって場所があったんだよ』というタイトルから始まり、洋画のような軽快な文体の懐かしネット語りは、テキストサイトの始祖とも言える年季の力強さを感じさせる。\n 匿名の文章であったが、僕含むファンは一発で正体が分かった。このくだらないのに惹かれてしまう味付けは、先ほど貼ったNumeriそのもの。\n 匿名でも誰かわかってしまう等身大な人間そのものなテキスト。これが一番カッコいいものだと植え付けられてしまった。僕もいつか「Twitterってのがあったんだよ」とクールな文章をさらっと投げられるジジイになりたい。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,10 +54,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

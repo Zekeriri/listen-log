@@ -29,9 +29,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-04-09 18:16\n精选一口短文：是勇者还是彻头彻尾的混蛋\n選り抜き一口エッセイ:勇者か真のゴミクソ野郎か\n\nギャグマンガ日和での自分の好きな回に、「その剣を抜きし者」という短編があります。この主人公の状況はとても興味深い。\n\nまず、1ページ目から「魔王を倒す勇者」か「真のゴミカス野郎」にしか抜けない剣を抜いてしまう主人公。自分が「魔王を倒す勇者」だと動揺するも、村長らしき老人からは「か、真のゴミクソ野郎」と注意されてしまう。\n その後の主人公の行動もそれなりにゲスく、悪気があったり無かったりしつつ、パーティーのメンバーに迷惑をかけ続ける。村長の危惧した通り、「真のゴミクソ野郎」であるように見えなくもない。\n が、この話のオチが見事で、パーティーがいなくなった男は、それでも孤独に冒険の旅を続けた。性格は陰湿にひん曲がっていても、世界を守ろうとする意志はあるわけです。しかも、結局は一人で魔王を倒してしまう。\n そして最後に主人公は、自分が「魔王を倒す勇者」であったのか、ただの「真のゴミクソ野郎」のどちらであったのかと呟く。もちろん、読者の視点でも正しい答えはない。\n 性格はめちゃくちゃ悪く、他人に迷惑をかけ続けたものの、魔王を倒したのだから、それ以上に世界に平和を与えた勇者である。こういうことは現実でも往々にしてあり、めちゃくちゃムカつくし他人を振り回すが、その分面白い作品を作るクリエイターは多い。というか、それくらいでないと良い物なんて作れないのでしょう。誰もバランスよくなんて生きられないのだ。\n\n毎日のエッセイをまとめた同人誌をboothにて販売中！ 今回の選り抜きなどが気に入ったら読んでもらえると凄く嬉しいぜ。\n\n商業エッセイ集もよろしくね。真のゴミクソ野郎の生き様をみよ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,10 +49,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

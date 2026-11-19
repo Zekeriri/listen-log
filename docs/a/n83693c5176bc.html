@@ -30,9 +30,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-09-10 20:22\n精选一口随笔：关于感质的故事\n選り抜き一口エッセイ:クオリアの話\n\n生まれて一度も白黒の部屋から出てこなかった少女に、色の情報を与えた後に外へ出し、初めて実際の色彩に触れたときに得るものはなにか、といった『メアリーの部屋』なるクオリアに関する思考実験があります。この思考実験は、『紫色のクオリア』の元ネタにもなっていますよね。\n\nラムが異星人であることの描写を「水族館で一人魚を眺めている時の横顔の人間離れした美しさ」で表現した、押井守のセンスは本当に凄い pic.twitter.com/3uxJqJPejJ— にゃるら (@nyalra) December 11, 2019\n\nそれとは若干、条件は違うのですが、幼き日の僕が『劇場版うる星やつら2ビューティフル・ドリーマー』の虜となった際、そこで描かれた水族館の描写の美しさに心奪われたわけですね。\n それでいて僕は成人するまで水族館に行ったことがなかったので、上京して初めて水族館に足を運んだ時、イメージしていた幻想的な体験とは違い、わりとこじんまりとしたことにガッカリしてしまったのです。押井守が作った青白い光の画面の方が好きだった。\n\nそこで考えてみたのですが、例えば『メアリーの部屋』の応用で、生まれてから一度も外へでたことのない少女にゴッホの『星月夜』だけを見せ続けた後、外へ出して本物の夜空を見せた場合、一級品の美術品と比べた実物の夜空にガッカリするのだろうかと気になったのです。\n とはいえ、ずっと白黒の部屋で育てられた少女の境遇の方が大問題で、クオリア云々はもはや関係ないのよねと、冒頭で話した『紫色のクオリア』の作者も語っております。\n そんなこと考えていても仕方ないので、僕らはメアリーと違っていつでも外の世界を知れるのだから、いろんなことに触れて知覚するのが大事だよなという教育的なオチで終わります。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,10 +50,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

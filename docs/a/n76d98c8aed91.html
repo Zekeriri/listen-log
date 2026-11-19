@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-10-29 04:55\n阅读最郁闷的日子\n最も鬱々としていた日々を読む\n\n訳あって自身の日記を読み返していました。まあ自身の文章を遡るのは出版的な動きがあるからですが、それはまた時が来たらね。\n 改めて見ると僕はゲームリリースから数ヶ月後くらいに最も鬱々としている。読み返すと当時の苦しみも蘇る。あの時の悲しさは誰にも話せなかった。表向きはゲームが人気になって上り調子でしかなく、あの状態で苦痛を声に出そうものなら他者からはパフォーマンスに映り、火に油を注ぐようなものでしょうし。可哀想！\n さて、今とはぜんぜん環境が違うので今なら色々言えるぜ。なにが悲しかったのか、落ち着いて思考も明晰になりましたし。\n リリース後の数字には言うほど興味がなく、人気ありきの打ち合わせの連打が死ぬほどつらかった。知らない人たちからたくさん連絡が来て褒められる。もちろん嫌ではない。が、大して嬉しくもない。この理由を言語化できるまで1年以上かかったね。要するに僕は「現実を忘れたいがためにゲーム製作や文章を書く、読むなどへの熱中を生きがいとしており、リリース後の数字の話はたとえ喜ばしいことであろうと現実と地続きでしかない」！ 単純に作っていた時の方が楽しい。それだけだった。\n リリース後はインタビューやらグッズやら、あとはSwitch移植やらと既存の作品のファンにいかに応えるかが中心となった。でもそれは恩返しであって、「夢中になれるもの」では無い。なので現実続きに疲弊してしまっていた。それを伝えてもなかなか理解はされ難い。だって誰も初めてゲームを作って100万本以上もダウンロードされた経験がないから。\n そこからしばらく地獄は続く。\n わからない。なぜ自分はいまストレスとプレッシャーに押しつぶされそうなのか。やれることも広がり、ファンも増えて、客観的には幸せ真っ盛りなのに！\n 休みたいわけでもない。むしろ休んでいるとリアルを考えてモヤモヤとする。スマホを開けば打ち合わせの連絡の数々。これらを一気に解決する方法はなんなんだ。\n 単純。非常に単純。次の作品をつくり始めればいい。なにかの製作を始めちゃえば、そのことだけ考えていればどうにかなるんだ。小説を書こう、アニメの脚本も書いて監督も務めよう。作詞も話しがきただけやるさ。それらに向き合って机に齧り付いている間は現実を考えずに済む。詩や物語が好き？ それは間違っていないが、正しくは「現実が嫌い」だった。だから僕は幻覚の世界が大好きでラリっていたんだった。\n ゲームリリース後から大きな企画が動き始めるまでの期間。苦しかったなあ。一二年経ってしまえばもう他人。日記を読み返し、コイツ頑張っていたなあと同情する。唯一、芯の部分から共感してやれる読者だ。カワイソス。ともに夢の中へ戻ろう。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

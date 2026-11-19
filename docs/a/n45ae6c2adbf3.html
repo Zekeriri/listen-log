@@ -29,9 +29,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-16 04:09\n一口随笔：牙齿矫正与母亲的男朋友\n一口エッセイ:歯列矯正と母親の彼氏\n\n歯がぎゅぎゅっと押し込まれる感覚が気持ち悪い。今日、歯医者でマウスピースをもらい、なんと2年間も毎日装着し続けないといけないらしい。着けている間は当然歯列を締め付け、歪みに歪んだ僕の歯並びを矯正する。\n 物心ついた頃には、すでに歯並びが最悪で、歯の真裏に歯が生えている始末。母親に何度も矯正を願いましたが、そのたび「お金ができたら必ずするからね」と力無く微笑んで誤魔化されました。結局、彼氏をとっかえひっかえするだけの生活だった母にお金ができることはなく、こうして僕が自身の貯金によって、お金と健康を引き換えたのです。\n 鼻から呼吸ができない僕にとって歯医者は地獄です。手術中、口腔内には器材が入ってガチャガチャやられているので口呼吸ができない。次第に息切れして死にそうになり、気絶する前に手を挙げて中断する。そのたびに先生へ「自分は生まれつき鼻呼吸ができなくて……手を止めさせてすみません」と謝る。この流れが面倒くさいし、単純に苦しい。今日もマウスピース装着のために歯を削ってもらったのですが、息が続かなくて溺れるような気持ちで最悪でした。仕方のないことですけど、つらいもんはつらい。\n 文句ばかり言っても意味がないし、進んで行ったことですから後悔もない。どんなに息苦しかろうと死亡まではしないでしょうし。歯医者に通うたびに痛むのは心のほうでして、一人で大金払って治療を成功させた時点で、効率的に言えばもう僕の人生に母親は要らないのだ。わかっていたことながら、やっぱり悲しい。\n ちぎっては投げられてきた母親の歴代彼氏たちも、男を見せて僕の歯列矯正代をだせば、この寂寥感を覚えずに済み、漢気に惚れ込んだ母を手に入れることができたかもしれないのに。いや、逆か。所詮は母も彼氏たちも恋人ごっこでしかなかったのでしょう。一時の寂しさを埋める関係でしかなく、誰も母と結婚するつもりなんてなかったし、母親も一瞬だけチヤホヤされていれば良かったのだ。子供の頃わからなかった感情が、透明なマウスピースの締めつけを通して伝わってくるようです。\n 「恋なんてただのゲーム」とは、よく言ったものですね。母親との恋心が本物であれば、彼氏も息子に気に入られようと僕の治療代をだした。でも、そうはならなかったし、母親も僕もそれで問題なかった。全てはそういうことなのです。僕は女手一つに育たられた一人息子として、母親のことを本気で愛していましたけどね。\n\n毎日、日記を書いていてえらい！！！\n 買ってもらえたら、僕の歯の治療代となります。\n\n商業エッセイ集の方もよろしくね。お母さんの話いっぱいあります。18年間、一緒に暮らしてきたからね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,10 +49,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

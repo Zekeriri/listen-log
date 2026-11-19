@@ -37,9 +37,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-02-01 07:00\n希望所有事情都能像这样随意\nすべてのことがこれくらい適当であって欲しい\n\nすべてのことがこれくらい適当であって欲しい。\n\nスペインのKEC公式アカウントが、突然ムメイ（ホロライブEN所属のemoガール）が店に遊びに来ているコラ画像を投稿した。\n\n画質が悪くて面白い。この公式アカウントは、これまでも拾った美少女キャラクターの画像を雑にコラして投稿してきた。当然コラボか何かと思われるのでこんなこと通常であれば許されない。というかきちんと怒っている人もいるのでしょう。けれどもスペイン側が細かいことを気にする様子もない。\n 次第に、「スペインKFCのノリはこんなものだよね」と海外の人々は受け入れた。権利関係なぞどこ吹く風な傾奇者が一人二人居るくらいが面白いんじゃないかと。\n\nリプライ欄もかわいいかわいいフクロウたちの画像で溢れかえる。I LOVE MUMEI !\n\n本人も「いまスペインに行ったらタダでケンタッキー食べていい？」と気さくな反応。それ以上でも以下でもない程度の。ゆるくていいよね。\n\n僕はすべてのことがこれくらいであるべきと考えている。この一連の「感じ」が最も好きで、そこに倫理や善悪をない混ぜにしたくない。けれども、人は善悪から抜け出すのは難しい。適当さ・ゆるさには多くの悪がつきまとう。絶対にゆるさないよ。\n\nコラボでもなんでもないのに解像度の荒いムメイがケンタッキー食べている画像に笑った。リプライ欄はファンたちがとっておきのムメイを送って可愛く彩った。moom本人ものんびり乗っかった。\n\n永遠にそうあって欲しい。\n\nこんな毎日が永久に続くといい。\n 彼女たちの幸せも。スペインのケンタッキーも盛況であるといいな。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -58,10 +57,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

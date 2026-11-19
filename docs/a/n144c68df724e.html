@@ -34,9 +34,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-07-12 06:55\n生物\n生物\n\nヤフコメで世界のすべてを小馬鹿にして攻撃する者が目に入る。おそらくは50代以上の方だ。\n きっと、世界のすべてを小馬鹿にしたまま、芸能人の言動・行動には「いかがなものか」。流行の作品には「こんな浅いものが評価されて大丈夫なのか」。そのような態度をとったまま、コメント欄で威張り散らして加齢する。\n そうして「世の中はバカばかりだな！」と優越感へ浸ったまま死んでいく。現世は平等でないので、傲慢な態度と行動を平然と行える人間が裁かれるとは限らない。痛い目に遭わないまま、えらそうなまま死んでいくこともありましょう。\n その人間は「勝ち」なのだろうか？\n 社会的に間違っているという話でなくて。主観ではずっと好き勝手に怒り、嘲笑い、テレビやネット越しの有名人たちをひたすら下げてストレス解消をする。気づけば死ぬ。己の魂を磨くことなく、しかしその必要性すら感じず生きていけたのなら、本能に従っているだけなので生物としては正しい。\n つまり、宗教観が皆無なわけだ。\n 死後の裁きも輪廻転生もない。ヤフコメで、時にはTwitterで、上から目線で説教し続けてもいい。神なんかいない。怒りたくなったら怒る。コメント欄や引用RTなる機能があるのに、利用してなにがわるいか。\n 芸術や美術が皆無の人生を「楽しい」と満喫できているなら、それはとても幸福に思える。\n 幸福な者が勝ちなら、ヤフコメで暴れている老人たちが勝つ。最期まで説教して、大衆に真実を啓蒙し、がははと大股開きで笑って死ぬ。\n この世界は平等ではない。\n 「魂」は存在し、人はそれを磨くべきである。ただ生きるのでなく、超人を目指すべきである。そんなことを志した瞬間、人は不幸となる。\n 幸福なだけで満足できる者が居る。\n 生物として正しく現世を謳歌する者は悪か？\n 誰もが善悪なんて判断できないまま死んでいく。\n それでも何かを悟りたくて仏像を彫るための生涯をおくる者がいる。\n ニルヴァーナはヤフコメに勝る極楽なのでしょうかね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,10 +54,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

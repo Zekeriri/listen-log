@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-03-04 17:20\n死后这个还没有人透露过的剧透\n死後というまだ誰も明かしていないネタバレ\n\nずーっと来世のことを考えている。何故かはわからないが、来世が人間じゃない可能性にだいぶ怯えてしまう。\n 「死」そのものよりも、魂の行き先に興味を持ち、しかも勝手に不安がっている。\n\n仮に「魂」なんてスピリチュアルな概念が実在した場合、その時点であらゆる物理法則、常識なんて無意味なものなのだから、もはや時間にすら縛られないのではないか。魂の循環は時すら凌駕し、気づいたら自分は歴史上の偉人かもしれないし、遠い未来のハエかもしれない。ひいては、魂とは全て一つで、最終的にはあいつもこいつも、何なら自動販売機のペットボトルさえも、巨大な一つの魂を分けた「自分自身」ではないか。\n といった話へ視点を持っていき、どうせ死んだら全てわかることへの期待に胸を膨らませる。\n 先日、尾田栄一郎先生がワンピースの正体を書いた紙を海に沈めたらしいが、ワンピースの考察と同じく、あらゆる人間が「それっぽいこと」を解説し続けるが、実際のところ真実には辿り着けない。\n 天国、地獄、輪廻転生、自然回帰……。\n 世界中が「それっぽいこと」を死後に付加したけれども、誰も結果を発表していない。ワンピースの中身やコナンの黒幕だって、「99%こうだ」と全員が言い続けたとて、それは作者が描いて雑誌に載るまでは真実にならず、神もまた人間への答えを死後にしか公表しない。いや、神に至っては、死後に真理を教えてくれる可能性すら低い。\n 主観が現代だけで固定されている勿体無さを日々、感じる。未来も古代も己が眼で見てみたい。非常にポジティブな形で来世に期待する。そんな日々を送っている。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -36,9 +36,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-09-18 09:56\n一次性的噩梦《3-4x10月》\n一度きりの悪夢『3-4x10月』\n\nネタバレアリで観て最もつまらない映像は「夢」かもしれない。\n\nヘレディタリーやミッドサマーのアリ・アスター監督による3時間の悪夢『ボーはおそれている』が配信されたのこと。\n 今作の宗教的メッセージやバッドトリップ感、長時間に及ぶ精神的負荷の数々は、僕にとっても貴重な体験で、その感想は別途記事に書いているので読んでみてね。そしてボー観てね。\n\nさて、ボーのような脳みそを犯されるようなバッドなトリップができる作品が好きであれば、ぜひお勧めしたい一作がある。\n\n北野武『3-4x10月』。\n 意味不明なタイトルでしょう。意味なんて分からなくていいのです。だって、これはたけしが思い描く荒唐無稽な夢なのだから。破天荒で暴力的な北野武作品の中でも、2作目ゆえの初々しさ残る本作は特にぶっ飛んでいる。次の瞬間に何が起こるのか一切予想がつかないのだ。ある意味でコント的にも思える。お笑いとは観客の想像の斜め上をいくことですから。\n そんな悪夢も先を知ってしまうと面白くない。なので、本作の刺激を真に楽しめるのは人生で一度きり。\n\n荒唐無稽で不気味。性も暴力もあますことなく発揮され、間違いなく後の名作北野武作品への礎となっている。が、次作以降で洗練されていく構成や演出にはない、圧倒的な恐怖とチグハグさ、そして悪夢だからこそ感じる「次は何が起きてしまうんだ」といった興奮と刺激に溢れているのですね。\n なんなら予告でのキャッチコピーは「我々ノ脳髄ガ危ナイ」「ウィルス侵入」と、とにかく常識と脳味噌が狂うことだけを伝えてくる。ソナチネもそうですが、この頃のたけしはやたらエクソシストのテーマをモチーフとして気に入っているね。\n 恐怖や刺激一辺倒でないランダムな振れ幅を持ってして「夢」である。\n 本作の中には要所要所でとても美しいカットが挿入されていく。最たる瞬間は、やはり花畠に潜むたけしでしょう。\n\nたけしの美的感覚含め、あらゆる幅を浴びれる本作は、先述した通り極めて「悪夢」であり、同じ夢は一度きりしか見れない。\n もし、他人の夢に飛び込みたくなったら。ぐちゃぐちゃな展開に脳を狂わせたくなったら。そんな時に一度だけ試せる危ない処方箋。それが3-4x10月。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,10 +56,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-01-31 04:24\n一口随笔：低评价的医院\n一口エッセイ:低評価の病院\n\nここ一週間くらい、病院に行くほどでもない程度の腹痛がありましたが、きょうKOTOKOさんとの新曲収録のためスタジオ入りした際、話しながらもつねに腹痛が不快だったので、さすがにそろそろ病院にでも行くかと一念発起。\n 近くの施設を検索してみると……なんと評価が1.7の病院が！ 星1.7！ 病院は多くの切羽詰まった方が利用しますから、どうしても低い評価もつけられがちと言えど、レビューが70件以上あって星1.7は凄まじい。米青ネ申禾斗であれば、レビューが荒れているほど、深刻な精神病の患者を診ていることになるので、むしろ腕の良い医者である可能性もありますが、流石に普通の病院でここまで低評価なのは、単純に全体が良くないだけでしょう。\n\n星1の嵐。とにかく対応が雑らしく、その上で先生の診察時の態度も横柄らしい。ここまで不快になると言われると、逆に気になってくる。\n\n珍しい擁護寄りの意見。院長先生は、気分の波が激しいだけで、機嫌が良い時は問題ないとのこと。どうやって院長先生の気分の波を判断すればいいのだ。「診察」に対して、運要素が強く絡んでいるのが面白い。機嫌が悪いと、よくわからん検査をされてお金をぼられたうえで、診察結果も教えられないまま薬だけ渡されるらしい。僕が興味本位でこの病院を選んだとしても、高確率でそのような結果になる。なんてことだ。\n 近くにある病院がボロクソに言われていることが面白くて、その間は腹痛を忘れられて良かったです。これが通常のレビューであれば、お腹の痛みに苦しみながら吟味していたことでしょう。\n ちゃんと起きれたら病院へ行きたいですが、明日は等身大超てんちゃんの監修で秋葉原へ行くので、ちょっと難しいかもしれない。まあお腹が痛いくらい良いか。お前らが笑顔になるなら、さ。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

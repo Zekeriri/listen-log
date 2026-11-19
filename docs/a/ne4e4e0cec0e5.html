@@ -44,9 +44,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-03-04 12:32\n秋叶原下雪\n秋葉原に雪が降る\n\n秋葉原に雪が降る。\n オタクたちの嘆きも悲しも、すべて白が覆う。というほど降りもしなかったけれども。\n\n久々に回る秋葉原。といっても、グッスマにてフィギュア監修があるから、なんだかんだ月1では巡回している。真骨頂の龍騎が逸早く見られて嬉しいね。\n\nラジオ会館。あみあみでは、少し前からイナニスが店番。今回はアプデがあって、館内のそこら中にイナニスの名言が掲載。\n\nもし私の苦しみがあなたにとってコンテンツなら、満足してもらえてるといいねぇ。\n\n自身の存在を徹底的に戯画化したカッコいいセリフだなあと思いつつ、真のニュアンスとしてはコンテンツ（Contents）と満足：コンテント（Content）を掛けたダジャレ。スパイダーは酸っぱいだーなど、もっとしょうもない名言たちも晒されている。\n\nイナニスコーナー。さっそく海外からのお客さんが。イナのバッグにてお仲間たちとグッズを堪能。他にも、アメリアとぐらのぬいぐるみを透明なバッグに入れた白人のお姉さんがやってきたりと、ENファンたちのちょっとした憩いの場のように。素晴らしいことだ。\n\n僕だって、せっかくある程度の英語でコミュニケーションできるようになったのだから、本場のファンたちとその場で盛り上がりたいぜ。もちろん、そんな勇気があるわけでもなし。\n\n限定のパール塗装バージョン超てんちゃんをﾊｹｰﾝ。これは激レアなんじゃないか。お値段なんと2万円。キラキラ輝くオーロラ衣装が見たければ、秋葉原のあみあみへ急げ！\n それはそれとして、今回グッスマから「ねんどろいどあめちゃんの予約数が日本と北米で並んだ」とのことでした。すでにゲーム原作の方は英語圏が越えている。で、「NEEDYは中国で人気」と言われがちであるものの、そうした数字を見ると実態としては「各国のオタク人口数をそのまま反映している」が近いように思える。\n 中国5割、英語圏3割、日本2割。これは、そのまま人口比率から考えても問題ないでしょう。ローカライズがきちんと成されているとこうなるわけだね。もちろん、中国にユーザーが沢山存在することや、序盤の火付け役であったこと、上海イベントへ呼んでもらえたことは大感謝ですけど。謝謝。\n\n上海上海上海上海 pic.twitter.com/SaRvG722AM— nyalra (@nyalra) February 14, 2025\n\n最近でも上海でポップアップストアが開かれ、在庫を追加しなければならないほど好調に完売したらしい。すごいことだ。\n 待ってくれている方々のためにも、まだまだ頑張らないとならない。適当に秋葉原をぶらぶらしていると目に入るくらいに膾炙したことは、シンプルに誇らしいですから。\n\nラジ館を出ると、すっかり雪が止んでいた。オタクたちが再び中央通りを闊歩していく。\n この街の欲望は、まだまだ白に染まる気はない。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -65,10 +64,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

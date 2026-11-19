@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-03-11 02:10\n一口随笔：只有在争议期间才能看到的糖果子弹\n一口エッセイ:炎上時にだけ見ることができる砂糖菓子の弾丸\n\n地位や人間関係などを捨ててでも感情で動く瞬間が好きです。最も人間らしさが輝く一瞬。それが眩いほど白いか、混沌とした黒光りかはともかく。どちらにせよ綺麗だよ。僕はそういう光景が好きだから、派手な行動のせいでネットから叩かれ続けている人を見るたび、みるみる好きになってしまう。\n ネットの流れが『蒼穹のファフナー』の敵・フェストゥムに感じることがある。フェストゥムは「同化現象」を利用して人間たちをフェストゥムとひとつにする。ネットの住民たちは、感情のまま動いた人間を攻撃するが、これは「推される側の人間」を自分たちと同じ「一般人」と同化させようとしているように見えることがあります。\n 最近、散見されるワードで「プロ意識」があり、感情のまま我儘な行動をすることで、ファンをガッカリさせる気かと責める際に使うのですね。お金をもらっている以上、観客に誠実であらねばならない理屈も分かりますが、僕が誰かを応援していた際に、その人の感情が爆発してプロならざる行動を見せた場合、単純に嬉しいです。この人も同じ人間だなって、本心の部分を曝け出すほどに感性が研ぎ澄まされたタイミングを見れて幸せだなと。大衆からは考えきれない極まった行動に出る、究極のファンサービス。Twitterに居た時代の田村ゆかりさんが深夜に呟く病んだ発言の数々が好きだった。\n 仕事という実弾を捨てて、砂糖菓子の弾丸を撃ち放った瞬間なんです。理性よりも優先される感性、自我では抑えきれないイドの沸騰。炎上による罵詈雑言が飛び交う中、僕のような人間も少なからず存在するのも、ネットの面白いところですよね。\n\n感情から動いた行為でやらかした人間をネットの人たちが叩くたび、その人間の破天荒さをどんどん好きになっていく漏れみたいなのって絶対一定数いるから、なにがあっても折れずに活動続けた方が得だなと感じている— にゃるら (@nyalra) March 9, 2022\n\n毎日の日記をまとめた同人誌をboothにて販売中です。たまに感情的になってる時あるね。\n\n商業エッセイ集もよろしくお願いします。ラリって書いた文のところは、まさしく感性が剥き出し。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

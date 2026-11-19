@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-07-17 14:01\n胃痛\n胃が痛い\n\n胃が痛い。\n 比喩表現などでなく、恐らくストレスや不健康でここ一週間くらい胃が痛い。超てんちゃん生誕祭での準備や本番、その反省がありつつ、それが終わっても仕事詰めで休めていないことに起因すると思われる。\n 胃が痛いと何も面白くない。ふと腹痛を意識し始めると、現状の思考がすべて胃痛に上書きされるからです。\n 本を読んでいて、ふと気づくと胃が痛い。\n 外を歩いていて、ふと気づくと胃が痛い。\n 人と話していて、眠ろうとしていて、原稿へ取り掛かろうとして…………。\n あらゆる行動に胃が負ける。唯一、ジムだけが救いである。胃のズキズキより100キロ以上のバーベルを背負ってスクワットする方が苦しいから。とはいえ、筋トレだって胃が痛くない時の方が気楽である。\n 胃が痛いのは苦しみの結果であって原因ではない。体調不良を起こすまでの精神的な苦痛（＝悩み）がある。なので元から不眠が発生する。眠れないうえに腹が痛く、睡眠不足のため起きていても苦しい。この流れがループし、特に楽しくない日々が続く。\n どんなに苦行が続いたっていいが、喜びがないのは困る。正確には喜びや解放すら胃痛に覆われるのですが。今も寝不足なまま収録へ向けて移動中。全身がぴくぴくしていて頭が回らず不快。不快な状態はできるだけ避けたい。\n ならば早めに胃痛の原因を解決しなければならないものの、これまた難しい。とにかく休みたいという自身に起因するものもあるけれど、僕でなく他人が成長しなければならないことも混じっているのです。人間関係や仕事は複雑で、「助けたい気持ちはあるけれども、あらゆる面から見てあなたが頑張って乗り越えないといけない」といった場面もある。その際に、相手が悩み苦しむ様に関して、僕らはどうしようもない。\n 規模が大きくなればなるほど、このような事態は避けられない。これは一例ですが、自分ではどうにもできない（多少の協力はできても）場面が重なると、ただただ胃を痛くするのみである。というかむしろ自分事なら楽なんだよ。自身が努力するか諦めるかを選択するだけなんだから。他者ががんばれるか、乗り越えられるかどうかは、どうしようもないからね。手を貸すことが正しいとも限らないし。\n まあ自分の悩みも結構あるんだけど。\n こういった事態が続くのも人生か。せめて落ち着いて本を読む時くらいは腹痛がおさまってくれても良いんじゃないのかとは思うが。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

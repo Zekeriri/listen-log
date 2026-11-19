@@ -30,9 +30,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-11-27 04:01\n罪犯与书\n犯罪者と本\n\n死刑囚の自伝に、内容と関係なく低評価をつける者は多い。「こんなやつが本を出すのは許せない」、と。著名人のアンチも同じ思考で、読んでいない・遊んでいない作品に低評価をつけていく。\n 非常に不快な人間たち。\n 「誰が書いたから」でしか判断をしない。見下せる者に正論を叩きつけるためだけに生きている、明確な小悪党。本があるなら、まずは読めばいいじゃないか。\n 実は、このタイプの小悪党には二段階ある。次は読んだうえで、読む前から抱いていた結論ありきで感想を書く。「読んだけれども、やっぱりこういう点がカスだった」。初めから嫌いな人間を揶揄する視点から入り、なに一つ思考をしないまま印象的だけを「批評」とする。一見、きちんと作品と向き合ったフリをするので余計にタチが悪い。\n 死刑囚や犯罪者に罪はあれども、犯罪者の書いた文章に罪はない。\n なんであれ文章は文章。それも特異な立ち位置、生い立ちの者が書いているのだから、やはり一般とは違う視点で言葉が綴られている。僕はそれらを読むことが好きだ。犯罪者の嘆きも後悔も、自己陶酔に自己憐憫、やるせなさまで非常に読み応えを感じます。少なくとも「本」に対しての敬意を感じる。刑務所の孤独のなかで綴られていく連なりに。\n 抵抗できない人間を遠くから殴る者は明確な悪だ。この線引きは長らく難しかった。悪を攻撃して正義の立場を取るのは人の「弱さ」であって「罪」ではないと。しかし、僕には内容を読まずに公の場で本を評価する人間は悪だと、それもしょうもない小悪党だとはっきりと決めた。\n 殺人は罪だ。\n けれども、殺人に至るまでの主観を書き記し、誰かに読んでもらおうと、罪は罪としてもまずは自分の話を聞いてもらおうと思うことに罪はない。なぜ、話を聞かないんだ。\n 僕の尊敬する編集者が、いわゆる「悪人」の本を出版した。理由を訊くと、「本を出したいと言っていたから」だそうだ。\n 彼にとって、「面白い人間が本を出したいと言っているのに協力しない」ことが罪なのです。\n 僕らは対話ができるはずだ。話を聞くことができるはずだ。生きるすべてを否定されるべき人間なんてこの世界に存在しない。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,10 +50,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

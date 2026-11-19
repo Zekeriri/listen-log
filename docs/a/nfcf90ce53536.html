@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-08-10 14:40\n自杀的计划性与与死相伴\n自殺の計画性と死との隣り合わせ\n\n結局、自殺を実行できる現実的な方法としては首吊りでしょう。\n 飛び降りはもっと衝動的なもので、計画的に行うのは難しい。その場で十分な高さに居なければならないから。とはいえ、元より高層階に住んでいるならあり得る。そう考えると、高いところに住みこと自体が希死念慮持ちにとって死と隣り合わせなのですね。\n 首吊りなんて縄を購入するだけ。\n なんなら、達成可能性は下がるが家庭にあるもので代用もできる。かわりに苦しい時間や失敗率が増えるのでオススメはできない。飛び降りも半端に生存してしまうことを思うと、やはり縄での首吊り。ここがアメリカだったら拳銃も選択肢に上がるだろうけど。\n 自殺の完遂に対し、重要なのは「計画→実行」までの過程とラグがどれだけ肉薄しているかによるでしょう。飛び降りは、10階程度の高さの屋上やベランダを探すことがパニックや抑うつ状態では困難。ガスやら刃物やらは、いっそう大変。アカギだって自殺時に「痛いのはイヤ」だと言っているし。\n だからAmazonで縄を買っておく、そうすることで「死と隣り合わせ」となり、いざとなったら即実行できる緊張感、希死念慮ありの場合はある種の安心感を持って生活をする。いずれゴールはそこだと設定すると、「まだ死んでいないだけの人間」ができあがる。\n まだ死んでいないだけ。\n 非常にわかりやすくて良い生き方にも思えます。自己紹介として簡潔でしょう。できれば、本当に凍死がいいですけどね。死体が綺麗で、最後に幻覚が見える。そのぶん、難易度の高さがぴかいち。\n ロシアの人々が神やら生命の価値やらをずっと語ってきた訳も肌感でわかってくる。あの大雪との生活はつねに「死」が身近にあり、うつ病にとって生きているだけで自殺を意識せざるを得ない環境だ。まさに、死と隣り合わせ。\n 今日もゲームの問い合わせ欄にロシア人からの連絡が来る。どうやら僕らのゲームを気に入ってもらえているようで、翻訳の依頼などだ。僕はアニメでもずっとロシア文学の話をしていた。\n きっと、同じく死と実存の匂いが漂っているのでしょう。\n まだ死んでいないだけの人間同士、仲良くしていきましょう。\n ああ、雪が見たい。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

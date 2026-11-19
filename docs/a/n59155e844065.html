@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-06 07:27\n一口散文：岛本和彦老师与作为职业作家的生活方式\n一口エッセイ：島本和彦先生とプロ作家としての生き方\n\n「プロ」というのは修羅の道です。\n まずプロの定義についてですが、ここでは「その活動で主な収入を得ている」こととしましょう。\n そうなると、文章を書いて日々お金をもらっている僕もプロになります。自称するのは気恥ずかしくて絶対できませんが。しかし「プロとアマを都合よく使い分ける人間はダメだ」と教わったことがあり、それはその通りだと思う。お金を頂くからには、相応の振る舞いをする必要があるわけですね。\n では、プロとして大切なことは何か。みんな、「ファンを喜ばせること」だと思うでしょう。僕だってそう思っていました。しかし、それは所詮現実を知らない甘い考えなのですね。島本和彦先生は「燃えよペンシリーズ」で何度も伝えている事実があり、「自分で微妙だと分かっていても締め切り前に出すのがプロ」だと語っている。この赤裸々な全力投球感が、なんとも島本先生らしくて良い。\n 例えば僕も毎日エッセイを投稿しているし、他の仕事もある。全てを間に合わせるため徹夜し、精神を削る。ここで依頼者と読者の「信頼」か「品質」を天秤にかけ、素直に前者を選ぶのがプロの証な訳ですね。自分でも「これ微妙じゃね？」と感じている。でも、意外と大味な魅力があるかもしれないし！ と言い聞かせ、胃をキリキリさせつつ提出。\n 実際、逆にそれがウケることもあれば、案の定、微妙な空気になることもある。しかし、そこで挫けずにまた次の締め切りに向かう精神こそがプロだと、そういうことを島本先生は描いている。この心構えは、作品でお金をもらっていく以上、忘れてはいけないものなのでしょう。名作ですね。\n\n毎日のエッセイをまとめた同人誌がBOOTHにて販売中です。365日「毎日投稿」という締切を守った魂のエッセイ集ですので、ぜひ読んであげてください。\n\n長文エッセイをまとめた商業エッセイ本も月末に発売します。予約してね！ こっちは、書き下ろしのためにいっぱい精神削りました。つらいぜ！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

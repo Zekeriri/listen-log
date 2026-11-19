@@ -35,9 +35,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-08-21 16:16\n《攻壳机动队》与田中敦子\n『攻殻機動隊』と田中敦子\n\n素子の声優である田中敦子さんが亡くなられた。このような場合にオタクができることは、作品に対して語り、継いでいくことのみ。\n 『攻殻機動隊』には、押井守監督による「青白い人工的なライト」への愛がこれでもかと詰め込まれている。\n\n素晴らしい！\n 劇中、ちょうど映画の真ん中あたりに挿入される香港（元ネタの舞台として）の風景をひたすらゆっくりねっとりと映すパート。随所に輝くLEDライト。これこそ押井守だ！\n 『攻殻機動隊』なる、極めてSFチックな近未来を描いた原作において、だからこそ、それでも変わらぬ「人間の生活」を描くため、現実そのものな人々の暮らし、そして宗教的な土着信仰を思わせる音楽を奏でる。\n 例えば、PS版の攻殻機動隊のBGMは電気グルーヴ・石野卓球が担当しており、ゴリゴリなテクノとともに未来の世界観を体験する。ゲーム版のサントラも大変素晴らしく、そして何よりかっこいい！ PSという90年代の描く未来なハードとの相性が抜群！\n 対して、押井守は同じ原作から「どんなに義体化が進んでも変わらぬもの」を中心に描き、己の『ブレードランナー』を解き放った！ もちろん、その際たるシーンこそ、田中敦子さんの演じる草薙素子によるセリフ。\n\n肉体への依存からぐんぐんと離れていく電脳世界に置いて、何を持って人間とするかの解答が自身の脳に囁く「ゴースト（＝直感）」。原作漫画では主人公らしく豪快さのある素子でしたが、映画版では、一回り二回り冷静さを残した少佐となっている。初見時の印象では「冷たさ」すら感じてしまうものの、その中でたしかに残るゴースト……感情への演技力こそ田中敦子さんの実力そのものではないかと惚れ惚れする。\n\n余談。 ×呼んで ◯読んで\n\nアニメ版の最終回では、テレビシリーズ一期全体のテーマ、というか笑い男の在り方のヒントとしてサリンジャーが明確に引用される。そのやり取りについていけなかった僕は、少しでもこの人たちに追いつきたいと、黄金のライ麦畑に飛び込んだわけだ。\n ここで少佐が「サリンジャー……」と自然に呟く姿に、中高時代（どっちか忘れた）のにゃるら少年は「教養だ！」と度肝を抜かれたわけである。\n 強い女性が相手との会話のためにすっと取り出す教養・知識の使い方に、「こうありたい」とオタクボーイの純へ強烈に響いた。\n 今こうしてオタク話を日々語る生活を送っている事実にも、多大な影響を及ぼしているのは言うまでもない。素晴らしい作品、そして演技。あなたこそが草薙素子だった！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -56,10 +55,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

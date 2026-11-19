@@ -41,9 +41,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-11-22 15:00\n大厅狂热者的异变与回忆商店\nエントランスマニアの異変と思い出商店\n\n以前にも一度だけ書いた、ひたすら建物のエントランス、エスカレーターで登っていく様を撮影するチャンネルを眺めております。\n\nこういった感じでハイペースに次々と各所のエントランスを撮影してくれる。\n\nこの人本当にエスカレーター好きなんだろうなー撮っている時、本人にしかわからないマニアなワクワクがたくさんあるんだろうなーと想像して楽しんでいる。もちろん、僕も無機質なエスカレーターがそれなりに好きで眺めているのだけれど。\n そんな無骨なエントランスマニアにここ数ヶ月で変化が！\n\nサムネでわかるように、カラフルなボールや踏切をAI動画加工によって出現させ、そのシーンをサムネにしている。すると、やっぱり再生数が比較的上がっていく。\n\nエントランスマニアさんが楽しいことが一番さ。たしかに、無人のエスカレーターとカラフルだが静かなボールたちの組み合わせも素晴らしい。なんとも幻想的に思える。でも、いいんだ！？\n 勝手に、ただただ気取らないエスカレーターの映像を投稿し続けるだけに喜びを得ているのかと思っていたので、こういう茶目っ気というかサムネにすることで本題から少しズレていく部分は全然気にしていないんだ！？ と一視聴者として驚かされましたね。\n\n余談。\n 他にも僕の大好きなチャンネルに、『思い出商店』なる、レトロなエレメカやおもちゃを淡々と紹介してくれるチャンネルがありまして、\n\n昔ながらのおもちゃ、僕の世代なら古くからあるゲーセンやデパートでギリギリ見たことあるモノたちの稼働に心躍ります。\n\nそんな思い出商店さんですが、\n\n先日、ついに『思い出商店』と、まるで最終回のような意味深な回を投稿。思わぬ演出に、ひっそりと愛してきた者として感動を覚えます。\n おそらく店舗開業でしょうか？ こんなに集めて来ましたもんね。そりゃもう全力で応援ですね。\n\nこういった動画たちを眺めながら、僕の一日は終わります。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -62,10 +61,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

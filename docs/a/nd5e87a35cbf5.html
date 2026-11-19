@@ -29,9 +29,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-03-22 03:14\n一口随笔：在空中晚安\n一口エッセイ:宙でおやすみ\n\nAiobahnの個人曲『宙でおやすみ』の作詞を担当しました。この曲はニディガ関連とちがって、僕はAiobahnが作曲したインストに対して「作詞やらない？」と言われたので、「いいよ〜」と答えただけの経緯です。これまでは僕と組む前提なので自分のエッセンスも入っていたのですが、今回は完全なAiobahnの趣味曲と言える。\n とはいえ、タイトルは自分がつけた。「おやすみ」をテーマにした曲は前から作りたかったのですが、今までAiobahnと作ってきた曲は激しすぎてどう考えても眠れる雰囲気じゃない。なので今回こそ最適なタイミングだと思ったのです。\n 曲やボーカルのことは専門でないので割愛します。それはまあ聴けばいいですし。\n さて、なぜ「おやすみ」を主題にしたかと言えば、それは僕が睡眠をなにより大事なことだと捉えているからだ。なんなら僕の創作だろうがエッセイだろうが、真に伝えたいメッセージは「おやすみ」しかない。人間は寝ることが一番だ。より良い睡眠のために人生がある。その時間が最も幸福なんだ。\n けれども、僕はつねに不眠で、鼻が治らないかぎりつねに中途覚醒する。だからこそ、みんなにはたくさん眠ってほしい。ちょうどこの曲の浮遊感やボーカルの優しい歌声は、聴きながら子守唄のように就寝するのに最適でしょう。もし、この曲のおかげで誰かが一秒でも長く心地よい寝心地に包まれたのなら、それより嬉しいことはないのですね。\n\n話は変わりますが、ピアノを買ったんです。ネットを見ながらキーボードを叩くより、鍵盤を叩いて綺麗な音色を聴いたほうがいいから。子供向けの安価で小さなものだけれど。戦メリを観て、坂本龍一にさらに憧れてしまったから。\n 僕は音楽の授業なんてまともに受けなかったから、いまだに何がドでレなのかすらわからない。いま必死でどこがドかレかを覚えている。勉強は嫌いなので難しい。けれども、Aiobahnが曲に取り入れるピアノの旋律が好きだから僕もそこを弾いてみたい。『INTERNET YAMERO』間奏のピアノパートは完璧だった。ピアノを入れようなんて一言も言っていないのに、僕もAiobahnもインターネットをやめた先にはピアノの音色があるはずだと感じていたのです。\n 今夜も眠る前にピアノを練習します。いま自分が叩いている音がドなのかレなのかもわからないけれど、自分が望む音を奏でられる時がきたら、きっと今より安心して眠れる気がする。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,10 +49,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

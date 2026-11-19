@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-01-18 07:44\n一口随笔：断食与桑塔拉\n一口エッセイ:断食とサンターラー\n\n昨日は病院に運ばれてしまったので、いろんな人に心配してもらえた。嬉しいですね。ありがとうございます。\n 胃がちょっとダメな状態で食事ができないため、スポーツドリンクと処方薬だけの食生活で2日経ちましたが、人間って、水分さえあればわりと数日は生きていけるものなんですね。そもそも「断食」は文化として存在していますから。宗教的な意味でも、健康的な意味でも。\n インドの宗教「ジャイナ教」では、「サンターラー」と呼ばれる宗教行為が存在しまして、これが何かと言うと、断食によって少しずつ食事の量を減らし、最終的に自ら死を選ぶ行為です。\n この緩やかな自死に至るサンターラーは、ジャイナ教徒からは「至上の理想」とされています。ジャイナ教の教えには「不殺生」がありまして、動物や虫を一切殺さない。さらには、野菜も「生命」と捉えているので、それを大地から奪うようなことも行わない。なので、動物や野菜を食べずに生きることが、より善いことだとされているのですね。断食によって不殺生も徹底し、欲望を完全に消し去って死ぬことで、カルマの解放に繋がる。\n 健康面での効果は興味なにのでわかりませんが、単純に脳が正常に働かなくて常にとろんとしているからだろうけど、何をしようにも身体の感覚がおかしくて非日常感を味わえることは面白い。とは言え、こんな時でもやることはゴロゴロ寝転んでネットを眺めるだけなので、煩悩塗れすぎて何も意味はないけれど。SNSで溜めたカルマが重すぎて、きっと来世は害虫とかでしょうね。\n\n毎日のエッセイをまとめた同人誌がboothにて販売中です。日々のカルマが凝縮されているね。\n\n先月に発売した商業エッセイ集では、もっと重い煩悩やカルマがたっぷりです。お好みで摂取してください。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

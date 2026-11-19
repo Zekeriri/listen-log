@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-07-02 06:49\n一口随笔：在这里诞生的某些东西\n一口エッセイ:ここで生まれる何か\n\nTwitterの仕様が変わって、僕なんかは全然タイムラインが読めなくなってしまった。まあ、元より最近は開く時間がめっきり減り、現実の方に敢えて集中していると日記に書いた通りなので、実際のところもしこのまま改善されなくてもそれはそれでなのですが。\n だとすれば、今の10代がわけわからん場所から才能が芽吹く可能性が一つ減るわけで、それが最も可哀想だなと感じます。Twitterは、数字を意識しすぎて承認欲求に囚われる危険性と隣り合わせな反面、だからこそ素人が何かを掴んで、自分を見てもらうための正しい努力を積むようになる可能性が、極々僅かながらあった。一寸先は「過激な発言をしてでも反応されたくなる」闇が広がっているとはいえ。\n プロと素人が玉石混交であるからこその魅力は、他のSNSではなかなか再現できないでしょう。Twitterは、そもそも140文字内の文章のみでも発信できるわけで、対してInstagramや TikTokは画像に動画。初めからクリエイティブのハードルが高い。もちろん、この二つの場所にも可能性はたくさん眠っているなと感じていますが。\n ただ、もっと……もっともっと鬱屈した気持ちの発露が何かの拍子に奇跡を起こす瞬間は、やはりTwitterが最もあるはずだ。何と無しに投稿した落書きや写真、日常の出来事が誰かに評価され、そこから素人がネットの波に揉まれることで、00001%が辿り着く何かが。\n その瞬間が失われることだけを残念に思う。けれども、また別の場所がその混沌を担うのかもしれないし、なんだかんだTwitterの仕様がまたすぐ落ち着くこともあるでしょう。しかし、自分はただのTwitterのモブアニメアイコンAから自我を持った身ですから、もうnoteや創作の場で十分な立場といえども、「ここでしか素人が得られない興奮」が潰えたら悲しいですね。\n ……それを差し引いても、Twitterから人が消えた場合にネット上がどう変化するかの方への興味が強いですけどね。いいんじゃないか。十数年経ってどんどん煮詰まってきたのだから、大きく変わって新たな環境に適応しないといけなくなっても。文化とはそういうものだ。\n ちなみに、僕は誰でも入れるDiscordサーバーを運営していますが、こちらは「深夜に自分と同じく眠れない誰かがネットの片隅に居て孤独が薄まること」だけが、主たる運営目的で、その他は建前でしかない。独りは寂しい。深夜の自分の呟きが、くだらない独り言が、たとえ反応がなくとも誰かが見ている事実に救われる人もいるはず。かつて、深夜のタイムラインに依存していた僕と同じように。\n それ以上のことは無いし、住民同士の交流や発展性も敢えて少なくなるようにしていますが、たまに寂しくなったら覗いてみてください。眠れない夜なんてそんなものでいいのだ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

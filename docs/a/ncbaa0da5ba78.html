@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-12-01 00:10\n现代的炸弹\n現代の爆弾\n\n『爆弾』を観た！\n 日本版ジョーカーのような趣で面白かった。守るべきものが何一つないホームレスが全力で暴れたらどうなるか。それこそ無敵なホームレスを生み出したのは社会全体の仕組みな訳で、そういった意味では「日本中に爆弾は存在する」とも言える。それは『ジョーカー』でも同じで、失うものがない人間がその気になったら非合理的な破壊が誰にでもできる。それでも社会は成り立っている。なぜか。ホームレスにも福祉が行き届いており、「死ぬよりマシ」な環境が成立できているから。そこへ人間の良心も相まり、どうにかバランスを保っている。\n ……といったニヒリズムを犯人は押し付ける。このような異常な犯罪者を生んだのはお前ら社会だと。犯人は警察たちとの「対話」が目的な劇場型の人間で、警察たちは爆弾を処理するミッションと関係なく、立場上犯人の言う「残酷な現実」の相手をしなければならない。\n といった表の軸とは別に、裏の軸として「そんな理不尽で無責任な社会を知能が高い我々がなぜ助ける必要がある？」と、これまた別種の問いかけが行われる。警察側の主人公は爆弾魔の幼稚なクイズへついていけるほどの高知能だ。そんな人間がただの公僕に収まる理由は？ それに対しての答は綺麗事でしかない。「それでも、この世界を信じている」「こんな世の中でも捨てたもんじゃない」と。日本が生んだ浮浪者のジョーカーに、ひたむきな綺麗事で対抗する作品なのだ。\n 綺麗事とは、見方を変えたら同調圧力の暴力だ。綺麗な言葉を信じられない立場の者へ何一つ機能をしない、強者だけが持つ常識。倫理のフリをした都合の押し付け。が、「失うものがない」理不尽と戦うには別の理不尽が必要で、それが「非合理的な綺麗事」である。結局、犯人はどこまでいっても自身の皮肉へ真正面から受けて立つ刑事の若者を認める。満足そうにゲームの結果を述べる。どこか誇らしげに。\n 綺麗事が勝ったとも言えるし、構い続けたことによって「人間関係という守るべきものができて弱体化させた」とも言える。綺麗事の正当性が問題でなく、つねに社会から爪弾きものにされてきた男への対処は、社会が生んだ弱者の爆弾への唯一の処理は、「同レベルで喧嘩してくれる優しい友達」以外にないとも解釈できる。\n 何もかも失った人間が構ってもらうためには、狂った道化になる以外に道はない。この世界は未だ不発弾だらけだ。\n\nエッセイ集の新刊が出ています。よろしくね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

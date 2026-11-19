@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-04-19 11:36\n喵拉拉 初始设置\nにゃるら 初期設定\n\n『にゃるら』と名乗っていることにも、ちゃんと設定がありますから。伊達や酔狂で邪神の名を背負ってはいません。ちょくちょくツイートや日記でも書いています。\n このアカウント作成時は未成年でしたから。初めてネット上で持った自我で、それまでは基本的にROM専。なにかを投稿すること自体が恐ろしく、ニコニコ動画でウケを狙ったコメントを数度、ローゼンメイデンのSSを2.3度投稿したのみじゃないでしょうか。そのうえでこんな性格ですので薄く脳内の妄想自体はあり、しかも意外とその設定を守り続けている（えらい）。\n まず僕は『ニャルラトホテプ』本体では、ありません（！？）。僕はあくまでニャルラトホテプの残滓というか、混沌のカケラから生まれた極々一部なんです（！）。ついていけないならここで引き返した方がいい。まだまだギアを上げていくぞ。\n 所詮は混沌の一部分なのでスペルが違う。ニャルラトホテプのスペルはNyarlathotep。略したとてnyarla。対して、僕のIDは『nyalra』。rとlの位置が違う紛い物なんです。この伏線回収は中盤あたりで大盛り上がりする予定。\n で。紛い物とて邪神の思想と行動原理は引き継いでおり、一言でいうならばカオス……「這い寄る混沌」の使命を忘れはしない。宇宙規模の本体と違って人間サイズのnyalraは、むしろ人間社会の「混沌」を呼ぶ存在として特化しているためインターネットを用いて不特定多数の感情を刺激し、社会の秩序を掻き乱す。その活動の一環としてまずはTwitterアカウントを作成する……。\n 初めはTwitterのみで活動していたが、それから少しずつ食指、さらには邪神らしく触手も伸ばし、次第にはてなブログ（！？）にも侵食し、現在ともなると小説やゲーム、（主に作詞での）音楽活動、漫画原作にアニメなど、様々な媒体の秩序を塗り替え、文化を通して世界中へ自身の毒電波を散りばめている。いつか本体のニャルラトホテプの力につながると信じ、旧支配者たちによって地球が混沌に導かれる時を夢見て……。\n わかりますか。こう考えると僕の全ての行動は辻褄が合い、混沌＝ロックやパンク、またはゴスと解釈するなら、まあだいたいそんな感じだろ……って指標から大きくズレては居ない筈。僕の命題は秩序に縛られずカオスを愛し自由であることなのだ！ それが這い寄る混沌を畏敬する眷属であり司祭の役割りだから。\n というのが初期設定かつ、デビュー数年後のVtuberくらいにはうっすら守っている。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

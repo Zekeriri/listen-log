@@ -74,9 +74,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-08-27 11:47\n加拿大的美术馆和图书馆等\nカナダの美術館とか図書館とか\n\nカナダ……というか今回はバンクーバーにかぎりますが、やはり美術館などのアート施設は国ごとの特色が顕著で面白い。\n カナダは、やはり先住民を重んじる。はじまり、を。\n\nなので、展示品がファースト・ネーションズ（北米インディアン）に寄る。厳格なヨーロッパともちがう、大自然の逞しさが堪能できる。\n\n大胆な色と模様。5大宗教ともちがう精霊信仰、アニミズムの魂を感じさせる。キリスト・イスラム・仏教・ヒンドゥー・ユダヤ教のどれとも影響されていない環境。自然を最も尊ぶ文化を浴びる。\n\n宝飾品もまた大胆さが良いね。\n ちなみに、こちらはBill Reid Galleryなるカナダの美術家ビル・リードさんのギャラリー。特に注目すべくは彫刻のカッコよさか！\n\n幼き頃にハマった、クラッシュ・バンディクーの世界観。\n 精霊に対し、大自然の恵みに対し、どのような感情と尊敬の念を込めて刻んできたかに思いを馳せる。\n\n次は美術館へ。\n そのまま、わかりやすくバンクーバー美術館。施設前の広場ではデモが行われている。さっと横を通って館内へ入ろう。\n\nそんなに大きな規模じゃないので、1時間ほどで回れます。\n\n1,2階は企画展。頭の中の怪物。\n\nアートの方向性が独特。「現代」の捉え方もまた国によって様々。\n 現代のアートを満喫したら、常設展示の3階へあがろう。\n\nなるほど。\n\n常設されているのは、主北西部の先住民と自然を描くカナダ出身の画家、エミリー・カーの作品たち。色づかいの大胆さが、壮大な森林との生活を想起させる。\n 迫力満点に散らばった色彩は、抽象画を追う僕の目には魅力的な刺激に映る。\n\nヴァニタス画にも挑戦。\n\nその後に、ちょっとしたイベントスペースも。\n 今回はイベント展示も自然たっぷり。\n\n彼らの「暮らし」が何と密接だったか。\n もはや言語を越えて視界だけで理解ができる。\n\nちょっと歩くと大きな図書館もあるので合わせて散歩してみよう。\n\nでかい！\n 広場の真ん中ではギターで演奏するおじさん、柱の陰ではストリートの音楽を堪能しながらマリファナを嗜むおじさんなどの先客が。\n\nヒッピーな暮らしに憧れる。これもまたカナダだ。\n とはいえ、図書館の前を大麻臭くせんでもとは思った。\n\nでかいぜ。\n カフェなども充実し、地元民たちの憩いの場としても機能している。\n\nかっこいいぜ。\n パソコンコーナーを覗くと、少年たちがFPSへ夢中になっていた。ゲームセンターも兼ねているわけだ。パソコンばかりすると叱りつけるお母さんから逃げているのかもしれない。\n\n一番上まで登ってみよう。\n\nすごい！！！\n\nすごかったぜ。\n 閉館時間までのんびりして退館する頃には、広場のヒッピーたちは消えていた。彼らはどこからきて、どこへ帰ったのだろうか。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -95,10 +94,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

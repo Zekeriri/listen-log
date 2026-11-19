@@ -34,9 +34,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-04-25 16:13\n故意的时代错误搞笑\nあえての時代錯誤なギャグ\n\n発売日になったら、すかさず毎巻楽しみに読んでいるくらいに、プラスチック姉さんが好き。\n\n最近、読者のなかで熱いキャラクターが存在し、それが「昭和の男」です。\n\n露骨な女性差別を丸出しで無双するおっさんの時代錯誤なギャグが、それを許されるプラスチック姉さんの世界観とマッチし一躍人気キャラへ。なんだかんだ怪異や不審者を見事に撃退する様は頼もしい。\n\n作品の強度を感じる。\n\n偶然、ホロENでも似たようなテクニックのギャグが披露されまして、\n\nマイクラ内で道に迷ったクロニーが「私、残念ながら女だから方向音痴なんだよね」と、ツッコミなしなら燃えてしまうようなジェンダーギャグを飛ばし、\n\n察したジジが見事にフリを拾って「昭和の男」を演じる。向こうは昭和ではないが。\n こうした機微をジジなら必ず伝わるとボールを投げられる安心感。それを信じて一歩踏み込めるクロニーの勇気とキャラクター性の強度。総じて信頼感。\n 後世の歴史家も、ここは必ず特筆するシーンでしょうね。\n そんなわけないだろ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,10 +54,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

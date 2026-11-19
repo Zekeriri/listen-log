@@ -34,9 +34,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-07-10 16:21\n品牌与过程的时代\nブランドと過程の時代\n\n毎日文章を書いていると、さすがに他人の文章の癖もわかり、現代では「AIに文章を任せたかどうか」を人力で判定できる。\n なぜこんな話を書いているかと言えば、あるクリエイターが文章を書き始めた（noteなどに投稿を始めた）と嬉しくなって覗いたら、どこをどう見てもAI産の文章であったガッカリだ。\n その人は作曲者であったが、文章にも本人（かAI）の手癖が現れることに気づいていないのか、それともAIをそのまま貼っつけたような文章であると伝わっていいのか、はたまたシンプルな承認欲求に負けたか。綺麗事の頻度と結論の練度でわかってしまう。人間はそんなストレートに結論を出さない。そんな無責任さはAI特有の無機質なものだから。\n これから、「AI以前から文章を書いていたブランドのある人物」への信頼が余計にあがるだろう。音楽でもイラストでも、これから台頭してくる若手は、まずAIかどうかを疑われる。別に、それだっていいけれど。少なくとも文章そのままnoteに貼っつけ（もしかしたら、それなりに手直ししたかもしれないが）は、自分にとって、該当のクリエイターへの信頼感を失くすに十分なものであった。それがまた創作論的なものであったので、なおさらそこ人工知能に任せるのかと。\n ブランドの時代だな、と感じる。\n 結局、裏で誰が何をやっているのかよくわからんものは疑われて安心感を失う。\n 野菜に「わたしが作りました！」と農家のおっさんが掲載されているような、どのような人間が何を考えて、AI時代以前よりもぐんと「過程」が重要視されるでしょう。もちろん、そんな志向と関係なくAI産のインスタントなコンテンツも無限に増えていくとして。並行していく。\n\n先日、ロサンゼルスでアンディ・ウォーホルを見てきた。\n\n空き缶や空き箱を利用した、大量消費社会への皮肉をアメリカで鑑賞する。\n のちに、このように時代への皮肉を代表したアートがAIに対しても行われ、誰かが時代を象徴する作品を発表し、また芸術のあり方が変化していく。この世界はそうやって回っていくものなのですね。技術が発展し、そのたびにより「人間とは何か」へ立ちかえる。信仰だけが人間の生き方ではなくなっていったように。次は、資本主義が疑われていくことでしょう。\n AIが活躍していけばいくほど、「文脈をもつ人間」が浮きだって強くなっていく。\n ブランドと過程の時代である。\n ハイブランドがなぜあの高価格で運営できるかといえば、それだけの歴史と品格を有しているからであり、商品自体の使用価値とはまったく別の本質を持つ。\n 人間自体がブランドになっていく。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,10 +54,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

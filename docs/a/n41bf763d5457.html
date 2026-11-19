@@ -30,9 +30,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-12-09 05:20\n一口随笔：每天一点点变得可爱又帅气\n一口エッセイ:毎日少しずつかわいくカッコよくなる\n\nうつ病と診断されているからには、快方に向かって頑張ろうと『あすけん』を導入しました。あすけんは、その日の食事や運動量を入力すると、栄養やカロリーのバランスを見て評価してくれるアプリです。あすけんに従って高得点を出し続けていれば、理論上はどんどん健康になったり痩せたりします。自分の場合は痩せる必要はあまりないので、筋肉や健康目的ですね。一応、目標は厳しめにしてみました。どうせやるなら徹底的に攻略したいですからね。\n\n最近は要領も掴めてきたので、連続で高得点を叩き出しております。こんなに他人が親身に誉めてくれるのは初めてだぜ。嬉しいね。\n 嗅覚のない自分にとって（それに伴い味覚も薄い）、食事の内容はどうでもいいので、単純にあすけんの女が喜びそうなメニューをコンビニで買ってバランス調整をしています。\n で、『たんぱく質』『脂質』『炭水化物』と総摂取カロリーのバランスを考え、効率が悪くなるのでどれかが多くても少なくてもダメという仕様なのですが、このパラメーター調整がわりと楽しい。ニディガもそうですが、僕はモンスターファームのように数値を管理して最も効率の良いプレイ方法を探るゲームが好きなんですよね。あれを伸ばしたらこれが下がるので、次はこれでカバーをして……と試行錯誤する作業に快感を覚える。あすけんもそれと同じだと気づいてからは、サラダチキンとおにぎりの組み合わせでの栄養バランスの組み立てにハマっています。僕は毎日同じ食事でも苦痛じゃないのも助かる。\n その上で、アニメと読書の際はエアロバイク。あとはスクワットにプランク、腕立てに腹筋を毎日続けています。昼夜逆転だけは一生治らないと悟ったので諦めました。無理なもんは無理だと割り切ったほうが得ですから。\n それで健康になったかと言うと、正直そこまで変わりはないです。まだ期間も短いしね。特に減薬もしていませんが、不健康なまま憂鬱なループに入るよりはマシでしょう。今まで一切、本当にビックリするくらい運動をしてこなかったので、もしかすると今が最も健康な身体がもしれません。全盛期は、いま。\n 少なくとも、食事調整と運動によって毎日確実に健康な身体に近づいている。「毎日、少しずつ可愛くカッコよくなっていけばあらゆることが解決していく」ならば、僕は日々「正解」への階段を登り続けている。それがいつか自信へ強く結びついたら、精神の方もどんどん良くなるのでしょう。でも、太陽は明るくてキショいから消えなさい。\n\n水をいっぱい飲め！！！！！！\n\n毎日の日記をまとめた同人誌（さいきん新刊が出たよ）や商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,10 +50,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

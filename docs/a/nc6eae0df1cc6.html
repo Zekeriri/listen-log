@@ -40,9 +40,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-07-04 04:59\n不能容忍他人幸福的年轻人\n他人の幸せを許せなかった若者\n\n今の僕は、他人が幸せでも不幸でも、どちらでもいい。心からどうでもいい。見方を変えれば、他人の幸せをそこそこ受け入れているとも言える。どうもいい分、目の前でめでたい光景が起これば、フーンと思いつつ拍手くらい贈るだろう。\n となれば、一般的には「良識ある大人」ではあるでしょうな。\n\nでも、忘れはしないぜ。\n 昔の僕は、確実に幸せが憎かった。そりゃもう憎くて憎くて仕方がなかった。幸福な人間は無条件で敵だ。不幸な者から攻撃されても当然じゃないかとすら感じていた。\n 忘れないぜ。\n 僕もまた、大学生くらいの人間にめちゃくちゃ言われることは多い。さすがに道理が通って居ないだろうと思いつつも、わかるぜ。他人が幸せそう（楽しそう）な姿ってムカつくものな。そこに理由をあとづけしているだけで、本当は理屈なんて無いのさ。\n 理屈がないから間違っているのか？\n 微妙なところだ。\n 人間の思考回路なんて理不尽で当然。目に入っただけの楽しそうなやつらを睨むことなんて当たり前にある。ネットなんて眺めていたら、無限に苛つきまくるだろうね。けれども、誰かと繋がっていないと不安だからスマホも手放せない。\n 他人がムカつくのに、人間関係そのものであるスマートフォンが手放せない。わかるぜ。それを矛盾と呼ぶのは、いささか厳しい。合理的なことが正しいわけでもない。\n\n僕は、僕なりに独りの幸せを手にした人間だから、仕方がないんだ。\n 理屈じゃないからね。\n なんで、でっかいふわふわな犬を散歩させている夫婦に道を譲らないといけなんだって。そりゃちゃんと端に寄るけどさ。幸せが服着て歩いている方が異常だって思うような。思うよ。\n 忘れたらダメだぜ。そんな時期があったことを忘れたら、都合のいい大人になっちゃうよ。\n 自身の現状を肯定するため、過去に嘘つく人間になっちゃうよ。\n\nこの世が平等であって欲しかったんだよな。自分が間違いなく不幸で底の底だと感じていたから。幸せな人間を下から見下す行為に違和感なんてカケラも覚えなかった。\n 間違っているけれど、人間に正解なんてないことも知っている。\n でも、人はどこかで超人や解脱に憧れちゃうからね。\n 自分が不幸な方が気持ちよくなるくらいに溺れちゃうんだよ。筋トレしたのに筋肉痛がこないと不安なように、生きているのに不幸じゃない方が物足りなくなっちゃうんだ。そこまでくると、オーバーフローして幸せだよね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -61,10 +60,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

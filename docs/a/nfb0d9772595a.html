@@ -22,9 +22,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-06-09 14:42\n下降\nダウン\n\nどうしようもなく動けなくなって、丸一日眠っていた。久々に『ピンポン』を読み返して感動していたけれども、自分にヒーローはやってこない寂寥感を同時に覚える。\n なんだかんだ療養期間の範囲だよなぁと納得する。まだまだ、この怒りも苦しみも拭い去れるとは思えない。自分が作品に尽くした数年間を否定されたこと、権力を使った圧力によって嫌がらせを受けたこと、たった二ヶ月で受け入れられるほど聞き分けは良くない。というか誰だって憤るのではないか。相手は同じことを他の人間にも、というか僕と同じくいっしょに作ってきた者にも行なっており、全員ちゃんと離れていっている。圧力をかけて精神的に人間を潰し、次のカモを見つけるような生き方を誰が許せるのか。\n そのような状況をなあなあと過ごす、今の環境の異常さが、社会にとっての正常であることが恐ろしい。全員、ことなかれを選択する他ない。\n 僕の血は鉄の味がする。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -43,10 +42,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

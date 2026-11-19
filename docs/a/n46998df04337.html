@@ -30,9 +30,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-11-02 18:06\n证据保存在日记里\n証拠は日記に残っている\n\n本気で人間に立ち向かう際、相手との支払額の相違、恫喝やハラスメントにあたると主張する点をまとめなければならない。\n\n例えば、自分は◯月◯日に何が行われたかをネットの日記とは別に、紙の方でも書き記しており、該当人物が何をしてきたか、どのような発言をしたかを事細かに残しています。今のところ2年分あるので、2年分の出来事に関して日付まで正しく引用することができますね。\n\n去年の4月あたり、適応障害とうつ病に苛まれ、とにかく日本に居たら狂ってしまうのでチェコへ逃亡した時の心境。「チェコはきっと楽しい」「めっちゃ痩せてる」「相手のやり方は絶対に間違っているぞだけは主張する」。インクが緑色に替えられており、未来に自分に対して「絶対に折れるな」とメッセージを残しているようで泣ける。\n 表での活動はすべてnoteに書いているので、インターネット上にも残っている。それらもまた証拠となるので、「記録」はひたすらに有利であり、その上でなぜか電子にも紙にも生きた記録を残し続けている自分は、明確な日付と発言、フローを参照できるのです。\n 人間がこんなに強い執着を持って怒り・悲しむこと自体があり得ないわけで、これらに対して普通なら説明責任があるわけ、というか向き合わなければ今後業界において活動することはできないのですが、一部の者のは説明や謝罪を敗北だと認識して逃げ回ることもあるのですね。そうでないと複数人から被害を訴えられることもないのですけれど。\n\nこれらをきちんと整理して弁護士経由で送ることが流れとなるのですが、改めて怒鳴られたこと・強制的に行われたことなどを羅列していくと精神が非常に弱る。これは出来事が脳内でリフレインされるだけでなく、それらがたいていは「大したことじゃない」「大袈裟に言っている」「そんな事実はない」と否定されるからです。そこからさらなる証拠と証言集めが始まります。まあ、すんなり「傷つけてしまって申し訳ない」と言える相手とは弁護士を通して揉めないので、やっぱり基本は否定になるでしょう。\n パワーハラスメントを訴えられた上司は、「俺がパワハラなんてするわけないだろ！」とまず怒るそうで。\n 「実際は大したことないんじゃないか」「そんなことはしていない」と言われるのを恐れて、事件に黙り込む被害者の気持ちがよくわかります。事実を捻じ曲げられることは巨大なストレスで、明確に脳へダメージを受けます。「もしかしたら悪いのは自分かも」としなしなにもなります。なので、似たような被害に遭った人たちから証言と証拠を集める必要もあります。これもまた悲しいことですね。\n 「相手のやり方は絶対に間違っている」と、強く書き残した過去の自分の気力に助けられます。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,10 +50,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

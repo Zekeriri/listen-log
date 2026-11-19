@@ -30,9 +30,8 @@ Magical Charming!!?
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-10-14 23:16\n神秘的仿制食品玩具\n謎のパチモノ食玩\n\nこれは香港の島で見つけた古風な駄菓子屋で、あるお菓子に注目すると意外すぎてびっくりした。\n\nえ！？ 梱枝りこ先生！？\n\nMagical Charming!!?\n\n僕らは、なぜアニメ化もされていないエロゲーヒロインのイラストが、香港の片隅にて食玩として使用されているのか永久に知ることはできない。これが日本だったら探偵ナイトスクープに依頼していたでしょうが、香港のことまでわからない。まあ製造が2014年らしいので、直近で「美少女キャラクター」を適当に検索して出ていた画像がMagical Charming!（2013年）だっただけとかでしょうけど……。\n 日本でも、エロゲチックな美少女イラストが、アジア系マッサージ屋の看板に無断転載されている様子が散見されます。あれも「目に入ったから」以上の理由はないのでしょうね。たまに色だけ小癪に変えている時もあるので、人間の小心を感じます。\n としても、12年も同じデザインで卸され続けているのだから長期で人気な商品だ。12年間Lump of Sugarに怒られることなく、というか気づかれることもなく、淡々と特に関係があるわけでもない拾った美少女画像を印刷している。\n そもそも、この「動物が先っぽについたシャボン玉を飛ばす棒」自体もなんらかのパチモンの可能性もある。\n 店主のおばあちゃんは何一つ知らないまま、ただただ子供達に駄菓子や食玩を売り続けていく。\n 何がどうしてこうなって、誰がこれで儲けているのか何もかもが不明なまま、アジアの胡乱な商売は続いていく。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,10 +50,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -32,9 +32,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-03-07 03:06\n一口随笔：《暴太郎战队Donbrothers》和《银河天使》\n一口エッセイ: 暴太郎戦隊ドンブラザーズとギャラクシーエンジェル\n\nあと20年後には、ドンブラザーズを観て育った子供たちが社会を支える未来がくると想像すると凄すぎる。日本がマジでヤバい国になってしまう— にゃるら (@nyalra) March 6, 2022\n\nスーパー戦隊の新作『暴太郎戦隊ドンブラザーズ』が始まりました。脚本は久々にニチアサにメインで登場した井上敏樹。ジオウでも、ある意味キバらしい凄まじい回を担当したりしていましたが。\n ニチアサで井上敏樹ということもあり、平成一期のような重々しい作風と身構えていた方も散見されましたが、実際は前評判通りに明るく突き抜けた……テンポがあまりに良すぎてカオスの域に達している『ギャラクシーエンジェル』の井上敏樹だと感じましたね。もちろん次第にとんでもない爆弾を仕込んでくるかもしれませんが一話はひたすら笑って盛り上がる、とんでもない勢いの連続で大興奮。\n\n帰ってきたな、\"ギャラクシーエンジェル\"の井上敏樹……— にゃるら (@nyalra) March 6, 2022\n\n僕はアニメ版『ギャラクシーエンジェル』が大好きなのですが、この作品は成り立ちが特殊。ゲーム版というシリアスな原作がありながら、それが延期して設定が共有できない関係上、アニメ版ではキャラクターだけを使用したギャグに全フリしたのです。つまり、ポケモン本編とギエピーの関係。\n ゲーム版では男主人公と真剣に恋愛するエンジェル隊たちが、アニメでは男なんてどこ吹く風で暴れ回り、テンポ良いギャグのために命を賭ける芸人魂の塊となる。GAとシャンゼリオンで磨いた井上敏樹によるハイスピードなギャグのキレが遺憾無く発揮され、もうドンブラザーズは大満足です。\n ちなみに、僕はGAが好きな一番大きな理由は、ヒロインたちがマジの強欲で、自分が儲けるためなら平気で味方を殺すような過激さです。ドンブラザーズでも、早速ヒロインが容赦なく頭に蹴り入れられるシーンで「コレだよコレ！」と飛び跳ねましたもん。この一年暴れ回ってくれるのが嬉しすぎる！\n\n毎日の日記をまとめた同人誌をboothにて販売中です。日記と言いつつアニメや特撮の話ばっかり！\n\n商業エッセイ集もよろしくお願いします。これで僕と縁ができたな。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,10 +52,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

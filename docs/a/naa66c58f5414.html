@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-10-20 12:39\n冬天与糟透的家伙\n冬とクソナード\n\n外が寒くなり始めて元気がでてきた。\n 寒い方がいいぜ。肌寒ければ着込めばいいだけ。暑いのは無理だ。これ以上脱げないし汗をかく。汗はこの世界で最も忌避すべき生理現象。沖縄人（うちなーんちゅ）である僕は代謝が良過ぎて常人の3倍くらい汗をかく。夏は最悪の時期だ。\n アニメの放送時期も夏は絶対に避けようと話した。自身の手がける作品が夏に放送されるとテンションが上がらない。もっと静かな季節にしよう。それくらい夏は良くない。マレーシアはこの時期も35℃でなかなか大変だった。けれども、東南アジアは暑さに慣れ過ぎてテキトー、なんならそのへんで上半身裸になったとて誰も気にしない。日本も35℃を余裕で越えるのだから、上裸を許してくれるといいんだけれど。だからといって根本的には解決しないが。\n そもそもファッション的にも冬、というか春や秋の方が服にレイヤーが生まれて幅が広がりますからね。色と色の組み合わせ、または敢えて単色だとか。幅があるのはいいことだ。\n とはいえ、冬はまた別種の悩みを抱える者もいるらしい。女性が「クリスマスまであと一ヶ月半なのに彼氏いないんだけど」と愚痴りだした。そんなことで生まれて一度も焦った経験がないので盲点。たしかに一人のクリスマスは寂しいかもしれない。ある意味で祝祭を心から楽しもうとしている姿勢は素晴らしい。僕はクリスマスを異性と過ごしたことなんて無い。僕の方が聖夜を軽んじているつまらない奴なのだ。\n 最近、女性と会話して驚かされることは二度あった。\n 「爆豪くんが攻めがいい」という話を聞いて驚いた。もちろん僕は最終回までそのような目線で読んではいないが、その方面の人気を推察すると、爆豪くんが押し倒されて「クソナード野郎のくせに……！こんな時はイキんのかよっ……」と顔を真っ赤にする想像しかできなかった。爆豪くんが「オラオラ！ナードが抵抗すんじゃねぇ！」みたいなテンションのままでもいいんだ。まあどうでもいいんだけれど、考えたこともなかったのでビックリした。敢えてギャップを活かさない選択肢、これはおもしろい。\n まだまだ分からない感覚がたくさんある。\n 冬がはじまるよ。ようやく僕が気分良く外出ができる。せっかくなので外でいろんな人と会い、いろんなことを知っていこう。クソ熱くなるまでは。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -24,9 +24,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-07-11 03:30\n一口随笔：对抗汗水\n一口エッセイ:VS汗\n\nここ最近、自律神経が乱れに乱れて、なんでもない時に汗が噴き出る。エアコンギンギンの店内でも汗まみれになるし、身体が濡れているから夏でも冷房が寒過ぎて震えだす。側から見たらめちゃくちゃ怪しい。\n さらに言えば、僕は嗅覚がないため自身の「臭い」を非常に恐れる。自分がどのような匂いを放っているか知る術がないから。なので自身が恐らく「汗臭い」状況になると無意識に他人と距離を置こうとする。しかも急に汗が噴き出るタイミングはたいてい心臓の動悸や眩暈も併発するので、その不自然な挙動の連続は、シャブ中の禁断症状そのものでしょう。\n あまりに体調不良が続くので、見かねたプロデューサーが差し入れを持ってこようかと気を使ってくれたものの、別にコンビニには行けるのでそこは問題なかったりする。この時期は食事量ががくんと減るので、今や40キロ代に落ちた。明らかに体調と精神がおかしい。厳密に言えば副交感神経が機能せず、つねに交感神経が興奮していて、眠れないしクラクラする感覚。たすけて〜。\n 今日なんか、疲れて椅子に座っていたら、またしても汗がドバッと湧いてきたので、またか……やれやれ困った汗腺ちゃんだぜと余裕ぶっていると、なんと次の瞬間には一気に乾いている。どういうことだと振り返ってみると、僕はあまりの疲労に気を失ってしまい、その一瞬で汗まみれになる夢を見たのだ。あまりに汗を恐れて汗の妄想に侵される。完全に精神がヤられていますね。\n 昔、シェアハウスに本物のシャブ中が遊びにきた際、何度ルールを教えても記憶が飛んでカードゲームをまともに進行してくれないうえに、それでも参加したがるので住民が困惑したことがある。今の僕も、汗が噴き出た際はパニックになって会話ができなくなるし、そのうえ平熱時からドバッと大量の汗が流れる状況は、あのシャブ中とほとんど同じである。友人ならまだしも、打ち合わせ先でこうなってしまうことを想像して、さらに脳がズキズキする。夏、嫌いだぜ。\n 僕は幻覚の世界へ誘う紙や液体は大歓迎だが、決して覚醒してバリバリ動き回る粉なんか求めていない。いや、どうせ同じ症状なんだからむしろ覚醒してくれた方が得なのだが。「僕はシャブ中じゃないんです！ 信じて！」と汗を飛ばしながら訴える様子が、危ない薬物中毒者じゃなければなんなのだと自分でも笑ってしまう。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,10 +44,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

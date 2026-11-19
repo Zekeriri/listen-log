@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-03-01 10:56\n适应\n適応する\n\n適応障害とは、本人なりに環境や社会に適応とした証であるわけで、その事実がまた痛ましい。悲しい。自分なりには精一杯だったので。\n\n楽しくないことをやりたくないな。\n 一人、関係者がドクターストップで休むこととなった。精神の問題で。\n お金のためにやりたくない、だとしてもやり甲斐は作るべきという話が通じない。いやもう、そもそもコミュニケーションを取ってくれないし、人間として扱ってもらえない。\n 僕も精神科に通いなおせばドクターストップかもしれない。つねに頭痛と胃痛で先月からずっと身体が重たい。今年に入ってから「休みたい」という話を何度も書いていて痛々しい。アニメにだけ集中させて欲しい。それか、せめて僕がやりたいことを汲んで欲しい。誰もやりたくないことを作品の親として引き受けさせられ続けていることに耐えられない。\n\n他人に死ねと思える人格ではなかった。その後の罪悪感について考えてしまう。そもそも他者の一人が死んだり殺されたりで解決する問題でもなし。唯一、誰か一人が死んで解放されるなら自分自体で。昨日も書いた通り、そんな気持ちで読む完全自室マニュアルは心の救いです。自分を殺した人たちの記録は共感ができる。自分は一人ではないと思える。\n 話を聞いてもらいたいが、精神科の予約は、頼み込んで予定日が来たのに容赦なく仕事を入れられたトラウマで本当に怖い。それに、行ったら僕もドクターストップがかかる可能性は高いし、それは明確なプロジェクトの終わりを意味する。環境が僕に圧力を与えたと事実が確定するわけで。なんだか、それも逃げているような気がする。どうせ復帰もできないのだから一気に終わったほうが早いし。自分なりの適応の結果か。\n 別に逃げたりサボったりしたわけじゃないじゃん。むしろ社会に馴染もうと必死に努力したから適応障害なんだから。合わせようとはしたんだ。\n\n頭にモヤがかかっていて何も楽しくはない。本と映画だけか。その世界に逃げる頻度が上がったのは、むしろプラスに捉えてもいいかもね。ストレスで集中力が途切れて、それもできなくなったら終わりの合図。昨晩も、バンパイアハンターDの再上映中ずっと頭痛に苦しんでいた。それを差し引いても美麗な名画なのでよかったけれども。まあ昨日は低気圧もあったからね。こんな状態だと自律神経も乱れて気圧の影響を大きく受ける。\n 布団の中ではネガティブなことだらけで苦しい。起きても作業と仕事が待っているので楽しくない。ゲームしたいなあ。打ち合わせも行きたくないが、それに行かねば何も進まなくなる。休みたい。一日でもいい。いや、あの人たちにそんなこと言ったら本当に一日だけ休みにして、あとは詰め込められるだけだ。責任や人間関係がない分、死後の地獄の方が生き地獄よりマシならいいけれど。死後にさ、針山の真ん中で「でも生きてる時より楽だ！」って思えたらいいよね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

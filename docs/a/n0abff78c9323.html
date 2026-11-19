@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-08-13 01:53\n一口随笔：混乱大乱\n一口エッセイ:ハチャメチャ大混乱\n\nTwitterの名称や各操作…てツイートやリツイートなども名前がコロコロ変わっていくことに対して、はちゃめちゃでおもしろいな〜とずっと楽しんでいます。自分の損得は関係なく、今まで築かれてきた常識がわけわからんことになるのが楽しい。もっと意味不明になってTwitter（現X）が消滅することになったら、その時はその時で笑ってみんなで見送ろうや！ と思っている。\n この世界はもっとパルプンテとかハプニングマスのような出来事がたくさん起きるべきだ。それでパニックになるのはまともに生きている人たちの方なので、こちらは混沌としていればするほど、そりゃ苦労もトラブルも絶えないでしょうが、無責任であれば何事も楽しいっちゃ楽しいと思う。\n 突然、小学生が役所で働くことになって、一日だけでもいろんな書類に適当にハンコ押しまくる日があって欲しい。乗ったバスの行き先がダーツで決定されて乗客全員東京から滋賀とまで運ばれてほしい。遊戯王カードが強い順で年収が決まるようになってほしい。ゲームキューブをバッグみたいに持ち運ぶのが最もオシャレな行為になって欲しい。\n 日々、そういうことを考えていると、Twitterが Xになるのはわりと理想に近いどうでもいいパニックのほどよさが堪らない。急に金持ち同士がガチンコの殴り合う試合が配信されるのも漫画みたいで良いと思う。どうせならインターネットのレスバトルもすべて金網デスマッチで勝敗決めてほしい。先に相手が膝をついてしまうほどクリティカルな悪口を言った方が勝ち。\n どうでもいいけど、僕はエックスという言葉の響きはマジでカッコいいと思っているので、「エックスはセンス無さすぎ」と批判されているたびにちょっと悲しい。Twitterがエックスになったのだから、Instagramは「ゼロ」にして欲しい。TikTokは「フォルテ」でいいでしょう。\n\nちなみに僕はX4のサイバー・クジャッカーのデザインと名前が大好きだ。オカマ口調の強キャラらしさも丸だね。名前の響きだけならワイヤー・ヘチマールも相当好きだけどアイツは弱いから嫌い。クジャッカーは初見で絶望するくらい強い。突然、渋谷とかにサイバー・クジャッカーが出てきてデカい建物へ手当たり次第ビームを飛ばしまくって欲しいと思う。\n そしたら僕はフットパーツを活かしたダッシュで飛び込んで助けに行くから、そのままどこに向かうかわからないバスに乗って、めちゃくちゃになった世界を思うまま自由に旅して回ろう。\n\n毎日の日記をまとめた同人誌や商業エッセイをよろしくね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

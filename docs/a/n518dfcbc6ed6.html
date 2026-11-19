@@ -33,9 +33,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-11-16 06:50\n在中野百老汇发现的东西，以及为了观看而度过的日子\n中野ブロードウェイで見つけたモノと、見るための日々\n\nなんで僕が中野に住んでまで、毎週中野ブロードウェイを散歩しているのか。端的に説明するなら、「普通に生きていればネットを眺めていても出会わないレアモノがあるから」でしょうか。百聞は一見にしかず。今日は、僕が最近中野ブロードウェイで見つけた中で興味深かった謎のアイテムたちを紹介するぜ。\n\nジャブとしてはこれ。謎のカードのリザードン（エラーカード）、けっして有名な『かいりきリザードン』ではない。ポケカ以前に商品化されたガムのオマケカード。当時のキミは見たことあったか！？ 僕は無い。そして、エラー部分は「おもなわざ」の項目ですかね？ リザードンにしては初期技すぎるし。こういうものが散歩するたび目に入ると僕は嬉しい。\n\nお次はこれ。エビ怪獣&パイプおじさん原画。\n まずエビ怪獣とパイプおじさんのことを何も知らないので原画を展示されてもありがたみが一切伝わらない。二足歩行する姿から察するに、エビの怪獣だけれどエビラではない。パイプおじさんに至っては何一つわからん。こいつらが同時に登場する怪獣映画があったとてどう楽しめばいいのか皆目見当もつかない。\n 気になったので調べてみた。どうやら過去に（あくまでマニアの中では）人気のあったチープトイらしい。チープトイというのは、ファミレスや高速道路の休憩所とかで販売されている、子供向けの版権モノじゃないオモチャですね。言われてみれば、ファミレスのレジ前にギリギリ並べてありそうなデザインをしている。まんだらけが復刻させた時期があったらしく、恐らく原画はその時の名残でしょうか。\n もっとシンプルに笑える変なモノも。\n\nセル編のドラゴンボールと何やら関係のありそうな顔ぶれのキーホルダー。パチモン。\n さすがに原型のキャラクターは判別できるものの、細部が微妙に違ってイライラする。イケメン担当のトランクスや17号らしき人物の顔も妙に力み過ぎていて怖い。たぶん何かを使い回して無理やりドラゴンボールにしているので、セルが謎の剣を持っていたり、悟飯がバンダナ巻いていたりする。こういうしょうもないものを見ると中野らしさを感じて非常に嬉しい。\n 最後はとっておきのモノでいきます。\n\nフィアナのエロイラストがデカデカと描かれたスコープドックのガレキ。スコタコより目立っちゃってるし、別に彼女の搭乗機でもない。当時のファンは「スコープドックの派生機も手に入るうえにエロイラストまで付いてるぜ！」と飛び跳ねたのでしょうか。渋いメカ×えっちな女、たしかにどちらも男が大好きなモノなので、さながらカレーラーメンといったところか。令和の感性からすれば別々の方がいい気はするけれど……。\n これらはネットサーフィン（死語）していても、ましてや普通の街を歩いたとて、まず目に入らない。こういう極々一部だけが盛り上がる謎の商業施設、それが中野ブロードウェイなのだ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,10 +53,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

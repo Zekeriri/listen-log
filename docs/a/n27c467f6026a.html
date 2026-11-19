@@ -36,9 +36,8 @@ BOOTHにて、毎日のエッセイをまとめた同人誌を販売中です。
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-01-02 07:14\n一口随笔：福星小子与押井守\n一口エッセイ:うる星やつらと押井守\n\n✬TVアニメ『#うる星やつら』✬\n諸星あたる（CV #神谷浩史）とラム（CV #上坂すみれ）が、再び動き出す！\nTVアニメ化解禁ティザーPV公開！ https://t.co/LJfGo1pkLY#ノイタミナ #ダーリン pic.twitter.com/UXUAIMsDUY— 「うる星やつら」TVアニメ公式 (@uy_allstars) January 1, 2022\n\n「うる星やつら」の新作アニメが発表されました。原作の人気エピソードを元にしているとのことで、恐らく原作寄りの作風になるのでしょう。\n うる星やつらは原作とアニメ版で印象が全然違う。原作は当然高橋留美子の作品なのですが、アニメ版は留美子先生よりも「押井守作品」としてのノリの方が強く感じる。急に登場人物が立ち食いそばについて熱くなったり、軍事ネタを語ったり、サブカル的なパロディネタがたくさん挿入されたりする。全体的にオタクっぽいのだ。\n\nオタクは初めて出会ったループものを親だと認識するから、漏れは子供の頃に「ビューティフル・ドリーマー」を観て押井守を父親と、「仮面ライダー龍騎」で小林靖子を母親だと誤認したまま育ってしまった— にゃるら (@nyalra) December 4, 2021\n\nこの「押井監督らしさ」が爆発し過ぎたのが劇場版2作目「ビューティフル・ドリーマー」で、もう完全に高橋留美子でなく押井守のうる星やつらとなっております。良くも悪くも。個人的には好きで好きで堪らない映画ですが、まぁ原作とは違う。\n あまりに押井色が強すぎる上に、原作よりも進んだ関係を見せているので、「原作者が激怒した」と噂が流れるほど。これに関して、最近のインタビューで留美子先生は「監督との不仲説は噂です。ちょっとしか顔合わせてないし、不仲にした方がみんな面白がるのでしょう」といった回答をしています。\n が、先日、押井守監督の方のインタビューでは、「高橋留美子先生から忌み嫌われた」と発言しています。勝手な推測ですが、留美子先生は少なくとも現在は（当時は思うところあったかもですが）気にしてないものの、押井監督は自分が嫌われていると思い込んでいることになる。信者目線ですが、この思い込みのオタクっぽさが正に監督らしくて大好きなんですね。さすが最近のルパンでも、世界観の根底を揺るがすような脚本書くだけある人だ。\n\n自分がルパンの製作スタッフで、押井守作品が好きで脚本を依頼したら、「今回は天使の化石とダーウィンの進化論をモチーフに、不二子が虚構とループの世界に迷い込むような話でいきます」のような返事が返ってきた瞬間、嬉しすぎて天井まで飛び上がるだろうな— にゃるら (@nyalra) December 18, 2021\n\nBOOTHにて、毎日のエッセイをまとめた同人誌を販売中です。読んでね。定期的に押井守の話しているな……。\n\n先月は、商業エッセイ集もでました。自分語りばっかりの自意識のバリバリな一冊となっております。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,10 +56,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

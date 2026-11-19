@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-03-08 04:06\n一口随笔：智齿剧痛地狱\n一口エッセイ:親知らず激痛地獄\n\n歯を抜いた。下の親知らずを二本目。\n\n当然ながら親知らずは生え方によって手術の痛みが異なり、真っ直ぐ生えたり埋まったりしている素直なやつなら、対して手間も痛みも伴わない。なんなら無害なので放置されるまである。しかし、今回の僕の親知らずはたいへんで、宿主に似ているのか斜に構えて真横に埋まった最悪なパターンです。痛い痛い痛い痛い！！\n 奥の方に生えているため、麻酔の効きが薄かったらしく、いざ引っこ抜こうとする段階で強烈な痛みが入る。全身脱毛や前回の親知らずの痛みを耐え抜いた自分も、流石に無理なので何度か挙手で手術を中断。そのたびに麻酔が追加されたので、僕の口はしばらく全く開かないほどに。どんどん自分の顔半分の感覚が失われていく体験は、スタンド戦でみたいで面白かったけれど。痛い痛い痛い！！\n 1時間半後、ようやく逆張り野郎な親知らずの抜歯に成功したものの、過程で削った骨や開いた歯茎の痛みはとんでもないらしい。らしいというのも、その時は麻酔で無痛である。本当の恐ろしさは、腫れ始める翌日以降。明日から激痛と戦う。既に痛くて食事できないレベルですけど。痛い痛い痛い！！\n\nしかし、歯医者さんは「でも、今日以上の地獄はもうないんですよ」と言ってくれた。たしかに、これ以上の派手な手術なら全身麻酔で眠っているし、日常生活で1時間以上も痛みと恐怖に向き合い続けることはほぼ無い。そう考えると、僕の人生はもう親知らず手術の苦しみとは無縁な、天国のような人生が保証されたのである。ありがとう先生。僕、この健全な口内環境で幸せになるよ。痛い痛い痛い！！\n\n親知らず抜くのに1時間半かかった上に、麻酔も効きづらくて死ぬほど痛かったけど、歯医者さんが「でも、あなたの人生に今日以上の地獄はもうないんですよ」って言っていたので、漏れの人生の安全が突然保証された— にゃるら (@nyalra) March 7, 2022\n\n毎日のエッセイをまとめた同人誌があります。一本目の親知らずの激痛に苦しんでいた時期もあるよ。\n\n商業エッセイ集の方もよろしくお願いします。買ってくれたり、Amazonレビューしてくれると苦痛も和らぐ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

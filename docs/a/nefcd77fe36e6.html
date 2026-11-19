@@ -38,9 +38,8 @@ View this post on Instagram A post shared by 無貌の神 (@nyalra_)
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-10-08 08:16\n澳大利亚 走在世界上最宜居的城市墨尔本\nオーストラリア 世界一住みやすい街メルボルンを歩く\n\n昨日オーストラリアは非常に快適と書きましたが、それもそのはず。なぜなら自分がいま滞在しているメルボルンは「世界一住みやすい街1位」に選ばれているのです。\n\n世界規模ですよ。いま僕が立っているこの場所が、世界的に見て最も住みやすいんです。\n 世界一住みやすい街にそびえる、世界一住みやすい駅前。\n 見てわかる通り景観がとても良く、なにより路が広い。マジで広い。ここまでの都市に対して渋滞が一度もなく、歩道も広くて「混む」という概念とまったく無縁。\n 子供たちが跳ねまわり、大人たちは肩を抱いて歌いながら、大きな交差点を闊歩する。ちょくちょく陽気な警備員たちが挨拶をするので治安も良い。\n\nデパート、水族館、動物園、海、美術館、図書館、大聖堂、デカい公園などなど……思いあたるすべての「街に欲しい施設」が揃っており、そのどれもが高水準かつ、オーストラリアらしく緑と動物で溢れる。なんと監獄跡地まである！\n\n街の至る所へトラムが走っており、しかも市街地の中心は無料で乗れる。トラムに乗って適当な駅に降りるだけで観光になるし、メルボルン内で迷うことも移動に困ることもない。なんかあったら近くの駅からトラムに乗車するだけで解決。\n\nうーん、すごい。\n オーストラリアを一人で過ごして三日目。メルボルンでは一切の不自由を感じない。街の人たちはたいへん気さくで、街の写真を撮っていたら、カメラに向かってピースをしてくれたり、なんから通りすがりに雑談を振ってくれたりもする。道や施設内でオロオロしていたら、必ず誰かが話しかけてくれるのだ。世界一住みやすい街に住んでいる人たちによる、世界一の懐の広さが暖かい。\n\nガラス越しにピースのサービスをする陽気な店員。気をよくして中でビールを飲んでいたら、多少どころか毎秒話しかけてくれる。言うなれば世界一の陽キャか。入店してきた老紳士たちも、めちゃくちゃ話しかけてくる。「BARに居れば気さくなやつらが面白おかしく弄ってきて友人になる」という、ドラマすぎる夢が現実で行われる。\n\nView this post on Instagram A post shared by 無貌の神 (@nyalra_)\n\n汚れている方が住みやすい捻くれ者のために、いくらでも落書きしていいグラフィティだらけの一角もあり、それはそれで統一感が評価されて観光地に。なんと非の打ち所がない。物価は安くないけどね。そこはアメリカ基準さ。\n 一番気に入ったのはコイツ。世界一住みやすい街には、世界一のコイツが居ます。動くよ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -59,10 +58,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

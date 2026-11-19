@@ -33,9 +33,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-05-29 15:41\n柏林 现代艺术与空间，一瞬间的体验\nベルリン 現代アートと空間、一瞬の体験\n\nドイツでの目的は大聖堂の他にもうひとつあった。現代アートの展示である。\n アムステルダムではゴッホを、歴史を見た。ドイツでは現代の芸術を見ることにする。日本での現代アートへの漠然としたイメージは「なんだか胡散臭い」「美大生な感じ」が殆どでしょう。それは大きな施設での現代アートの常設展が少ないからではないか。ドイツ、特にベルリンでは現代アートの常設展がたくさんある。\n\nこうして現代ならではの美術に触れて感心したことは、なんといっても大胆な空間な使い方であろう。そりゃ白い壁と階段を覆うように巨大な花が咲いていたら誰でも見惚れる。通常の美術館なら絵画や記念品などが保管されているが、現代アートは「今」が全盛期の作品が設置されているのです。\n\n「空間そのまで含めて芸術とする」試みは、なかなか真っ当な美術館では実施できない。触れることまで入れたらなおさら。\n 素晴らしい。廊下そのものが一つの作品となっており、僕らは通行しながら「色」による異質感を味わう。この展示内ではあらゆる点に違和感が仕込まれており、たとえば壁の隅に目を向けると、靴とメトロノームが一体化している。\n\nビジュアルアート、インスタレーションと呼ばれる、「空間全体を作家の意向に沿って作品とする」手法ですね。これは非常に現代的で面白いと感じている。ネットを通していくらでも作品を観ることができる時代において、「体験の芸術性を味あわせる」。スマホやPCモニターにかぶりついているだけでは不可能な全身での非日常を演出し、現実と夢の境界線を曖昧にしてやる。\n 自分もニディガ展ではインスタレーションへ力を入れました。\n しおんさんと何度も調整したブラウン管の廊下。作品の世界観そのものを五感すべてで浴びさせることで忘れられない強烈な想い出を植え付ける。もし、次に展示やイベントがあったとて、二度とこの廊下のマッドな青白さは体験できない。絵画や芸術品とちがって購入することのできない、「受け手による一瞬の感性」を作品として展示している。\n\nこれはアニメの背景資料というより、イベントの在り方、現代でのアートの表現としてたいへん理解が進む経験であった。\n 壁という壁すべてに落書きが刻まれている、グラフティ文化のベルリンだからこそなのでしょうか？ 僕らが立っているこの場所、この街、この視界のすべてが表現ひとつで「芸術」となる。\n なんなら、僕は現代において電子の海を流れるツイートのカケラすら、小さなアートだと思っているけどね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,10 +53,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -23,9 +23,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-08-26 12:38\n一口随笔：对抗鬼压床\n一口エッセイ:vs金縛り\n\n金縛りに遭う回数がとても増えた。\n 恐らく今飲んでいる睡眠薬自体に副作用として金縛りがあるらしく、とはいえ今まで問題がなかったものの、エアロバイク＋腹筋運動で疲れた状態で薬を服用して眠ると、ほぼ確実に金縛りになる。\n 寝ている途中で目が開いて動けなくだけならいいのですが、半ば夢の中であるので、その状態で意識がはっきりしないまま、夢らしい怪現象が起きるので、恐怖半分楽しさ半分のアトラクションに。だいたいイヤホンしていないのに幻聴が聴こえる感覚で、何もない空間からボソボソ声やゲームのSEのような音が鳴り響くのは、なかなかホラーな体験です。\n ボソボソ声の方は、集中して聴くと自分への悪口なんだろうなと想像すると、マジの心霊現象のようで体験中は身震いしますね。震えても身体は動かないから不思議。こんな嘘みたいな現象に出くわしたら、昔の人は霊的な存在を信じてもおかしくないでしょう。一度、金縛りの状態で何故か「今から家に殺人鬼がやってくる」と確信し、しかし身体は動かないので強制的に死を悟らされることもありました。アレは金縛りの極地だ。\n しょうがないので、せめて金縛り中でも楽しめるよう、最近はスピーカーで音楽をかけながら眠っています。そうすると金縛り中にも好きな音楽を堪能できてお得。身体のバグに対して、文明の力で勝負していくぞ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -44,10 +43,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

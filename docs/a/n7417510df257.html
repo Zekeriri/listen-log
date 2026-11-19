@@ -25,9 +25,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-08 04:11\n一口随笔：不醉的人生\n一口エッセイ:酔わない人生\n\nたくさんの酔っ払いに会った一日でしたが、自分がもうこんな全てを捨てて楽しむ日が無さそうであるのは、とても悲しい。ひとりぼっちの夜道はいっそう寒い。\n 沖縄生まれなのであまりアルコールに酔わない。たくさん飲んだ上で、突然気持ち悪くなって潰れるから、その中間を気分良く楽しむ感覚がない。嗅覚が無い関係で、飲み物の香りを嗜むこともできませんし。\n 昔は、そのぶんを睡眠薬で補っていたものの、それも怖くてできないし、今はデエビゴなる健忘の起きない薬をもらえている。ゲームの関係から発生した責任の重みが怖くて、睡眠薬でもアルコールでも、自分を解放することが恐怖でしかなくなってしまったのです。いつのまにか、自分の裸を見られるのが恥ずかしくなった。半端に知恵を得たせいで、羞恥心なんてものが芽生えた。\n ある意味、真っ当な楽しみを見つければいいのですけどね。本もアニメも良いものですし、それ以上が贅沢であるのも理解しているけれど、やっぱりもっとはじける場が欲しくなる。インターネットで纏った殻を破って、本心だけで喋りたい。\n 明日、教会を見に行く予定を入れました。荘厳で美麗な宗教建築の迫力を前にすれば、停滞した僕の心も揺れ動くかもしれない。タイムラインのみなさんの分まで、新たな経験と刺激を願って祈りを捧げてきます。何かに酔っていないと、こんな現実やってられないでしょう。\n\nいろいろ本よろしくね（雑）！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,10 +45,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

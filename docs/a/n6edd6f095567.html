@@ -30,9 +30,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-10-05 05:01\n居住\n住む\n\n何度か日記に書いてきたように、友人たちと数人でルームシェアしている一室がある。昔からずっとシェアハウスをしてきた仲間たちと、未だ、住んでいる。最も付き合いの長い岡島らとの生活は10年を越えた。下手な結婚生活より長いでしょう。\n 現在で住民は3人。そこへ近所である自分と、土日には別で住んでいる友人たちが集まる。みんな格闘ゲームが大好きで、基本はスト6かスマブラの腕を披露し続けているものの、昨晩の記事のようにチェスやら何やら、突発的になにか別のゲームをする時期もある。\n\n要するに、楽しくやっている。\n このゆるい、時が止まった中年男性たちの瞬間が嬉しくて、維持するために初期費用や一部の家賃を負担している。住民のひとりは僕といっしょにゲームを開発してくれているので、稀に友人たちと活動をともにできるタイミングがあれば僕は非常に喜ぶ。やっぱり友達といっしょがいいじゃないか。何もかも。\n そんな生活に、昔僕らと住んでいた友人が一人追加される。なんかいろいろあって彼が借りている部屋がなくなるらしい。しょうがないのでリビングへ住んでもらうことにする。\n\nしょうがない、と言いつつ住民たちはみんな歓迎だ。シンプルに、今まで共に遊んできた友人が再び常駐するわけで、細かいことを除けばいっそう賑やかになる。特に今回の彼は料理ができるタイプなので、自炊の幅も広がることでしょう。\n こうして不意の環境変化が起きるのも久々だ。シェアハウス時代、気づいたら住民の顔ぶれがころころ変わった。時には、住む場所を失った者を僕が連れてきたりもした。リビングには毎晩、知らない人が寝転がっていた。あまりに慌ただしい時間であったけれども、思い返すと、楽しかった。みんな歳を重ねて少なくなってきたが、急に家を追い出されるくらいに突発的なトラブルがあるとやっぱり盛り上がる。人生、そんなものでいい。\n 僕は、彼らと違って、なにかを作ることをやめられない生き方だ。きっと、これからもずっとそうする。結果的にそうなった。アニメ後、ゲームリリース後、また次の企画にあたるだけの繰り返し。\n たまたまそういう個体であり、彼らは本気で働きたくない個体であった。ただそれだけであり、偶然前者であった僕は、どうせ使うあてのないお金を、友人たちのトラブルや住居に代える。基本的に得することなんか無いのだが、やっぱり嬉しいんだ。「今月からリビングに住んでもいい？」なんて普通は言われない。その意味不明さも、それに対応できる柔軟性も、僕らはそうして10年続いてきた。\n 今日も中年男性たちによる明るいようなそうでもないような、でもやっぱり賑やかで嫌いになれない家族計画が続いていく。死ぬまで夢から醒めないために。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,10 +50,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

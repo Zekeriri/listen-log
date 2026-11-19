@@ -37,9 +37,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-03-27 09:23\n仿佛昔日的秋叶原 泰国克隆托姆市场（小偷市场）\nまるで在りし日の秋葉原 タイ クローントム市場（泥棒市場）\n\n不思議な場所を旅した。\n タイ、クローントム市場。通称、泥棒市場。\n\n泥棒市場と呼ばれているからには、やはり過去は盗品を売っていた場所なのでしょう。現在では、それなりに治安が悪いものの、さすがに盗んだものが流れついてくる程の場所ではない。といっても、海賊版や違法品だらけであることは変わりないけれど。決してまともな空間ではないが、それ故の生命力に惹かれる。\n 平然とコピー品を扱うゆえに（一部の者にとって）レア物も多く、品のないネオンライトがギラギラと光る怪しい眩しさは、まるで過去の秋葉原。要するに、非常にエキサイティングで素敵なスポットだ！\n\nおそらく、タイでマリファナショップを開く際に、こういった場所で看板を買っていくのでしょう。そのまま仏像を2、3体購入して店内に飾れば、即「タイらしさ溢れるお店」の出来上がり。ついでに妙にビカビカと光るスピーカーも買ってお店やトゥクトゥクを七色にするとなおカオサンチックに。\n\nどこかで安く仕入れられるのか、タイではやたらと子供向けの大きなオモチャが多い。こうした商品がずらりと（タイはとにかく物量がすごい）並ぶ壮観な様には、どうしようもなく童心がくすぐられる。子供の頃に訪れていたら、ここを天国と見間違う。\n\nあらゆるものが山積み。こうした通りにしれっと違法格安DVDがワゴン売りされたり。日本のAVをDVDへ焼いて店前に放置しているだけで、それなりに儲かるのでしょう。もちろん正規の映像に絞る必要もなく、無修正だろうが法令違反だろうが関係ない。そのタイプのおっさんにとっても天国なのかもしれない。\n\nまあ、こういうところで放送禁止になった特撮や映画の映像ファイルが流れてないかチェックしてしまう僕も、方向性の違う同じ穴の狢であれども。ああ、タイは楽しいな！\n\n通路の空きスペースを現地の子どもたちが占領したりする。正規品の横に格安で売られているパチモノベイブレードを回す賑やかな声。いてもたってもいられずちょっぴり喋ってみる。タイの子供たちは興味への探究心が強く、目が合うと話しかけられることもある。手を振ってくれたりもして嬉しい。物乞いの場合もある。そんな嫌ではないけど。\n\n楽しそうな写真をパシャリ。せっかく女の子がおもちゃについて説明してくれたものの、タイ語なので僕にはわからなかったことだけ悔しい。彼ら彼女らが泥棒市場で開発した独自の遊びをもっと教えて欲しくて仕方がない！\n\nお礼に、お菓子が買える程度のバーツを置いて去る。飛び跳ねるほど大声で喜んでくれて僕も嬉しいよ。強く、たくましく生きて欲しい。この特異な環境で育った日々はきっと強烈な個性となる。現代のオタクたちも、昔はカオスだった秋葉原でグレーな青春に身を捧げ、それが本当は忘れられないんだ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -58,10 +57,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

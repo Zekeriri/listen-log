@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-07-18 13:59\n一口随笔: 20岁出头\n一口エッセイ:20代前半\n\nビックリするくらい眠りました。一瞬アニメの時間に起きただけで、合計20時間近く寝ました。ただただ眠っていただけで書くことがないので、質問を読みます。\n\n要約すると「20代前半なのに、まだ思春期のような悩みを引きずっている自分は普通か？」とのこと。\n はっきり言うと普通だと思います。20代前半なんて全然子供です。「思春期に毛が生えた」という表現が適切。思い返すと、それくらいの時期だったなと感じる。\n 自分の場合、「親と縁を切って沖縄を離れる」ことが思春期時代の第一目標で、それは18になって解決したのですね。それが達成した瞬間なにもかもどうでもよくなり、20代前半は、たまにブログを書く以外はアニメ・ゲーム・本、稀に日雇いバイトくらいしかしていません。これが大人な訳がない。\n Twitterでの周りの人間も「俺はこんなに終わった人間だぜ」アピールを行なっていたのですが、彼らは僕とは違って、なんだかんだ大学に通っていたのですね。そりゃ留年とか就活の悩みとか色々あったのでしょうが、結局は就職をして、つぎは社会への愚痴ツイートが増えつつも、次第にツイート自体が減って、今や（僕と同じ30手前）ほぼインターネットに居ない人もたくさん存在します。あれは中高生と違って、ちょっとしたモラトリアムが許されるぶん、それを過剰に表現して退廃した感をだす「大学生ノリ」だったのです。でもまあ人生そんなもんだよなと今なら理解できます。裏切られた感覚は少し残っているけど。\n つまりは、本当に極小数のしっかりした人間以外、大して思春期と変わりません。むしろ、行動範囲だけが広がった分、最も厄介な時期かもしれない。やらかしの規模も大きくなるからね。僕が薬でやらかしていたのも、この時期ですし。\n でも、この「大人になろう」と全員がヒリついて、ダメ人間アピールしつつも相手を出し抜こうと必死だった感じが懐かしい。だんだんと人生に差がつき、気づけば20代後半時に諸々の数字で明確に示される現実。ハンターハンターで言う「あらゆる残酷な妄想に耐えておく」ための準備期間でもあるかもしれません。社会人になれた代わりにツイートが減るのも、フリーランスで博打な人生を生きるのも、はたまた最低限の労働以外は趣味を謳歌するのも、どれも一長一短です。\n 質問者の言う通り、カウンセリングもいいかもです。『人生は20代で決まる』なんて海外の有名な自己啓発本があり、それは20代専門のカウンセラーの記録でしたが（思考が固まりそうなのでオススメはしません）、本の中でもみんな他者との比較で悩みまくっておりました。しかし、前述した通りに本当に差が広がるのは後半からですから、今のうちに動揺しないアイデンティティを手に入れておくのは重要でしょうね。もっと残酷な現実なことが起きるこれからに備えて……。\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中！\n\n商業エッセイ集もよろしくね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

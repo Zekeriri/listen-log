@@ -41,9 +41,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-09-30 13:25\n重生的龙，可行吗？\n再生ドラコ、やれるか？\n\nドラコ。\n ぷよぷよだったら上位を争う人気者であるものの、ウルトラマンのドラコはなんだかパッとしない。そんなにダサいとも思わないが、別に好きだとも言われない。そんなやつである。\n\nいっぱい怪獣が出てくる回のやられ役。\n 子供たちからすれば「ドラコを一瞬で倒したレッドキングかっこいい！」でしかなく、この変な羽根の生えたトカゲ型のありがちな怪獣の印象は薄い。あと瞳が弱々しくて頼りない。\n 別に僕としても同様の意見でしかなく、もちろん嫌いではないが……くらいに思っていた。やる気のない羽根（レッドキングにむしられるため用意されたとしか思えない）と活躍しない腕のカマがこれまた微妙なのだ。\n そんなドラコは、終盤にて怪獣たちがいっぱい登場する回にて再び登場。\n\n通称・再生ドラコ。ドラコ（再生）表記も多い。どっちでもいい。\n レッドキングにむしられた羽根をまたくっつけるのが面倒だったのか、はたまた本当にどうでもよかったのか、とにかく羽根がなくなりなぜか腕も五本指になった。つまり、めちゃくちゃ個性が消えた。そのうえで大して印象に残らない。\n 正確には、回のメイン怪獣であるジェロニモンのビジュアルが強すぎてドラコの復活なんて誰も気に留めない。\n\n先日、そんな再生ドラコのソフビを秋葉原のまんだらけにて発見。レトロ玩具は基本的に中野へ軍配があがるものの、秋葉原のまんだらけは怪獣ソフビに気合いを入れてくれて、ここだけのレア物が結構ある。\n あれ？結構かっこいいな。\n やっぱ羽根と鎌が要らないな。その派手な見栄えはガイガンがいるし。そうなるとコイツはただのデカくて黒いトカゲでしかないんだが、デカくて黒いトカゲ、そこへゴツゴツとした白いラインが入っているとシンプルな魅力がある。\n 再生ドラコ、いいじゃないか！\n\n初めて近くでまじまじとドラコを立体的に眺めたことにより、このホワイトラインが、クラフトワークのライブのようなテクノっぽさあるんじゃないかと気づいてしまった。\n やっぱり黒ベースに白は映えるね！\n とはいえ、これはクラフトワークが好きなだけであって本当にドラコが好きなのか？\n ドラコ、やれるか？\n\nちょっと無理かもな。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -62,10 +61,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

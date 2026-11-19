@@ -42,9 +42,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-05-25 05:32\n与不再回来的安眠药的岁月\nもう二度と戻らぬ睡眠薬との日々\n\nもう、立場的にも年齢的にも、睡眠薬を大量に飲んで曖昧に楽しくなることはないのでしょう。青くキラキラと文字列が浮いて、脳が空っぽになる感覚。それが許されるほど若くはないことが、シンプルに生きていて面白くない。\n 今思うと、現在の僕と同い年程度の母が平気で睡眠薬ガブガブやって、息子の前で死にたい死にたい言っていた姿に尊敬の念すら覚える。素直な人だ。\n つねに不安や言葉が脳内に溢れかえる僕にとって、ラリって暴れる時間は唯一の解放でした。海外からオレンジと黒の毒々しいカプセルを輸入し、夜な夜な貪った。\n 頭の中がふわふわとして、現実を忘れられた。当時はシェアハウスに住んでいて、ふらふらとリビングに行くと友人たちがスマブラに興じている。どっちが夢だか何もわからない。間違いなく、楽しかった。僕の人生で数少ない、手放しで楽しい瞬間だった。\n ラリると人恋しくてすぐ連絡がしたくなる。\n 今の僕は曖昧になって他人に支離滅裂なメッセージを送ってもダメだし、代わりに酔っ払い丸出しなポエムを投稿してもダメだ。\n ふと、つまんないなと悲しくなる。\n デエビゴでは健忘が起きない。だからいいんだけれど、あの雲の上を浮遊するかのような夢見心地はやってこない。\n\nある日、急にあんまり話したことのない、フォロワーのフォロワー程度の女性からLINE通話がかかってくる。\n 「深夜に急にどうしたんですか？」 と聞けども、どうも要領を得ない。何やら僕に怒っていて、「わたしにあんなこと言ってくれたのはウソだったじゃない！」とヒステリックに怒鳴った。\n 何一つ覚えてはいない……ような、わずかに覚えているけれども夢と判別つかなかったような。ともかく、黒とオレンジのグロテスクな錠剤でハイになった僕が、きっとこちらの会ったこともない女性からちょうど良く連絡が来たので、そのまま通話で調子のいいことを言ってしまったのだ。なんて悪いことをしたんだ。\n とにもかくにも平謝りだ。\n 一時間くらい怒鳴られ続けた。会ったこともない方に、そもそも交流をした記憶もほとんどないのに。\n 本当に申し訳ないことをしたなぁとかなり落ち込んでいたうえで、あんまり覚えてすらいないことも苦しかった。すみません、すみません。\n 翌日、その女性からの連絡が来る。\n 「昨日のわたし、なにかにゃるらさんに失礼なこと言っちゃってましたか！？」\n なるほど、彼女も昨晩はラリっていたのだ。\n 「なんだか楽しそうでしたよ」、とだけ返信をする。\n\nそんな日々だった。\n まだ若くて、全員が胡乱で無責任だった。\n 楽しかった。\n もう、流石にあんなはちゃめちゃな日々に戻ることはないのでしょう。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -63,10 +62,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

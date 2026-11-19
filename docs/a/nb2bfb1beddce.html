@@ -32,9 +32,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-11-21 07:34\n扔掉床在棺材里睡觉\nベッドを捨てて棺桶で眠る\n\nベッドを捨てよう。\n わかった。固定観念に囚われすぎていた。ふかふかのベッドの方が眠り易い。まあ基本的にはそうだが。けれども、そんな快適さと僕は関係がない。部屋は本とフィギュア、家具を飾るためにある。そんな中でベッドなんて生活のスペースが邪魔だった。\n\n普段の僕は、写真左のスペースで眠っている。真っ黒だね。シングルベッド。広さ的にも申し分がないけれども、飽きてしまった。もっと窮屈な方がいい。閉塞感が足りない。せっかく素敵な本たちを飾る広さがあるのに、僕なんかが睡眠するために場所を取っていることに耐えきれない。\n ので、このベッドを処分する。代わりにここへ棚を増設し、より多くの物を飾る。そうすれば右上の卵形の椅子に座って好きなだけコレクションを眺めていられるね。\n 僕は床に寝っ転がっていればいい。\n 「生活」というものが好きじゃない。生活感が漂えば漂うほど現実に帰る。つまらない。家電も食事も最小限でいい。生きるためのアイテムで景観を損ねてまで生存する必要がない。となると、ベッドフレームが部屋にあることすら間違えていたのだ！\n 空いたスペースに横たわり、芋虫のように朝を耐える。それくらい不自由な方が合っているのかもしれない。狭い方が自閉症にぴったりだ。殻に閉じていましょう。\n 社会人たちが社会を回す外界と隔絶された、深い殻に。\n\n友人たちと住んでいる部屋では、このソファで寝ていることも多い。まあ見ての通り狭いし、なんならここでも床で眠る。そこで分かったこととして、やはり僕は寝返り打ったら落ちるくらいの間合いの方が安心する。暗く、狭ければ狭いほどいい。本来ならユリカ様のように棺で眠るべき人間なのだ。\n 棺桶に近ければ近いほどいい。なんなら双一のように自分の棺桶を作ってもらおうか。実は棺桶ベッドは何度か真剣に検討したことがある。が、シンプルに空気の薄さが問題らしく、鼻の病気で呼吸器が弱すぎる僕は死ぬ可能性がそれなりにあった。まあ棺桶の中で死ねるなら理に適っている気もするけれども。処理が省けて楽だね。\n その場合、第一発見者は棺を開けて僕の死体を見つけることとなる。それは結構悪くないことなので、それなりに死ぬ可能性があろうともゴシックな閉塞感への憧れが止められなければ実行してみよう。\n 死ぬまで夢を見たい。生活は現実でつまらない。棺桶という自分だけの遮光された空間。究極的には、僕はそこで生涯を過ごす覚悟を持たねばならない。血を吸うわよ！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,10 +52,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

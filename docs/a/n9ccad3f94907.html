@@ -34,9 +34,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-02-04 07:38\n一口小随笔：各种合格者（值得庆祝）\n一口エッセイ:いろんな合格者たち（めでたい）\n\nぜんぜんわからないけれど、受験シーズンがどうこうだったらしいです。\n\n嬉しい報告が届く。\n 高校も大学もたいへんなことがあるでしょう。つらかったら辞めたっていいし、でも通ってみるに越したことはない。自分の可能性をたしかめるために、居心地の良い自室から飛び出した勇気、素晴らしいことですね。\n これは別の方。むしろインターネット・エンジェルになるなら、中卒なくらいがネットウケもコンプレックスによる社会への復讐心も芽生えて面白い存在になるとは思いますが、普通の人はインターネット・エンジェルにならないので、素直に勉強を頑張った方がいいですね。\n\nこれは逆にインターネット・エンジェルに励まされたパターンの人。\n 美大の通信に受かったらしい。躁鬱だけど任せとけ！ とはいかず、ちゃんと治療にも専念して大学ライフを満喫するとのこと。生きていて良かったですね。僕も、鬱病の改善のために毎日あすけんで高得点狙っているよ！ お互い頑張りましょう。僕は大学即中退ですけどね。\n\nこれはInstagramの方。この子は、超てんちゃんでなく僕のおかげで受かりそうらしい。何一つしていないけど良かった。受験のこと何も知らないので、受かり\"そう\"というのが、どういう状況を指すのか不明ですが。\n みんな頑張っているな。僕は名前が書けて鉛筆転がせば受かる高校と大学を辞めた経験しかないから、本当にすごいと思います。がんばれ！ なんだか入学式のくそつまらない校長先生のスピーチみたいですね。せっかく高校や大学に入学できたなら、いっぱい挑戦して失敗していくといいですね。大人になって失敗するのは、とてもつらいから……。子供のうちにたくさんの挫折を味わうのが一番良いことだと考えていますよ。\n\nこれは全く関係ない人。僕の夢は高校生の頃が主で、ヤンキーとオタクしかいない工業高校だから異性が出てくる確率が極めて低い！ いつか、夢の中でくらい「にゃるらちゃん、いっしょに海を見に行こうよ」と月夜に黒い髪を靡かせる意味深な美少女とデートしたいものです。\n みなさん、合格おめでとうございます。こんなネットのわけわからんカス人間にならないよう、いっぱいいっぱい教養や経験を学んでくださいね。疲れた時は、インターネットに逃げなさい。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,10 +54,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

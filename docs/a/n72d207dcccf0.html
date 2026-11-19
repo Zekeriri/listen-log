@@ -76,9 +76,8 @@ Getty Centerで、一番嬉しかったのは、モネの「青」が観れた�
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-07-05 06:29\n洛杉矶美术馆巡礼\nロサンゼルス美術館めぐり\n\nというわけで、独りでロサンゼルスの美術館を巡ってみましょう。\n\nまずは現代アートがメインのThe Broad。こちらは村上隆や草間彌生、オノ・ヨーコなどの展示も多く、日本の現代アート界とのゆかりも強い場所です。\n\n現代アートといえば、なんと言ってもジェフ・クーンズ。\n あまりのストレートな「展示」を浴びることで、その大胆さを知る。こちらとアンディ・ウォーホルをアメリカで観ることに意味がある。これが、この国の強さなのでしょう。\n シンプルながら強烈な佇まいに、現代アートの「王」であることが伝わります。\n\n大量消費社会への皮肉そのものをアメリカで鑑賞する体験。\n イタリアの美術館で観たウォーホルとは、鑑賞の心地が全然違う。\n メッセージ性のダイレクトさ、だからこそのインパクトとパワーを感じる。\n\nこれがアメリカのアートなのか。\n\n個人的には、この強烈さを越えた、虚無とパンク溢れる、この後やってくる九十年代の英国アートの退廃感が好きだ。こうして美術館や展示をめぐっているうちに、歴史が繋がっていく感覚が堪らない。\n\nこちらのウォーホルが気にいった。\n\n写真だと、こちらの作品が凄まじかった。\n AI以前だからこその迫力も伝わり、これからこういった写真の価値はAI以前・以後で変わるのだろうし、またAIへの期待と皮肉を込めた、または技術を駆使した作品たちが展示されていくのだろうと予感する。\n\n続いてはスタンダードながら巨大な美術館、Getty Center。中庭までだだっ広く、館内をトレインで移動する。これまた結構歩き回って大変なかわりに、\n\nその苦労分の景色に立ち会える。\n 無料なので家族連れが気軽にやってくる。親しみの強い街のシンボル。\n\n豪華絢爛な部屋の再現は、いつどこで見ても心躍る。\n\n基本は宗教画が多い中、印象派以降も少しだけ飾られています。\n\nヴァニタス画は、やはり実物で見るに限る。\n 豪著な展示の並ぶ館内でも、一際「異彩」を放つ、その圧倒的な虚無。いやでも人間に「終わり」を実感させてしまう、有無を言わせぬ死の香りが素晴らしい。\n\nドガ。\n ドガの絵画の「黒」の印象は、実物の色褪せ方含めて完成されるように思える。\n この色あってこそ、黄色と赤が映えますね。\n\nGetty Centerで、一番嬉しかったのは、モネの「青」が観れたことだ。\n\n素晴らしい。\n こんな綺麗な青を間近で見れただけで、はるばるロサンゼルスまでやってきた甲斐があるというもの。\n なんと素晴らしい「青」なのでしょうか。\n セザンヌは、モネの絵画を前にして「モネはなんという眼を持っていることか、しかもそれはただの眼であるのに」と感想を述べている。\n 確かに、こんな美しい青の印象に見えている「眼」が羨ましくて仕方がない。\n\nたまたま、この美術館に一点ある唯一のゴッホも青かった。\n 「青い」印象の満足感に包まれる。\n\nもちろん、それ以外の色だって充実している。\n そして、なんだかこの美術館の展示は、非常にいぶし銀な「良いもの」だらけで、マニアックで面白い。こちらはカミーユ・ピサロ。静かに「良い」一枚だ。\n\n近代。\n\n中庭では、現地民たちなのか、みんなでワールドカップを鑑賞していた。\n\n巨大な美術館が街にある光景、素敵なことです。\n 現代の迫力と、近代以前の静けさ。\n 是非とも、両方を同日にロサンゼルスにて味わってみてください。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -97,10 +96,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

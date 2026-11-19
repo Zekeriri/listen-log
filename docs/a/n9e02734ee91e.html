@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-02-01 04:50\n喵拉拉的LINE贴图发售与贴图论\nにゃるらのLINEスタンプ発売とスタンプ論\n\nにゃるらのLINEスタンプが出ました。リリースしてから一週間くらい経っていますが、どうも宣伝のタイミングを逃してしまった。broiler先生による、コミカルでキュートなにゃるらがかわいい。\n\nこれ、お気に入り。こういう使いどころが限定されているスタンプが、いい。実際に、他人の職場に「彼の友人ですがバイト辞めます」って電話する機会もあるかもしれないし……。\n ちなみに、LINEスタンプは120円で販売した場合、だいたい一個30円くらいの利益が発生する。一万個売れたら30万円ゲットだ！ 超てんちゃんスタンプは三万個売れた。うれしいことだ。販売元に入るから、ぜんぶが僕のお金になるわけじゃないけどね。みんなが超てんちゃんやあめちゃんの気持ちでスタンプを送り合っているのが喜ばしい。\n\nさて、原作がある超てんちゃんはともかく、普通のクリエイタースタンプが何千個売れることはほぼ無いでしょう。まだ数が少なかった頃なら需要を狙っていけたかもしれないが、今やLINEスタンプなんて無数に存在しており、「とりあえずコレを買っておけばOK」という安牌がある。\n たとえば『ちいかわ』は、おっさんが使っても不自然じゃないうえで、若者からの好感度も得られる必殺技らしい。かわいくて面白くて老若男女楽しめる。異性や子供とのコミュニケーションでは、相手と同じか興味あるスタンプを送ることが重要。しかし、調子に乗っておっさんがマイメロまで使ってしまうと悲惨だ。それならもう開き直ってガンダムのスタンプを送るくらいの方がマシ。が、ちいかわならおっさんでも「これ好きなんだよねー」と堂々としても問題ない。異性も子供も気軽に反応するでしょう。そういう駆け引きが人々にはあるようです。\n その点、にゃるらのスタンプは「使うとネットの界隈がバレそう」といった厳しい意見が。なるほど……みんな「SNSのアカウントを直接教えないけどLINEで少し交流する」くらいの関係があるんだな。そんな中、癖の強いスタンプをチョイスすることで、界隈を限定させてしまう危険がある。なんて現代的なんだ……。「にゃるらを見てるようなヤツ」って知人にバレるのは恥ずかしいか。ごめんね、もっと胸を張ってスタンプを送れるような人間になるね。無理か。\n\nちなみに僕が愛用しているのは、銀英伝のラングのスタンプ。ラングのスタンプっていうかネットスラングのスタンプか。これを送られて「おっハイドリッヒ・ラングか！」と認識する人はいない。本編でワロタなんて言ってないし！\n シリアスな空気漂う銀英伝スタンプを吟味する際、「でも一番ネットで見る顔って正直ラングだよね……」と思い立ち、そのうえで文字を入れない無難な選択肢もあるのに、「やっぱり人々が望んだいるのはコレだ！」と「ワロタ」の文字まで入れた担当者は英断です。このおっさんの顔一つで売り上げが変わったと言っても過言ではないはず。悪ノリと認識する人もいるでしょうが、間違いなく必要だった。久々にワロタ。こういうスタンプで溢れていたのが昔のネットなんだよな。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

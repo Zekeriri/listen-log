@@ -37,9 +37,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-06-06 03:32\n里特费尔特的建筑与减法之美\nリートフェルトの建築と引き算の美\n\n現在、都内にて開催中の『The Original』にて、ウィトゲンシュタインが設計したドアノブが展示されているようです。哲学者でなく建築家としてのウィトゲンシュタインの一面を見たいぜ。極めて禁欲的……つまりはシンプルな造りを好んだそうですね。彼らしいぜ。\n\nという話がチャットグループで話題にあがったら、恐山さんが「ウィトゲンシュタイン、建築が終わってから、天井を上げろとか言うので最悪だったらしいですね」と話してくれた。これもらしい話だ。最悪すぎる。\n さて、なぜか最近の僕はやたらと建築や建造物について日記に書いている気がする。先月は、淡路島へ安藤忠雄の建築を見学したし。そんな自分が最近興味のあるデ・ステイルの代表的な建築家・リートフェルトの話をしましょう。\n\nリートフェルトは、シンプルかつ引き算の美学を知っている建築家だ。彼の作品のどういった点が素晴らしいかは、代表作であるデザイナーズチェア、『赤と青のいす』をご覧いただきたい。この椅子、本当にカッコいい。\n\nザ・板。最小限の板とカラーで構成されたこの椅子は、『レッド&ブルーチェア』と名付けられました。名前もシンプル。この角度からは見えづらいですが、板の先は黄色く塗装されていまして、赤・青・黄の3色とシンプルな美しさ、あるアーティストを連想しませんか？ そう、モンドリアンの『コンポジション』ですね！\n\n何を隠そう、リートフェルトはモンドリアンが提唱する新造形主義を取り入れ、その抽象的な構造の魅力を家具や建築に取り入れた方なのです。両者共に大好き！！！\n\n引き算の美学。\n こんなに難しい概念はない。単純な美を追求するには、誰よりも複雑性を知っておく必要がある。リートフェルトが建築した世界遺産『シュレーダー邸』は、その引き算された線と色のみで構成された究極の構造です。素晴らしい……。\n\nそういえば、自分は最近アルヴァ・ノトの音楽を聴いています。坂本龍一と一緒に静かなテクノを作ってきた方ですね。この二人のアルバムのジャケットが、これまたどれもシンプルで良い。\n\n僕は、クラフトワークやYMOなどのテクノが好きだ。そして、彼らのシンプルな音からはモンドリアンやリートフェルトの思想を感じる。好きになった順は逆ですが。このアルバムでは、坂本龍一のピアノとアルヴァ・ノトの電子音が同居しており、そのうえで極めて静か。彼らにしかわからない「引き算の結果」を僕は追っていく。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♫ 同人誌は新刊でたばかりです。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -58,10 +57,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -22,9 +22,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-10-15 10:18\n虐杀会议\n虐殺会議\n\n「おまえが自殺すればすべて解決するんだぞ」と毎週言われ続ける。そう言われ続けてくると、自分でも「生きていてごめんなさい」と罪悪感に頭を支配される。\n この人たちは、対象が実際に自殺したら、「そんなつもりはなかった」と絶対に言うだろう。それだけで済むのだから、そう言う。では、僕が死ななかった今をどう捉えるか。矛盾に答えることはできない。「死ね」を湾曲して伝えるだけの役割がある。相手の言葉尻を捕まえ、ものすごい難癖と揚げ足どりを繰り返す。整合性なぞ気にすることもなく、ヤクザはそのようなことが平然とできる。間接的に人を殺すことに躊躇がない人間は、何も分かりやすく反社になるわけでもない。\n 「早くこいつ死なないかな」「もっといろんな\"罰\"を与えて外し続けたらそろそろ死ぬだろう」を、大真面目に会議する。全員、直接手を動かす人間が居ない場で、手を動かせるものを圧迫し続け、弱ったらところで錯乱させ、言動の揚げ足をとってじわじわ殺しにかかる。人は、毎日「早く自殺しないかな」と様々な方法で言われると、みるみる生きる自信を失っていく。人間の脳みそは矛盾やでたらめを処理することが苦手だ。仮にどんなにめちゃくちゃであろうとも、相手がまるで筋があるように堂々と「お前は生きているのはよくない！」と吹き込まれ続けたら、そうなのかもしれないと擦り込まれる。自分が勝手に「たしかに死ぬべきだな」と筋道を立てていく。\n 遠回しに「死ね」と言うだけの存在が、一応の大義名分を持って会議に出席し、「今回はこの手でコイツを殺してみましょう」と話す。虐殺会議は静かに、淡々と進行する。誰も生死の責任を取りたくないから、緩やかに全員で殺していこうと、そういう提案が自然と出来るのも、ある意味で人間の強みかもしれません。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -43,10 +42,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -40,9 +40,8 @@ NEEDYアニメで、あれだけたくさん女の子を描いたわけですか
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-07-01 07:33\n视觉小说游戏 8月15日发售。\nノベゲー8月15日に出ます。\n\nNEEDYアニメが終わり、矢継ぎ早にノベルゲームの発売日を発表。\n\nOniichan, big news, big news!\nThe release date for Sister Other Paranoia has been decided♪\nOniichan, I’ll see you on August 14 15.\nUntil then, wait for me in your room, okay?\nI’ll definitely come to pick you up.\nAnd after that, it will be just the two of us in that room forever… pic.twitter.com/Wz825oLday— Your little sister (@__your_sister__) June 29, 2026\n\n8月15日、コミケで物理版を頒布しつつ、Steamでリリースをする形です。頑張るよ。\n\n今回のゲームでは、男キャラクターがたくさん居ます。\n ヒロインを攻略するのではなく、物語を読み進める形となるので、美少女がたくさん居る必要がないのですね。\n\nNEEDYアニメで、あれだけたくさん女の子を描いたわけですから、僕もお久しぶりさんも、こんなタイミングがあってもいいかなと。\n 自分はキャラクターの内面を描くことが好きなので、特に性別にこだわりがあるわけでもなく、物語上、男性キャラとの交流が勝手に多めになったのは偶然。花を持たせるために癒し要素を妹へ集中させていたら、他の登場人物は地味〜でイヤ〜な男たちに。\n 気づいたらそうなってしまっており、結果的に男性と男性のコミュニケーションが非常に多く、お久しぶりさんの相変わらずに耽美なデザインとイラスト力もあり、なんだか男を攻略するようなシナリオを書いている感覚に。\n これまたすごい挑戦ですね。意欲作！\n\nかわいい女の子も居るよ。\n というわけで、これから8月15日までは、新作ノベルゲームいもたぱの話をどんどんしていきます。\n よろしくお願い致します。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -61,10 +60,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

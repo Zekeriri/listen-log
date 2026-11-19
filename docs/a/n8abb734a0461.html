@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-03-25 17:44\n一年半不见的朋友，一年半的家里闭门不出\n一年半ぶりの友人、一年半引きこもること\n\nたまに日記に書いていた、高校からの仲で現在生活保護の友人と1年半ぶりに会った。なんと、彼はその1年半もの間にほとんど誰とも会っていないし連絡を取っていない。何をしたか聞いても、「寝込んでいた」「最近、体調が良くなってアニメが観れるようになったから結構観てる」とだけ。一年半も寝ていたら流石に少しずつ体調も回復したのか、ひょっこり顔を出してくれるようになった。\n\n↑先日の日記の内容は、彼と再開したことに起因する。妙なヤツ特有のレア物がザクザク出てきて面白い。\n 彼は最近、ずっとアニメの背景美術から辿って作品を見ているらしく、ウテナとの関わりの深い美術監督・小林七郎氏が手がけたアニメを追っていたらしい。そこでネオランガに出会ってすっかり大ハマりして資料を国会図書館へ読みに行こうとするくらいだけれども、あとで確認したらネオランガと小林七郎は何も関係がなくWikipediaの誤情報であった。\n 実際に、小林七郎氏が担当している『忘却の旋律』を観て、たしかにこれは背景だけでもウテナの血脈だなと思いつつ、友人は「まだよくわからないアニメだ」と序盤で困惑。結果的にずっとネオランガの話をすることに。\n これもまた、「一年半篭り続ける」という大前提を実際にする男であるからこそ成り立つコミュニケーションで、そりゃたまには軽く外出などもしていただろうけれど、基本的にはじっと部屋の中で不安と不調に耐えている様がありありと目に浮かぶ。\n 僕からすれば、こんな突然に美術監督へ興味を持ち始め、Wikipediaの誤情報を確認もせずに間違えてカルトアニメにハマって、国会図書館で資料を読もうとしたら偶然そのタイミングで電子化作業中で借りれなくて……と、とぼとぼウチにやってきては借金返済の代わりにレアな書籍やグッズを置いて帰る友人の存在なんて、面白すぎる上で全く飽きないので生涯仲良くやっていくだろうと確信がある程です。が、社会は彼なんて意味不明すぎる生き様を一切評価しない。\n 周囲の人間との連絡を遮断してまで一年以上、急に家から出なくなる人間を誰も雇うとこはできない。アルバイトでも。しかし、僕の贔屓目では、こんなに面白いやつは他といない。一年半ぶりの会話が「ネオランガ3話が三姉妹それぞれのスタンスがはっきりして良くってさ……」なんて嬉しすぎる。\n 僕らもあと数年で30後半へ突入するし、彼もきっとそんな生活の不健康なツケが回ってくる段階だ。それはもう互いに避けられない。僕らは将来を犠牲にして意味不明な今を生きている。どうせ彼は結婚なんて一ミリも考えた事はないし、孤独に死んでいく覚悟も当然あるでしょう。\n せめて、その日が来るまで、ネオランガがどう、忘却の旋律がどうって、誰が興味あるんだよそれって話をしていけたらいい。僕らの高校時代、二人でシムーンについて熱く語っていたなあ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

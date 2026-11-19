@@ -25,9 +25,8 @@ boothにてエッセイ集が販売しております。みんな読んでね！
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-11-30 07:20\n一口随笔：Atoraku=Nakua\n一口エッセイ:アトラク＝ナクア\n\n僕はタランチュラを飼育していましたが、蜘蛛を好きな理由は完全に「アトラク＝ナクア」の影響です。もし、この作品をプレイしたことが無いのであれば、今すぐにでも購入した下さいね。自分の中で、それくらい絶対的な作品として在るので。\n 気高く美しく、幽玄で人間離れした存在に、人は憧れます。「アトラク＝ナクア」に登場する女郎蜘蛛・比良坂初音は、正しくそれとして描かれる。\n 物語は、深夜の体育倉庫で主人公である奏子が、下衆な不良たちから襲われる場面から始まり、学園に巣を張っていた初音は、その不良たちを「醜いから」殺す。登場した瞬間から、彼女は自身の美的感覚を優先して生きる、妖艶で残酷な生き物として描写されます。もう、序盤から骨抜きです。人間のちっぽけで低俗な価値観や生命なんて軽く扱う、上位存在。それが墨を流したような長い黒髪で黒セーラー服。そして「姉様」と呼ばれる女郎蜘蛛。\n この作品は、そんな「姉様」の魅力を最大限に際立たせるために全力が注がれます。徹底してダークな世界観と和風なサウンドの演出も最高ですが、特筆すべきは繊細な文章力と詩的な会話。彼女の美しさを表現するためには、とうぜん相応の文章力が無いと様にならないのですが、この作品にはそれがある。つまり、全てがある。そのせいで、僕は「アトラク＝ナクア」に、比良坂初音という絶対の存在に永久に囚われてしまったのですね。\n 聡明で気高い絶対的な美少女を余すことなく表現した物に出会いたいですね。「すべてがFになる」や「魍魎の匣」も、そのような作品です。是非それらに触れ、僕と同じく一生縛られ続けて下さい。\n\nboothにてエッセイ集が販売しております。みんな読んでね！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,10 +45,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

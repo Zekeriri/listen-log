@@ -46,9 +46,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-07-07 05:56\n与陌生男人睡觉的自残行为\n知らない男と寝るという自傷行為\n\n「また知らない男の人とセックスしてしまった」と、後悔でホテルの風呂場から泣きながらの通話が飛んできたことがあった。\n 似たような連絡は少なくなかった。\n ああ、女性にはこういうタイプの自傷行為があるのかと理解する。\n 自分の身体の価値を確かめつつ、性欲と寂しさを埋めるために出会い系を利用する、またはちょっとした知り合いに抱いてもらうなど。その後に決まって死にたくなるそうで、そこまで含めて、自傷行為であり、ある種の自慰行為であるような。\n\n僕らは、「そんなことしなければ良いじゃん」で片付けられない問題を抱え続けている。僕だって鬱々した出来事を全て捨て去って楽しく生きるルートはある。新作を出さずに貯金で数ヶ月休んでみることもできなくもない。\n ただ、鬱々とするのも新作の締め切りで自分の首を絞めるのも、敢えて多くの人から嫌われる選択肢を取るのも、非常に複雑な自傷行為に近い。\n 「得をしない行動」こそ、真の自由を感じる。\n まあ、理不尽に耐えた分、結果的な利益は必ず生まれるものでもあるんだが。\n\n知らない男性を漁って身体をあけ渡す行為に、自分は話は聞けども止めることをしなかった。相手が辞めたいと言えば、代替案を考えはすれども、もはや毎日日記を投稿する・何かを作っていない時期を存在させない枷を含めて、自傷行為でしかない僕の半生で止める理由がない。\n もうしょうがない。\n 傷つくのが好きで、自身こそ悲劇のヒロインなんだと思いこまないと、薄幸の美少女を気取らないとやっていけない夜があるのも、異性ながら理解はできる。自分だって、こんな理不尽ないよときちんと書いておかないと発狂しそうな目に遭っている。\n 他人のためにできることは、発信を止めないことしかない。\n こんなんでもまだ生きていると、誰かの孤独をテキストによって一瞬埋められたらいい。\n なぜ、世の中にはそんな理不尽だらけなのか、仕組みはわかっている。\n 答えは資本主義と自己愛性パーソナリティ障害だ。\n 後者からは、とにかく離れる以外にない。変化や理解を求めてはいけない。これだけでだいぶストレスは減る。\n 前者は難しいね。\n 資本からの脱出は仏教の領域に入っていくから。\n 具体的なアドバイスを書かないのもズルいから一つの自分なりの答えだけ書き残しておく。\n\n時間を「もったいない」と思わないこと。\n\nどんな時でも、必要な時間を過ごした、というか後も前もなく、ただ「今」があるのみと考える。遊んじゃって、眠っちゃって無駄だと感じない。そういう時間を過ごしたと事実だけ残す。\n これも仏教思想に近いのですが。\n 良くも悪くも、全員に時間だけは平等で、自傷を繰り返す夜も時間の使い方の一つでしかない。\n 少しずつ、脳を楽にしてあげないと現世なんてやってられないよな。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -67,10 +66,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

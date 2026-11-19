@@ -22,9 +22,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-10-02 06:05\n保护人类人权的职业\n人間が人間である権利を守る職業\n\nつまるところ法での争いであったとて、「自分は人間として生きていて、感情があり、思考があり、己なりの倫理観を持ち、魂に従って生きているため、貴方の発言や行動を許すことはできない」と主張するだけである事実に勇気がでる。\n 魂を語るに嘘偽りがなければ、あとは法の番人である弁護士が親身に言葉を装飾してくれる。人間が人間である権利を守る弁護士なる職業は、なんと誇り高き生き方であろうか。\n なんだ、意外と小細工抜きではないか、と気づいてからはだいぶ心が楽になった。もっと小手先のテクニックで戦況が変わるものだと思っていた。想像よりも人は人だ。相手の弁護士だって人間だ。つまるところ、そういうことなんだ。\n 結局、人間は総じて「倫理」という責任を背負って暮らしていることを確かめ合う作業なんだな。そんな大前提すら社会に染まり、権利に染まり、システムに組み込まれていくと見えなくなるだけで、倫理と道徳は必ずついて回る。それだけのことであった。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -43,10 +42,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

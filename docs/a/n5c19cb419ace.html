@@ -32,9 +32,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-05-28 03:58\n一口随笔：融入小镇\n一口エッセイ:町に馴染む\n\n誰でも一度は、亀有での両津勘吉のような存在に憧れたことがあるでしょう。外を歩けば商店街の方々に話しかけられ、公園へ行けば近所の子供と遊ぶ。地域と馴染んだ、人情溢れる町の人気者。\n 毎日、中野ブロードウェイを散歩しながら買い物しているうちに、たまに店員さんに話しかけられるようになりました。たとえば、4階には宗教や精神世界に関する書籍を扱う書店があるのですが、僕はたまにそこで宗教関係の本を漁っているうちに、店員さんの本から「○○（カルト宗教）の本入ったんですよ！」と嬉しそうに話しかけられたことがあります。中野ブロードウェイで、店員さんからカルト宗教の本を勧められる体験、いいよね。\n\nショーケース眺めていたら、こちらの存在を認知している中野ブロードウェイの店員に、「クロックタワー2の小説版ありますよ（プレミア）！」と話しかけられたんですけど、「話しかけたらクロックタワー2の小説版を購入しそうなオタク」と認識されているの誇らしすぎるだろ— にゃるら 文フリ ト39・40 (@nyalra) May 26, 2022\n\nつい先日は、3階の本屋でショーケースを眺めていた際、店員さん（以前にもショーケース内の本を購入したので顔見知り）から、「クロックタワー2の小説版ありますよ！」と話しかけられた。もちろん、クロックタワーが好きだなんて深い世間話をしたことはありません（レアなホラー漫画はよく買っていますが）。「話しかけたらクロックタワー2の小説版に興味を持ってくれるようなオタク」と認識されている事実が誇らしすぎる……。\n\nさいきん買った、お気に入りの本 pic.twitter.com/x4qMpimEnV— にゃるら 文フリ ト39・40 (@nyalra) May 26, 2022\n\n結局、この日はMOTHER2とパロディウスの本を買って帰りました。その際、店員さんが「ゲーム関係のコミカライズってめっきりでなくて寂しいですね」と嬉しそうに喋ってくれて、こういう交流って良いなと。自分が中野ブロードウェイの一部になってきた感覚が心地良かったのです。問題としては、「毎日中野ブロードウェイを散歩している、無職のヤバいオタクA」でしかないことでしょうか。\n\n毎日の日記をまとめた同人エッセイ集をBOOTHにて販売中！ 困ったらすぐ中野ブロードウェイの話をする。\n\n若い頃に書いた商業エッセイ集もよろしくね。この頃は、秋葉原に住んでいました。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,10 +52,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

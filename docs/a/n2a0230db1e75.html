@@ -24,9 +24,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-12-31 07:26\n一口散文：一切皆苦\n一口エッセイ:一切皆苦\n\n仏教の教えに『一切皆苦』というものがあり、簡単に説明すると「この世の全ては苦しみで、思い通りには進まないよ」という話です。一見、厳しいようでいて、ここまではっきり言ってくれるのは凄く優しいことですね。\n この考え方は、とても好きですし救われます。\n 生きるということは、基本的に悩み、苦しみ続けることなので、今がつらくて当たり前。思い返してみると、自分を含めて誰も彼もが、いついかなる時でも何らかの悩みは抱えていましたから。結局、人間である以上、自我を持っている以上は一切皆苦であるので、ならばいっそそれを前提に割り切った方が気楽です。悩むからこそ動物でなく人間である証左でもありますから。なので、仏教では苦しみを受け入れることを大切にしています。苦しみから逃げるより、「あって当然のもの」として考えることから始める。みんな大なり小なり悩みがあってモヤモヤしている状況がデフォなのでしょう。\n よほど楽しいイベントがあった時以外は、みんなうっすら苦しんでいる。そんなものだから、自分の苦しみは、特別でもない。「人生って、こんなもんだよな」と受け入れて「覚悟」しておくと、精神が多少は楽になるかもしれません。どうせ生きているかぎり、嫌なことは無限に起きる。きっと、来年もたくさんの苦難が襲いかかってくる。でも、それこそが生きるということなのですから、その時は笑って苦しみ、悩みましょう。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,10 +44,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

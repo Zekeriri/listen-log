@@ -41,9 +41,8 @@ There is also an English translation#超てんちゃんのはいしん pic.twitt
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-24 04:32\n一口随笔: NIDIGA五十万本与总监修喵拉拉\n一口エッセイ:ニディガ50万本と総監修にゃるら\n\n拙作のニディガが50万本を越えたので記念放送をしました。準備も企画も苦労したけれど、それに見合うくらい盛り上がったので一安心です。\n ヒットしたということは仕事が増えることとイコールであり、最近の僕はニディガに関するあれこれでてんてこ舞いである。毎日毎日、何かしらの打ち合わせもあるし、Switch版追加要素も作っているし、そういった努力のおかげで、役職に「総監修」がつきました。\n 「総監修・企画・シナリオ にゃるら」、これが結構嬉しい。『シン・ウルトラマン』を観た際、スタッフロールの「総監修 庵野秀明」を見て、「あっ！！！ そのポジションはズル！」と憧れていましたので。カッコいいでしょ？\n\nいろいろ頑張っているのを認めてもらえて、ニディガの役職が企画・テキストに加えて「総監修」なるカッコいいポジションにも就任…… pic.twitter.com/pZL4ovSp0P— にゃるら (@nyalra) June 14, 2022\n\nさて、総監修の最も大事な仕事を教えましょうか。僕が念入りにニディガで行っていることは「できるだけ企業臭を消す」ことで、大人たちがカチカチに固めて作っているよ〜でなく、変なクリエイターたちが自由に楽しくやっている感を重視する。規模が大きくなるにつれて人が増えていくので、だんだん製作過程に大人が増えてしまう。そうなると、「確認」を省くためになんでもカッチリ丁寧に行われるようになるのですね。でも、そんなの嫌じゃん。\n 今日も、生配信の概要欄にガイドラインなりゲームの説明・リンクがたくさん貼られていたので、それを「超てんちゃんがしゃべるよ」程度に削りに削ってもらった。軽い気持ちで超てんちゃんを見にきた人たちに、そんな情報と大人の事情の洪水を浴びせてもどうにもならない。こういうところをひたすら直していく作業、総監修。\n\nたくさんの企業から連絡がきましたが、グッズも結局は自社で製作することに。その方が制約なしに好きなもの作れるし、クオリティに凝ることができますので。でも、そのせいで少し高めになってしまいました。ごめんね。そのぶん良いものになっているから、届くのを楽しみにしていてね。価格設定に関しては、次の課題です。でも、安価で品質を妥協したくない……。「とりあえず売れそうなグッズ出してみました！」こそ企業臭……嘘でコーティングした\"大人\"の塊でしょう。\n なんにせよ、いちいち現場でうるさくして申し訳ないですが、そういう微調整もひたすら行っていく。僕は、大人の事情でありがちなつまらない宣伝をさせられる超てんちゃんが見たくないから。そして、プロデューサー含めた製作陣もその考えを認めてくれているので、「総監修」の立場が活きている。本当にありがたいことです。これからも、「僕が良いと、綺麗だと思っているか」を優先して活動していければと願っております。\n 50万本、みんな応援ありがとね！ いくぜ100万本……できるできるできるできるできるできるできるできるできるできるできるできるできるできるできるできるできるできるできる！！\n\n超てんちゃんの配信ありがとうございました！\n今回もインターネット・エンジェルのこと大好きなオタクたちが一丸となって配信を頑張りました。改めて50万本ありがとうございました♪ https://t.co/CeDHrok3Wq pic.twitter.com/eeWhzMBXJz— にゃるら (@nyalra) June 23, 2022\n\n50万本記念メッセージを書きました♪\n还有一个中文误译\nThere is also an English translation#超てんちゃんのはいしん pic.twitter.com/cSe6LLZGOI— にゃるら (@nyalra) June 23, 2022\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中！ 買ってもらえたら、総監修の心労が少し減ります。\n\n商業エッセイ集もよろしくお願いします♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -62,10 +61,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -33,9 +33,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-10-30 03:56\n死亡游戏与手指与成为回忆的照片\nデスゲームと指と想い出になる写真\n\n「みんなでカレーでも食べませんか？」と呼ばれてノコノコ遊びに行ったら、まんまとデスゲームに参加させられた。\n\n唐突にヘッドフォンをかけられ、200秒の時間内にクリアしなければならない謎の箱を設置される。ジャンケットバンクなら鼓膜を犠牲にして勝つパターンだね。洋服をたまたまハロウィン仕様にしていたので雰囲気ばつぐん。カレーを食べられると思ったら命の危機に陥る。狂四郎2030？\n どうにかすべての面の法則性を解きあかし、無事に残り18秒でクリア！ 結構すごいことをしたと思うのだけれど、周りが謎解き博士だらけなのでクールに「まぁ、まずはこんなものかな」といった態度で望む。そう、今回はトキキルにていっしょに謎を作ったメンバーが主だぜ。\n\n僕がコンセプト、恐山さんが謎を施したTシャツ。完売したとのこと。みんなには解けるかな？ 解けないと購入券をあげないぜ。たぶん次も手に入るチャンスがあることでしょう。正解したら僕の書き下ろしポエムも読める。\n メンバー。恐山さん、トキキルの謎解き博士常春さん、いっしょに対談したこともある若手ホラー作家の梨さん、超てんちゃんのグッズ紹介でもモデルをお願いしたやみえんさん、そして初対面の超学生さんに僕の6名。\n みな、何らかの理由をつけて呼ばれたものの、一切無視をされてとにかく渡されたパズルをひたすら解かされている。クリアするとすぐさま次のパズル。すごすぎる空間だ。それが数時間。これがわりと面白い。人はここまで一つのことに集中しないし、各々が本気ですから。再現性のなさで言えば忘れられない特別な一日だ。知恵熱でる！\n そんな中、最も若手な超学生さん（プロフによると23歳）が記念にピースの写真撮りたいとのこと。彼のことは仮面ライダーBLACK SUNで知っている。「シャドームーンのベルトも持っていて〜」と言おうとしたけど、歳下へキショい絡み方するおっさんそのもの過ぎてやめた。それより、恐山さん含めて仮面キャラ二人いるのかよとビビる。その場では仮面を外した姿ですが。6名中2名がタキシード仮面枠なセーラー戦士は怖い。\n ピースの写真……みんなで指を集めて記念写真！？ それは……それはちょっとおっさんには恥ずかしいぞ！ いいのかな。30歳のｵｻｰﾝが23歳のイケイケな歌い手と指を並べていいのか！？\n 超学生さんは無邪気に嬉しそうにハシャいでいる。若々しい。覚悟を決める時か……！\n いや、やっぱり恥ずかしい。顔から湯気が漏れて紅潮する。恐山は？ 同じ三十路の恐山はキラキラピースにどう応えるんだ！？ もはや謎解き以上に脳内フルスロットル。恐山さんの方をチラリとｺｿｰﾘ見ると全然ノリノリだった。そりゃYouTubeでのアレやコレやから考えると指の二本くらい安いもんすぎるわな。結果。\n\nめちゃめちゃ恥ずかしがっている。あとアイコンのせいで卑猥なものにモザイク掛かっているみたいだ。みんなの腕が堂々としていて眩しい。\n こういう時は、恥ずかしいと思うほうが恥ずかしい。学びのある一瞬だった。みんなでカレー食べたよ。これは良い思い出になる一枚ですね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,10 +53,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

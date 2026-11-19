@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-06-22 14:42\n大叔阅读新人奖作品\nおっさん、新人賞を読む\n\nライトノベル新人賞応募作の書籍化にあたって推薦文（帯に載るやつ）を書くため、その作品を夜通し読んでいました。\n 帯の推薦コメントの仕事はちょくちょくあるものの、あまり受けずにきたのですが、今回は話を持ってきた編集さんとは長い付き合いでして、それでも声を掛けてきたということは「にゃるらくん、こういうの好きでしょ？」の意図が含まれる。\n その時点で、まあ僕好みのデビュー作があるんだろうな、でも面白くなさそうなら書かないぞの構えでいたものの、「しかしまあ好きな作風なんだろうな……」と寂しさもあった。結果的には、じっくり朝まで読んじゃってコメントを送った次第ですが。悔しいぜ。\n なぜ、こうも悔しさがあるのか考えてみるに、そりゃ新人賞からデビューして書籍化する人間には輝かしい未来が待っているからです。数々のライバルたちから選出された類稀なる才能の持ち主だから。未来ある新人の存在……羨ましいよ。\n とはいえ、実際僕なんかがコメントを書くことで、僅かでも新人の役に立てるなら嬉しいものである。30ともなると、自身の幸福は経験則で想像できる範疇にしかないので、他人の役に立つ方が刺激になるのだ。これはマジでそう。世の中のおっさん・おばさんがやたら世話を焼くのは、自分の行動で他者が喜ぶ方が結果的に自身の心が豊かになるからである。利他的であり利己的でもある。お節介にならず、本当にそれが若者の役に立つなら願ったり叶ったりでしょう。\n 過去に散々チヤホヤしてもらった身なのだから、同じことの繰り返しよりも、自分がもてなした方がまだ新鮮な楽しみがある。しかし、この「年相応に弁えてますよ」感こそ若者の鼻につくのも理解している。おっさんの「達観してますけど？」といった態度は、要するに「もてなす側ですよ」という高慢さと地続きだ。なんなら若者側は「おっさんが気持ちよくなる機会を与えてるんですけど」くらい生意気で居て欲しい。実際、仕事の付き合いでおっさんに高いレストランを奢られたからって全く嬉しくないだろう。友人とサイゼで豪遊が最も幸福だと知っているから。\n つまり、おっさんが若者の役に立とうとするのは、本人の自己肯定感にもつながっているので、実際相手はだいぶ得をしている。アドバイスや過去の自慢まで含めてきたら最悪だが、たいていそのような流れになる。高いレストランに連れていくおっさんは、ほぼそんな話をしてくる。高級な料理を免罪符にして。\n なんにせよ、人の役に立てたなら良かった。というか朝まで読んじゃった時点で作品を楽しませたもらっているのですが。合法的にスマートな方法で未来のスターのお役に、間接的に僅かでも立てたのなら有意義な仕事であったと素直に喜ぼう。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

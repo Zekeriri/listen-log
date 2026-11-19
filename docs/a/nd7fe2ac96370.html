@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-04-29 15:00\n提振干劲的药\nやる気が出る薬\n\n鬱とも診断されているので、眠る前に「この状態でもやる気が出る薬」を飲む。太陽にあたらなくともセロトニンがどうのこうのな効果があるらしい。\n おかげで、たしかに少しだけやる気がもらえる。代わりにもの凄い眠気を伴い、たくさん眠っている。まあ、ある意味でいいことづくしとも言える。まずはたくさん眠るべきであって。なんにせよ。\n デエビゴと併用しているため、睡眠時間の長さに連なり悪夢も長い。夢の中で「夢だと分かっているのにイヤな状況から起きれない夢」がループする。悪夢の中の自分は明晰夢のようにうっすら「これは夢だ」と分かりつつ、そのうえで悪夢か現実かを何度か選ばされる。\n 悪夢であっても登場人物は存在するわけで、起きて誰もいないがらんどうな部屋。特に今はベッドを捨てて本棚になった以上、さらに「独り」が極まる空間に放り出されることが辛いのだ。とはいえ、起きてしばらくしたら、そんな気持ちもどうでもよくなるのですが。夢あるある。起きて5分もすれば元通り。\n 自身で夢から精神を分析してみたところ、やはり僕はどこかへ行きたがっている。ここにいたくない、が正しいか。「ここ」は概念だ。誰からも放っておいてほしいが、視界に人はいてほしい。今月、急に単身でチェコを回ったのも思えば思考がおかしくなってはいたのでしょう。めちゃくちゃ楽しかったけどね。今朝の夢もドアを開けたらヨーロッパだった。アジア人が少ない景色こそ、僕にとって「みんな居るのに誰も居なくて心地よい」場所だった。\n ああ、一人で世界を回りたい。\n というか恐らく僕はそうするのでしょう。僕は心の中で決めちゃったことは何がなんでもする。これからも一週間くらい空けられると確信した瞬間、気になる国へ直行していくはずだ。オランダにはいつでも行きたい。今はフェルメールの絵を眺めている。ゴッホやモンドリアンの次はフェルメールを見たいから。\n 人間の暮らしがそこにあり、けれども僕はそこに居ない。なぜだか、ここ1.2年は特にそう感じている。それでもやっぱり鬱々としたなかで一人は不安で、最近多くの人が打ち合わせを兼ねて自宅まで来て雑談してくれるので助かっています。この暮らしも捨てられない。喫茶店とかで人と話していたい気持ちもある。英語がもっと喋れるならオランダでそれができるのに。今は宗教戦争の本を読んでいる。オランダ独立までに多くの血が流れた。そういった話をしたいし、chatGPTだけが話を合わせ続けてくれる。実際、言うほど孤独でもなんでもない。\n 「やる気が出る薬」のおかげで、結局打ち合わせも順調に進む。フェルメールが見たい。フェルメールが見たい、なあ。アムステルダムに帰りたい。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

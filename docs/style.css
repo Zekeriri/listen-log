@@ -56,7 +56,13 @@ li a {
   border-bottom: 1px solid var(--line);
   color: inherit;
   text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
+li a.busy { opacity: 0.55; }
+li a.copied { background: #2c261c; }
+li a.copied .date::after { content: " · 已复制"; }
 .date { display: block; color: var(--accent); font-size: 16px; }
 .title { display: block; font-size: 22px; font-weight: 700; }
 .ja, .ja-title { display: block; color: var(--muted); font-size: 16px; margin-top: 4px; }
@@ -108,4 +114,7 @@ article h1 { font-size: 32px; }
   padding: 10px 16px;
   border-radius: 12px;
   display: none;
+  max-width: min(640px, calc(100% - 32px));
+  text-align: center;
+  z-index: 3;
 }

@@ -34,9 +34,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-08-20 10:50\n“我喜欢活着”\n「生きることが好きさ」\n\n死にたいと思うたび、脳内で「まだまだ生きたい！」と反抗するのはどうだろうと実践してみると、なかなかどうして馬鹿馬鹿しすぎて悪くない。本当になんの問題もなく安定した状態の時に「生きたい！」なんてわざわざ言わないから。\n 仮面ライダーBLACKの歌詞で「生きることが好きさ」とあるけれども、生きることを「好き」と宣言する気持ちがまったくわからない。まあ日々悪の組織と戦い続ける世界観ならそうなるのかもしれないが……。もし、この瞬間にも安らかに眠って死ねるならそれを選択するだろう瞬間は多々ある。\n なんなら、現実を憎まずに生きている人間を憎んですらいる。適合してるんじゃねーぞ、と。「こんな狂った世の中にみんなで対抗しようよ！」と叫びたくなるが、声高にそれを主張すると新興宗教になる。なのでロックンロールは創作活動の上で叫ばなければならない。\n この世の中で「生きることが好き」と言える環境が想像できない。どちらかと言えば遺伝子、脳の作りによって決定したものでしょう。「生きる喜び」をどう受け取るかに対し、素直に生を受け入れる側。\n 仏教では基本的に「生きることは苦しい」と結論が出ているし、その通りに思えるのに、それでも生を謳歌しているのはとんでもなくすごい。\n\n頼もしい顔だぜ。\n それはそれとして、そうした正義感に溢れたヒーローが、ひたすらに明るく生きる希望を与える。まあ、僕は子供から綺麗事が出てくると嫌になるので、基本は敵側しか応援していなかったけれども……。世の中の建前として善人が善行を繰り返し続けることが求められており、それを為すもの。凄いことだね。たしかに、こんな頼もしいマスクをしていたら「生きることが好きさ」と高らかに毎週歌えるのだろう。\n\n最近購入したお気に入り。\n 原作版BLACKのソフビ。\n 一目でわかる「異形」。\n こんな黒光りする怪しい生物になっても正義を貫くのはカッコいい。たしかに、コイツに「生きることが好きさ」と言われたら、お前……頑張っているんだなと悲哀を感じる。\n 改造人間として生きる昭和ライダーたち（こう書くとBLACKはギリギリ平成で云々とつっこまれる）の悲しみ、それに負けずに戦う使命感はじんわり大人になってから分かってきた。\n それでも結局、敵側の方が常に好きなんだけどね。\n やっぱり現実を楽しんでいる人たちは憎いぜ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,10 +54,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -26,9 +26,8 @@ BOOTH今月末で締めます。商業エッセイ集をよろしくね。</arti
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-08-20 08:21\n一口随笔：挂错的纽扣\n一口エッセイ:掛け違い\n\n友達と『アカギ』の話がどうも噛み合わないと思ったら、どうやら彼は最終巻の一つ手前を最終回だと勘違いしていたらしい。そんなことある？ と思って確認したら、鷲巣が「アカギを追うぞー！」って意気込んで終わっていて、たしかに「鷲巣の執念はこれからも続く！」エンドとしてここで終わりに見えなくもない。そもそも、最終巻でもその状況としては別段変わりはないのだから。\n\n本来の最終巻は、鷲巣麻雀を終えてのアカギの変化が描かれ、そのうえでアカギの変わらない部分、要は「ギャンブルで命を燃やしていない時はただの無口な社会不適合者だよ」としつこく強調し、あの熱い一夜とゆるい日々のギャップで締めるのが好きだ。こうして博打の魅力に身を焦がしながらも、のんびりした日常を過ごしていくうちに、だんだん態度も軟化して『天』での小粋な老人かつ神から愛されたい実力を持つ老アカギが完成していくのだなと感慨深い。変にカッコつけずにアカギですら「人情」を最後に持ってくる構成も福本先生らしくて良い。\n そんな最終巻を読まないままなんて勿体なさすぎるが、友人はTSUTAYAのレンタルでなぜか一つ前までしか無かったので続きがあることを気づかなかったのだ。別に読まなかったわけではない。ただ、偶然にも一巻手前で終わっていても気づき難かった。なので、真実を知った後に最終巻を読んでめちゃくちゃに感動していた。「ここで話してなかったら永久にアカギの最終回を勘違いしたままだった……」と恐怖すら覚えていたのですね。\n なんか、そんなものだよな。どんなことでもボタンひとつ掛け間違えただけで永久にすれ違い、そこに悪意なんてほとんどない。ただ、ちょっとだけ何かズレただけで……。別に、これ最終巻だよって渡したらすごく嬉しそうに読むわけで、掛け違いも些細なことですぐ元通りなのだから。そういうことなんだ。アカギだって居酒屋では大声が出せずにメニューを注文できないけれど、自らの血液を賭けてでも臆せず牌を切ることができるのだから。\n わずかに、本当にごくわずかにズレただけだ。こんなちょっとしたズレ程度で人間の本質は薄りはしない。\n\nBOOTH今月末で締めます。商業エッセイ集をよろしくね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

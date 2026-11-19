@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-10-29 13:46\n冲绳的工科学校、情色漫画家的朋友 新刊\n沖縄の工業高校、エロ漫画家の友人 新刊\n\n工業高校時代の友人、もんちゃんが成年コミックの新刊を出した。記念に一冊、献本を頂く。中高の知り合いで作家となった知り合いは彼だけだ。\n 沖縄工業高校。\n 鉛筆転がして自分の前が書ければ受かる、沖縄の中でも特にバカや不登校が、とりあえず生きていくための就職ができる資格を取るための機関。\n\n僕ともんちゃんも、そんな沖縄工業高校で出会う。出会うってほど劇的な事もないけれど。僕がギャルゲー目当てでセガサターンのソフトを中古屋で漁りまくっている時、なんか気恥ずかしかったからレジに持っていくのを彼に手伝ってもらった、そんな記憶がある。\n 僕らは、資格を取ってエンジニアなり電気工事なりをする以外に、まともなお金を得る未来が見えない。あとは自衛隊か。もちろん、そんなこと僕にはどれも無理だった。逃げの選択肢として進学とともに上京して、こんな島国も実家も忘れようと画策する。いい文章さえ書ければ推薦してくれると国語の教師が約束してくれた。僕は読書感想文で賞を取ったからね。見事、なんか色々、小論文なるものを書いてたりして一応文学部に入って即辞めた。就職なる現実から目を背けた逃げの選択肢。工業から文系。まったく無意味な進路を辿る。\n みんなは就職をした。本当にダメなオタクたちはフリーターや無職となった。彼らも僕と同じく時間を止めてカードゲームに興じるモラトリアムを選んだ。沖縄と東京で離れて会えなくなったけれど、志が同じ仲間の存在は心強い。僕らは工業高校なるセーフティネットの中、そこでも役割を果たせなかった者たちだ。\n それでも社会はたくさんの挑戦がある。\n 起業とか、ギャンブルとか。ある意味で起業かつギャンブルである「作家の道」なるイバラだらけの修羅場は、みな見て見ぬフリをする。誰しも開けているけれど、自らトゲまみれになってまで選択しない道。もんちゃんは気づけばそこへと進んでいた。僕らが一定の現実を保つには、もうそれしかないから。\n 思えば、もんちゃんはずっと落書きをしていた。クラスに一人は居る、なんか絵が上手いやつだった。どこかのタイミングで、彼も資格なんかとって仮初の社会性を身に纏う苦しみを蹴ったのでしょう。工業高校は凄い。数々の資格が取れる。やる気さえあれば、沖縄人だって平均より少し上くらいの仕事にありつける。しかし、彼はそんなまやかしよりも白い紙とペンへ夢中になった。\n\n彼がコミケなりのタイミングで上京するたび、少しだけ会話をする。成コミ作家の苦しみも多少はわかる。頑張れ、と本心から思うし、単行本が出せている時点で結構な成果が実っている。エロが好きなネットの友人も彼の名前を知っていた。彼は、今後大きな花を咲かせる可能性のチケットを握っている。\n 高校時代、僕らは資格勉強なる種を植えられたけれども見向きもしなかった。時を経て、いま妙な形で僕ともんちゃんは別種の新芽が見えている。それがどんな花を開くか、はたまた腐り落ちるのみか、この先は誰も知らない。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

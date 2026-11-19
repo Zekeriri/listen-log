@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-02-09 04:46\n一口随笔：与他人的比较等等\n一口エッセイ:他者との比較とか\n\n「他人と比べるのをやめたら一気に楽になりますよ」的な自己啓発系のツイートが流れておりまして、それに対して「他者と比較しないなんて修行僧が死ぬ間際に辿り着けるような境地に、一般人が至れるわけない」とツッコミが入っていました。\n 現実だろうがネットだろうが、人は数字からは逃げられない。リアルでは年収や勤務時間を比較しては一喜一憂し、ネットでは各SNSのフォロワー数がつきまとう。「見ないフリ」または「見ない努力」までは可能でも、完全に関心を無にすることなんて、敬虔な宗教家でしか成し得ないでしょう。\n\nでは僕らは死ぬまで数字の奴隷なのか？ と悲しくなりますが、「最貧困女子」を読んだ際、次々とワープア女性による不幸エピソードが語られていく中、一人だけ月10万の給料ながら地元で友人とお金のかからない遊びを繰り返す陽気な女性が登場し、彼女が地元で楽しくやっている様子が描かれます。\n 多くを見てしまうから比較して悩むわけで、ネットも切断して地元の狭いコミュニティで暮らせば、そこで似たような仲間だけで過ごすことにより、悩みを解消することもできる。この例には、なるほどなぁと感心したものですが、狭い世界で満足できない/所属できないからインターネットへ飛び出したわけで、無限に他者と接続される広大な世界に触れてしまった僕らは、井の中の蛙じゃ居られない。\n だったら、もうここで競い合って数字と自尊心を伸ばすしかないのでしょうね。確実に訪れる劣等感に備えて、日々強くなる必要がある。「戦わなければ生き残れない！」結局は、生きるとはそういうことなのかもしれません。\n\n毎日のエッセイをまとめた同人誌などをboothにて販売中！ 数字にとらわれた哀れなオタクの日常を読むことで、僕の人生と比較することができます。\n\n商業エッセイ集では、僕の生い立ちを垣間見ることができますが、振り返ってみると、貧困な生活に対して結構楽しそうだよなぁ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -25,9 +25,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-03-08 17:10\n永无止境的文化祭前夜\n終わらない文化祭前夜\n\nNEEDYのCG部分を担当した方が、嬉しそうに「にゃるらさん、自分はシン・ウルトラマンでは、あのシーンを担当していて〜」と話しかけてくれる。僕もそのシーンでの怪獣のエフェクトはカッコいいなと思っていたので、ちょっと話が盛り上がる。他のアニメーターが「自分はガンダムではここやっていて〜」と色々話しかけてくれたりもする。\n 結局、アニメを作った、今は劇場先行分は終わった状態でスタッフと雑談し、そこで特撮やロボアニメに対してあーだこーだと言っている時間が楽しいのだ。もちろん、話のきっかけは「俺がこのシーンの超てんちゃんの顔描いたんですよ」って、NEEDYアニメから入ってはいるものの。僕は「ありがとう！」と喜ぶ以外にない。だって、本当に嬉しいわけだし。このタイミングは、間違いなく楽しく、みんなで何か大きなものを少しずつ積み上げていった実感が湧く。\n 先日の試写会では、作品に参加したスタッフたちも観賞をした。帰りに、全体の感想を語ってくれながら、「自分がここ描いたんだよ、にゃるらさん！」とはしゃぐのだ。これが幸せということだ。\n ビューティフル・ドリーマーは、「終わらない文化祭前夜」を描いた謎のアニメで、ラムとあたるの問題が進展したところで、肝心の文化祭シーンは1mmも始まらないまま終わる。お祭り自体でなく、お祭りを築き上げる内側の準備期間こそ尊いもの、真に愉快な時間であると押井監督は表現している。要するに、押井守もアニメを作ってあーだこーだ喧嘩したり慌てたりする「あの感じ」が好きで、そんなニッチな刹那をループさせて映画にした。改めてなんと凄い一作なのでしょう。\n 文化祭前夜が終わらなければいいのに、と今確かに思う。\n この瞬間にまた立ち会えないと悲しいから、きっとどんなに傷ついてもまた人は作品を作ってしまう。お祭り前夜を最高のメンバーと過ごすため、規模を大きくしていくしかない。その繰り返しの中、なぜか世間にも大受けしてしまう名作が誕生したりをする。\n けれど、結局はそれも結果でしかなく、人は青春時代に馴染めない学校なんかでは味わえなかった、真にオタクたちだけしかいない謎の文化祭準備期間が楽しくて、そこであーだこーだとウルトラマンやガンダムで盛り上がる、そういうクソガキの集まりなんだなあ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,10 +45,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -30,9 +30,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-06-11 15:09\nAI翻译精度的细微差别 “ザ〜コ” 变成 LOSER 的现在\nAI翻訳精度のニュアンス 「ザ〜コ」がLOSERになる今\n\nnoteもそうなったけれども、何度も（というか昨日も）書いたように、いまは各サービスが自動で言語をAI翻訳して言葉の壁を失くそうと試行錯誤中。個人的にはDiscordが対応すると助かるけれども、ない混ぜになる複雑さもあるからなあとRedditの治安の良さを鑑みる。\n それはそれとして、タイムラインの日本語が僕のところへは英語に変換されるので、突如、少女のイラストとともに「LOSER」と書かれたツイートが流れてきた。恐らく原文では「ザ〜コ」と書いてあるはず。\n マゾを自称するおっさんたちも、「LOSER（敗者）」と烙印を押されると、ザコとはちがったリアリティにうっとなるのではないかと笑ったものの、英語圏では日本のザ〜コ流行の大半を元から「LOSER」として認識していたわけだから、絶妙なニュアンスの違いがおもしろい。LOSERだと人生そのものの敗者っぽくて重みがちがう分、だからこそまだまだ人生これからな子供に言われる妙もあるのかもしれない。\n 逆に「なんてクールな意訳なんだ」と驚いたのは、guraが口走るoh nyo~（オーノーを舌足らずに発音する感じ）を「にゃんてこった！」と訳した人間を見た時だ。こいつ、どれだけ常日頃から脳内に萌え萌え美少女と暮らしていたらこんな萌え〜な訳が浮かぶんだとたまげたものだ。\n それからしばらくして、「そもそもOh nyo~ は原文ママが一番いいな」と普通に思い直したけれども。とはいえ、「にゃんてこった！」は、教科書通りに言葉を認識しない、訳すという行為自体の詩情を考えさせられる良い機会であった。\n 「相手の言葉を最も魅力的に届ける」。翻訳とは詩を書くことと密接であるなあ。\n となると、ザ〜コがLOSERでは持ち味が消失していると言わざるを得ない。chat系のAIなら「詩人になりきれ」と言い聞かせることでコントロールできるかもしれないが、大手サービスの翻訳基準が感性に偏ってはいけない。\n 人類がぶつかる次の壁は「ニュアンス」だ。\n きっと、翻訳精度の問題による細かなボタンの掛け違いが今後もあることでしょう。些細な問題が時に大きな軋轢となり、誤解が膨らんだ結果に血が流れるかもしれない。歴史は繰り返す。\n それでも、少しずつ、少しずつ、垣根が消えてきた結果、今は海外から萌え萌えな文化が高速で進化を遂げている。\n 全日本人がOh nyo~を自然と「にゃんてこった！」に感じる日は近い。\n ……という訳ではない。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,10 +50,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -34,9 +34,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-05-04 19:20\n夜晚的客厅\n夜のリビング\n\n自分自体は連休とは関係ないけれども、世間が長い休みでも一人にならないためにシェアハウスがあるのだからと、友人たちと借りている部屋へ。リビングでのんびりと掃除をしている間にのそのそと人が集まる。\n\n住民の誰も行わない掃除をしていると、「惚れたほうが負け」という概念がよくわかる。といっても、部屋の見栄えを綺麗にすること自体が楽しいので、趣味で勝手にやっているようなものでもあるけれど。\n カバーが壊れて外れ気味だった蛍光灯を設置し直す。レトロな暖色がいい。これくらいの光がいちばん良い。\n\n僕は、さすがにここ2,3年、普通は味わうことのない経験の連続であった。良いことも悪いことも、善意も悪意も。それは、まだまだ来年も加速するでしょうが、いったん己の中で線引をしたかった。\n なので、友人たちを半ば無理やりにでも誘い、僕が飛行機代を負担してでも確かめたかったことがある。もはや上京したてな未成年時のルームシェアから10年の付き合いになった友人らと遊ぶことより面白いことは無いんじゃないか。多くの体験が僕の身体を突き抜けていったが、だんだん確信めいてきた。\n 結果。やはり、そのとおりだった。\n\n友人らと過ごす異国での混沌とした数日間は、あまりに楽しく、それゆえに「結局友だちなんだろう」と綺麗事でなく合理的に理解できた。僕はみんなとちがって、たまたま運営する能力があるから、なんだかんだ僕が掃除を担当するように、シェアハウスを借りて無職の彼らと上手くお金の折り合いをつけるのも苦じゃない。ちょっとゲームっぽくて好きだし。\n なら、こうしてふらっとリビングへ座り、ゆるゆるとみんなが集まったり、稀に誰かがなにかにやる気を出してなんかが作られたりとか、そういう時間よりも楽しいことは何も無いのだ。まあ、それなりに一人の時間は多めに持つとしても。タイの後に行ったヨーロッパ一人旅も同様に満足でしたし。\n 20-30歳も、結局はこんな感じだったのだ。たぶん、30－40歳間も、僕らはあまり人間関係の変化はないんじゃないか。拠点があることが何より重要で、太い幹のように居場所があって、たまに出たり戻ったりもありつつ、「なんだかんだ友だちと遊ぶ以上のことはない」と実感を持ってしまった者たちでゆっくりしていけたらいい。\n\nもしかしたら、これまで書いた1500個以上の記事の中で最もわかりやすく、タメになる結論じゃないか。たくさんのことをしてきた僕も、友だちと旅行で遊んだ数日間がトップ級に楽しかった。それ以上のできごとなんてあんまりないよ。\n 小学生でも辿り着ける答えから、家族やら仕事やらといろんなしがらみで目を背けて生きていくことこそ愚かしい。だから、GWだろうが帰る実家もない僕らが深夜のリビングに集まることが、何より生きてきた証左である。\n 最近、「なんだかんだ生きていて偉い」と己を褒めるタイミングが増えた。いいことだ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,10 +54,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

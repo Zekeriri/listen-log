@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-09-05 13:47\n自从开公司以后\n会社にしてから\n\n法人設立、弁護士、税理士、それらに加えて当然ゲーム・アニメ・音楽の打ち合わせ……。今日は打ち合わせが4つを終えた。毎日毎日大変だぜ。忙しいアピールみたいになってしまったが、まあ会社もアニメも当然多忙も多忙である。もうちょいしたら収録が始まり、その後のV編はさらなる地獄でしょう。\n まあ、それはいいとして。とりあえず設立までのピークは無事に過ぎ、ゆるりゆるりと空き時間は増えてきた。相変わらず、1.2時間ならいつだって空けられるので、気分転換に喫茶店にでも誘ってるいただけるのは誰でも関係です。お気軽にお声掛けください。\n それはそれとして、法人があるので人が雇える。基本的に僕が「権利を持つため」に友人と設立したものは、最小限の人数で構成されており、クリエイターたちとは業務委託だ。もちろん、彼ら彼女らが「雇って欲しい」と言うなら考慮するけれども、安定よりもジャックポットと自由を重んじる人たちであろうと想われるので、今のところは都度都度である。とはいえ、いつもの人たちと数年はゲーム製作の予定で埋まっている。幸福なことだね。\n 出資したい、はじめましてだけど雇って欲しい、といった連絡は数件。いや知らない人から出資受けるほど困ってないし怪しすぎるだろ……と、さっそく「社会」という面倒くささを浴びる。ローマ歩いていたら数歩ごとに詐欺が話しかけてくるようなものだ。なんにせよ、この世界ではお金なんかより「信頼」が最も強い価値観である。\n 「音楽担当やりたいので雇ってくれ」といった連絡は嬉しいものですし、どんな場合でもクリエイターは尊重しますが、その一行だけが知らない人から来た上でプロフィールに飛んでも一切実績がわからない。「こんな絵が描ける・こんな音楽を作りたい」なら、全然歓迎するのですが……。でも、がむしゃらに突っ込む若さは大事だぜ。若さに現実を突きつけなければならないポジションに僕がなってしまっただけで。\n 現実的に欲しいのはアシスタントというかマネージャーでしょうか。できればフラットにスケジュールや経費を調整する方が居てくれると安心できる。今まで僕が一人であったため難しかったけれども、法人の形での数人単位なら成り立つ。忙しすぎて潰れる、予定をすっぽかすのであれば元も子もない。多忙だからと言い訳してそんなことがあってはよくない。\n といった塩梅です。\n 先述した通り、誰かと雑談自体は歓迎なのでお気軽にどうぞ。どんな場合であれ、まずは対話していくことだけが人間です。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

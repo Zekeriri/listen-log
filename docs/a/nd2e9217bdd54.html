@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-11-27 10:15\n没有负疚感、害怕感\n後ろめたさ、疚しさが無いこと\n\n『望郷太郎』で一番好きなシーンは、世界崩壊前の経営者視点とはちがい、現在の太郎がいっさいの後ろめたさが無く堂々と歩けるゆえの高揚感に包まれる場面。\n カッコいいぜ。結局、後ろ暗さの無さゆえに大胆に振る舞ったことで問題を解決し、太郎は信頼を得た。\n 自分はいま大きな問題の渦中にあり、その問題点をきちんと表にせねばならない。告発には必ず反発もあり、目立つからには無関係のことでやいのやいの知らない人たちに言われるターンもある。結構、大変なことなのだけれど、そういった試練も堂々としていれば案外どうにかなるものだった。\n 疾しさの無さは大きな力だ。僕はとんでもなくインターネットで嫌われているが、少なくともゲームを制作してから今アニメに一生懸命な5年間、己でも恐ろしいくらい創作に魂を懸けている。それが無碍にされるならいくらでも戦うだけで、結局いくら過去に色々あったとて10数年前の燃料のみでは人は飽きる。罪は罪と言えどね。僕は、ここ数年何より創作と美術の神に奉仕し続ける存在であったと、あらゆる状況証拠が溢れかえるほど揃っている。\n 大きな言葉には反発も疲弊もある。\n ともに作品をつくってきたスタッフは、「ただ楽しく作っているだけでいいのにね」と悲しそうに話しかけてくる。その通りであるのに、人は権利とお金によって道を見誤る。なぜか、そうなると人は謝罪やコミュニケーションから逃げ出す。どうしてそうなるのかと考えてみると、後ろめたい何かがあって、余裕のなさを責任転嫁せねばならないからだ。\n 人間は余裕があれば必ず優しくなる。綺麗事でなく、周囲に優しいことは周りまわって己の救済につながると肌で知っているから。余裕を持って優しくある（面倒見がいい）ことは、生存戦略として合理的でしかない。そうした利己的な助け合いでも、やっぱりそれは助け合いだから尊ぶべきことに映る。人は「助け合うフリ」ができる。\n あらゆる問題は多々あれども、ここ数年の僕らが作品に命をかけていることは誰にも否定できない。それを無視して奪う者がいるから、となると人権を奪うと同義になるわけで、「人権」、人が人である権利は絶対に守らねばならない。人権を奪っているから悪になることに気づいてないなら、残念ながらよほど余裕を失っている。そこまで客体を見失うほど本来人はみっともなくないのですから。\n 余裕のない自分を、自信のなさが露呈することを異様に恐れている。それが怪しさの正体に過ぎない。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

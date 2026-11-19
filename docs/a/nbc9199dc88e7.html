@@ -37,9 +37,8 @@ Wellcome to the Lobby Part2。
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-05-08 12:34\nVaporwave与商场软体、弹球屋的环境音\nVaporwaveとモールソフト、パチンコ屋の環境音\n\n元から多くの派生があってわけのわからんVaporwaveは、今も枝葉のようにジャンルが少しずつ細分化されている。基本的に聴いていると心が落ち着く「郷愁」が核である概念と理解しており、ここまで多種多様になると誰かの非常にニッチな思い出にきっと重なる。\n\nよく聴いていたのが、こちらのMallsoft。\n モールソフト……ショッピングモールですね。更にこちらはロビーを指定している。つまり、方ちらは「ショッピングモールのロビーを感じる落ち着く音楽」なるジャンルのアルバムであるわけだ。こうしてどんどん蒸気波は静かに広がってゆく。\n 何度か日記でも書いているように、僕はショッピングモールというか広い建築物が好きであり、これは単純に沖縄時代に最も胸踊る場所がジャスコであったから。ジャスコは基本的に流行曲のジャズアレンジが流れていましたけどね。\n モールソフトの「デパートに居るウキウキ」は見事に刺さった。そのうえで僕は細野晴臣がナムコのサントラやYMOの一部楽曲で取り入れた「周囲の雑音まで含めてゲーム音楽」という考え方が大好きで、ショッピングモールのざわざわ感まで含んだ当ジャンルは非常に落ち着く。\n\nWellcome to the Lobby Part2。\n どちらかといえば僕は2（ツー）が好き。がらんとしたロビーのリミナルスペースな趣も良いが、人で溢れたデパートの人情的な暖かさもまた良い。右上のブラウン管アートが好きなだけかも。\n 自分が一番好きなのはゲームセンターの喧騒なのですが、モールソフトや大勢によるの雑音の心地よさについて作家の木澤さんも著作『闇の精神史』にて触れている。木澤さんはパチンコ屋の休憩所で漫画を読むことを楽しみとしており、パチンコ台が奏でる大音量のノイズを環境音楽として捉えています。\n\nこの話にものすごく共感し、僕もパチ屋の休憩所を頻繁に利用するようになった。本棚に名作漫画揃っているし。休憩所であれば程よく音量は軽減され、パチンコ・パチスロのド派手なピコピコ音が生のVaporwaveとなる。元からゲーセン通い、そのままパチスロ中毒になっていった僕にとっては故郷のようなものだ。モールソフトの派生、Real Pachinko nightとでも名付けようか。\n とはいえ、昨今はパチ屋のシステムも洗練され、玉やメダルのジャラジャラ音は殆ど聴こえない。そもそも玉やメダルに触れずにカードのみで残数を管理できるからだ。おかげで面倒な持ち運びも、メダルの汚れが目に入ってものもらいになることも無い。\n が、あのジャラジャラ音がオモチャすぎて良いんだ。パチンコ玉が、メダルがパラパラと降りそそぎ受け皿で跳ねるSEこそReal Pachinko nightの真髄ではないか。YMO『サーカスのテーマ』やクラフトワークの『Pocket Calculator』みたいになって欲しい！\n まあReal Pachinko nightなんて無いジャンルなんだが。流石に多種多様な派生の中でもパチ屋は見つかってない。しかし彼らのchillにかける熱意は必ず僕の想像を越えた何かに届くと信じ、代わりにレトロパチンコの実践動画を流している。\n\n↑これが音楽の形になると嬉しい。\n\nこれは比較的最近のヒット。モールソフトにチルウェーブ（？）が掛け算された。他にもモールマッドネスなる派生もある。khaos。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -58,10 +57,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

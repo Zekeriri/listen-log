@@ -30,9 +30,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-09-13 07:10\n夜晚的咖啡露台\n夜のカフェテラス\n\nゴッホ『夜のカフェテラス』。\n ゴッホの中でもとくに好きな青味の絵画でしたが、アムステルダムでの光景があまりにもそのままで印象的に残っており、みんなで住んでいる部屋のリビングに設置することにしました。こんな夜になれば嬉しいから。\n\nオランダを訪れた際、ゴッホ美術館の帰り、夜のオランダの喧騒がそのままこの光景で魅入ってしまいました。元ネタはフランス南部の街であるそうですが。\n 帰国してからも、あの夜の風景が忘れられず、憧憬を抱いてしまった。愉快な一夜をぼおっと照らす暖色の暖かさに夢を見る。\n アムステルダムの夜はたいへん人間的だ。薬物と風俗を国が管理することで規制がされず、大麻とセックスとアルコールによる騒ぎが朝まで続く。快楽をあるがまま否定せずに受容し、のんびりと刹那に興じる姿に「人間」を感じる。\n\nなんて素敵な夜なんだ。\n 何気ない空の青さすら羨ましい。\n 美術館の帰り、『夜のカフェテラス』がどのような絵であったのか、ふらっと街並みを眺めた瞬間に、この目で、肌で、理解が走った。\n いいじゃないか、夜風を浴びながら豪快にお酒を飲んで皆で騒げば。薬も性も、快楽に素直な夜があってもいい。皆が楽しければいいんだ。\n 眼前に広がる夜を欲しいと願ってしまったから、僕はリビングにカフェテラスを飾らずにいられなかったのですね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,10 +50,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -36,9 +36,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-11-10 07:45\n让-吕克·戈达尔\nジャン＝リュック・ゴダール\n\nゴダールは、ずっと詩と色の話しかしていない。気づいて、自身の心が救われる。この世界には詩と色の話だけをして死んでいった者が事実、存在する。\n\n詩の無い世界の悲しみを英語にしていたのか。最初からそうだったんだ。いわゆるゴダールの「比較的見易い名作」と呼ばれる作品は、映画と詩の繋がりのわかりやすさに連動している。僕は『アルファビル』『女は女である』『気狂いピエロ』は入門として勧めやすい作品であると感じています。どれも詩情と感情が直感的に分かる。\n アルファビルなんかは、それこそポエムが、言葉が死んだ世界の空虚さを「愛」を通して描ききった。非常にストレートな映画だ。だから素晴らしいんだ。\n\nそういうことだったのか。\n 映画が、人が、世界が分かるとはこういうことか。ただただゴダールの映画を観続けてきて、最近ようやく気づいた。初めはずっと「色」の話をしているのではと考えていた。ああ、ゴダールもやっぱりモンドリアンに何かを感じずに居られない人なんだと。嬉しい。『中国女』では、まんま、そのままゴダールによるモンドリアンへの解釈が語られる。\n ああ、そんなに直球で答えを書いてしまっていいのか？ 聴きたくない。聴きたいけれども、でも、怖い。感性溢れる他者によるモンドリアンの解釈がこんなに恐ろしく、堪らない。よかった。僕はこんなにモンドリアンの3色へ向き合った人をゴダールしか知らない。次点、リートフェルト。\n\n自分にとっての衝撃が強く、ゴダールの映画では以降ずっと色彩を見ていた。それも間違いではないのでしょう。わからんやつらは「ゴダールの政治的主張が〜」となんだか煩い。そんなやつらに見えない世界を赤と青と黄のバランスから垣間見るのが楽しかった。\n でも、さらに作品を見ていくと違った。『カラビニエ』など、モノクロ作品でも伝わってくる感触はなんだ。\n ゴダールがずっと色の話をしているなら、白と黒だけの世界で同じ手触りが生まれるはずがない。なんなんだ一体！？\n ああ、そうか。詩だったのか。\n この人はずっと手を替え品を替え、いついかなる時だってポエムが詠まれない冷たい現実への悲しさを表現していた。セリフなんてまんまだったのに今まで僅かにしか視えてなかった。\n 人生が物語（ロマン）と違うだなんて悲しい。そうだ。そして詩情のない生活には物語のカケラも生まれない。だからアナタは映画を撮り続けているんだね。\n\nだから気の違ったピエロは自分の顔にペンキを塗って、ランボーの詩を読みながら死んでいくんだ。ジャン＝リュック・ゴダール！ 僕は心からアナタの生き様を尊敬し、想う。\n 僕も物語（ロマン）の無い現実なぞに生きる価値を感じない。僕が死んだら、向こうであなたとモンドリアンの話をさせておくれ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,10 +56,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -32,9 +32,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-22 01:29\n一口随笔: 格斗游戏玩家的朋友和伙伴的尸体\n一口エッセイ:格ゲーマーの友達と仲間の死体\n\n僕の高校からの友人が、ついに目標だったスト5のマスターランクへ到達しました。昔から拘りの強いやつで、格ゲーのことを「対話」だと確信しており、「一対一で相手と向き合い互いを理解する」ことを本気で重視している。なので、相手を理解するまで何度も何度も再戦する。そのために、家でも十分遊べるはずなのに、相手との距離が近いゲーセン通いをこの時代に行なっている。\n\nそんなこだわりの強いやつなので、ゲームにも多数の哲学を抱えて向き合っており、正直真っ当に上手いとは言えない。最もやりこんだストVはともかく、それ以外の格ゲーで僕と遊ぶと、たいてい僕の方が勝っていた（決して僕が強いわけでない）。それでも彼は一切悔しがらず、「相手と向き合えたかどうか」しか考えてない。つまり、僕がなぜあの時あんな行動をしたのかを掴めたかにしか興味がないのだ。\n しかも、本当に格ゲーしかしていない。元の素質が薄い分、人より努力が必要なのはわかるが、そのせいで週2でウーバーする以外まったく働かない。それ以外の時間は、ほぼ格ゲーで過ごす。もはやアケコンとモニター以外何もないような狭い部屋で、一人で黙々と。\n 出会った時からこんな感じなので、これはもうこのような一生を歩むのでしょう。労働を最低限とし、あとは黙々とゲームに注ぐ。それも下手の横好きで。きっとスト6もやり込むのだ、かっこいいぜ。たくさんの人と「対話」をするために。\n そんな彼が苦手とするゲームがFPSで、理由は人が多すぎて誰と向き合っていいのかわからないから。多数の人間がないまぜとなった戦場では、一人一人と向き合っている隙などないのだ。なので、彼はFPSに誘われない。ゲーム自体は大好きなのに、なんだか可哀想ではあります。\n 印象深いエピソードとして、彼が無理してFPSを遊んだ際、味方の死体を見つけた瞬間に反転して後方を向いたのですね。それに対して慣れたプレイヤーが、「死体がある場所には敵がいるから、良い行動だね」と誉めたのです。\n そしたら彼は、「いや、味方の死体があったから反射的に目を背けただけだよ……」と言ったのです。\n そんな男ですから、このまま戦場を駆け続けているとカミーユのように多数の思考に塗れて壊れてしまう。これからも格ゲーを通じて、一人一人と向き合って他者を理解し続けて欲しいと願っております。わりと食事代だしてやってるんだから、たまには働け！\n\n毎日の日記をまとめた同人誌を販売中！\n こういう積み重ねが大事。\n\n商業エッセイ集の方も、買ってくれたら嬉しいな……。評価やレビューもしてくれるとなお最高!"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,10 +52,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

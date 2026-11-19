@@ -42,9 +42,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-09-17 19:50\n环球影城G神秘影像留世的事情\nユニバG 謎の映像が世に残っていること\n\n昭和〜平成に放送されたCM集をひたすら観続ける趣味が数年続いており、日本のCMは見尽くしたので海外ローカルCMなどを垂れ流したりもしている。自分でも、この趣味だけは何故続けているのか、何故これで心が落ち着くのかを未だ他人に説明できていない。\n 中でも特に好きなのは、問題を起こして消えた企業のCMをいま視聴すること。特に、詐欺がバレて潰れた会社のCMは程よく怪しくて素晴らしい。金さえ積めば、ただの詐欺師たちでもCMがテレビで放送できる事実が良い。\n\nユニバGは、すごい。\n 一人の目立ちたがりの詐欺師によって築かれた帝国。\n\nユニバG会長であり稀代の詐欺師であった、大神源太が主演を務める販促ビデオ、ユニバG物語はマニアにとってオアシスだ。\n\nどこを切り取っても怪しく白々しい。\n この大神なる豪傑は、自身の製品のCMでも外国人タレントを差し置いて目立ったりもする。なんという目立ちたがり屋。\n そればかりか、大神主演でのアクション映画も完成されており、残念ながら本編が公開されることはなかった。タイトルはブレイド・オブ・ザ・サン（太陽の刀）。\n\n一昔前のテレビとインターネットでは、この大神源太とジー・オー・グループを弄るノリが会ったんだろうなあと、Youtube上に点在する彼が生きた証拠を辿っていく。それにしたって、こんな映像たちが残っているYoutubeはすごい。これら（ユニバG物語）インターネット以前にあった謎の怪しい映像たちは、Youtubeが滅んだら一気に視聴できなくなる。結局は詐欺師でしかなった中年が、曲がりなりにも数億かけてアクション映画を撮り終えた夢の跡も参照できなくなるのですね。\n ※追記 本当に偶然ですが、この記事の数日前に今になって急にアップされました。\n\n検索していたら、当時、大神源太の詐欺に引っかかった方のブログが出てきた。かなりみみっちい手法で、この人の損害額も2万5千円。それで1万円は返ってきているので、こうして思い出話がひとつできたとすれば安い勉強代か。\n 実際に被害者がいるれっきとした悪者である何ともな一件ですが、そんな人間だからこその妙なクリエィティブ精神がユニバG物語やその他CMたちから味わえる。\n\nスタッフを引き入れたフィリピンにて、木の枝を使って懸垂を披露。\n この時の生活楽しかっただろうなあ。\n いろんな人生がある。\n 大神源太は獄中で体調を崩して亡くなった。\n 本当に、いろんな人生があります。\n 彼らが「悪者であった」としても、生きていた証はインターネットの片隅に残り続けています。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -63,10 +62,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

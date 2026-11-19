@@ -34,9 +34,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-28 03:22\n一口随笔: 《忍者战队隐连者》和多隆变换器的项链\n一口エッセイ:『忍者戦隊カクレンジャー』とドロンチェンジャーのネックレス\n\nいちばんカッコいいネックレスきた！！！ pic.twitter.com/utZRfEAF5K— にゃるら (@nyalra) June 24, 2022\n\nプレミアムバンダイから、ドロンチェンジャーのネックレスが届きました。うれしい。これで僕も気分は忍者戦隊カクレンジャー……人に隠れて悪を斬る！\n 実際に装着して数日が経ちましたが、ものすごく誇らしい気持ちになる。いざとなれば印籠のようにドロンチェンジャーを構え、世を忍ぶ一般人の姿を脱ぎ捨てて忍者にスーパー変化ができる。なんと誇らしいことなのだ。\n\nさて、カクレンジャーは特に関連曲が大好きなんです。OPなんて戦隊一の緩さでして、いい感じのカップルの間をシュッと通り抜けるだけだったり、「あの子の気持ちを教えてくれたら子分になる」とクソ雑魚ゴマスリするようなフレーズが散りばめられ、なんとも気が抜ける。それがボーカルの優しい歌声と合わさって、とても癒される主題歌に。子供の頃、このOPを聴くとすごく安心したことを覚えています。エンディングもポップなラップでまたいいんだなぁコレが。\n その上で、一番好きなのは挿入歌『イントゥ デンジャー カクレンジャー』。この曲はOP・EDと違って真っ当にカッコいい！ ボーカルも宮内タカユキですし。\n この曲は「魔界のドアがうなりをあげる」から始まり、もうその時点で緊張感が半端ない。OPでは「子分になるからさ〜」とか呑気に歌っているのに、戦闘シーンでは「魔界のドア」ですからね。この、普段はポップで明るくてもキメるところはキメるところが正にカクレンジャーそのもの。その後の歌詞も全てシリアスで、「いつもの街のリズム どこかが狂って聞こえるぜ」もイカしているし、「\"遊び\"の時間はここまでだ」から入って、サビでは「影さえ消して駆けぬけてゆけ」。もう痺れっぱなしですよ。影さえ消えるほどのスマートで闇をまとった戦闘、これぞ忍者！\n 最新の忍者戦隊の「忍びなれども忍ばない！」方針も斬新で好きでしたがね。「忍びなれどもパーリナイ！」にまでなるし。でも、やはり闇に隠れて生きる忍者の生き様が好きだ。\n\nそんなカクレンジャーへと変化できるドロンチェンジャーをぶら下げて歩いている途中、この世界の平和は大衆に紛れたニンジャレッドたちが人知れず裏で悪を成敗しているからなのだなぁと想像し、街中で目頭が熱くなって裏道に逃げたりもしました。忍者戦隊、ありがとう。\n よくよく考えたら、人を隠れて悪を斬らないといけないのに、堂々とドロンチェンジャー首から下げてたらダメじゃね！？\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中！ ぜんぜん忍ばす目立ちまくり！\n\n商業エッセイ集もよろしくね！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,10 +54,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -38,9 +38,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-08-25 15:51\n港币之蝶\n香港ドルの蝶\n\n香港ドルのお札は蝶々が綺麗な上で、いい緑をしています。\n さすが覇王別姫が生まれた国だ。\n\n出国前に必殺技として用意していたデパス3錠は、なんと2錠で済みました。もちろん、香港にいようがふとしたきっかけで苦しみの念に囚われることは多々ありましたが、それでも日本にいる時よりは「日本語」と接するタイミングが少なくてマシな気もします。\n とにかく世界中を旅していたい。\n ただ、文章も書いていたいし本も読みたい。\n 最もいい状態は、世界中を旅しながら現地のカフェでゆったりと原稿でも書いている時です。\n 食事を楽しみとしていない自分にとって、最も「生活」と呼べる時間はカフェでのんびりと過ごしている時間のみかもしれません。眠るときは睡眠薬で気絶するように、ですし。\n\nそれなりに国を回ってきたけれども、飾りたいとまで思って見惚れたのは香港ドルくらいだ。人間が居ないのがいいね。\n 地元すぎるからピンとこなかっただけで、2000円札の首里城は惜しいところまでいっていたのかもしれない。日本はお札の質感に凄みがあるが、色は素朴だ。侘び寂びの国である。\n\n人生に対して、このように美しいものを集めるおもちゃ箱、創作をその発表会と捉えるのであれば、醜いモノと理不尽もその代償と我慢と捉えて多少はマシになるのかもしれません。最近コミティア作家勢とのラジオにて「にゃるらさんの作品は“この人はこれを美しいと思っている”美の感覚が一貫しているから安心できる」と褒めていただいた。\n なるほど。こうして生きていく以外に自分ができることなんて無いんだなとも感じる。\n 本当に、それ以外に大した喜びもない。「生」きる「活」力が。\n 生涯自体にどこかのタイミングで一貫性が生まれているので、あとは自分がたまに時代の風に乗ったり乗れなかったりするだけで、それは香港ドルに刻まれた蝶のように気紛れなものでしかない。たまに羽ばたきによって竜巻が生じるけれども、ただ蝶はその場で飛んでいただけだ。ただ、気ままに飛んでいたらお札になることもある。\n これからしばらくは、大きな仕事が複数進行していく。\n 僕は、そんな流れでどれだけ自我を貫き通せるか、または柔軟性も身につけられるかに挑戦していく。\n お札がこんなにも美しい蝶々になることもある。ちなみに自分で見て欲しいが100香港ドルのデザインにも驚かされた。あっぱれ。公的な仕事でもこういった奇跡が起きることもあるのは、なにより励みになる。蝶々はそこで気ままに飛んでいただけなのに。\n これからも生活をしていく。生きることは戦うことだ。戦わなければ生き残れない。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -59,10 +58,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

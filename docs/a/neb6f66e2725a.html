@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-10-08 03:12\n一口随笔：抑郁时的异常行为与Afro田中\n一口エッセイ:鬱時の異常行動とアフロ田中\n\nビックリするほどに体調と精神が悪く、このままベッドの上に静かに横たわっているとマズいと直感。なにかで気を紛らせようと、とにかくスマホで漫画を読もうと考える。心臓の動悸と頭痛が止まらないので、ストーリー性が複雑な作品は難しい。かと言って、美少女たちがきゃっきゃしている作品は眩しくて精神衛生に逆に悪い。いったい何を読めばちょうど満たされるのかと試行錯誤した結果、気づけば数日で『アフロ田中』を全巻読み切ってしまった……。\n\nこれは本当に異常だ。アフロ田中は面白い。めちゃくちゃ面白いし、高校生の田中が若者から大人……おっさんになっていくまでを何十巻もかけて丁寧に描いている。しかも、島耕作とは違ってドラマチックすぎるイベントもない。田中というちょっとお調子者な男の等身大な日常がひたすら流れていく。もちろん年相応な「男」としての汚いところや悲しいところも全て。ここまで「人間」に向き合っている作品も珍しいでしょう。紛れもなく名作です。\n が、なんかこう……アフロ田中って、ゆったり少しずつ読む感じじゃないですか。銭湯とかの漫画コーナーにあって、おっ久々に読むか! みたいな。この回おもしろかったなぁ的なさ。あまり「うおおお！！！ページを捲る手が止まんねぇ！！！」みたいにならないでしょう。\n でも、僕はなったんですよ。\n 少しでも動いたり目を閉じたりすると、めまいや眠気がガクッと襲ってきてドっと疲れる。それを誤魔化すようにアフロ田中を読んでいる時は、比較的楽になる。アフロ田中より難しくても毒がなさすぎてもダメ。『アフロ田中』が現実逃避にビックリするほど丁度よく、数冊読むつもりが気づけば全巻読破。60冊だよ。ジョジョでも初めから読んで5部が終わる頃ですよ。横山三国志も完結する。バトル漫画ならともかく、日常モノを一気に60冊。明らかに精神に異常をきたしている。もちろん、アフロ田中は一気読みに耐えうるほどの面白さと感動があるとは言え。こち亀だって、60冊分読もうとしたら途中で数回飽きるでしょ。\n まぁゲーム企画のストレスによる鬱気味ではあると自覚していますが、それ故の異常行動が「アフロ田中一気読み」。こんなこと通常時だったら絶対ありえないわけで、人は狂い始めると本当に予想できない、わかりやすく「狂っている」行動でなく、マジの予想外な方向に進むんだなぁとビックリでしたね。\n いやでも、田中は凄いよ。たまに人生に迷ったりしながらも、ちゃんと働いたり人間関係を続けてきたのだから。そんな田中の半生を追体験した日々、絶対に忘れない。まだ頭が痛いし全身が怠い。田中、僕はどうすればいい。助けてくれ田中……。そばにいてくれ田中。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-04-25 02:58\n无论何时何地都会到来的幸福\nいついかなる時も訪れる幸福\n\n入眠がよくなるとのことで、最近は毎晩ウィスキーを一杯飲む習慣をつけていたのだけれど、悲しいことに今の僕は鬱病で、抗うつ剤とアルコールをちゃんぽんする結果となった。薬を飲んだことをすっかり忘れていたのです。\n ぶよぶよとした脳みそは抗うつ剤が、きゅっとした内臓はアルコールが刺激し、頭から爪先まで熱を帯びる。妙に代謝のいい身体に生まれたため、全身から汗が噴き出る。酒と薬の挟み打ちにより、恐怖と思考が麻痺し始めてくる。これはよくない。\n 正直、人間は誰だって幸福になれる。このように、さまざまな方法で脳を直接弄くればいいのだ。なんなら飲酒だけでそうなる者もいるでしょう。幸せになって何が悪いか？ わからない。けれど、一般的には短絡的な方法で幸福を掴むのは禁忌とされる。じゃあさ、ここで何もしない僕は診断付きで鬱々と塞ぎ込んでいるのだよ。\n いま、抗うつ薬の他で飲んでいる薬は、寝る前に飲んだら翌日やる気が漲る効能があるらしい。セロトニンがどうのこうの。まるで朝陽を浴びたかのように元気が湧いてくる。じゃあそれでいいじゃん。40℃のアルコールが喉を焼く。痛みと快楽のトレードだ。喉の熱さを「幸福の合図」と勘違いしちゃって、次第に脳みそがウィスキーの熱を求めるようになる。バカみたいだが酒ってそういう仕組みなんだ。\n 神様は、こうした最短ルートでの幸福を世界各所に用意した。\n ヨーロッパを巡った際、10分も歩けばだいたい乞食がお金を集めている。横切る観光客たちは興味本位でお札を渡す。それだけでビールが1.2本買えるのでしょう。恐らく一日手を差し出し続けていたら日本円で1万円稼ぐことも難しくない。隣人愛があるからね。観光気分で浮かれて善人ぶりたい者も少なくないし。完全に商売として成立しちゃっている。\n\nそして彼らはスーパーでアルコールを漁り、国によっては大麻も購入し、寒い夜をラリって忘れる。チェコもアムステルダムも変わらない。僕はなんだかひどく羨ましくなって、隣に座って話しかけるのを待ったりする。意味不明な東洋人の登場に、頭がぱーになっている向こうも楽しくなって会話が弾む。拙い英語で。伝わっているのかまったくわからない、が、そこにはきっと愛があると何故か互いに知っている。 僕らは、いついかなる時だって気持ちがよくなれる。みんなしないだけだ。鬱病だって「今」にだけ注目すればいいだけの話で。\n でも、未来を想像してしまう。過去に囚われてしまう。路上で寝転がってみろ。過去も未来も関係がない。あるのは寒空による凍死の緊張だけだ。ああ、死にたくはないよな。熱々のウィスキーなら、ガソリンのように体を温めてくれるわな。死にたくないから。死にたくないから。明日、薬の効果でちょっとだけやる気が湧くでしょう。抗うつ薬の効果で、ちょっとだけ気が和らいでいるのでしょう。\n それって正気となにが違うんだろうか。すっかり思い出せない。自宅療養は続く。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

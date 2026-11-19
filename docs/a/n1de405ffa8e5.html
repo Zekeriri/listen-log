@@ -40,9 +40,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-10-20 03:32\n试着创建海外Discord服务器\n海外Discordサーバーを作ってみて\n\n海外のファンからの熱い声援、本当に熱すぎてもはや全てのツイートにリプライするどころか、気づいたらディスコードサーバーでリプライされ続けたりするのですが、そういった面も含め、海外オタクたちの「飢え」、そこから派生した日本とも違うカルチャーの成長へ非常に興味があります。\n 地域が広すぎて、日本と違ってなかなか仲間と出会えず、まだオタクも迫害されている環境ゆえの、「飢え」に。\n\nといったわけで、日本のDiscordサーバーも18000人。だいぶゆるーい運営には慣れてきたので、思い切って海外版を作成。\n\n今1000人くらい。\n だいたいにおいて、これくらいの落ち着いた人数の頃が一番面白い。\n\n別にNEEDYの話をそこまでしないでも構わないのだけれど、驚くほど超てんちゃんへの熱量が高くて驚かされることもある。thank you！\n\n特に僕が投稿しているわけでもなく、唐突にリプライ付きで話しかけられることも多い。絡み方の大胆さは奥手な日本ではあまり見られない。元気でよろしい。\n ちなみにサーバー名のtouch grassはネットスラングであり、「インターネットなんか見ないで草でも触ろうぜ！」みたいなノリである。要するに、海外版インターネットやめろというわけですね。\n\nというわけで、散歩中に草を触ったtouch grassな写真を投稿すると、「どちらかと言えばそれはLeafだよ」と注意する流れができたりと、のんびりを満喫しています。\n\n日本語おkのチャンネルなどもあり、日本人が英語圏の方へ質問したり、逆をしたりと交流を試みる場も用意。みんなとりあえずJapanese foodを貼っています。\n\nこうして英語が見慣れていくと、だんだん僕の脳内言語も侵食されていきました。やっぱり実践と数でしかないね。そういった意味で、僕の語学学習が自動的に捗るので、このままみんなが思うまま海外オタクライフをメインに交流していってもらえると嬉しいです。英訳したゲームたちも製作中で、アニメも当然海外配信もあるわけで、そこで盛り上がってもらえたらいっそう嬉しいですね。\n チャットでは、ジェンダーやカーストなど、日本ではまだまだ重々しい話題も散見され、そこも海外の圧迫と自由を同時に覚える。\n いろんな人が、暮らしている。\n 多くの文化が混ざり合い、きっと大きな奇跡が打ち上がる。\n そのような未来が来るまで、日本も英語圏もゆっくり見守っていきますよ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -61,10 +60,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-09-07 18:17\n作为时尚穿美少女\nファッションとして美少女を着る\n\n昨日、「勇気を出して買った服に慣れて自然と着れるようになることが着こなしではないか」と書いたので、その延長に近い話を。といっても真面目なファッションとかでなくオタクのしょうもない与太話でしかない。\n\nここ最近は、海を渡って届いたOMOCAT×hololive Englishのアパレルがお気に入り。遠路はるばる、運送費の節約のためか多くの国を経由して日本にやってきたポップでキュートなTシャツたち。デザインのカッコ良さへあまりに衝撃を受け、ニディガのグッズ班の方々にも参考になるかなとその場で広げて見せたものである。特に一番左のイナニスは色使いの派手さ、それでいてまとまりのある色数がかわいい！\n\nフワモコのTシャツもめっちゃ着てるよ。\n これは個人的な感覚でしかないのですが、彼女たちの、そしてOMOCATのセンスが、美少女キャラクターよりもカートゥーン寄りにあることで、最近流行している思いきり大きく美少女キャラクターが印刷されたTシャツ（フルグラの）を着る一周したオタクファッションでなく、グラフィティを想起させるアート寄りな印象を与えてくれるからではないか。\n もちろん、こういった基準もオタクの妄言に過ぎませんが。しかし、このTシャツには実体験があるのだ！\n\nぜんぜんTAKODACHIのシャツでジムへ行ったんです。トレーナーからは何故かアパレル関係のモデルと認識されており、撮影のため鍛え続けている人と思われている。グッズでアパレルを作ることも多いし、オタクであることや作家業についての説明が面倒なので、なまじ嘘でもない認識を改めることなく続けている。特に問題ないし。\n で。相手は絵に描いたようなマッチョマンで、オタク知識は一切ない。代わりにジャンプがめちゃくちゃ好きで、今日もハンターハンターの新刊に合わせ、こっそり僕のバーベルを5キロ増やして行わせていたことを明かす際に、「ドッキリテクスチャー♤」と楽しそうだった。余計に5キロ重くて僕は死ぬかと思った。\n そんなムキムキのトレーナーに対し、堂々とイナニスのシャツで臨んだところ、「めっちゃオシャレですね。ブランドのコラボモノとかですか？」と褒めていただいた。僕がアパレル関係の人と認識されていることも相まり、ハイブランドが時折行う敢えてポップにゆるく仕立てるシリーズの一つと思ってもらえたのですね。イナ、ありがとう……。\n 「まあ、そんな感じです！」と溌剌に答える。紫には毒々しい高級感もありますしね。女の子がデカデカと印刷されたTシャツでも、自分が「これは間違いなくカッコいい」と堂々としていればファッションだなと内心で感動した出来事でした。\n 中野や秋葉原では、ちょこちょこニディガのアパレルを使ってくれている子もいる。ポップアップストアを開いたので渋谷でも見かけた。オタクアピールの発露でなく、ファッションとして日常に融け込まれていると嬉しい。若者の適応力は高く、何より胸を張っていて眩しい。今後も海外に負けない素敵なグッズになっていくと良い。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

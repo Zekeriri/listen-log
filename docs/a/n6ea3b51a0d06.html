@@ -25,9 +25,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-06 22:00\n精选一口随笔：无聊的恋爱\n選り抜き一口エッセイ:つまんない恋\n\n「ネットは過度に幸せな人の自慢か、追い詰められている人の嘆きしか流れてこないから、その中間の一般的な幸せがあるはずなのに、それが見えないね」という話を聞きました。一般人のよくある話なんて話題にならないのである。\n そんな時代の流れについての大仰な感想や意見は特にないのですが、ただ聴きながらパルフェのED曲『つまんない恋』を思い出し、やっぱりあの曲は良いよな……としみじみしておりました。\n 『つまんない恋』の歌詞は素晴らしい。\n 恋人同士のちょっとした幸せや、些細なすれ違いが描かれる。美少女ゲームの曲でありながら、「二人は変わらないからドラマにならない」と言い切ってしまう。美少女ゲームに対して非現実的なドラマチックな恋愛模様を期待しているだろうに、一般的な（ゲームのシナリオに較べて）起伏の少ない現実的な恋愛の話をする。その上で、「そんなつまんない恋したことありますか？」と続く。せっかく主人公とヒロインが結ばれたというのに、この悲しい歌詞はなんだ！？ とプレイヤーは驚きます。ここにきて、急に美少女ゲームへのメタ的な風刺なのかと身構える。\n しかし、この曲は、そんな浅い歌詞ではない。ラスサビは「そんなつまんない恋したかとありますか？ でもこれがわたしの恋……そのままで十分な恋」と締める。よくある「普通の恋」ではあるが、それがそのヒロインにとって最も幸せなことを示す。今後の二人はゲームのような物語性は生まれないかも知れないが、それでも二人はそれが幸せである。とても素晴らしいことだと思う。\n\n美少女ゲームに関することをいっぱい載せた同人誌です。よろしくね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,10 +45,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -115,9 +115,8 @@ They got it, they want it, they give it away
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-07-06 05:50\nLost kitten 日语译文\nLost kitten 和訳\n\n英語の勉強ついでに、とても好きな詞の曲を和訳するよ。ぜんぶ勝手な意訳だけど許してね。特にサビの詩が優しくて好きなんです。\n\nLost kitten 迷い猫\n\nDon't say yes if you can't say no,\nVictim of the system, say it isn't so\nSquatted on the doorstep, swollen on the blow\nLeaving without you, can't say no\nNoを言えないなら Yesも言わないでね\nこの約束の被害者なんかじゃないって言ってね\n膨れた痛みと玄関でうずくまるの\nあなたを置いて出ていくけど イヤだなんて言わないで\n\nHalfway starts with happiness for me\nHalfway house, lost kitten in the street\nHit me where it hurts, I'm coming home to lose\nKitten on the catwalk, high-heeled shoes\n曖昧なわたしの幸せがはじまるの\n曖昧な居場所 わたし路上の迷い猫\n本当のこと言わないで 帰りたくなってしまうから\nハイヒールの子猫が歩く\n\nNo more hard-headed Saturdays,\nThey got it, they want it, they give it away\nTell me one thing you would never do\nI was looking for a hooker when I found you\nめんどくさい土曜日はもういらない\nみんな知ってるくせして 欲しがるのね どうせすぐ手放すのに\nあなたが決してしないことをひとつ教えて\nわたしを探しているときにアナタを見つけた\n\nYou've got my eyes, you've got my eyes\nYou'll never be mine, ah, but you've got my eyes\nわたしの目を持っていったでしょう\nわたしの目を持っていったでしょう\nああ、あなたはわたしのモノにならない\nだって わたしとおなじ目を持っている\n\nWhen you lie, I'll cover it up\nWhen you hide, I'll cover it up\nWhen you cry, I'll cover it up\nWhen you come undone, I'll cover it up\nあなたが嘘をついてもそばにいる\nあなたがどこへ隠れてもそばにいる\nあなたが泣いたってそばにいる\nあなたが終わってしまってもそばにいるの\n\nSo pent up, I was coming home to you\nHappy in the nighttime, howlin' at the moon\nSippin' on a cocktail, drinking in the loo\nThere's something about you I hold on to\nとても歪んでいるけどアナタのもとに帰っちゃう幸せって夜の月に吠えよう\nトイレに居たってカクテルを飲む\nなぜかアナタにしがみついちゃうから\n\nYou've got my eyes, you've got my eyes\nYou'll never be mine, ah, but you've got my eyes\nわたしの目を持っていったでしょう\nわたしの目を持っていったでしょう\nああ、あなたはわたしのモノにならない\nだって わたしとおなじ目を持っている\n\nWhen you lie, I'll cover it up\nWhen you hide, I'll cover it up\nWhen you cry, I'll cover it up\nWhen you come undone, I'll cover it up\nあなたが嘘をついてもそばにいる\nあなたがどこへ隠れてもそばにいる\nあなたが泣いたってそばにいる\nあなたが終わってしまってもそばにいるの\n\nThey got it, they want it, they give it away\nThey got it, they want it, they give it away\nThey got it, they want it, they give it away\nThey got it, they want it, they give it away\nみんな知ってるくせして 欲しがるのね どうせすぐ手放すのに\nみんな知ってるくせして 欲しがるのね どうせすぐ手放すのに\nみんな知ってるくせして 欲しがるのね どうせすぐ手放すのに\nみんな知ってるくせして 欲しがるのね どうせすぐ手放すのに\n\nThey got it, they want it, they give it away\n(When you lie, I'll cover it up)\nThey got it, they want it, they give it away\n(When you hide, I'll cover it up)\nThey got it, they want it, they give it away\n(When you cry, I'll cover it up)\nThey got it, they want it, they give it away\n(When you come undone, I'll cover it up)\n\nみんな知ってるくせして 欲しがるのね どうせすぐ手放すのに\n（あなたが嘘をついてもそばにいる）\nみんな知ってるくせして 欲しがるのね どうせすぐ手放すのに\n（あなたがどこへ隠れてもそばにいる）\nみんな知ってるくせして 欲しがるのね どうせすぐ手放すのに\n（あなたが泣いたってそばにいる）\nみんな知ってるくせして 欲しがるのね どうせすぐ手放すのに\n（あなたが終わってしまってもそばにいるの）"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -136,10 +135,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

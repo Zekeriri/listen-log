@@ -33,9 +33,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-12-24 03:52\n神秘的海外迷因『Just The Two Of Us』\n謎の海外ミーム『Just The Two Of Us』\n\n最近、海外の謎のミーム『Just The Two Of Us』を観察しています。参考例を挙げないと何も伝わらないと思いますので、これです。\n\n名曲『Just The Two Of Us』に合わせて、好きな人物と二次元美少女を並べ、レトロに加工する。ただこれだけ。曲は一切弄っていないので、本当にただコラ画像によるサムネのセンスだけで勝負。タイトルは『たった二人だけ』という超カッコいい訳になるので、「俺の考えた最強の男俳優×二次元美少女の二人」を見せているだけのミームっぽい。全然詳しく調べていませんが、雰囲気と法則性的にそうだと思う。それだけで恐らく最も有名であるこの動画は1000万再生なわけで、いかにこの曲が素晴らしい名曲であるかが分かります。\n\nこれは4Kバージョン。たしかに画質は良くなりましたが、元のガビガビさの方が味があって好きです。これだけでも100万再生。音質は何一つ変えずに、相変わらずJust The Two Of Usが静かに流れるのみ。変にアレンジする方が不粋か。\n ここ最近のヒット作。虹夏ちゃんですね。この投稿者、これ以外の動画は再生数千程度なのに、コラ画像一つで50万再生ですから、すごいミームだ。もちろん音楽はJust The Two Of Us。\n\nこれは組み合わせの意図がわかりやすくて良いですね。しかし、カラーであることが雰囲気に合わなくて減点か。開くと流れてくるのは、もちろんJust The Two Of Us。\n\nついに、まとめ動画も上がっていた。そんなまとめるほどバリエーションがあることもビックリですし、やはり現実の男性×二次元美少女の組み合わせ一つでも、こんなにセンスの差が現れるのは面白いですね。おふざけを入れたり、シンプルにセンス無いやつは静かに沈んでいく。しかし、どんな動画も流れるのはJust The Two Of Us。\n\nこちらに至っては、ついに三次元男性要素も消えて、アニメ美少女×アニメ美少女になってしまった。マキマさんと小林、たしかに並べると共通点が見えますね。これが投稿者の考える最高のJust The Two Of Us（たった二人だけ）。\n 完全に法則を無視しているけど大丈夫かと心配になりますが60万再生。ひょっとすると、海外では「ルール無視だ！」と叩かれているのかもしれないし、「これは新しい解釈だ！」と受け入れられているのかも。本当にどうでもいいので調べる気は微塵もありませんが、サムネ時点で分かるから再生する必要ないのにオススメに出てきたら不思議と開いちゃう。そんな魅力のあるミームです。Just The Two Of Us。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,10 +53,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

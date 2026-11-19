@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-04-18 09:26\n一口随笔：Aya Tora转会与少年杂志的情色档\n一口エッセイ:あやトラ移籍と少年誌のお色気枠\n\n週刊少年ジャンプにて連載されている、矢吹健太朗先生の漫画作品『あやかしトライアングル』が、ジャンプ＋へ移籍しました。連動して全巻無料で読めるようになっているので、これを機にみなさんも少年漫画のお色気枠のドキドキを味わいましょう。\n\n目次欄では、矢吹先生自身が「すずのダークネスがもう抑えきれない」とコメントしておりまして、相変わらずダークネスに色んな意味が含まれすぎている上に、メインヒロインの性欲が抑えきれないばかりに本誌から移動する流れも面白い。『To LOVEる』での校長のような性欲の爆発をメインヒロインが担っているのですからね。本誌時点でも、充分にすごい漫画でした。世の中高生たちは、矢吹先生へ足を向けて眠れないのではないでしょうか。\n 僕の学生時代は『To LOVEる』が連載されていたのですが、これまたすごかった。小学生の頃、『いちご100%』は読んでいるとエロ扱いだったのですが、『To LOVEる』レベルまで堂々とされると、オタクもヤンキーも負けを認めて、みんなで好きなキャラについて語り合った。むしろ「誤魔化さずに矢吹先生を受け入れられる年相応の性欲と向き合う自分」を誇っているようにまで思えた。NARUTOやネウロを応援する気持ちとは別に、可愛い女の子も好きだ。なんなら、BLEACHだってそういう目で読むこともある。矢吹先生による漢気は、僕らジャンプ少年たちを素直にさせてくれたのだ。\n とは言え、ネギま！やハヤテのごとく！を読んでいるオタクは若干引かれたりしていた。このあたりの線引きを見誤ると一瞬で浮く、そういう時代だったのです。\n\n毎日のエッセイをまとめた同人誌買ってね。毎日連絡し続けていてえらい。\n\n長文エッセイをまとめた商業エッセイ集も、よろしくお願いします。お色気いっさいなしで、ひたすら重い。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

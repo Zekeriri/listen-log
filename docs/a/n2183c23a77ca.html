@@ -32,9 +32,8 @@ gura koko。カルテルの透明な椅子やテーブル大好き。ニディ�
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-05-22 16:13\n公用客厅与家具与绿意\n共用リビングと家具と緑\n\n昔、ルームシェアやシェアハウスしていた友人たちと再び共同生活をする部屋を借りた。僕はいまの自宅があるものの、さすがに作業用の部屋が必要になったため一室を仕事部屋として使っている。実は僕の家には机やパソコンが無い。紙と万年筆でやってきたものの、そろそろパソコン置くか……と、ようやくデスクトップを購入。\n そんな仕事部屋より先にリビングを完成させました。\n\n青と緑。今回は色の統一感に拘った。アニメの製作において特に背景美術に力を入れたく、色の参考としてリビングを使用した。やはり自分で試行錯誤し、この目で見るより手っ取り早く理解する方法は無い。今まで僕は家電などに興味なかったものの共同生活なのでそこも拘ってみることに。まあ雰囲気を統一しただけですが、色合いの意味がはっきりしていると分かりやすいね。\n ざっくりしたイメージはキューブリック。映画で見るともう少し緑がかっている。薄緑が与える視覚的な美に今は興味津々。ラグジュアリーを演出する緑はHERMESのイメージですね。\n\nこの前、見に行ったスタジオの緑。名目上グッズ撮影のために借りたのですが、実はこの緑の階段と家具が見たかった。階段部分はペンキで塗っただけではありますが、とても良い存在感。こうあるべき空間。\n\n家具選びは楽しいね。日頃のストレスを家具購入で解消するのは『ファイト・クラブ』だね。生活と美を直結させるには、まず家具でしょう。\n\ngura koko。カルテルの透明な椅子やテーブル大好き。ニディガ展の展示でも活用（水色）。\n\nさて、共同生活が長かった経験から確実に言えることは「共用部分はケチらない」ことである。僕がリビングの家具に拘り、定期的に整理整頓することによって、「散らかしたら怒りそうだな……」といった雰囲気を作る。ここが雑になればなるほど「元から散らかってるしいいや」と秩序が崩壊する。家賃の安い地域であればあるほど治安が悪いのと同じ。アニメの背景参考・治安維持（僕は神経質なまでの掃除好きで申し訳ないが）のために色の統一はたいへん有意義でした。それでも友人がペットボトルを溜めまくるのでお母さんのように叱ったりする。それもまた懐かしい想い出になるんだろうな。\n この部屋で昔一緒に住んでいた友人と集まり、みんなでスト6の大会を眺めて手に汗握らせた。休憩時間中、我慢できなくなった彼らは自分たちも対戦し始めた。こんな日々が一日でも長くあれば、それは幸福な生であることでしょう。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,10 +52,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

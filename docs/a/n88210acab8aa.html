@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-03-17 15:03\n在节日中\nお祭り中\n\nこんな忙しいことあるかというくらい多忙だ。体感的に3日に1回は収録があって、間はそのための作詞や文章の準備で埋まっている。まあ、もはやアニメが少しでも良いものになるなら何でもいいけれど。今は音がいい状態での先行上映が好評なようで延長していた。本番はテレビ放送時とはいえ、先行上映での熱い感想などが届くと嬉しいね。\n\n多くの作家に聞いてみたけれど、やはり人は自分の作品のアニメが終わった瞬間、糸が切れたようにぷつりと倒れるようで、漫画たちから忠告があった。放送時、または放送前あたり、どんなに忙しく稼働しても、アドレナリンによって集中できるというか、もはや嘆いている暇もないほど次から次へと作業がふりかかる。その上で、毎週毎週あらゆる角度からの毀誉褒貶がぶつけられる。褒められても貶されても、「情報」や「熱量」が目に入ると脳に負担がかかるが、それを気にしている余裕もない。しかも、僕なんかは今回原作自らアニメも中心として動いているので、なおさら。\n 既にさまざまな疲労はやってきているが、これも先人たちに倣って「放送後まで」は、騙し騙し、お祭り騒ぎに浮かれて走りきれる気もしている。もちろん、アニメ以外の仕事も多量に並行しながら。まあ、どうにかならんこともない。代わりに、一区切りのタイミングで倒れることも直感でわかってきた。\n カフェインによる「元気の前借り」みたいなもので、良くも悪くも「アニメ放送」という大きすぎる嵐に巻き込まれ、身体が勝手に動く。肉体的にも精神的にも疲労が溜まりつつ、それらを先送りにし続けている。これらの疲れの負債は、きっと放送後で一息ついた瞬間にまとめて襲いかかるでしょう。\n すべて2回目なので、そこは覚悟と耐性があって良かったなと感じる。見知らぬ誰かに刺さったり、刺されたり。作品に触れていない者に好き勝手言われたり、反対に妙な層から神格化されたり。ゲームリリース時に一度体験した何もかもが、アニメ放送前にして「また同じことが起きていくんだ」と肌感で伝わってくる。それだけ「挑戦する価値のあるものを作った」と自負があり、確かな手応えに包まれているのも同じだ。しかし、今度はゲームリリース以上の規模だ。13話分の予算は、インディーゲーム開発費の10倍以上で、関わる人数も桁が2つ違う。\n 「規模」による、楽しいこと・悲しいこと、それらすべてがまたやってくる。\n こうした何もかもの波を越え、ふと「そろそろ流石に休もうかな」と腰掛けたら最後、そこからぐいっと重力に引っ張られ、誤魔化してきたストレスを一身に浴びるのです。\n もうインターネットをテーマにした作品なんてやらないぞと、このアニメを自分とネットへの区切りに締めた上で、後続たちが非常に悔しがるくらいに更新できない「妙なもの」として、3年……いや5年くらい聳え続けて欲しいな。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

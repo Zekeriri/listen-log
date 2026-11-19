@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-15 02:27\n一口随笔：悠闲的互联网\n一口エッセイ:ゆるやかインターネット\n\n侮辱罪の厳罰化が始まりました。前にも書きましたが、僕が急に攻撃的になる可能性の方が少ないので、基本的には自分にとって得です。叩かれることはあるわけですからね。綺麗すぎるインターネットも不気味ですが、これでクリエイターなどが活動し易くなるならシンプルに良いことだと思いますね。\n ある炎上経験済みの配信者さんが、「このタイミングを待っていました」と呟き、炎上中に受けた誹謗中傷を一気に通報する旨を表明したのですね。そうしたら、みんなが慌てて、「俺のは侮辱じゃなくて批判だから」とか「施行後に厳罰化だから遡って訴えても変わらないから」と一斉に引用やリプライし始めます。それはもう、虫のように。いや、実際に訴えられるかはともかく、そもそも自身と無関係（相手が炎上していたとしても事件となんら関係ない野次馬たち）の人間を傷つけて遊んだことは、反省するべきではないのかと流石に見苦しく思えたのですね。わりと温厚な自分でもうわって驚いた。\n 以前、自分も一度元ファンのいわゆる反転アンチに対して、「それは誹謗中傷ではありませんか？」とリプライしたことがある。相手からの返信は「お金がないので訴えないでください」で、まず前提として僕が傷ついたことへの謝罪や反省がなかった。「訴えるかどうか」「発言が誹謗中傷に当てはまるかどうか」を相手は気にしていて、肝心の僕の感情は無視されたのです。訴えてお金が欲しいわけじゃない、昔は応援してくれた方が、連日僕を攻撃して明らかに様子がおかしくなったことに、恐怖と傷心して悲しくなっていることを伝えたかったのですが。\n いくら無法なインターネットとはいえ、品性までは捨てたくはない。僕だって昔は、そんなもんでしたが、やはり人は成長するし時代も変わる。侮辱罪の基準は曖昧ですし、なんなら厳罰化されたとて判定がゆるまったのではない。実は、今までと同じくネットの誹謗中傷をやめされるには、相当な苦労を必要とするままで、これからも悪口の9割は泣き寝入りである状況でしょうが、本当に大切なのはお金でなく魂であり、自身の魂が穢れるような発言・行動を控えることこそ、真の幸福へ近づく道であるべきと信じていくしかない。\n こういう場合、本人たちは自身を悪を成敗する「正義」だと認識しているので、いくら言っても平行線ではあるんですけどね。まぁ、わりと人間の精神は周囲と自分の言葉に引っ張られますから、平穏に活動するに越したことはないと思いますけどね。\n\n毎日の日記をまとめた同人誌を販売中。新刊、手にとってね。\n\n商業エッセイ集もよろしくね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

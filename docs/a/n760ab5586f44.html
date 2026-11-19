@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-06-15 03:50\n青色的焦虑感\n青い焦燥感\n\n10代や20代前半の焦りや悲しみは、「自分が何者なのかわからない不安」だったのか。\n 自分の居場所が不安定で、社会や学校、コミュニティのどの位置に自分が居て、何を望まれ何を行えばいいのか分からず心配ばかり募る。果たして、このまま自分が誰かにとってかけがえのない、替えのきかない何かに成れるか。\n 怖いよな。なぜみんな大人になったら、その恐怖を忘れて振る舞うのだろう。社会的な立ち位置と自我が融合して、自分がきちんとどこかへ所属している力強い感覚が支えになっているのだろうか。自身の力を必要とする集団に安心感を覚えているのだろうか。\n なんだったのだろう。道化とシリアスが混じりすぎて、どっちがどっちだったか分からなくなってしまっていたよ。\n 笑われてないと、指をさされてバカにされていないと存在を確立できなかった。能力や才能が無くても、「笑われて他人を安心させる」ことはできる。ずっと笑われてネットで揶揄われているうちに、ピエロと自己の天秤が揺れていく。サーカスから離れると居場所がなく、ショーの中で滑稽に踊り続けるたび終わりが寂しくなる。\n 何もかもを誤魔化すようにずっと踊ってきました。それが必ずしも不幸と言うつもりもなく、檻の中から観客に囲まれて笑われる暮らしは、それでも孤独より愉快でした。人は寂しさを紛らわせるためなら何でもできる。自身のアイデンティティを道化師だと思い込むくらいお手のものです。\n 何かになることに近道が無いこと、いや、一見すると近道に見える絶望だらけであることに気づき、立ち止まる。どうやら周囲はすでに僕を置いて受験勉強、就職、恋愛などの経験を通し成長している。学舎で、職場で、恋人と、替えのきかない己の人生を確立しつつある。\n 幻覚を見るたび自己と他者の境界が曖昧になります。みんなが同じ七色の光だけ見ていれば、それだけで「何者であるか」なんて関係がないのに。無性に悲しくなる。\n 何者にもなれてない僕を笑わずに見てくれればよかったのに。けれども、互いに笑い合ってたら意外と幸せであった。それだけは覚えている。所属欲求に満たされた大人たちの冷ややかな視線の気持ち悪さと同じくらいに、覚えている。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

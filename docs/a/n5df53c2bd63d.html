@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-12-04 12:33\n无脸男的就业\nカオナシの就職\n\nあれだけ不気味で迷惑な存在だったカオナシも、就職先が決まった瞬間、驚くほど収まるところに収まる。職場で誰かが「顔を見て」喋ってくれるんだなあと解釈しています。\n 要するに、誰にも触れてもらえなくてこの世界から消えかかっている存在は、ごちゃごちゃ言わずに働けということだ。働いたら、自動的に人間関係が生まれる。それは金銭以上に大切なものだと。\n だから、みんな就職するのでしょう。孤独が好きなフリ、退廃的なフリを20前後で済まし、社会的立ち位置という承認を得るために。将来のために。洗濯機やゴルフや納税や生命保険のために。真に孤独を愛し、独りに耐えきれるものはめったに居なかったんだ。\n 学校では、人間関係の練習が行われる。\n 僕は、それも大嫌いであるけれども、将来は就職するための人たちにとって必要な儀式なのです。暗黙の了解、見えない上下関係、学力や運動能力とは別種の魅力とはなにか、恋愛とは。すべて、遠くない未来に仕事を得て「社会に参加する」ため。不気味なカオナシにならないための訓練。\n 「生活があるから働く（仕事を辞めない）」って考え方には、つねに違和感を覚えます。福祉制度を利用すれば、ご飯とパソコンさえあればいい暮らしをするなら、この国はあらゆる手を尽くして明日にでも成立させてくれる。本当は生活費のためでなく、「他者との繋がり」が欲しくて働いているはずで。結果、リザルトのように給料が振り込まれる。今月も社会人のフリして感情を殺せたね、と。\n みんな、この世界で立場を探している。上司、恋人、作家、フリーランス、半グレ……。自分がこの世界においてどこに存在しているかを、死ぬまでたしかめたがっている。カオナシは苦しくなったら銭湯へ行くのだ。人との繋がりを金で買うために。でも、彼が真に欲しかったのは手厚い就職先だった。\n\nエッセイ新刊よろしくね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

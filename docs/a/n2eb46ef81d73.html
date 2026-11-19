@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-04-01 17:14\n有新生活的人\n新生活があるひと\n\n仕事に向かおうとすると、相手から連絡があり、「大きな人身事故があって電車が遅れる」と言う。\n 3月末、新生活に向けて不安が高まる時期なのかもしれません。みんな春から始まる新たな環境、または「変わらなかったこと」へ絶望し、その身を投げる者もいるでしょう。\n ｢死ぬよりマシ｣って考え方もヘンだなと思う。｢こんなに苦しいなら死んだ方が楽だ｣と脳が悲鳴をあげた場合に矛盾するから。\n 先日、中学生の方が発狂して連絡を飛ばしてきた。どうしても死にたいと。\n 僕のNoteや作品へ救われていると言ってくれたので、であれば4月からアニメが始まり、それは間違いなく僕の創作活動の収斂したものなので、できればまず7月までアニメを観てみませんか？ と返す。あまりにも綺麗事で、都合よくストーリーを作ったに過ぎないけれども、なんにせよ返事があっただけで嬉しかったのか、ひとまず喜んでくれていた。\n 年度が変わるタイミングである程度はリセットされていく。\n この方は不登校と言っていたけれど、まずはクラス替えを機にしれっと戻ってみてもいいかもしれないし、高校まで耐えて完全な新天地で挑戦してみてもいい。18になったら家を飛び出してもいい。自分も高校卒業して即上京したことで、一旦の苦悩や人間関係を丸ごと沖縄へ置いてきた。それはそれで新たな苦労は多かったものの、ひとまず全てがリセットされた気楽さが勝る。\n 家によっては飛び出すのは難しいかもしれない。\n 18になったら家出でもすればいいじゃんと思うけれど、実際にはそれもハードルが高い場合もある。とはいえ、基本的には「いざとなれば何もかもリセットできる」期待は思春期を救うのではないかと考えている。だって、プラスはなくともマイナスが帳消しになる。一度だけ徳政令カードが使えるとしたら、二十歳前後で一度試してみてもいい。ただ、以降の場合にリセットするには大いなるリスクを伴う。\n そうしたごちゃごちゃを「考える気力すらない」となったら、人は「魔がさす」。魔は、コントロールできるものではない。来るときには必ず来る。\n どんなくだらない綺麗事とはいえ、体面上の死なない理由、「原作者に言われたから7月まではアニメ観てみる」と生きる言い訳がついたのなら良かった。もし、思春期での鬱屈を成人後に爆発させる事ができたら、次の作家は君かもしれない。そうでなくてもいい。「この苦しみはいずれ終わる」と嘘でも信じていなければ壊れてしまう。そんな嘘を与える役割が物語にあるなら、それは良いことです。\n 「良い作品」である必要なんて無いけれどね。\n バッドエンドじゃないと救われないくらいに捻くれた子供のほうが好きですけどね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

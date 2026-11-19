@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-27 03:50\n一口随笔: 对“认同”的渴望\n一口エッセイ:「承認」への飢え\n\nおまいら……（ ; ; ） pic.twitter.com/PIa4xJApeY— にゃるら (@nyalra) June 26, 2022\n\nラブレター（匿名で文章が送れるサービス）を開いたら、たくさんの応援メッセージがどしどし届き、なんと言いますか、包み隠さずに話すと想像以上に胸がすくことになってたいへん感動したのですね。凄い勢いでババババと愛の込められた文章が届き、言うなれば久々にインターネットで「ヌクモリティ」を覚えたのです。\n\nようやく自分の活動が実を結んだ感覚がきた。ゲームや文章を通して、多くの人の心に良くも悪くも影響を与えた実感が湧いた。昨日まではまだ斜に構えてたから……「僕はどうせ業界や社会の敵なんだね……」ってうじうじ鬱々としていたのですが、ここまで直球に暖かな光を浴びたことで魂が浄化されました。いつもフラットな雰囲気を心掛けているので、こうして\"真剣（マジ）\"になるのはたいへん恥ずかしいのですが、応援してくれてありがとう……。\n 僕の人生は「承認」の足りなさからの渇望が全てで、母子家庭の底辺高校出身だから強い大人に褒められた経験がなく、そのまま何もない状態で上京したものだから、とにかく誰かに見つけてもらいたかった。誰かと繋がりたくて始めたTwitterでは、いろんな人間関係での距離感を学びながら、友情も衝突も何度も繰り返し、少しずつ活動を通して自分を見てもらえるようになった。これは本当に嬉しかった。「もっと反応されたい」って気持ちに必死で、ブログをとにかく書き続けたのですね。\n たまに暖かいとはいえ、基本的にインターネットはカスですので、無料で読めるコンテンツを公開すると、誰お前みたいな人からアホほど叩かれる。それでも評価（正当な批判も含め）や応援してくれる方々がいるから続けていくうちに、精神が鍛えられていく。これはもうネットの性質なので変えられない。出る杭は打たれるが、出なければ承認されない。目立つたびに他人は「承認欲求」を揶揄して嘲笑う。その嘲笑の中に混じる羨望や嫉妬を見てみぬフリしながら。または、叩いて過激な発言をすることで、実は自分が「承認」される快楽に溺れていることは気づかないまま。\n 見せつけてやるのだ。「承認欲求」を嘲笑った連中に。正当なルートによって社会や学校で自己を認識と肯定され、「承認」の飢えを知らない人たちに。誰かに見てもらうために、僕らがどれだけもがいてきたかを。「誰かに見つけて褒めてほしい」ことを原動力にして動いて何が悪いのか。幼い僕らが、そのせいでトラブルも起こすし、痛々しく見えもするだろう。しかし、そうやって学んでいくものだから仕方ない。僕はどんなに\"痛く\"たって、いつの日か本来は誰もが体験するであろう「父親の大きな掌で頭を撫でられる」感触を知りたかっただけなのですね。\n 結局、誰かが直接頭を撫でてくれるなんてことはなかったものの、さっきラブレターを開いた際に得た感情は、きっと同じくらい大事なものである筈でしょう。\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中！ 読んでもらえると、また一つ承認されてとても喜ぶ。\n\n商業エッセイ集もよろしくね！ こっちの方も手にとってもらえるなら、さらにあり得ないほど喜びます。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

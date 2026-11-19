@@ -21,9 +21,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-11-04 19:23\n工作通知\n業務連絡\n\nちゃんと会社になってきて自分でも驚き。一緒に頑張ってくれている人たちのおかげが強いけれども。お金がどう回転していくかを眺めていると結構楽しいのは、トロピコやシムシティが根本的に好きだからでしょう。\n いろいろ回している業務が増えてくると、僕が手を話さざるを得ない部分、壁打ち的に相談したい部分もあるので、企画や広報的な者が欲しい気がしています。なんだかやる気があったら連絡ください。都内すぐに来れて、とにかくカルチャーが大好きでインターネット追いかけてる感じの若者だと嬉しいですね。\n まずはアルバイトから。一緒に頑張っていきましょう。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -42,10 +41,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

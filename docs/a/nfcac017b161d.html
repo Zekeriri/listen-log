@@ -33,9 +33,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-08-06 17:33\n计算寿命\n寿命を勘定して\n\nみんな積み立てをしていたのか。\n なんだかんだ未来を考えていたのか！\n なんというか、こう……もう若者ではないんだし、反骨精神とかもファッションで持ちはするけれど、それはそれとして将来は不安だし国には従うよねと、いずれ幸せで暖かい家庭に落ち着く気はあるんだとビックリした。\n\n寿命を勘定しているのか。\n 老人になって死ぬまでの日数から逆算した金額を増やすため、投資や保険を考えている！ 自身の命を金額に変換した勘定を行っている。ロックンローラーがそのようなことをするだろうか。マリリン・マンソンが寿命を勘定してコカインを控えるか？ マンソンが積み立てNISAに加入するため郵便局へ通うか。マンソンはつい三日にもいつも通り気色の悪いグロテスクな新曲MVを投稿していた。マンソンは老後のために安心安全な少額投資をしない！！！\n ロックンローラーではないのか。サラリーマンか。なんかその、あれだ、資産運用？ によって暖かな家庭を守るのか。あったかい家庭で穏やかな家族と、時折ケンカしたりしつつも幸せな日々を過ごすつもりか！\n 今すぐ積み立てたものを全て崩せ！ 郵便局へ突撃して「積み立てNISAを破壊したいんですが！」と叫ぶんだ。そもそも何を積み立てているんだ。幸せか、今この瞬間の幸福を捨てて未来へ回すほど将来を見据えているのか。じゃあ未来も壊そう。一緒に壊そう。本気でやるならマンソンもついてきてくれるだろ、多分……。\n いま調べました。積み立てNISAの上限額は……年40万であるそうです。いかがでしたか？ 調べたらなんか新NISAというものもあるらしい。なにが新？ 帰ってきたNISAマンということなのか。旧でも新でもどうでもいいよ。\n\nこの前、中野ブロードウェイで見つけた鉄人28号のゼンマイブリキが税込み約40万円だった。これにしよう。毎年毎年NISAに40万円入れる（意味不明）のと、家に一体ずつ鉄人がやってくる（かっこいい）こと、どっちが嬉しいかなんて考えたら即分かることでしょう。\n こんなリモコン一つで奪われるロボではピンとこないなら……\nブラックオックスならどうだ。\n\n仮に、40万で毎年家に一体自家用のブラックオックスが手に入るならどうする。マリリン・マンソンが積み立てNISAとブラックオックスとコカインどれを選ぶか。そこはコカインかも知れないが。白いし。永久に寿命を勘定してなさい。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,10 +53,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

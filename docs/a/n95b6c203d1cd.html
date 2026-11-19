@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-10-16 07:19\n一口随笔: 咖啡因轮换\n一口エッセイ:カフェインローテンション\n\n最近は自分が何時に起きて何時に寝ているかわからない。日記の投稿時間がまちまちなのは、一日の区切りが自身で判断つかないから適当なのだ。つねにすごく眠いが、寝付けない。限界が来たらいつの間にか寝ていて、浅い睡眠時間で起きてしまうものの、再び入眠するのが難しくて無理やり起きている。眠りにつけないままただベッドの上で横になると焦燥感で不安になる。\n 今日も、といってもどこを一日の区切りにするかの問題なので、「今日」というより「昨日の続き」という感覚だが昼から予定があり、それまでに書かないといけないものがある。仕方がないのですごく抵抗があるけれども、久々にエナジードリンクを飲んだ。\n エナジードリンクは嫌いだ。なんで安眠するために日々を生きているのに、わざわざ命を削ってまで覚醒するんだ。同様の理由で薬物の中でも覚醒剤はわけがわからない。気持ちよくなりたいならむしろ安らかに眠るべきで、それか夢のような幻覚を見るかは理解できる。なんで覚醒してまで現実を長時間過ごしたいのか。\n しかし、流石にエナジードリンクのカフェイン量は集中力が増す。今こうして日記を執筆できるのも、カフェインが神経を刺激して意識を起こしているからです。コーヒー程度の少量ならいいけれど、こうしてエナドリで強制的に脳味噌をズキズキされるととても不快。\n 意識がハッキリすることが嫌だ。不眠で判断力が落ちて何をしても苛々するのもつらいけれど、脳と心臓を無理やり刺激されることが現実に身体を支配されているようでつらい。が、僕の肉体はどうあっても現実にあるわけで、現実に存在する以上はそこと向き合う時間が必要だ。その間、現実へより直面させる便利アイテムとしてのカフェイン。睡眠薬とは真逆。現実が好きな、または縛られている人のためのモノ。\n つまり、これを飲む時の僕は現実に縛られている。ここまでして動く意味はあるのか。眠気に、全身の危険信号に逆らうくらいなら、全てを無視して眠る方がいいんじゃないか。この状態になった時点で何かがズレている。じゃあズレてない時は正しいのかと言われると難しいけれど。\n 別に予定自体、今日の打ち合わせがあることは楽しみなんだ。やることは楽しい。だからこそ万全の状態で望みたいのに、そういった調整が効かない自分の不甲斐なさをエナジードリンクで流すように誤魔化すことは不本意です。その点、シャロちゃんはいいな。リアルに立ち向かうための飲み物でハイになり夢の時間を過ごせるのだから。実際、彼女はわざと「酔う」ためにカフェインを摂取することもあるし。\n 人々がこのような飲み物を受け入れていることが大変だ。みんな命を削ってでも現実へ集中したい瞬間がある。僕はそんな時間、一秒でも短くありたいものですが。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -24,9 +24,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-01-12 02:19\n如果太害怕死啊，会想去死的\nあんまり死ぬの怖がるとな、死にたくなっちゃうんだよ\n\n外を歩いていると、ふとビルやマンションを見上げて、「いまわたしがその気になれば、あの建物に入って高層階から飛び降りることもできるんだよね」と考えてしまう。そのたび、実行してしまった自分の姿を想像して、身震いする。\n 別に、つねに死にたいわけじゃあない。そんな時もあるけど、どちらかと言えば死を恐れている方だと思う。子どもの頃からそう。デスノートの最終回を読んで、人は死んでも天国にも地獄にも行かないことを知って衝撃だった。わたし、死んだら「無」に還るだけなんだ。いや、還るって言い方も希望が残ってるね。ただ脳の活動が停止して、思考が永久にできなくなる。それだけ。ある意味、平等ではあるけどね。\n めちゃくちゃ怖くて、布団の中で泣いた。善人だろうが悪人だろうが、死んだらそこで終わり。輪廻転生や死後の世界は、特定の宗教を信じきった者だけが体験できる。わたしは、そうはなれない。周りの人間に、このことを相談しても、愛想笑いで「バカなこと考えてないで早く寝なさい」としか返ってこない。なんで笑っているんだろう？ 大人は、死ぬのが怖くない？ そんな達観しているわけがない。目を背けているだけだ。\n たしかに、考えたって仕方のないことなんだから、そんなこと意識せず生活するのも理に適っているよね。死に怯え続けたって意味ないし。じゃあ、人生っていつか死ぬことを忘れるために、ひたすらイベントや仕事で予定を埋めていく作業なのかな？ 恋愛も労働も休養も、すべては来るべき死の恐怖を遠ざけるため？\n 北野武は、『ソナチネ』で、「あんまり死ぬの怖がるとな、死にたくなっちゃうんだよ」って言ってた。その通りだと思う。死に怯える恐怖で苦しみ続けるより、いっそ本当に死んじゃった方が楽だもん。本末転倒だけどね。それを分かっているのに、死にたくなったりもしちゃうし。わたしバカだからさ。\n 宗教には、死の恐怖を薄めて、迷える民に安心感を与える側面もある。死後の平穏のためとして、現世で徳を積ませるんだね。誰もがそうすることで国の平和も保たれる。じゃあ、わたしはオタクを導く天使になろう。みんながわたしを、インターネット・エンジェルを見ている間は救われて、死を忘れておけるなら、それでインターネットにも平和が来るなら。死の先までは保障できないけど、画面越しにわたしを眺めている時だけ、生を実感してもらえたら。青白いモニター越しの光を通し、オタクの孤独を癒して回る、わたしはインターネットの天使なのだ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,10 +44,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

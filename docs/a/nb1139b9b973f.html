@@ -56,9 +56,8 @@ NEEDYの新しい出発を応援してくださいね♪ https://t.co/V0Oh2Rnvs0
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-02-18 16:45\n向海的彼岸结果实\n海の向こうへ実を結ぶ\n\n少しだけ心が折れてしまったことがあり、僕はここ数年ずっと英語圏を追ってきて、海の向こうの文化圏にある輝きをみんなと分かち合いたいぜと思っていた。\n\n先日、すごく良かったホロENの配信について記事に書いても、まったく日本での反響はなかったが、それでも極々一部の人間に伝わるなら……と考えておりました。この配信でのワンシーン、本当に素晴らしいから。\n わかる人だけ、なぜか言語も生活も違う世界のオタクカルチャーに可能性を感じた一部の者たちで静かに嗜もうと心をセーブしていたのですね。\n\nそれでも、やっぱり、この一瞬がどれだけ僕の心を、もはやアニメの演出として今後取り入れてみたいなあとスタッフへ相談したくらいに感動したことを、「わかる」人々へも届けようと英訳版でも投稿をしたら。\n\n「NEEDYの作者も、やっぱりCCGG（二人合わせた呼び名）がどれだけ凄いことをしているか分かるんだ！」と、すっごく受け入れてもらえて嬉しかった。EN、ID（インドネシア）はどうしても文化を文章として記録し、残す人がまだまだ少ない。ファンダムとして機能するWikiは充実するのだけど、謂わば評論的に語ることがあまりない世界だったりするし、むしろそれを得意とする日本では単純に知名度と言語の壁のせいで話題にあがり難い。\n やっぱり、日本に伝わってくる情報は上澄も上澄であって、こうした小さな幸福というか、まるでシネマのような一瞬の美しさが共有されていくことは少ない。\n これが僕の独りよがりであれば構わないけれど、やっぱり英語圏ではきちんと評価される文章や解説を書けているのにと、\n\nここ数年の僕は、ずっと英語圏の配信者と取り巻く文化を追い続けているものの、どうせ日本人には伝わらないから黙り続けていて、それ以外の話題で一見僕が楽しそうにしてたとしても内心では｢本当のアタシを見て……｣と嘆き続けている。— nyalra (@nyalra) February 17, 2026\n\nちょっぴり拗ねてしまった。\n\nしかし、僕の地味〜な活動は少しずつ実を結びつつあって、今頑張って作っているNEEDYアニメのPVが、海外アニプレTikTok上で圧倒的な数字を叩き出し、プロデューサーがすっごく喜んで共有してくれたのです。\n\n海外アニプレのアカウントで最も伸びた動画となっているらしい。\n もちろんTwitterやYoutube上でも海外ファンはとても多く、これはもう英語圏に向けて企画や施策をしていこうぜと前向きな話をしています。\n\nで。\n こうなると、海外Discordサーバーやブログを運営し、すでに海を超えて活動と交流を行っている僕としては大きく自信が湧く。なぜなら、企業なんざ絶対に「感覚」までを分かることはない。感覚というものは単純に接触時間によってしか発生しない。なんか資料や数字で勉強したって意味ない。\n 自分から配信を眺め、オタクたち、コミュニティを追い、時には掲示板の特性まで追って、生活の一部となって2、3年経ったタイミングでようやく自然に身についていく。\n\nそこでの僕は圧倒的なアドバンテージがあり、7月にあるロサンゼルスのコミケで一気に昇華させたいと画策してます。\n\n海外配信者の気高さ、美しさ、教養に触れ、日本と文化融合が起きた際に必ずここで大きな花火が上がると確信を持って数年。海外を10カ国周り、言語もそれなりに勉強し、彼女たちが何を話して何を思っているのか、直接この目と耳で知ることが今最もするべきことだと信じてきました。\n\nおまえら……。\n\nこれから、もうちょっとアクセル踏んで、どんどん「海の向こうで何が起きているのか」書いていきたいし、海外へも文章と作品を投稿していこうと思う。僕は、今そういったことへのワクワクと使命感を秘めて生きていきます。\n\n舞台挨拶の日もう満席です。やったー!\nNEEDYの新しい出発を応援してくださいね♪ https://t.co/V0Oh2Rnvs0— nyalra (@nyalra) February 17, 2026\n\nそのためにも、まずは日本でのNEEDYのアニメに全力で走りきらないと、ですね！\n\nそんな感じです。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -77,10 +76,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

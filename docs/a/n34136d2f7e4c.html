@@ -28,9 +28,8 @@ boothで毎日のエッセイをまとめて同人誌を販売中です。読ん
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-12-05 00:19\n芥川龙之介的《鼻》\n芥川龍之介の「鼻」\n\n以前に、梶井基次郎の「檸檬」についての話を書いたら多くの反応をもらえたので、今回も青空文庫の話をしますね。無料で読める文章が大好き！\n 芥川龍之介の「鼻」の話をします。\n この短編を簡単に説明しますと、生来のクソデカい鼻がコンプレックスであった僧が、どうにかして鼻を小さいサイズに改造したけれど、平均的な鼻になった後の方が何故か他人から揶揄われてしまう。それを気に病んでいたある晩、急にまた鼻が大きくなったものの、おかげでもう笑われなくて済むと清々しい気持ちになる。と言った話。このことから、「人は矛盾する二つの心があり、他人の不幸には同情するが、その不幸を切り抜けると物足りなくなって、再び不幸に陥れたくなったり敵意を抱くことすらある」という教訓が得られる。\n これはインターネットでも散見される現象では無いでしょうか？ 自虐や不幸を刺激的なネタへと昇華することで評価されていた方が、おかげでだんだんと応援や金銭が入るようになると、自然と人間は相手を攻撃しはじめたり、単純に飽きたりする。\n この事実に対し、「不幸な時に同情した心も、いざ幸運になった後にガッカリする心も、矛盾した心を二つとも持っているのが人間だ」と、その人間らしさを責めて安易な綺麗事にしない点が、芥川龍之介の魅力であり筆力に感じます。\n 仕方ないんだ。どうあっても人間は人間。他人の幸せを心から祝福できる善人の方が少数。そのように世界はできている。人の心の動きにまで文句はつけられない。このやるせ無さがモヤモヤと心に残り続けていく名作なのですね。\n\nboothで毎日のエッセイをまとめて同人誌を販売中です。読んでくれると嬉しい！\n\n月末には、長文エッセイを収録した商業エッセイもでます。予約してもらえると嬉しい！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

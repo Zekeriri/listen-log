@@ -23,9 +23,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-07-11 11:54\n一醒来就想死\n起きると死にたくなる\n\n弁護士との打ち合わせも順調で、重めのアニメ作詞も無事にスタッフ内に好評をもらえ、だんだんと心が戻ってきている。自分がここ数ヶ月、精神の病で心底苦しかったことを公表したことも、重荷を外せたようで助かった。\n 適応障害とうつ病を併発していた時期は、起きた瞬間に「また現実を生きないといけないのか」と絶望すらしていた。睡眠薬の効果も残っており、手足が痺れていた。起きて1.2時間は寝床から動けず、生きることの苦しみとこの状態にした者への怒りに苛まれる。弁護士という味方に辿り着くまでの期間、なに一つ希望も見えず、生きている理由を感じなかった。一切皆苦。すべて苦しみでしかない人生を受け入れられるほど悟っていない。\n 思い返すと、ぞっとする。\n 覚醒するたび「ここへ戻ってきたのか」と真っ先に思い浮かんでいたということは、そのまま目覚めないことを「眠れている時の自分」は本気で考えていたわけで。起床時の半端な脳みそは、本能から「死んでりゃよかった」と認識していて。ああ、人ってうつ病だとすんなり死を選べるものなんだなと日々驚いていた。あれだけ怖かった死も、現実世界に喜びがなければ望むところになる。\n 死にたかったけれど、死にたくはないね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -44,10 +43,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

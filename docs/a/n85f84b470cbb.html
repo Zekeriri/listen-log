@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-09-26 13:22\n不要忘记死亡\n死を忘れるな\n\nここ最近、「死が怖い期」が訪れている。\n 自分の意識が止まることが恐ろしい。誰しも死を想像してぞっとする瞬間はあると思うけれども、僕は今月頭からずっとだ。何故かはわからない。わからないほど強烈だから死なのでしょう。\n ある日、Aiobahnと遊ぶ際、案の定向こうが遅刻したので、やれやれ……と思いながらデパートのベンチでぼけっとしていた。今年あたりから空き時間にスマホを見ないことができるようになった。僅かな時間で圧縮された情報を目に入れる行為に意味を感じなくなった。\n ベンチからぼけっとデパートを行き交う人々を眺めていると、ふと、前触れもなく「死」が意識された。「こうしてぼけっと何かを考えることすらできなくなるのは怖すぎる」、と。\n 先ほど書いた「僅かな時間で圧縮された情報を目に入れる行為」よりも、何もない状態で外を眺めている無我の幸せが心地よいことに気づいた。外界の情報量は凄まじく、これを眺めずスマホの狭い画面に逃げるのは「損」という結論に達したのである。結局、世のお偉いさんたちが散々言うような瞑想の時間は脳に良いのだね。\n 瞑想なり禅なりの時間もできない、脳が止まって思考が停止する。そんな未来を想像すると恐ろしくて堪らない。ぼけっと無我なりに意識を求めていたい。死ぬと、ぼけっともできない。\n しかし、どんなに意識したとて逃げられないのが死である。ならば、もはや意識をし続け「死とはなにか」の答えを見つける他ない。死生観を固めて満足した状態で死後に挑む。これは相当な挑戦だ。場合によっては神との対峙でもある。\n 死ねば全部終わり、死は平等。\n その絶対のルールが提示された世界で何を思うか。\n 生きるとはそういうことなのだなあと、ぼけっと佇む日々である。結局、そのあとAiobahnはのこのこやってきて、ぷにるのキーホルダーのガチャガチャをコンプリートしたくて数千円ガチャガチャしていた。どんどんカプセルが溜まるので僕が開けて捨てに行っていた。それでも一種類足りずに落ち込んでいた。この瞬間は「死」とはほど遠い。少し気が楽になるね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

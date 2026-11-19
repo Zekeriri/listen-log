@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-10-04 07:19\n一口随笔: VS Premium Bandai的日子\n一口エッセイ:VSプレミアムバンダイな日々\n\nここ最近の主な出費の内訳を確認したら、だいたいがプレミアムバンダイ相手だった。子供の頃に欲しかったアイテムを大人になったいまにリバイバルしてくる財団Bの卑劣な戦略へ見事にハマり、毎月オモチャやカードが届きまくりである。わざわざ言うまでもないが、最もお金をかけている趣味なのだから、届いたダンボールを開封する瞬間の興奮が生活の支えなのだ。箱から取り出された「メカメカでキラキラな高級仕様のオモチャ」という子供の頃の夢そのものへの煌めきに瞳孔が開く。\n\n僕のブラック・ローズ・ドラゴンを見てくれ。今年もたくさんのフィギュアやオモチャを購入しましたが、「自分が子供の頃に愛用していたカード」という思い入れが加わり、現状では今年一の満足感。これから届く3万円級のサーバインが更新するかもしれないが。それも含めてわくわくが止まらないぜ。\n ガンダム、デジモン、遊戯王、仮面ライダー、ウルトラマン、スーパー戦隊、プリキュア……なんなら今回はダンバインなどの昭和ロボットアニメだし、ごく稀に美少女アニメ系が来た時もすぐに飛びつく。最近のバンダイは、ユリカ様グッズを出しまくるとアイカツファンの財布が緩んでいくことを覚えた。\n 僕の半生は間違いなく大部分をバンダイが占めている。わかりやすくていいな。子供の頃欲しかったライダーベルトやガンプラを大人になって手に入れていくことで、幼い自分を少しずつ救ってやるような感覚がある。ドラクエ5みたいだ。\n それにしても素材の高騰でどんどんフィギュアの価格が上がることだけが心配です。別に僕の貯金がってだけでなく、それらを欲しがる子供たちだ。流石にあの頃が安すぎただけですが、僕の中学の頃なんて1500円あればリボルテックで上質なロボットフィギュアが購入できた。真ゲッターやキングゲイナーをがしがし動かしまくりの日々だ。\n それが今や、figmaもフィギュアーツも数倍の値段へ。それだけクオリティが上がっているのもあるけれども……中学時代の僕はSICでディティールがマシマシになったライダーを集めることが生き甲斐だったのに、そもそもSIC自体の展開が途切れたが、ライダー系のフィギュアも学生には中々な値段となった。SICキバやダークキバのアレンジ、めちゃくちゃいいんだよ。\n いまの子供たちも、きっと10年後にまたプレミアムバンダイの奴隷となるのかもしれない。あの時手が届かなかったアレコレが豪華になって再登場するのだ。その時には、強大な値段を前に泣く泣く諦めていた過去の自分を救ってあげてくださいね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

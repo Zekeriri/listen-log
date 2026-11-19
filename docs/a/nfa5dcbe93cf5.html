@@ -25,9 +25,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-11-11 07:53\n精选一口随笔：每写一次文章就会倒霉\n選り抜き一口エッセイ：文章を書くたびに不幸になる\n\nゲームテキスト、漫画原作、note更新、日記……毎日なんらかの文章を書いている気がしますが、文章を書くこと自体は好きではない。単純に他人から褒められるのが好きで、そして僕は書いた文章が褒められやすい傾向にあったのです。\n noteに書いたことがありますが、僕は底辺高校の学生時代、唯一真面目に取り組んだことが読書感想文でした。その頃にはすっかり美少女ゲームによって骨抜きにされていたので、「車輪の国、向日葵の少女」にタイトルが似ていて、もしや元ネタの一つなのかと図書館で借りたヘルマン・ヘッセの「車輪の下」について感想文を書くことにしました。\n それが国語の先生に絶賛されて、こんなに大人から認められたことないってくらい褒められた。それまで勉強もろくにしていなかったので、当然褒められる機会もなかったからですけど。\n 少し書き直せば全国狙えるかもと才能を見出し始め、天狗になった自分は人生で初めて張り切りました。特に国語の勉強もしてこなかったので、完全に勘のみが頼り。なんのノウハウもないまま、先生の指摘のみを闇雲に信じて書き終えた感想文は、詳細は忘れましたがなんらかの賞に選ばれました。それはとても嬉しかったです。\n 自閉症特有の頭のごちゃごちゃをそのまま言語化して出力すると、感性が文章となってくれるようでした。脳がごちゃごちゃしていないとこの技は使えないので、不幸にならなければ、鬱を感じなければ書けません。どうやら文章を書き続けていく限り、僕が幸せになることはなさそうです。\n\n※Twitterに連載していたエッセイからの抜粋です。↑で購入できますので、エッセイ集をぜひ読んでみてね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,10 +45,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

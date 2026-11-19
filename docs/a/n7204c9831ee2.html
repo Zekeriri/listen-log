@@ -34,9 +34,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-06-10 05:24\n拼命\n死ぬ気\n\n声優とスタッフから、僕が作っているアニメについての意気込みが届く。代表作になると信じ、このために命を賭ける勢いで頑張ってくれている。具体的には芝居の稽古をめちゃくちゃ気合い入れているとのこと。\n\nシンプルに、本当にシンプルに、「僕もこの作品のために死のう」と感じた。僕のようなしょうもない人間の書いた脚本に声をつけるために死ぬ気の人たちが居るのだから、じゃあ僕が死ぬ気になるのも当然だ。今のところ、具体的にできることは作詞であったり、キャラクター観に関する質問に答えることであるけれども。そろそろ声と関係なく劇伴を調整していったりもする。大忙しだね。\n 質問が良かった。\n 「このキャラクターは男性を憎んでますか？」と。\n 鋭い質問だ。もはや僕よりも僕の脚本を読み込んでいるんだなあと、世界への闘志が湧いてくる。\n\n死人は無敵だ。\n 大きな作品に対する揉め事で僕は気を病んだが、死ぬつもりで臨むと多くのことが解決していく。というか、善人のスタッフたちが色々手伝ってくれるのだね。そりゃそれが仕事であれども、今晩の打ち合わせは仕事の範疇を越えた優しさをいただいた。\n 死ぬ気で臨むものに、人は「優しさ」 以外になにもあげられない。金と立場を捨てた瞬間、その者に与えられるのは善意以外にない。なんだか環境をハックしたような感覚だ。人間は残念ながら善意の生き物だ。誰かが身を削っている様子を見ると、自然と手を貸したくなってしまう。\n いろいろあって、本当にいろいろなことがあり、僕は二ヶ月の精神的な療養を言い渡されている。でもまあ、それまで含めてもうただただ死ぬ気以外にやれる事はない。他者の命を背負ってしまった。その僕の命を背負っているのはアニメのプロデューサーで、入れ子構造のようにそれぞれが相手のやる気に応えた優しさで応えていくのみである。他者が増えたことにより、より輪郭は浮き彫りになる。\n いいアニメができる。\n 誰がなんと言おうとも。それだけは、まずまっさきに僕が直感できる。良いものになる。\n 人間の感情は単純だ。\n その単純さが、他人を救って連鎖する。\n いいアニメができる。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,10 +54,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

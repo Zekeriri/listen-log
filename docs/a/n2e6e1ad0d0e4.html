@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-01-03 07:48\n一口随笔：自己非常执着且苦恼\n一口エッセイ: 自分はとても強く拘って悩んでいるが\n\n「自分はとても強く拘って悩んでいるが、他人から見たらめちゃくちゃどうでもよくて、相談してもそんなこと気にしない方がいいよとしか言われないだろうし、客観的に見てそれが正解なのが分かっていることが何よりつらい悩み」というものを、誰しもが抱えていると思います。\n そのせいで自分は死ぬほど苦しんでいるのに、どうにか言語化して口に出してしまうと大変チープで、こんなことに悩む自分が狭量や臆病すぎて悲しくなるだけ。だから他人に話せないし共有できない事実が、更に問題を重くして辛さが加速していく。\n 早く忘れて意識しなくなる以外に解決策は無いものの、「早く忘れなきゃ」と意識してしまうせいで、余計に脳裏にこびりついて剥がれない。「いっぱい寝て無理やり忘れよう」と考えるうちに「寝る」と「悩み」が紐づいてしまって、ベッドに入ると無条件で意識が働き悩みで頭がいっぱいになり、結果的に一切眠れず最悪になったりする。つらい。\n 「筋トレで鬱が治る！」という体育会系な考え方が、オタクたちから批判されるのも当然だと思います。うつ病のマッチョだって絶対に存在する筈だから。しかし、筋トレが正解に近いものであることも本当は分かっていて、「悩みを思い出さないほど集中できるもの」を見つけることは正しいから。腕立てや腹筋している間は、肉体的な苦痛のおかげで精神的な苦痛を連想せずに済む。痛みを別の痛みで上書きし、しかもこちらの痛みは苦しんだ分、健康になる。そりゃ正しいことでしょうね。ここまで考えて、次は「正解」があるのに、実行できない弱い自分に落ち込み、また眠れない日々を繰り返すのだ。\n\n毎日のエッセイをまとめた同人誌を販売中です。他人に共有できるレベルの悩みがたくさん載っています。\n\n最近、発売した商業エッセイ集です。購入報告はぼちぼち頂いているものの、まだAmazonレビューが少ないことが悩み。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

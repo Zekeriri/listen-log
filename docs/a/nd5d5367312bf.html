@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-12-15 05:55\n一口随笔：认真工作的公司职员\n一口エッセイ:まじめな会社員\n\n今年の『このマンガがすごい！2023』でも、審査員的なコーナーで今年良かった5作品を選ばせてもらいました。もう5年くらいやらせてもらっています。嬉しいね。\n 今年良いなと思った漫画も、また記事とかにしてまとめたいなと考えています。年末くらいにね。\n さて、少し早めに献本を頂いたので、先に今年の受賞作をざっと眺めて、面白そうな漫画を数作読んでいました。中でも気になったのは、オンナ編3位の『まじめな会社員』。出会い系アプリを題材にした読み切りが話題になっていた作者さんですね。\n\nこの漫画、特に目立った特技や個性のあるわけでない、30歳のOLが主人公の作品で、なんとも残酷でリアリティのある日々が淡々と続きます。「漫画的」なイベントがビックリするくらいない。どこまでいっても「現実の日常でありえる」範囲の悲しみと楽しみが交互に描かれ、だからこそ実際にこのような状況の方も少なくないんだろうなと想像できることが、精神的にじわじわとダメージと共感を与えます。\n\nなんとも華のない主人公。会社では敵を作らず面倒くさいことを行わないことだけに徹底し、仕事外の人間関係でも、身の程をわきまえて空気を読み続けるため本人が楽しむ瞬間がとても少ない人生。好感を持った男女は、漏れなく恋人がいるキラキラな世界の住人で悪意なく恋愛の話を振ってくるので、そのたびに愛想笑いで誤魔化す。そのうえ、彼女は多少サブカル知識があり、小説・映画ネタの通じない人間を若干見下しもする。なんと、なんと「居そう」な存在なのでしょう。\n 彼女には、いろんな現実が襲いかかりますが、読者という神の視点で見れば、彼女が個性を消して遠慮し続けてきたぶん、自業自得な面も見えてしまうというリアリティ。恐ろしくもページを捲る手が止まらない。\n\n途中、主人公がライターを目指してみる展開があるのですが、ここでも記事の原稿料などが非常にリアル。全然書いていて楽しくない煽り記事を野良ライターとして書いて数百円をもらう。もちろん、大して実力もつかないし自分の名前も売れない。興味のないジャンルへ「ウソ」を並べて、ネットの海によくある量産記事を投稿し続ける。30歳から突然ライターを志望したとて、経験も書きたいネタもなければこうなるという圧倒的な現実は、同じく文章でお金をもらっている身としては納得しかありません。『出会えるバイト5選』なんて記事、自分から書きたいと思ったこと人生でありますか？ しかも、想像でどうにか書き終えたとて700円。地獄。\n 「自分の名前を出してちゃんと読み応えのある文章」には、一朝一夕で辿り着ける領域にない……。でも、「ちょっとサブカル知識あるし一度やってみるか」で副業としてこの状態になる人、たくさんいるんでしょうね。なんて漫画なんだ。静かな迫力の連続です。たしかに、このマンガはすごい！ 今年も濃密な作品がたくさん読めた一年でした。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

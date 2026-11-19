@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-03-02 05:55\n一口随笔：柏青哥与自伤行为\n一口エッセイ:パチンコと自傷行為\n\nめっきりパチンコへ行かなくなった。理由は単純で、ゲーム製作の方が異常行為だから。わざわざ負ける確率の方が高い箱へ延々とお札を捧げ続ける行為も十分狂っているのですが、お金がもらえるかすら分からないままゲームとかいうクソ面倒くさいモノを1.2年かけて製作する方が遥かに意味不明なんですよね。とうぜん後者の方が刺激が強い。\n 10代の頃からパチスロ・パチンコ大好きで、なけなしの家賃分を握りしめてツインエンジェルや戦国コレクションに貯金を貢いできた。これが尽きたら電気止まるぞ、と天に祈りながら。その状態で引くボーナスがたまらない。液晶の中ではキャラクターが狂喜乱舞で祝福し、台からはひっきりなしにメダルが吐き出される。これより気持ち良いことは合法ハーブしか知らなかった。ラリるか、ギャンブルするか。この二つだけを人生の楽しみとした。\n 命を削るというのは快楽なのだ。危険を察した脳味噌が脳内麻薬を過剰に分泌し、非日常感に包まれる。だから人によっては自傷行為やODを繰り返す。僅かな貯金をパチンコに賭けるのも同じこと。つまり、僕は自傷行為を卒業したのです。これは悲しいことでもある。アカギは「積み上げたものは壊すべきだ」と語った。成功した瞬間、人は積み上がった土台から降りられなくなる。僕ももうパチンコによる数万円の増減で満足できない身体になった。\n\n今回のインディーゲーム以上の刺激が必要ならば、次は予算が億を超える。失敗したら何十人も不幸になる数字ですが、いずれ僕はそれをやりだすでしょう。すでに通常のチヤホヤや体験では物足りない、狂った承認欲求ギャンブルモンスターだから。\n\n毎日のエッセイをまとめた同人をboothにて販売中です。感想とか書いてくれると、僕の脳内物質も満たされる。\n\n商業エッセイ集もよろしくね。こっちも感想や評価をしてくれたら、それが僕の快楽につながります。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

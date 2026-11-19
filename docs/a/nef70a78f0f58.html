@@ -49,9 +49,8 @@ The visual novel I’m working on with Ohisashiburi and Aiobahn is progressing w
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-12-05 12:29\n逃往英语圈的大逃亡\n英語圏への大脱出\n\n一部の者たちがTwitterが戦場と化したことに呆れて、blue skyやnote、 Instagramなどに移住したように、僕もほとんどnoteと英語圏で活動するようになりました。\n\n英語圏に向けて記事を投稿したり、英語圏用のコミュニティサーバーを設立しました。\n\n毎日、楽しそうに雑談をしています。日本語圏でのサーバーが2万人近くになっても特に問題なく運営できているので、ノウハウを英語に転用してどうにかなるかなと考えていたら、いけました。なんとかなるものだね。\n\nすべてのコツは「お金を取らないこと」「管理人が目立たないこと」だ。しかし、通常人は欲深いのですぐにビジネスへ転用しようとしたり王として君臨することで承認を得ようと始める。己でなく「コミュニティを愛する」覚悟を持ちなさい。すべてのことは、情けは人のためならずでしかない。老害サブカルジジイとなったからには、このような説法を臆せず出していく。\n\nゆるーく、英語圏オタクコミュニティと一緒に遊ぶ雰囲気も掴めてきました。みんな、のんびりと繋がって孤独を紛らわせたいだけです。SNSを開いている時、人は必ず画面に向かって独りですから。\n\n反応に感し、彼らは非常に素直です。リプライ率が、そりゃ日本語話者の20倍人口がいるのですから比率として当たり前とて、やっぱり元気です。僕へのリプライに誰かがリプライしてワイワイ始まることもあります。誰かの発言が幹となって枝が分かれていくような。\n 幹となる誰かを欲している感覚が伝わる。英語圏でも「強いオタク・サブカル知識のある存在」は、まだまだ少ない。基本的にそのカルチャーは日本が築いたものであり、日本人への遠慮や配慮、よく言えばリスペクトが強すぎる。良いことだね。なので、まだまだ「日本で生まれた作品」への愛は残っている。まあ、Vtuberにしろインディーゲームにしろ、もはや英語圏の方が独自の勢いで成長していく（日本より人口が20倍なので）から、いずれは英語圏で生まれたオタクカルチャーを英語圏のオタクたちが地産地消する日も遠くない筈ですが。なんにせよ、まだ「日本人のクリエイター」を特別視してくれている。\n 僕はむしろ、日本を下地に独自に発展した英語圏のオタクカルチャー、特に海外Vtuberとカートゥーンにベタ惚れですから、僕は僕で彼らを尊敬し、互いに文化的交流をしようとNEEDYをお土産に海を超えて向かっていた形となります。逆ペリー、逆ザビエル。喜ばしいことに、彼らも日本の数寄者を歓迎し、今に至る。\n\n嬉しいから、みんなに星をあげるのだ。\n\nそうして得た知識や経験を、こうして日本語でnoteに毎日投稿したり、作品へ注ぎ込んでいく。\n\nThe visual novel I’m working on with Ohisashiburi and Aiobahn is progressing well, with a programmer friend also joining the team. We’re working hard every day aiming to announce it within this year, so please support us! pic.twitter.com/wF01DvB5wS— nyalra (@nyalra) November 10, 2025\n\nといったことを1.2年やっています。だんだん形になったんじゃないかな。\n 今後、確実にカスの経営者層がぐんぐん海外進出を狙っていくことでしょう。その殆どがゆるやかに失敗する。奇跡的に歯車の噛み合ったごく一部は海を越える。大航海時代だね。理由は簡単。こいつらは大して英語圏カルチャーに興味ないから。会議でなんらかの数字が書かれた棒グラフを眺めてあーだこーだズレたことを議論し続ける。海外の｢企業嫌い｣は日本の20倍だ。\n わからないだけさ。\n 僕は沖縄に居たからわかる。どこにもオタクの居場所がなく、夜な夜な画面に向かって極小数の仲間と傷を舐め合う寂しくて刺激的な日々を。海外歩いたらすぐにわかる。明るくて社交的な人たちだけが回す陽気な世界。そこに馴染めぬ人々の嘆き、創作意欲。\n\nあまりにメインが発展した世界では、人はサブカルチャーを失う。僕がオーストラリアで得た確信だ。いい街だけどね。いい街だからこそ、サブがないんだ。\n\nどのみち、日本人はSNSに依存しすぎた。バトルフィールドと化したタイムラインで毎日ゴシップに言及するだけの縮小再生産が始まっている。皆がそれぞれ不毛な戦争から抜け出さねばならない。Twitterはきっとなくならない。なくならないからこそ、多くの人は自発的に移住もしない。アホの経営者はよく分からずに海外海外と言い出し始める。\n 時代は、誰が真にサブカルチャーを愛しているのか、証明されていく。\n\nエッセイ新刊、よろしくね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -70,10 +69,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

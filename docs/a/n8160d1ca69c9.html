@@ -29,9 +29,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-04-25 00:57\n一口随笔：纸月亮\n一口エッセイ:ペーパー・ムーン\n\n明日の朝には目の手術があるので、今夜が悪い視力で過ごす最後の夜になります。なので、綺麗なものでも観ようと友人から勧められた映画『ペーパー・ムーン』を観ました。\n\n『ペーパー・ムーン』は、1973年に公開されたロード・ムービー。詐欺師の男と、偶然その男へ着いていくことになった孤児の少女のお話。二人がひたすら小規模な詐欺で他人を騙し、少しずつお金を貯めながら次の街を目指すだけのシンプルな脚本。それでいて、時代背景や髪の色での先入観を払拭するため画面はモノクロームとなっており、レトロチックな視聴感が得られる。\n 堂々と煙草を吸う生意気な9歳の少女となんだかんだ面倒見の良い詐欺師の男によるドタバタ二人旅。こんなあらすじ誰だって好きに決まっているわけですが、その直感を心地よく満たす展開の連続。過激さを抑えた『レオン』を観ているような感覚にノスタルジーがブレンドされ、白黒の画面に映る少女の一挙一動を眺めているだけで心躍ります。\n\n善悪の基準なんて環境で変化するよなと再認識する。詐欺師の男は世間的には小悪党ですが、同じく性格の悪い少女にとっては父親代わりのように愛しく、男も偶然拾った少女に詐欺仲間としての庇護欲をくすぐられ、結果的に父性を覚えている。行動はともかく関係だけで見ると正しいし、少女にとっては形だけの保護者よりも大切な存在なのです。\n 法的には悪であろうとも、この二人は互いにとって善い関係を築いている。こういう事というのは、現実でもあるわけで、それに対してどう感じるかは難しくも面白いですよね。\n\n毎日の日記をまとめた同人誌を販売中です。新刊あるので手に取ってみてね。詐欺に騙されたと思って……。\n\n商業エッセイ集もよろしくお願いします。あまり良い生き方をしていないのがわかりますね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,10 +49,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-10-21 00:37\n一口随笔：领取生活保障的朋友与已故父亲的手表\n一口エッセイ:生活保護の友人と、亡き父の腕時計\n\n数日前に日記へ書いた、シェアハウスを追い出された無職の友達がウチに泊まっております。本当は中野区の無料宿泊所で生活保護者用のアパートが見つかるまで泊まる予定だったのですが、施設に当たり外れがあるらしく、無料と言いつつ支給額のほとんどを持っていくところもあるとか。ウシジマくんみたいな世界観だね。\n それが嫌で、新居が見つかるまで僕の家に宿泊すると書類を提出したので、宿泊先である僕の自宅の状態確認と今後の打ち合わせのため、ケースワーカー（指導員のような人）さんが家庭訪問に来ることになりました。知らない人（しかも真面目な公務員）がウチに上がるの嫌すぎる……が、もう仕方ない。僕は無職の彼の保護者枠なのだから。まさか高校の同級生の保護者扱いになるとは。人生、なにが起きるかまったくわからない。\n\n前日、散歩していた彼にせめてマンガでも買ってもらおうとお使いを頼んだものの、彼は668円しか持っていなかったので諦めた。帰ってきた彼はずっとスプラ3に夢中。そんな日々が続く。一応、意識を引き締めるためにウシジマくんの『生活保護くん編』を読ませる。僕は、あのエピソードがウシジマくんで一番好きなのだ。なにか得るものがあれば良いですが。\n そして今日、ケースワーカーの女性が訪問しにやってきたので、ウチの無職をよろしくお願いしますと挨拶する。人間関係がとことん苦手で人と関わらないバイト（ウーバーイーツなど）しかできないこと、それでも何故か夏は必ず二ヶ月ほど動けない期間が毎年来ることを告げ、無事に手続きを済ませていく。彼は終盤耳の痛みを訴え、どうやら急に他人と話すことになったストレスで耳鳴りが止まらないらしい。大変だ。\n\nケースワーカーも去り、滞りなく進めば彼も中野区の生活保護者に適したアパート（そういう専用の物件検索サイトがある）に住むことになる。喜ぶ彼の左腕には、亡き父が託した高級腕時計……のパチモンが装着されている。ARMANI（アルマーニ）ならぬ「ARMANY（アーマニー）」と表記された謎の時計。しかも、生前の父親が好きだったわけでもなく、「遠くから見れば社会人っぽいから」という理由だけで巻いているらしい。当人が満足しているなら良いことでしょう。\n 何はともあれ、彼が社会の鎖から解き放たれた記念に、二人でわたてんの映画を観に行きました。全部僕のお金で。1円も返ってこないけれど、アーマニーの腕時計の鈍い光に包まれる彼の笑顔を見ると、まぁこんな生活もアリかと思えてしまうのです。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

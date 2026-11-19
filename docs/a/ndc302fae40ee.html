@@ -24,9 +24,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-03-09 16:57\n日本需要《电影笔记》\n日本でのカイエ・デュ・シネマが必要だ\n\nNEEDY先行上映会でいろいろ告知なり、観に行ってくれたファンとの交流で久々に日本語でのツイートを多くしていたけれど、やっぱり誇張と極論が伸びるアルゴリズムになってからの世界とは、また距離を置こうと思う。どうせこのnoteでは毎日日本語での近況や情報を書いていくのだから、つぶやきとタイムラインは英語で埋めていきたい。\n どうも極論が自分には合わない。二元論。去年はずっと映画を観続け、特にフランス映画の「なんだったんだこれ」という感覚、何度も思い返しているうちに、少しずつ自身の思考と融けあって理解が進んでいく構成に惚れ、そのだいたいは意見が割れていた。あの感じが好きだ。当時のシネフィルたちも散々喧嘩しただろうと。そこへ、SNSだと数字による一見した優劣がつくため、作品の評価に中間が薄れていく。だんだんと高品質なものしか話題に上がらなくなる様へ辟易し、不器用でインディー的なものを好む人々の方へ自然と移行する。海外Vtuberコミュニティは、意欲とアート性へを受け入れる土壌があり、やはりここだと感じる。\n ヌーヴェル・ヴァーグへの憧れは日に日に増していく。\n いまどうすれば、日本でカイエ・デュ・シネマ、もう少しサブカルポップなら映画秘宝を、令和の世界で燻る数奇者たちとできないものかと、自分たちなりの「熱風」を立ち上げる必要があるよなあと強く思い始めております。\n 雑誌、雑誌だなあ。\n インターネットは無料で知識の断片がそこら中に散らばっていて夢に溢れていたけれど、もうそんな贅沢は成立しない。無料で公開されるものは揚げ足どりたちの格好の餌で、文章の重みは一切無視される。意見・情報・感想への重みが戻ってこなければどうにもならない。雑誌一冊分の値段でその厳選ができるならちょうどいい。どうにか雑誌がサブカルチャーと露悪を支え、そんなよくわからんものでしか救えなかった人々の誘蛾灯であるべきに思えてならない。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,10 +44,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

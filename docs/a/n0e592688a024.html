@@ -32,9 +32,8 @@ BGMがわくわくさせすぎ #NintendoSwitch pic.twitter.com/C6vVxx0vp4— に
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-04-18 06:48\n一口随笔: 视频·游戏·音乐\n一口エッセイ:ビデオ・ゲーム・ミュージック\n\n『ロックマンエグゼ アドバンスドコレクション』を遊んでいます。待望のロックマンエグゼSwitch移植版ですね。ゲームボーイアドバンスを「アドバンスド」と掛けるセンスが憎い。\n こういう世代作品の移植コレクションとしては、同じくロックマンシリーズのロックマンゼロやメダロットのコレクションを買いました。懐古厨狙いのリバイバル商法へ見事にハマっている。メダロットの方は倍速機能があって快適。エグゼの方はバスター強化がありますが、速度はともかくバランスを弄るのはまだ抵抗があります。\n それはともかくとして、こうしてロックマンやメダロットでゲームボーイ（アドバンス）音源のBGMを聴くと非常に心が落ち着く。僕のクラフトワークやYMO好きは、この任天堂携帯ゲーム機特有のピコピコサウンドに由来する。少ない音数でどうにか子供を刺激するイカしたメロディへの工夫が、まさしく昭和時代のテクノそのものが目指したゲームセンターそのものなインストとそっくりなのです。\n\nこのねぇ、細野晴臣の『ビデオ・ゲーム・ミュージック』は名盤ですよ。ゲーム内のBGMのみでなく遊んでいるゲーセンの環境音やSEまで「音楽」だと解釈しており、そのピコピコギーギー愉快なサウンドのおもちゃ箱感が心地良すぎるのです。SEがあることで実際に自分がプレイしたいる気分に浸れるのですね。ファミコン時代から既に細野晴臣が「答え」を出していた事実に感嘆の声が漏れる。SEまで含めてゲームミュージックなんでしょう。この時代のテンポのゲームでは特に。\n 細野晴臣が作曲したゼビウスのおかげで、影響されたZUNによる東方曲があるんだなぁとしみじみする。東方原曲も本当はピチュンという弾幕の音合わせて、なんならやはり実際にプレイしてSE含めた「音楽」として楽しむべきなんけどね。そういうアルバムでないかな。\n 話は戻ると、僕はゲームボーイカラー〜アドバンスの世代なので、とりあえずボタンを押すと単純なアクションと直結しSEが鳴る感覚が好きなんです。その「ゲーセン感」をインストとして曲にしたものとしてクラフトワークやポップなYMOを愛しているのだなと、レトロゲーの移植作をプレイしていると実感するのですね。結局、「童心」なんでしょう。僕の行動原理や趣味嗜好は。もっとゲーセン部分だけ尖らせたような立花ハジメ（YMOと縁が深いアーティスト）の曲も最近好んで聴いています。\n\nBGMがわくわくさせすぎ #NintendoSwitch pic.twitter.com/C6vVxx0vp4— にゃるら (@nyalra) April 17, 2023\n\nそれにしてもエグゼ2のタイトル画面のBGMいいよね……。こんなコンパクトに的確に子供がワクワクするザ・小学生なサウンドが出せるなと、Switchの画面に流れるあの頃の音に感動していました。\n やっぱり、僕たちはインターネット・ユーザーである前に、ロックマンたちと電脳世界を冒険するネットバトラーなんだよな。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,10 +52,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

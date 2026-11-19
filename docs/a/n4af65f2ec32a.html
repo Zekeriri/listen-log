@@ -24,9 +24,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-03-23 03:47\n一口随笔：消失的周日早晨动画记忆\n一口エッセイ:消えるニチアサの記憶\n\n毎週『仮面ライダーギーツ』を楽しみに視聴しております。どんどん新しいライダーやキャラクターが増えていくのに、みんな個性的で好感が持てることが良いですね。あと味方ライダーが愛嬌に振っている分、主人公と敵ライダーのデザインは率直にカッコいいのも素晴らしい。\n で、まあ今回はギーツの感想を書くわけでもなく、単に自身の悲しみについてなのですが、なんと僕はギーツの登場人物の名前を全然覚えきれていない。「人がめっちゃ多い……！」で思考停止して、ある程度顔の造形を把握するところで止まってしまった。幸いギーツの登場人物は顔の違いがハッキリしていて見分けがつきやすいから助かる。剣の序盤とか本当に全員同じ顔に見えたし。\n けれども、やはり名前が出てこない。みんなの感想が流れてくるたび、「この人って誰のことだっけ？」となってしまう。なんならライダー名すら曖昧で、実はリバイスの終盤あたりからライダー名が覚えきれなくなってきた。けっして興味が薄れたり、つまらないと感じているわけではないですが……完全に記憶力というか見た目と名前を結びつける能力の低下である。主人公の名前すら、作中で呼ばれていまだに「こんな名前だったんだ」と驚いてしまう。まあ『ギーツ』って呼ばれる頻度が多いのもあるけれど。\n 最近はそれがすごく悲しい。もっとおじいちゃんになったら過去のライダーすら忘れていくのか。今はそのことを想像して毎晩泣いている。\n\nちなみに毎週こんな感じになっている。この人の作中の名前もパッと出てこない。助けてくれ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,10 +44,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

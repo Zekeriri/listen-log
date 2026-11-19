@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-11-29 03:39\n一口随笔：疯狂中的冷静\n一口エッセイ:狂気の中の冷静さ\n\n友人から「他人を殺した夢を見た」と言われました。なにかの弾みで知らない人を殺してしまったものの、罪悪感や焦燥感よりも先に「丁寧に処理してバレないようにしなきゃ」と感じたことをはっきり覚えており、それがとても怖かったとのこと。\n 殺人後、死体を洗い、車で山に運び埋めるという、テンプレのような行動をとり、何事もなかったかのように家族へ連絡したと語る。なかなかにリアリティのある夢で、起きた瞬間、その現実味に焦りながら急いで夢日記を書いたそうです。\n この現象は、以前にも紹介した京極夏彦の小説で読んだことがある。「あまりの非日常な体験のせいで精神がおかしくなり、過剰に正常な日常へ戻ろうとする」心の動きです。まさか、夢の中でそれを体験することもあるとは思わなかった。\n 殺人という自身が背負った罪の重さを感知した瞬間、そこからどのような行動をとれば、普段の日常へ回帰できるか本能が思考し、驚くほど冷静に行動する。もちろん真に冷静である訳ではない。本当に正常であれば、まずパニックになるでしょう。脳の歯車がズレた末、正しく見えるよう動いてしまう。\n この心理はネットでも観測できるのではと思います。例えば、炎上の真っ最中である人が信じられない行動で火に油を注いだりとか。あれは、狂った精神で日常に戻ろうとした結果、更に薪をくべる異様な行動を起こしてしまったのではないでしょうか。\n あなたがもし重大なミスをやらかした時、自分が「日常」へ戻ろうと、嘘や欺瞞を重ねようとしていないか気をつけてみてください。その冷静さは、狂気の中で生まれた異常な判断かもしれません。\n\nちなみに、このような本を読んでみると、犯罪者の精神状態や行動の理由が、事細かに説明されています。あまり気持ちの良い内容ではないので、元気な時に読んでみてください。\n\n毎日の日記をまとめたエッセイ集がboothにて買えます。読んでもらえると嬉しいです。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

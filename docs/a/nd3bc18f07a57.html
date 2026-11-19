@@ -25,9 +25,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-06-23 19:47\n什么都不做的选择\n何もしない選択\n\n昔は単純にお金がなく課金ができず、そもそもスマホも基本的に時代遅れでスペックが足りずプレイすら不可能なこともあり、現実的な理由でソシャゲをまったく遊んでこなかった。\n そのまま今のところもインストールせずのまま。アニメ化された際に、初めて「ネットで容姿だけ知ってる子たちは、こんな人格だったのか……」と知って驚く。それが新鮮で楽しいっちゃ楽しいので特に不便は無い。けれども、すでに「ソシャゲをプレイしない表向きの理由（スマホの型落ち）」は機能しておらず、つまりは拘りでしかない。\n 恐らく、このまま特にプレイしないまま生きていくことでしょう。\n ここまで来ると、飽和したコンテンツ群のなかで自動的に取捨選択されていること自体に意味がある。読書、アニメ、映画、ゲーム、動画、それらの中でも、さらにインディーゲームやショート動画など、細かく「楽しいコンテンツや作品」があり得ない速度で生まれてくる現代に置いて「何をしないか」は、時に「何をするか」よりも重要な場面もある。時代についていくことで流行を知るのも、時代に左右されず己を突き詰めるのも、作家性や個性に大きく関わる。\n スマホを開けば、とにかく何らかのコンテンツ・情報が浴びせられていくなか、それらを遮断する方が勇気の要る行為に感じる。人によってはショート動画を次々スワイプする快楽に逆らえなくもなる。それはそれで時代に沿った視点や感性を手に入れる可能性もある。\n あまりに刺激や情報に慣れきった現代人は、何もしない、流行りに乗らないことを極度に恐れる。「15分何も触らずじっとして」と命じられ、スマホを開けないムズムズで我慢できずに発狂する様も想像に難しくない。サウナにしろ筋トレにしろ、身体を動かすブームの中には「スマホを意識しない時間を得られる解放感」も大きいはず。\n 最近は、移動時などでも敢えて景色を見てボケっとしている。何もしないことが修練となった世界で、それでも何もしないで満足できる者が最後まで舞台で踊り続ける。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,10 +45,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

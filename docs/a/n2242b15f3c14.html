@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-07-21 04:20\n一口随笔: 剧本作家\n一口エッセイ:シナリオライター\n\n「シナリオに関心があります！ にゃるらさんのもとで一緒に働きたいほど好きです！ インターンとかありませんか？」のようなメッセージがきました。熱意があってよろしい！ 何事も、これくらいストレートであればならないとね。\n とはいえ、僕は会社勤めでないのでインターンなどの融通はありませんけどね。インディーで小規模……たった4人で作ってるんです。4人。4人なのに、エルデンリングやアルセウスと同じ賞に選ばれたんですよ、すごいでしょ。\n それはともかく、シナリオなんて送ったもの勝ちですよ。本だろうがゲームシナリオだろうがね。企画書でも完成品でも、書けたら即働きたい場所へ送ってみる！ そして、面白ければ採用される！ 本当に、それだけの世界なんですね。僕も企画書を突然プロデューサーに見せつけただけだし。余計なルートとか要らないんです。漫画でもそう。とにかく作ってみせるだけ。ネームやプロット状態でも、面白い、または可能性を感じたら向こうが連絡してくれる、それだけ！\n もちろん、いろんな経験や知識を蓄えるのは重要として、新鮮な刺激さえあれば学歴や実績なんて二の次。僕は、このシステム結構好きなんです。所詮、この世は弱肉強食。素人だろうがプロだろうが、面白そうな企画書やネームを用意した方が勝つ。単純明快でいいでしょ？ さぁ、君もやってみよう。実際に才能が花開く人間は、1割未満のギャンブル。狂気の沙汰ほど面白い……。\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中。こういう地道な努力が、ね。いつか大きな花となればいいですよね……。\n\n商業エッセイ集もよろしくね!"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

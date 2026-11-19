@@ -49,9 +49,8 @@ Technicolorをアニメでやったんだ！
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-03-23 19:23\n《Suspiria》和《诛伏赐死》，技术彩色\nサスペリアと誅伏賜死、テクニカラー\n\nまだ放送もされていないアニメの話をしてもどうにもならないけれども、NEEDYアニメでの背景美術を大変気に入っています。モンドリアン調。\n\n今回のアニメでは使用していないものの、やってみたかったこと、というよりもっとシンプルに「綺麗だなあ」と憧れている表現に、Technicolor、映画での誇張された色の演出がありまして、個人的にはその際たる美しさが『サスペリア』です。\n\n素晴らしい！！！\n このビビットな色使いが最大限発揮できた時代が昭和なのかもしれません。平成以降の主な環境ではまた違った発色になりますから。ここまで「色」、極端なTechnicolorへ拘ったダリオ・アルジェント大好き。衝撃を受けすぎて、映像作品を辿るどころかエッセイまで読んでいます。エッセイの書き出しが希死念慮のお話でした。\n まあ、サスペリアは美術、色彩感覚に圧倒されすぎて、ホラーとしてストレートに怖がる事もないまま見惚れていましたが……。敢えていうならサスペリアは「美しすぎること」が欠点か。そういう意味ではサスペリアPart2は、サスペンス部分のカジュアルさが上手く融合して程よい塩梅に思う。最高傑作に挙げるのがPart2の方が多いのも頷ける。\n ダリオ・アルジェントの話を延々するのは別の機会として、僕はこの原色で大胆に画面を覆う色彩設定に惚れ込み、しかしアニメで再現するのは難しい、というか余程の効果的な場面を選ばないと大変だなーとぼんやり考えていた。実写寄りの手法だよね、と。\n そんな固定観念を最近の呪術でひっくり返され、驚いた！！！\n\n領域展開「誅伏賜死」！！！\n\nサスペリアの色使いだ！！！\n カッコいい……！！！\n\nTechnicolorをアニメでやったんだ！\n そして、アクションよりもホラーチックな展開との相性が非常にいい！\n これはかっこいい！！！\n\n画面が赤くて緑で、素晴らしいぜ。MAPPAはすげえよ。\n\nやっぱり映像は色なんだなあと、勝手に納得してしみじみするこの頃。\n やりたい事がまだまだあるのはいい事ですね。\n\n最近、配信された『テレビの中に入りたい』も、ああこの昭和後期〜平成初期の色使いが忘れられないよなあと共感。\n\nこのゲーセンチックなネオンライトとか、\n\nサイケデリックなまでの妙に融けた暖色だよね。\n\nいいよね！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -70,10 +69,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

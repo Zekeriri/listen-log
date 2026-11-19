@@ -37,9 +37,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-12-10 03:27\n釜山 市场生活\n釜山 市場 生活\n\nすべては港から発展していく。母なら海がそこにあるのだから。\n\n釜山をぶらりと散歩し続けていたところ、市場を抜けて港へついた。市場は市場でまた、良い。\n 韓国の市場は物量がすごい。質より量。この乱雑なディスプレイの店舗たちが延々と続くのだから、ごちゃごちゃ好きには堪らぬ光景。\n\n海が近づくに連れ、市場も活気づく。\n そこにはたくさんの人々による生活があった。\n 僕には生活が無い。嗅覚が30年無いため料理と食事に興味がなかったから。生きる活力は食べることから始まる。僕は生活を持つ者たちがずっと羨ましかった。\n\n港町を歩くと故郷・沖縄を思い出す。故郷はすべての場所が、この市場のようだった。つまりどこへ行っても「生活」だらけである。陰気な僕が忌み嫌った空気。\n\nけれども、加齢とともに少しずつ分かってきた。世界を旅し、旅人にも優しい現地民たちを通して伝わってきた。\n\n韓国のフォロワーたちから写真を褒められた。彼らは今回の旅を通し、ずっと暖かく歓迎してくれた。戒厳令からの緊張したムードの中でも、僕が旅を辞めなかったこともある。「この状況で来てくれただけで嬉しい」とリプライが届く。\n\nそのうえで、現地民も知らない光景を楽しそうに撮っている変なやつが、自分の好きなゲームの原作者であることが嬉しいのだと。\n 写真には、自信を持ててきた。とくに、生活の意味を肌で感じてきてから。\n\n生活のある瞬間を切り取ることが好きだ。この一枚は結構なお気に入りである。多くの人から暖かく歓迎され、長い異国を歩き、僕は生活を理解し始めてきた。その変化にまだ不安が残るけれども、市場の途中で楽しそうに酒を交わす現地民たちの力強い晩餐を見て、「ここに混じりたいな」と、僕はそう思うようになったのです。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -58,10 +57,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

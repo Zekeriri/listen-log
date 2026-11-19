@@ -24,9 +24,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-02-05 07:44\n一口小随笔：吉卜力初体验\n一口エッセイ:ジブリデビュー\n\nジブリ好きな友達が、今までのジブリ作品がまとまったBlu-rayBOXを貸してくれたので、これから隙を見つけてのんびり観ていこうと思います。ちなみに、今夜はさっそく『紅の豚』を観ました。いつかジブリ映画の感想も書いていきますね。\n 実は、僕はほとんどジブリ作品とディズニー作品を観たことがない。嫌いではないけれど苦手だった。ジブリやディズニーをとりあえず再生しておくことで、とりあえず子供に道徳心や正義感を植え付けているような感覚を覚えたからです。教科書を読まされている感じ。大人が「こうしておけば子供は喜ぶし教育にも良いだろう」といった安牌を切られたような拒否感。ダンボのピンクの象とかは何度も観たけれど。あと漫画版のナウシカはあるよ！\n とても勿体無いことをしましたが、今から入っていくことでの新鮮な楽しみもあるし、庵野秀明・押井守・富野由悠季らと宮崎駿の関係を知っていることで、この年代のレジェンドたちによる相互の影響のピースを埋めていくような気持ちよさもある。宮崎駿という巨大な存在がなければ、ガンダムシリーズもターンエーの世界観に繋がらなかったでしょうし。\n 自分が今まで先ほど挙げた名監督たちのルーツを掘り続けていったように、今度は宮崎駿について漁っていくのでしょうね。ジブリの果ては遠い。今からが楽しみです。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,10 +44,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

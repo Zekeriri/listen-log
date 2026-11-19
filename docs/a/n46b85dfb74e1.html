@@ -40,9 +40,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-03-21 03:48\n泰国 清迈夜间散步\nタイ チェンマイ夜散歩\n\nタイに来た。\n といっても東京→バンコク→チェンマイで一日中飛行機。へとへとになりながらも、せっかくなのでチェンマイ夜散歩を２時間ほど。暑い。\n\nチェンマイはタイで二番目に栄えている都市。ちょっと歩けばセブンイレブンと屋台が見つかり、なにかに困ることもない。去年まで大麻が合法であったため、カンナビス関連のお店も多い。\n 国から大麻の苗を配られ、商売を推奨されたあと急な規制で梯子を外される。すごい国だ。\n\nこれはちょっと笑えた。\n\n大麻（カンナビス）の蜂（ビー）、カンナビー。\n\n規制されてからどうなったんだと思いつつ、人集りを横切るとぜんぜん強烈な匂いがするので、まだまだ裏でお盛んな様子。事情が事情なので国も少し緩めにしているのか、ここまで含めて適当なのがタイ式か。\n\n酒場では白人たちが歌って踊ってらんちき騒ぎ。様々な楽器に薬物の匂い。ザ・観光地だ。タイの街はまったく眠る気配がない。ナイトバザールは毎日がお祭りのように光る。\n\nタイは世界的にも観光客数がトップクラスで、そのためナイトバザールは調子に乗った外国人相手に毎日がパーティー。この賑やかさは寂しさを忘れさせる。\n 車線も信号もない道路をノーヘルで3人乗りをする少女たちが駆け抜け、武装した警官たちが巡回。横切るトゥクトゥクはクラクションを鳴らして俺に乗れとすかさず営業。気づけば目の前では野犬がじっと見つめてくる。タイとはそんな場所。深夜特急そのもの。\n\n嫌いじゃないが、まだ好きでもない。\n あらゆる食べ物の味が甘くてつらい。ビールすら。\n 明日は宗教施設でも観て回ろうか。なにせ、数歩歩けば仏陀にガネーシャ。\n\n敬虔なのか適当なのか判断つかない信心がそこにある。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -61,10 +60,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

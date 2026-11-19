@@ -47,9 +47,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-09-16 04:17\n《大长篇 塔罗曼 博览会大爆炸》 可以说艺术不必理解的力量\n『大長編 タローマン 万博大爆発』 芸術は理解しなくてもいいと言える強さ\n\nついに、楽しみにしていた劇場版タローマンを観ました。\n\nよかった。\n 端的に、おすすめです。\n タローマンに求めていた要素はふたつ、「デタラメをやってほしい」「なんだかんだ抑えてくれる昭和ウルトラマンパロディ」。このふたつを十分に行ってくれたどころか、「ここから一気にデタラメをするぞ！」と身構えた瞬間、予想の斜め上を突っ走るデタラメっぷりには一本取られた！ これは、子どもたちも嬉しいだろうな……なんだこれは！\n\n上映後、子供が山口一郎さんを観て、「あのひと109歳ってことになっちゃうよ笑」とお母さんに突っ込んでいた。なんと堪らない光景なんだ。\n\nさて、僕は岡本太郎さんのエッセイ『自分の中に毒を持て』が大好きです。一度、記事でも紹介しましたね。OPでも使われている印象的なフレーズ。\n\nタローマンそのもの。\n きれいであるな。同じことを繰り返すな。芸術とは何かについての考え方が突き刺さる。岡本太郎は当時の芸術的価値観を徹底して批判している。権威がもっともらしく語るものではないのだと。僕は、この考え方がとても好きなんだな。\n とはいえ、僕は芸術や美術を「文脈の複雑性によって真の理解者を選りすぐる機能」とも捉えていて、あくまで岡本太郎の思想も理解の一部ですが。\n\n画集の帯にも如実。\n 「藝術？そんなものはケトバシてやれ！」\n\n絵の感想が「なんだこれは！」でも、いい。\n なんだかわからなくても好きだ、でも、いい。\n 自由な発想に理由や解釈をつけなくとも構わない。つけるべきでもない。画集の中でも、ただただ岡本太郎が思うままに野生を解き放った野放図な絵もたくさん収録されている。それらのキャプションは至ってシンプル。なぜなら、思うままに筆をぶつけ、感性を解き放った結果でしかないのだから。\n 芸術は爆発だ！\n そりゃ、子どもたちもタローマンに憧れるわけである。何より自由を持っている。タローマンは、ヒーローというカテゴリでもない。彼は正義どころか世界を荒らす方に近い。それが芸術なのだ。芸術は孤独だ。\n 子どもたちが最初に触れる芸術がタローマンで良かった。羨ましいほどだ。\n\n僕は、部屋にモンドリアンの絵を飾っている。\n 眺め、時に人は「この絵はなんですか？」と尋ねる。好きだから飾っている。色が好きで飾っている。眺めていると落ち着くから飾っている。僕は、抽象画の解釈なるものが好きじゃないんだ。\n\n良いページです。\n 人間 岡本太郎の生き様を、尊敬します。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -68,10 +67,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-02 04:19\n一口随笔：新的米青神禾斗\n一口エッセイ:新たな米青ネ申禾斗\n\n新しい米青ネ申禾斗へ、ようやく通うことができました。入念に評判を調べて、話すことも綿密に決めて頑張ろうと思いましたが、もう一刻も早く睡眠薬をもらうためにとにかく近場にしました。\n 以前は、自閉症に関する著作で有名な先生のもとへ通っていて、ものすごく丁寧な問診（1時間くらい）や知能テストを受けたのですが（引っ越しでなかなか通えなくなった）、なんと今回は初診なのに5分程度で診療が終わります。\n いや、短いということは、それだけ僕が正常に近い証拠なのかもしれませんが、話の途中で遮られて質問されたり、とにかくテンプレのような質問で進んだ印象でして、下調べせずに行くとこうなるのか。むしろ、著名な先生が凄すぎるだけで、これが一般的な精神科医かと納得です。米青ネ申禾斗のレビューって、主観入りまくりでかなり信頼できないのですが（むしろ妙に悪い方が、ぶっとんだ患者を相手にできている良い医者の可能性まである）、たしかに5分で帰らされると、「真剣に話聞いてくれなかったです！」と言いたくもなる。言わないけど。目的の睡眠薬は貰えましたし。\n 面白かったのは、仕事に関して話すと「インターネットって怖いね……」と返されたことで、あまりに複雑化したSNSの人間関係までは医者でも対処できない様子。しかし、安易に「インターネットやめろ」と言わずに、「仕事柄、ネットをやめられないだろうから、せめて怖くなったらこのお薬を飲んでね」と向精神薬を渡してくれたことは、流石の理解度だと感心しました。暫く、ここに通ってみることにします。インターネット、怖くならないで。\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中！！ 買ってもらえますと、僕の精神が楽になる。\n\n商業エッセイ集もよろしくね。Amazonレビューや評価までしてもらえると、さらに僕の精神が救われます。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

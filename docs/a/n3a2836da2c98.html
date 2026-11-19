@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-05-29 16:29\n不合理与未来\n理不尽とこれから\n\nあまりに大きな理不尽がやってくる。\n 僕らは全員作ったものを奪われ、ただただ皆が不快な気持ちになる。しょうもないおっさんによる傍若無人なうえで無知ゆえの放置をする様を眺め、皆で築き上げたものが落ちぶれていく様子に悲しくなるだろう。僕らが半生懸けた情熱はm決行するおっさんのデリヘル代になった。\n いま連載しているジョジョが、人生で必ず起こる不条理に抗う話だ。たいへんに勇気が出る。不条理自体は仕方がない。反吐がでるほどにカスみたいな出来事で、関係者全員がただただ疲弊したが、自己愛を拗らせた人間の横暴への対策をみな学習できたことが収穫だ。｢みんなで逃げる｣。それしか自己愛性が強く、他人の痛みを理解できない者への対処はない。\n 乗り越えられたら成長する。折れたら止まる。それだけ。\n さいわい、今までのメンバーはみんなついてきてくれているし、昨日の日記のように新人も加わった。規模は大きくなり、戦った証として同士も増えた。これから僕が過労で倒れるまで、とにかくすべてを取り戻しに行く。\n また全員が繋がれている事実が嬉しいんだ。次作の打ち合わせ中、悪徳なおっさんが邪魔してこない、金だけ取って放置もしない現状がありがたすぎて、久々に天に感謝したくらいだ。\n 最低な人間たちが慣性で動いた残滓を喰らい潰すグロテスクな今後を尻目に。\n\n絶対に頑張り続けるからさ。\n だから、たまには助けてね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

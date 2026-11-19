@@ -29,9 +29,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-04-23 01:09\n温柔1000\nやさしさ1000\n\n僕の不調を目にした講談社の編集さんが颯爽とウチへ顔を見せに来てくれました。なんと優しい人だ。遅ればせながら誕生日プレゼントに、と旅先で便利なカメラと、お見舞いのヤクルト1000を頂く。\n\n編集さんは、慣れた手先で「冷蔵庫入れておきますね」とヤクルト1000を冷やしてくれる。僕はといえば、鬱病の薬のせいでぼけーっとした頭でその様子を眺めるのみだった。僕は今、精神の病気に併発して鬱病そのものと診断されている。まあ詳しくは元気になってからで。たがいに引き摺られますから。\n\nヤクルトの差し入れ自体も嬉しかったのだけれど、それをさっと冷蔵庫へ入れる様子に強く感動まで覚える。この人は、きっとこのように多くの担当作家のピンチに食事やメンタルの面倒を診てきたのだ。僕は、とても良い方とめぐりあってしまったのだな。\n\n弱ったおかげというと精神に失礼だが、こうなったおかげで小さな気遣いへ大きく感動できるようになった。医師からの療養期間の目安は2ヶ月だが、この分にはもっと早く元気になれるかもしれない。この日も、1割くらい仕事の話を進めた。いい打ち合わせとは雑談が9割。雑談からしか「思いがけないなにか」は生まれず、1割は仕事上の事実確認にすぎない。つまり、いい打ち合わせだった！\n\nそれにしたって、鬱病の薬はたいへんケミカルだ。脳みそを直接弄られる感覚は久々で、これは自然な睡眠を重んじるデエビゴには無い強制力だ。すっかりデエビゴ生活だったので、科学の力に脳が抗えない感じに驚く。今も副作用で死ぬほど眠い（昨日はついに街のベンチに座って1時間眠った）が、ヤクルト1000片手にがんばって日記分を打ち込んでいる。\n なんというか……ごく真っ当に闘病日誌だな！\n 明日もいろいろ雑談と励ましに呼ばれている。申し訳ないね。よき方々に巡り会えたこと事実を噛みしめるのが今になってからで。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,10 +49,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

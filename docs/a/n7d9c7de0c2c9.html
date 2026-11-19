@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-06-17 06:40\n写诗\n詩をやっている\n\n気づかぬうちに詩だけをやっていた。\n まだ表になっていない仕事で、すでに3本分の作詞を終えている。後に取り掛かる仕事も一本。今年は現時点で2本作詞をしており、上記4本が問題なく年内に公開されたなら、年に6本作詞を担当したこととなる。もちろん、夏や秋に話が来て7本以上の可能性もあるでしょう。\n 2ヶ月にひとつ音楽に乗せた詞が歌われ、こうして日々の頭の中をメモ帳に載せているのだから、これでは「詩をやっている」と言っても差し支えないのではないか。感覚として、今年の僕はずっと詩を書いている。\n 僕の解釈する詩とは、ある風景を目にした一瞬を画像でなく言葉で切り取る行動だ。いま目の前に広がる自室が大きな閉じた卵の殻に思えたなら、その自閉した感覚を、好きなモノだけで彩られた理想のお城に思えたなら、その優雅な安らぎを、感情と情景を圧縮して筆を走らせていく。\n 実は、Twitterは詩に近いものだと捉えている。できるだけ短文で感情と出来事を表し、人々へ伝える。それだけで他者の心を揺さぶるのは難しく、だんだんとみな表現が過剰になり、攻撃的だったり、感想が誇張されて膨らんだりしていった。その逆を進み、ただただ説明不足の短文で花鳥風月やユーモアを想像させる者もいる。\n もはや僕は140文字の舞台から降り、意見性は日記の長文のみに徹してしまった。今はとても気が楽だ。けれども、これまで140文字内にどれだけ情報や感情を混ぜ込むかを続けてきた自信と自負がある。それは気づけば作詞の形に引き継がれ、作詞家として思いがけないルートの仕事が途切れずに居る。ありがたいことです。おかげで、ようやくここ数年の僕はものすごく遠回りな形の詩人であったことに気づけた。\n 前にも軽く書いたけれども、僕はまず渡されたメロをすべてラ行で書き写す。紙に並んだラの数に合わせて文字を嵌め込んでいくものの、最近はラララ、リラリラリル、など、作詞用のラ行をそのまま採用してサビにすることが増えた。これが恐らく僕の作詞家としての癖なのでしょう。下手に僕なんかが言葉を並べるより、美少女がラ行を使って音に乗っている事実が、なにより詩情が広がることに気づいたのです。\n 拙作のみでなく、他者の作品、または他人自体の詞を書かせてもらうこともある。僕の使命は、自身の両の眼というレンズで見た風景を、人物を、文字というフレームで囲うことで永久に残すことにある。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

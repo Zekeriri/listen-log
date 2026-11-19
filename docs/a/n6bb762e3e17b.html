@@ -29,9 +29,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-04-07 01:41\n一口短文：刃牙展与强角色老人\n一口エッセイ:刃牙展と強キャラの老人\n\n『地上最強刃牙展ッ！in東京ドームシティ』へ行きました。東京ドームで刃牙のイベントが開催（ひら）かれるのは正しすぎる。\n 脳内で『哀 Believe』のイントロを流しながら早速入場。数々の名シーンの生原稿や、等身大のジャック兄さんたちの迫力に感無量……。この世界でまだ刃牙を未読の方は居ないと思いますが、刃牙が好きであれば確実に満足できる最高の展示ッ！\n さて、こうしてグラップラーたちの活躍を振り返って感じたのですが、僕は「飄々とした強キャラの老人」大好きなんです。刃牙なら、渋川剛気か郭海王が好き。喧嘩稼業なら芝原。セクシーコマンドーなら田中スーザンふ美子。\n\n僕はどうあっても筋肉がつくことはあり得ない人生なので、「暴」でなく「武」で勝つことに憧れる。「ほぇ〜若いもんはデカくて怖いのぉ」みたいな感じでヘラヘラしながら、いざ相手が襲ってきた瞬間に一撃で急所を突いて「おぉ、怖い怖い」的な反応で締め、観客の若者たちをビビらせたい。オタクが一度は合気道に憧れる気持ち、理解（わか）りすぎるぜ。\n\nそれにしても、渋川対独歩いいよねぇ。僕らからすればおじいちゃん枠な独歩よりも、さらに長生きしている分、渋川の方が精神的に完成されているって決着は、そんな年齢差の視点が欠けていたクソガキの僕には衝撃的でしたね。そりゃ55歳の独歩よりも、75歳の渋川の方が長く武術の世界に身を置いているわけで。やっぱ老人好きだ……。そういう「強キャラな老人への憧れ」を思い出させてくれる良いイベントでした。100年経ったらまた闘ろうや。\n\n毎日のエッセイをまとめた同人誌をboothにて販売中ッ！！ 書き続けたら、いつか0.99999が1になると信じて……。\n\n商業エッセイ集もよろしくお願いします。いつか老人になった時に、読み返したいですね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,10 +49,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

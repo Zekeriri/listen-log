@@ -37,9 +37,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-11-08 08:35\n美国的深夜们\nアメリカンな深夜たち\n\n早朝の空港を目指して深夜のシアトルをゆく。\n\nアメリカの深夜は怖い。治安の面もあるけれど、単純に街灯が少なく、暗い。大半の景色は森でコンビニもなく、当然人気もない。ここで襲われても事故っても誰も気づかない。広大な土地ゆえの恐怖。たまにはそれもいいさ。\n 肌寒い。遠慮のない風が切り裂くように吹き続ける。空港に近づくにつれて明るくなり、ファミレスも出現してくる。目指すは深夜2時のデニーズ。ここから朝を待ち、飛行機へ備える。朝4.5時くらいには空港のスタバで暖かいコーヒーの恩恵を受けよう。\n\nアメリカの町外れにある深夜のデニーズ。\n 素晴らしい！ 暗闇に光る独特の雰囲気が百点満点。中では数人の従業員たちだけが談笑しながらゆっくりと片付けをしている。彼女たちは闇夜の迷いびとを優しく受け止めた。\n オーストラリアもそうでしたが、アメリカも、英語圏の良いところは「言語が通じるのだから話せばどうにもなる」といった価値観からくるフレンドリーさでしょう。深夜のファミレスで愉快なおばちゃんたちが代わる代わる世間話を振ってくれる。吟味した結果のメニューを注文しただけで、「perfect！」と全身で褒めてくれた。チキンを頼んだだけで「完璧だぜ！」と大袈裟に反応してくれる国。好きになってしまう。\n 深夜。異国。孤独。そんな状況では、こうした僅かなコミュニケーションが非常に沁みる。夜だからかな。どの日どの場所でもみんな話しかけてくれた。優しいのはもちろん、誰も寂しいんじゃないか。こんな広い土地で誰かとすれ違えたのだから雑談くらいするさ。\n\n今回の旅での反省は、もっと英語を勉強しなければと悔しい場面が多かったこと。\n 彼ら彼女らは本当に会話が好きだ。とぼとぼ一人歩く謎の日本人の話を聞きたがっているし、会話をする姿勢を喜ぶ。歓迎する。Welcome。それでもやっぱり聞き慣れない単語が飛び出すとぼくはフリーズしてしまうし、瞬間、相手が気を使って会話のレベルを下方修正してくれることが申し訳ない。\n 言葉の選択には意味がある。\n 人は、より正確に自身の感情を伝えるために言葉を学ぶ。日本語は特に語彙の奥行きが深い。僕の脳内に思い浮かぶ単語たちを正しく英文で表現できないもどかしさ。\n 深夜の寒空には、行き摩りのコミュニケーションにおける小さな暖かさだけが生命線なんだ。旅人はそれに応える義務がある。\n 4時。デニーズをあとにし、再び空港へと向かう。長い長い道を進むが、通りすがった車から「No!」と声をかけられる。どうやら僕が歩いている道は空港に繋がらない（車でしか進めなくなる）ようで、窓を開けて注意してくれたのです。\n ありがたいことだ。この人が居なければ、下手すると1.2時間を無駄にした。わざわざ窓まで開いて通行人に道を教える。それも極々シンプルに一瞬で。真のcoolがここにある。\n たどり着いた早朝のスタバでホットコーヒーを注文する際、サイズをトールでなくBigと言ってしまったせいで、店員が「Big!?」と両手を広げて驚くジョークを披露された。ちょっと腹立つ！\n いい旅だった。次は昼間や夕暮れ時のアメリカも見てみたい。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -58,10 +57,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -24,9 +24,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2023-02-17 07:47\n一口小随笔：才能与社交能力的天平\n一口エッセイ:才能と社会性の無さの天秤\n\nどうしても改善できない社会性のなさは、創作での才能で上書きするしかない。朝起きれない、まともに会話できない、締め切り破る、女癖が悪い……人によっていろいろ難はありますが、治せないものは治せない。というか、そのダメさが才能と直結している場合もあって、この人はめちゃくちゃ面倒くさいけれど、その面倒くささを改善したらクリエイティブ能力がなくなってしまう！ みたいな場合も。\n なので、ダメダメで他人に迷惑をかけるぶん良いもの作らなくちゃ……といったプレッシャーもかかり、おかげで実力はメキメキ上がったりもするわけです。どうしても遅刻するぶん、遅刻しない人より良いものを作らないと干されるからね。\n それでやっていける人もいるし、というか世の中の特殊な才能の持ち主は、たいてい社会性より拘りや自己表現に重きを置いている癖者だと思いますが、だんだんと才能が枯れていくことも珍しくない。そうなったら、自分のダメさと才能（実力）を天秤にかけ、ダメさの方に傾く瞬間を恐れて震えているしかない。「こいつ、他人と連絡できないくせに仕事のクオリティも低いんだ！」と認識されると終わり。なんと過酷な世界だ。\n これは日々考えていることであって、対策とかオチとか何もない。人は自分の価値が周囲の期待を下回ることに怯え続けるのかもしれない。考えると落ち込み続けるだけなので、何も知らなかったことにしましょうね。\n\n毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,10 +44,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

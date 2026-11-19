@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-09-19 04:37\n麦田出现了\nライ麦畑があらわれて\n\n独り、こうして朝までゲーム作りでキーボードをカタカタ。今僕が書いているのはゲームフロー。こういう風にゲームが進むよというイメージを、慣れないパワポで図っぽいものを並べていく。\n これが結構楽しい。\n チマチマした骨組みを書いていると、楽しい。実装するのは自分じゃないし……「コイツの頭の中の理想をどう再現したらいいんだ！」と頭を悩ませるのは別のメンバーである。まあ、どのみちすべてのテキストは僕なので、また僕がカタカタと地味～な文言で肉付けするターンもあるのでしょうけれども。ゲームにしろ、アニメにしろ、９割は深夜にキーボードをカタカタして、朝方にDiscordへ貼って、まだ起きている変なスタッフが第一発見者となって深夜テンションのレスをくれて。これの連続である。\n\nそういえば、アニメ仕事で昨晩あがった絵コンテにて、僕は脚本に一切そんな文字を書いていないのに、絵コンテ段階でライ麦畑が登場していた。すごい！ 突然いま居る空間がライ麦畑になってもいいんだ！ そりゃ、僕は『ライ麦畑でつかまえて』が血肉になっているレベルに影響を受けている。なら、僕が書く脚本が土台なら、いついかなる瞬間でも好きにライ麦畑へ飛ばしていいわけだ。\n いいぜ！！！ なんなら、すべてのシーンがライ麦畑を駆け回っていてもいいくらいだけどね。黄金のライ麦畑で、妹だけが傍に居て。僕の書く脚本であれば、一言もそんな文字ないのに気づいたら知らない蟹工船に乗ったり、地下室で手記を書いたり、隠れキリシタンを探すたびに出ていたって、いいよ。\n こういうことが嬉しい。\n 自分がチマチマ練った骨を、さらなるアーティストたちが大胆な肉を貼り付ける。脚本にないライ麦畑が画面に発生する。そのような不可思議な奇跡のため、数年単位での製作を、日夜チマチマ、チマチマと続けて寝不足になっていくのであった。\n 書き終えたはいいものの、昼の打ち合わせに出れるかな！？\n おやすみなさい。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

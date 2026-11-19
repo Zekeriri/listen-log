@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-30 02:32\n一口随笔: 读我的书的中学生和高中生\n一口エッセイ:僕の本を読む中高生\n\n最近、中高生からも僕のエッセイを読んでいると報告がくることがあり、たいへん嬉しく感じております。中でも、「孤独な学校の休み時間のおともに読書している」というラブレターは、僕にとってこの上なく喜ばしいのです。\n 中高生の頃、僕もまた休み時間は本を読んで過ごすタイプでした。なんなら体育と音楽の強制感がダメで、その授業の時は移動せずに教室に残って本へと逃げていたほどに。\n その際のおともは、ラヴクラフト全集、大槻ケンヂ、滝本竜彦など思春期の鬱屈を煮詰めたような書籍ばかり。本の中へ書き連ねられた鬱々とした気持ちを読み進めるたびに、自分のような青春とは真逆の存在が肯定されるような安心感を覚えたものです。その「孤独を薄めて肯定するようなエネルギー源」として、自分の書いた文章があると想像すると感動がある。こうして僕が学生の自意識に寄り添っているということは、時を越えてあの日の自分を救済していることと同義であるのです。こんなに嬉しいことはない。\n 10代なんて毎日がぐちゃぐちゃで、教室では他者と比較されるし、家では親からの圧迫や期待を背負わされ、まだ拙い人間関係のせいで友情も愛情も一触即発。頼りにすべき大人は綺麗事しか吐き出さない。そこに漠然とした将来の不安がのしかかるのですから大変だ。\n 僕は、そんな悩める若者たちが好きだ。尖りに尖った感性ゆえに、剥き身のナイフのように他人を傷つけ、傷つけられていく。万能感と不安が交互にくるあの感覚。間違いなく、世界の主人公はあなたたちである。あの頃の悩み続ける日々に比べたら、大人になってからのアレコレなんて全部表面を真面目そうにコーティングしたおままごとに過ぎない。そんな人生の大舞台の中に、自分の作品や文章がパーツの一部として機能しているのであれば、それは僕の本望です。\n みんなが流行りのコンテンツや動画を追っている中、にゃるらなんてふざけた名前のオタクが書いた文章を追っている。とても良いセンスをしてるぜ。\n 仏陀は言いました。「何を読もうと聞かされようと、自分自身の理性が同意した事以外は何も信じるな」。大人も周囲もいろんなことを言ってくる。けれども、彼らの話す表面上の言葉よりも、自分が選んで観た、読んだ映画や本の心に響いた言葉を信じる方が遥かに正しいと思う。間違いなく人生で今が一番、たくさんの作品を心から楽しめる。若いうちにいっぱいアニメや映画を観て、本を読んで欲しい。その中の一つが自分の綴った文章である事実を誇りに思います。\n\n僕が書いた同人誌や商業エッセイ集が、あなたの孤独を一瞬でも忘れさせてくれることを願います。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

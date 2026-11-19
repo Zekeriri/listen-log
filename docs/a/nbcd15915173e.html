@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-01-07 03:18\n一口随笔：最游记\n一口エッセイ:最遊記\n\n今日から「最遊記」の新作アニメが放送されました。「最遊記」には思い入れがありまして、小1〜2年生くらいのころ、母親がめちゃくちゃハマっていたんです。机には原作が積まれ、テレビでは借りてきたDVDからアニメ版が流れ続ける。一見、子供が観る作品では無から思えますが、「西遊記モチーフで、カッコいい男たちが次々と妖怪を退治していく」という要素だけ見れば、全然子供がハマる要素大だったのです。ちなみにOPを歌っている徳山さんの名前を、後に仮面ライダーカブトで地獄兄弟という最高の形で再会して大興奮したりした。\n\nもちろん、子供だったので、「恋人が化け物の子供を孕んで目の前で自殺する」展開の意味も半分しか伝わらず、たびたび挿入されるポエム（「君の淫らな唇で愛も生死（セイシ）も飲み干して」が特に好き）の性的な意味も読み取れませんでしたが、母親のような大人を魅了するアダルトな色気は理解しておりました。「大人の女性が憧れるセクシーな男」ってこうなんだなと。そりゃもう全てがオシャレですから、ただ麻雀しているだけでもセンスだらけで驚いたこともあります。なんでコイツら、牌をかき混ぜているだけでこんなセクシーなんだよと。\n\n一番痺れたのは、カミサマ編で、自分を神様だと自称する精神的に幼いラスボスが、死ぬ直前に「神様っているの？」と訊いて、黒幕が「いないんじゃないかな」と無慈悲に答えるオチ。その瞬間に神聖なステンドグラスが割れることで、神の存在の否定を強く印象づける。「これが\"演出\"なんだ！」と飛び上がりましたね。こんなオシャレな表現があるのかと。ここまでカッコよく生きてみたいものだ。\n\n毎日のエッセイをまとめた同人誌をboothにて販売中！ 思えば今もロン毛なことと、最遊記の影響は繋がっているかもしれません。\n\n表紙がオシャレと評判の商業エッセイ集もよろしくね！"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

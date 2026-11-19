@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-03-12 03:37\n一口随笔：合法让人快感的东西的可怕之处\n一口エッセイ:合法で気持ち良くなれるものの怖さ\n\n合法で気持ち良くなれるものは常に世の中に存在していて、今回もそれを有名人が売り出したことで周知され、国が動いて来週には規制されることになりました。なので、自分の知り合いにも、規制実行日まで気持ち良くなり続けている人たちが居ます。\n 規制されるたびに安心する。いつ自分がハマりだすか怖いから。今回のも試しましたがたしかに気持ち良かった。良かっただけに距離を置きました。もし、手元に量があったら永久にやっちゃう。先述した通り、常に世の中には必ずこういったものが出回るので、数ヶ月後には規制されてない成分を使った似たようなものが再び流通するだろうけど。\n 身体的な依存はいいんだよ。それでいえば酒やタバコの方がコスパ良くて危険ってのは、そうだと思うし。自分は、酒は睡眠薬と合わせて全てを終わらせる時か人付き合いでしか飲まないし、タバコは全く吸わない。問題は精神依存である。\n 人間は基本的に一ヶ月頑張って働き、そこで得た給料の何割かを欲しい物/体験に使うことでストレス解消したり将来へ繋げたりする。しかし、そこに一回二千円でそれ以上に気持ち良くなる合法アイテムがあったら？ 大半の人がそっちを選ぶでしょう。『フランケン・ふらん』でも、性的欲求を満たす生物を置いたら、全男子がその生物に夢中になって学校が機能しなくなる話があるし。\n 人間は快楽に逆らえない。次第に、この気持ち良さが簡単に手に入るなら働かなくても/努力しなくてもいいやってなる。無気力症候群ですね。僕は自分が「文章なんて面倒なだけなこと書かなくてもいいや」となることを最も恐れている。\n\n毎日の日記をまとめた同人誌をboothにて販売中！\n この日記を中断するのが怖くて、日々文章を書く時間を作っているの偉すぎる……。そんなことより寝ていた方が気持ちいいのに！\n\n商業エッセイ集もよろしくね。こっちは全然ラリってるけど。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

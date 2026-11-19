@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-09-20 06:26\n一口随笔：最帅的御宅族的生活方式\n一口エッセイ:最もカッコいいオタクの生き方\n\n好きなゆっくり実況者がおりまして、その方は主に海賊（パチ）ゲーのプレイと紹介をしています。それも、本場の海賊版を漁るため、一人で初めての飛行機に乗って海外へ行くほどに。『香港電脳オタクマーケット』の現代版。\n\n彼は、海外でパチモノを漁った思い出も動画にしているのですが、当然「パチモノを漁るための旅」に同行してくれる方も居るわけがなく、単身で乗り込む。そのうえ、現地で見つけたパチモノを高い値段でも動画のために迷わず購入するし、鏡に自身がモロに映っていても無編集。パチモノゲームに一直線すぎて、自分の顔に修正をかけるような手間すらどうでもいいのでしょう。\n 操作感も悪くて難易度が鬼畜、それでいてパチモノなのでそもそも面白くなくとも、彼はまず全クリしてから動画を投稿する。もはや遊戯でなく苦行でしかないのですが、彼は「誰もこのゲームのことを残さないので、資料として自分が全クリ動画をアップする」ことに使命感を抱いているのです。本物の男すぎる……。\n この生き方は最高にカッコいいし、歴史的な価値も高く、なにより多くのパチゲーファンを喜ばせている。「全てのパチゲーを集めて紹介する」生きる目標が定まっていることが何より良い。\n こういう人生が最も素晴らしく、そしてオタクのあるべき姿に思える。これからも、ひっそりパチモノのマリオやソニックに一喜一憂する姿を応援していく所存です。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくお願いします♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -30,9 +30,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-03-19 00:12\n一口随笔：开设Instagram和搭讪\n一口エッセイ:Instagram開設とナンパ\n\nInstagramを始めました。打ち合わせで久々にカエルDXさんと話していたのですが、カエルさんが自身の絵日記をインスタにも転載したところフォロワーが増えてきて楽しい！ とのことで興味を持った。まさか「インスタいいよ！」と言われて即開設するとは思っていなかったでしょう。こういう韋駄天な行動力が勝ちに繋がる。誰に勝つんだ。\n 真面目な話、みるみる画像や動画ベースになっていくSNSにおいて、テキスト一本でTwitterと戦っている場合ではない。インスタやYouTubeに乗り出していかねば、僕らネットでしか生きられないハゲは死んでしまう。他媒体でも仲良くしてくださいね。\n せっかくなので、インスタでは、本やフィギュア、レアモノ自慢、あまりTwitterでは書かないファッションの話とかしようと思います。棲み分け！\n\nさて、画像は最近買ったロングコートなのですが（オタクはロングが大好き）、先日これを着て渋谷で「さ巫女（ヤンマガ新人賞を取った友人）」さんと待ち合わせていたところ、初めてナンパされた。マスクもあって、女性と誤解されたのでしょう。\n まさか、さ巫女さんも待ち合わせ場所にきたら、僕がナンパされていると思わずビビってましたね。しかも、僕が男と気づいてからも雑談続けてくる豪胆な男でしたから。そんな精神でないとナンパなんかできないか。「バ、バカ……ボクは男だぞ！」と叫ぶ一世一代のチャンスでしたが、実際は「お兄さん勘違いしてますよ」と優しく注意しました。\n\nでも、それくらいこのコートが綺麗なことが証明されたのは嬉しかったな。この機会に、ちょっとインスタっぽく写真撮ってみますね！\n\n毎日の日記をまとめた同人誌をboothにて販売中です。新刊準備中。\n\n商業エッセイ集の方もよろしくお願いします。オシャレな表紙でInstagram感あるかも。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,10 +50,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

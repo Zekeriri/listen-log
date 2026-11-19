@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-06-04 03:59\n一口随笔：冲绳的混蛋（底层人）\n一口エッセイ:沖縄の最低野郎（ボトムズ）\n\nフィギュアや中野散策で見つけたものを、より高画質で撮影するためと、このグリーンがどうしても欲しかったので、遂にiPhoneを最新の13に変更……。この深緑にターレットレンズのようなカメラ……まるで『装甲騎兵ボトムズ』に登場するメカ、スコープドッグのようです。\n\nボトムズは、工業高校生の頃にハマった作品でして、夢中になりすぎて、ボトムズが参戦するスパロボではキリコ一人でクリアしたこともあるほど。それくらい深く感情移入していたのですね。\n 僕ら底辺工業高校生、登校すれば無個性な作業着に着替え、訳もわからぬまま、はんだ付けを繰り返したり、木を削って加工したりする。一切面白くない上、こんなことを頑張ったとて就職先の給料は、大卒様の足元にも及ばない。せっかく仲良くなった友人も、素行不良で散って（退学）いく。まさに沖縄の最低野郎（ボトムズ）生産場。将来、そんな先のことわからない。\n こんな環境ですので、次々と荒くれ者たちが使い捨てされていくボトムズOVA版は、まるで自分たちのように思えた。未来の僕らは社会からすれば人間未満。校内へ虚しく鳴り響く、落ちこぼれヤンキーとオタクによる木工機械の駆動音とキーボードの打鍵音、それが僕たちのララバイ。そんな過去を忘れぬため、この深緑色したスマホをカバーもつけずに使い潰していこうと思う。次々とスコープドックを乗り換え戦場を駆けるキリコのように。\n\n毎日の日記をまとめた同人誌をBOOTHにて販売中。最近、新刊がでたばかり。僕がこの世を生きていた記録です。\n\n若い頃のエッセイを収録した商業エッセイ集もよろしくお願いします。学生時代、本当にトラウマです。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

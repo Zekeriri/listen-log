@@ -24,9 +24,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-02-28 17:37\n13号星期五 初次观影 电影般的快感原则\n13日の金曜日 初見 映画的な快楽原則\n\n映画館でやっていたので『13日の金曜日』を初めて観た。\n ジェイソンなる殺人鬼に追い回されていく映画だとばかり思っていたので、まさか終始ババアと戦闘して終わるとは思わずビックリ。それでも相当に面白かったけれども。なるほど。僕らが何となく知っているジェイソンは2作目以降であって、一作目はこうなっていたのか！\n なるほど。一作目のババアが作中で死んだから、息子のジェイソンが生きていたことにして次作を展開したわけだ。調べてみると、初代監督はジェイソンが生きていた設定は無理やり過ぎて（一作目のババアは息子が死んだせいで狂ったので）反対していたらしい。\n わからないものだなあ。いつジェイソンが出てくるのかワクワクしていたら、ずっとババア。けれども、「恐怖」「スプラッタ」の基本……というか殺人鬼視点での主観カメラが揺れる演出などはここから始めったわけで、そりゃもう普遍的な快楽原則に沿いまくりで見応えたっぷりなのだ。緩急が完璧というか。ちょっと油断したらきちんと人が惨殺されてきちんとビビる。\n どうしたって視聴者は非日常。暴力やセックス、または感動を求めていくため、前者二つを効果的に映して、要所要所で躊躇のない圧倒的なスプラッタを見せてくれる。うーん、これは映画だ。深くストーリーを考えたり、芸術の魅力に見惚れて融けたり、そういった方向性とは違った、「観に行ったら非日常を体験して満足させられちゃう」大衆娯楽の映画として完璧なものを観たなあと嬉しくなる。ジェットコースターのような恐怖の緩急。普段の生活では体感できないゾクゾク。\n こうした映画的な快楽原則を見事に抑えた傑作は、あまりに「観客が求めているもの」そのもの過ぎて古びることはないのだなあとしみじみ退館。今度は会おうぜ、ジェイソン。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,10 +44,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -37,9 +37,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-07-12 18:15\n溢出·实现与半跏像\nこぼ・かなえると半跏像\n\n僕は宗教に関して特に仏教思想が好きで、みうらじゅんよろしく仏像を見て回るため旅をしてきた。中でも、最も美しいと感じているのが菩薩半跏像だ。\n\nこの独特な姿勢で思慮に耽る様を「半跏思惟」と呼ぶ。綺麗だね。彼は一旦置いておき、ホロライブインドネシアの話をする。ギアを上げるぞ。\n\nホロID所属『こぼ・かなえる』のデザインに神聖さを感じており、まるで神奈川沖浪裏のように波打つ彼女のLive2D表現には、こりゃ富野由悠季も70歳越えて北斎にハマるわけだよと頷かされたものだ。\n 美少女キャラクターらしいキュートなボイスでインドネシア語特有の舌を巻くような早口が続くので、「何を言っているのか全くわからないけれど神々しい存在がこちらと向き合ってくれる恍惚感」に包まれるこぼの配信が大好きなのです。\n\n先日、そんなこぼの新衣装が発表されました。\n 雅な装飾と花は、雨を操るレイン・シャーマンという設定と多宗教が混在するインドネシア出身である彼女の宗教チックな印象をより際立たせ、綺麗だ。\n\n新衣装お披露目時にじっと眺めているだけで胸がすく。これが信仰心か。なんにせよ、新衣装はとても最高だね！ と日本から歓喜していたのですが、この衣装の本領はゲーム配信時にあった！\n なんと、その後に始まったゲームコラボにて、お披露目時になかったポーズが使われる。\n\nそう、今回のこぼはゲームプレイ中に熟考するたび（彼女はつねに騒がしいのでそんな感じでもないが）、顎を指に近づけ「半跏思惟」を行う。もうビックリして飛び跳ねてしまった。予想外の展開に「観音様？？？」と大パニック。今まで観ていた配信者が配信中に仏の域へ達して解脱する体験なんて初めてなので、急な宗教的エクスタシーで狂ってしまった。\n おっさんが鎖に繋がれみんなで同時に飛び回るだけのマリオパーティみたいなゲーム画面すら、地獄と罪人を描いた悟りへの修練に思えてくる。\n やっぱり凄いよ。ENトップのぐらは圧倒的なジョークセンスと詩的な感情表現を持ち合わせたトップですが、IDトップのこぼには無邪気ゆえの神秘性と偶像的な美しさがある。至るぜ。\n\nインドネシア人（仏教徒は1%程度しかいないが）たちは、彼女の立ち絵を仏像として建立した後、ついでにアンコール・ワットみたいなのも建てて飾って置いてくれ。いやもう、僕自らこの形を掘るしかないのか。信仰する菩薩の形を、石から見出すタイミングがやってきたのか。\n 耳男になる時が来ましたね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -58,10 +57,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

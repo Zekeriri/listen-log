@@ -24,9 +24,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-03-28 15:41\n剧本工作 95%\nシナリオ作業95%\n\n徹夜でシナリオを提出して燃え尽きたので、ぐったり眠って日記が昼過ぎに。大変なことだぜ。けれどもプロですら締め切りを守り続けることが稀な世界において、これまで毎回締め切りを厳守し続けたことをめちゃくちゃ褒めてもらえたので苦労はノーカンである。お偉いさんが「あいつらプロっていうわりに締め切り守るつもりないからね！」と語る姿には様々な感情が込められており、迫力があった。\n 僕もゲームを二度延期させた際の通夜ムードのトラウマから身体が動いてしまうだけで、文章も絵も音楽も気分の浮き沈みに大きく影響されるものなので、人間は締め切りを守るだけでも非常に難しい。僕もタイミングによっては半月くらい潰れることもあるでしょう。\n そんな無限の地獄も大詰め、なんと次のシナリオ提出にて完成である。ついについにということで、最近は会議室もシナリオ提出のたび明確に進行具合が見えてきてテンションが高い。終盤になると序盤から撒いてきた要素の種が芽吹いていくのだから、シナリオを出すたび大人たちが驚いて褒めちぎってくれるので僕もやり甲斐を覚えている。シナリオに関しては僕の頭の中にしかないため、もはや数人のプロデューサー・スタッフ陣だけに向けて連載している感覚すらあった。おかげでラストまでの過程を順を追って受け手がどう反応していくか見えたのも良い体験でした。\n 話は戻ると、次回……4月頭にてこれにてシナリオは完成である。僕がこの一年、なにを企画し、どのようなものを書いてきたかの一端を、そのタイミングでちょこっとお披露目する予定。もちろんシナリオは設計図のようなものであり、修羅場はこれからとも言えるが、少なくとも僕が毎回毎回徹夜で苦しむターンは一旦落ち着く。頑張った……頑張ったけれども、努力を受け手が評価する必要は一切ないので、みなさんから感想をいただくタイミングは完成までお預け。\n この「いまめちゃくちゃ良いモノ出来上がってきてるんだから既にみんなに見せてえよ」という気持ちが一番厄介。良いモノ（この場合は自分のテキストなので手前味噌過ぎるが）が出来てみるみる自信が湧いてきている瞬間に発表したくて堪らない。けれども、そういうわけにはいかないので、見せていい範囲のスタッフの反応のみが製作時の栄養となる。もちろん大きく発表したあとは小出しで投稿してもいい。それでやる気が上がるのであれば、漫画家やイラストレーターもじゃんじゃんラフや没案を投稿しても良いでしょう。数年がかりの作品において責任者の自己肯定感が失われた瞬間が真の終わりなのだから。\n 情報を小出しにするな殺すぞという気持ちかもしれませんが、本来の意味でここは僕の日記帳なので好きに書く。とにかくシナリオは画竜点睛、長かった自問自答の旅と苦しみから解放の時がくる。みなさんはもうしばらく待ってください。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,10 +44,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

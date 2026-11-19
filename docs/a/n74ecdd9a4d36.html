@@ -28,9 +28,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-01-12 05:30\n一口随笔：宗教的狂喜\n一口エッセイ:宗教的エクスタシー\n\n宗教チックだったり、スピリチュアルな内容の日記を書いた際、目に見えて読者の反応が少なくなるのですが、懲りずにまたそういう話をします。僕の興味・関心は、このへんにあるから。なんで宗教やスピリチュアルな話を調べているのかについて話しましょう。それは端的に「宗教的なエクスタシー」こそ、人間が最も脳内麻薬が分泌されて「快楽」を得ている状態であろうと考えているからです。\n トリップ体験の成功は、すべてセッティングにある。トリップする直前の状態や環境により、精神世界への旅が至上の天国となるか地獄の体現となるかが決まる。もちろん、その地獄めぐりも終わってみると良い経験と感じたりするものですが。\n 僕が考える最強のセッティングの鍵は「信仰」にあると思う。何かに対して強い想いを抱くことで、それが道標となって真っ直ぐに知覚の扉の奥へと到達する。信仰の対象は音楽でもアニメキャラでも良いが、やはり最強の概念は「神」に他ならない。\n\n以前、瞑想中にまやかしの神に惑わされる「魔境」について書きましたが、それは信心の薄い人間の話であり、もし普段からつねに神に祈りを捧げる敬虔な信者がトリップし、そこで本物の神と真理に触れられ「宗教的エクスタシー」を得られたとしたら、それは常人が手に入る幸福の何億倍も強烈な体験となるでしょう。僕は、それが羨ましい。\n そこに至るには本物の信心を必要とする。僕が完全に「向こう側」へ行ってしまっても、それは不幸ではなく向こう側こそが真の幸福だと悟った結果であり、客観的にはどんなに狂っていても、主観では誰より幸せな状態にあると認識してもらって良い。\n\n毎日のエッセイをまとめた同人誌を販売中です。読んでもらえると嬉しい！\n\n先月末には商業エッセイ集も出ました。祈りについて書いております。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,10 +48,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

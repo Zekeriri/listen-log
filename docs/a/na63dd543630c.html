@@ -25,9 +25,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-04-29 17:29\n性格的切换\n人格の切り替え\n\n人と話している際、「それでもこの人は家に帰った時に恋人へ見せる顔はまったく違うんだろうな」と想像して身震いすることがある。僕から見える角度とは別の人格がある。それを見せずに生きている。\n みんな裏なんてあるだろうと言われるとそれまでだけれど、例えば僕なんかは「こんなにカスな人間です」って全部自分で書いちゃっていて、プライベートな関係もないから、ある意味でもはや表裏なくなっていて、皆さんが文章や動画などで受ける印象そのまま。昔ながらの友人たちも一向に異性と関わる予定は無さそうで、もはや裏の感情含めてだいたい互いに把握している。\n 昨晩、打ち合わせ後の恵比寿駅にて、ベンチに座っている女性をナンパする、こう言ってはなんだが冴えないメガネのサラリーマンが居て、あまりに女性が困っているから大丈夫かなと眺めていると、案の定サラリーマンは足蹴にされてサッと気恥ずかしそうに立ち去っていった。終電後の駅に屯する人々からナンパ失敗の様子を観戦されており、おそらく全員が現代的な若い女性とメガネのおっさんでは無理だろうと察していた。お酒の勢いで調子が良くなっていたのだろうか。\n ナンパ的でないにしても、表でお堅そうなサラリーマンが、帰宅後は恋人にデレデレだったり、または優越感を覚えるため敢えて杜撰に扱ったりなどをしているとしたら……と想像すると、どちらにせよなんだか怖くなってしまう。自分の生活の基盤を他人と共有、または融合できるような人格を有しているってすごいなと、僕とは考え方が違うんだと憧れすら抱く。\n どういうスイッチのオンオフがあるのだろうか、と考える。\n スイッチの切り替えがあることを羨ましいと思っているのかもしれない。僕は、そんな他人を経由して感情が変わるタイミングが生活で用意されていないから。つねに、なんらかの、ほとんど自分の作品について考えたり作っていたりで、交感神経が昂っている。心安らぐ瞬間は映画を観ている時くらいで、誰かにずっと心休ませてほしいと願っている。みんな、パートナーを利用して、そういった切り替えがあるのかもしれないと、妬みすらしている。\n 「人格の切り替え」をすることに恐怖がないのも羨ましい。自己を見失う感覚が怖くないのだろうか。不安の先送りができる割り切り方はどこで学んだのか。それは逃避や無責任ではないのかと罪悪感は覚えないのか。自身の思考と行動が地続きでないことをどう捉えているのか、そういうことをずっと考え、日々不安です。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,10 +45,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

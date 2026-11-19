@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-12-02 11:02\n社会孤立与作家\n社会的な孤立と作家\n\n作家という生き方の最も楽な点と最も苦しい点は同居する。つまるところ、「作品」の評価だけが結果だ。作品が良ければ何があっても人はついてくるし、失敗すれば無意識に人が離れる。とはいえ、悲観することはない。どんな状況でも、また何か作る意思さえあるなら必ずそばに編集者や仲間がやってくる。「売れない」ことに目を瞑れば孤独にならない職業だ。\n 逆に言えば、「作品」のない人たちにとってのアイデンティティは、その大半が「社会的立ち位置」に依る。そりゃ自分が何を作ったか出せるものがないのだから、「◯◯会社の◯◯部門です」と名乗らざるを得ない。名刺の重さ以外で信頼度を初見で得る方法がないのだ。よって、サラリーマンは僕の想像の何倍も肩書きに固執する。もちろん、僕のような世捨て人な生き方をしていると、その様子をどうしても滑稽に思えてしまうけれど。\n 社会に与する、資本主義に迎合する以上、皆は「名刺の強さを獲得するゲーム」に参加することとなる。そんな暗黙の了解が敷かれているので、どんなに熱いことを言っても「でもクビになることはしませんよ」「ウチの会社がお金は絶対に回収しますよ」と言葉に裏がある。そうした圧迫のゲームを繰り返し、感情を殺して企業に恩恵を与えるたびに権力を獲得する。権力による名刺の強さをアイデンティティとし、本人と肩書きは同一化していく。\n 作家やフリーランスとは、このような資本主義のゲームから降りることができる身分だ。いついかなる時も「自信のある作品」が出せるかぎり、顔を突き合わせるたび名刺を交換して頭を下げる儀式と関係をしないで済む。代わりに、人々が社会的な肩書きに固執するゆえに起こす様々な非道を目にすることとなる。社会は人間を変える。「会社ってそんなもんじゃん」「こっちも生活があるから」とエクスキューズを植え付け、他社や他者にいくらでも圧政を行う。他人の生活に関しては考えることもなく。\n 感情を殺した分だけ偉くなる世界は馬鹿らしくないか。しかし、資本主義の強大さはなかなか一般人の思想を掴んで離さない。ずるずると働くうちに40.50代。もう生き方を変えられない。\n いついかなる状況でも、何か作っている方がいいんだ。じゃないと自分が孤立しないために肩書きなんぞに固執する。人間は群れる。立場が孤独になると自分が世界に存在しないような恐怖に襲われる。そんなことはない。実際のところ、その場でペンを持ち始めたら、紙に画や文字を走らせ始めたら、瞬間に読者と編集者が作品の側に寄り添う。今はまだ透明であれ。\n\nエッセイに新刊が出ました。読んでね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

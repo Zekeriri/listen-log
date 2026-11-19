@@ -31,9 +31,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-02-07 05:51\n毒作为生存理由\n毒という生存理由\n\nどうしても一人は寂しい。またタランチュラを飼いたい。\n タランチュラの飼育動画を眺めている。まったく飽きない。そもそも蜘蛛はまったく動かない。懐くなんてありえない。飼育は瞑想に近い。餌を待ってじっと動かぬ彼らの毛並みをケース越しに眺める以外にメリットもない。その時間が幸福かどうか。なんとシンプルで素晴らしい！\n なら実際に飼えばいいじゃない。それはそうだ。とうぜんタランチュラを飼育しやすい環境のためなら場所もお金も惜しみはしない。そもそも平気で半月動かないこともあるのだから、長期旅行へ旅立ったとて生きている。\n\nが、問題は餌を飼わねばならぬところにある！\n 蜘蛛は自らの巣にかかった哀れな虫を捕食する。そのため週1で活きの良いコオロギを投下しなければならない。程よくコオロギを投下できるかで成長スピードが変化する。この見極めこそタランチュラ飼育への腕の見せどころで、逆に言えば他にすることは無い。せいぜい霧吹きだ。そんなことすべての生物がそうだし。\n となるとコオロギの飼育の方が面倒くさい！\n 一週間に1.2匹でいいのにゲージの中で大量に飛び回る。微動だにしないタランチュラと対称的にコオロギは死ぬほど跳ね続ける。油断すると一瞬で脱走。しかもすぐ死ぬ。どうやら死骸はたいへん臭いらしく、嗅覚を手に入れた僕にとって結構イヤだ。代用としてローチが居るが、そっちだって保管は大変だろう。\n タランチュラのために、こいつらを蜘蛛の何倍も面倒みないといけないのだ。それが非常にだるい。餌のコオロギ買いに行くのも今は遠いし。過去に飼っていた時期は偶然にもコオロギ・ショップが自転車で10分。いざとなれば10匹ほど買ってさっと1.2匹を巣に移してって過程に30分かからない。この程度の手間ならまあいいかと思っていたけれども、今やコオロギのために結構な時間を要する。そんな苦労を重ねた上で、脱走して部屋中を跳ねるコオロギ群を想像して嫌気が差した。カエルみたいに冷凍マウス食べてくれよ！ まあカエルはありえないほど煩いから、また別の苦労をする。大きくなるとマウス食べるみたいだけどね。\n 個体によっては冷凍でも食べるみたいだけど。それは飼ってみないとわからないし、やっぱり活き餌の方が健康だろうし。それでも一度冷凍コオロギで試してみようかな。\n けどね。彼らは蜘蛛だから巣を張るものだ。そして、引っ掛かった元気なバカをそろりそろりと頂く過程に生きる意味が詰まっている。そのタイミング以外は糸の中で待機しているだけ。そんなハンターな彼らが好きなんだ。活きの良いコオロギたちが呑気に跳ね回っているうち、白い糸に絡まって絶望するあの瞬間が。蜘蛛はそんな生と死が急降下する一瞬を捕食するために生きている。そんな毒々しい生存理由が好きなのだ。冷凍では彼らの生きがいを奪っているようで気が引ける。\n\n「毒」と「罠」だけの生物。カッコよすぎるだろう。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,10 +51,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

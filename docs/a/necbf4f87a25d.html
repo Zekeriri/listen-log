@@ -36,9 +36,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-04-02 01:26\n腰受伤了\n腰をやった\n\n腰がダメになった。\n 105キロバーベルでのスクワット中、なんかヤバそうな予感がしたけれどもヤバかった。怪我する手前でわかるものだね。けれども、わかったところですでに引き返せないラインで、そのまま腰がぐにゃっとなって中止。\n 歩けないほどじゃないけれども、数日は運動禁止くらいの痛みがはしる。痛いっ！\n 「うーーーん。まあ今日と明日は休みでいいでしょう！」\n トレーナーから宣告される。言われると、なんだか抵抗したくなってしまう。\n 「でも、いける気がするんです！とりあえず、もう少し試していいですか！」\n なんで、僕はこんなに熱心な運動部みたいに懇願しているのだ。大会とかがあるわけでもなく、2回程度のジムを休むだけだが、人間こうなると不思議と頑張りたくなってくる。\n けれども、試しに立ち上がってみるとそれだけで腰痛が。こりゃダメだ。\n 「腰痛なんてランダムで起きちゃうイベントなんで！しばらく休んじゃってください。おだいじに！」\n\nというわけで、生まれて初めて腰を壊して帰ってきた。歩けないほどじゃないし、言われた通り一週間後にはどうにかなっているくらいのもので。しかし、できれば身体を動かしたくない。が、頑張れば歩けるのだから打ち合わせを休むほどでもない。人々の前でお爺ちゃんのような動きを晒さねばならないだけだ。わざわざ心配されるほどでもないのが絶妙な塩梅。なんなら、ここ数日の気圧による頭痛のほうがつらい。\n 思えば、肩こり腰痛が二度と起きないようにジムへ通ったことがきっかけであった。だんだんとバーベルが持ち上がるようになり、気づけば100キロを胸筋で上げる目標ができた。それが達成できちゃったので、今はできるかぎり数字が伸ばせるかに挑戦中。意味があるかどうかで言えば、ない。健康のためなら通う頻度やトレーニング内容をもっと軽くしていい。今は重すぎて数日筋肉痛になるから、むしろ日常に侵食している。本末転倒だ。\n 不思議なもので、そうなると筋肉痛のない日々が不安になるのです。毎日の日記を書いていない状態の夜もそわそわする。歯磨きをしていないような。映画を一本観ない日も。本を読まない日も。「これでいいのかな！？」と焦ってしまう。難儀な性格だ。\n\n今も、痛みよりも週3のジムが今週は1回になっちゃう事実に焦っている。\n なんだかスッキリしないな～と。便利な性格とも言える。1年半鍛えて、腰痛での休みは初なのだからむしろ運が良いとも言えるでしょう。\n ジジイの歩行をする僕を、優しく見守ってあげてください。\n 腰さえ治ったなら、あなたを背負ってスクワットしてみせますよ。105キロ以内なら。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,10 +56,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

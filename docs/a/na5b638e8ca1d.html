@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-01-21 01:21\n一口随笔：抑郁时期的种种\n一口エッセイ:鬱時のあれこれ\n\n「死にたい時には、2万円持って、美容院行って、焼肉食べて、温泉入って、ホテルのベッドで寝たら少し良くなる」という旨のツイートをよく見かけるようになりました。それに対して、やはり「うつ状態でそんな行動できるわけないだろ」と批判の声も散見されます。\n これに関しては、両方正解だと思っていて、たしかに本当に鬱であれば先ず外に出れないし、よしんば外出できたとしても、他人と会話したりガッツリ食事なんてできないでしょう。\n しかし、ギリギリうつ病とまでは行かない場合、何より「不安」を考え込まないことが重要だと認識しているので、豪華な食事や快適な入浴、何より上質な睡眠に集中することは正しいと思う。なので両者の言い分も間違いではないから、この話はずっと平行線だろうなぁと思いました。\n 僕が2週間、適応障害で動けなかった際は、意外な方法で回復しまして、いつも通りふざけたツイートしているうちに、肉体はこんな重々しいのに、スマホの向こうの自分は妙に明るいのが面白くて、次第に食事や外食が可能になりました。やったね！\n まぁこれは僕の場合なだけかもしれませんが、言葉の力は強いので、明るそうに振る舞ううちに、だんだん引っ張られていくのでしょうね。逆に鬱な感情をそのまま言語化すると、それに引っ張られて余計落ち込む。素直に寝るが一番だと学習しました。\n とはいえ、本気でつらい時って理屈じゃないですからね。わかっていても暴れちゃうわけだし。人間は難しい。それはともかく、二万で焼肉と美容室と温泉とホテルを利用するの難しすぎるだろ。\n\n毎日のエッセイをまとめた同人誌をboothにて販売中です。落ち込んでいたり、妙に元気だったりします。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

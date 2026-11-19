@@ -26,9 +26,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-06-24 06:16\n虚伪之花\n偽善の華\n\nそうすることで自分が救われると期待して行う自己犠牲が善行か？ 見返りをいっさい求めずに自然と身体や口が動いてしまわぬかぎり、「無償で身を捧げる快楽」に酔っているだけではないか。雪に埋もれるお地蔵さんに笠をかけてやる善意に一寸の欲もないか？\n 宮沢賢治の短編には純粋な善とはなにかを考える小説がいくつかある。果たして人間は真の善行を遂げることができるのか。\n たとえば、仏教には「邪念や煩悩を捨て払って無に近づこうという考え自体が煩悩だ」と教えることもある。解脱に際し、「煩悩を捨てよう！」なんて俗な精神で望むか。こんなことを考えていると僕ら凡人は答えの出ない迷路を彷徨うだけです。\n 凡人が解脱や真の善に辿り着けないのなら、紛い物なりに生きていくしかない。真実でないとしても誇張された生を謳歌することが、凡庸なりの有意義な生き方かもしれません。\n タイミングによっては僕は他者を助けることもありましょう。己の小さな犠牲が他人にとって大きな幸福足りえる瞬間くらい、喜んで時間と肉体を捧げよう。情けは人の為ならず。それによって自身の魂がより磨かれる確信で動いたとしても。現実世界で互いが救われるのであれば、いくら涅槃の釈迦どもに指をさされようとも構わない。僕らはまだ地上にいるのだから。\n 善でないと知り、偽善と認め、それでも社会へ抗い、美を経て個を得て、悪の華でも咲かせてみせることが重畳。涅槃に咲く蓮の花なんざ穢れた僕らには不釣り合い。僕らの幸せはまだ仏の道に進むほど鋭くはない。\n 幸運なことに、この世界にはまだ実益、利益を越えて、感情の損得勘定しか頭にない者たちがいる。芸術と感性と個性と幸せが地続きであると、本能で理解する者がいる。\n 彼ら彼女らが己が幸福を望むことが罪ならば、喜んで地獄に墜ちよう。選択された善のみを歩んだチキンを待つ偽りの天国は、それはそれは退屈なパロディに違いない。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,10 +46,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

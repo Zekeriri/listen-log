@@ -29,9 +29,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-11-21 05:07\n一口随笔：观察某人的剧情时\n一口エッセイ:誰かのドラマを観測する時\n\n人は、偶然だれかのドラマに出くわすことがあります。\n いつも僕が本を読むため通っている喫茶店があるのですが、その近所にカメラ屋さんがあり、毎回一切の興味もなく通り過ぎていたところ、このまえの皆既月食の夜、喫茶店から出るとカメラ屋の前で、店員と常連客が集まり大きなカメラを構えて暗い月を撮影している瞬間を目撃したのですね。\n 普段、何気なく通り過ぎて窓越しに目に入っていた無感情な店員も、この夜ばかりは大興奮でレンズを覗いている。きっと、街のカメラマンたちにとって、少しずつ欠けていく月の光を撮影することは、人生の中でも限られた大切な一瞬である筈。偶然、僕は彼らのカメラ人生におけるドラマチックの高まりを観測したのである。\n そして、今夜もまた珍しいものを見た。\n 雨あがり。深夜の中野を散歩していると、古びたコインランドリーの中から、女性のはずんだ声が聴こえてきます。遠くから中を覗いてみると、色褪せた洗濯機の上にスマホを設置し、画面の向こうの恋人らしき人物と話すため洗濯機の上に両腕と頭を乗せている。ガタガタ揺れる洗濯機の振動に合わせて彼女の頭も揺れ、それを2人で笑い合う。なんてドラマチックなんだ。\n 今夜の雨で洗濯物が濡れてしまったのだろうか。明日に備えて乾かすために深夜のコインランドリーへ来たのでしょう。そこで洗濯の待機時間の暇を潰すため、愛しの恋人に通話をかけて何気ないひと時を楽しんでいる。こんななんでもない日常こそが最も幸せに見えることを、意識しているのか知らずか。間違いなく、いまこの深夜の中野一帯で、この女性が一番幸福な時間を過ごしていることでしょう。\n すっかり忘れていたけれど、冬の深夜はとても寒い。しかも、雨の影響で今夜は特別冷えている。自販機で暖かいココアを買う。缶の温もりを両手に感じながら、薄暗い帰路を行く。\n 明日も雨が降るらしい。\n 濡れるのはいやだけど、独りはもっと嫌だから、街に隠れた誰かを探すため明日の僕も深夜の中野を散歩するのかな。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,10 +49,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

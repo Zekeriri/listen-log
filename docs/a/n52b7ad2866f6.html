@@ -37,9 +37,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-10-06 22:59\n发热与复活\n発熱と復活\n\nスペインからの帰国途中で発熱と湿疹に襲われ、自宅で寝たきりの一日であったものの、人間の回復力とはすごいもので丸一日眠っていたら大抵のことは回復する。\n 発疹による痒みが手のひら中に広がり、痒くて痒くて仕方ないと掻きまくっていたら指が腫れて膨張し、着けていた指輪が指を締め付けて取れなくなったばかりか、指先に血が回らなくなってどんどん紫色になった時はもうダメかと思った。\n 「これ指に血がいかなくなって翌日には壊死しているんじゃないか？」と不安がよぎる。が、無理やりに指輪を取ろうとすると余計に腫れてさらにキツくなっていく。石鹸だの糸だのといろんな方法を試すが上手くいかない。これは詰みなんじゃないかと深夜の消防署（リングカッターで切ってくれるらしい）へ向かうことも算段に入れたが、睡眠薬を服用した後だったのでやめた。\n 起きて指が壊死していたら、その時はその時考えようと睡眠薬の効果に従い眠りにつく。眠ろうにも全身がムズムズするうえで頭痛がするので薬を足す。\n 不思議な夢だった。\n もう死んだ人と再会する夢を見たが、姿を見た瞬間に「あ、この人自分がもう死んでいることへなんとなく気づいているパターンか」と理解した。実際、夢の中の死人は「確証はないが自分は一日だけ蘇っているだけな気がする」といった風に会話を進行させた。物語ではよくあるパターンなものの、それを眠っている時の脳みそが再現したことに起きてから感動する。複雑な設定もいけるものだな。\n 起きると膨張していた指がきゅっと収まっていた。どうやら少しずつでも血流は通っていったらしい。\n そんなに良くもないが、めっきり悪いほどではないくらいに体調がよくなってきた。\n スペインに居た十日間のことを思い出す。\n 夜のビルバオにて、壁に向かってボールを蹴り合って遊ぶ子供達を見た。\n\nサッカー強豪国であるスペインでの未来のサッカー選手たち。\n もう、この時点で僕よりもボールを蹴った回数が多いんだろうな。夜中の街中、人気の少ない場所で、飲み会に耽るテラス席の中年たちを横目に、一心不乱にボールと壁に張り付く時間の尊さを思う。ものすごく楽しいだろうな。こんなに大きな壁で。\n 毎日、日記を書いているので、今年体調を崩した回数もだいたい記録されている。\n 中年になってからは、すぐに体調が悪くなるものだ。もう、あの子供達のような若々しさはまったく無い。\n がむしゃらに生きないとなあと思う。\n スペインでは多くの人たちから応援をしてもらった。Discord上では、スタッフたちが次回作のためにそれぞれの仕事をしている連絡が送られてくる。倒れている場合ではない。\n 夜中に集まって壁にボールを叩き続けるくらいの純粋な喜びに取り憑かれないと。\n 彼らはそのまま大人になってもサッカーへ夢中でいるのだろうか。はたまた、意外とスポーツなんて忘れてサラリーマン生活へ熱中したりするのだろうか。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -58,10 +57,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-05-03 05:22\n一口随笔：获得2.0的视力，满怀期待地去个展……\n一口エッセイ:2.0の視力を手に入れ、満を持して個展へ……\n\nICL手術を受け、眼球にコンタクトレンズを埋め込んだ改造人間と化して一週間が経ちました。ですので、経過の検査のために病院へ行きました。特に問題なく、順調に2.0の視力を入手。人生で最も視力の良いこの瞬間を大切にするために、ニディガでキャラデザを担当して頂いた、超てんちゃんの親とも言える、お久しぶり先生の個展へ向かいます。\n 受付を行なっている企画者の方とも知り合いでして、彼女は数年前から僕のファンをしてくれており、就活の際に話を聞いたこともある。「企画の仕方に憧れます」と言われて嬉しかったぜ。それが今、こうしてお久しぶりさんの個展を企画する立場となったのだから、人間の成長を感じさせますね。\n 展示されるイラストは、当然素晴らしい。このために目の手術をして良かった。高解像度で好きなイラストレーターの絵に囲まれるのですから、これを眼福と呼ぶのでしょう。\n ニディガを企画した際、超てんちゃんという存在の確立のためには、「誰が見ても絶対に顔が良いと感じる説得力」が必須でして、今の若手イラストレーターで個人的に最も素晴らしい画力を感じるお久しぶりさんに依頼したのです。懐かしい思い出だ。快く承諾して頂いたおかげで、超てんちゃんが誕生し、見事その顔の良さで現在は40万本以上の販売本数を誇る女になった。改めてみても、百点満点なキャラクターデザインである。こんな素敵な才能ある方と一緒に仕事ができた事実が、僕の誇りです。\n みなさんも是非、休日中に個展へどうぞ。僕が思う若手絵師の最高峰です。自信を持ってお勧め致します。ついでに視力も2.0に改造しとこう！\n\n毎日のエッセイをまとめた同人誌を販売中です。こちらの表紙を担当して頂いた、組長さんの絵柄も大好き。\n\n商業エッセイ集もよろしくお願いします。こちらの表紙は、塚本穴骨先生。繊細なタッチが良いよね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

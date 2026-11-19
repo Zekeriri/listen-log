@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-01-08 01:51\n一口随笔：喂喂游戏与落伍的御宅老头\n一口エッセイ:もしもしゲーと時代遅れのオタクジジイ\n\n今年も続々と新作アニメが放送され、今夜もソシャゲを原作としたアニメが始まりました。いっぱい女の子が出てきて専門用語が頻発するので、腰を据えて気合い入れて視聴せねばなりません。\n ちなみに、僕はソシャゲを一切やらない。というのも理由があり、「もしもしゲー」と呼ばれた時代の名残が強い。かつてモバゲー自体のスマホアプリは、オタクたちから「もしもしゲー」と揶揄され、データに課金してアバターを着飾ることをひたすらバカにしていた。\n しかし、モバマスなどが台頭し、二次元キャラクターとソシャゲの相性の良さが猛威を振るった結果、もはやソシャゲを「もしもしゲー」なんて呼ぶ方が少数派。誰も彼もスマホでゲームを遊び、ガチャの結果で一喜一憂する時代へ突入する。\n 僕はと言うと、完全に波に乗り遅れてしまい、いつまでも「もしもしゲー」という揶揄の呪縛に囚われた結果、こうしてソシャゲを全く知らない時代遅れのジジイと化しました。オタク友達と遊ぶ際、彼らがソシャゲの話題で盛り上がるときに、黙って俯く日々を何度過ごしてきたことか。しかも、かつては「もしもしゲー」を見下したオタクたちは、とっくにスマホゲーを遊びまくって、引いた美少女の魅力を日夜語り合っているというのに！\n こうしてアニメで放送してもらえると、これがあの子か！ と周回遅れで美少女を楽しむことができる。こんな哀れなジジイにならないように、皆さんは妙な逆張りなんて気にせず、面白いモノはじゃんじゃん遊んでもらいたい。ネットの人間ほど、すぐに掌を返す存在もなかなか居ないぞ。\n\n毎日のエッセイをまとめた同人誌をboothにて販売中です。電子版もあるので、もしもしからでも読める！\n\n先月には、意外と内容が重いと評判の商業エッセイ集も発売しました。Kindleがあるから、こちらももしもしで読めるぜ。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

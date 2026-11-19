@@ -34,9 +34,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2024-01-03 04:09\n至高的一张 深夜的旋转木马\n至高の一枚 深夜のメリーゴーランド\n\n今日は良い日だ。今まで素人なりにも切り取りたい景色を写真に収めてきた中で、最も気に入った一枚が撮れたのです。\n こちら、「闇に包まれた深夜の屋外メリーゴーランド」。どうでしょうか。これまで数々のメリーゴーランドを撮影してきましたが、ここまで「寂しいけれど醒めたくない夢」そのものな一枚をようやく撮ることに成功しました。\n\n夜の宿を飛び出し、星以外に灯りのない清里を歩く。スマホの灯りのみが道を照らし、なんと『萌木の里』には墓地もあるので、いやでも墓場を通ることとなる。僕は怪奇趣味かつ、あえて墓地のすぐ隣のアパートに住んでいたこともありますから、それは問題ないのですが。それにしたって寒くて暗く、斜面も多くて単純に足元が危ない。\n\n特に閉じられているわけではないので、どうにか坂を登っていくと目的のメリーゴーランドへ辿り着く。清里のメリーゴーランドは、昼間でもあまり人が居ないうえで、山の上にぽつんと置かれているので元より風情たっぷりなのです。\n 誰も居ない状態でもビカビカと電飾が輝き、サーカスのような愉快な音楽が鳴り響く。残念ながら夜は停止しているので光りはしていないが。\n\nメリーゴーランド。\n 僕にとってはゲームセンターは日常を忘れさせる「夢」そのものであり、そんなゲーセンの占有面積を大幅に占める巨大なメリーゴーランドは、まさしく「夢の象徴」であった。別に自分が乗りたいわけではない。ネオンライトだけが照らす薄暗いゲームセンターの真ん中で、西洋風の派手な装飾を纏って回転する遊具の「異質さ」を眺めるのが好きなんだ。こんなに大きく、光り、回転し、音を奏でるオモチャ。メリーゴーランドはゲームセンターの一等星。そんなメリーゴーランドがライトを照らさねば見えないほどに暗く、森にぽつんと聳えている。\n かろうじてスマホのライトをオンにして撮影することで全景が一瞬見える。本来、なによりも愉快なはずの遊具に誰も乗っていないどころか、稼働もしなければ、目を凝らさねば視認すらできない。万が一侵入して木馬に乗ろうものなら、そのまま音楽と共にあの世まで運ばれるような不気味さな寂しさが漂う。\n 山梨に来てよかった。自分の中での最高の一枚が決まっただけでも、2024年の幸先は良い。今までは岐阜の大型デパート『マーサ21』で撮影したメリーゴーランドを至高としていたが、見事に更新されました。\n\nとはいえ、全国……いや、全世界にメリーゴーランドはたくさんある。まだ僕が認識していないだけで、きっと素敵なゲームセンターは無数に点在するのでしょう。\n\nまたのんびり一人旅しながら撮ろう。巨大な回転式遊具の前では現実を忘れて童心と夢に包まれる。明日は都内へ戻る。東京は山梨とちがい人が多いのに寂しいが、星空のメリーゴーランドをこの目で見た夜を思えば、しばらく乗り切れる。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,10 +54,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

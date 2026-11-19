@@ -36,9 +36,8 @@ pic.twitter.com/nwLTTpGJ4X— 中野ブロードウェイで見つけたもの (
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-12-16 06:06\n寻找无人旋转木马\n無人のメリーゴーランドを求めて\n\n無人のメリーゴーランド、それもデパートのゲームセンターにあるものを撮りたい。人が居ないゲームセンターでLiminal Spaceのような寂しさを感じたい。一度、横浜のテーマパークで撮影した画像は我ながら気に入っておりますが、やはり室外なので自分の中では完璧ではないのです。\n\nデパートのゲームセンターでピカピカ光る無人のメリーゴーランド。できれば背景も子供向けなメルヘンチックな……それこそ「子供の夢」の概念そのもののような。\n ということで、ひたすらYouTubeで地方の商業施設にあるゲームセンターのメリーゴーランド動画を漁ってみたわけです。そして、遂に理想に辿り着いた。\n\n『マーサ21』なる、岐阜県のデパートらしい。ピカピカと光るオモチャをそのまま巨大化したようなメリーゴーランドと、パステルなお城の背景。剥き出しの展示がまた「夢」っぽさに拍車をかける。満点！\n ……が、当然ながらこのような動画は子供が映る。要はメリーゴーランドが主役でなく、「自分の子供が遊んだメリーゴーランド」を映しているためですね。そりゃそうだ。「無人のメリーゴーランドの寂しさ」を伝えるために、地方の子ども向けコーナーで一人動画撮影している人物が居たらわりと怖い。しかも、他人を映さないよう閉店間際を狙ったりしていたらなおさら。\n ということは、真に自分が望む画像や動画を撮るためなら、自分自身が出向く必要があるわけですね。しかし、「無人のメリーゴーランドを映すために泊まり込みで岐阜へ行くんだよね」と他人に伝えたら、大多数の人間は僕の頭がおかしくなったと思うでしょう。理由は「夢っぽい写真を撮ると精神が安定するから」のみ。\n\npic.twitter.com/9jdy2QwRDf— 中野ブロードウェイで見つけたもの (@nyalra_uso) October 30, 2022\n\n自分は『中野ブロードウェイで見つけたもの』というアカウントで毎日写真を投稿しておりますが、これも似たような感覚を満たすためであり、自分の中では「無人のメリーゴーランド」と地続きなんですね。他人に言語化して伝えるのは難しいですけど。\n でも、本当にそうなのだから仕方ない。なるほど、人はこうして理想を突き詰めていくたび、どんどん意味不明な存在になっていくのだなぁと、ふと実感した夜でした。\n 夜の中野ブロードウェイ、いいよ。みんなも是非歩いてみてね。スーファミ時代の女神転生に最も近い場所でしょう。\n\npic.twitter.com/nwLTTpGJ4X— 中野ブロードウェイで見つけたもの (@nyalra_uso) November 7, 2022\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,10 +56,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

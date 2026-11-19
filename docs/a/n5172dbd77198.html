@@ -25,9 +25,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2026-02-06 15:58\n色情贩卖的界限\nエロ売りの境界線\n\n服を眺めているのが好きで、綺麗にゴスロリやドレス（に近いキャラのコスプレ含む）を着こなすなあと、たまにタイムラインへ流れてくるのを眺めているくらいの方が、NIKKEのコスプレで思いっきりえっちな格好をしていた。なるほど。元から堂々と下着を見せているキャラクターのコスであれば、再現性を考えると自然に下着を見せることとなる。\n 要するに、ソシャゲ世界には、それとなく露出度の高い、またはデザイン上に理由があったうえでほとんど下着のようなキャラクター、衣装に溢れ、コスプレイヤーたちは「原作再現」を楯に露出ができる。露出面積が増えると数字が増え、お金につながっていく。\n ただただ露出すると女性ファン（またはエロが主体ではない男性ファン）が離れ、「ついに脱いだんだ」と見下す同性もいる。エロ売りとは、それだけ諸刃の剣である。代わりに数字とお金がぐんぐん伸びる。折衷案として、「えっちな格好の可愛いキャラクター」をソーシャルゲームは提供し、「好きなキャラへ扮しているだけ」と程よいバランスを保つ。\n 僕はAVやグラビアにまったく興味がなく、エロコスプレに対して、たまに流れてきても、ヤンジャンやヤンマガのグラビア表紙に何も感じないのと同じ調子でスルーするものの、服の着こなしが好きで見ていた人だと少し悲しくなる。一度覚えた数字の大きさはなかなか振り払えず、ファン層も若干入れ替わっていき、気づけば露出側へ回って行くかもしれない。ふと、普段の自分も見てと素敵な私服をあげる頃には、それを望んでいないエロ親父たちの無反応さが際立つようになっていて。\n しかし、生きるには、特に女性がその美貌を磨くには多くのお金が必要とされることもそうだ。みんな、きちんとした方面でアパレルとかサブカルチャー系の方面に進んで生きていかないかな……と願ったところで、それも修羅の道。\n どうにもならないことはならない。\n 強いていうなら、エロのチラ見せ+FANBOXやFANTIAへの誘導コンボが、二次元三次元問わず導線として強すぎるTwitterの仕様を恨むのみか。いや、本人たちだってお金がもらえるなら僕のような変なおっさんの視点なんて気にしていないくらい幸せだろうしな……。世界は難しい。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,10 +45,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2021-09-07 20:39\n精选短篇随笔：我在网络上最喜欢的存在\n選り抜き一口エッセイ：僕がインターネットで一番好きな存在\n\nインターネットのなにが一番好きだったかを思い出してみると、それは「3ゲットロボ」じゃないかという考えに辿り着きました。いろんなスレの序盤に姿を現し、がしゃーんがしゃーんの駆動音とともに、すかさず3レス目をゲットしてくれるすごいロボットです。\n 自動で3ゲットをしてくれるすごいやつなのですが、たいていの場合は8レス目とかで登場するので、まったく3を取れる気配がありません。スレの住民たちも、基本的に3ゲットロボが珍しく3を取ろうが、ぜんぜん外れていようがスルーです。3ゲットロボの挿入により、スレの流れが変わることはほぼありえない。ごくまれに3ゲットロボの3ゲットを阻止する、「3ゲット阻止ロボ」なるタイプが出てくる場合もあるのですが。\n 思うに、今のTwitterでもなんかこう……激しく議論になっているようなツイートのリプライツリーにも、この3ゲットロボが、がしゃーんがしゃーんと3レス目を狙いにきてくれると、みんなその様子に和んで解決するんじゃないか。どうせTwitter上の話題なんて、もう何度もループしているだけなんだし、だったら結論のでない話題を続けるより、3ゲットロボが自動で3を取れるかどうかの方が大事だろう。みんな開いたスレの最初に3ゲットロボが3を取れていない光景を見て、そのポンコツっぷりと愛らしさに思わず笑いが漏れた日々を思い出して欲しいよ。\n △ ￥ ▲ がしゃーん\n （ ㊤ 皿 ㊤） がしゃーん\n\n友達の絵 (@nyalra) pic.twitter.com/69GUHJs4cx— えータコ (@ccnaov) March 4, 2021\n\n※Twitterに連載していたエッセイからの抜粋です。↑で購入できますので、エッセイ集をぜひ読んでみてね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

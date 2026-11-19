@@ -30,9 +30,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-08-30 03:07\n一口随笔：旋转木马\n一口エッセイ:メリーゴーランド\n\nにゃるら カピバラ Aiobahn\n↑いつもの3人 pic.twitter.com/1kPOSaje9v— にゃるら (@nyalra) August 29, 2022\n\n友人のAiobahnが日本へ遊びに来たので、一緒にメリーゴーランドに乗りました。\n メリーゴーランドの概念はすごく好きだ。せっかく外出して遊びに行くのだから、求めているのは「非日常」になるわけですが、とりわけメリーゴーランドからは、遊具の中でも「夢」のような浮遊感を覚えます。\n\nピカピカと輝くゴージャスな装いと、ふわふわ心地よく上下する木馬や馬車、鳴り響く楽しげな音楽。視覚、触覚、聴覚が非日常に覆われる様はサイケデリックとすら感じる。それでいて、停止時に人がいなくなったメリーゴーランドから漂う寂しさのギャップがたまらない。人を大量に乗せて光る装置が機能していない無人の様子は、なんとも退廃的な魅力に溢れている。\n 特に、今回乗馬した横浜のメリーゴーランドは海が近く、視点の角度によっては水上に浮かんでいるような感覚に包まれ、いっそう幻想的なのです。\n\nできれば、ずっとメリーゴーランドに乗って夢心地のままで居たいものですが、どうしても遊園地には終わりがある。非日常から日常に戻らされる瞬間はなんともグロテスク。遊具の停止とともに夢から覚め、どサイケなカラフル空間から見慣れた灰色の道に帰る瞬間ほど悲しいことはない。死後の世界に天国と呼ばれる場所があるならば、そこは永遠に回り続けるメリーゴーランドのような世界であって欲しいものですね。\n\n毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,10 +50,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

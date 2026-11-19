@@ -27,9 +27,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2022-01-06 03:09\n一口随笔：刃牙与色情魔王\n一口エッセイ:刃牙とエロ魔王\n\n刃牙の家の落書きの迫力は最早わざわざ言うまでもないですが、僕はこのページを見るたび、右下の「エロ魔王」について想いを馳せるのです。\n 意外と「エロ魔王」が一番傷つくじゃないんか？ 他の「刃牙死ね！」とか「かかって来い」なんて誰が見ても雑魚の遠吠えでしかなく、DEATHや滅殺なんて最早それっぽい単語を書いているだけ。\n 例えばネット上でアンチが何かを叩いている様子を見かけた際、あまりにアンチ側がバカ丸出しというか的外れな揚げ足取りすぎて、むしろ叩かれている側に肩入れしたくなる現象を体験したことはないでしょうか？ アンチが「こいつは××なんだぞ！」とか書いても、だからなんだよとしかならないし、「ここが痛いよな！」と書いても、その痛さも魅力だからファンが居るのでは？ と思う。それと同じで、これらのしょうもない罵詈雑言は強さの証明にしかならず、逆に刃牙側も気持ち良い筈。\n しかし、「エロ魔王」はどうだ。刃牙だって童貞卒業したての思春期真っ盛り。不当に「エロ」扱いされるのは心外だろうし、ましてやただのエロでなく「エロ魔王」だ。その並々ならぬ性欲のせいで悪魔や魔物の王として君臨するほどである。\n 恐らく、この落書きは梢江も目にするだろうから、彼女に「エロ魔王」と思われないかハラハラしてしまうのではないか？ 自分の彼氏がエロ魔王であるなんて、女子高生が耐え切れるだろうかと思い悩んでも仕方ない。親父の勇次郎は、世界各地に子種を蒔いた上で同性も抱くような、本物のエロ魔王だし。案外、こういうくだらない落書きが何気にダメージあるよなぁと毎回刃牙を心配してしまう。\n\n毎日のエッセイをまとめた同人誌をBOOTHにて販売中です。買ってくれたらエロ魔王って呼んでも許すよ。\n\n先月発売した商業エッセイ集もよろしくお願いします。刃牙の家と違って優しいレビューを書いてあげてね。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,10 +47,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>

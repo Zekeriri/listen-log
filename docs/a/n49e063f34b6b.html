@@ -32,9 +32,8 @@
 </main>
 <div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="payload" type="application/json">"请把下面这篇日文翻译成简体中文，并朗读。\n\n2025-10-17 06:01\n人最终还是会忍耐\n人は結局耐えていく\n\nどんなに死にたかったとして、死ななければ生きている。\n 「一人称の死」、つまり自分の死に対して誰も体験できない。死んでいるのだから。よって、基本的に己が生きている前提で思考をしていくしかない。\n となると、どんなに不幸と不運が重なったとて、生きてしまう。生きているからには耐えている。自殺しない限り、生に耐えていることとなる。死にたいほどに苦しくても。要するに、人間はどこまで果てしない苦難が襲ってきたって耐えて生きていくわけですね。死は己で観測しないから。\n いま僕は相当な不幸を背負っていると自認しているけれど、それでも耐えることでしょう。今年中、適応障害とうつ病の苦しみが続いているし、常にどんよりとした一年であったけれど、こうして生きている限りは耐えたと言える。耐えてしまっている。\n 人間は思ったよりも耐えるのだ。\n 結局、いま生きているかぎりは耐えている。ありったけの不幸を抱え、一日中布団に丸まり、何も考えないよう虚空を眺め続け、それでもいずれは立ち上がる。過去の僕は半月、もはや記憶がないくらいに適応障害で倒れていた。スマホもほとんど開いていなかったが、きっと心配の連絡だって少なくなかった。それでも、やっぱり気づけば立ち上がれていたのだから、やっぱり死なないかぎり死なない。\n どのみち、あなたも耐える前提で将来を想わなくてはならない。壊れるって言っても、壊れながらも生きているので。\n 残酷なことでもある。\n 「どうせ生きている」と認識されると、奴隷になるのだから。\n 耐えていることと、幸せである、健全であることは全く別で。耐えているだけ。ずっと苦しくて、惨めで、鬱屈しているのかもしれない。それでも、死ねない。死んだ瞬間、自分は終わりを観測しない。\n 僕へどれくらい理不尽な災難が降り注ごうとも、耐えはするのでしょう。\n 耐えて耐えて、どうなるか。\n 「観測できない」からこそ、安心して死を選択する未来は、ちょっぴり希望に思える。\n 耐えれなかった瞬間、人間は終わりを知らずにするっと生を終える。脳機能が停止し、もう辛いことも苦しいことも、何も考えずに済む、真の幸福な眠りが訪れるでしょう。"</script>
 <script>
-const text = JSON.parse(document.getElementById("payload").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,10 +52,11 @@ async function copyText() {
     try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
   }
   if (!ok) selectPack();
-  toast.textContent = ok ? "已复制，可以贴给手机上的 AI" : "没有自动复制。下面的文字已选中，请长按后复制";
+  else box.style.display = "none";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
-  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 4000);
+  copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
 }
 document.getElementById("copy").addEventListener("click", copyText);
 </script>
