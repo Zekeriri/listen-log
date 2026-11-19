@@ -63,6 +63,8 @@ li a {
 li a.busy { opacity: 0.55; }
 li a.copied { background: #2c261c; }
 li a.copied .date::after { content: " · 已复制"; }
+li a.has-zh .date::after { content: " · 译文"; }
+li a.has-zh.copied .date::after { content: " · 译文 · 已复制"; }
 .date { display: block; color: var(--accent); font-size: 16px; }
 .title { display: block; font-size: 22px; font-weight: 700; }
 .ja, .ja-title { display: block; color: var(--muted); font-size: 16px; margin-top: 4px; }
