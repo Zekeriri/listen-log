@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>夏天</title>
+<title>夏季</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2020-08-17 22:53</p>
-  <h1>夏天</h1>
+  <h1>夏季</h1>
   <p class="ja-title">夏</p>
 </header>
 <main>
@@ -35,11 +35,10 @@
  あー、起きたら、起き上がったらちゃんとするからって思いながら、今度こそヘラヘラしないぞって誓って、麻雀だって脳味噌固まったらちゃんと考えて打つからって、そう思ってはいるのに。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"夏天\n\n我不知道我是否因为夏天而感到疲倦，或者是否感到沮丧，或者两者的结合一直在试图融化我的大脑，但我没有任何动力去做任何事情，我没有胃口，我有轻微的头痛，我的头软软的，我一直在睡觉。\n 我现在所做的就是睡觉，一天三分之二的时间都在床上度过。漆黑的天篷床不透风，又湿又热。难道我就这样被蒸死了吗？我害怕死。\n 是的，我非常害怕死亡。最近，我经常在入睡或梦中想到死亡，这意味着我一天中有三分之二的时间都在害怕死亡。\n 当谈到死亡时，我有多种思维模式，我不仅想到肉体的死亡，还想到我变成僵尸的死亡，因为没有人会在互联网上与我交谈，以及我的思想永远无法恢复，我只是继续睡觉并重复我的日常生活的死亡。我的大脑已经死了，因为我睡得太久了。自然，我的自力更生也就结束了。\n 当我继续在这个思想迷宫中徘徊而无法入睡时，我变得越来越沮丧。最近，我经常回想起自己生气时就生气的情景。是的，我一生气就生气。那是最糟糕的，不是吗？但我做到了。\n 我曾经责备自己，谎称自己缺乏能力和常识，但我最大的问题是让周围的人感到不舒服，我只是一个不讨人喜欢的人。我一直假装把这一切归咎于社会或我的能力，但现在是我必须面对它的时候了。或者更确切地说，这就是我生气的原因。当然。因为那是对的。\n 夏天，阳光太猛烈，把我的大脑融化了，所以我又把责任归咎于季节。我说冬天太冷了。啊，我想就是这样。总是责备某事然后逃跑。但东京的夏天真是令人难以置信，不是吗？它对我的身体伤害如此之大，以至于我怀疑是否有某种来自太阳的毒素。\n 我讨厌出汗。我想每个人都讨厌它。就我而言，我没有嗅觉，所以我不知道是我还是别人闻到了气味。可怕的。我什么都不懂，我很害怕。\n 什么都不懂的时候很难，所以我打麻将来保持理性。在我的智能手机上，在我的黑色床上。\n 带着一颗吃了安眠药的软软的脑袋打麻将很有趣，而且没有恐惧，所以你攻击、攻击、攻击。有时候立马砍红龙让对手心烦意乱也是很有趣的。一旦你知道了这种乐趣，你就会懒得再正常打麻将了。这是一件大事，因为四分之一的参与者都在套索中。嗯，不知道大家是否满意。\n 我正在考虑修复一切。\n 我真的很想，可是我就要这样倒下去了。\n 最近，我结交了更多朋友。有一个人住在离我很近的地方，虽然我这样写听起来像是一种错觉，但他确实存在，而且他住在一个很小的房间里。它是如此之小，让我感到惊讶。不是秋叶原最窄的吗？\n 他辞去了工作，开始玩弹珠机，我觉得这很酷。我绝对想和你成为朋友。我们曾经一起去玩弹珠机，但后来我们不再去弹珠机了，因为他没有钱，我们整天就在咖啡厅聊天。那段时间很有趣。\n 但我们都不好，就都吃安眠药，睡了10多个小时，独立神经发疯，不管白天黑夜，夏天彻底被打败了。\n 一个穿着白色连衣裙、戴着草帽的女孩和一片向日葵田，真是梦想成真。当我裹着漆黑的床和漆黑的蒲团时，我的夏天悄然过去了。\n 想想看，今年我连蝉都没见过。\n 蝉虽然有吵闹的理由，但人们讨厌它们，似乎很可怜。就算被骂吵闹，你也只能哭个不停，跟我一模一样。我只能做这么多。\n 啊，醒来后我心想，起床后一定要做正确的事，发誓这次不会再乱来了，打麻将的时候脑子凝固了之后就会思考、打。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -59,7 +58,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>快速文章：“忍者战队 Kakuranger”和 Doronchanger 项链</title>
+<title>一口随笔: 《忍者战队隐连者》和多隆变换器的项链</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-28 03:22</p>
-  <h1>快速文章：“忍者战队 Kakuranger”和 Doronchanger 项链</h1>
+  <h1>一口随笔: 《忍者战队隐连者》和多隆变换器的项链</h1>
   <p class="ja-title">一口エッセイ:『忍者戦隊カクレンジャー』とドロンチェンジャーのネックレス</p>
 </header>
 <main>
@@ -32,11 +32,10 @@
 商業エッセイ集もよろしくね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"快速文章：“忍者战队 Kakuranger”和 Doronchanger 项链\n\n我得到了最酷的项链！ ！ ！ pic.twitter.com/utZRfEAF5K — Nyalra (@nyalra) 2022 年 6 月 24 日\n\n我从 Premium Bandai 收到一条 Doron Changer 项链。快乐的。这让我感觉自己就像一个忍者战队 Kakuranger...我会躲在人们身后杀死邪恶！\n 距离实际佩戴已经过去几天了，但我感到非常自豪。到时候，他就可以像inro一样举起Drone Changer，褪去隐匿于世的普通人的外表，变身为忍者。多么自豪啊。\n\n嗯，Kakuranger 特别喜欢相关歌曲。 OP是战队中最宽松的之一，它只是在一对好情侣之间移动，并且充满了诸如“如果你告诉我你的感受，我会成为你的追随者”之类的短语，这让你觉得自己是一个小混混。这与歌手温柔的声音相结合，构成了一首非常舒缓的主题曲。当我还是个孩子的时候，我记得听到这首OP，感觉很轻松。结尾也是一首很好听的流行说唱歌曲。\n 最重要的是，我最喜欢的歌曲是插入曲“Into Danger Kakuranger”。这首歌真的很酷，不像OP和ED！主唱也是宫内贵之。\n 歌曲以“魔界之门咆哮”开头，此时的紧张气氛已经很高了。 OP中他随意唱着“我会成为你的爪牙”，但在战斗场景中，却是“通往魔界之门”。尽管这通常是流行和明亮的，但正是 Kakuranger 让你感到轻松自在。接下来的歌词都很严肃，歌曲《城市惯有的节奏在某个地方听起来很疯狂》也很酷，歌曲开头是《玩的时间到这里结束》，副歌部分是《让我们连影子都抹去，继续奔跑》我已经麻木了。战斗灵动黑暗，连影子都消失了，这就是忍者！\n 我还喜欢新的忍者战队的“成为忍者，但不要成为忍者！”政策，这是创新的。甚至说，“我是忍者，但我是忍者！”但我仍然喜欢忍者隐藏在黑暗中的生活方式。\n\n当我带着可以变身为Kakuranger的Drone Changer四处走动时，我想象着这个世界的和平是由于红忍者隐藏在群众中并在幕后击败了邪恶，我兴奋地跑到了后巷。谢谢你，忍者战队。\n 仔细想想，躲起来杀恶人是必须的，但如果公然把变龙器挂在脖子上，那就不行了！ ？\n\n包含每日日记的同人志正在 BOOTH 发售！它完全突出，又完全隐藏！\n\n我期待阅读您的商业论文集！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -56,7 +55,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

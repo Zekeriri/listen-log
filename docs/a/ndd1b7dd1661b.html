@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：未来大VOCALOID P</title>
+<title>一口随笔: 未来的大物Vocaloid制作人</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-23 12:43</p>
-  <h1>短文：未来大VOCALOID P</h1>
+  <h1>一口随笔: 未来的大物Vocaloid制作人</h1>
   <p class="ja-title">一口エッセイ:未来の大物ボカロP</p>
 </header>
 <main>
@@ -23,11 +23,10 @@
 毎日の日記をまとめた同人誌や、若い頃の文章を掲載した商業エッセイ集、よろしくね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：未来大VOCALOID P\n\n我一直在忙着为搬家做准备。除此之外，我家附近有一个酒吧，主要是创作者聚集的地方（感觉只有熟人才能进去），还有YouTubers相关的人聚集在那里，所以有人问我要不要过来打个招呼。出乎意料的是，它离我家很近，所以我在搬家的时候顺便过来喝了一杯。\n 主要针对神奇宝贝的解说有很多，虽然我对此一无所知，但当一个年轻的VOCALOID P家伙走近我时，我对每个人的惊人程度印象深刻，所以我决定仔细听他的讲话。\n 有一天，他发布了一首 Vocaloid 歌曲，点击量超过 100 万，就在那时，他辞去了工作，全身心投入音乐创作，从此一直从事音乐事业。他说，既然自己曾经可以靠作曲赚钱，现在他觉得正常工作、拿工资已经不能满足了。老实说，这真的很酷。\n 之后我又发了几首歌，但他告诉我，他仍然担心无法获得第二个百万播放量，但当他在21岁时决定辞职并专注于创作音乐时，他感觉很酷。拥有 100 万次观看次数的记录，您就有了绽放才华的门票，所以您所要做的就是不断攀登。\n 现在看来，贫穷是一种压力，确实，这里20多岁或以上的YouTubers确实很了不起，比较起来可能会令人失望，但考虑到你还年轻，你现在就是主角了！那天晚上，我看着未来的VOCALOID大P，发现自己这辈子从来没有这么有过气势。\n\n我想看一本包含我的日常日记的同人志和一本包含我年轻时的作品的商业文章集。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

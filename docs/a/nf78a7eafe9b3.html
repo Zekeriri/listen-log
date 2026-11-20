@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>快速文章：《瓦里奥大陆 3》的创新</title>
+<title>一口小随笔：瓦里奥大陆3的创新</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-02-18 06:27</p>
-  <h1>快速文章：《瓦里奥大陆 3》的创新</h1>
+  <h1>一口小随笔：瓦里奥大陆3的创新</h1>
   <p class="ja-title">一口エッセイ:ワリオランド3の革新</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 舞にの日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"快速文章：《瓦里奥大陆 3》的创新\n\n现在我可以在 Switch 上玩 Game Boy 游戏了，我开始慢慢玩怀旧的《瓦力欧大陆 3》。ワ里オ大好き。在这个阶段，左上角的医生般的男人扔出一个变得透明的药瓶，但令人惊奇的是，那些只为了这个动作而存在的角色，这是复古游戏特有的，不知道自己在期待什么，也不知道自己为了什么而活。为什么这位老者要不断地向这与世隔绝的空间中的虚空中扔瓶子？\n 现在，小时候，我每年总是因为鼻病住院几个月，所以住院时便携式游戏机是必需品。当然，我玩过很多 Game Boy 卡带，但我特别喜欢《瓦里奥大陆》系列。\n 首先，瓦里奥并没有死。无论是被棘手的敌人刺伤，还是被重敌碾压，不愿死的强者绝对是无敌的（尽管他会在某些boss战中阵亡），而且游戏也不会当场结束。继续前进。即使马里奥或洛克人被舞台机关击中，也肯定会立即杀死他们。这似乎是我小时候感受到的第一个“游戏设备”。比起马里奥作为主角的六金币，我更喜欢瓦里奥，因为他不必从头开始每个阶段。\n 马里奥、洛克人、恶魔城……我都喜欢，但除了马里奥之外，其他两个都很难。我死了很多次，一遍又一遍地重复相同的点，并以某种方式掌握阶段并清除它们。当然，困难会给你一种成就感和兴奋感，但仅仅这样做就会耗尽你的精神力量。还希望能够更轻松地享受刺激的游戏。\n 《瓦里奥大陆 3》打破了横向卷轴动作的传统观念。当受到敌人攻击时，瓦里奥会做出各种伤害动作，但几秒钟后他会很快复活。相反，游戏的节奏非常出色，充分利用动作（例如变成火球）来快速解开舞台的谜团。无论如何，这是一款非常像《瓦里奥》的欢快游戏，在低压力和用头脑在关卡中移动的乐趣之间取得了良好的平衡。\n “因为你不会死，所以每次受到敌人攻击时，你都会执行一个独特的动作，并使用该动作在舞台上前进。”这是一款精彩的游戏，它利用了敌人的攻击，通常要求你在不被击中的情况下前进。完美的差异化理念是：“如果你想做与马里奥一样的事情，那就和马里奥一起做。”最重要的是，皮卡雷斯·克罗曼只受自己赚钱的欲望驱动，而不是为了别人。然而，本该是为自己而行动的他，却如此大胆，最终拯救了不幸的人……而且他从不失信。这让不喜欢正义感很强的作品的逆反孩子也笑了。\n 由于这些原因我喜欢瓦里奥。创新的游戏玩法旨在区别于经典的马里奥游戏。这是一场令人难忘的游戏，让我小时候意识到了这一点。由于瓦里奥继续过着自私的生活，在目前的Made in系列中，他成为了一位被许多独特角色所依赖的总统，使他成为任天堂悠久历史中独特而有吸引力的主角，光是看着他自由奔放的样子就会让人感到能量。\n\n请欣赏由舞的日记编成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

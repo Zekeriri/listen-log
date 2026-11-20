@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一点小作文：深夜滚到车站</title>
+<title>一口小作文：深夜在车站翻滚</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-04-06 07:13</p>
-  <h1>一点小作文：深夜滚到车站</h1>
+  <h1>一口小作文：深夜在车站翻滚</h1>
   <p class="ja-title">一口エッセイ:深夜の駅に転がる</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一点小作文：深夜滚到车站\n\n与人交谈很有趣，但每个人都必须回家，因为他们还有另一天要做。毕竟，一旦你内心决定“今天是与别人交谈的日子”，你就会一直想要这样做。\n 然而，已经是深夜了，我无法轻松地与任何人交谈（现实生活中），所以我躺在中野站南口。虽然车站本身已经关闭，但车站前仍然有很多人。有趣的是，看到一个穿着西装的男人，看起来像是试图从歌舞俱乐部或其他什么地方吸引顾客，被警察带走，表现得就像是，“天啊……警察对我无能为力。”出于某种原因，当警察出现在他们面前时，人们试图表现得很酷。\n 南口前面就有警察岗亭，所以很安全。另一方面，中野站北口很宽敞，有长凳，但没有警察岗亭，所以一直吵到早上。如果你真的想安静地躺着，我推荐南方。\n 嗯，既然车站前有人躺着，我就希望警察能过来跟我说话。即使只有10分钟，晚上和别人聊天也会很放松，不是吗？我宁愿用咸李子，只需要大约10分钟。 “你在做什么？”“请早点回家。”“注意安全。”这就是你所需要的。当我住在秋叶原时，那是一个陌生的城市，工作质量也很少见。从来没有在中野。当有人真的这样做时，虽然很烦人，但根据时间的不同，有人关心哪怕是一瞬间也是很好的。\n ...但什么也没有。我确实很困，所以我反复地捧着一杯水闭上眼睛，但天气太冷了，我睡不着。当我从侧面看警察岗亭时，只见警察们在里面热烈地交谈着。请把我也放进去吧。就像黑泽清的代表作《CURE》一样，让我们​​听听警察岗亭里警察的真实感受。\n\n，我躺在那儿一个小时，心想：“该死”，而一个僵硬的男人就躺在那里，警察正在审问马路对面骑自行车的男人。即使我就在眼前，我真的会在乎稍远一点的好骑车人的心爱自行车被偷了吗？你好奇吗？那我就没办法了。找到一辆被盗的车很重要……我拍了张照片作为日记，但当我回头一看时，一辆出租车正好经过，所以我什么也看不到。这是动漫表演吗？\n 果不其然，我开始感到一种空虚感，所以我尽管伤心，还是决定回家。回家的路上，我也遇到了一个躺在路上的老人，他大声喊着：“女人有这么多不同！”我以为男人都是不同的，但我也想象他可能只是孤独。如果我精力充沛一点，我可能会插话道：“人毕竟是不同的！！！”，但我已经冷了，准备回家了，所以我完全不理她，回家了。当我回到家时，我独自一人。没有什么可做的，除了保暖和睡觉。就是那样的一个夜晚。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

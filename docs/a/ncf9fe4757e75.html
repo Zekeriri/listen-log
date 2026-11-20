@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇快速文章：免疫力和创造者</title>
+<title>一口随笔:缺乏社会性与创作者</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-17 06:02</p>
-  <h1>一篇快速文章：免疫力和创造者</h1>
+  <h1>一口随笔:缺乏社会性与创作者</h1>
   <p class="ja-title">一口エッセイ:社会性の無さとクリエイター</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 僕の半生が詰まった、商業エッセイ集もよろしくお願いします。自閉症のガキがどういう人生を歩むかの一端がわかる。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇快速文章：免疫力和创造者\n\n每当有读者问我“我想辞掉工作或学校”时，我都会回答“也许早点辞职比留在一个无法适应的地方要好。”当然，这取决于具体情况，但我是一个立即辞去兼职和学校的人。\n 然后，尝试一些你想尝试的事情可能是个好主意……例如创建或分发。在这些领域，能力和动机比社交技能更重要，因此你可以在与社会不同的方向上竞争。\n 创作者的社交能力也令人惊讶！你可能会这么想，但随着接触现实，你会慢慢习惯，一开始你的动力可能是“这是我唯一能做的/我不想做的”。一旦你习惯了，策划和主编就会理解并说，“这个人没办法。”但是，以创造性工作的形式产生成果的压力很大。或者像我一样，你自己负责计划和场景，如果不可能，你就偷懒！让我们创造一个我们可以做出决定的情况。\n 现在计费途径这么多，被推的优势很大，至少瞄准一次也未尝不可。虽然这是一条布满荆棘的路...\n 事实上，如果我有一定的社交能力，我会感到更不快乐。既然工作能力还算不错，我就会继续错过全身心投入创作的机会。想一想，我想我可能是幸运的，因为我天生的自闭症，我无尽的收藏习惯，以及我独特的交流方式，所以我从一开始就能够这样生活。所以，其实我对这种精神障碍一点也不感到悲观。\n\n包含日常文章的同人志现在正在展位上出售。甚至还有专门关于美少女游戏的书籍，所以一定要看看。\n\n我期待阅读您的商业论文集，其中充满了我生活中的故事。你可以一睹自闭症孩子过着怎样的生活。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

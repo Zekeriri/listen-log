@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>秋天</title>
+<title>秋季</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2020-10-12 19:28</p>
-  <h1>秋天</h1>
+  <h1>秋季</h1>
   <p class="ja-title">秋</p>
 </header>
 <main>
@@ -36,11 +36,10 @@
 いつか黄金の秋が僕にもやってくる日を信じて、おやすみなさいディアナ様……。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"秋天\n\n∀每当秋天到来的时候，我就会想起高达最后一集的字幕“金色的秋天”。\n 我搬家了，还没有上网，所以我没什么可做的，所以我做了一段时间以来第一次去租 DVD 的原始事情。我已经记不清看了多少遍平成加美拉三部曲了。\n\n一二年级的秋天，我第一次观看《平成游戏》，并开始沉迷于租借视频。\n 当时我因为鼻子手术多次进出医院，毁了我的暑假，我感到绝望。原本应该和朋友们一起度过的第一次夏天，却变成了一间空荡荡的白色病房，这足以让孩子的心灵受到创伤。\n\n暑假结束后，大家都在全神贯注地回忆着我不知道的回忆，同学们似乎都和春天里判若两人了，我害怕得不再去上学了。相反，我每天都在租来的视频上看动漫和特效。\n 那时候，有录像带租赁店，会开着马车来到你家，每周一次晚上九点，会有一位微笑的老人来到你的公寓送录像带。\n 对于一个自闭的孩子来说，一车马车就像一个宝箱，他和他的母亲每周都会选择五六个眼中充满星星的视频，并在下周归还。我看了《数码宝贝大冒险》、《银河天使》、《龙珠GT》、《未来战队Timeranger》和《假面骑士BLACK》。\n\n其中，我特别喜欢平成加美拉三部曲：1是黄昏时照亮的伽奥斯的影子，2是军团刺穿加美拉的无情触手，3是加美拉登陆涩谷的冲击力。 1是经典，2是严肃，3有神秘元素，所以这是正确的三个。我永远不会厌倦看他们中的任何一个。我童年的秋天是和加美拉一起度过的。\n 当他向音像租赁店的哥哥要加美拉时，母亲笑着说：“你以为又是加美拉。”对于一个孩子来说，音像租赁店的司机是梦想的载体，他是除了母亲之外唯一接触过的成年人，他感到很可靠。有时他们甚至会给我一个视频额外的费用。我非常信任他。\n\n一天晚上，像往常一样，音像租赁店的一辆汽车停在我家门前。也许我妈妈睡着了，或者太烦了，所以她把钱递给我，让我自己去借。有了这笔钱的托付，我觉得自己长大了，心里高兴极了，就跑出家门，去了哥哥家。\n 我以为哥哥会微笑着跟我打招呼，结果他的反应是“哦，这里只有一个孩子？”，然后开始对我很不客气，让我很惊讶，说“如果你带了钱，就随意选择吧”，寒冷的夜风让我很害怕。\n 感觉有些仓促，没有时间再担心加美拉或哥斯拉了。我说：“今天很好。”然后就回家了。既然是从一个胆小的孩子的角度来看，其实可能并没有什么恶意，如果半夜有孩子进来，他们感到惊讶并做出不同的反应也就不足为奇了。然而，那时我有一种被什么背叛的感觉。\n 更糟糕的是，我的想象力越来越丰富，我想，虽然我还是个孩子，但我的哥哥对我丧偶的母亲那么好，当他看到我母亲不在时，他就露出了他的本性。你爱你的母亲。这是所谓的创伤之一。\n 从那以后，我就没有再看《加美拉》，直到我有一点自我意识，可以自己去租视频了。晚上九点左右，吹着秋风的时候，我有时会想起那些往事。\n\n晚安戴安娜，相信有一天金色的秋天也会降临到我身上……"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -60,7 +59,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

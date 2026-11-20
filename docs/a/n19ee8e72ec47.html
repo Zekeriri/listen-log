@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：渴望“认可”</title>
+<title>一口随笔: 对“认同”的渴望</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-27 03:50</p>
-  <h1>一篇简短的文章：渴望“认可”</h1>
+  <h1>一口随笔: 对“认同”的渴望</h1>
   <p class="ja-title">一口エッセイ:「承認」への飢え</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
 商業エッセイ集もよろしくね！ こっちの方も手にとってもらえるなら、さらにあり得ないほど喜びます。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：渴望“认可”\n\n你们…( ; ; ) pic.twitter.com/PIa4xJApeY — Nyalra (@nyalra) 2022 年 6 月 26 日\n\n当我打开情书（一种允许匿名发送信息的服务）时，我收到了很多支持的信息，当我公开谈论它时，我不禁感到深深的感动。我很快就收到了充满爱的信息，以至于我一段时间以来第一次在互联网上了解到“Nukumority”。\n\n我终于感觉到我的努力有了成果。通过我的游戏和写作，我觉得我已经影响了很多人的心，无论是好是坏。直到昨天，我还在歪想……“反正我就是行业和社会的敌人……”而郁闷，但如此直接地接触到温暖的光线，却净化了我的灵魂。我总是尽量保持平淡的气氛，所以这么严肃真的很尴尬，但是谢谢你们的支持......\n 我的生活就是对缺乏“认可”的渴望，而且由于我来自单亲家庭的低层高中，我没有被强大的成年人称赞的经历，所以我什么都没有搬到东京，所以我只是想有人找到我。我开始使用Twitter是因为我想与他人联系，但在了解各种关系中的距离感的同时，我反复经历了友谊和冲突，渐渐地，通过我的活动，我开始看到自己是一个人。这让我非常高兴。您迫切希望获得更多回复，因此继续撰写博客。\n 尽管有时很热，但互联网基本上就是垃圾，当你发布可以免费阅读的内容时，你就会被像你这样的人批评为白痴。然而，当我继续这样做时，我能够增强我的精神，因为有人给我反馈（包括公正的批评）并支持我。这是互联网的本质，无法改变。出来的股份就会被推动，但如果没有出来，就不会被批准。每次我脱颖而出，别人都会取笑我“想要得到认可”并嘲笑我。假装没有看到那嘲讽中夹杂着羡慕嫉妒恨。或者，通过批评某人并发表激进的言论，他们没有意识到自己实际上是沉浸在获得“认可”的快乐之中。\n 我会展示给你看。对于那些嘲笑“需要批准”的人。致那些通过合法渠道在社会和学校得到认可和肯定，却不知道渴望“认可”的人。为了让别人看到我们，我们付出了多少努力。基于希望有人找到你并赞美你的愿望而搬家有什么问题吗？当我们年轻的时候，我们会因此而陷入困境，这看起来可能很痛苦。但这就是你学习的方式，所以这是没有帮助的。不管有多痛，我只是想体验一下父亲用大手掌抚摸我的头的感觉，这种感觉是每个人都会经历的。\n 到最后，虽然没有人直接拍拍你的头，但当初打开情书时的感觉一定同样重要。\n\n包含每日日记的同人志正在 BOOTH 发售！如果有人能阅读它并获得另一次批准，我会非常高兴。\n\n我期待阅读您的商业论文集！如果我也能得到一个，我会更加高兴。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

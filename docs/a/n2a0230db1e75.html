@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇文章：万事皆苦</title>
+<title>一口散文：一切皆苦</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-31 07:26</p>
-  <h1>一篇文章：万事皆苦</h1>
+  <h1>一口散文：一切皆苦</h1>
   <p class="ja-title">一口エッセイ:一切皆苦</p>
 </header>
 <main>
@@ -22,11 +22,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇文章：万事皆苦\n\n佛教有句话说：“一切皆苦”，简单来说，“世间一切皆苦，事情不会按计划进行。”乍一看，她可能看起来很严格，但你说得这么清楚，真是太好了。\n 我真的很喜欢这个主意，它拯救了我。\n 活着基本上就意味着继续担心和受苦，所以现在很困难也是理所当然的。回想起来，每个人，包括我自己，在任何时候都遇到过某种麻烦。毕竟，只要我们是人类，只要我们有自我，我们都会受苦，所以以这种心态来对待事情会更容易。担忧证明我们是人类，而不是动物。因此，佛教非常重视接受痛苦。与其逃避痛苦，不如开始将其视为自然的事情。默认情况是每个人都有大大小小的烦恼，感到困惑。\n 除非发生真正有趣的事件，否则每个人都在受苦。因此，我的痛苦并不特殊。如果你接受“生活就是这样”并为此做好准备，你的精神上可能会感觉好一点。只要我们还活着，就会有不好的事情发生。我确信明年将会有很多困难。但这就是生活的意义，所以让我们欢笑、受苦、忧虑。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +45,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

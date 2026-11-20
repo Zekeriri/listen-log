@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：不受伤地活着</title>
+<title>一口随笔：不受伤地生活</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-07-24 10:19</p>
-  <h1>短文：不受伤地活着</h1>
+  <h1>一口随笔：不受伤地生活</h1>
   <p class="ja-title">一口エッセイ:傷つかないで生きる</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
  これからどんどん周囲も、時には自分も加齢と現実の圧力によって狂っていく。いつ自分が暴走して中傷マシーンになるかは分かりません。その時に、誰かが黙って話を聞いてくれるといいですよね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：不受伤地活着\n\n今天我们来回答一些问题。这次，是这个！\n\n顶部的问题是“由于你的立场，你可能会受到批评或诽谤，但你为什么不会受到伤害？”我之所以拍这么长的截图，是因为虽然有些人可能具有攻击性，但我希望人们记住，有很多人是真正支持的（这是为粉丝提供的消息服务，因此可能会非常有偏见）。谢谢。\n 然而，这并不是“因为大家支持我，我才能做到最好！”之类的简洁总结，但正如该人也写的那样，重要的部分是“我因为我的立场而受到批评”。只要你冷静地看待，你就能明白。 “这个人因为他的职位而受到批评。”如果你对某件事不感兴趣，你只会因为它脱颖而出、因为它变得流行、因为它涉及敏感话题、因为它负责某件事而认出它，即使你目睹了网上的批评或诽谤。首先，90%的人并没有受到被扑的对象的直接伤害，只是属于“不喜欢就不看”的范畴。\n 几乎没有什么比“你可能不喜欢这种类型的人或这种工作，但至少有一个这样的人不是很好吗？”这样的话。他们只是过着自己喜欢的生活。”正如有人不喜欢某事，也有人喜欢某事，仅此而已，一眼就能看出这是真正的批评或意见。我之前写过“Steam 评论，你可以看到游戏时间和游戏数量，是评估游戏的好地方”，但如果你写的是“它不适合我”或“我认为这应该改进”，我会被说服。即使在社交媒体上，如果你清楚地写出什么样的人关心什么、为什么以及他们认为是什么问题，也一定会被阅读。如果你不划清界限，你最终就会听到一切，无论是有形的还是无形的。这会让任何人发疯。\n 因此，此人“（人们从事活动时）会因为自己的立场而受到批评和诽谤”的客观看法是正确的。网络上肯定存在无法避免的不公正攻击，但如果你奇怪地依恋着一个与你没有关系的人，如果你退一步，你会发现那个人更危险，你自然会得出你应该忽略它的结论。然而，当我意识到这一点时，我感到很难过。既然他感兴趣，我想了解他为什么要无情地攻击我，尽管他从未见过他，而且我实际上已经回应了那些仇恨者并询问他们要说什么。如果我真诚地回应，对方也会和我分享他们的想法，这让我很开心。它不再那么大了。我想保留 Marilyn Manson 和 Setsuna F. Seiei 教给我的对话精神：“闭嘴，听。”忽略某人绝对是正确的答案，但如果你忽略那个人，那个人就会从你的世界中消失。当我意识到这一点时，我感到有点孤独。\n 如今，我已经不能再单独看待粉丝和反粉丝了，我也一直在减少上网的时间（我不想让大量不特定的人的意见堆积在我的大脑角落里）。从情感上来说，对别人的批评感到恼火是“顾名思义”的一部分，但从佛教的角度来看，这也是“自我执着”，我也认为，放下“别人对自己的评价”的执着也没关系。关键是，“打”和“担心被打”都是对自己的执着。如果你认识到你的世俗欲望并在内心处理你的情绪，你就会离漫长的解脱之路更近一步。将来我想去掉从众的执着，比如上网。\n 如果我只谈一件事，提问者写道：“当一个我不认识的老人侮辱我时，我会感到恼火。”我很理解这种感觉，但只要一个以攻击他人为爱好的老人继续他的阴险行为，他感到高兴的机会就不到0.1%。如果你不管它，它就会被“现实”压碎而消失，所以你应该相信它的无常，不要管它。如果你真的不高兴，我认为你应该咨询一下律师。现实世界也提供了报应的手段。\n 从此以后，身边的人，有时甚至是我自己，都会因为衰老和现实的压力而变得越来越疯狂。你永远不知道什么时候你会失控，成为诽谤机器。到时候，如果有人能闭嘴倾听就好了。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

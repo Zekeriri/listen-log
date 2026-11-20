@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>作文精选：没上学的回忆</title>
+<title>精选一口随笔：不上学的回忆</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-15 19:40</p>
-  <h1>作文精选：没上学的回忆</h1>
+  <h1>精选一口随笔：不上学的回忆</h1>
   <p class="ja-title">選り抜き一口エッセイ:不登校の思い出</p>
 </header>
 <main>
@@ -23,11 +23,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"作文精选：没上学的回忆\n\n我初中缺课的时候，班里有一个女生每天早上都来接我，显然是老师让我去接她的，因为我们住在同一个小区，同一个班级。\n 基本上我每天都不理她，但那天我透过猫眼看到她时，她看起来快要哭了，所以我决定打开门。\n “我希望我不去上学。”她泪流满面地说，于是我问她：“我们逃学去玩吧。”似乎这个答案出乎她的意料，她睁大了眼睛，但她几天来第一次离开房间，开始向与学校不同的方向走去。反正有一个目标就好了，所以我向着大海走去。我决定不问他为什么哭。\n 我们两人步行在那霸机场附近，目标是一座名为濑长岛的偏远岛屿。附近还有美军基地，所以可以看到坦克在公共道路上行驶，我们不禁感到惊讶和嘲笑。我只知道他会用平常的佛脸还是现在的哭脸来迎接我，所以看到他的笑脸我很高兴。\n 当我们到达海滩时，她说：“这是我第一次逃学。”我回答说：“我不是每天都去。”她善意地警告我，“我并不为此感到骄傲。”正当我正要问他为什么逃学时，一辆从附近驶过的警车抓住了他。这就是所谓的补充指导。第一次之后我就习惯了，所以我试图保护她，说：“我强迫她来这里的。”但是警察用怀疑的眼神看着我说：“我强迫她来这里的。”“她是谁？”我回答说“没有，没什么”，然后无数次被带到学生辅导室。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

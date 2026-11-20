@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：“我的第一个差事”塔曼剧集的天才孩子</title>
+<title>一口随笔：《初次独自出门》豪宅篇的天才儿童</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-24 03:50</p>
-  <h1>短文：“我的第一个差事”塔曼剧集的天才孩子</h1>
+  <h1>一口随笔：《初次独自出门》豪宅篇的天才儿童</h1>
   <p class="ja-title">一口エッセイ:『はじめてのおつかい』タワマン回の天才児</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 商業エッセイ集もよろしくお願いします。馬鹿な子供が書いた、一切知性を感じさせない内容です。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：“我的第一个差事”塔曼剧集的天才孩子\n\n《我的第一次差事》在海外似乎很受欢迎。人们对日本的安全程度感到惊讶，因为 2 至 5 岁的儿童可以安全地独自走在街上。我趁这个机会开始观看。它移动得很快，节奏也很好，所以我悠闲地观看着它。\n 在观看的过程中，第11集中，出现了一个出生在东京塔瓦万、外表聪明的男孩。虽然只有4岁，但他的举止很有礼貌，没有表现出任何与年龄相称的自私。与同样住在Tower Man的朋友一起在东京散步的名人。令人难以置信的是，当我离开家的那一刻，我立刻就发现了摄影师。也许是感到可疑，他试图通过询问“你们在做什么？”来影响员工，并进行心理战。他试图通过说“我们正在测量”来愚弄他们，但他立即指出有多个摄像头。迄今为止，对于一个乡下男孩来说，这是不可能实现的卓越洞察力。这就是资优教育。\n 而且，即使因为朋友的不小心摔倒了，他也表现出大度，主动道歉，避免打架。更重要的是，当朋友要绕道去公园时，你可以警告他们，你会被骂，即使他们犹豫，你也可以迅速使劲摇晃你的包，成功地愚弄他们，装出高兴的样子，不去公园。就连策略也是完美的。即使出差后，他也可以监控房间里安装的摄像头。如果是银色的故事，就会给人一种贵族的高贵感，会被赞为“这就是未来的历史学家会说的”。\n 虽然他只有4岁，但显然他有成为一个能够带领众多下属的大人物的愿景。不祥的。那段时间我感到害怕，生活会在这样的时刻发生改变。\n\n我们正在出售收集日常文章的同人志！\n 买新书。请像执行任务一样拿起它。\n\n我期待着阅读您的商业论文集。这是一个愚蠢的孩子写的，毫无智慧可言。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

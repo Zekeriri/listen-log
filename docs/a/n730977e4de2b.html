@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：头痛、嗜睡、心悸</title>
+<title>一口随笔：头痛·困倦·心悸</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-07 04:30</p>
-  <h1>短文：头痛、嗜睡、心悸</h1>
+  <h1>一口随笔：头痛·困倦·心悸</h1>
   <p class="ja-title">一口エッセイ:頭痛・眠気・心臓の動悸</p>
 </header>
 <main>
@@ -22,11 +22,10 @@
  Switch版が発売したら、今より楽になるのか、もっと仕事や大人が増えるのか、はたまた用無しになった僕がボロ雑巾のように捨てられ、それはそれで悲しくなるのか、未来はまだ分かりませんが、泣いても笑ってもあと半月でゲームは発売する。色んなことがあったけれど、超てんちゃんが笑っている表情は、ユーザーが盛り上がってくれる姿が見れるのは素直に嬉しい。それが今の唯一の希望です。うそ。本当は超てんちゃんやあめちゃんが苦しそうなのも見たい。僕がもっと追い詰められたら、また酷い企画ができるかもしれないし、その時はもっとたくさんのキャラクターや大人が悲惨な目に遭ってくれる可能性がある。それはきっと楽しいので、これくらい死にたくて頭痛がする方が恵まれているのかもですね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：头痛、嗜睡、心悸\n\n这几天，我实在是太困了，一直头疼。即使我没有服用安眠药，当情况真的很糟糕时，我也会很困，无法站起来或坐下（不过大部分时间是在我的房间里）。即使是现在，我仍在从睡意中挣脱出来，并以某种方式打出长句子。而且，我对咖啡因变得极其敏感，所以当我喝咖啡来帮助我保持昏昏欲睡时，我的心开始剧烈跳动，因为我在颤抖，所以我什么也做不了。本末倒置。\n 我认为原因是压力和疲劳。我睡了很多觉。即便如此，当我醒来时，我的头痛更严重了，我不停地感觉自己的整个身体都在警告我要睡觉。\n 由于我的作品的Switch版本即将发布，持续不断的工作和任务对我心灵的影响可能比我预想的要大。现在想来，Steam版本发布的前一天，我已经站不起来了，不得不被送往医院。历史重演。\n 当我们发布Steam版本时，我们与我们信任的团队一起制作游戏内容，但自从发布以来，规模扩大了，很多不认识我们的成年人开始进来。每天，我都有某种会议或监督，当我想知道“这个人到底是谁......？”时，我正在执行我不认识的成年人分配给我的任务。我真的不知道是谁，所以我真的很害怕违背它或偷懒。如果有人对我进行“一个工作成年人应有的体面布道”，我会因为恐惧而发疯，所以我尽可能冷静地工作，粉碎我的自我。有时我只想自杀。有一次，我觉得如果我努力工作直到Switch版本发布，然后在那一刻死去，那会很酷很有趣。我不记得现在有自杀的念头，但我确信这种持续的嗜睡和健康状况不佳是由类似的原因造成的。\n 由于无法正常工作，我就努力做游戏，但游戏一发布，很多大人就来给我打工，我的“工作”就变得无休无止。一个拙劣的黑色笑话。而且，所有的成年人都在为比赛竭尽全力，所以我不能抱怨这一点。我不知道他们是谁，但每个人都在做自己的“工作”，并努力为游戏的流行和销售做出贡献。他努力工作以实现他想做的事情。作为原作者，我比任何人都更要感恩，更要亲手回应。快点杀了我吧。\n 当Switch版本发布时，我不知道未来会怎样，是否会比现在更容易，是否要更加努力地成为一个成年人，或者我是否会像一块抹布一样被丢弃并因为不再有任何用处而感到悲伤，但无论我哭还是笑，游戏将在半个月后发布。发生了很多事情，但说实话，看到长天酱的笑脸和用户们的兴奋，我真的很高兴。这是我现在唯一的希望。说谎。其实我很想看到超十酱和阿米酱痛苦的样子。如果我被进一步推动，我可能会想出另一个可怕的项目，在这种情况下，有可能更多的角色和成年人会遭受痛苦。这绝对很有趣，所以也许头痛是件幸事，因为你这么想死。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +45,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

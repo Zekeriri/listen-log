@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>文选：我听不懂死亡的味道。</title>
+<title>精选一口散文：因为我闻不出死亡味</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-20 17:27</p>
-  <h1>文选：我听不懂死亡的味道。</h1>
+  <h1>精选一口散文：因为我闻不出死亡味</h1>
   <p class="ja-title">選り抜き一口エッセイ: 僕は死臭がわからないので</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 今月末に発売される商業エッセイ集です。こちらも、読んでもらえると嬉しいです。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"文选：我听不懂死亡的味道。\n\n当我还是个孩子的时候，当我发现一只死老鼠时，我非常高兴，我把它装进袋子里带回家。这是我第一次看到死老鼠。\n 当我回到家时，妈妈发现了一些奇怪的事情，可能很怀疑，因为我带回家的东西闻起来很臭。 “你带了什么回来！”她很困惑。\n 不过，由于我生来就没有嗅觉，所以我并没有注意到“死味”这个概念。我不明白为什么人们认为我带回来的东西就像死老鼠一样，我认为他们因为我“带东西回家”而生气。\n 所以我也惊慌失措，于是我给他看了那只死老鼠。然后，母亲更加惊慌了，大喊：“你为什么把这些东西带回家！”我猜死亡的味道确实很恶心，但由于我不知道死亡的味道，我不明白为什么老鼠的尸体是坏的或肮脏的。我只是觉得难过，所以我就把它扔掉了，回来道歉，但我什至不知道该道歉什么。难道我就不能拿起东西带回家吗？我一直担心自己的错误。\n 后来，当我了解到死亡的恶臭和腐烂的概念时，我震惊地想到，即使我作为一个人已经开始腐烂，我自己也无法通过闻来注意到它。我真的很害怕，也许我已经腐烂了，周围的人对此感到非常不舒服。\n\n我们目前正在销售编写每日文章的同人志。如果你能读到它，我会很高兴。\n\n这是一本商业论文集，将于本月底出版。如果你也能读到这篇文章，我会很高兴。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

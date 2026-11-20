@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>人体改造和哥特式</title>
+<title>人体改造与哥特</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-02 02:21</p>
-  <h1>人体改造和哥特式</h1>
+  <h1>人体改造与哥特</h1>
   <p class="ja-title">人体改造とゴシック</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
  もちろん、『ヘルタースケルター』では、神へ逆らい続けたことへの「罰」も描かれている。技術の発展は著しいとはいえ、まだまだ人間は儚く脆い。そんな時代でどこまでゴシックに生き、自身に酔うために生きれるかの挑戦は、残酷かつ人生の面白さでもあると考えております。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"人体改造和哥特式\n\n第二轮（最后一轮）永久化妆结束了。永久化妆是一种像纹身一样画眉毛的手术，以保持眉毛所需的形状数年。\n\n重点是，程序和纹身一样，所以把眉毛刻得很粗糙，结果和纹身一样痛苦。不过，这比脱毛要好得多。顺便说一句，放进去后有一段时间，颜色就变得和两津一样暗，直到平静下来，这很尴尬。现在是状态了。\n 现在，虽然因为是眉毛而看不出来，但永久化妆也可以被称为“人体修饰”，因为它深入到了脸部。我还在一只耳朵上打了耳洞，并在眼球深处植入了隐形眼镜，所以我经历了三次身体改造。\n 有句俗话说，“我宝贵的身体是我父母给我的”，但我认为这种说法很愚蠢。所有人类都是优秀的“个体”，在获得自我意识的那一刻就与父母分离了。自己的身体是自己的财产，没有必要回避父母。我们真正应该考虑的是“上帝”的存在，如果我们意识到“亵渎”了上帝精心设计的人体，如果我们无法停止对亵渎上帝的“哥特式”行为的向往，我们就应该做出改造人体的决定。\n\n在《狼狈》中，描绘了一个被美所俘虏的悲剧女主人公，每次玩弄人体时，她都会因与过去丑陋的自己的分离而欣喜若狂，或者像玛丽莲·曼森一样，通过与人体的分离来表明她违背上帝的意图。人体改造与哥特式（黑暗美学）有着密切的关系。因敢于破坏上帝创造的神秘躯体，他远离了“人性”，并沉迷于更强烈的“时尚”概念。\n 当然，《狼狈》也描述了继续反抗上帝的“惩罚”。尽管科技已经取得了显着的进步，但人类仍然是短暂而脆弱的。在这样一个时代，我相信，你能以哥特式的方式生活到什么程度，活到让自己陶醉的程度，这个挑战既残酷又有趣。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

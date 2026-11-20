@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：《银河特快之夜》与宫泽贤治的冲突</title>
+<title>一口随笔：《银河铁道之夜》和宫泽贤治的矛盾</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-27 03:34</p>
-  <h1>短文：《银河特快之夜》与宫泽贤治的冲突</h1>
+  <h1>一口随笔：《银河铁道之夜》和宫泽贤治的矛盾</h1>
   <p class="ja-title">一口エッセイ:「銀河鉄道の夜」と宮沢賢治の葛藤</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
 先月、発売した商業エッセイ集もよろしくお願いします。書き下ろしたっぷりで、ネットで読むのとはまた違った読後感が味わえるはず！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：《银河特快之夜》与宫泽贤治的冲突\n\n幸运的是，我们制作的游戏反响很好，我们开始陆续接到项目，比游戏发布前还要忙。这是一声快乐的尖叫，所以没关系，但我猜他们是出于体贴，决定安排在一家我认为我会喜欢的餐厅见面。\n\n雄伟的内饰令人印象深刻，但我也对以文学人物为灵感的饮料很感兴趣，所以我点了一杯以宫泽贤治的《银河铁道之夜》为灵感的无酒精鸡尾酒。夜空散布在水面上的表情和蓝色非常美丽。\n 现在，我之所以喜欢《银河铁道之夜》，是因为现在众所周知的第四稿和第三稿读完笑点后的感觉有很大不同，我觉得健二作为作家的冲突可以从那里读出来。\n\n如你所知，第四稿的结尾是乔瓦尼在得知河况后意识到坎帕内拉的死，读者由此想象出各种感受，并思考如果他是乔瓦尼，他会如何生活。\n 另一方面，在第三稿中，出现了一个名为“Dr.”的角色。布尔卡尼洛”出现，乔瓦尼的感受通过他与布尔卡尼洛博士的对话来描绘，他宣称“从现在开始，我要寻求真正的幸福。”\n 现在我们都知道第四部分的伟大了，话不多说，但是第三个妙语更容易理解，展现了寓意和主题，而且很完整。然而，对此感到困扰的健二却选择了一个从某种意义上来说感觉像是坏结局的故事。通过这样做，我相信我能够创作出一个易于理解且偏离道德的故事，从而成为比第三个更能留在更多孩子心中的杰作。\n 我觉得这种妙语的冲突正是宫泽贤治作为作家的魅力所在。\n\n我们在摊位上出售包含日常文章的同人志。请阅读我的生活并决定什么能让你快乐。\n\n另请参阅上个月发布的商业论文集。内容丰富，读完后会有与网上阅读不一样的感受！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

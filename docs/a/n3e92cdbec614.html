@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>速文：“信心”与“信心”的区别以及佛摔跤的力量</title>
+<title>一口随笔：“信仰”和“确信”的区别，以及佛陀的网络辩论实力</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-03-02 01:53</p>
-  <h1>速文：“信心”与“信心”的区别以及佛摔跤的力量</h1>
+  <h1>一口随笔：“信仰”和“确信”的区别，以及佛陀的网络辩论实力</h1>
   <p class="ja-title">一口エッセイ:「信仰」と「確信」の違いと、仏陀のレスバトルの強さ</p>
 </header>
 <main>
@@ -28,11 +28,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"速文：“信心”与“信心”的区别以及佛摔跤的力量\n\n我去看了“佛教陈设的世界：信仰与美丽的形式”展览。那是表参道的一个美术馆，我很害怕看到附近咖啡馆里的两个女大学生正在谈论决定买哪辆车作为第二辆车。年轻时你对物质的渴望是什么？这与佛教的断除执着的哲学恰恰相反。表参道是一个多么可怕的地方啊。\n\n现在，“信与美”这两个元素之间的联系就很容易理解了。为了那些无法被说服或无法用语言沟通的愚人，他们竖立了巨大的、闪闪发光的雕像和建筑物，并以其无可否认的美丽来聚集信仰。过去的人们之所以在有困难的时候开始建造巨型佛像，所有的宗教建筑之所以雄伟神圣，就是因为它们的“美”让人们直观地了解到神佛的力量。这很简单，我喜欢它。人们会被他们真正认为美丽的事物所吸引，对它们着迷并相信它们。感觉应该如此。\n\n换个话题，我想说说我一直觉得佛陀在摔跤方面会很强。\n 首先，为了强调教义的尊严，佛教徒除了修行之外什么也没有做。他们连农业都不干，就靠向老百姓募捐来施舍。\n 由于这种艰苦的生活方式，佛陀向人们讲述了各种加持的故事。然而，普通人有很多尘世的欲望，所以他们不能只靠开悟者所做的美好事物来生活。所以我反抗。如果你说：“佛陀所说的不是正确的事情！”那么佛陀会很高兴。 “佛教的灵性是不从表面上接受佛陀的教义，而是检验它们直到人们对它们感到满意为止。”正如乔乔也说的那样，信念胜过一切。\n “信仰”意味着屈服于强大的力量，因此这是一种简单的生活方式，但佛陀认为，在所有事情上，我们都应该追求中间的东西……适度。放弃通过信仰思考并不是启蒙。通往真理的道路是“相信”自己对他人教义的解释。\n 因此，佛陀说了一些宏大的话，对方接受并相信，这没有什么问题；如果对方觉得不对，自己也相信了不同的答案，那也是可以的。这个想法是无敌的。无论你说什么都是为了对手的利益，所以如果这是一场在线摔跤战斗，你总是能赢。用莱斯瓦是不可能打败佛陀的。那是已经达到了悟境的力量！ ！ ！\n 嗯，因为他开悟了，他是佛，所以不像SNS和匿名公告板上盛行的懒人，他不回复消息。然而，如果你了解了佛陀的讲法，优先考虑“信念”和“信念”，你不觉得你的生活变得轻松一点吗？谢谢……。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

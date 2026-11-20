@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：筒井康隆的坏性格与“家庭八观”</title>
+<title>一口随笔：筒井康隆的坏脾气与《家庭八景》</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-23 04:18</p>
-  <h1>短文：筒井康隆的坏性格与“家庭八观”</h1>
+  <h1>一口随笔：筒井康隆的坏脾气与《家庭八景》</h1>
   <p class="ja-title">一口エッセイ:筒井康隆の性格の悪さと「家族八景」</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 先月発売された、商業エッセイ集もよろしくね。思考どころか生い立ちまで全て赤裸々に書かれているよ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：筒井康隆的坏性格与“家庭八观”\n\n有人告诉我，我制作的一款游戏的创作者性格很差。我打算写有关互联网的本来面目，无论好坏，所以听到这样的评论并不奇怪……我很高兴看到这样的反应，因为它们证明我很喜欢它们。\n 无论如何，让我觉得“这个作者从心底里性格很坏，真是太棒了！”的作品之一是筒井康隆的《八景八景》。我非常喜欢这部作品，甚至连我很少看的电视剧都看了！\n\n概要。这是一本关于七濑的短篇小说集，她是一个能用心灵力量读懂别人心思的女孩，作为住家帮手拜访各个家庭，但无论在什么样的家庭，她的精神状态都会随着看到别人的阴暗面而变得越来越恶化。从剧情简介中就可以看出，里面充满了不愉快的事情。\n 每当男人出现时，他总是对小七濑充满热情，当女人出现时，他会不自觉地看不起小七濑，或者图谋利用她。这部作品值得注意的是，他们并没有被描绘成性格特别糟糕的人。我觉得筒井老师只是坦白地写着，这些人无处不在，每个人的内心都是如此。在你心里，你可以自由地侮辱或瞧不起别人。然而，这句话只传达给了拥有心灵感应能力的七濑。\n 每个人都有常识，所以他们只是不将其转化为行动和言语，而用人的话说，每个人都继续小心翼翼地写下丑陋的东西。一旦你能读懂思想，任何人，甚至七濑，都会崩溃。这是一部性格非常恶劣的杰作，表明这个世界是由成年人的“理性”建立起来的。真的很喜欢。\n\n我们正在出售编辑日常文章的同人志。我的思绪在流动。\n\n还请大家期待上个月发行的商业随笔集。不仅他的思想，连他的成长经历都被公开地写出来。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

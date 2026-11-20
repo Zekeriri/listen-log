@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇短文：歇斯底里的老师加拉亚卡和塑料模型店</title>
+<title>一口随笔：鲜艳的与歇斯底里的老师与模型店</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-01-29 02:24</p>
-  <h1>一篇短文：歇斯底里的老师加拉亚卡和塑料模型店</h1>
+  <h1>一口随笔：鲜艳的与歇斯底里的老师与模型店</h1>
   <p class="ja-title">一口エッセイ:ガラヤカとヒステリック教師とプラモ屋さん</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇短文：歇斯底里的老师加拉亚卡和塑料模型店\n\n当我上高中的时候，我的老师是一个完美的、歇斯底里的女人，她经常虐待像我这样成绩不好、没有职业选择的学生，当我们受到挑战时，她会哭着把自己锁在教工室里，让我们永远等待，除非有人打电话给我们。简而言之，他是我最不喜欢的老师之一。\n 另一方面，当时我非常想预订 Virtual-On 塑料模型“Garayaka”。加拉亚卡就是这个孩子。\n\n娇小的魔法少女形态让我想起了温风酱，当然我很喜欢在原作中使用它，所以我决定不能错过这个塑料模型。\n 当时，我的“洋基朋友宅男”告诉我，在国际街上开了一家塑料模型小店。我的洋基朋友对他哥哥的宅男身份感到羞耻，当他去他家玩《任天堂明星大乱斗》时，他的同学嘲笑他的控制器上贴有“Chobits”贴纸，他非常讨厌他的兄弟在上面贴了这样的贴纸。我为他感到难过，但那件事真的很有趣。\n 于是，我穿过国际大道上无忧无虑的游客，爬上一座破旧的建筑，来到了塑料模型店。尽管在冲绳很少有个别御宅族商店开业，但小型御宅族商店在琉球群岛却很少能生存下来。一般会在1-2年内消失。大概也在这里。\n 当我告诉似乎是老板的老人我想预订Garayaca时，我惊讶地发现一位高中生预订了Virtual-On塑料模型，我们开始聊天。我记得我说过，“我想要彩虹色的贴纸来重现加拉亚卡的武器”，他非常高兴。\n 谈话继续进行时，店主注意到了我的制服，惊讶地说：“你是技术高中生吗？”那一刻，我想到了克罗马蒂高中的林田因为校服暴露而感到尴尬，一个垂死的老人向他指出“那所愚蠢的高中！？”的情感场景，但故事继续“我的妻子是那里的老师，对吗？”在这种情况下，你的直觉是正确的。是的，无论怎么看，老婆说的都是我的班主任！\n 几天后。我不太喜欢我的老师，但我觉得如果有一个在冲绳经营塑料模型店的铁杆御宅族丈夫就好了……所以当他警告我考试仍然是红色分数时，我第一次尝试与他闲聊，说：“我遇到了老师的丈夫。”\n 然而老师吓得浑身发抖，歇斯底里地说：“我和我丈夫没有任何关系！”意思不明，我吓得只能保持沉默，而且从我丈夫说话的语气来看，并不代表我们关系不好。我想，当她的学生看到她的身份和她丈夫的身份时，一定会感到震惊。就像美国佬不希望他的哥哥被称为御宅族一样。\n 几周后。我去拿了我点的加拉亚卡，但我对这种经历感到非常害怕，所以我就拿了它回家了。店主可能想和年轻的塑料模型师谈论机器人。我认为我从老师那里学到的东西不多，但这件事给我留下了深刻的印象，就像一次现实生活中的经历：“除非家庭情况很糟糕，否则你不能参与其中。”\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

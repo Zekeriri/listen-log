@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>选り抜き一口エッセイ：大道寺知世</title>
+<title>精选短篇随笔：大道寺知世</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-09-14 23:45</p>
-  <h1>选り抜き一口エッセイ：大道寺知世</h1>
+  <h1>精选短篇随笔：大道寺知世</h1>
   <p class="ja-title">選り抜き一口エッセイ：大道寺知世</p>
 </header>
 <main>
@@ -30,11 +30,10 @@
 ※Twitterに連載していたエッセイからの抜粋です。↑で購入できますので、エッセイ集をぜひ読んでみてね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"选り抜き一口エッセイ：大道寺知世\n\n岩仓文也给我带来了生日礼物。\n我哭了，因为我没想到我会收到大道寺知世的细胞画作为礼物(;;)\n我会在余生珍惜它 pic.twitter.com/sk0AzQRVs2 — Nyalra (@nyalra) 2021 年 2 月 19 日\n\n上周生日时，我收到了岩仓文也寄来的《百变小樱》cel，所以我小心翼翼地把它装在相框里。这是知代酱。我对大道寺智世怀有最崇高的敬意。\n 我总是想收集美丽的东西，所以我认为我的房间是一个可以欣赏蝴蝶标本、雕像和书籍的地方，这就是我想要的生活。我产生这个想法的过程可能很大程度上受到了我年轻时所看到的灯世和佐仓之间的关系的影响。\n Although Tomoyo-chan is such an elegant person, her principle of action is to not miss taking pictures of Sakura-chan, a ``truly beautiful thing,'' even for a minute or even a second.知世总是希望小樱幸福，并且坚信她的幸福就是自己的幸福。 My attitude toward Sakura-chan never wavers, so when I think of Tomoyo-chan when I'm unsure about life, I can calm down and understand the importance of \"faith.\"你应该首先考虑你认为美丽的东西，而不是你自己。\n 顺便推荐一下第37话《小樱与消失的灯世之声》。 Even though she has lost her vocal chords, Tomoyo's strength and kindness are heartwarming as she tells Sakura-chan, who is panicking, through written communication, ``When I see Sakura-chan's sad face, I feel sad too.'' Seeing Sakura-chan's sad face makes me more sad than my own misfortune...what a wonderful feeling.\n 当你有疑问的时候，请想想智世酱。知世ちゃんは本当に凄い人なので。\n\nWhen Tomoyo strongly urges Syaoran to confess to Sakura, \"There are some feelings that are good to keep in your heart, but...\" The moment Tomoyo-chan says that, you can also see her facial expression reflected on the surface of the tea...\n100 分 pic.twitter.com/Dx713wHpn0 — Nyalra (@nyalra) 2021 年 1 月 28 日\n\n*这是 Twitter 上连载的一篇文章的摘录。可以在↑购买，所以一定要阅读散文集。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>继承自深夜情色书店的每月OUT</title>
+<title>深夜艳情书店继承的月刊OUT</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-06-30 06:52</p>
-  <h1>继承自深夜情色书店的每月OUT</h1>
+  <h1>深夜艳情书店继承的月刊OUT</h1>
   <p class="ja-title">深夜のエロ本屋から受け継いだ月刊OUT</p>
 </header>
 <main>
@@ -30,11 +30,10 @@
  店主が大切に保管していたサブカルの歴史は、深夜にやってきた元クソガキのオタクが勝手に受け継がせてもらう。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"继承自深夜情色书店的每月OUT\n\n还有一些工作要做，但现在我已经完成了大手稿并为 Nidiga 的重大公告工作。你已经尽力了。敬请期待今晚的公告。\n 所以，我决定去散步，改变一下节奏。然而此时已经是深夜了。当我漫无目的地走在安静的街道上时，我到达了两站路之外的地方。坂上中野.车站附近有一家可疑的书店这个时间还在营业。针对一天中这个时间外出的老人的原因只有一个。这是一家色情书店。\n 昏暗的城市与微弱的灯光和有奖游戏的轻快BGM不相匹配。好的。这种“黑暗”造就了一家私人经营的情色书店。出于某种原因，我发现自己徘徊在商店的温暖之中，商店在半夜里闪闪发光。我觉得我可以在这里与某人分享我的孤独。\n\n当我住在冲绳时，我经常会在深夜偷偷溜出家门，骑着自行车去像这家这样的色情书店。我曾经在游戏角玩 100 日元的老虎机来开始我的早晨。像这样的商店里只有少数的二维同人志和手办，有些奇怪。我喜欢看着他们。我现在是一名高中生，但长大后我会买它......”我一边对着商店里展示的石景的全彩同人志说道。\n 既然他是这样一家店的老板，那他肯定是个御宅族。店里贴满了二次元美少女的海报，其中还有好几张小津画的拟人高达海报。我认为这可能是V2的化身。我一直是一个喜欢MS女孩的好色孩子，所以我真的很想要一个，所以我和店主谈过。 “你能把那张海报给我吗？”他问道。我疯了。首先，应该对高中生进行指导，因为他们深夜进入商店，而且他们在店内玩老虎机后还想获得一张海报。他真是个厚颜无耻的臭小子。然而，这是一家位于冲绳不安全地区的色情书店。店主回答：“一个月一件。”\n 第 1 个月！ ？虽然不太明白，但我很高兴，在那之后的每个月，我都会去情色书店买小津的机器人美少女海报。我最喜欢的超级机器人和萌的融合看起来超级酷。青春期被小津杀死的少年翼。现在想想，我贴的是每月一次的杂志剩下的海报，所以我可能还剩下一张，所以我决定把我的未来托付给一个将来会成为令人毛骨悚然的御宅族的狗屎孩子。无论如何，“深夜营业的情色小书店”对我来说似乎是一个让我感到无比温柔的空间。\n 我还趁机参观了中野坂上的情色书店。当然，是色情，色情，各个方向的色情。里面可能藏着一些稀有物品，不过我对3D了解不多，所以不知道……不过有一个角落很显眼！\n 令人惊讶的是，里面有罕见的亚文化书籍和DVD，上面有石之森等人的雕像，还有店主亲笔写的介绍！惊人的。特意展示了电影《食人族》的DVD。只是这个区域与情色书籍无关，是店主的地下亚文化“自我”！我已经很久没有开过这样的商店了。他一定是一位伟大的歌手。那里一定有什么宝藏……这就是我们到达的地方。\n\n每月《OUT》第一期！\n 这很有趣。 OUT 仍处于发展成为亚文化动漫杂志的边缘，但又不太倾向于动漫类型。这本书显然是主人的最爱。既然如此，我就接受吧。当格斯选择杀死一条龙并大喊“有人比我更适合战斗”时，我也有同样的感觉。我不知道三维情色的稀有程度，但我可以告诉你传奇亚文化杂志的价值。\n 所以我很快就买了。我估计他们也没想到OUT会突然被收购。店主也多次证实了这一点。而且，他似乎有点不愿意用PayPay付款。显然他们想用现金买断。一种神秘的痴迷。\n 店主精心保存的亚文化历史，是一个深夜进来的前蹩脚御宅族传给他的。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

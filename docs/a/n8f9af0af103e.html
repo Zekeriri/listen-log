@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇短文：我脑子里的铃前辈</title>
+<title>一口随笔：脑海中的铃前辈</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-24 01:55</p>
-  <h1>一篇短文：我脑子里的铃前辈</h1>
+  <h1>一口随笔：脑海中的铃前辈</h1>
   <p class="ja-title">一口エッセイ:アタマのナカの鈴せんぱい</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇短文：我脑子里的铃前辈\n\n由梦月老师绘制并负责原作的漫画《阿玉之中的铃前辈》将免费公开现有剧集并更新最新剧集。抓紧时间，仅限27号！ ！ ！\n\n总而言之，这是一个关于一个男孩使用一种叫做“tulpa”的方法在他的脑海中体现出一个只有他才能看到的美丽女孩，以及他周围的人们似乎生活得不好的故事。我很满意梦月在看起来像少女漫画的可爱插图中画出了我自己的“怪癖”。\n 正如我在日记中多次写到的，我觉得像我们这样的宅男归根结底就是“不善于人际关系”。在现实生活中，他们因为无法在社会中建立关系而逃到互联网上，并了解到社交技能对于融入网络社区至关重要。然后，当他在网上与其他“笨手笨脚的人”发生冲突时，他逐渐了解了人际关系。我喜欢这样的情况。我有点偏离漫画的主题了。\n\n“tulpa”在自己的头脑中呼唤出一个理想的存在，就好像它确实存在一样，在某种意义上是人类关系的对立面，并且似乎是自己完成关系的最终方式。然而，现实仍然继续，人际关系必须在那里建立。在现代社会中，人类要真正独处是非常困难的。 “关系”突然从另一边来。\n 几年前，我提出了这个想法，并模拟了一个能够真正完成《Tulpa》的男孩会发生什么，当我把它变成一个故事并向角川的负责人展示时，他们很喜欢它并允许我继续连载它。我对主要故事没有任何特别的发言权（我得到了有关绘图和名称的建议），我很感激我可以按照我喜欢的方式绘制它。\n 我不确定有多少人读过它，但时不时收到的反馈和评论让我深受鼓舞。从尼迪加那里认识我的读者经常说：“我很惊讶这个人真的很长时间以来都喜欢这种东西。”这就是我喜欢的。我曾多次尝试创造东西，但我想表达的东西并没有太大改变。我感觉我的余生都会这样。\n 所以我想如果你能在空闲时间来找我我会有点高兴，所以这是一篇广告，然后才是一篇日记。感谢您的理解。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

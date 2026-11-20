@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>数量惊人的84,000尊佛像让宅男们兴奋不已</title>
+<title>激发御宅心理的压倒性数量 八万四千佛</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-03-14 01:28</p>
-  <h1>数量惊人的84,000尊佛像让宅男们兴奋不已</h1>
+  <h1>激发御宅心理的压倒性数量 八万四千佛</h1>
   <p class="ja-title">オタク心をくすぐる圧倒的な数 八万四千仏</p>
 </header>
 <main>
@@ -36,11 +36,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"数量惊人的84,000尊佛像让宅男们兴奋不已\n\n去山上去看理想的佛像。\n 这次我们要参观的寺庙不是那种大佛遍地坐着的寺庙，而是那种有很多令人印象深刻的雕像排成一排的类型。我在京都三十三间堂看到的真人大小的佛像群很令人惊叹，但这次似乎展出了很多更紧凑的佛像。就像御宅族的无限收藏推荐。\n\n毕竟，“数字”很酷。这是《光彩之地》中我最喜欢的一页。佛像作为“偶像”很容易理解并吸引信仰，因此它们的体积很大，排列数量很多，即使没有说法，公众也会感到感激。换句话说，它和手办、塑料模型是一样的。只要酷/可爱，任何事情都可以。事实上，在国外的寺庙里，佛坛上装饰着华丽的霓虹灯，看起来就像弹珠机店。这是佛教独有的，因为其他主要宗教都禁止偶像崇拜。\n\n乘坐卧铺列车前往岛根。说到岛根，我脑海中浮现的画面就是“岛根不可能有电脑”，不过那是在数码宝贝无印良品出现之前的时代，而在现代……我是这么想的，但当我看到车站时，我发现岛根可能没有电脑。\n 车站到寺庙一般都有公交车，但是我昨晚坐的卧铺火车早上出了鹿事故，所以晚点了1.2个小时，错过了公交车。于是步行上山约1.2小时到达。如果你认为这也是佛给你的考验，那是什么？宗教的好处在于，你可以很方便地将烦恼理解为“考验”，并积极面对它们。顺便说一句，除了我之外，所有的老年信徒都是开车来的。太悲伤了。\n 当我爬山的时候，风景并没有太大的变化，让我有一种放弃的感觉。当我终于走出那条路时，我一转身，又出现了一条类似的路。一辆汽车飞快地从我身边驶过。我不会输。\n\n当我不知何故到达山顶时，那里有一只狗。这景色真好。\n\n甚至还有一只狗在休息区迎接我。她的名字叫Momo-chan，近10年来，她和店主的祖母一直在山顶附近的休息区引导信徒。他是一个很棒的人。\n\n这是八万四千佛。我是来看这个的。数字的力量无需解释。当我到达这一点时，这似乎是一种有缺陷的技术，我什至笑了。对了，这里可以再添一尊佛像，5万日元。这是多么大的祝福啊......\n 毕竟佛像是有收藏价值的。这是御宅族的爱好。看到奥特曼软胶模型和SD高达塑料模型排成一排时，我感到同样的兴奋。毕竟，事物的数量会刺激幼稚的心灵。然而，我很高兴我特意去看了它，因为它让我笼罩在善良的光芒中。至少在爬山或参拜神社的几个小时里，我能够远离网络的喧嚣。忘记网络，沉浸在佛像中。实在是太美妙了，无法用语言来形容。善行太多了。顺便说一句，该产品是通过 PayPay 接受的。回家的路上，我回去看看老太太和狗，但在他们两个人身上，我看不到任何尘世的欲望和贪婪，他们只是在大山深处招待客人。人就该如此。我们最终应该达到这一点。仅仅确信这一点就是一项巨大的成就。\n\n最强数量bug是佛像群太多\n84,000 佛 pic.twitter.com/SgcWxmIPjH — Nyalra (@nyalra) 2023 年 3 月 13 日\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -60,7 +59,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

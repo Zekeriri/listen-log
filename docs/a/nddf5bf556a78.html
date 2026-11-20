@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rietveld 的建筑和减法之美</title>
+<title>里特费尔特的建筑与减法之美</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-06-06 03:32</p>
-  <h1>Rietveld 的建筑和减法之美</h1>
+  <h1>里特费尔特的建筑与减法之美</h1>
   <p class="ja-title">リートフェルトの建築と引き算の美</p>
 </header>
 <main>
@@ -35,11 +35,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♫ 同人誌は新刊でたばかりです。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"Rietveld 的建筑和减法之美\n\n维特根斯坦设计的门把手目前正在东京的“The Original”展出。我想看到维特根斯坦作为建筑师而不是哲学家的一面。他极其苦行……换句话说，他似乎更喜欢简单的结构。好像是他。\n\n当聊天群里出现这个话题时，奥索雷赞先生说：“维特根斯坦的处境似乎最糟糕，因为他一直告诉我们在施工完成后把天花板抬高。”这也是一个似是而非的故事。太糟糕了。\n 现在，出于某种原因，我觉得最近我在日记中写了很多关于建筑和建筑物的内容。上个月，我去淡路岛参观了安藤忠雄的建筑。说说我最近感兴趣的风格派代表建筑师Rietveld。\n\nRietveld 是一位懂得简约和减法美学的建筑师。要了解他的作品为何如此精彩，请看看他的标志性设计师椅子“红蓝椅子”。这把椅子真的很酷。\n\n董事会。这把椅子由最少的木板和颜色组成，被命名为“红蓝椅”。名字也很简单。从这个角度很难看出来，但木板的尖端被漆成黄色，红、蓝、黄三种颜色有一种简单的美感，让人想起某位艺术家。没错，就是蒙德里安的《构图》！\n\n不管他隐藏什么，里特维尔德采纳了蒙德里安倡导的新造型主义，并将其抽象结构的吸引力融入到家具和建筑中。我爱他们俩！ ！ ！\n\n减法的美学。\n 没有比这更困难的概念了。追求简单之美，你需要比任何人都更了解复杂。里特维尔德建造的世界遗产施罗德之家是仅由减法线条和色彩组成的终极结构。精彩的……。\n\n顺便说一句，我最近一直在听阿尔瓦·诺托的音乐。他一直与坂本龙一一起创作安静的 techno。两人专辑的封面都简单又好看。\n\n我喜欢 Kraftwerk 和 YMO 等 techno。我可以从蒙德里安和里特维尔德简单的声音中感受到他们的想法。我爱上他们的顺序颠倒了。这张专辑中，坂本龙一的钢琴声和Alva Noto的电子声并存，极其安静。我会追求只有他们才能理解的“减法结果”。\n\n请欣赏整理日常日记和商业随笔集的同人志♫ 刚刚出版的同人志。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -59,7 +58,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

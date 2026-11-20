@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nyalla 的 LINE 邮票发行和邮票理论</title>
+<title>喵拉拉的LINE贴图发售与贴图论</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-02-01 04:50</p>
-  <h1>Nyalla 的 LINE 邮票发行和邮票理论</h1>
+  <h1>喵拉拉的LINE贴图发售与贴图论</h1>
   <p class="ja-title">にゃるらのLINEスタンプ発売とスタンプ論</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"Nyalla 的 LINE 邮票发行和邮票理论\n\nNyalla 的 LINE 印章现已推出。距离发布已经过去一周了，但我不知何故错过了促销的时间。肉鸡先生创造的滑稽可爱的尼亚鲁拉很可爱。\n\n这是我最喜欢的。我喜欢这样用途有限的邮票。事实上，你甚至可能有机会打电话给别人的工作场所并说：“我是他的朋友，但我要辞掉兼职工作。”\n 顺便说一句，如果以 120 日元的价格出售 LINE 印章，每个印章将获得约 30 日元的利润。如果卖出10,000个，你就可以获得300,000日元！超级十张邮票已售出 30,000 张。这是一件好事。既然是给了经销商，并不意味着所有的钱都给了我。我很高兴看到大家互相寄邮票，表达了超级十酱和阿梅酱的感情。\n\n现在，除了《超级十酱》有原创作品之外，普通的创作者邮票不太可能卖出几千张。当邮票只有几张的时候，也许可以瞄准需求，但现在 LINE 邮票无数，而且有便宜的邮票说“买这个就行了”。\n 比如“千井川”，对于老人来说使用起来并不会显得不自然，而且似乎也很受年轻人的欢迎。它可爱、有趣，适合所有年龄段的男性和女性。与异性或儿童交流时，寄出与对方相似或感兴趣的邮票很重要。不过，万一老头子得意忘形，用了我的旋律，那可就惨了。既然如此，还不如拆开寄高达邮票呢。然而，如果它很小，即使是老人也可以自豪地说：“我喜欢这个，对吧？”异性和孩子都会很容易做出反应。看来人们有这样的策略。\n 关于这一点，对于尼亚拉的印章，有一些严厉的意见，比如“如果你使用它们，互联网社区就会发现。”我明白了……我想每个人都有一种关系，他们不直接告诉对方他们的SNS帐户，但他们在LINE上有一些互动。在这种情况下，选择独特的邮票可能会限制您的影响范围。多么现代啊……熟人发现你是那种看尼亚拉的人会感到尴尬吗？抱歉，我会更加自豪地成为一个可以寄邮票的人。难道不可能吗？\n\n顺便说一句，我最喜欢的邮票是来自 Gin'eiden 的 Lang 邮票。这是一个俚语印章还是一个网络俚语印章？没有人收到这一消息并认出它并想：“哦，那是海德里希·朗！”我可没说主线里好笑的话啊！\n 当我看着严肃气氛的金英传邮票时，我心里想：“但说实话，我在网上看到最多的脸是郎......”，尽管有不添加任何文字的安全选择，但负责人做出了明智的决定，说“这毕竟是人们想要的！”，甚至添加了“LOL”一词。毫不夸张地说，光是这个老头的脸就改变了销量。有些人可能认为这是一个糟糕的举动，但这绝对是必要的。我已经很久没有LOL了。旧的互联网上到处都是这样的邮票。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

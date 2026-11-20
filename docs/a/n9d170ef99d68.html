@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>网络上的人是不是比以前更愤怒了？</title>
+<title>网络上的人比以前是不是更容易生气了</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2020-10-31 05:29</p>
-  <h1>网络上的人是不是比以前更愤怒了？</h1>
+  <h1>网络上的人比以前是不是更容易生气了</h1>
   <p class="ja-title">インターネットの人たち昔より怒りすぎじゃないか</p>
 </header>
 <main>
@@ -23,11 +23,10 @@
  人間はみんなだいぶ疲れてるみたい……休ませてあげようよ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"网络上的人是不是比以前更愤怒了？\n\n每当我看到人们对最近发生的各种事件极力批评或嘲笑时，我并不是要为他们辩护什么的，而是我发现自己越来越惊讶，心想：“嗯？你为一些无关紧要的事情而生气！？”\n 也许是因为大多数人不考虑义愤和正义，他们因为有一个可以轻易提及的人而蜂拥而至，但我感觉这个数字已经增加了。也许上网人数只是增加了。\n 如果说网络是那种黑暗而喜庆的气氛，那可能看起来像网络，但即使是完全匿名的，如果有个性的人在SNS上这样做，我也会感到惊讶。\n 好吧，我可以理解为什么当你打开在线趋势时，当你没有任何东西可发推文时，你会觉得一切都毫无价值，只是想提一下。\n 看到一个互联网如此猛烈地对你进行私刑的世界是很可怕的，如果你在幽默或愤世嫉俗方面犯了一个小错误，你就会突然发现自己成为批评的目标。不伤害任何人的笑声是不可能的，所以你永远不知道什么会触发它。\n 写这样的东西不会改变任何事情，我也不是想让互联网成为一个更好的生活场所，但每次我在互联网上看到有人在争吵，我感到很累。不，可能大家都已经筋疲力尽了，这就是现在的情况造成的结果。\n 看来人类都很累了……让他们休息一下吧。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

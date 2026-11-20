@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>包含 50 个我最喜欢的美少女游戏的同人志已经出版。</title>
+<title>出版了一本同人志，收录了我喜欢的50款美少女游戏</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-26 20:45</p>
-  <h1>包含 50 个我最喜欢的美少女游戏的同人志已经出版。</h1>
+  <h1>出版了一本同人志，收录了我喜欢的50款美少女游戏</h1>
   <p class="ja-title">好きな美少女ゲームを50本分選んで書いた同人誌がでました</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 今まで書いた美少女ゲームゲームに関する記事は、上から読めます。記事とか気に入ってくれたのであれば、同人誌の方も楽しめるかなって祈っております。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"包含 50 个我最喜欢的美少女游戏的同人志已经出版。\n\n我们请七海由纪 (https://twitter.com/yuki77mi) 创作封面，其氛围令人难以抗拒。像素艺术的灵感来自抽象的“美少女游戏中的著名场景”。\n\n一本名为《Internet 2 Extra Issue：Nyalla 和 Fumiya 的 50 款美少女游戏》的书已经开始出版，我和岩仓文也各选了 25 部作品，总共写了大约 50 款美少女游戏。我竭尽全力写这本书，就是为了让你能发现你不知道或好奇的杰作，所以请阅读它！\n\n例如，就我而言，我使用了像上面这样的稍微旧一点的作品。\n\n就岩仓文也而言，近期有很多作品。\n 即使是近年来没有接触过美少女游戏的人也会很满意，因为他们可以了解当前的行业！\n 我不想让它成为太多的“批评”，所以这是一本有点不寻常的书，有很多我自己的感受，但我认为这是一本有价值的读物，永远无法在商业书籍中复制。感谢您的理解。\n\n你可以阅读我到目前为止写的关于美少女游戏的文章。如果您喜欢这些文章，我希望您也会喜欢同人志。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

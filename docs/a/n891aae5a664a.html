@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>快速文章：超级天禅的团和柏树</title>
+<title>一口随笔：超天酱的扇子与丝杉</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-08-04 03:45</p>
-  <h1>快速文章：超级天禅的团和柏树</h1>
+  <h1>一口随笔：超天酱的扇子与丝杉</h1>
   <p class="ja-title">一口エッセイ:超てんちゃんのウチワと糸杉</p>
 </header>
 <main>
@@ -31,11 +31,10 @@
 毎日の日記をまとめた同人誌（在庫わずかに復活しました）や商業エッセイ集をよろしくね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"快速文章：超级天禅的团和柏树\n\nNidiga 展览目前正在涩谷莫迪举办。该来的就来，不来的就不来，就不细说了。我在活动前一天晚上做好了准备，并在周日和周一去了那里。周日发生的事情已经在我的脑海里停留了很长一段时间，并且一直困扰着我这周剩下的时间。\n 因为周日是活动的第二天，又是假期，所以顾客数量最多，而拍照点的工作人员又没有时间拍照，所以我就过来查看活动情况，也有空，所以就暂时接过了摄影师的角色。顾客坐在拍照点内色彩缤纷的椅子上，我一遍又一遍地拍照。\n 这时，一位50多岁的老人走过来问：“我们可以进去吗？”我解释道：“抱歉，我没有整理券……”然后话题转向“那么，你能把分发给参加者的团扇给我吗？”\n 起初，我以为一位在涩谷闲逛的老人只是对莫名其妙引起他注意的超级十酱展览感兴趣。这就像散步时消磨时间。但显然那是我的误会，我用她的角色昵称来称呼她，“我想要小十的宇智波。”换句话说，我是周天酱的真正粉丝。\n 我很高兴，就问工作人员：“不能给不进去的人送扇子吧？”工作人员自然回答说：“只给进去的人……”只有这样了。我只是问一个正式的问题，虽然我对旁边的老人感到抱歉，但我想间接地解释一下我对此无能为力。虽然我没有整理票，但我个人还是想给不辞辛劳来参加的粉丝们送一个邮袋，但为了公平对待他们，我不能给他们特殊待遇。\n\n工作人员似乎明白了，我又回到摄影师的位置，在拍照点拍照，但显然老人又在向工作人员询问什么，这样的情况持续了大约5分钟。从我听到的谈话片段来看，他似乎在问：“我怎样才能参加这个活动并领取物品？”我不知道他们是如何结束谈话的，但不知不觉中，老人似乎很满意地回家了。\n 我想起很久以前在梵高画展上看到的一位老人，他也写日记。上野一家博物馆正在举办梵高画展时，我看到外面一位老人举着一块牌子，上面写着：“请给我一张梵高画展的门票。”这次活动的主题是“可以看到柏树和星星的小路”。画面中央有一棵大雪松高高耸立，月亮在蓝天中闪耀。看完演出后，我坐在长凳上看哪类客人看柏树的次数最多。大多数人看了大约20秒，有的情侣看了不到10秒，但似乎好不容易进去的老人却竭力顶住人群，盯着柏树看了大约一分半钟。\n\n当然，我不相信爱可以用在那里度过的时间长短来衡量，但至少我觉得梵高是这个空间里比任何人都更需要梵高的人。梵高本人就是这样一位作家。\n 当我看不见老人的时候，我立刻想起了我站在柏树前看到的情景。那位老人坚持了五分钟，但任何一个工作人员都不可能凭自己的判断来分发仙人掌。大概有很多没有门票的年轻人，只想带一把扇子回家。我无能为力。我试图认为这是无能为力的事情，但我太担心了，所以我决定把拍摄交给工作人员然后回家。\n 回家的路上，我在楼前寻找老人，果然没有找到。如果我爷爷还在，如果他当时不是忙着做摄影师，我会偷偷把扇子送给工作人员和顾客吗？既然如此，你为什么不在他第一次叫你“小十”的时候体贴地送给他呢？尽管后来被工作人员和一些顾客骂了，但我还是应该把扇子交出来的。承担所有的责任也没关系，就算有人抱怨，反正过几天大家都会忘记的。\n 我从梵高的《柏树》中什么也没学到。你为什么去博物馆？直到现在，几天过去了，那一幕仍然在我的脑海中浮现。\n\n日常日记（现已补货）和商文集的同人志敬请期待。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

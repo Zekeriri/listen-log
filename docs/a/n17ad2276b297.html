@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：机器人</title>
+<title>一口随笔：机器人</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-05 03:19</p>
-  <h1>短文：机器人</h1>
+  <h1>一口随笔：机器人</h1>
   <p class="ja-title">一口エッセイ:The Robots</p>
 </header>
 <main>
@@ -22,11 +22,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：机器人\n\n首先，让房间漆黑一片。最好把它弄得这么黑，几乎是黑色的。然后是耳机。如果能降噪就更好了之后，采取最灵活的姿势，无论是床还是椅子。如果这让您感觉更舒服，请尝试盘腿佛式。\n 一旦你做好了这些准备，就尝试消除尽可能多的干扰。一种模式在你的大脑中形成，就像蒙德里安的绘画或毕达哥拉斯的开关一样，当你遵循它时，你思想中的杂质逐渐消失。播放当时的歌曲。技术。 Kraftwerk 是首选。 《机器人》和《电脑之恋》，但我最推荐的是《Dentaku》。如果你想要低多边形的图像，Sagafro T260G 弧线中最后 Boss 战的 BGM 非常棒。\n\n之后，我深深地闭上眼睛，让电脑的画面随着歌曲在我的脑海中无限扩展。感觉就像一个电子电路正在控制从心脏到大脑的血液流动。这就像扔掉自己的身体，一点一点地更换机器的零件一样。我脑中电路中的电子元件的灯随着背景音乐的节拍闪烁绿色和橙色。最终，你会陷入一种错觉中，你真的是一个放弃了自我的机器人，所以让我们继续将我们的自我转化为工业产品。大约30分钟后，我感觉自己就像一个机器人，只要跟着电信号走，不去思考，我就会很高兴，而且很舒服。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +45,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

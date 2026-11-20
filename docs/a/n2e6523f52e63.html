@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>文章精选：谈谈《美丽节奏彩虹现场》第二季OP被《EZ DO DANCE》取代时的震撼故事。</title>
+<title>精选一口随笔：讲述《漂亮旋律·彩虹演唱会》OP在第二季度换成《EZ DO DANCE》的震惊经历</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-06 14:51</p>
-  <h1>文章精选：谈谈《美丽节奏彩虹现场》第二季OP被《EZ DO DANCE》取代时的震撼故事。</h1>
+  <h1>精选一口随笔：讲述《漂亮旋律·彩虹演唱会》OP在第二季度换成《EZ DO DANCE》的震惊经历</h1>
   <p class="ja-title">選り抜き一口エッセイ：プリティーリズム・レインボーライブのOPが2クール目で「EZ DO DANCE」に代わった時の衝撃の話をします</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 去年末にでた商業エッセイ集もよろしくお願いします。こうして自分の人生を振り返ると、女児アニメのおかげで生かされているのを感じますね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"文章精选：谈谈《美丽节奏彩虹现场》第二季OP被《EZ DO DANCE》取代时的震撼故事。\n\n我要告诉你一个令人震惊的故事，当《漂亮节奏彩虹现场》第二季的OP被“EZ DO DANCE”取代时。\n 《漂亮节奏彩虹Live》是《漂亮节奏》系列的第三部动画。与前两部作品除了最后部分以外气氛比较轻松不同，《Rainbow Live》的一切都错综复杂地交织在一起，从人际关系到爱情模式再到人物的过去，从周六早上开始，故事发生了急转直下，在克服了悲伤和痛苦后，很多人都被情感所吸引。虽然平时表现得很开朗，但总给人一种阴沉的气氛，让人想起漫画版的《巡逻警察》。\n 安静地说话。 Rainbow Live每次都大胆翻唱TRF的名曲作为片头曲，而作为一个喜欢小室哲也的人，当他们听到第一季的片头曲《BOY MEETS GIRL》时，我真的很兴奋。一想到TRF，我就想到那首必将到来的歌曲……《EZ DO DANCE》在第二季中使用，当时所有角色都在场，冲突加剧。已经很完美了！最好的！天才！\n 最初，对于女孩动画来说，有一些快节奏的视频，沉重的歌词，角色在前奏中摇曳，剪辑集中于敌人一方的冲突，让人们对即将到来的故事产生期待，以及以一系列舞蹈为特色的副歌，其中播放着“我看着你Odoru”的歌词。啊，这一句话的说服力就让一切都消失了。已经100分了。这也太精彩了吧您可以一直观看。我只看着你\n\n我们正在出售编辑日常文章的同人志。也有一些小众书籍只谈论美少女游戏。我很喜欢小室哲也，所以他的名字经常出现。\n\n还请大家期待去年年底出版的商业论文集。当我回顾自己的人生时，我觉得我是被少女动漫拯救了。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

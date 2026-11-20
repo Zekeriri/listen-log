@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>小作文：绕行</title>
+<title>一口随笔：绕远路</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-05 03:18</p>
-  <h1>小作文：绕行</h1>
+  <h1>一口随笔：绕远路</h1>
   <p class="ja-title">一口エッセイ:遠回り</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 ガチガチに疲れたので宣伝は略。みんな僕の本、読んでみてね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"小作文：绕行\n\n我一直抱着这样的想法：“好吧，也许会以某种方式解决”，所以我尝试连接显然不会用作书架的储物箱并整理书籍，但正如预期的那样，它们在重量下倒塌了。\n\n我花了一整天的时间，汗流浃背，连接盒子，拼命整理书籍，但现在一切都结束了。我的意思是，它已经结束了，但是考虑到清理所花费的时间以及按类型排序的书籍现在稀疏的事实，如果我什么都不做，结果会好100倍。我冷静地找了一个横长的书架，把它做好了……\n 我的生活充满了这样的“我试图找点乐子，但我想偷工减料，认为这会以某种方式解决，尽管我知道这一点，但最终却变得更加麻烦。”即使是在我出生二十多年后的今天，我仍然无法摆脱这个随意的习惯。尽管白天有片刻的阳光，但我还是要去政府办公室办理搬家手续，当然最后我还是在大雨中浑身湿透地走回家。尽管“那里阳光明媚”，但我知道几分钟后就会下大雨。\n 我精疲力尽地清理箱子和重新整理书籍，浪费的经历带来的精神疲惫比身体疲惫还要严重。\n 各位聪明的读者可能已经明白了，请记住“绕道是最短的路径”。我肯定比正常人笨拙，所以正确的答案是慢慢地、小心地行动。\n\n我真的很累，所以我会跳过促销活动。大家请看我的书！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

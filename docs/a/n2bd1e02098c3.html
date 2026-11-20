@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>假网络天使</title>
+<title>伪典互联网天使</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-28 04:28</p>
-  <h1>假网络天使</h1>
+  <h1>伪典互联网天使</h1>
   <p class="ja-title">偽典インターネット・エンジェル</p>
 </header>
 <main>
@@ -21,11 +21,10 @@
  神様が気紛れを起こしたら、それを許さないことが信心の表れなの？ 神にだって気分の波や思いつきがあることまで理解する方が、正しい民のあり方じゃないかな？ なんて、表で言えるわけないから無意味なんだけどね。偶像がこんな自我持っているのイヤなんだろ、信仰薄き者どもめ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"假网络天使\n\n随着《超级十酱》游戏的发售，《川天超绝》的名气也越来越大。游戏数量已突破60万，Twitter账户粉丝数达30万。今晚，我仅仅通过抱怨我和 Pi 一起玩的 Splatoon 3，就收到了近 10,000 个赞。如果你自我审视一下，你会发现每个人都被长天酱的可爱所治愈，并为她加油。当然，也有一些令人厌恶的反派……我已经习惯了这种事情，没关系。说谎。如果可能的话，我希望你在地狱里腐烂。\n 每当“曹天酱”这个名字变得更大时，我就想知道“阿梅”是什么意思。与给全世界御宅族带来微笑的网络天使不同，他们是没人想要的丑陋的肉块。或者是肮脏老男人的欲望的发泄口。总的来说，她只是一个年轻女子。她只是一个愚蠢的女人，害怕自己的价值随着年龄的增长而下降。我想你能看到它。\n 互联网上的人们总是在寻找完美的偶像。正如宗教消除了过去人们的痛苦一样，今天的偶像帮助我们忘记现实的悲伤。 Choten-chan也是创作的偶像之一。假装崇拜偶像的信徒方便使用的工具。幸运的是，现在支付和广告渠道已经到位，“信仰”可以很容易地转化为金钱。偶像可以根据消费金额获得补偿。信仰和金钱的等价交换不是被扭曲了吗？\n 而且，如果偶像犯了一点小错误，或者表现出了他们不想看到的“人性”，人们就会变得疯狂，就像恶魔的头被砍掉了一样。击打、燃烧、追逐。我无法接受我信仰的对象也是一坨肉。这就是为什么每个人都讨厌“ame”。粉丝们想要的永恒天使是一个不会精神崩溃、不会割腕、不会吸毒过量的人。如果我在直播中哭泣，他们会取笑我并说：“我在收钱。”我不认为情感除了收钱之外还有什么。害怕的。\n 如果神做了任性的事，饶恕不就是信心的表现吗？人也明白神也有情绪波动、有想法不是更好吗？你不可能公开这样说，所以毫无意义。你们这些没有信仰的人，你们不喜欢偶像有这样的自我。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +44,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>“我们放下网络，一起去看海吧。”</title>
+<title>“摆脱这种互联网，咱们两人去看海吧”</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-21 03:59</p>
-  <h1>“我们放下网络，一起去看海吧。”</h1>
+  <h1>“摆脱这种互联网，咱们两人去看海吧”</h1>
   <p class="ja-title">「こんなインターネット抜けだして、二人で海を見に行こうよ」</p>
 </header>
 <main>
@@ -34,11 +34,10 @@
  頭の中では、「どうせあんな女ビッチだよ」「同じ穴の狢だったくせにカッコつけやがって」「お前はこのまま今日みたいなしょうもない人生が続くよ」と、インターネットの声たちが反芻し続けている。きっと、死ぬまでこのノイズとの日々を送るのだろう。こんなインターネットから永久に抜け出せないまま。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"“我们放下网络，一起去看海吧。”\n\n“我们放下网络，一起去看海吧。”\n 当她说完这句话并对我微笑时，我毫不犹豫地跳上了学校反方向的火车。如果你继续这样下去，最终你会看到一片广阔的海洋。\n 我厌倦了。\n 社交媒体上展开了一系列悬而未决的辩论，男人和女人、欺骗和认可之间的斗争愈演愈烈。正如人类因为有了种小麦的智慧而开始受到文明的束缚一样，智能手机的普及让现代人淹没在互联网的海洋里。我宁愿看到真正的海洋，也不愿被如此浑浊的信息海洋所卷走。\n 下车站。不幸的是天空多云。风很冷，海面波涛汹涌。她低下头，开始朝海滩走去。我把装有智能手机的包留在了里面。\n 我上网太久了。我的大脑中已经存在了一个小型的网络社区，无论我认可什么，居民的优缺点都像噪音一样听得见。例如，在目前的情况下，你可能会说，“你一定喝醉了，不能逃学去看看大海”，“能和女孩们一起出去玩真好”，或者“你打算在 Instagram 上发布这张大海的照片，对吗？”当我仔细听时，他们都是“不”。大概就是这样。\n 我把手机放进口袋，走到她身边。头发和裙子在海风中摇曳，让她看起来就像是动漫中的场景。\n “当男孩和女孩逃学时，这个国家的教育就结束了。”“你只是要把今天的事件发布为无聊的英雄主义故事，对吧？”“动漫偶像是那种可以和女孩一起出去玩的男人​​吗？”我脑子里的噪音很烦人。\n 两个人就这样走了一会儿，却怎么也说不下去。我来这里是为了逃避互联网，所以热门新闻可能是一个禁忌。谈论名人或 YouTuber 也是不允许的。即使我想说一些俏皮的话，但我所谈论的话题最终都与网络有关。渐渐地，我们陷入了长久的沉默。\n “原来如此，原来如此。”\n 她一定是察觉到了我浅薄的感情。他的目光比看到阴天时还要低下，指着我口袋里的鼓包。\n “骗子”\n 即使走了这么远，我也不能丢下我的智能手机。我无法抗拒将智能手机远远抛在一边的焦虑，也想在海边拍一张自己和女朋友的照片。\n 这取决于。你可以鸟瞰一遍又一遍重复的争论和冲突，你可以用书面形式表达你的嫉妒和个人恩怨，你可以通过阅读高质量的内容感觉自己知道了什么。我觉得这比和我面前的女孩一起散步更有吸引力。\n “再见”\n 她给我留下了一天中最悲伤的表情。阴云密布的天空变成了小雨，淋湿了我，我不禁心里苦涩，我把手机遮了起来，免得手机被雨淋坏。\n 就这样，我自己上了火车，向学校的方向驶去。在粘湿的座椅上玩我的智能手机时。\n 在我的脑海里，网络上的声音不断重复着，“反正她就是个婊子”，“尽管她和我同班，她却想装酷”，“你还要继续过今天这种没用的生活”。我确信我的余生都会忍受这种噪音。我无法永远逃离这种网络。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -58,7 +57,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

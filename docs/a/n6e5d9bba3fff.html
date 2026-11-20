@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：网络的孤独与毒害</title>
+<title>一口随笔：互联网的孤独与蛊毒</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-09 03:41</p>
-  <h1>短文：网络的孤独与毒害</h1>
+  <h1>一口随笔：互联网的孤独与蛊毒</h1>
   <p class="ja-title">一口エッセイ:インターネットの孤独と蠱毒</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 毎日の日記をまとめた同人誌や、若い頃に書いた長文をまとめた商業エッセイ集、よろしくね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：网络的孤独与毒害\n\n我运行一个任何人都可以加入的 Discord 服务器，目前大约有 7,000 人，所以我们有时会遇到人数问题。\n 今天接到电话说“有人说我诽谤”，我查了一下情况，发现情况已经发展到了“一个孤独的年轻人为了让别人关注他而大声辱骂，然后即使大家都在骂他他也不在乎，然后建立联系后他开始平静地说话，因为他被忽视了。”这个结果是好事，因为网络就像一个破碎的人练习的地方沟通。\n 即便如此，我觉得上网是年轻人的天性，因为他们感到孤独。我开始推特的原因，以及我开始频繁在博客上发文章的原因，都归结为“孤独”。据说，人们与他人在一起时比独自一人时更感到孤独，当他们看着浩瀚的互联网时，常常会因为自己不在而感到悲伤。\n 今天早上当他出现在我的服务器上时，我想他一定感到孤独，因为他不存在于一个快乐运行的服务器中。因为你还年轻，你可能很难乖乖地与群体互动，所以如果你不以“倾斜”的姿势上车，你可能无法承受正前方照在你身上的光线的亮度。诚实本身就是一件伟大的事情。\n 我明白了，真的。我的自尊心不允许我说出“让我加入你”之类的话。如果你不采取我不想和你相处、我无意和你相处的态度，你的心理平衡就会崩溃。\n 很久以前，推特上什至出现了一种趋势，匿名公告板上的动漫图标生气并告诉人们停止相互社交。禁止在SNS上社交是一种极其矛盾的说法和行为，所以你应该留下你的时间线，但你的身份是“我是一个顽固的人，在Twitter上隐约与其他人有联系，但我还没有完全吸收他们的温暖。”这种精致的倾斜立场是青春的本质。如果你从侧面看他，他可能只会说，“这家伙到底是什么？”但就他本人而言，他就像贝吉塔一样认真地与他保持距离。\n 即便如此，我仍然感到孤独，想要得到回应，但又不好意思沟通，所以我通过发表激进的言论来吸引注意力。尤其是在我们这个时代，当匿名公告板还带有不好的氛围时，就有一些人以互相取笑、把自己放在架子上并占据上风为荣。随着 Twitter 越来越发达，这些人要么安定下来，成为社会的一部分，要么回到匿名公告板。有一些战士仍在与某些东西战斗。\n 到最后，我们都感到孤独，但就是无法诚实。退后一步看起来很可爱，但是当你近距离观察时，它只是令人烦恼和分散注意力。然而，我关注着他们，相信在这些人聚集的贫民窟里，一定会涌现出一些杰出的人才。\n 伟大艺术家的周围都是无用之人的尸体，他们无法成为他们本来的样子。网络是一剂巨大的毒药，贫民窟里创造奇迹的年轻人正在建设一个新世界。下一个时代可能会由这个年轻的前巨魔开创。\n\n我很想看到一本收录了我的日常日记的同人志和一本收录了我年轻时写的长篇文章的商文集！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

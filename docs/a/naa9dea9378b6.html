@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：蹩脚的孩子们涌向原版的北斗神拳</title>
+<title>一口随笔：初代北斗神拳中围在一起的坏小孩们</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-05-31 05:21</p>
-  <h1>一篇简短的文章：蹩脚的孩子们涌向原版的北斗神拳</h1>
+  <h1>一口随笔：初代北斗神拳中围在一起的坏小孩们</h1>
   <p class="ja-title">一口エッセイ:初代北斗の拳に群がるクソガキたち</p>
 </header>
 <main>
@@ -32,11 +32,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪ 新刊でたばかりだぜ！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：蹩脚的孩子们涌向原版的北斗神拳\n\n我打了斯马斯洛北极星之拳。这是出于怀旧的目的。我不再有刚搬到东京时那种紧张的感觉，把房租扔进三明治里，简直就是冒着生命危险。当你有能力时赌博并不好玩。这既有趣又疯狂......！\n\n很怀旧，不是吗？第一个北斗。构图大胆。只是健四郎在散步，偶尔蝙蝠去了某个地方又回来了。它是如此简单，以至于在当今顶级制作的世界中很难想象。令我惊讶的是，战斗奖励增加了更多的游戏玩法。以前只能祈祷Raoh不要压倒你，现在却配备了库存……(;;)\n 我得到了溢价。作为一个作品来说是可以的，但是不要把它变成一个无关紧要的弹珠机按钮，英理桑。\n\n嗯，我对我的怀旧印象很满意。获得战斗加成时的欣喜若狂，光环识别带来的攻防紧张，一切都还是当初的样子。\n 当我上小学时，我经常在游艺机上玩游戏。他们已经像猴子一样蜂拥而至。我当地的吉之岛只有两家。在普通的奖牌游戏中，你最多可以获得50个金币的大奖，但在北斗中，如果Raoh升天，你可以获得超过2000个金币。这是一款奖牌游戏，有 2000 个金币，可以玩一辈子。瞬间，他就晋升为勋章王，勋章界的王者。当然，所有想用奖牌消磨时间的孩子放学后都会立即坐在北斗。\n 那是一个颓废的青年。 AT方法目前还很少见。隔壁的白山大魔王也是如此，不过那只是从天上钓鱼的魔王，所以没有那么令人印象深刻。每次健四郎和拉王对决时，街机里的蹩脚孩子和从早上就沉浸在奖牌游戏中的老家伙们都会聚集在他们身后观看，想知道这场战斗会走多远。这只是一台吸引观众的老虎机。\n 每当剑四郎躲开拉乌的拳头，每当回合开始时出现像土木或丽这样的强大敌人时，经常光顾街机的文库拉就会兴奋不已。就好像昭和时代每个人都在观看力道山比赛一样，当时还没有电视。这种景象在真正的弹珠机店里永远不会发生。当终于有人将拉乌送回天堂时，拱廊里的人们用掌声迎接他。位于Oroku的吉之岛，场面十分温馨。\n 如今，即使赢得了奖金，也只是默默地玩游戏，任何游乐场的游艺机上的老虎机可能都不会引起太多关注。这是一次神奇的经历，只持续了那一刻。义宗等人也继续演奏。我想，“有一天我会通过玩真正的老虎机赚很多钱！”所以当我满 18 岁的时候，我就成为了一名伟大的老虎机玩家。一切都是那么怀旧。 DJ Raoh，你现在在哪里战斗……？ （我查了一下，好像是最近为了纪念Smaslot游戏而复活的）\n\n感谢每次我摔倒时Rin-chan叫我的名字，我得到了+7k。\n\n弹珠机奖品太多了。\n\n请欣赏收录了日常日记和商业随笔集的同人志♪ 新版本刚刚发布！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -56,7 +55,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

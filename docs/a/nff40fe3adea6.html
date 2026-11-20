@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文精选：我被邀请进行虚拟性爱的那些时光</title>
+<title>精选一口散文：被邀请虚拟性行为的经历</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-03 10:35</p>
-  <h1>短文精选：我被邀请进行虚拟性爱的那些时光</h1>
+  <h1>精选一口散文：被邀请虚拟性行为的经历</h1>
   <p class="ja-title">選り抜き一口エッセイ: バーチャル・セックスに誘われた回</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 今月末には、長文エッセイをまとめた商業エッセイ集も出版されます。予約していただけると幸いです。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文精选：我被邀请进行虚拟性爱的那些时光\n\n我的一个老朋友自从沉迷VRC后，在虚拟世界里当美少女的时间比在现实生活中的时间还多，彻底成为了电子世界的居民。\n 所以，在虚拟世界呆了几百个小时之后，似乎男声渐渐变得不那么烦人了，甚至连美少女头像发出低沉的男声也变得很正常。她似乎最喜欢让一个漂亮女孩的男性虚拟角色发出可爱的女孩般的声音。\n 最终的结果自然是性，但我的朋友已经进行过多次虚拟性爱，通过巧妙地触摸对方美少女虚拟形象的下半身，给人一种“不存在的子宫”的感觉，并且能够让对方发出调皮的声音。从某种意义上说，这是一个未来主义的故事。我对他怀有最大的敬意。\n 最近，我的男朋友开始要求我尽快去VRC，因为我想和他发生性关系，尽管他在视觉上展示了一个漂亮的女孩头像，但我被他愿意毫不犹豫地强奸他在现实生活中认识的人所感动。如果你这么直接、这么强势，你一定会变成一个女孩子，说“呃……///”。事实上，我其实也很震惊。鉴于他的性格，一旦他进入VRC，他很可能会攻击你。\n 我了解到，有时男人如此大胆会更受欢迎。总有一天我也会被玩弄的。我内心的子宫被侵犯了。\n\n我们在摊位上出售包含日常文章的同人志。买吧！\n\n本月底，将出版一本包含长文的商业论文集。如果您能预订，我将不胜感激。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

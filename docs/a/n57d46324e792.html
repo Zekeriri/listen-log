@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇短文：Instagram 的打开和泡妞</title>
+<title>一口随笔：开设Instagram和搭讪</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-19 00:12</p>
-  <h1>一篇短文：Instagram 的打开和泡妞</h1>
+  <h1>一口随笔：开设Instagram和搭讪</h1>
   <p class="ja-title">一口エッセイ:Instagram開設とナンパ</p>
 </header>
 <main>
@@ -28,11 +28,10 @@
 商業エッセイ集の方もよろしくお願いします。オシャレな表紙でInstagram感あるかも。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇短文：Instagram 的打开和泡妞\n\n我开始使用Instagram。时隔一段时间第一次与Kaeru DX见面，当Kaeru在Instagram上发布他的照片日记时，他的粉丝增加了，很有趣！这就是我感兴趣的原因。我从没想过有人会告诉我“Instagram 太棒了！”并立即打开一个。这种令人难以置信的行动将带来胜利。谁会赢？\n 说实话，随着 SNS 迅速变得以图像和视频为基础，我们没有时间只用文字来对抗 Twitter。如果我们不开始使用 Instagram 和 YouTube，我们这些只能靠互联网生存的秃头人就会死掉。也请与其他媒体友好相处。\n 我将利用这个机会利用 Instagram 来吹嘘书籍、人物、稀有物品，并谈论我不常在 Twitter 上写的时尚。独立的生活区！\n\n顺便说一句，照片是我最近买的一件长外套（宅男们都喜欢长外套），前几天我穿着它去涩谷见“Sa Miko”（我的获得Yanmaga新人奖的朋友），她第一次来接我。由于她戴着口罩，很可能被误认为是女性。\n 确实，当巫女来到集合地点时，发现我被人抱了起来，不禁吓了一跳。而且，他是一个大胆的人，即使在他意识到我是个男人之后仍然继续和我聊天。如果你没有这种精神，你就泡不到女孩子。这是千载难逢的机会大喊：“你这个白痴……我是个男人！”，但实际上，我温柔地警告他：“你误会我了。”\n\n然而，我很高兴这件外套被证明是那么漂亮。我会趁这个机会拍一些像Instagram一样的照片！\n\n包含日常日记的同人志现已在摊位上出售。新一期正在准备中。\n\n我们也欢迎有关商业论文集的询问。时尚的封面可能会给它一种 Instagram 的感觉。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

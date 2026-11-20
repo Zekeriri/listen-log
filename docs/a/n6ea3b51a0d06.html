@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文精选：无聊的爱情</title>
+<title>精选一口随笔：无聊的恋爱</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-06 22:00</p>
-  <h1>短文精选：无聊的爱情</h1>
+  <h1>精选一口随笔：无聊的恋爱</h1>
   <p class="ja-title">選り抜き一口エッセイ:つまんない恋</p>
 </header>
 <main>
@@ -23,11 +23,10 @@
 美少女ゲームに関することをいっぱい載せた同人誌です。よろしくね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文精选：无聊的爱情\n\n我听有人说，“在网络上，你只看到过分幸福的人的吹嘘，或者走投无路的人的哀叹，所以应该有一种普遍的幸福介于两者之间，但你看不到。”普通人的常见故事不被谈论。\n 我对时代潮流并没有什么宏大的想法和看法，但听着，我想起了Parfait的ED曲《Tsubanai Koi》，我心里想：“这首歌真的很好听。”\n 《Tsubanai Koi》的歌词非常精彩。\n 描写了恋人之间的小幸福和小误会。尽管这是一首关于美少女游戏的歌曲，但歌曲接着说，“他们两个没有改变，所以不会成为戏剧。”你可能会期待美少女游戏中的不切实际的戏剧性爱情故事，但我会告诉你一个现实的爱情故事，与典型的游戏场景相比，跌宕起伏较少。接着又说：“你有过这么无聊的爱情吗？”虽然男女主角终于在一起了，但这些悲伤的歌词是什么？ ？玩家很惊讶。说到这里，我突然觉得这是对美少女游戏的一种讽刺。\n 不过，这首歌的歌词并没有那么浅薄。最后的副歌结尾是：“你经历过这样无聊的爱情吗？”但这就是我的爱……爱就这样就足够了。”虽然是普通的“普通的爱”，但却表明女主角是最幸福的。他们两个人以后或许无法创造出像游戏一样的故事，但他们还是乐在其中。我认为这真的很棒。\n\n这是一本包含大量美少女游戏信息的同人志。很高兴见到你。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

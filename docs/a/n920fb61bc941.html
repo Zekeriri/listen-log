@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：不上学的未来</title>
+<title>一口随笔：不去上学的未来</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-06 05:02</p>
-  <h1>短文：不上学的未来</h1>
+  <h1>一口随笔：不去上学的未来</h1>
   <p class="ja-title">一口エッセイ:学校へ行かない未来</p>
 </header>
 <main>
@@ -28,11 +28,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：不上学的未来\n\n一位中国女孩是这个游戏的粉丝，有时会给我发一条私信，告诉我那天发生的事情，所以当我注意到一些事情时，我会添加一个反应。她似乎很同情Ame-chan，我很高兴，因为她说：“你设计的游戏是真实的，太真实了......”\n 不过，今晚她好像有点不舒服，她悲伤地说：“我不抽烟、不喝酒、不吸毒、不吸毒、不自残，所以我很好。”但前提是我不去上学！！！我不想上学。”“我没有学位，我没有未来！！！”它还在继续。\n\n当我告诉他我也是一个不上学的不良学生时，他很惊讶，所以我回答说：“即使你不上学，你也能生存。另一方面，也有人上学，什么都不做就毕业了。”我回答说，学历并不代表一切。他似乎听懂了，回答道：“当然。”\n 这个孩子的爱好似乎是缝制毛绒玩具和画画，所以也许她可以朝这个方向开拓未来。我觉得不想上学可以逃学，想上学就可以去。不过，我希望他们能够继续做自己喜欢、擅长的事情。至少我是这么认为的。首先，他有能力和勇气创作自己喜欢的游戏的粉丝艺术和毛绒玩具，并通过DM向原作者展示，所以看你怎么看，他比同龄人还要厉害。社交辞令でなく本音でそう思う。\n 问题是“人际关系”是在学校学习的最重要的东西，但在当今时代，你可以通过SNS来学习它。当然，我已经克服了给我带来的持续不便，但这与现实没有什么不同。如果您正在学习，可以通过在家读书来补充您的学习。如果你专注于自己的爱好和特长，那么你有可能比那些只模糊地上学的同学们能够腾出更多宝贵的时间。即使你不上学，我也不认为未来有那么黑暗。\n 然而社会如此残酷，只有极少数人能够将自己的爱好和特长融入到自己的生计中。和正常毕业一样，我们都只能坚持过一生，一起努力，有时也会在半夜生病。\n\n当我问我是否可以在日记中写下这一点时，她回答说：“没问题！”，然后是“谢谢你听我的废话！”和“我想练习一下”画画。''とにかく絵を辞めないで欲しい。それを闻けただけでも安心です。\n 顺便说一句，最后他说：“尽力而为！”，但我猜他的意思是“我会尽力而为！”。日语很难。不过，如果你有勇气去克服翻译的麻烦，并与海外宅男交流，一切皆有可能。至少，我很高兴突然被这个误译的“Do your best！”所鼓舞。只要让别人快乐，你就是一个伟大的人。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

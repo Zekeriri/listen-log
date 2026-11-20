@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一点文章：凸传递</title>
+<title>一口随笔：凸待机直播</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-01-28 05:48</p>
-  <h1>一点文章：凸传递</h1>
+  <h1>一口随笔：凸待机直播</h1>
   <p class="ja-title">一口エッセイ:凸待ち配信</p>
 </header>
 <main>
@@ -31,11 +31,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一点文章：凸传递\n\n我突然开始想念一个人，所以我尝试播放视频，但如果我用主播来排解孤独，我最终会觉得对那个人有一种单方面的亏欠，并爱上他们。太可怕了，所以我在罗兰的频道上观看了一段密切关注“罗兰的商店主持人”的视频。罗兰本人并没有出现。那些我不认识的主人在胡闹，正当我感觉自己开始对他们产生依恋之情时，他们却消失了。\n 尽管如此，我已经达到了失踪人员的极限，所以我开辟了一个空间。我们尝试了“凸面等待”，陌生人拿着麦克风一一进来。有时我会亲自与我的追随者发生冲突。\n 有几个人给我留下了深刻的印象。\n・热爱尤里卡的 15 岁少女。我喜欢尤里卡大人已经有10年了，她向我询问了她的魅力。我很高兴看到称尤里卡大人为“尤里卡酱”是她作为一个女孩的真实痕迹。从孩子的角度来看，她是我最喜欢的尤里卡酱……\n・一个女孩在学校学习落后了一个月，所以她一边听空间一边学习，希望你支持她。当我说“祝你好运！！”时，她很高兴。学习的时候听广播是可以的，但以这个角色为空间的人，未来很可能会成为一位了不起的女人。\n・当我告诉一位想要观看各种动漫但因订阅太多而遇到麻烦的御宅族时，“d Anime Store 拥有世界上 80% 的最有趣的动漫，所以让我们从每月在 d Anime Store 上花费 500 日元开始吧”，他完全相信了。 d Anime Store 有无数有趣的动漫可供选择。\n・将壁纸作为周天酱最喜欢的台词而受到鼓励的作曲家。我认为有御宅族每次打开智能手机都会受到超十酱的鼓励，增加了超十酱的真实性，这很好。\n- 东京大学理科专业退学，不善于与人沟通的人。在我住的合租屋里，有很多从东京大学理科退学的人，虽然每个人都擅长数学，但这就是他们所能做的，他们看着别人，想知道，“为什么这些人不能这样做？”因此，我不擅长正常的沟通，而来找我咨询的人也有完全相同的模式。而另一个人则觉得：“为什么这个人除了计算之外就不能做这么多事情？”这是一个可悲的误解。\n 我建议，为了以某种方式适应一般的情感，最好接受与数学无关的兼职工作的培训。自闭症很难治疗。\n- 一个来自单亲家庭的女孩，她的母亲沉迷于外汇。起初，人们告诉我，“我妈妈真的很喜欢互联网”，所以我想这可能是阴谋论、政治言论或偶像相关的东西。转念一想，原来这更像是一种可怕的赌博类型。\n 由于她似乎很爱她的母亲，我强烈建议她可爱的女儿恳求她停下来，说：“为了我的家人，请停下来。”\n 就FX而言，如果你赢了，你就赢了，但你最终会永远盯着显示器，担心数字的增加或减少。她有责任阻止通往地狱的跑道……\n 如果我再次想念一个人，我会再次这样做♪\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

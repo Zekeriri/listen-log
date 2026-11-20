@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>速记：性欲与时尚交汇的那一刻</title>
+<title>一口随笔：性欲与流行交汇的瞬间</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-21 05:31</p>
-  <h1>速记：性欲与时尚交汇的那一刻</h1>
+  <h1>一口随笔：性欲与流行交汇的瞬间</h1>
   <p class="ja-title">一口エッセイ:性欲と流行が交差する瞬間</p>
 </header>
 <main>
@@ -28,11 +28,10 @@
 商業エッセイ集もよろしくね。こっちは昔のことがたくさん書いてあるよ。Amazon評価もよろしくお願いします。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"速记：性欲与时尚交汇的那一刻\n\n世界上有一种叫做色情MMD的流派，并且有一些视频中动漫人物使用3D模型进行顽皮的舞蹈。毕竟，几乎每种类型都有专门的视频网站和社区。当然，原版MMD本身就是健康的。有时是为了绅士...\n 这在不懂的人看来似乎很愚蠢。我想知道当有更直接的色情内容时，观看一个只显示人们完全裸体跳舞的视频有什么乐趣。虽然偶尔也会有直接的镜头。但对于任何想扮演肮脏的富老头或催眠师并让动漫人物跳肮脏舞蹈的人来说，这都是很棒的内容。他在《银与金》中将自己降低到了底层富人的水平，从而展现了自己的真正价值。这意味着优雅而骄傲的年轻人应该满足于简洁的商业作品。\n 认真观看一次他们的舞蹈是个好主意，并尝试在与 Kanyaku 和女孩们的最后合唱中完全裸体跳舞。我意识到我的烦恼是多么的小。\n\n以前，当我看到一部被洗脑的初音未来被迫跳舞的杰作，在公众面前全裸的异常状态和她穿着同样衣服表演的日常生活之间交替展现时，初音未来对自己的认知越来越扭曲，我已经无法区分现实世界和另一个世界，我就像刚看完今敏的电影一样感动。\n 我的朋友冈岛君很喜欢这种色情MMD。它涵盖了我非常喜欢的大部分音乐，因此很容易用于 MMD。所以，我对快节奏的 Vocaloid 歌曲和 K-POP 非常熟悉。虽然他基本上是一个只听动漫歌曲的情色男孩，但他的性欲却成为了他的动力，他已经成为一个比其他年轻人更能跟上最新潮流的不平衡男人！\n 有一天，当我们一起吃饭时，电视上开始播放一首韩国流行歌曲，我立即猜到了这首歌的名字，然后我很困惑地说：“请停下来，因为我的反应让我觉得很顽皮。”世界上有这样的男子汉。世界很大……那一刻我再次意识到这一点。\n\n包含每日日记的同人志现已发售！\n 偶尔会提到流行趋势，所以知道当时流行什么很奇怪！\n\n我期待着阅读您的商业论文集。这里写了很多关于过去的事情。还请在亚马逊上给我们评分。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

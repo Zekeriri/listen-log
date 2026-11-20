@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：生活与针灸治疗的无望差别</title>
+<title>一口随笔：绝望人生的差距与针灸治疗</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-29 06:33</p>
-  <h1>短文：生活与针灸治疗的无望差别</h1>
+  <h1>一口随笔：绝望人生的差距与针灸治疗</h1>
   <p class="ja-title">一口エッセイ:絶望的な人生の差と鍼治療</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：生活与针灸治疗的无望差别\n\n除了整天宅在家里看动漫、看书外，还要在电脑上做大量的游戏、写稿子，再加上身体本来就不好，再加上久坐的压力，导致我肩膀酸痛、腰痛、心悸。我已经是爷爷了，我也是。到了这个程度，脊椎按摩、伸展运动似乎没什么用了，所以我就进行了针灸治疗，以求快速治疗。插入针灸针。遍布全身。\n 我研究了附近的一家针灸诊所，立即将针插入我的头、手和脚。虽然有点痛，但是和全身的毛发脱掉相比，根本不算什么。这个世界上很少有比脱毛更痛苦的经历了。我变得更强了。全身被针灸覆盖后，电流通过针灸针。通过刺激针刺的穴位，激活血流，刺激副交感神经系统，调节植物神经系统。\n 插入他头部的针灸针中流淌出微弱的电流，让他的身体抽搐起来。轻微的麻木感觉很好，我确实感觉有什么东西在起作用。那种让你脑袋发麻的泥泞感觉，很舒服。\n 通电一段时间后，我听到老师和旁边那位非常花花公子的病人的谈话，原来他是一位前武术家，几年前在一次事故中腿部受伤后退役，开过道场，教书，并担任裁判。他太酷了，不是吗？所以他才能发出如此苦涩的声音。\n 这个人的故事继续说，“前几天，我制定了道场规则：不要偷懒，不要给别人带来麻烦，不要说谎......”，他的心态与我完全不同，我最近刚刚发了推文，“最后期限太糟糕了，每个人都应该忽略它们。”什么是道场坤？我想做出像 5 个超级承诺这样的事情，并让我的孩子们做出承诺。我每天都很懒，给别人带来麻烦。\n 谈话继续说道：“最近，我很高兴我女儿的剑道技术有所提高。”我至少想说一次，“我很高兴我女儿的剑道技术有所提高。”从他的语气中可以看出，他是真的很高兴。既然是这个人的孩子，她的女儿肯定对武术很重视。我不禁对这种态度感到高兴。曾经的武者的生活也太幸福了吧？ “平时严厉的父亲，在幕后偷偷吹嘘女儿的成长”已经是漫画了。这是一个只有半生致力于武术的好人才能达到的“目标”。另一方面，我呢？ “我每天在电脑上看动漫，肩膀疼得抬不起来手臂。”这样的生活太多了。现在我的身体因电流而颤抖。除了一扇窗帘之外，还有一堵墙，影响着生活质量，令人绝望。\n 治疗本身还算有效，虽然不能说是完全康复，但似乎我的自律神经系统有所改善，我突然感到困倦。如果您患有失眠症，请将针灸针插入您的头部并施加电流！\n 接下来，我打算去咨询，不仅是身体上的恢复，还有精神上的恢复。心脏这根血管一旦破裂，就永远不会再长出来，但我们还是要一点一点地修复它。我希望你的身体和心灵早日康复。如果你给你的身体施加更强的电流，你可能会立刻变得快乐。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

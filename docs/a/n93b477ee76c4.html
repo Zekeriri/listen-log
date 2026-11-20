@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>快速文章：VS Lestamin</title>
+<title>一口随笔：VS雷斯塔敏</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-11 05:29</p>
-  <h1>快速文章：VS Lestamin</h1>
+  <h1>一口随笔：VS雷斯塔敏</h1>
   <p class="ja-title">一口エッセイ:VSレスタミン</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 先月に発売した商業エッセイ集も、よろしくお願いします。こっちはめちゃくちゃラリっとるな。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"快速文章：VS Lestamin\n\n直到几年前，我连保险卡都没有，每次生病都是忍着。不管我病得有多严重或者患了流感，我只是睡觉。\n 最糟糕的是，我手掌上的手指突然变得奇痒无比。我一直抓得很厉害，虽然血已经渗出来了，但痒还是不退，明明应该去医院，但由于我没有保险（本来就没有钱），我只能打起精神。\n 我买了Restamin，一种止痒至放松的药片，但即使吃了几片，病情也没有丝毫改善。我决定喝点酒，所以我做了一些研究，发现虽然不推荐，但仍然有人用它来娱乐。当时我就控制不住自己的好奇心，一口气吃了几十粒药。顺带一提，当时和我住在一起的冈岛君也出于好奇也开始喝同样的酒。它不痒任何东西。\n 我感觉与其说是紧张，不如说是瘫痪，全身沉重得无法动弹，但瘙痒却消失了。我可以看到一些幻觉昆虫，但在这个层面上，并不是特别有趣。我明白了，这肯定不是为了玩而选择的。我还出现了嗜睡的副作用，尽管我因瘙痒而无法入睡，但我还是能睡个好觉。冈岛也睡了。\n 当我快要入睡时，我想到如果是疼痛而不是瘙痒，如果不是瑞斯塔明而是安乐死机器，我会怎么做，我记得当时想，“哦，如果我能平静地死去，我会选择那样。”\n 第二天，冈岛因后遗症浑身颤抖地去听演唱会，他说朋友们很惊讶，问他“你是不是吸毒了？”但与我喝酒止痒不同，我以为你只是吸毒而已。\n\n包含日常文章的同人志现在正在展位上出售。不用动脑子也能读懂，所以即使你是粉丝，也请放心购买。\n\n另请欣赏上个月出版的商业论文集。这个真的很酷。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

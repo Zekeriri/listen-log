@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：有一天我在当地的玩具店和波德莱尔冈山买到了稀有的软乙烯基</title>
+<title>一口随笔：在地方玩具店得到稀有软胶模型的那一天与波德莱尔 冈山</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-03-16 03:02</p>
-  <h1>短文：有一天我在当地的玩具店和波德莱尔冈山买到了稀有的软乙烯基</h1>
+  <h1>一口随笔：在地方玩具店得到稀有软胶模型的那一天与波德莱尔 冈山</h1>
   <p class="ja-title">一口エッセイ:地方のオモチャ屋でレア物ソフビを手に入れた日とボードレール　岡山</p>
 </header>
 <main>
@@ -35,11 +35,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：有一天我在当地的玩具店和波德莱尔冈山买到了稀有的软乙烯基\n\n逛完岛根（Neuro-sama）的所有景点后，我来到了冈山。这里有一个叫做美观历史区的景观，甚至还有一个巨大的艺术博物馆。 “美观竹”这个词听起来很响亮。我决定亲眼看看……\n\n其实很美（不好意思）。与时代脱节的城市景观的统一感令人愉悦。位于美观历史街区中心的大原美术馆也很不错。令人惊讶的是，蒙克的《麦当娜》就在这里。这幅《麦当娜》是一部同时描绘女人之美和毁灭男人的可怕蛇蝎美人的杰作，也被用在波德莱尔诗集《恶之花》的封面上。\n 一幅背负黑暗的神秘性感女子的画作与波德莱尔关于死亡的思考的诗相结合，令人无法抗拒。\n\n我趁机买了一张海报，独自站在河边欣赏。相信路人一定会笑着说：“那人一定是几分钟前读过波德莱尔的书，把自己的忧郁和波德莱尔的文字结合起来，心情好一些了。”不过，这张照片还是不错的。\n\n当我继续看河时，一只天鹅走过来了。 “你和我一样孤独。”我心里想，并分享了我的悲伤……\n\n第二只鸟来了。我是唯一一个独自沉浸在波德莱尔作品中的白痴。我怀着悲伤的心情，前往位于购物区的另一家玩具店。\n 这家餐厅是我这次独自旅行中最好的体验。精彩的！\n\n这家店的陈列柜里装满了当时的怪物软胶，但它实际上兼作和服店，这似乎是商店的主要焦点。占据商店的软胶是“我妻子责骂我放弃我的爱好，所以我别无选择，只能撤离”的结果。所以没有价格标签。\n 互联网上的信息很少。上面写着：“店主非常害羞，任何取笑他的人都会立即赶走。”这位爷爷的人生目标是在乡村装饰软胶怪物，所以他一定是你在照片中想象的那种固执的父亲。然而，当我被展示所感动并与他谈论哥斯拉时，他似乎很高兴并与我交谈了几分钟，并且还以在东京找不到的价格给了我吉冈。脾气暴躁的玩具店老板认出了我。我还被允许在店内拍一张特别的照片。\n\n当我向店主展示我房间里的软乙烯基收藏品的照片时，他非常高兴。有人告诉我，“我打赌东京有很多黑多拉软胶唱片”，我回答说，“我住的中野百老汇有很多，所以请有时间过来看看。”然后我离开了商店。\n 这是一次收获颇丰的旅行，从东京千里迢迢来到冈山也是值得的。我想尽快在家里展示Gigan，因为颜色已经褪色，而且当时看起来非常优雅。店主委托我购买当地一家玩具店的一件稀有物品，但网上没有任何信息。这是一个像小知龟一样的故事。谢谢你，这是一生难忘的回忆♪\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -59,7 +58,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

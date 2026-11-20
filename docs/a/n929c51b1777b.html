@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：安乐死</title>
+<title>一口随笔：安乐死</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-15 04:46</p>
-  <h1>短文：安乐死</h1>
+  <h1>一口随笔：安乐死</h1>
   <p class="ja-title">一口エッセイ:安楽死</p>
 </header>
 <main>
@@ -30,11 +30,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくお願いします。僕が間違いなくこの世界に存在した証です。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：安乐死\n\n我一整天都在思考戈达尔的安乐死。\n 我最初了解电影导演戈达尔是因为导演押井守经常愉快地谈论戈达尔的作品。戈达尔是一个被据说很有审美观的押井守描述为“很多有美感的人”的人。这样的一个人选择安乐死的事实让我困扰了一段时间。\n 直到现在，一想到安乐死，我就想到了“赤城”。就连他赌上性命的麻将游戏规则都变得模糊，所以赤城并没有因为衰老而失去自我意识，而是决定趁着自己还活着的时候自杀。他的生活方式给我小时候留下了很大的影响，让我知道人死了才是完整的。\n 为了实施安乐死，必须满足非常复杂的条件。为了将自己从90多岁的身体中解放出来，戈达尔一定也面临过许多挣扎和决定。光是想象就让我无法停止对它的钦佩和恐惧。\n 这是“死亡”。这是一个平等的、绝对的东西，一定会出现在生物身上。根据您自己的意愿选择它。我从理论上理解它。如果像赤城一样，我不再知道自己是谁，甚至不再理解我最喜欢的书的文字，我可能会直觉地认为是时候放弃对生活的执着了。然而，我还太年轻，到了那个年纪，我仍然无法抗拒“失去知觉”的恐惧。\n 我认为，随着人们年龄的增长，他们的思维会变得模糊，对即将到来的死亡的恐惧也会减少。我的身体和大脑停止了运作，我对这个世界的执着也逐渐消失了。\n 然而现在，我还有很多事情没有做，我想看的电影、我想看的书也有无数。我还有一些创意想要输出。我不想在这种情况下死去。然而，我并没有信心能活到晚年，直到度过巅峰时期。我没有丝毫的承受能力，我的身体逐渐衰弱、恶化。\n 您很有可能已经处于巅峰期。以现在的状态结束自己的生命并成为永恒，难道不是比破坏晚春时节而被遗忘更好吗？我想了好几次。尤其是最近在繁忙的日程中，连身边应该信任的人都开始变得像敌人一样时，我心里想，最好还是把这个问题彻底解决掉，以免它变成一个麻烦，变成一个巨大的炸弹。\n\n就在此时，导演戈达尔被安乐死。\n 我还太不成熟，什么都不懂。不过，我能理解赤城那句话的分量，“我必须死……”那是因为赤城心中滋长的使命感。\n 这句话没有答案，也没有妙语，因为我距离死亡还很远，我对这个世界有一份执着，我对热爱我作品的粉丝们也有一份感恩之情。也许我们会以某种方式挣扎并坚持生命，直到我们必须死亡的时刻到来。\n\n我非常感谢您对同人志和编辑每日日记的商业论文集的帮助。这是我确实存在于这个世界上的证明。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

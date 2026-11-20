@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：当你最喜欢的小乐队变成大乐队时失去兴趣的模式</title>
+<title>一口随笔：喜欢的小众乐队一旦走红就失去兴趣的情况</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-14 05:50</p>
-  <h1>短文：当你最喜欢的小乐队变成大乐队时失去兴趣的模式</h1>
+  <h1>一口随笔：喜欢的小众乐队一旦走红就失去兴趣的情况</h1>
   <p class="ja-title">一口エッセイ:好きなマイナーバンドがメジャーにいったら興味を失くすパターン</p>
 </header>
 <main>
@@ -28,11 +28,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：当你最喜欢的小乐队变成大乐队时失去兴趣的模式\n\n让我们花点时间回答您的问题。这就是今天的问题！\n\n“我对 Nyalla 也有同样的感觉，当我最喜欢的小乐队变成大乐队时，我就对它失去了兴趣，所以我该怎么办？”\n 我明白了。确实，自从今年年初发布游戏以来，关注者和读者的数量急剧增加，而且我的粉丝不仅来自日本，还来自世界各地。我对此感到非常高兴。不出所料，当这样的事情发生时，你不可避免地会开始以与以前不同的方式看待事物。我理解你的感受。\n 这个人问这个问题的好处在于他担心“我该怎么办？”虽然她不再是一个只有她自己知道的小人物，但你可以看到想要继续爱她的挣扎。如果他真的失去了兴趣，他的语气就会是“已经变成大佬了哈哈”之类的。谢谢。\n 但总而言之，“停止追击”似乎是最好的解决办法。个人认为，即使数字发生变化，也不意味着本质发生了变化。直到现在，我仍然过着看动漫、看书、一个人睡觉的重复生活方式。确实，随着经验的增加，我的活动范围也扩大了。因此，改变的是接受者的心态。你无法控制别人的观点，所以如果你觉得“我对它变得更加主流感到失望”或“我觉得我已经走了很长一段路”，我希望你尊重这种情感。当我暗恋的一件作品大受欢迎时，我常常会想，“现在很难碰它了……”\n 当然也有例外，但我不认为人们会改变他们的核心。宅男特别喜欢追随过去，所以我觉得他们长大后也会更深入地挖掘自己喜欢的东西。梅原还说过这样的话：“成功的人倾向于投资未来，但我会继续追求我过去喜欢的东西。”也许他们的一生就是为了看看他们能多接近与朋友在昏暗的拱廊里度过的日子的乐趣。\n 我也喜欢动漫、特效和书籍，这就是为什么我住在中野百老汇附近并且总是收集它们。收藏的处理量和规模都在增长，但说实话，我就是无法忘记童年时的兴奋。\n\n即使是现在，我仍然最喜欢闪亮、透明的怪物软乙烯基！根据经验，我永远不会动摇我生活的这个核心部分，所以如果你突然怀旧并想，“那时我爱尼亚拉”，然后你再次阅读我的日记，甚至有一瞬间你会觉得“他们成为了主要人物，但现在你想起来，就像这样”，仅此一点就让我满足了。唉，卖东西的人真烦人！我希望每个人都能永远拥有这种感觉。其实很烦人！别再奉承大众了！\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

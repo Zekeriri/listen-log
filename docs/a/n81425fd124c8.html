@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>蒙德里安与孤独</title>
+<title>蒙德里安与寂寞感</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-16 02:42</p>
-  <h1>蒙德里安与孤独</h1>
+  <h1>蒙德里安与寂寞感</h1>
   <p class="ja-title">モンドリアンと寂寥感</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
 商業エッセイ集もよろしくね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"蒙德里安与孤独\n\n昨天我说我喜欢看建筑和风景，但奇怪的是，即使我自己看到它们，我也不会很兴奋。这可能需要一段时间，但奇怪的是，我比看书更喜欢看房间里的照片。\n 今天，我去大崎车站开会。这里有一个非常大的商业设施，内部装修豪华，气氛很好。外面的大雨也是一种好听的口音。不过，我觉得照片里的样子更好看。由于会议前有一些空闲时间，我决定坐下来思考一下原因。\n\n我喜欢蒙德里安的画作，尤其是他用浅色绘制的椭圆构图。当我看到像阈限空间这样的空旷空间时，我会想到蒙德里安的画作。从这个共同点中，你也许能够了解自己的爱好和偏好。\n\n在我看来，蒙德里安的画唤起了一种孤独的感觉。格子图案的平衡给人一种“一种机械的孤独感，画中没有人类或生物。”我喜欢这种孤独感。阈限空间也是如此，这是一个没有人类的空间。照片中“我不在那儿”。我开始意识到这非常重要。\n 我面前有一个非常美丽的背景，但我在那里看不到自己。没有人能看到我，我感觉自己漂浮在另一个维度，就像幽灵一样。这就是我喜欢的。最终，它不一定是背景。蒙德里安所画的方形构图，将情感和节奏抽象到了极致，让我们能够想象出一个没有生物存在的场景。那种情况可能是我最理想的环境了。\n 死后，无论你是转世，还是被送往天堂和地狱，我希望你能有恩典，以灵魂的身份在这个世界上徘徊一段时间。如果能从精神FPS的角度来看看关门后的购物中心，在怀旧的空间里沉浸在“不存在的孤独”中，那就太好了。根据蒙德里安的例子，我们甚至可能不需要一个“地方”。在没有你在场的情况下查看时间线或互联网并对此感到情绪化可能是一种美妙的体验，因为它既带来愉快的悲伤又带来解脱的感觉。\n 即使我的身体还活着，我的网络人物“Nyalla”也有可能被杀死/死亡。既然如此，我愿意继续沉浸在没有人看我的孤独中，作为一个漂浮在电子空间中的灵魂。当你突然感觉到有人从你的智能手机后面注视着你，这可能只是别人享受孤独的性格的残余。\n\n包含每日日记的同人志现已在 BOOTH 发售。请把它握在手中，作为我生命的证明。\n\n我期待阅读您的商业论文集！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

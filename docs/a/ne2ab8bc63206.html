@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：神户深夜散步</title>
+<title>一口散文：深夜的神户散步</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-05-18 05:40</p>
-  <h1>短文：神户深夜散步</h1>
+  <h1>一口散文：深夜的神户散步</h1>
   <p class="ja-title">一口エッセイ:深夜の神戸散歩</p>
 </header>
 <main>
@@ -30,11 +30,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：神户深夜散步\n\n旅行时，你必须充分享受非凡，为此你必须牺牲你的计划和内心的平静，拥抱烦恼和不便。所以我没有住酒店，而是在不知道要去哪里的情况下跳上了高速巴士。\n 显然，我是在淡路岛附近神户附近的一个港口小镇下车的。行走在一座不知道向左或向右转向的城市，没有目的地，甚至没有下车的理由。虽然我们一路走来，只有大海，但时不时看到成群结队的年轻人开车抵达，深夜在海滩上嬉戏。这是他们年轻时的一页。我只是继续行走并欣赏这些景色。我什至不知道我想去哪里。\n\n独自行走2小时。我发现了24小时开放的LAMU。空荡荡的路上漂浮着的超市微弱的灯光很温柔。我一去，虽然是深夜，但还是有很多带着孩子的家庭，很羡慕小时候在灯光昏暗的超市里走来走去的经历。毕竟，即使现在我已经成年了，我仍然喜欢在深夜逛超市。\n 顺便说一句，在港口小镇散步是一种作弊行为。桥上路过的汽车尾灯装饰得很漂亮，眼角的海浪拍打着我，让我不再感到孤独。每一辆过桥的车辆上都有一个人，每个人都有自己的生活，神户和淡路岛之间的来回旅行是有意义的。太棒了。我的夜间散步毫无意义或目的。如果我不得不猜测的话，我将能够通过类似于自残的方式沉迷于自己的孤独，我的肩膀和腿因负重和走太多步而受伤。当我这样一个人的时候，即使是最小的事情也会让我感动。这就是为什么LAMU店内的背景音乐“永远微笑，一次又一次站起来，不要忘记你的梦想，这就是更像你的LAMU”在我的脑海里不断重复。\n\n继续前行，到达了明石。走了几个小时，我本想洗完汗湿的衣服就去睡觉，但在我之前做客的一位老人已经占据了我旁边的长凳（照片底部）。我别无选择，只能洗完衣服然后离开商店。不要让外人打扰爷爷安宁的睡眠。深夜是睡觉的时间。\n 我是那个在陌生的城市里继续走夜路的人，甚至不知道自己要去哪里。\n\n然而，我开始感到有点冷和疲倦。我尝试在公园里荡秋千，但在黑暗中只有铁链嘎吱作响的声音，真是令人难过。衣物需要很长时间才能晾干。当我决定再往前走时，我遇到了一个灯火通明的拐角。\n\n它的真实身份是一家深夜拉面店。每天晚上，他们都会在路口开设小吃摊，为睡不着觉的傻瓜们提供热腾腾的拉面。这是“拉面发现”。在这里，我将加入当地人的饮酒聚会，尝试战胜寒冷和孤独的夜晚。然后，在自助洗衣店洗完衣服后，我换上暖和的衣服，再次穿过陌生的城市，直到早上。我想看到像大排档这样的人性化场景在半夜静静地营业，以抚慰人类的孤独。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一点作文：变得健谈</title>
+<title>一口散文：变得话多</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-01-03 03:41</p>
-  <h1>一点作文：变得健谈</h1>
+  <h1>一口散文：变得话多</h1>
   <p class="ja-title">一口エッセイ:多弁になる</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一点作文：变得健谈\n\n从昨天起我就感觉不太舒服。\n 我不确定是否是因为临近截止日期而无法动弹的压力，或者压力是否是由与低压无关的问题引发的，但我非常困并且头痛。即使睡了相当长的时间，我还是再次因头痛醒来，不得不躺下。\n 嗯，本来应该好好睡一觉，恢复一下的，但是由于截止日期快到了，我就想办法活动一下自己的身体，最后在这种状态下写不出一篇令人愉快的文章，而在不断的放弃中，我失去了休息的时机。\n 当人们匆忙时，他们就会变得健谈。每当您的心跳加快时，您可能会为了恢复正常而过度做日常工作。今天我发了很多推文。好像在说：“你像往常一样嘀咕，所以你没事。”事实上，当我看着时间线时，我心烦意乱，感觉好一点了。但是...\n 在这种情况下，我服用了精神药物，但由于嗜睡的副作用，我无法写稿子，这很痛苦。我发布了我的困境，说：“我的情绪很复杂，所以不服用精神药物我就动不了，但如果我服用精神药物，我会很困，我无法动弹。”我不认识的人转发了我的一句话，说：“这是一个可以与精神药物一起睡觉的善良世界。”毒品。”\n 正常情况下我可以忽略这一点，但当对方挑衅一个精神疲惫的人时（虽然对方似乎只是想炫耀自己的毒瘾，并没有煽动他的意思），但他的大脑中却产生了共鸣。我很想说这样的话，“我很抱歉作为一个精神药物起作用的善良世界的居民，但我无法考虑像你这样生活在严酷世界的人的感受，”但我抑制住了这样做的冲动，因为实际上把它写下来会侵蚀我的精神。当你软弱的时候，SNS就不好。\n 急躁和紧张会导致错误。最好的解决办法就是保持沉默、冷静，而大多数问题的答案就是沉默。写得太快几乎永远不会带来好的结果。当一个说谎的人变得心慌、多话时，那只是因为他们明显心烦意乱。让我们冷静下来。但头痛和心悸却让我失去了平静。\n 我仍然不知道这是否是发作性睡病，一种由压力太大、血压低、植物神经失衡或以上因素的组合引起的适应障碍，但今晚我会放弃手稿并获得充足的睡眠。抱歉让你担心了。但如果我发推文我就会冷静下来，所以请原谅我。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

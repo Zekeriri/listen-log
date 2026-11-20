@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：《手术与多罗罗》</title>
+<title>一口随笔：手术与《どろろ》</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-18 02:13</p>
-  <h1>短文：《手术与多罗罗》</h1>
+  <h1>一口随笔：手术与《どろろ》</h1>
   <p class="ja-title">一口エッセイ:手術とどろろ</p>
 </header>
 <main>
@@ -30,11 +30,10 @@
 商業エッセイ集もよろしくね。お母さんの話をいっぱい書いてある！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：《手术与多罗罗》\n\n我预约了眼科手术。在一家大医院接受检查后，将于下月底在他的眼睛中植入镜片。我的视力将会恢复正常。\n 我很抱歉再次谈论健康，但这是我生活中的一个重要话题，所以我会一遍又一遍地写它。\n 慢慢地，我们开始治疗他的鼻子、眼睛和牙齿，但总费用将达到数百万日元。在与健康相关的方面没有必要吝啬，所以我对价格没有抱怨。然而，有一个问题与金钱无关。尽管他得到了期盼已久的健康身体，但他唯一应该幸福的家庭——母亲却并不在身边。\n 从小到大，我的鼻子、眼睛、牙齿一直处于最糟糕的状态（由于鼻子功能不正常，只能用嘴呼吸，所以眼睛和牙齿的情况变得更糟），每次住院，我记得看到母亲道歉，说：“对不起，我没有好好生下孩子。”我明白这不是母亲的错，所以道歉比疾病更痛苦。\n 到了初中的时候，我的身体已经长大了，可以做手术了，但因为家里没钱，我放弃了。对于一个女人来说，独自抚养一个蹩脚的孩子已经够艰难的了，但她又不能再损失数百万美元。\n 他还说：“对不起，我很穷。”所以我向他保证，“总有一天，我们会一起解决这个问题。”但是，最后我妈妈选择了一个新的男人，我最终自己付了全额费用，没有妈妈的任何参与。那很难。\n 我从来不想要钱。哪怕是5万日元、10万日元，妈妈也想兑现“修好”的诺言，分享自己的感情。即使是对方也想看到我所有五种感官齐齐的那一刻。这一刻，无法正常分娩的遗憾消失了。\n 但这并没有发生。以后我们可能不会再见面了，而且我没有家人陪伴，所有的手术和住院都得我一个人承担。就像我来到东京后一直在做的那样。\n 一旦她克服了手术的障碍，她将不再有机会依赖母亲。直到几年前，我也曾多次想过是否有什么办法可以联系到他，对他说：“我想尽快修复我的鼻子，你能给我一些手术费吗？”当然，手术费用是公平的，他的主要目的是与母亲和解。但我不能这么做，因为我害怕继父，而且我没有什么依靠，我和妈妈的关系在精神上就会彻底断绝。看到我健康有呼吸，最应该高兴的人就是我的妈妈，甚至比我更高兴。\n 抛开这个不谈（我只是夸张地写在我的日记里），我最近一直很喜欢它，因为它很有趣，它类似于多罗罗，当你在互联网上变得更加活跃时，随着你的关注者和创作数量的增加，你可以获得身体部位。\n\n包含日常日记的同人志现已在摊位上出售。有趣的是，有些日子经常出现黑暗内容！\n\n我期待着阅读您的商业论文集。我写了很多关于我妈妈的故事！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

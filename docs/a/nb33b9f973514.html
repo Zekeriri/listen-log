@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>速文：从性价比角度看娱乐</title>
+<title>一口随笔：从最性价比的角度来看娱乐</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-03 03:58</p>
-  <h1>速文：从性价比角度看娱乐</h1>
+  <h1>一口随笔：从最性价比的角度来看娱乐</h1>
   <p class="ja-title">一口エッセイ:最もコスパの良いという観点からの娯楽</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"速文：从性价比角度看娱乐\n\n最近，我看了很多库布里克的作品，觉得我应该把它们都看一遍。顺便说一句，到目前为止，我最喜欢《发条橙》的日文版广告。当然，这是假设主要故事的视觉美感的前提。采用复古的日文字体，高速显示“后社会化”、“暴力”等令人不安的词语，显得廉价。\n 现在，当我看这部电影时，我想起几年前内藤泰弘曾说过一句现实的话：“我在看了 200 小时的《辐射 3》后就停了下来。这相当于 100 部电影的量。”作为一个漫画家，100 部电影对我来说更有效，所以我要咽下眼泪并结束它。”\n 即使在娱乐形式中，电影的制作成本也特别高且耗时，而且上亿美元的成本被压缩到一个两小时的视频中，所以从性价比来看，享受一部有趣而豪华的电影可能是你能拥有的最奢侈的时光。费用约为2000日元，但如果通过直播观看，只需几百日元。糟糕的……！\n 当然，从性价比或成本方面考虑是愚蠢的，但不管怎样，看电影在短时间内只是一种令人难以置信的体验。而且，正如内藤先生所说，创作者可以通过观看100部电影来积累不可思议的力量。\n Shinichi Hoshi 写道，“没有简单的方法来提出一个想法（平行翻译）”，这当然是正确的，但如果你不采取行动，想法永远不会出现在你身上，所以在这种情况下，我认为正确的解决方案是观看一部两小时的电影，其中充满了数十亿美元以及利用它的艺术性和娱乐性。只要消费好作品就能给你生活带来活力。\n 通过写下这些，我认为能够回答诸如“我没有动力去做任何事情”、“我不享受生活”和“我不知道该做什么”等模糊的担忧，这些都是我经常收到的标准问题，“就看电影吧！”如果你被某件事困住了，就专注地看两个小时的电影。如果有趣，就发挥你的创造力，如果无聊，就用你的愤怒作为移动身体的力量。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>快速文章：蒙德里安的抽象画</title>
+<title>一口随笔：蒙德里安的抽象画</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-31 03:21</p>
-  <h1>快速文章：蒙德里安的抽象画</h1>
+  <h1>一口随笔：蒙德里安的抽象画</h1>
   <p class="ja-title">一口エッセイ：モンドリアンの抽象画</p>
 </header>
 <main>
@@ -31,11 +31,10 @@ pic.twitter.com/Jp2uQAxF7m— Liminal Spaces (@SpaceLiminalBot) May 23, 2022
 長文エッセイをまとめた商業エッセイ集もよろしくね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"快速文章：蒙德里安的抽象画\n\n我很喜欢蒙德里安的画，最近也跟着Kraftwerk的机械音乐看画，沉浸在图案般的世界里。显然，我在音乐和艺术方面发现了简单之美。这是一种我无法用言语表达的感觉，但当我享受常规的事情时，我会感觉更好。\n\npic.twitter.com/Jp2uQAxF7m — 极限空间 (@SpaceLiminalBot) 2022 年 5 月 23 日\n\n我无法很好地解释，但蒙德里安的画给我的感觉就像《极限空间》一样的舒适感，而《极限空间》中空虚的焦虑和怀旧，以及处于另一个空间边缘的感觉，在蒙德里安的抽象绘画中也能感受到。当我在孤独的深夜听着Kraftwerk的音乐在这两者之间来回穿梭时，我的思绪逐渐融入到空间中，令人心旷神怡。\n 蒙德里安的画应该按照画的顺序来看，你会被从风景和水彩开始，从世界中提取“普遍之美”，逐渐开始画抽象方块，最后走向“终极平衡”之美的过程所感动。最重要的是，水彩画《孤挺花》很精彩。更让我感动的是，在这幅无机印象的抽象画背后，隐藏着一种与《孤挺花》中所描绘的感觉相似的感觉。\n\n我一直想看看真正的孤挺花，但好像是私人收藏，所以这个梦想无法实现。当艺术被大众欣赏时，艺术完全属于你自己，这是多么美妙的经历。作为一个有收藏习惯的宅男，羡慕得不禁哽咽。我活着的目的是在我死后能把我的房间像博物馆一样展示出来，这样我就可以炫耀我生前收集的藏品。\n\n我现在正在读的蒙德里安的书总是以“所以......”或“下一步......”结尾，就像下一部杰作动画的预览一样，所以每次我翻开这一页我都会兴奋地想，“蒙德里安......下一步是什么？” pic.twitter.com/Q8HlScwoGP — Nyalra (@nyalra) 2022 年 5 月 30 日\n\n包含每日日记的同人志正在 BOOTH 发售！\n 昨天刚出版了一本新书。匆忙！ ！\n\n另请查看我们的商业论文集，这是一本长文集！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

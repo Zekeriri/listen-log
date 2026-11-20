@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：没有保险和暖气的生活</title>
+<title>一口随笔：没有医保卡的生活与暖气</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-18 05:50</p>
-  <h1>短文：没有保险和暖气的生活</h1>
+  <h1>一口随笔：没有医保卡的生活与暖气</h1>
   <p class="ja-title">一口エッセイ:保険証の無い生活と暖房</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：没有保险和暖气的生活\n\n有一天，编辑对我说：“尼亚拉桑，我第一次见到你的时候，你没有保险卡。我很震惊有些人没有保险卡。”这让我感到怀念。\n 是的，直到几年前，我负债累累，甚至没有时间参加国民保险。由于无力承担每月数千日元的生活费用，他选择独自生活，不用担心受伤或生病。我当时就知道是这样，但现在想起来，这可是大事。\n 我不仅没有保险，而且我那间破旧的公寓连空调都没有，夏天热得要命。随着房间里的温度升高，他的视野中出现了越来越多的昆虫，但他觉得这比工作的恐怖要好，所以他继续睡觉，交房租。我喜欢冬天。昆虫会自行消失，只要穿暖和的衣服，就不需要空调。那些天的结果是，即使现在我的房间里有空调，我也很少使用暖气。身体已经开始排斥微温的风，因为它“不自然”。\n 在那种环境下，我以为如果我生病了就完事了，但我还是设法做了一些事情。安眠药可以从海外进口。我以为我已经很努力了，但转念一想，我因为没有努力而生活在贫困之中。然而，医院的设施却令人惊叹。每个人都很友善。即使是像我这样可疑的病人，他也非常细心地对待。每当我与牙医或新平人民进行热烈的交谈时，我都会为这个国家的福利有多么惊人而感动。\n 不管怎样，今天早上天气太冷了，我从床上跳起来后，就跳上跳下取暖，还用膝盖踢墙。精彩的跳跃膝踢。如果是格斗游戏，我肯定你会输入“→↓↘︎＋K”，但这是一个跳跃膝盖。我的脚还是很痛，我躺在床上，但我平时只是躺在床上看书或看动漫，所以虽然我的脚很痛，但没有任何改变。顺便说一句，明天没什么事，所以即使继续疼痛也没有什么问题。从某种程度上来说这很悲伤，但是……\n 我并没有这样的感觉，而是真诚地希望我能打开暖气，但我感到一种毫无意义的自豪感，因为我独自在寒冷的房间里忍受的生活是我在没有保险卡的情况下建立的生活。还是很冷！\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

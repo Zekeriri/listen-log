@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文选：卡夫卡作为妹妹的“转变”</title>
+<title>精选一口散文：作为妹妹题材的卡夫卡《变形记》</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-09 02:26</p>
-  <h1>短文选：卡夫卡作为妹妹的“转变”</h1>
+  <h1>精选一口散文：作为妹妹题材的卡夫卡《变形记》</h1>
   <p class="ja-title">選り抜き一口エッセイ:妹モノとしてのカフカの「変身」</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 今月末には、長文エッセイが収録された商業エッセイ集もでます。書き下ろしもたくさんあってお得！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文选：卡夫卡作为妹妹的“转变”\n\n我在美少女游戏这种令人沮丧的游戏类型的背景下读了卡夫卡的《变形记》。\n 这是因为学生时代的“萌”热潮促使许多出版商尝试将现有的概念与美丽的女孩结合起来。后来，由于一些编辑对文学的关注，出现了一本以“二次元美少女”的方式介绍文学名著女主角的书，名字叫“萌名著文学”。\n 一个名叫尼亚鲁拉的小男孩在书店看到了这本书，翻了几页，却发现卡夫卡的变身被介绍为一部“萌姐”作品。虽然我对《变身》的标题和开头很熟悉，但我不知道这是一部能够“激励我的妹妹”的作品。作为独生子，当时我对妹妹角色有着强烈的崇拜，所以我立即选择了《变身》。\n 由于《萌名文学》上已经刊登了美少女的插画，我的思绪就转向了“以忠诚的女主人公为主角，结局令人沮丧的短篇小说”，现在我只能把它当作美少女游戏来读，尤其是那种以荒诞和压抑着称的美少女游戏。\n 当这种情况发生时，我不禁觉得妹妹照顾变成害虫的萨姆莎真是太可爱了。当然，宠爱哥哥的妹妹角色也数不胜数。然而，萨姆莎的姐姐是唯一一个愿意照顾她哥哥的人，即使他变成了害虫。\n 于是，一群奇怪的宅男诞生了，他们以妹妹的身份读《变形记》。连天堂里的卡夫卡都会对此感到惊讶。\n\n包含日常文章的同人志现在正在展位上出售。请阅读它。\n\n本月底，包含长文的商业论文集也将出版。有很多新的作品，所以很划算！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

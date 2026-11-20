@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：心跳与良心回路</title>
+<title>一口随笔: 心脏的跳动与良心回路</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-30 06:00</p>
-  <h1>短文：心跳与良心回路</h1>
+  <h1>一口随笔: 心脏的跳动与良心回路</h1>
   <p class="ja-title">一口エッセイ:心臓の鼓動と良心回路</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：心跳与良心回路\n\n从这个月初开始，我的心跳开始加快，跳动得更快，可能是因为压力的缘故。昨天，我在针灸治疗期间咨询了一位医生，他告诉我，有可能是“压力导致呼吸浅、缺氧、血流不畅，从而给心脏带来压力，使其跳动加快。”\n 所以，今天我醒来的时候，我的心扑通扑通地跳。如果你遇到这种状态的人，你可能会非常兴奋，甚至可能误认为这是无条件的爱。用爱覆盖它可以吗？没有人愿意和一个心跳加速到无法正常交谈的御宅族谈恋爱。\n 当然，心脏是身体机能的中心，所以如果它出了问题，就很难正常运作。你经常呼吸粗重并感到烦躁，所以你没有时间好好思考。仔细想想，生物的心率似乎也有一个上限。换句话说，我的寿命毫无意义地缩短了，因为我的心脏不会停止跳动。也许这就是我感到“不耐烦”的原因。也许是因为寿命消耗加快了，我感觉自己的大脑想太多了，如果我不快点生活，我就入不敷出。让我平静地生活。\n 虽然头不能动，但心里还是着急，只好到附近散步。由于昨天接受的针灸治疗的副作用，我的身体感到刺痛。我随着加速的心跳，全心全意地继续前行，来到了一个叫做“东高圆寺北”的地方。 “东边高圆寺以北的一点”很复杂……我什至不知道如何回家，因为我只是一直走，什么也没看。我有麻烦了，我有麻烦了。首先，没有什么特别的理由回去。我的心砰砰直跳，回到家后我无法平静下来，所以永远继续走下去对我来说精神上更容易。即使我躺着，心脏仍然继续跳动，这很可怕，我的胸部会痛。当你行走时，那就变成了虚假。\n 又走了几分钟，我已经不知道自己身在何处了。我在 Discord 上收到了一条似乎与工作有关的提及，但我根本不想打开它。如果我打开它，我的心跳会再次加速，从而缩短我的寿命。\n 我的心如触电一般狂跳，腿断了一样无法停止。我感觉自己好像是一个机器人。我是基凯德尔。 Kikaider 内置了良心电路，但我想知道我的良心电路是否真的起作用了？你能清楚地判断什么是好什么是坏吗？想想看，我并不认为选择“进入幻觉世界的药物”是“邪恶”。我们生活在这样一个孤独的现代世界，与其在这样的地方过着正常的生活，如果有一种“让你进入幻觉世界的药物”就在你面前，你不应该服用吗？我就是这么认为的。至少我会比现在盲目地走来走去，分散自己内心的痛苦要幸福。如果我们有一个良心回路，我们不就会有这样的想法吗？\n 嗯，Kikaider的良心回路也不完善，所以没关系……我同意了，因为累了，就去公园休息了。夜晚的公园里，有几对情侣在等待见面。与我不同的是，他们的心因“浪漫关系”而剧烈跳动。多么高兴啊！那些人不再需要“将他们带入幻觉世界的药物”。大脑化学物质的回报已经是无穷无尽的，你正在被邀请进入一个只属于你们两个的梦想世界！\n 老实说我不在乎这个。公园正好在车站附近，所以我决定坐火车回家。这几个小时的意义是什么？嗯，没关系。通过这样简单的时间的积累，心灵的康复一定会带来康复。想想看，我忘了联系他处理工作事宜。我想我毕竟没有良心回路。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

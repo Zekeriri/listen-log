@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一点文章：Onegai☆Twins</title>
+<title>一口随笔：请☆双胞胎</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-21 03:01</p>
-  <h1>一点文章：Onegai☆Twins</h1>
+  <h1>一口随笔：请☆双胞胎</h1>
   <p class="ja-title">一口エッセイ:おねがい☆ツインズ</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 商業エッセイ集もよろしくね。こちらはとても濃いめの味わいに。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一点文章：Onegai☆Twins\n\n暧昧的季节到来了，不知道是热还是凉。是的，现在是Onegai☆Twins的季节。\n\nThe atmosphere of this anime is really great.我每年夏天都会玩。精致的背景艺术很美，当你聆听KOTOKO和佐藤博美的最佳主题曲时，你会立即被吸引到乡村的夏天。无论你选择什么场景，面前都有一个季节可以和两个女孩一起度过。它是如此“真实”，即使是一个普通的场景也会让我热泪盈眶。\n\nThe story is quite simple;来到主角家里的两个女孩，一个是他的妹妹，另一个是陌生人。三人在不知道自己与谁有关的情况下开始同居，并最终坠入爱河。が、兄妹で恋爱することはできない……片方は芽生えた情感を强制的に谛めなければならない。\n\nもちろん香气囲気のみでなく、本筋も素晴らしい。 就像《二子另类》一样，日常生活的场景每时每刻都在美丽地进展，两位女主人公和主角试图欺骗扭曲的“三合一”关系。歌曲副歌中有一句“因为我们活在有限的时间里”，女孩们拼尽全力度过青春有限的时光，直到发现彼此有血缘关系。这是一个令人心碎又微妙的夏日故事，预示着随着三人关系的加深，必将到来的“结局”。\n\n包含日常日记的同人志现已在 BOOTH 发售。こんな何気ない日常が、いつか光り辉く宝物となるのでしょうか？\n\n我期待着阅读您的商业论文集。这味道很浓。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

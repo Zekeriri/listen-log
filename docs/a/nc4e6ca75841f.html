@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：“自由”是御宅族最大的武器</title>
+<title>一口随笔: 「闲」才是御宅族最大的武器</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-09 13:02</p>
-  <h1>短文：“自由”是御宅族最大的武器</h1>
+  <h1>一口随笔: 「闲」才是御宅族最大的武器</h1>
   <p class="ja-title">一口エッセイ:「暇」こそオタクの最大の武器</p>
 </header>
 <main>
@@ -23,11 +23,10 @@
 毎日の日記をまとめた同人誌をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：“自由”是御宅族最大的武器\n\n事实上，我现在的生活有很大的余地。 《Nidiga》的 Switch 版本已经发布了，我已经完成了剩下的主要工作，终于开始有暑假的感觉了。幕后还有很多计划，但我还有一些余地。所以我做的第一件事就是在两天内玩了 20 个小时的 Splatoon。像这样大胆地利用你的时间很重要。\n 当然，体验式成长可以通过创造或劳动来培养，但我认识到，你越享受空闲时间，你积累的知识和思考就越多。我不上学，也不找工作，当别人把时间花在学习或工作上时，我总是在看书和看动画，所以我觉得我从这次经历中获得的投入正在被运用到我的游戏创作和日常文章中。换句话说，为了再次创造一些东西，你需要在一段时间内拥有尽可能多的空闲时间。多么高兴啊！\n 我认为你的知识和直觉（这里的直觉是指预测一个项目在网上如何被接受的能力）取决于你在御宅族亚文化中有多少空闲时间。我见过很多在御宅族/亚文化行业工作的人，但却太忙而无法跟上内容，这似乎是一个矛盾。这个世界上重要的是直觉和与对方喜欢的作品一起享受乐趣的能力，只要具备这两点，你就可以做任何事情，所以每次你因为忙碌而从动漫或漫画中休息时，你也远离了本质。本末倒置。\n 就Nidiga而言，我负责在一定程度上调整他的上网方式，我相信这是我的一种隐藏能力，但除了“我已经关注Twitter并发布推文超过10年，所以我有点理解它”之外，没有其他方法可以解释他是如何获得这种能力的。通过工作了解Twitter规范的人与作为用户投入时间的人的感觉完全不同。在这种情况下，无所事事的 Twitter 极客获胜。具有讽刺意味的是，洞察现在已经达到基础设施水平的 Twitter 将比内容行业的任何其他人更有价值。在SNS上受欢迎是最重要的，闲暇时花大量时间上网的书呆子比花时间学习或工作的有才华的人更能意识到这一点。这种平衡很有趣。\n 不管怎样，拥有空闲时间真是太好了，这就是我们人类的本质。我得出的结论是，这是一种寄生虫。话虽如此，我已经收到了很多工作机会。这是创造周天酱这个角色的原作者的责任，这意味着他成为了一个被女儿操纵的人的“父母”……我别无选择，只能成为一个成年人。\n\n请欣赏整理每日日记的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

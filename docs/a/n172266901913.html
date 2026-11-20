@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：一个关于迷失孩子挣扎的故事</title>
+<title>一口随笔：迷路奋斗记</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-06-01 03:57</p>
-  <h1>短文：一个关于迷失孩子挣扎的故事</h1>
+  <h1>一口随笔：迷路奋斗记</h1>
   <p class="ja-title">一口エッセイ:迷子奮闘記</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪ 同人は新刊でたばかりだよ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：一个关于迷失孩子挣扎的故事\n\n我在第一次参观的大楼里开会，但由于我对该地区不熟悉，即使我打开谷歌地图也找不到地点。地图上就在附近，但我找不到。这种事情经常发生。\n 你可能会认为你不可能迷路，因为你有谷歌地图，但即使有地图应用程序，我仍然会迷路。这很奇怪，但我不知道如何应对，所以我只能当场担心。\n 于是，正如我所料，我又在兜圈子，很担心，但我决定打电话给制作人（他在我前面的位置等着）询问他的情况。通过这样做，到达目的地的可能性会大大增加，并且你可以营造一种氛围，在这种氛围中你可以说：“我一直想准时到达，所以我无法控制。”虽然我有动力。”其实，虽然我没有任何犹豫，但我还是毫不犹豫地做到了。而且，我觉得在这种时候突然打电话会很有趣。一石三鸟。\n 于是制片人就拿起了电话。当然。因为他们正在等我的到来。抱歉~。当我说：“应该就在附近，但我不知道是哪一个，”她说，“没错！”它位于一座非常难找到的建筑中。”显然，无论我怎么想，这都是一座非常困难的建筑。\n 口头解释您当前的位置。酒店设有家庭市场和酒吧。不过制作人是第一次来这个地方，所以并不知道这家店的名字。这时，他想到了一个好主意：“让我通过视频通话带你参观一下。”太神奇了！他是成年人了……我一生中从未使用过视频通话功能，所以这是一个盲点。我想制片人肯定已经带领过我们这样没有方向感的人很多次了。这很酷。\n 然而，我还是找不到。我意识到它似乎很接近。即使在应用程序上，它就在您面前。然而，尽管它就在应用程序中，但由于某种原因而找不到它的情况并不常见。\n 当我向制片人询问比尔的特点时，他说：“他有点奇怪的时尚。”时尚……这是基于感觉的判断。这么说来，虽然是一栋普通的建筑，但黑白单色的设计给人一种平静的印象，看起来很时尚。在我的脑海里，我已经被“建筑有什么时尚之处？”所主导，这与迷失的本质无关。制片人在电话里问我“发生了什么事！？”，但我的脑子里已经充满了想法：“什么是最时尚的建筑？”我不知道它到底会不会是一座哥特式建筑的教堂。不，如果你要理解“奇特时尚”这个词，我会说它不是一座视觉上气势磅礴、金光闪闪的建筑，而是有一种微妙的结构美，让懂它的人都能欣赏到。那么包豪斯...\n 思绪越走越远，我才回过神来，因为制片人似乎很想让我快点来。然而，这并不意味着情况有所改善。最终我绕了大约5分钟才找到。该建筑的外观采用木材，给人一种自然的感觉。这就是制片人所说的“奇怪的时尚”吗？仔细想想，这种轻微的口音会让人觉得“奇怪”。我明白了，这是有道理的。\n 结果，我开会迟到了大约15分钟。我每天都在努力工作，在幕后推进各种项目。\n\n敬请期待收录了日常日记和商业随笔集的同人志♪ 新同人志刚刚出版。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

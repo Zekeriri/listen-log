@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一次性文章：泄漏是一只毛毛虫</title>
+<title>一口随笔：我是一条虫</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-01-24 06:01</p>
-  <h1>一次性文章：泄漏是一只毛毛虫</h1>
+  <h1>一口随笔：我是一条虫</h1>
   <p class="ja-title">一口エッセイ:漏れは芋虫</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
  眠れば、きっと再び僕は学生として沖縄の道を歩き出す。死ぬ寸前の芋虫が見た、自分が人間だった頃の幻覚のように思えて、罪悪感に気づいてしまうと、今度は現実の方に堕ちていく。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一次性文章：泄漏是一只毛毛虫\n\n当我裹着蒲团一动不动地坐在黑暗的房间里时，我开始把自己想象成一只臃肿的毛毛虫，唯一的自我意识已经变得臃肿。\n 你把“自私”和“痴迷”混为一谈，真是恶心。他给人一种无能为力的感觉，因为这是一个难以相处且敏感的人的“困扰”，但实际上，当事情不按他的意愿发展时，他就会变得暴力。他内心深处很鄙视自己，但由于他的智力与毛毛虫相当，所以尽管他自以为知道自己在做什么，但他还是不断地重复同样的错误。不，我猜他们根本不明白。\n 小时候，我很害怕《Z高达》中艾玛宣扬的场景，“不要为了自己的方便而区别对待大人和小孩！”这很可怕，就好像我凝视着未来，以为长大后别人会这样看待我。那真令人恶心。因为它们是毛毛虫，所以它们能做的就是在大人和孩子之间做出不舒服的动作。\n 然后，当我看邓拜恩时，有一句台词是“不要为了方便而不同地使用男人和女人！”我不认为他是有意识地这样做的，所以我猜富野导演真的很讨厌“为了方便而使用不同东西的弱者”。那也确实很可怕。只要用一种思维方式，人类就可以作为受害者面对任何事件。每当我引发问题时，我都会厌倦于想象自己方便地假装成受害者并逃跑。\n 然而这些事情并没有改善，反而生长出扭曲的自我意识。我感到恶心，但毛毛虫所能做的就是吃掉它前面的叶子。就我而言，我最终只是睡着了。这就是我能做的。\n 你必须像脱皮一样摆脱膨胀的自我，但如果你这样做，你将一无所有。这很可怕，但像我这样的人能够在世界上留下任何东西，这也显得很傲慢。最终，我的自我再次阻碍了我，我无法动弹。一块丑陋的肉在蒲团里扭动。\n 我的大脑别无选择，只能吞噬睡眠，所以我就这样做了，当我这样做的时候，我做了一个关于我中学时代的梦。我的梦想基本上围绕着我的学生时代。大概是因为我成年之后就没有参加过什么正式的活动吧。在我的大脑深处，我仍然是一个年轻的青少年。每次出现这样的差距，都会让我感到打击，让我不舒服。\n 有一天，一位同学从少年看守所回家。他是一个会被送进少年看守所的不良分子，看起来毫无道德，但少年看守所里显然养着一只“寄生虫”。在几乎没有娱乐的监狱里，他全神贯注于新一和美琪的故事。正因为如此，当我回到学校时，我有了更多的道德感。\n 他很难和其他罪犯谈论“寄生虫”，所以他告诉了我他的印象。当他谈到他从漫画中学到的东西时，他脸上的表情让他非常高兴，而且他能够以某种方式帮助人们这一事实也让我很高兴。那时我有一个梦想。\n 当我醒来的时候，已经过去了大约一个小时，已经是凌晨了。我不想看到太阳，所以我吃了安眠药然后回去睡觉。由于药物的作用，我现在可以睡更长的时间了。我裹着漆黑的蒲团，像毛毛虫一样蜷缩起来以抵御寒冷。出于某种原因，我真的很讨厌暖气，所以我就蜷缩在床上。直到药物起效，他入睡之前，由于自我意识的扩大，他一直被那些伤害过他的人所指责的感觉所困扰。即便如此，我也不会向对方道歉，而只是在心里进行斗争，这可能就是让我感觉不好的原因。\n 睡完之后，我确信我会再次以学生的身份开始在冲绳的街道上行走。这似乎是他还是人类时的幻觉，被一只濒临死亡的毛毛虫看到，当他意识到自己的罪孽时，他开始陷入现实。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

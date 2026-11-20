@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>论文选：“便利店人”与人际关系的恐惧</title>
+<title>精选一口随笔：《便利店人间》与人际关系的恐惧</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-01 12:16</p>
-  <h1>论文选：“便利店人”与人际关系的恐惧</h1>
+  <h1>精选一口随笔：《便利店人间》与人际关系的恐惧</h1>
   <p class="ja-title">選り抜き一口エッセイ：「コンビニ人間」と人間関係の恐怖</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 でたばっかりの商業エッセイ集もよろしくね。社会との話もいっぱいあります。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"论文选：“便利店人”与人际关系的恐惧\n\n我读了《便利店人性》。一部深情而又令人恐惧的作品。它彻底地描绘了人物与社会格格不入的“错位”，让我们不断接触到人际关系中不愉快的部分。发生在后院的狭隘人际关系的阴险和复杂性。我实在受不了了，立刻戒掉了，这样我才能体会到这种痛苦。\n 我在便利店遇到过因为记不住而跟不上工作的问题，而且一次又一次地粗心大意，但最重要的是，店长嘲笑了我，并把它变成了酒会上的谈话。通过创造一个无能的敌人，他就能够团结商店的其他员工。是我的错，虽然我拿了工资，但我却没有多大用处，所以我很茫然。社会是可怕的。小说对人们微妙地瞧不起同事的环境的描写是现实的，小说还以高分辨率描绘了无辜者为社会地位较弱的人（例如兼职工人或未婚人士）提供建议的傲慢态度。正派成年人给出的“建议”和“说教”是可怕的。我每句话都感受到一种强烈的怨恨感。\n 到目前为止，这可能是其他作品中可以捕捉到的恐怖经历，但《便利店人》仍然以主人公被迫融入便利店行业的艰难生活为中心，他的苦难日子读起来令人心痛。请阅读并体验这些齿轮错位所带来的绝望。\n 顺便说一句，如果你喜欢这部作品中的“与社会的脱节”，我想你也会喜欢《大志，摸鱼》。越读越觉得与社会脱节。\n\n包含日常文章的同人志现已在 BOOTH 出售。还有各种书籍的故事。谢谢。\n\n还请大家期待新的商业论文集。还有很多与社会的对话。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

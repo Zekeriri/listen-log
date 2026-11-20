@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>当地百货商店的孤独魅力</title>
+<title>地方百货中弥漫的寂寞魅力</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-06-05 10:12</p>
-  <h1>当地百货商店的孤独魅力</h1>
+  <h1>地方百货中弥漫的寂寞魅力</h1>
   <p class="ja-title">地方のデパートに漂う寂しさの魅力</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♩ 最近新刊が出ました。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"当地百货商店的孤独魅力\n\n当我去农村旅行时，我期待参观支持当地人民的大型商业设施。虽然场地宽敞，但人不多，所以给人一种昏暗而平静的感觉。我在冲绳的时候，有很多这样的设施。这在城市里是很少见的。\n\n前几天搭乘SL Ginga时下车的百货店“远野”也很不错。不仅空间太大，而且租户也不追求昭和时代的氛围，所以有一种自然的复古氛围，令人兴奋。淡紫色的墙壁也增添了孤独感。既然没有人不厌其烦地向你介绍这些微妙之处，你就只能自己去寻找并得到满足。这也不错。顺便说一句，这个地方的名字是“远野购物中心Topia”。因为是《远野物语》中的远野，所以到处都有河童的身影。\n\n电梯和柱子矗立在托皮亚的中心。当我还是个孩子的时候，我很高兴有一部可以让我看到外面的电梯。我很兴奋，心想：“现在我要享受玩具角和游戏中心了！”尽管我买不起，但比较家用电器很有趣，并想，“如果我是成年人，我不会选择这个......”如果你作为成年人去那里，工作人员会开始和你说话，这是一个问题。\n\nTopia的有趣之处在于二楼是政府办公室。在政府办公室办完手续后，你可以购买生活用品和衣服，甚至可以玩游戏中心（虽然只有奖牌游戏和UFO捕手）。这里真是一个“乌托邦”，只要来到这里，一切问题都会迎刃而解。\n\n百叶窗关闭的水平长空间给人一种监狱的印象。百叶窗的另一边，政府办公室的几个人正在闲逛，没有开灯。他们可能正在尽最大努力帮助远野市民。然而，包括这种情况，它看起来就像“人类被迫在监狱里工作”。它有一种现代艺术作品的感觉，可以让你在安全距离的栅栏后面监视公务员的工作。\n 一楼有一家杂乱的旧货店，里面摆满了雕像、书籍和交易卡，以及这座城市亚文化的收藏品。这可能是乡村爱好者唯一的地方。\n 我怀念基拉卡在墙上排列的样子，暴露在外，没有采取任何入店行窃措施。我小时候就是这样的。当然，在东京，一切都放在陈列柜里，本来就应该这样。尽管如此，看到所有这些闪闪发光的卡片散开还是令人兴奋的。快乐的。这样的场景，大概就是当地百货公司的魅力吧。\n\n请欣赏整理日常日记和商业随笔集的同人志♩ 最近出版了新书。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

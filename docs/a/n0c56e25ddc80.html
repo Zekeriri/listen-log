@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>论文选：《杀死拉斯维加斯》与嬉皮文化</title>
+<title>精选一口随笔：《击败拉斯维加斯》与嬉皮文化</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-30 16:18</p>
-  <h1>论文选：《杀死拉斯维加斯》与嬉皮文化</h1>
+  <h1>精选一口随笔：《击败拉斯维加斯》与嬉皮文化</h1>
   <p class="ja-title">選り抜き一口エッセイ：「ラスベガスをやっつけろ」とヒッピー文化</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 先月に発売した商業エッセイ集もよろしくおねがいします。こっちはトリップ感ある話が多め。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"论文选：《杀死拉斯维加斯》与嬉皮文化\n\n如果我出生在几十年前，我肯定会过着相信迷幻药的早期嬉皮士的生活。我永远不会忘记我在迷幻视觉中看到的沐浴在七色灯光下的房间里美丽的人物和插图。\n 基于这种迷幻经历拍摄的电影有不少，但我最喜欢的是《Let's Beat Las Vegas》。这是一部关于两个嬉皮士带着装满毒品的箱子在拉斯维加斯横冲直撞的电影，有些人批评这部电影，说，“这部电影根本没有意义！”故事只是在旅行中继续下去。相机不断地晃动、晃动，以表明其处于放松状态。\n\n这个疯狂的场景和拉斯维加斯金光闪闪的美国梦舞台结合起来很美妙，尤其是马戏团里的旅行场景（靠近游乐园），就像一个梦幻世界，现实和幻觉都疯狂，你不知道什么是真实的，作为一种体验，你可以感受到一些惊人的事情正在发生。\n 这是一部很疯狂的电影，但偶尔出现的“20世纪60年代是大家享受迷幻药的好时光”之类的回忆，以及与现在的对比，都清楚地表明这两个人只是想在毒品文化的鼎盛时期重拾青春，而我喜欢那个场景的独特回味，所以称其为“无意义的电影”似乎有些不切实际。这种无意义赋予了我们意义，我们意识到生活不仅仅是寻找意义。\n\n最近，专门撰写美少女游戏的同人志和收集日常文章的同人志正在 BOOTH 发售！那种“虚无”的感觉或许与这部作品有相似之处。\n\n也敬请期待上个月发布的商业论文集。这里有很多故事，给人一种旅行的感觉。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

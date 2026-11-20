@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>像素艺术背景的魅力</title>
+<title>点阵画背景的魅力</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-05-01 06:48</p>
-  <h1>像素艺术背景的魅力</h1>
+  <h1>点阵画背景的魅力</h1>
   <p class="ja-title">ドット絵背景の魅力</p>
 </header>
 <main>
@@ -31,11 +31,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"像素艺术背景的魅力\n\n为期两天的超级大会的Nidiga展览和超级十酱展位已经结束。感谢来到幕张的各位。\n\n这次，我很高兴看到工作人员喜欢 Nidiga，甚至以 cosplay 的方式为顾客服务。还有一个人叫Ame-chan，但是时间不好所以没能拍照。谢谢。我很惊讶，因为直到那天我才知道这件事。有了他们，展位无疑更加丰富多彩。\n\n现在，装饰真人大小的超级十酱人物背部的像素艺术背景是 Nennai 专门为这个场合绘制的。能够看到这种尺寸的像素艺术与看到真人大小的像素艺术一样有价值。令人印象深刻，不是吗？\n 精彩的！ ！ ！明快的色彩和渐变很漂亮，让人想起PC98时代，但现代“梦幻可爱”主题的矛盾却是不可抗拒的，这在当时是不可能的。 100分！考虑到 Nidiga 项目本身最初是基于我对复古美少女游戏的想法，这个融合了平成和令和的像素化背景感觉就像一个里程碑。\n 本来我们想把游戏中使用的Chou Ten-chan分布环境放大，但尺寸感觉不自然，所以多亏了Nennai的想法，INTERNET YAMERO的背景被做成了漂亮的圆点。透明的床罩堪称工艺杰作。这件作品绝对是一件艺术品。\n Nennai先生表示，能够获得原画是创作这样一幅作品的一个重要原因。有一张原图，我把它变成了点。这正是像素艺术时代的游戏实际使用的流程。因此，结束时间应该更接近那个时间。\n\n比如《魔王兰斯》中我最喜欢的大黄蜂的立画点就是基于这种原画。这次我们已经有了MV的背景图，所以这是可能的。首先，这种尺寸的插图不会出现在游戏中，因此超级十酱展台是第一次实现PC98与最新文化之间的真正和谐。我被这意想不到的奇迹感动了……\n 我喜欢像素艺术背景。我可能更多地关注美丽女孩角色背后闪闪发光的背景，而不是美丽女孩角色。 “夜晚”、“光”和“水”的表情是如此美丽，包括它们在游戏玩具中发光的方式。我觉得像素艺术的魅力不仅在于它作为移动动画的吸引力，还在于光影和渐变的美感。\n\n所以当我在我的世嘉土星上看到YU-NO的这段作品时，我被迷住了，有几分钟都无法动弹。光、水、夜晚的黑暗，以及游戏中典型的华丽色彩饱和度。一切都完美和谐地结合在一起。我很高兴能够画出一个美妙的背景，再次提醒我，《NEEDY GIRL OVERDOSE》是为了更接近这种原始体验而计划的。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

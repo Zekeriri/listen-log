@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GAIJIN 向 Nijika-chan 祈祷的最终形式</title>
+<title>GAIJIN对虹夏的祈祷最终形态</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-03-06 01:39</p>
-  <h1>GAIJIN 向 Nijika-chan 祈祷的最终形式</h1>
+  <h1>GAIJIN对虹夏的祈祷最终形态</h1>
   <p class="ja-title">GAIJINによる虹夏ちゃんへの祈りの最終形</p>
 </header>
 <main>
@@ -30,11 +30,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"GAIJIN 向 Nijika-chan 祈祷的最终形式\n\nGAIJIN 的 Nijika-chan MAD 最近很火。出于某种原因，海外的人们，不是Bocchi-chan，而是Nijika-chan，对二次元角色感到奇怪的短暂，他们每天都为她祈祷。例如，歌曲“我知道她是真实的”表达了一个坚持认为尼吉卡是真实的男人的矛盾所造成的痛苦。当我搜索这个表情包时，我发现韩国人已经创作了 MAD，其中 Nijika-chan 被 Choten-chan 取代。\n\n还有以尼吉卡为主题的代表作《MAD《失落的小猫尼吉卡》》也不容错过。宝丽来风格的屏幕上展现了二香酱的可爱场景，配上可爱杰作的曲调。这个MAD成为后来超级杰作的导火索。\n\n这是在《失落的小猫二花》评论区朗读GAIJIN长文的视频。 GAIJIN的这篇文章也很有趣。 “尼吉卡是谁？对于视障者来说，她是视觉。对于饥饿者来说，她是厨师。对于口渴者来说，她是水。”有很多坦白、简单、美丽的词语是日本人很少使用的。充满诗意的GAIJIN喜欢二香酱。\n\n换个话题，这是一封名为Furoclo的人写的《致黑世界的信》，他为MV发布了Vocaloid歌曲，并提出了精心的想法。歌词有些地方被涂黑了，从那里你可以想象你想向世界传达什么，但在副歌部分，涂黑部分的节奏是摩尔斯电码，当你把它们串在一起时，它就变成了“Fuck You”。即使这些词被涂黑并受到监管，你仍然在告诉全世界你完蛋了。多么好的一个噱头啊。\n 为什么突然介绍这首歌呢？有人注意到GAIJIN在之前介绍的《失落的小猫彩虹》的评论部分谈论爱情，并创作了一段将那篇长文与《致黑色世界的信》结合起来的声音MAD。\n\n这就是“谁是███？” ”。GAIJIN对二香酱的爱将随着写给黑世界的信的旋律读出。\n\n副歌中的摩尔斯电码是“Nijika”，而在原曲中，“Fuck You”变成了完全相反的“Love”。 GAIJIN 的 Nijika-chan... 对二维角色的祈祷最终变成了隐藏在黑色中的爱的表达。真是太美了，包括视频的制作过程，堪称NijikaMAD的巅峰，我不断在显示器前向作为愿景、主厨、水的Nijika酱祈祷。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

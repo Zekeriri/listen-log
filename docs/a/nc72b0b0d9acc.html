@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>简短文章精选：自闭症谱系</title>
+<title>精选一口短文：自闭症谱系</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-11 22:58</p>
-  <h1>简短文章精选：自闭症谱系</h1>
+  <h1>精选一口短文：自闭症谱系</h1>
   <p class="ja-title">選り抜き一口エッセイ:自閉症スペクトラム</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 商業エッセイ集もよろしくお願いします！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"简短文章精选：自闭症谱系\n\n我被精神科医生诊断为自闭症，因此在沟通上出现了一些问题，但多亏了“尼亚拉”的存在，我拯救了很多。\n 因为我与其他人的所有互动都是与知道“Nyalla”帐户的人进行的，因此存在一种“这个人就是这样”的偏见，并且我的奇怪行为已被接受为我个性的一部分。人们认为，“我只是互联网上的一个奇怪的人，所以我会说奇怪的话。”那很好。也许他实际上说错了话。\n 无论如何，我强烈意识到的症状之一是“对特定对象的极度执着或执着”，这是完全正确的。我的房间里堆满了柔软的乙烯基怪物、漂亮的女孩娃娃、机器人人物、特效玩具和书籍，没有什么比看着它们并按照我喜欢的方式装饰它们更令人满意的了。\n\n这就是为什么我理解那些受到批评的摄影师的感受。我恰好出生在冲绳，那里没有铁轨，所以我对它不感兴趣，但我有一种强烈的感觉，如果我在大陆长大，我会被火车所吸引。当然，给公众带来麻烦的行为是不允许的，但话虽如此，我仍然不理解从特定角度记录“你最喜欢的火车在某个时间经过的那一刻”的愿望，但我可以理解。既然这种“执着”已经刻在我们的大脑里，别人的评价可能就不再重要了。我们将继续这样生活，直到死去。\n\n我们正在出售编辑日常文章的同人志。非常感谢♪\n\n我们期待阅读您的商业论文集！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

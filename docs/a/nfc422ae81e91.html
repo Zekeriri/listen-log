@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>“希特勒种族灭绝会议”</title>
+<title>《为希特勒的屠杀会议》</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-02-07 03:04</p>
-  <h1>“希特勒种族灭绝会议”</h1>
+  <h1>《为希特勒的屠杀会议》</h1>
   <p class="ja-title">『ヒトラーのための虐殺会議』</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"“希特勒种族灭绝会议”\n\n我看了《希特勒的种族灭绝大会》。正如标题所示，这是一部邪教电影，所以我认为放映的影院或日期不会很多，所以如果你有兴趣，赶紧去影院吧！不管怎么看，内容都比较无聊，所以不推荐给大家！\n\n嗯，这是什么类型的电影？这是一部“仅”尽可能忠实地再现“国家领导人如何在希特勒的命令下决定实施屠杀”的作品。 80%的屏幕发生在会议室。由于主题是真实会议的重演，因此没有夸张的制作或兴奋。讨论是在平静的气氛中进行的，主要焦点是协调各派的预算和日程。\n 在这种情况下，有趣与否并不重要，只有能够在观看历史会议中找到意义的人才会满意。没有像《十二怒汉》那样在讨论结束时得出的真相或宣泄。有时当我环顾正在放映电影的剧院时，我看到很多老人在打瞌睡。好吧，如果我要观看 90 分钟的与我无关的会议，我会想睡觉。因为它太忠实于现实，所以讨论进展缓慢。\n 那么，您是如何看待的呢？这部电影的要点是，“数百万人被屠杀的奇异场景令人恐惧，但会议却进展得好像这只是一件太平常的事情。”他们都严肃地讨论如何有效地杀害犹太人。拘留地点、预算、性价比、是否人道……他们只是想尽自己作为希特勒下属的责任。如果你从沉浸在和平中的现代价值观的角度来看，这完全是疯狂的。首先，本来需要数百万受害者几天才能完成的非人道行为在90分钟内就完成了。当然，如果你花时间思考道德问题，你就无法逃脱惩罚。压倒性的现实让我对“环境”的恐怖感到颤抖。这是唯一可以做的工作。\n “你有这盘磁带吗？”去年年底分发的。 ”，主题是昭和时代的低俗综艺节目。性骚扰、权力骚扰、播音时抽烟等等。现代评论家都对其低俗感到困惑。但这只是环境的不同。如果这位昭和时代的性骚扰主持人出现在令和时代，我相信他一定能以合乎时代的方式让人发笑。人的性格会随着时间的推移而改变。环境。\n 纳粹士兵也根据战时价值观行事。我们生活在一个杀戮与被杀的动荡时代，所以生命的价值与今天不同。如果他们是现代人，他们可能会认真地发表新产品开发的演讲。唯一的区别在于你是追随希特勒还是公司总裁。这就是会议如此“正常”举行的原因。由于这个前提，任何场景或对话都会被解读为出错的恐怖故事。我度过了一段真正独特的时光，让我思考作为人类意味着什么。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

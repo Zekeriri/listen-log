@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文精选：儿童的情感</title>
+<title>精选一口随笔：孩子的感性</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-20 16:04</p>
-  <h1>短文精选：儿童的情感</h1>
+  <h1>精选一口随笔：孩子的感性</h1>
   <p class="ja-title">選り抜き一口エッセイ:子供の感性</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 長文エッセイをまとめた商業エッセイ集もよろしくお願いします。ビックリするくらいガキの人格ですね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文精选：儿童的情感\n\n我家附近有一个地方，漫画家们聚集在一起，住在一个共用的房子里，所以当我感到孤独的时候我就会去那里。\n 有御宅族朋友真是太好了。无论如何我还是个御宅族。我只是一遍又一遍地看动漫、玩游戏，不管世界和网络如何动荡。在巴基，奥利瓦和格巴尔长大后不再玩玩具，但另一方面，我们在成长过程中却无法停止玩玩具。\n\n那天，他们正在客厅打牌。将卡片包裹在您最喜欢的角色的袖子中，然后展开印有神奇宝贝的卡片。电视上还在继续播放动画，如果只剪掉这一段，那就和小学生放学后没有什么区别了。\n 都说“20岁以后，交朋友不考虑利益和利益就很难了”，我觉得这也是事实。与学生时代不同，当我们有一个共同点：课堂时，我们都有不同的年龄、环境、工作和性格。我想，我们能通过打牌和游戏一起开怀大笑，真是因祸得福。\n 随着人类年龄的增长，我们有时会觉得自己活着是为了找回逐渐消磨的童年精神。富野导演也表示，孩子的感受力是最重要的。不幸的是，我们现在已经是成年人了，我们无法挽回。至少，我希望你能花一秒钟的时间玩纸牌游戏，谈论Rider，并感到最有趣。\n\n我们目前正在销售包含每日日记的同人志。请阅读新书。你在哪里拿起它并不重要。\n\n我还想要一本由长篇文章组成的商业论文集。他有着令人惊讶的孩子气性格。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

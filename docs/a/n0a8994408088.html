@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：把世界托付给偶像</title>
+<title>一口随笔：将世界托付给偶像</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-11-23 03:01</p>
-  <h1>短文：把世界托付给偶像</h1>
+  <h1>一口随笔：将世界托付给偶像</h1>
   <p class="ja-title">一口エッセイ:偶像に世界を委ねて</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 店で急に話しかけてくる“なれなれしいオタク”は「逃げて正解」 アキバで勧誘に遭った漫画に「自分も出くわした」と反響https://t.co/gAdChqxVvQ pic.twitter.com/jKPW0OfcUE— ねとらぼ (@itm_nlab) November 15, 2021</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：把世界托付给偶像\n\n我相信，“信仰”使人变得坚强。我相信，当你在漫长的一生中经历了各种经历，决定了你应该相信什么的时候，你能对此保持虔诚到什么程度，这才是真正的成长。\n 前几天，一位朋友画的一本图画日记获得数万转发，并成为网络新闻。 “在秋叶原的一家游戏店里，我突然被一个宅男靠近并逃跑了，但住在秋叶原的宅男告诉我，这是秋叶原特有的宗教招募技巧。”当然，“住在秋叶原的宅男”指的是我。\n 在这本图画日记中，我说，“这是对宗教的邀请，所以你应该远离它”，但为了避免任何误解，我对宗教本身一点也不消极。相反，我尊重那些对其有明确信念的事物。我唯一的宗教信仰是出现在少女动漫中的偶像，但我本质上是一个信徒。\n 因此，我只是谈论恶意的宗教招募方式，并说逃离它们是正确的。他只是说，把御宅族连接到秋叶原去购买游戏和宗教是没有任何好处的，但我认为信仰会让人们变得更强大，即使它是一种邪教。\n 在互联网上，喜欢宗教、在线沙龙和影响者的人通常被称为“信徒”，但如果相信某件事能让你快乐，我认为那很好。相反，我很好奇那些取笑我的人相信什么并过着他们的生活。我以前写过这个。这对我来说是多么重要。\n 今晚我也会祈祷。把世界托付给比自己的生命更重要、更珍贵的偶像。\n\n我昨晚写的文章是关于信仰的，所以这是补充内容。请也阅读此内容。\n\n一个“熟悉的御宅族”突然在商店里跟你说话，他说：“逃跑是正确的做法。”在秋叶原征集的一本漫画称，“我自己发现了它” https://t.co/gAdChqxVvQ pic.twitter.com/jKPW0OfcUE — Netorabo (@itm_nlab) 2021 年 11 月 15 日"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：车站前的老人</title>
+<title>一口随笔：车站前的老人</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-30 05:01</p>
-  <h1>短文：车站前的老人</h1>
+  <h1>一口随笔：车站前的老人</h1>
   <p class="ja-title">一口エッセイ:駅前の老人</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 商業エッセイ集もよろしくね。こっちは、また妙な味付けの濃さがあります。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：车站前的老人\n\n文学跳蚤市场……我在一次写作和分发书籍的活动中分发了同人志，在火车上和会场的人群中度过了几个小时后，我以某种方式设法到达了中野站，筋疲力尽，但我耗尽了精力，坐在了长凳上。\n 然后，我听到隔壁传来三味线的声音，于是我回头看到一个70多岁或80多岁的老人，穿着像巴卡邦的父亲，一边弹着三味线一边唱歌。而且，由于它几乎没有牙齿，所以它还没有完全形成为一首歌曲。而且，如果仔细观察的话，会发现琴弦断了，三味线的声音也是随机的。\n 路过车站的人没有人关心老人的音乐，老人也不在乎音乐会没有观众。这种情况持续了大约10分钟后，一名醉酒的大光头男子开始猛烈地殴打附近的招牌。正在悄然离去的人们。而此时，只有老者继续看着光头党的横行，哈哈大笑。光头党注意到了，朝爷爷走去，虽然我很紧张，心里纳闷：“这会是大事吗？！”，他却漫不经心地搂着他的肩膀，说道：“爷爷！”生活很艰难，不是吗？”祖父也很高兴结识了新朋友，用断了的琴弦弹奏着三味线。中野站北口的长凳上突然发生了两个不守规矩的男孩的对话。真正的音乐就在这里。\n 我明白了，是这个吗？如果你感到孤独，就去人多的地方唱歌吧。而且，它不一定是歌曲的一部分。即使乐器是垃圾也没关系。失去自己的牙齿也没关系。当我拼命唱歌时，一个同样从人群中脱颖而出的流氓向我走来，开始和我吵闹，就好像我们是老朋友一样。到了老年，这就是生活的全部意义。\n 这有点个人陈述，但在游戏发布后，我遇到的人经常劝我，“小心点，因为如果你因为卖了一点而得意忘形，你就会破产。”我知道大多数时候都是来自我没有太多接触的人，他们往往很有趣，但是当一个甚至不是亲戚的人对我说这样的话时，我除了“你真是太棒了”之外很难有任何感觉。让我做你想做的事吧！”这件事我知道，没有人告诉我，所以请闭嘴！\n 好吧，话虽这么说，今晚的场面已经完全让我下定决心了。你不必听取不熟悉的人的草率建议。如果破产了，就这样了。如果我因为得意忘形而失去了一切，我会拿着破烂的三味线在车站前唱歌，你可以坐在我旁边，手里拿着杯子和我一起尖叫。如果你能度过那样有趣的时光，剩下的就是小细节了。\n\n包含每日日记的同人志正在 BOOTH 发售！新书今天刚刚出版。匆忙！ ！\n\n我期待着阅读您的商业论文集。这个也有一种奇怪的深度味道。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

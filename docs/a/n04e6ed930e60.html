@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：舒拉巴和脑药物</title>
+<title>一口随笔:修罗场与脑内麻药</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-06-11 04:16</p>
-  <h1>一篇简短的文章：舒拉巴和脑药物</h1>
+  <h1>一口随笔:修罗场与脑内麻药</h1>
   <p class="ja-title">一口エッセイ:修羅場と脳内麻薬</p>
 </header>
 <main>
@@ -31,11 +31,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♫</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：舒拉巴和脑药物\n\n真是一团糟。\n 这是因为暑期漫画。我们将在全国各地的御宅族聚集一处的汗流浃背的节日中展出，现在我们将进入修罗，以便准时到达。\n\n这是一堵墙。而且它占据了两个空间。谢谢……。如果那天每个人都排队的话我会很高兴。为了做到这一点，我首先必须写大量的文字并联系不同的人并检查我的进度。我会尽力....\n 不过，这一击却出奇的不差。如果我无论如何都要发布的话，我想做一些大事，所以我完全忽略了制作小商品或书籍的想法，最终制作了一些已经花费数百万美元的东西。我对美少女游戏的热爱一下子就溢出来了，不由自主地充满了动力。一旦接近完成，我就会向你展示我正在做的事情。\n\n让我看一眼。我请一个我爱了很久的人来画插图。我将在下个月左右详细讨论这一点。首先，如果我不写完，一切就会毁掉，数百万美元就会损失……\n 我想这就是你想要的。被推到最后期限并试图通过结合承诺、妥协、坚韧和想法来完成工作的恐惧和兴奋。其实幕后还有计划，而且忙得不可开交。制作人也考虑到了这一点，建议我们去Comiket带一些比较轻的商品，结果我却在这里做了更多的工作。\n 这是一种除非你处于总监督的位置上才能理解的感觉，而且你也是制作的核心，但集体制作的混乱带来的肾上腺素是巨大的。正如我之前提到的，如果我松懈，我将损失数百万美元。推迟或取消活动将会损失你的金钱、信任和关系。我已经有了导致比赛延期的犯罪记录，但我已经无法再改变Comiket的日程了，所以压力比比赛本身还要大。无论我哭还是笑，日期都不会改变。\n 这里重要的是它不会破裂。这是因为，作为总主管，我有很多人一起工作来创造我想要创造的东西，所以如果我摔倒或生病，或者更现实地说，如果沟通有延迟，每个人的士气都会下降，项目就会结束。我是唯一一个脑子里有完整版本的人。从游戏制作开始就是如此，无论你的精神有多么的挣扎，你都要高高兴兴地回应每一位工作人员的联系，并积极地汇报你的进展。我讨厌这个词，但它就是“责任”。制作人也是一莲龙夫。我们一起下地狱吧。\n 履行这份责任和期望的感觉，比毒品更胜一筹。嗯，毒品本身就是一种有趣的东西，会刺激奖励系统，所以很自然地，成功地遵循正确的程序并在你的大脑中获得药物的奖励感觉最好。我一直是个弹珠机迷，现在领略了“指挥集体制作”的巨大赌博乐趣，我必须不断追求才能满足。这就是为什么我接受了夏季漫画的挑战。今晚我将熬夜参加 Nichiasa。这个月我可能会非常努力地搬家。但我无法控制，因为否则我会感觉不舒服。\n 嗯，到目前为止我已经说过了，如果一切顺利的话，夏季漫画将是我有信心的作品，所以请大家期待。最重要的是，这是一个非常小众的产品，我们做一些特殊的事情，而这些事情是无法廉价完成的，所以我们只需要能够跟上我们自我满足的人。由于他在Comiket被视为“同人”，他热衷于尝试一些他不理解的东西。\n 即使写完这篇日记，我还有几万字要写。除了我以外的成员也得到了帮助。对不起，但我们别无选择，只能共同努力。他们做疯狂的事情是为了以合法的方式刺激奖励系统。\n\n请欣赏由每日日记编成的同人志和商业文集♫"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

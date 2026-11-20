@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：第一个扣篮</title>
+<title>一口随笔：THE FIRST SLAM DUNK</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-17 06:33</p>
-  <h1>短文：第一个扣篮</h1>
+  <h1>一口随笔：THE FIRST SLAM DUNK</h1>
   <p class="ja-title">一口エッセイ: THE FIRST SLAM DUNK</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 毎日の日記をまとめた同人誌と商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：第一个扣篮\n\n我看了《第一个灌篮》。简单来说，就是最好的。真的很神奇。太好看了，看完之后我都愣住了，今年哭得最多的一次。剧场里的很多人也都哭了。太神奇了....\n 顺便说一句，我绝对推荐在杜比影院观看。声音效果令人惊叹。还有其他作品能与每次运球时球的弹跳声如此契合吗？我很惊讶。\n 现在，就我对内容的印象而言，它太像一场“比赛”了，令我惊讶的是，从中间开始，我感觉自己完全是在“观看比赛”。出于某种原因，我觉得我正在观看历史上最伟大的比赛之一，从最好的角度，每个球员的闪回场景。啊，我觉得井上雄彦真的很想自己创造这场比赛。我认为他们试图尽量减少类似动画的对话和制作量，并专注于在真实游戏中发生的范围内移动和说话。这是一次奇妙的经历。谢谢……。\n 井上先生一定很有艺术天赋。这种结构是鸟瞰山王之战并赋予其真实感的唯一方法。如果采用这种结构，最好尽可能限制预览中的信息​​，不要担心以前的声誉会受到动摇。只因为是原作者，才允许如此大胆的拼贴和裁剪方式。尽管有一条路更容易被公众理解和欣赏，但我也很兴奋，因为我想，“这就是我选择的路！”\n 即便如此，以这样的视频形式观看山王比赛还是很可怕的。这次，山王方面的人物描写很少，所以没有高中生的日常生活，这些只在游戏中看到的家伙真的很可怕……当你用第一区域压力包围他们时，你会颤抖，“如果你的视线被这些大家伙挡住了……”你会颤抖。多亏了 3D，这些动作能够毫不犹豫地被展示出来，真是太棒了！它是如此之大，但移动速度却如此之快！我根本不可能赢！我能感受到恐惧。\n 我们再次看到，这是湘北一方奇迹般地继续得到正确答案的结果。首先，三井的存在对对方来说是陌生的，盯防他没有任何意义，因为他已经没有体力了，但不知为何他每次拿到球都能投进三分。一路上，流川学会了如何通过。樱木，一名业余选手，不断抢篮板球……等等。尤其是，当三井被人嘲笑、调侃的时候，他被信任，传球说：“你没那么好”，三井再投进一个三分球时就哭了。他所有的队友都相信三井有能力超越他当时的水平。这是通过最少的对话和球的移动来完成的。作为一个男人我总是哭。\n 当我漫不经心地嘟囔着如果现实生活中的体育运动能像漫画中那样出现球员的闪回场景就好了时，我在回复中被告知，在现实生活中，有一种享受体育运动的方式，“球迷们一边回忆高中棒球的日子，一边看到他们长期以来支持的球员。”我明白了，如果你真的按照场景走，那著名的场景就会自动在你的脑海中浮现。\n 我这辈子从来没有看过体育比赛，所以今天是我第一次能够满意地观看比赛。快乐的。谢谢湘北高中，给我最好的初体验……\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

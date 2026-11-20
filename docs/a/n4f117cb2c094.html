@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>我正在与 Fumiya Iwakura 一起出版名为“Internet 2”的同人志 2（现在可以购买）</title>
+<title>同人志《互联网2》中的2（两）由岩仓文也发布（现在已经可以买到）</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2020-10-29 20:33</p>
-  <h1>我正在与 Fumiya Iwakura 一起出版名为“Internet 2”的同人志 2（现在可以购买）</h1>
+  <h1>同人志《互联网2》中的2（两）由岩仓文也发布（现在已经可以买到）</h1>
   <p class="ja-title">「インターネット2」という同人誌の2（ツー）を岩倉文也とだします（もう買えます）</p>
 </header>
 <main>
@@ -40,11 +40,10 @@
 インターネット2 （ツー）の2（ツー）が完成…… pic.twitter.com/zLlw2KXOFk— にゃるら (@nyalra) October 28, 2020</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"我正在与 Fumiya Iwakura 一起出版名为“Internet 2”的同人志 2（现在可以购买）\n\n（图片：图1）\n\n我创作了同人志的续作《Internet 2》。\n\n（图片：图2）\n\n目录。由于主题是地下网络，所以内容很多，很有深度。\n\n（图片：图3）\n\n豪华宾客！\n\n（图片：图4）\n\n（图片：图5）\n\n来自稍重的内容\n\n（图片：图6）\n\n包含各种轻故事。\n 在展位出售。我希望你能把它和之前的作品一起拿起。\n\n互联网 2 (2) of 2 (2) 已完成... pic.twitter.com/zLlw2KXOFk — Nyalra (@nyalra) 2020 年 10 月 28 日"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -64,7 +63,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

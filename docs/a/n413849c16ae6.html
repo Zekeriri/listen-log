@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>论文选：梶井元次郎的柠檬</title>
+<title>精选一口散文：梶井基次郎的《柠檬》</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-04 23:32</p>
-  <h1>论文选：梶井元次郎的柠檬</h1>
+  <h1>精选一口散文：梶井基次郎的《柠檬》</h1>
   <p class="ja-title">選り抜き一口エッセイ：梶井基次郎の檸檬</p>
 </header>
 <main>
@@ -25,11 +25,10 @@ BOOTHにて、毎日の日記をまとめた同人誌が販売中です。買っ
 今月末には、長文エッセイをまとめた商業エッセイ本がでます。予約してくれると嬉しいぜ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"论文选：梶井元次郎的柠檬\n\n你读过梶井元次郎的《柠檬》吗？这是青空文库中可以快速阅读的短篇小说，所以大家一定要读一读。\n 现在，如果你拿出《柠檬》的概要，那就太棒了。这是一个关于一个沮丧的男人走进百货商店的故事，他想象如果他拿着的柠檬是炸弹，他会被炸成碎片，这将是搞笑的。我喜欢输出人类至少一次会想到的狂野想象，特别喜欢将主角一开始的忧郁描绘成一种没有明确原因的“模糊的焦虑”。\n 读完这本书有一种耳目一新的感觉，因为它把那些达不到“意义”的感受和感受都用文字表达出来，我能理解和感同身受这种感觉的存在。他所做的只是恐怖主义的幻想，所描绘的无非是主角的感性。我被迫去读“感觉”而不是故事。\n 我无法解释我每天的焦虑。即使事情从表面上看起来进展顺利，但内心深处我却感到沮丧多于快乐。这些话即使你说出来，别人也听不懂，只能指出你想太多了。而且，过度思考是完全适当的。在这种时候，只要拿起一个美丽的柠檬，我就感觉自己被拯救了。更何况，如果变成炸弹，炸碎一家百货商店，那就太刺激了。\n 有人在评论这部作品时，给了一颗星，并表示：“希望他能尽快去医院接受治疗。”确实如此，但我认为更可怕的是，有人根本无法理解这种感觉。\n\nBOOTH 正在出售包含每日日记的同人志。买吧！\n\n一本包含长文的商业散文集将于本月底发行。如果您能预订，我会很高兴。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

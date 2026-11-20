@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：最喜欢的YMO歌曲</title>
+<title>一口随笔：喜欢的YMO歌曲</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-01-17 04:25</p>
-  <h1>短文：最喜欢的YMO歌曲</h1>
+  <h1>一口随笔：喜欢的YMO歌曲</h1>
   <p class="ja-title">一口エッセイ:好きなYMOの曲</p>
 </header>
 <main>
@@ -40,11 +40,10 @@
  好き。めちゃくちゃ好き。精神の安定剤という観点では、YMOで最も素晴らしいと感じます。坂本龍一作曲で、イントロから流れる儚げなピアノの旋律が美しい。訳すると「わたしは毎日テレビを観ます」「わたしは毎日歯を磨きます」と生活的な行動を淡々と並べているだけなのに、なぜこんなに心に響くのか。高橋幸宏さんも「好きな坂本龍一の曲」として、このPERSPECTIVEを、挙げていました。もしライブで聴いていたら、涙が止まらなくなっていたでしょう</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：最喜欢的YMO歌曲\n\nYMO 的高桥幸宏去世了。我对他的印象是，他似乎是YMO三名成员中最善良的一个，而且高桥似乎在细野晴臣和坂本龙一当时极其急躁的人之间扮演了调解人的角色。最重要的是，我认为高桥幸宏创作了YMO的代表曲“RYDEEN”，这真的很酷。\n\n这张照片是高桥幸宏 (Yukihiro Takahashi) 的照片，是 YMO 40 周年写真集中我最喜欢的照片之一。一个只要坐在那里就能被想象出来的男人。这很酷。几年前，我在看细野晴臣的自传电影时，看到了一段“坂本龙一在细野晴臣的现场表演中惊喜出现”的视频，我就想，有一天，他们三个人会带着这样的热情再次站在舞台上，我也能作为观众见证那一刻。我很遗憾这个梦想永远不会实现。\n 现在，由于我既不是参与者，也不是实时粉丝，所以我对个人没有什么可说的，所以我只会列出大约 5 首我“最喜欢的 YMO”歌曲来让你们相信我的感受。\n 为了避免专辑重叠，我根据自己现在的心情选择了五张。我喜欢的歌还有无数……\n\n・瑞登\n 众所周知的代表作，是YMO的代表曲，也是高桥幸宏的代表曲。\n 原曲的真实Techno感觉令人愉悦，可以看出它是后续游戏音乐的来源。细野先生似乎在想：“这就是动画！”，也许RYDEEN的血统也被传承到了动画歌曲中。\n\n因为是代表曲，所以编曲也很多，但我最喜欢2012年版本的RYDEEN，这是最后一次演出。简介中的冲锋有一种成为最终boss的感觉。不过我还是觉得原曲电子感十足，是最完整的。\n\n・邂逅\n YMO的一个新的可能性是录制一张偶像热销、歌声强劲的时代的专辑。这首歌由坂本龙一作曲，属于Techno歌曲的独特风格，但得益于高桥幸宏温柔的歌声，这是一首非常令人愉悦的歌曲。这是我最喜欢的歌曲，因为它传达了高桥幸宏不仅作为鼓手而且作为歌手的安全感。\n\n・海豚城\n 这首歌收录在专辑《Technodon》中，这张专辑是在热潮过去后重新制作的，并采取了非常具有挑战性的方向。由于是三人已经活跃在不同方向之后的专辑，所以这首歌有一种特别强烈的怪异感，而这也是其中比较怪异的歌曲之一。由细野晴臣 (Haruomi Hosono) 创作，采样自他与海豚对话的音频。\n “我希望人们能够体验到与海豚对话的神秘主题带来的愉快的聆听体验。\n\n・中国女人\n 高桥幸宏在他的第一张专辑中的代表歌曲。这首歌的声音在今天被认为是芯片音乐，听起来像是对法国、意大利等流行音乐的模仿，混合在一起，但又充满了早期 YMO 典型的俏皮精神。与东风一起，给人留下了YMO世界观的强烈印象。\n\n・视角\n 我喜欢它。我真的很喜欢它。就镇定剂而言，我觉得YMO是最好的。由坂本龙一作曲，前奏中流淌出来的短暂钢琴旋律非常优美。翻译过来只是“我每天看电视”、“我每天刷牙”等简单的日常活动清单，但为什么它能引起如此深刻的共鸣呢？高桥幸宏还提到《PERSPECTIVE》是他“最喜欢的坂本龙一歌曲”。如果我现场听的话，我一定会失控地哭泣。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -64,7 +63,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

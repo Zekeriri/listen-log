@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>咬文精选：假面骑士Build</title>
+<title>精选一口散文：假面骑士Build</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-10 20:30</p>
-  <h1>咬文精选：假面骑士Build</h1>
+  <h1>精选一口散文：假面骑士Build</h1>
   <p class="ja-title">選り抜き一口エッセイ:仮面ライダービルド</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 今月末には、長文エッセイを書き下ろしマシマシで収録した商業エッセイ集もでます。こちらも予約してね。上の同人誌と合わせるとベストマッチです。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"咬文精选：假面骑士Build\n\n在众多的平成骑士中，我特别喜欢假面骑士Build。\n 首先，骑手的设计美观而精致。除了两种颜色的大胆使用和建筑本身的金属光泽之外，将敌人蒸汽朋克时尚地变成骑手的设计，结合剧中的力量，给人留下了非常深刻的印象。一眼就能看出的反派本性和强烈的性格感觉很精彩。\n 当然，我喜欢这个故事，在之前的作品中，我从产品开发中创作了戏剧，而在《Build》中，我首先创作了戏剧。换句话说，无论好坏，《平成骑士》所擅长的现场感虽然有所欠缺，但剧情却是经过深思熟虑的，每一章都有自己的精彩点和解谜点，所以即使是成年人也不会觉得无聊。瞬息万变的战斗局势，以及车手之间的密切关系，一定是从筹划阶段就已经计算出来的。\n 最重要的是，最后一集获得了满分。最后的场景巧妙地恢复了从第一集以来积累的元素，是因为戏剧优先而创造的独特而感人的体验。如果你能如此漂亮地完成它，我相信你会惊叹于它的美丽，并且没有其他抱怨。这种经过深思熟虑的场景，再加上天才主角的过度自信，让人看了非常过瘾。\n 如果您还没有看过，请立即观看。这是我可以放心推荐的杰作。\n\n包含日常文章的同人志现在正在展位上出售。买吧！\n\n本月底，我们还将推出商业论文集，其中包含新写的长文。也请预约。与上面的同人志结合起来是最佳搭配。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

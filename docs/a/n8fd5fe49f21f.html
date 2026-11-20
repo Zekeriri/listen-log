@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bite essay：250,000份和团队制作</title>
+<title>一口随笔：25万本与团队制作</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-12 04:31</p>
-  <h1>Bite essay：250,000份和团队制作</h1>
+  <h1>一口随笔：25万本与团队制作</h1>
   <p class="ja-title">一口エッセイ:25万本とチーム製作</p>
 </header>
 <main>
@@ -30,11 +30,10 @@
 商業エッセイ集の方もよろしくね。表紙に超てんちゃんもいるよ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"Bite essay：250,000份和团队制作\n\n曹天酱现在拥有25万粉丝\n我还很不成熟，所以我可能还会时不时地崩溃。\n我觉得如果我不忘记今天的快乐，事情就会好起来。\n不管路有多么坎坷，我都不会放弃我的百万梦想！ ！ ！\n纪念插画来自@imlllsn https://t.co/gHg4vtmO89 pic.twitter.com/XXyd1z3Gsr — 🎀超级可爱🎀天使酱 (@x_angelkawaii_x) 2022年2月11日\n\n《NEEDY GIRL OVERDOSE》销量已达25万张。谢谢。我们正在考虑各种发展，因此如果您继续支持我们，我们将非常高兴。让我们爱上超级十酱吧。好吧，这次我们来说说我从制作游戏中学到的东西，而不是内容。\n 当然，我一个人是不可能完成这个任务的，所以基本上我有四个人在做这件事：制作人、程序员、Dotter，以及我自己担任场景和监督职位。角色设计的插画和音乐也加入了，但每次只收到必要的材料，所以我们四个人的联系很密切。\n 在master-up的过程中，有人说“完全没有空中解体的情况真是太神奇了”，这给我留下了深刻的印象，而我认为团队制作中最困难的方面是“有人放弃/陷入困境并取消”。如果一年多来不断地与同一个人交换意见和工作方式，那么出现问题就更自然了。它没有发生（好吧，它被推迟了！）的原因可能是因为人们确信“这很有趣！”\n 当与您尊敬的朋友或创作者一起工作时，最大的担心是您的作品会被忽视。一旦你意识到这行不通，你的动力就会很快下降，最终会陷入一场战斗。一起做东西的经历很好，但我必须记住，它很可能会在空中土崩瓦解，而关系破裂也并不罕见，所以我认为我应该做好准备，因为合作是一场赌博，每个人都会笑或哭。\n\n包含日常文章的同人志现在正在展位上出售。有很多关于创建游戏所面临的困难的信息！\n\n我还想要一本商业论文集。封面上还有超级十酱。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

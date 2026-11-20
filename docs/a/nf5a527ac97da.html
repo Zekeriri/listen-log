@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：一切都好，一切都是绿色的</title>
+<title>一口随笔: 万事顺利 全部绿色</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-04 03:59</p>
-  <h1>短文：一切都好，一切都是绿色的</h1>
+  <h1>一口随笔: 万事顺利 全部绿色</h1>
   <p class="ja-title">一口エッセイ:万事快調 オール・グリーンズ</p>
 </header>
 <main>
@@ -28,11 +28,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：一切都好，一切都是绿色的\n\n我读了我的编辑推荐给我的小说《一切都好，一切都是绿色的》。我想很多人通过封面的绿色就能看出来，但剧情是这样的。\n\n茨城的死胡同。有传言说，穷乡僻壤有一所低水平的技工高中。表面上是园艺俱乐部，实际上是犯罪俱乐部。成员是三名女高中生。他们种植的植物就是大麻（大麻）！危险的新时代小说，幽默另类的文笔，让人上瘾，上瘾率120%。\n\n是的，这部小说就像女高中生版的《猜火车》，三个就读于低级技工高中的女高中生在屋顶上种植大麻，然后卖掉，并打算用这些钱离开破烂的乡村！ “如果你是尼亚鲁拉桑，你就会喜欢它，”他说，120% 地解释了为什么编辑如此自信。\n 现在，这部作品最精彩的地方，甚至超过了大麻味的主线故事，在于每个角色亚文化的现实。\n\n比如，三个高中女生喜欢音乐、电影和漫画，她们的音乐是说唱，所以听《王者基多拉》，而孩子喜欢戈达尔、库布里克这样的亚文化电影，也穿《搏击俱乐部》的T恤。购买搏击俱乐部商品的消费主义行为，不是违背了泰勒极简主义的哲学吗？我有时也担心这个问题。本书的书名《一切都很好》也取自戈达尔。漫画迷们将《棉花乡村之星》视为他们最喜欢的作品。他们对亚文化的奇怪痴迷也非常适合《底层技工高中》的背景。是的，我也是一名底层的技工高中生，所以我完全理解，但是当人们被困在这样一个没有学习的空间，甚至无法思考正确的职业道路时，他们往往会转向亚文化，地下，或者两者兼而有之！这是一种高效的生活方式，让你即使贫穷或者分数低也能享受生活！\n 青春有很多种。分享诸如在屋顶种植大麻之类的大秘密的日子一定是真正具有启发性的。如果我能通过亚文化或地下的实践经验和知识，走上一条我不理解的道路，而不是成为一个低水平技术高中的优等生，然后在一个陌生的公司或工厂工作，我肯定会更幸福。他们感觉自己无意识地选择了正确的答案。比如，一个热爱电影的女孩梦想到城里参与电影制作，但在电影界，“考技高取得好成绩”和“在屋顶种大麻卖掉”哪个更受欢迎呢？如果抛开道德和伦理，肯定是后者。就是这样。\n 令人惊奇的是，作者在21岁的时候就出版了这部作品。毫无疑问，这部文学作品的蓬勃发展依赖于青春的力量，这也是为什么它能够在年轻人对亚文化的看法中融入如此多的现实主义。这绝对是一个“怪物”。虽然它不是一部会载入史册的杰作，但作者的“习惯”和“他想传达的东西”以及通过细节的现实传达出的“孤独”和“失控”。这是我读过的一本好书。我喜欢看戈达尔的电影。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

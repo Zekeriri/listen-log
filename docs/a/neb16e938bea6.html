@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：延期时的感受和制作人的决定</title>
+<title>一口随笔：延期时的心情与制片人的判断</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-20 07:25</p>
-  <h1>短文：延期时的感受和制作人的决定</h1>
+  <h1>一口随笔：延期时的心情与制片人的判断</h1>
   <p class="ja-title">一口エッセイ:延期した当時の心境とプロデューサーの判断</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 毎日のエッセイをまとめた同人誌などをboothにて販売中です。ゲームが気に入ったら読んでみてね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：延期时的感受和制作人的决定\n\n【《NEEDY GIRL OVERDOSE》掌握了！ ]\n1 月 21 日星期五 18:00 开始玩吧！ https://t.co/jDlmwFJQfl\n从上面将其添加到您的愿望清单并等待！\n我已经很长时间没有完成最好的大师插图了（@imlllsn）！ pic.twitter.com/yr5XKBixYS — WSS 游乐场官方 (@infowssJP) 2022 年 1 月 13 日\n\n现在我已经掌握了，再也不用担心了，我就给大家讲一下比赛延期的那次。延期之前我真的很害怕。我确信团队中的每个人都在想，“我们不能让它变得更有趣吗？”我还有很多事情想做，但由于时间和预算的限制，我别无选择。我感到紧张，但那是因为这是我第一次制作游戏，所以我告诉自己就这样。\n 很抱歉作为亲戚来夸奖你，但制作人的判断力和对团队的信任是令人惊叹的。令人惊讶的是，他们在发布日期之前确认了推迟。正常情况下，这样的事情是绝对不会发生的。\n 不仅给大家带来麻烦，还背叛了粉丝。这将使拘留员工的成本增加一倍，一般的管理者都不会允许这种情况发生。当然，他们会说，“我们会通过更新来处理它”或“我们必须先收回成本。”几个月前还可以，但当时确实是在发布之前。但他们推迟了。他们相信我们可以把游戏做得最好，而且这会给我们带来比推迟游戏所花的更多的钱。这让我很高兴。我是个十足的业余爱好者，所以我买了这个“痴迷”。没有很大的勇气你就做不到。\n 所以我可以很自信的说，这次我是全力以赴了。如果我是使用者，我会用力按压所有压力点，以至于我会一直阴蒂。我了解到，当你感受到可靠的回应时，你就会获得信心。我无法忍受团队和制作人……他们都是很酷的人。嗯，所有的场景都是我写的，太棒了！我为此感到自豪。\n\n摊位上出售编写每日文章的同人志。如果您喜欢这款游戏，请阅读一下。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

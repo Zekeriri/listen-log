@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：我在中野百老汇发现了什么</title>
+<title>一口随笔：在中野Broadway发现的东西</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-03-26 07:06</p>
-  <h1>一篇简短的文章：我在中野百老汇发现了什么</h1>
+  <h1>一口随笔：在中野Broadway发现的东西</h1>
   <p class="ja-title">一口エッセイ:中野ブロードウェイで見つけたもの</p>
 </header>
 <main>
@@ -22,11 +22,10 @@
  「SNSに貼るなら教えてくださいね〜」と言うと、「自分だけの思い出にしたいので誰にも見せません！！」と嬉しそうにしてくれました。フォロワーの誰かが中野ブロードウェイを楽しんでいる際に、僕を見つけたのでテンション上がってくれて、しかもその出来事を自分の胸に秘めている。嬉しいことですね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：我在中野百老汇发现了什么\n\n我在中野百老汇散步时发现的物品的帐户“在中野百老汇发现的东西”的粉丝数量已达到 6,000 人。\n 起初，我每天发一篇文章，以避免内容耗尽，但最近我每天发两到三篇文章。中野百老汇太有趣了，我玩不够。多好啊！\n\n近几个月来，中野百老汇上的高级手表店数量持续增加，除此之外，出售高级商品的神奇宝贝卡牌店也开始增加。好吧，与其为了资产管理目的而展示手表和珠宝，不如查看数十万或数百万张神奇宝贝卡片。即便如此，亚文化逐渐被挤出，投机商铺却不断蚕食，这也是一个奇怪的现象。这是一个奇怪的小镇。\n 顺便说一句，那天我在二楼散步时，有两个男人问我：“你是尼亚鲁拉小姐吗？”所以我和他们拍了一张照片。\n 当我说“如果你想在SNS上发布它时，请告诉我”，她高兴地说道：“我希望它只是我自己的回忆，所以我不会给任何人看！”我的一位追随者在欣赏中野百老汇时发现了我，所以他很兴奋，并将这件事铭记在心。这是一件好事。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +45,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

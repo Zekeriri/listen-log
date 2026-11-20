@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>作文：人是会变的。</title>
+<title>随笔：人是会变的</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-06-30 04:44</p>
-  <h1>作文：人是会变的。</h1>
+  <h1>随笔：人是会变的</h1>
   <p class="ja-title">エッセイ：人は変わっちゃうのです</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
  しかし、これだけは絶対に変わらないと約束できることがある。ここまで一貫してきたのですから、そこだけは絶対にブレない。僕はインターネット抜きには生きられないから、一生インターネットをやり続けるでしょう。無論、死ぬまで。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"作文：人是会变的。\n\n我不喜欢那些不负责任地用嘲笑的方式说“你改变了很多”的人。因为人是会变的。如果环境改变了，任何人都会自然而然地改变。即使你这么说，你的价值观还和几年前一样吗？如果一成不变，那不是政策而是停滞吗？改变有什么问题吗？\n 人们很容易批评各种事情，但这样的每句话都没有分量，所以说什么都没有意义。首先，这种愤世嫉俗是对成长的嫉妒。突出的木桩将被压低。当我看到别人做得很好时，我会感到沮丧。\n 当然，有很多事情如果你坚持的话会更酷。即使在现代化的明治时代，斋藤肇也是一个出色的人物，因为他坚持邪恶、杀戮、杀戮，直到他死去的那一天。如果是漫画人物的性格，如果它是一致的，人们就会喜欢它。然而，与漫画不同，现实生活中发生的事情是随机的。有峰有谷。生活中的一切都像一匹马。它很美妙，因为人们会因应对意想不到的问题而改变。\n 这家伙怎么突然这么生气了？您可能想知道您是否终于要与看不见的敌人作战了。很好的答案。我有幻听，我能听到自己的声音在说自己的坏话。它在你耳边低语。 “你变了，”他说。我知道这一点。好吧，在互联网上遇到了很多麻烦。我认为事情已经平静下来，无论好坏。锋利的刀尖最终会变得锋利、圆润。这并不是幻听如此有趣的原因。因为我相信清晰度就是一切。\n 我们有粉丝，我们有粉丝。即使对于我来说也是如此。他们喜欢我写的文字，有时以读者的身份给我反馈，有时又像守护者一样支持我的生活，创造了供需双赢的关系。不管我写得多么糟糕，无论周围的人嘲笑我，我都坚持写，结果就来了。我很高兴。\n 这件事发生后，我这个随和的人立刻变得严肃起来，开始采取稍微成熟一点的立场。我对年轻人变得更加友善了。我开始努力履行我的职位要求。他愿意不再对他深爱的安眠药感到兴奋，享受踏实的生活。\n 幻觉不禁讨厌这样甜蜜的日子。他只是想成为他的孩子。没错，大人都会生气。来自不同的人。我不能再为自己辩解了。我年轻时曾多次取笑大人，现在轮到我被刺痛了。\n 小时候，我的幻觉不断在我耳边吟唱，我应该挣脱现在所有的枷锁，重新获得自由。你也可以在你面前准备好安眠药和酒精，然后一次性完成。即使医生不给你，你仍然可以导入它。让人感觉良好的方法有无数种。我们玩吧，很有趣，他低声说道。\n 对不起。我会尝试多做一点，因为无论如何我都会在某个时候放弃。到时候，可能就该再次用酒精吞服药物了。等到那时。我用降噪耳机捂住耳朵，在心里争论。\n 有可能有一天，我会受到真正的辱骂性语言的攻击，而不是幻觉。你可能会发现自己淹没在社会的动荡浪潮中。另一方面，我也希望能得到巨大的福报。我想我每次都会再次改变。\n 然而，有一件事我可以保证永远不会改变。既然我们到目前为止一直是一致的，那么我们在这方面就不会动摇。我的生活离不开互联网，因此我将在余生中继续使用它。当然，直到我死为止。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

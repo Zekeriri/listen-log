@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>大冢国际美术馆</title>
+<title>大塚国际美术馆</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-05-17 00:47</p>
-  <h1>大冢国际美术馆</h1>
+  <h1>大塚国际美术馆</h1>
   <p class="ja-title">大塚国際美術館</p>
 </header>
 <main>
@@ -33,11 +33,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"大冢国际美术馆\n\n我去了大冢国际美术馆。这里从地下三层到地上二层都布满了名画，空间是国外宗教建筑的复制品。它是如此的令人难以抗拒，以至于你必须花一天的时间四处走走才能看到这一切。这就是四国广阔的陆地力量。\n\n精彩的。再现日本罕见的雄伟宗教建筑的展览。当我在宗教画作的包围下聆听赞美诗时，我逐渐为图像的神圣而翻腾，我的思绪转向了洛夫克拉夫特和玛丽莲·曼森，他们在这样的环境下用超越基督教的文学和音乐表达了恐惧。巨大的教堂和寺庙还具有直观地传达神圣佛陀的伟大的作用，即使对于那些信心不足的人来说也是如此。如果你真的去看看它，你就会明白，即使是无神论者也会因体验这个神圣的地方而受到情感上的感动。你可以感受到过去人类为了接近上帝而尝试的被称为“宗教建筑”的疯狂艺术的重量。\n\n展出的所有画作都是陶瓷杰作，您可以拍照，因为它们是真实事物的忠实复制品。对于未经训练的人来说，可能很难区分它和真实的东西。这对于已经忘记了年轻时第一次见到塞尚的影响的成年人来说是不可能的。\n 果然名画很大一部分都是宗教画，步行几分钟就能看到基督被钉十字架。这是最著名的场景，值得二次创作。说实话，我很感动宗教观念对绘画、音乐等艺术文化的巨大影响，为了更有效地向人们传达上帝的威严和纯洁，伴随着博物馆背景音乐中的圣歌。曾经有一段时间，每个人都冒着生命危险去创造一些东西来表达上帝的美丽。那太棒了。\n\n这是米津玄师的《柠檬》。这是现代日本的最新杰作。\n\n尼亚拉 pic.twitter.com/GtSW4GVcOw — 尼亚拉 (@nyalra) 2023 年 5 月 16 日\n\n我喜欢蒙德里安等艺术家的抽象画，所以我无法抗拒蒙德里安和毕加索的作品流向大冢国际美术馆的费尔南·莱热。费尔南·莱热画作所包围的空间的陌生感是最令人愉悦的。\n\n是的，感觉很好。正如虔诚的信徒在看到十字架和基督的物体时哭泣一样，当我被几何抽象绘画的力量包围时，我也会感到兴奋。\n 我什至无法解释为什么我喜欢蒙德里安，他们的画里投入了什么样的感情。然而，我对他们每一个人都很着迷。我远无法用言语表达我的情感或理解艺术，但能够将这种因观看艺术而产生的强烈的狂喜感带回家，是多么幸运的事啊。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,7 +56,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇短文：戏剧版的卡里古拉效应和顽皮的作品</title>
+<title>一口随笔：剧场版 卡利古拉效应与色情作品</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-01-21 04:38</p>
-  <h1>一篇短文：戏剧版的卡里古拉效应和顽皮的作品</h1>
+  <h1>一口随笔：剧场版 卡利古拉效应与色情作品</h1>
   <p class="ja-title">一口エッセイ:劇場版 カリギュラ効果とえっちな作品</p>
 </header>
 <main>
@@ -28,11 +28,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇短文：戏剧版的卡里古拉效应和顽皮的作品\n\n有时，警告周围患有精神疾病的人说：“请停止这样做。”这是一个坏主意，因为对方可能会想：“另一方面，如果我做了禁止的行为，对方就会遇到麻烦，并且不会在意。”\n 例如，如果你说“不允许自残！”，你可能会想，“那么每次你割腕，这个人就会生你的气”，当你想让别人注意到你时，这可能会变成一个特殊的举动。如果你说，“不要暴露它”，你会学到，“那么，如果你暴露它，将会造成很大的损害！”这很难。\n 无论如何，存在一种类似的心理状况，称为“卡利古拉效应”。这是一种心理现象，让我们想做一些被禁止的事情。人类因自由被剥夺而承受巨大压力，以至于想要反抗自由的观念。越是禁止观看的东西，你就越想看到它。\n 好了，现在就这些了。只要您记住卡利古拉效应的概念，上面的例子就无关紧要。让我们做好准备吧。最近，我开始思考色情内容的吸引力是否基于卡利古拉效应。\n 由于我们拥有“创造”的媒介，可以让我们尝试各种表达方式，因此可能有很多人对色情类型更感兴趣，而实际上这被认为是犯罪或道德上不可接受的。顽皮漫画等流行类型都是关于戴绿帽子和催眠的。还有屈辱。这也可能是一种卡里古拉效应。在幻想中消耗性欲是否也包含着一种解放感，释放被困在现实中的思想？和。往往有顽皮插图的二维角色在主线故事中表现得非常好，这可能是由于卡利古拉效应和产生兴奋的差距。\n 这可能是巧合，因为我没有收集任何数据，但最近我越来越频繁地遇到“百合花中的老人”的顽皮插图。这可能是卡利古拉效应吗？\n 一时间，随着尤里动漫的兴起，一种“杀死试图插手尤里的御宅族”的氛围蔓延开来。它已经变得如此普遍，以至于人们以“如果我这么说，我就能理解同性恋”的形式消费它，甚至还有一些激进的人会彻底攻击试图介入百合的御宅族。\n 不过，创造力应该是自由的，所以当然有人会说：“有一个肮脏的老男人被困在百合花之间真好！”没关系。事实上，我认为有不少。百合花越是神圣，人们就越会以亵渎它为乐。然后，地球上有人突然想到：“不管别人怎么说，我要把一个肮脏的老男人放在流行的尤里杯角色之间！”\n 从一位勇敢的神风特攻队队长在一场失败的战斗中的英勇表现开始，其他盗贼也对尤里不应该被污染的趋势感到沮丧，纷纷效仿。公众对神话的毁灭变得热情起来，因为它打开了一扇曾经被视为禁忌的大门。革命军迅速从墙缝中侵入。正是因为这样的事情，“被百合夹住的老人”的插画才越来越多……我就是这样的感觉！\n 太阳和月亮。光与影。那些不该用顽皮的眼神去看的东西，当你用顽皮的眼神去看的时候，它们就会被唤起。正当我思考这个问题的时候，当我在寻找调皮的催眠作品时，我对DLsite上充斥着大量AI制作的CG合集感到愤怒，彻夜不眠（我每次都后悔购买它们，以为AI制作的CG合集可能会很受欢迎）。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：坏人说的话</title>
+<title>一口散文：反派的辩解</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-05-12 06:28</p>
-  <h1>短文：坏人说的话</h1>
+  <h1>一口散文：反派的辩解</h1>
   <p class="ja-title">一口エッセイ:ヴィランの言い分</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：坏人说的话\n\n我正在看 NHK 播出的《恶人岩番》。\n 这是一档讲述害虫、害虫甚至粪便等社会所憎恶的“恶人”的节目，概念很温和，试图帮助人们从人类的角度理解那些只不过是“敌人”的生命的处境。\n\n顺便说一句，苍蝇出现了两次，也许是因为它们很受欢迎。他肯定是这部剧中最酷的反派之一，不是吗？它有一种怪诞的黑暗冷静。我猜是受到《Megaten》和《苍蝇》中Beelzebub的影响。想想看，我觉得我学到了《苍蝇》中的情节，第一次变成怪物的前人类无法忍受痛苦，恳求他“杀了我……杀了我……”。 《蝇王》的构思简直太好了！\n 无论如何，当我一直在看这个节目时，我一直在以“恶棍的观点”为标题不断介绍人类敌人，我认为如果最后一集的副标题是“人类”，那将是一个非常好的笑点。我想。在解释了害虫、害虫、便便、脂肪和多余毛发背后的含义后，以“人类”为特色并介绍了“人类是多么愚蠢和邪恶的生物，但实际上，人类也有自己的理由。”这是讽刺和酷。\n 诚然，人类犯了很多错误，但每一个错误都有其道理。当一个人因为某种原因被视为“小人”时，我想你首先应该做的就是仔细听听那个人所说的话，就像这个“小人的论点”。善与恶是如此复杂和神秘的东西。然而，在大多数情况下，被挑衅的人很少能冷静地编出一个故事，甚至正确的主张也会被那些完全否认的人歪曲。只要这个结构存在，这个世界上除了通过考验就很难摆脱耻辱。\n 那么，节目的主旨就是听听这个被称为“反派”的概念的解释，我觉得即使是扭曲的孩子也会感兴趣。说人类是真正的恶棍似乎很廉价，但这是一个非常有趣的思想实验，看看如果我们以这种方式剖析被认为是邪恶的人类的环境会发生什么。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

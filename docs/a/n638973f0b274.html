@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选短文：Garara Sleep</title>
+<title>精选一口随笔：加拉拉·斯·利普</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-31 04:44</p>
-  <h1>精选短文：Garara Sleep</h1>
+  <h1>精选一口随笔：加拉拉·斯·利普</h1>
   <p class="ja-title">選り抜き一口エッセイ: ガァララ・ス・リープ</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 毎日の日記をまとめた同人誌からの選り抜きです。興味を持ったら新刊買ってくれると嬉しいぜ！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"精选短文：Garara Sleep\n\n《PriPara偶像时间》中我最喜欢的一集是《Shuuka和Garara》，特别喜欢Garara Su Leap的存在。\n 伽拉拉是掌控夜晚的人，所以他只能在夜间行动。我不禁爱上了“掌控黑夜的精灵”的设定。因此，我拉拉不与其他人交往，不知不觉中，他偷走了女孩们的梦，最终能够在白天醒来。\n 她是一个“因为自己醒着就剥夺了别人的梦想”的彻头彻尾的反派，但她自然也有享受白天的欲望。过着永远孤独的生活就和死一样，既然人的目的就是活着，就不能选择自己的手段。没有人可以责怪你努力生活。这个问题对于女孩来说太重要了，无法决定什么是好的。\n 然而，当我爱罗遇到了他不可替代的最好的朋友修香时，他选择了朋友的感受而不是自己的生存，因为“夺走她的梦想会伤害修香。”这个伽罗的道德感是惊人的。加拉拉陷入了长长的睡眠，但她的梦想并没有被夺走。就像宫泽贤治一样，他直到最后都坚持吃素，他说：“我宁愿死，也不愿夺去一个生物的生命。”\n\n偷走女孩梦想的“邪恶”加拉拉在现场表演时，在梦幻般的蓝紫色舞台上，表情非常温柔。\n\n这是一本整理日常日记的同人志选集。如果您有兴趣购买新一期，我将非常高兴！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

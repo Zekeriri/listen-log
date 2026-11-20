@@ -3,25 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Note 的订阅者日记本月更新两次后将停止使用。感谢您阅读到现在...</title>
+<title>面向note订阅者的日记，这个月更新两次后将停刊。感谢一直以来的阅读…</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-04-07 22:26</p>
-  <h1>Note 的订阅者日记本月更新两次后将停止使用。感谢您阅读到现在...</h1>
+  <h1>面向note订阅者的日记，这个月更新两次后将停刊。感谢一直以来的阅读…</h1>
   <p class="ja-title">noteの購読者向け日記、今月で2回更新後に廃刊します。今まで読んでくれてあ…</p>
 </header>
 <main>
   <article class="body">noteの購読者向け日記、今月で2回更新後に廃刊します。今まで読んでくれてありがとうございました♪ 毎日の日記は続けるので、よければそちらも読んでいってくださいね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"Note 的订阅者日记本月更新两次后将停止使用。感谢您阅读到现在...\n\nNote 的订阅者日记本月更新两次后将停止使用。感谢您到目前为止的阅读♪我会继续写日记，所以如果您愿意，请阅读它。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -41,7 +40,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

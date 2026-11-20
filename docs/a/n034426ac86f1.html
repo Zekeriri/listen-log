@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>特别展览爱丽丝</title>
+<title>特别展 爱丽丝</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-16 03:33</p>
-  <h1>特别展览爱丽丝</h1>
+  <h1>特别展 爱丽丝</h1>
   <p class="ja-title">特別展アリス</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね。場合によっては、読者も一種のトリップ体験です。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"特别展览爱丽丝\n\n我去看了正在六本木举办的“爱丽丝特别展”。我还参观了水木茂的展览，稍后再谈。\n\n爱丽丝梦游仙境……世界上阅读量最大的童话故事，也是我想要的最敏感女孩的故事。这次展览是一次精彩的活动，您不仅可以重温爱丽丝的世界观，还可以了解她的模特爱丽丝·利德尔、作家刘易斯·卡罗尔的成长经历以及当时英国的风土人情，以及爱丽丝的故事是如何诞生和传播的。\n\n尽管我收藏了很多与爱丽丝相关的书籍和作品（顺便说一句，我认为Jan Švankmajer的《爱丽丝》是最好的爱丽丝主题杰作），但我对这次展览还是很满意，精心的内饰和技巧，尤其是茶会的迷幻变色再现，非常精彩。梦想的世界给你一种奇幻非凡的感觉，仿佛坠入其中。参与者本身就像爱丽丝一样，误入了这个神秘的展览。 100分！它对爱丽丝与迷幻文化之间的关系的描写给我留下了深刻的印象……是的，爱丽丝的世界是一个年轻女孩的感性所创造的理想之旅。\n\n𝑀𝑎𝑑 𝑇𝑒𝑎 𝑃𝑎𝑟𝑡𝑦 pic.twitter.com/cywNR41f1C — Nyalra (@nyalra) 2022 年 8 月 15 日\n\n嗯，我认为最能完美再现爱丽丝现实的写真集是《少女爱丽丝》，它出版于昭和时代，那时法规还很宽松，十多年来，我一直被巨大书架前看起来像真正的爱丽丝的漂亮女孩的照片所吸引。由于时代原因，存在年轻女孩的裸体图像，现在合法拥有它们是有问题的。这是一位本来就不是洛丽塔摄影师的摄影师的作品，而他之前和之后的作品只出版过与爱丽丝的诉求完全不同的写真集，所以这是一本突变而诞生的神奇写真集。当它作为完整版本重新发布时我购买了它。当我大约18岁的时候，他十几岁的时候，手里拿着一大笔万张钞票。\n\n他必须违反法律才能见到他最喜欢的女孩爱丽丝。相反，这个事实是美丽的，爱丽丝一定是那种常人无法企及的天真无邪的女孩。\n\n请欣赏整理日常日记和商业随笔集的同人志。某些时候，对读者来说也是一种旅行体验。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

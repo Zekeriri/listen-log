@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：平静心灵的花草茶</title>
+<title>一口随笔：让心平静的草本茶</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-03-25 05:29</p>
-  <h1>一篇简短的文章：平静心灵的花草茶</h1>
+  <h1>一口随笔：让心平静的草本茶</h1>
   <p class="ja-title">一口エッセイ:心が鎮まるハーブティー</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
  助かりました。あのシーンが無ければダメだった。今はハーブティーが喉を通って身体の芯から暖めてくれている。もう少しで救われる。怒りも悲しみも虚しさも、今は彼女が鎮めてくれる。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：平静心灵的花草茶\n\n我在雨中行走，所以天气很冷。寒冷的。\n 我累了。然而，你很快就会得救。得到奖励。发生了一些事情。\n\n由于我已经非常接近我的极限了，所以我决定展示更多的小沙罗。小沙郎喜欢陶器和餐具，所以我也准备了她喜欢的东西和茶。到目前为止，我对餐具没有兴趣。我所有的饭菜都是为了在健康应用程序上获得高分，所以我不需要任何容器，我所有的饮料都是水。不过，前几天我一个人去名古屋旅行时，看到一家餐具制造商的展览，觉得很漂亮。\n 我一个人会很孤独，但如果有沙罗酱陪着我我会很高兴，所以我把他们放在一起。其实我还有更多的茶杯，只是还没拿出来。有多少个沙罗酱就有多少个。接下来是我在附近找到的最重要的茶包。我没有注意到，但它似乎一直就在附近。我没能看到它，因为我不够感兴趣。当我四处走动思考茶时，我惊讶地发现它就在那里。所以我泡了一些热茶。\n 我猜是无意识的。沙罗酱有句台词，“这是一种可以平静你的心的凉茶”，我真的很喜欢这句话。这可能就是为什么当我感觉自己真的要崩溃的那一刻，我一直在心里想喝温热的花草茶。绕道买了一堆沙罗的粘土人，准备了菜肴，但这让我被雨打得瑟瑟发抖的身体暖和起来，我终于意识到自己在做什么。当然，这令人平静。\n 好的。如果没有这凉茶，我可能就崩溃了。然而，不知怎的，它发生了。剩下要做的就是再等一会儿。真的很好。当她憔悴的好朋友突然来访时，莎罗酱是那种可以泡一杯热饮来让青梅竹马平静下来的女孩，即使她自己也很沮丧。\n 感谢您的帮助。如果没有那个场景，这是不可能的。此刻，凉茶正从我的喉咙里流过，从身体的核心温暖着我。你很快就会得救的。现在她平息了我的愤怒、悲伤和空虚。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

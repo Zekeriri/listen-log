@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>游戏王台词的演变不断从对话气泡中弹出</title>
+<title>游戏王中不断溢出对话气泡的台词演变</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2020-07-25 19:18</p>
-  <h1>游戏王台词的演变不断从对话气泡中弹出</h1>
+  <h1>游戏王中不断溢出对话气泡的台词演变</h1>
   <p class="ja-title">どんどん吹き出しからはみ出していく遊戯王のセリフの変遷</p>
 </header>
 <main>
@@ -57,11 +57,10 @@
 真の名作とは決められた枠にはまらないような豪快さが必要なことを、フキダシからセリフをハミでさせる事で証明した高橋和希先生は紛れも無く天才です。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"游戏王台词的演变不断从对话气泡中弹出\n\n*这是我之前写的专栏的修订版。\n\n说到《游戏王》，它就是“明显突出的海胆形状的对话气泡”。对于那些不掌握其中窍门的人，我们从《Battle City》版本中选择了一些令人印象深刻的弹出框架。\n\n（图片：图7）\n\n这是基本的突出部分。这个突出量是默认的。\n\n（图片片段：图9）\n\n这个太大了，城之内的气球都装不进去，真是太刺激了。\n\n（图片：图8）\n\n此时，我不知道从哪里开始。\n\n（图片：图2）\n\n早期，线条整齐地排列在海胆形状的气球上，\n\n（图片：图3）\n\n在与Shady的战斗中，事情开始变得可疑，感叹号突然出现。\n\n（图片：图4）\n\n到了王国版，默认会出现几个字母，\n\n（图片：图5）\n\n在战城版之后，很少能在气球中看到它，所以我当然在最后加入了情感场景。\n\n（图片：图6）\n\n当我读到2016年版时，我松了一口气，因为第一部分完美地融入了海胆形状的气球，但是\n\n（图片：图7）\n\n在第二部分，它在最后跳了出来。毕竟，正是这种自由造就了游戏王！\n\n高桥一树是一位无可否认的天才，他通过让线条从气球中显现出来，证明了真正的杰作需要一种不符合既定框架的动态感。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -81,7 +80,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

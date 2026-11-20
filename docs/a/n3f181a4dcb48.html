@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：我内心不为人知的父亲身份</title>
+<title>一口散文：自己内心的未知父性</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-04 07:03</p>
-  <h1>短文：我内心不为人知的父亲身份</h1>
+  <h1>一口散文：自己内心的未知父性</h1>
   <p class="ja-title">一口エッセイ:自分の中の不明な父性</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 長文エッセイをまとめて書き下ろしをたっぷり含んだ商業同人誌も今月末にでます。予約してね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：我内心不为人知的父亲身份\n\n一个年轻人对我说：“尼亚鲁拉的写作在某些方面让我感觉像我的父亲。”这对我个人来说是一个非常有意义的印象。\n 这是因为我生来就没有父亲，所以我只能通过小说知道亲生父亲的概念。所以我不知道我会成为什么样的成年男人。父亲或那个年龄段的男人如何与家人和其他人互动？由于我没有这方面的经验，我能完成我所期望的职能吗？我一直很焦虑。\n 我不知道是什么让我感觉像一个父亲，但如果这个世界上至少有一个人有这种感觉，我会很高兴。也许他会成为一个令人惊讶的好父亲。\n 首先，我起得很早，一定会看特效和少女动画，而且我一直很喜欢针对儿童的内容。我喜欢漫画和动画，而且我认为它们非常受孩子们的欢迎。我就是这么认为的。如果我的儿子想要一个巨大的软胶唱片，我会立即给他买，如果我的女儿想看光之美少女的电影，我会带她一起去。相反，他们未经许可购买玩具和游戏。这对孩子来说不是很有趣吗？\n 我很方便地想象这一点，但另一方面，对儿童内容了解太多的成年人可能也会觉得不愉快。有叛逆的时期，孩子们想长大……我很高兴看到我内心的父亲身份如何升华。\n 好吧，我最不想结婚的人是《女神转生V》中的魔少坊（恶魔）和亚历克斯，所以问题是，生出人类孩子的可能性本来就很低。\n\n包含日常文章的同人志现在正在展位上出售。买吧！\n\n包含许多长文的商业同人志将于本月底出版。请预约。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

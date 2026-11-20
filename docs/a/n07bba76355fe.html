@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>为什么选择透明紫色 Game Boy 颜色的孩子总是会成为御宅族</title>
+<title>为什么选择透明紫色Game Boy颜色的孩子永远都会成为御宅族</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2020-08-21 22:57</p>
-  <h1>为什么选择透明紫色 Game Boy 颜色的孩子总是会成为御宅族</h1>
+  <h1>为什么选择透明紫色Game Boy颜色的孩子永远都会成为御宅族</h1>
   <p class="ja-title">クリアパープル色のゲームボーイカラーを選んだ子供が必ずオタクになる理由</p>
 </header>
 <main>
@@ -48,11 +48,10 @@ GBカラーのギャルゲーといえば、スロウスタート内でたまち
 ここまで酷いと逆に好きになってしまうので、思い入れがあるかないかで言えばあったりもしますが。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"为什么选择透明紫色 Game Boy 颜色的孩子总是会成为御宅族\n\n*这是我以前写的一篇文章，为了笔记使用做了补充和修改。\n\n我与 Game Boy 颜色有很多联系，有一次我不假思索地发了一条推文，“宅男倾向于选择透明的紫色 Game Boy 颜色。”\n\n基于这条无关紧要的推文，Netorabo 上发表了一篇文章，\n\n（图片：图1）\n\n与此同时，它还被几个摘要网站转载（因为发生在2月14日，所以被称为“血腥情人节”），结果逐渐变成了一个消息游戏，“当时购买Clear Purple的人被标记为御宅族并受到批评。”有人将其解释为“垃圾书呆子”，最后我被一些不认识的御宅族批评为“因为Clear Purple是数字”一位卖家，很多孩子自然选择了清紫，其中有一些长大后成为了宅男。”\n\n六个月后，我突然想起并回顾那些日子……\n\n作为回应，我收到的回复给我留下了深刻的印象，以至于屏幕截图被奇怪地分享并返回给我，并且发生了一次事件，我完全被互联网所左右，只有一个清晰的紫色 Game Boy 颜色。\n\n它非常像互联网，当我回想起这样的周年纪念日时，它让我微笑。我现在再说一遍，但无论销量如何，我认为御宅族肯定会被透明紫色所吸引。真正的御宅族可能是CC Sakura或者樱花大战限定版。\n\n（图片：图2）\n\n顺便说一句，在我的 Game Boy Color 上，大量蚂蚁从扬声器部分的洞侵入，随着游戏过热它们都死了，所以我记得一边玩 Saga 2，一边不断看着大量死去的蚂蚁。\n\n■旁白\n\n我认为Pia Caro 2.2绝对是GB色中最好的女孩游戏。游戏部分很痛苦，场景也很短，但 Dots 所带来的图形的艺术性和怀旧感超过了所有抱怨。\n\n（图片：图3）\n\n说到GB彩色gal游戏，那就是《Slow Start》中小玉也玩过的《口袋爱情》。\n 这确实是游戏质量最差的，尤其是2，所有女主角都真心讨厌主角，而附加的女主角是“一个有时会暗示恶劣家庭环境的亚文化女性”和“一个在屋顶上谈论自杀的女孩”。她是一个有“Menhera女人（她真的只谈论这个）”等怪癖的角色，要征服她，你需要不断地重置她的手机，直到她接受女主角的约会邀请，并且然后带她去女主角满意的约会地点，每个月都会更换。\n\n如果你问我有没有什么场景或结局让你因为克服了困难而有成就感，那是没有的。不知道为什么，结局总是出现女主角不高兴的表情，让人回味无穷。\n\n如果它这么糟糕，我最终会喜欢它，所以我想我对它是否有感情。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -72,7 +71,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

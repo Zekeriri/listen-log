@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：解谜狂热</title>
+<title>一口随笔：解谜狂人</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-01-16 12:14</p>
-  <h1>短文：解谜狂热</h1>
+  <h1>一口随笔：解谜狂人</h1>
   <p class="ja-title">一口エッセイ:謎解きマニア</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：解谜狂热\n\n我玩了一个以前写过的谋杀之谜，虽然很有趣，但我太累了，就睡着了。这是快乐的一天。\n Madamisu是一款悬疑游戏，所有玩家都试图找出犯罪背后的真凶，所以他们都必须开动脑筋。除了我之外的参与者都是之前玩过几次游戏的人，令我惊讶的是他们在游戏中组织信息的能力与我不同。相反，他们说，“玩多遍你就会明白其中的原理，所以对于玩得一头雾水的初学者来说可能会更有趣。”确实，拼命地任由他人摆布可能才是真正的刺激。\n 但一路上听着大家的故事，我发现大家都在一边努力解开谜题，一边自己演绎。不，你可能认为我写的是显而易见的东西，但即使我读过推理小说，我也只是根据作品的情绪凭直觉来确定罪魁祸首，我从来没有过中途停下来猜测的经历。总有超出读者预期的惊喜，所以我希望你继续读下去，有惊喜。直到现在，每个人都认为情况确实如此。就游戏而言，除非你思考，否则你无法前进，所以我过去常常在纸上列出信息。我喜欢EVE系列。\n 不过，这次的参与者似乎很喜欢“推理”本身。他经常去玩逃脱游戏和阅读悬疑小说，其中一位参与者形容自己是“解谜爱好者”。“解谜狂热”。如果她在我的班级我会很高兴，但这是一个只存在于动漫中的概念。事实上，这个解谜狂人帮助我如此轻松地组织信息。我的日常生活变得像金田一一样。惊人的。\n 回想起来，我发现我读得最多的悬疑小说是京极夏彦的。我读京极夏彦的作品是为了陶醉于她的写作风格和恐怖的哥特式世界观，而且由于解决方案涉及到我不知道的关于怪物和宗教的专业知识，我认为思考它们是没有意义的。我想惊讶地说：“你在说谎，京极堂！”而且，有栖川有栖和绫辻雪人的王道也是如此。\n 这太蹩脚了……我只是完全屈服于工作的乐趣，即使在董事会之外，我也没有认真对待它的经验。即使是现在，当我读到《中介银行》时，我仍然优先考虑生产而不是规则。每次我的印象都是，“我忘记了规则，但是这些家伙真的很酷！”太愚蠢了。\n 不好意思……最近我很想弄清楚的是《蜡笔小新不可思议的 Meki！》花之天空学园》，但那完全被排除在外了。这是一部不可否认的杰作，但这是一部充满悬疑色彩的电影，观众可能会意识到自己的大脑不如小新。幼儿园以下的御宅族。\n Madamisu本身就非常令人兴奋，我非常喜欢它，但令我失望的是，我被“解谜爱好者”的灵巧程度所淹没。做到这一点的唯一方法就是继续正确地搜索和重温神秘的东西。从现在开始我要努力培养这个。如果你生来就是御宅族，你可能希望至少被称为御宅族一次。作为一个博士职位的人，是一个“解谜爱好者”。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

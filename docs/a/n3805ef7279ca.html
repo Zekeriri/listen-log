@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>快速文章：d 动漫商店</title>
+<title>一口随笔：d动画商店</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-21 03:15</p>
-  <h1>快速文章：d 动漫商店</h1>
+  <h1>一口随笔：d动画商店</h1>
   <p class="ja-title">一口エッセイ:dアニメストア</p>
 </header>
 <main>
@@ -23,11 +23,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集、よろしくね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"快速文章：d 动漫商店\n\n当我登录d动漫商店观看动漫时，我必须通过短信登录并进行双重身份验证，但我笑了，想到d动漫商店也可能会劫持我的帐户。\n 如果我的 d Anime Store 帐户被劫持，即使我每月支付 500 日元，我也可以随心所欲地观看动漫。而且，历史中包含的观看过的动画历史也被引用。这太尴尬了。你可以看到我经常回顾过去我喜欢的《光之美少女》的剧集。仔细想想，我认为安全系统强大是件好事。能够看到您的信用卡信息是最危险的事情吗？与信用卡信息相比，动漫观看历史记录远没有那​​么重要。\n 不管怎样，正如我经常和朋友谈论的那样，d Anime Store 的 UI 是简单而美妙的。仅显示动漫的标题和缩略图，不显示用户评论或评论等不必要的信息。无论如何，我看它是因为我想看它，其他人的意图并不重要。它简单又酷。\n\n最近在看《梦幻蜡笔王国》。谢谢你让我每月只需500日元就能见到银公主的笑脸。感谢您维护严格的安全并保护我的动漫观看历史。感谢您保持用户界面干净。谢谢你，d动漫店。\n\n整理日常日记和商文集的同人志，拜托了。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

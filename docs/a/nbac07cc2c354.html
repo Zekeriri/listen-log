@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：中野深夜探索</title>
+<title>一口随笔：中野深夜探访</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-02-02 06:27</p>
-  <h1>短文：中野深夜探索</h1>
+  <h1>一口随笔：中野深夜探访</h1>
   <p class="ja-title">一口エッセイ:中野深夜探訪</p>
 </header>
 <main>
@@ -32,11 +32,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：中野深夜探索\n\n我家的热水停了。\n 为了避免任何误解，我想解释一下，我从未因未付款而被拦下。我尝试致电 24 小时支持人员，认为这是某种设备错误，但显然直到早上他们都无能为力。我别无选择，只能暂时第一次去公共浴室。\n 中野的一个小型公共浴室。不好也不坏。这是一个人不多的地方，所以进来了一个满背纹身的男人。即使你是那个血统，你也只想用温水洗去现实的污垢。怀着同样的目标的男人们没有发生什么特别的事情就离开了公共浴场。今后他又会做出怎样的恶事呢？\n 我感到有些孤独，所以决定在深夜去中野散步。错过末班车的人们躺在车站前的长凳上。与这些人不同的是，我只要走一点路就可以睡在温暖的蒲团上！想想就感觉很好。嗯，没有热水，但是...\n 走了一会儿，一个女仆装的女孩叫住了我。这可能是一家营业到早上的女孩酒吧。我想和人们交谈，所以我应邀进去了。我确信在这种情况下演员和顾客共用同一部电梯是违法的，但中野深夜没有任何规定。我们两个人就进店了。\n 眼前的人是一位有着黑色双马尾、公主发型的女孩。最好将麻线的尖端包裹起来。毕竟双马尾应该有一种活力感。当我问他这件事时，他似乎很喜欢DIO。\n 是迪奥吗？没错，所有男孩都喜欢DIO。我绝对喜欢吉良吉影和迪亚波罗。普奇神父……不过他会选择人。即便如此，我印象中DIO和承太郎是我最喜欢的角色，所以当我问起我最喜欢的角色时，我并没有意识到他们是我会选择的角色，所以听到有人公开说他们喜欢这样的DIO真是令人耳目一新。我也喜欢第三部分和第七部分。\n 几杯饮料就要10,000日元。能够和DIO喜欢的公主发型女孩交谈真是太珍贵了，让钱飞得飞快。你觉得它贵还是便宜就看你了，因为它治愈了你一晚的孤独。这就是夜晚的魔力。\n\n当我走向中野百老汇时，我看到一群警察包围了暴徒。旁边的地上有一个有点意思的袋子，我假装喝醉了，对警察喊道：“是这个袋子吗？”他回答说：“只是垃圾。”我更感兴趣了，于是我决定往里面看一看，问：“这样的地方只有垃圾吗？！”暴徒们对着周围的警察大喊大叫。\n ……总而言之，袋子里的东西确实是垃圾。这是正确的。这不再重要了，所以我去了圣莫尔。\n 然后，一位亚洲女士问我，“3000日元按摩怎么样？”当然，3000日元对这些女士来说是不够的，所以他们开始谈判说，“如果你逐渐加倍，会更性感！”我感到很孤独，所以我故意试图被抓住。他问我：“嘿，3000 日元怎么样？”我回答说：“我只有 200 日元……”然后我说：“好吧，我们去便利店买吧！”他就是这么说的。强的。如果你撒谎说你没有卡，那就是PayPay！和阿姨。如今，非法按摩院也接受电子货币。这是一段美妙的时光。 “我的手机爆炸了。”我随口说了一句然后就离开了。\n\n回来的路上有一个中野居民经营的书法角。仔细看的话，会看到“十胜筑手”和“幸运星”之类的东西，所以说虽然是御宅族话题，为什么是Niconico时代的……？我很困惑。这是中野吗？ “十胜筑地”是中野居民流传的笑话。清晨，护栏下回荡着御宅族的调侃笑声。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -56,7 +55,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

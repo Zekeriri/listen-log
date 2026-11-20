@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文精选：我总是上网</title>
+<title>精选一口随笔：总是在上网</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-10-08 03:26</p>
-  <h1>短文精选：我总是上网</h1>
+  <h1>精选一口随笔：总是在上网</h1>
   <p class="ja-title">選り抜き一口エッセイ：いつもインターネットばかりしています</p>
 </header>
 <main>
@@ -23,11 +23,10 @@
 ※Twitterに連載していたエッセイからの抜粋です。↑で購入できますので、エッセイ集をぜひ読んでみてね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文精选：我总是上网\n\n我总是上网，一醒来就跳手机，所以我就把自己裹在蒲团里，就这样躺了很长时间。当我这样做时，焦虑就会出现，所以我会服用药物来掩饰它。\n I was always surfing the internet, and when I woke up I had a headache, so I opened my phone to forget about the pain, then wrapped myself in the futon and tried to forget about the headache forever.如果我这样做，焦虑和痛苦就会随之而来，所以我会用药物来掩饰它。\n 我老是上网，睡醒就头疼，老是想着网络。我的头痛越来越剧烈，即使把自己裹在蒲团里，也掩饰不住内心的焦虑和担心。如果服用大量的药物，你会逐渐失忆，失去知觉，从而睡得如泥。\n I'm always on the internet while taking medication, and when I'm awake, I'm in a vague state of mind due to the effects of the psychotropic medication, and I wander around the internet even though I can't understand anything.不知道头疼不疼。不知不觉间，我已经睡着了。我看到一些我无法分辨是梦还是幻觉的东西。\n 我总是上网、吃药，所以我不明白一切。我记得我感到头疼，但我不知道是什么时候发生的。我觉得我打开手机是因为我对某件事感兴趣，但我有健忘症，不记得它是做什么的。天花板和地板在移动，我分不清自己是在做梦、出现幻觉、醒着还是睡着了。我想快速存钱，但我不知道我想存什么钱。我现在拿着我的智能手机。\n\n*这是 Twitter 上连载的一篇文章的摘录。可以在↑购买，所以一定要阅读散文集。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

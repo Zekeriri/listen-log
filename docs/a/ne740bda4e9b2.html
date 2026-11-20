@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：通过劳动将新年“福气”转化为金钱</title>
+<title>一口散文：把跨年的“喜庆”用劳动换成金钱</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-01-01 07:15</p>
-  <h1>短文：通过劳动将新年“福气”转化为金钱</h1>
+  <h1>一口散文：把跨年的“喜庆”用劳动换成金钱</h1>
   <p class="ja-title">一口エッセイ:年越しの「めでたさ」を労働でお金に換える</p>
 </header>
 <main>
@@ -22,11 +22,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：通过劳动将新年“福气”转化为金钱\n\n我忙着各种稿子，连除夕夜也坐在家里敲击键盘。我没有什么特别的事情要做，因为现在是年底，所以这不是问题。\n 过去，除夕夜是打工的好日子。如果您在新年期间在便利店申请打工，那么在此期间您的每小时工资仅为 2,000 日元。人们不想在新年假期期间工作。我想和家人一起在家里度过时光。通过让像我们这样的流氓填补这些职位，我们可以获得很高的小时工资。特别是我记得除夕夜的夜班是最贵的。\n 所以小时候，我经常在便利店过年。作为一名日工，我被派到一个完全陌生的地方，在收银台前机械地和第一次见面的同事互道“新年快乐”。当然，除了想要计时工资之外，没有其他任何感情。在此期间，顾客会带着家人和朋友一起购买聚会用的食物和酒水。即使在便利店里，我的朋友们也会大声喧哗，把它变成一个节日。然而，半夜时分，店里却不见人影。大家都很看重岁月更迭的时机。\n 我们用这份“幸福”换取了计时工资。我说“新年快乐”只是为了避免尴尬。如果你真的有心过年，你应该在家里放松，而不是在便利店。向您的朋友发送新年快乐 LINE。但这与日常生活相差甚远。我不断地把酒精塞进塑料袋里，梦想着有一天我可以和某人一起笑着说“新年快乐！”。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +45,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

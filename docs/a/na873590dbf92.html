@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>快速文章：“新奥特曼”和成田彻的设计（无剧透）</title>
+<title>一口随笔：《新·奥特曼》与成田亨的设计（无剧透）</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-14 02:46</p>
-  <h1>快速文章：“新奥特曼”和成田彻的设计（无剧透）</h1>
+  <h1>一口随笔：《新·奥特曼》与成田亨的设计（无剧透）</h1>
   <p class="ja-title">一口エッセイ:『シン・ウルトラマン』と成田亨デザイン（ネタバレなし）</p>
 </header>
 <main>
@@ -39,11 +39,10 @@
 商業エッセイ集の方もよろしくお願いします。僕は、今でも角川と仲良しだから。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"快速文章：“新奥特曼”和成田彻的设计（无剧透）\n\n我看了《新奥特曼》。\n 我特别喜欢《超七》，第一代《Man》是一次性看完的，然后根据我最喜欢的剧集（Skydon等）重复看几遍，所以这次我只是笑着欣赏Shin，但我会再看一两遍之后写下我的详细感想。暂时，我很高兴看到梅菲拉斯这次的想法带有一点梅特隆的色彩。\n 现在，正如剧场出售的设计作品和预告信息中所述，这个奥特曼怪物的设计是基于设计师成田彻的最初设计方案。早期的奥特曼没有彩色计时器，这是由于节目原因而采用的（成田彻不喜欢它，但庵野称赞它是利用制作限制的精彩设置），使其看起来扁平且更像“外星人”。它还给人一种无机而神秘的印象。我对主线故事中的角色的第一印象是“漂亮……”，我被他们迷住了。\n\n我也很喜欢天才成田彻的画集（腰带上推荐的是庵野英明），尤其是其中的插图让我震惊，这些插图表明，如果你有艺术家的绘画技巧，即使是金言也可以看起来更时尚而不是幽默。精彩的！\n\n成田彻先生厌倦了圆谷制作公司在很多方面与昭和时代相似的政策，最终中途退出了Ultra系列，后来出版了《特摄与怪兽》。\n “为了那些计划利用你赚钱的地球人。”\n 添加角或胡须\n 不要露出你的胸部。”\n 这与他产生了深深的裂痕，正如他在成田彻将奥特曼转变为角色业务后写了关于奥特曼发展的批评诗一样。如果您想了解更多，请阅读《奥特曼在哭泣》！ （也有人怀疑这本书的作者圆谷秀明最近开始将圆谷制作公司的遗产放在雅虎拍卖上，但这是抛在一边。）\n\n今天早上，当我在推特上谈论这首诗时，我收到了一个不认识的人的回复，他说：“成田老师是个白痴，尽管这一切都是为了赚钱。”但我认为这是一种不同的思维方式。\n 相反，创始人圆谷英二是一个非常有艺术感的人，他在片场不顾盈利地固定镜头，根据剧集的质量，可能会被搁置。当然，赤字随着产量的增加而增加。成田彻对特效图像的艺术痴迷比他的生意更强烈，我认为成田彻在思考圆谷早期的氛围时写下了这首诗。当然，如果你说因为这种顽固的思维方式导致管理不顺利，那么……\n 因此，我购买了奥特曼和加博拉手办，认为庵野秀明等人继承了成田彻的遗愿，为新奥特曼设计了奥特曼和怪物，这是一件多么美妙的事情。\n\n加博拉有一条像马吉拉一样险恶而美丽的尾巴。\n不管怎样，它太大了，哈哈 pic.twitter.com/PLrmX5AZhC — Nyalra (@nyalra) 2022 年 5 月 13 日\n\n包含每日日记的同人志现已发售！\n 最近，我一直在谈论奥特曼！\n\n我们也欢迎有关商业论文集的询问。我和角川还是好朋友。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -63,7 +62,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

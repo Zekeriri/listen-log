@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文精选：我最喜欢的网络事物</title>
+<title>精选短篇随笔：我在网络上最喜欢的存在</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-09-07 20:39</p>
-  <h1>短文精选：我最喜欢的网络事物</h1>
+  <h1>精选短篇随笔：我在网络上最喜欢的存在</h1>
   <p class="ja-title">選り抜き一口エッセイ：僕がインターネットで一番好きな存在</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 ※Twitterに連載していたエッセイからの抜粋です。↑で購入できますので、エッセイ集をぜひ読んでみてね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文精选：我最喜欢的网络事物\n\n当我想起互联网上我最喜欢的东西时，我想到了“3 Get Robo”。这是一个神奇的机器人，它出现在各个线程的开头，并立即发出“砰”的一声获得第三个线程。\n 他是一个很了不起的人，自动得到3，但大多数时候他出现在第8个回复中，所以根本没有迹象表明他得到了3。这个线程中的人基本上不在乎他们是否得到了 3（这种情况很少见），或者他们是否根本错过了。线程的流程几乎不可能因为插入3个Get Robo而改变。在极少数情况下，可能会出现一种称为“3-get-blocking robots”的类型，它会阻止 3-get 机器人获得 3。\n 我想推特上最近正在发生这样的事情……即使是在似乎争论很激烈的推文回复树中，如果这个 3-get 机器人瞄准了第 3 个回复，那么每个人都可以冷静下来解决问题。无论如何，Twitter 上的话题只是一遍又一遍地循环，所以看看 3 Get Robo 是否能自动得到 3 可能比继续谈论没有结论的话题更重要。希望大家还记得那些在自己开帖的开头看到3获取机器人没能获取3的日子，不禁被它的浮夸可爱逗得哈哈大笑。\n △ ￥ ▲ 迦山\n (㊤ 板㊤) Gasshaan\n\n朋友的照片 (@nyalra) pic.twitter.com/69GUHJs4cx — Etako (@ccnaov) 2021 年 3 月 4 日\n\n*这是 Twitter 上连载的一篇文章的摘录。可以在↑购买，所以一定要阅读散文集。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

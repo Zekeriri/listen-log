@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：通过 ICL 手术改造机器人</title>
+<title>一口随笔：通过ICL手术实现的赛博格化</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-25 23:19</p>
-  <h1>短文：通过 ICL 手术改造机器人</h1>
+  <h1>一口随笔：通过ICL手术实现的赛博格化</h1>
   <p class="ja-title">一口エッセイ:ICL手術によるサイボーグ化</p>
 </header>
 <main>
@@ -31,11 +31,10 @@
 若い頃の長文エッセイをまとめた商業エッセイ集もよろしくお願いします。この頃は、自分がサイボーグになるなんて想像もしていなかった。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：通过 ICL 手术改造机器人\n\n我做了眼部手术。 ICL 是一种矫正手术，将隐形眼镜直接植入眼球以半永久性地保持良好的视力。\n 他被带到一间寒冷的手术室，放在椅子上，用仪器保持一只眼睛睁开。被压在椅子上被迫睁开眼睛的情况让我想起了《发条橙》中的“卢多维科疗法”，在片段中强迫人们睁开眼睛，被迫观看残酷的画面。\n 首先，倒出大量的麻醉溶液，将你的视野覆盖成黄色。当大量的水使你看不清前方时，你会产生一种淹没在黄色海洋中的错觉。这就像涉川五贵的手提钻泪滴技术。\n 几十秒后，我终于用手术刀切开了眼睛。这是我第一次经历能够伤害自己的眼球。我的视野仍然是黄色的，我只能看出正在对其进行处理，并且我可以在视野边缘隐约看到切口的尖端。当隐形眼镜通过开放性伤口插入时，患者的视野变得†完全黑暗†，并且在他以前从未经历过的“黑暗”中心出现一圈苍白的光环。一个看起来像天使之环的神秘图像。在追逐这光芒的辉煌的同时，将镜头插入，整个过程顺利完成。对另一只眼睛重复相同的过程。总共约30分钟。\n\n在手术过程中，当我的眼睛被切开时，我的视野变得完全黑暗，只有一个神秘的蓝白色光环开始出现。当我继续用眼睛追随它时，手术结束了，我觉得“我应该跑，找到一个比真相更明亮的地方”，我想，“这就是你的银色花园的样子吗？” - Nyalra (@nyalra) 2022年4月25日\n\n当他回到病房时，他的视力逐渐恢复，他发现自己是一个眼球植入了晶状体的改造人。随着技术的进步，篡改身体的手术数量将不断增加。在未来，拥有假体不再是梦想，唯一证明你是人类的证据将是你脑海中低语的鬼魂的直觉。\n\n眼科手术（ICL）完成！ ！\n我在眼球被切开的缝隙中植入了隐形眼镜，变成了改造后的人类 pic.twitter.com/o0Ogy12fL7 — Nyalra (@nyalra) 2022 年 4 月 25 日\n\n包含每日日记的同人志目前正在销售。在明亮的地方睁开眼睛看书。\n\n我还想看一本商言文集，里面收录了我年轻时的长文。那时，我从未想过自己会成为一个机器人。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

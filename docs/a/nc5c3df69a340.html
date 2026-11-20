@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>小作文：集体看动漫</title>
+<title>一口小作文：大家一起看动画</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-04-13 04:26</p>
-  <h1>小作文：集体看动漫</h1>
+  <h1>一口小作文：大家一起看动画</h1>
   <p class="ja-title">一口エッセイ:大勢でアニメを観る</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"小作文：集体看动漫\n\n好久没有和很多人一起看动画了。简单来说，这是一次幸福的经历。\n 和我成为朋友的一位动画师正在聚集大家一起看动画，所以他邀请了我一起去。动漫界相关人士排起了长队。我被介绍为“我将负责○○的○故事〜”，并告诉我应该负责那个场景......！虽然我印象深刻，但我是唯一一个自我介绍说“我正在写这样的东西......”的人，这很尴尬。这是最酷的名片，上面写着“我拍了○○故事中的那个场景”。\n 这次倒不是这里的人特别投入工作，而是有几部动漫会在深夜播出，所以想法是实时观看。因为是同一个行业，所以我觉得有学习的一面，但感觉没那么重，其实就是“作为动漫爱好者一起看动漫吧！”多么美妙的空间啊。\n 和一群人一起看动漫是一件很有趣的事情。当你情不自禁地爱上一个漂亮的女孩角色时，有人会突然说“啊……”或“可爱”。当有有意义的作品时，人们的反应是“哦”，如果搞笑的话，每个人都会笑、啧。就连动漫界的人也不例外。只是一群热爱动漫、看动漫的宅男而已。然而，他对动漫的热情比大多数人都高，偶尔会听到创作者的原始视角，充满了诸如“这个剪辑是____制作的”或“我喜欢这个布局〜”之类的评论。您可以实时观看动漫，并享受来自行业专家的高质量评论。我被邀请参加如此豪华的聚会。\n 当我们住在合租屋时，一到深夜动漫时间，我们就很自然地聚集在客厅。这与那里只有一台大电视有关。从晚上 10 点到凌晨 2 点左右，人们会出去观看深夜动漫节目，享受美好时光。我喜欢它是鹅卵石的混合物。仅仅拥有一部有趣的动漫是不够的。坦白说，这很好，因为有些动漫我不太理解，只是在转轮子。尽管我对预算如此之低感到惊讶，但当我能够在整个第一季中找到任何作品中始终存在的闪光时刻时，我仍然感到高兴。 “我不会向任何人推荐它，但这个场景绝对很棒，”他和朋友们手挽着手说道，那一刻是无价的。\n 独自一人固然很好，但和一群人在一起也很好。毕竟，当我听到“萌”的时候，我想大声说“萌~”，我想与其他人分享那种兴奋。今晚我对惠惠和芸芸感到非常兴奋。动画师们也很兴奋。她的笑容非常好，正在嘲笑 KonoSuba 的笑话。每个人都喜欢动漫。首先，动漫作为一种媒介非常重要，它可以让很多人一起分享时刻。最重要的是，它必须是娱乐观众的娱乐。我能够重申它的重要性，并且由于它是由非常热爱动漫的人制作的，因此日本将继续播放许多有趣的动漫！那天晚上，我兴奋地回家了。我很高兴你邀请我。请再给我打电话。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

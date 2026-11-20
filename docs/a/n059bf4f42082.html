@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：随机广播的酷炫之处</title>
+<title>一口随笔：任意广播的帅气</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-28 03:59</p>
-  <h1>一篇简短的文章：随机广播的酷炫之处</h1>
+  <h1>一口随笔：任意广播的帅气</h1>
   <p class="ja-title">一口エッセイ:任意ラヂヲのカッコよさ</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 先月に発売した商業エッセイ集もよろしくお願いします。製作ゲームの思想として土台になっていると好評。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：随机广播的酷炫之处\n\n在游戏发售前接受采访时，我提到《每日广播》是一本对我影响很大的书，所以今天我想谈谈随机广播。详细解释起来会很长而且令人困惑，所以我们假设有一个广播在旧互联网上很流行，并且包含 90% 的内容和网络材料。脚本汇编是可选读物。\n\n自从拿到这本书以来，我已经读了一遍又一遍，并且记住了大部分台词。首先，这款收音机注重BGM和对话节奏的配合，有着类似于音频MAD的聆听体验，所以你可以像背歌词一样背剧本。这种 MAD 方法很好，因为它类似于互联网。我工作的第 11 天到第 20 天之间播放的 BGM 受到随机广播的启发。\n 很难解释这台收音机的深度。因为这是一场真正的老年人聚会，而且不只是网络俚语的乱扔，而是当时著名个人网站管理员的兴趣爱好和个人信息，当时Comiket上的不寻常事件和俱乐部信息，当时还很少见的cosplay AV标题等等，一切都是不加淡化、不加淡化的。这是一件凝结了当时网络混乱的艺术品，换句话说，除非你真的对当时的网络文化感兴趣，否则你无法传达任何东西。\n 随机广播最酷的一点是，它非常受欢迎，以至于仅仅 10 集就结束了，担心如果继续下去，材料会因为其强烈的当代感而变得陈旧和过时。距离太近了，无法通话。尼亚尔和其他人永远不会忘记内贺花的工作，我们将怀念他，他的生命将因极端的互联网攻击而短暂。好的。\n\n摊位上出售仅谈论美少女游戏的同人志和编写日常文章的同人志。我想知道我的日记是否有一天会成为帮助我们感受时代的资源。\n\n也敬请期待上个月发布的商业论文集。它作为制作游戏理念的基础而广受好评。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

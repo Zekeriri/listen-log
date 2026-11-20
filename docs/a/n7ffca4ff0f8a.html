@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>速记：333333本书以及投资者和创作者的欺骗</title>
+<title>一口随笔：333333本与出资者与创作者的欺骗</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-05 01:37</p>
-  <h1>速记：333333本书以及投资者和创作者的欺骗</h1>
+  <h1>一口随笔：333333本与出资者与创作者的欺骗</h1>
   <p class="ja-title">一口エッセイ:333333本と出資者とクリエイターの騙し討ち</p>
 </header>
 <main>
@@ -28,11 +28,10 @@
 自分語りの詰まった、商業エッセイ集もよろしくお願いします。こんなやつだから、あんなゲームになったんだなと思ってもらえたらと。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"速记：333333本书以及投资者和创作者的欺骗\n\n游戏销量已经达到了333333。那么我们再来说一下游戏。\n 大制作总是有赞助商和制片人对其进行投资，而投资者往往对他们抱有负面印象，因为他们想尽一切办法赚钱。在大多数故事中，他都被视为坏人。事实上，正是因为这些人制定了一个策略，它才变得热门。即使是在那个超级著名的动漫工作室，最好的制作人也掌握了有效的广告方法，所以最好的创作者的作品才能接触到更多的人。\n\n然而，只听投资者的说法是不对的。漫画《创造高达的男人们》，年轻的富野由之说服了制造商，“我们将制造一个又大又酷的机器人！”当玩具卖了！”然后只把工作人员聚集在一起，谈论宏大的设定，“这个（机器人）是第六文明的废墟。”大型机器人的战斗方式确实很华丽，但它隐藏了主线故事的激烈戏剧和战争的悲剧。这是一个欺骗，但它不是谎言。\n\n看完这个场景后，主创意识到自己必须以一种意想不到的方式去追求自己想做的事情，同时还要满足投资人设定的条件。请阅读《影像的原理》，了解富野导演的认真做工。\n\n顺便说一句，制片人经常告诉我“让它更亮并减少角色数量。”完全正确。如果只是我的话，故事会更长、更黑暗。这是一个令人厌恶的游戏。然而故事的发展并不合理。用尽一切办法欺骗并击败他之后，这就是结局。\n\n我们目前正在销售一个编辑日常文章的同人志。您也许能够看到游戏制作过程中发生的情况。\n\n我还想要一本充满自言自语的商业论文集。我希望人们会认为正是因为这样的事情，游戏才变成了现在这个样子。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

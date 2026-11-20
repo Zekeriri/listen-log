@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：不使用互联网的一天</title>
+<title>一口随笔：度过没有上网的一天</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-07-15 08:24</p>
-  <h1>短文：不使用互联网的一天</h1>
+  <h1>一口随笔：度过没有上网的一天</h1>
   <p class="ja-title">一口エッセイ:ネットを触れない一日を生きる</p>
 </header>
 <main>
@@ -21,11 +21,10 @@
  しかし、こうして半日もネットを完全に遮断する（ふとチラ見すらしない）、そのうえで誰かと遊んでいるとか仕事しているわけでもない時間は貴重であった。なんだか我欲を捨てるための修練のような感覚すらある。なんなら、毎日宮崎駿の新作が公開されて、毎日一定時間スマホと離された方が精神が安定するまである。仕事の連絡を無視する口実があるのも楽だ。しかも耐えた先には待ちに待った映画があるのだから良いことしかない。「君たちはどう生きるか」。少なくとも僕はまずスマホを触らない一日を生きた。だが、こうして日記なんぞを投稿するために、結局都会に慣らされた気持ちの悪い指の動きで、真っ黒い変な板に向かい合う僕を、宮崎駿は「くだらん」と一瞥することでしょう。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：不使用互联网的一天\n\n我想看《你如何生活？》没有剧透。然而，对这项工作最感兴趣的朋友只能在下班后工作，所以我们最终在没有使用互联网（除了LINE）的情况下过夜。\n 有朋友就更好了。因为他正在工作，所以如果他一开始就不打开智能手机，对他的工作态度会更好。有很多事情要做。但我不是那样的人。也不是，我没有太多时间克制，而且之前正好发烧了，所以不幸的是今天早上我还是像往常一样早醒了！\n “我会尽量不使用互联网”和“我不会不惜一切代价使用互联网”的难度完全不同。我发现自己不假思索地打开浏览器、Discord、Twitter 和各种应用程序，当我尝试用 Google 搜索一个我突然感兴趣的单词时，我会放弃它，因为我担心即使在搜索之间的微小间隙也可能会出现某种剧透。有很多次，当我拿起手机查看时间时，发现自己无意识地打开了 Discord 服务器。事实上，它甚至打开了一瞬间。那一刻，我不得不使出绝招，把目光移开，看不懂显示的任何一串字符串。\n 我欺骗我的大脑思考：“我刚刚看到的只是一系列随机字母，就像计算器上混乱的数字序列一样。”他给自己一个像《攻壳机动队》中那样的视觉杰克。后来我查看了一下，Discord 上短暂出现的文字是：“我想住在一个有 10 多个榻榻米的房间。”如果我在那个警觉状态下能够识别出这个文字，我会忍不住怀疑和想知道，“不可能……看完这部电影后，我想住在一个有 10 多个榻榻米的房间！？”但为什么...？一个房间分成两个房间不是比一个房间有10多个榻榻米更方便吗？宫崎骏对住在超过10张榻榻米的房间里有一种痴迷吗？”很抱歉剧透，但不用担心，因为我认为不会有人在观看这部电影时会想，“我想住在超过10张榻榻米的房间里”。除了吉卜力之外，想必很多人都想住在10张榻榻米以上的房间里。\n 然而，我完全切断网络（连看都不看一眼）、不与任何人玩耍或工作的时间的半天时间是宝贵的。感觉就像我正在训练自己放弃自我。毕竟宫崎骏的新作每天都会发布，每天离开手机一定的时间更有利于稳定心态。人们很容易找到借口忽略工作电话。而且，只有在忍耐之后有一部你一直在等待的电影才算是好事。 “你过得怎么样？”至少我一天没有碰过我的智能手机。然而，为了发表这种日记，宫崎骏可能会用我在城市里已经习惯的恶心的手指动作，对着一块陌生的漆黑的板坐着，看我一眼，说“这真是垃圾”。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +44,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

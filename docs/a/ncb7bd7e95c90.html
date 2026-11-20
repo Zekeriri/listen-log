@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：对互联网上团结感的立场</title>
+<title>一口随笔：对网络整体感的态度</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-02 07:51</p>
-  <h1>一篇简短的文章：对互联网上团结感的立场</h1>
+  <h1>一口随笔：对网络整体感的态度</h1>
   <p class="ja-title">一口エッセイ:ネットの一体感へのスタンス</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 毎日の日記をまとめた同人誌（さいきん新刊がでました）や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：对互联网上团结感的立场\n\n看起来日本队在足球比赛中以某种令人惊奇的方式获胜。默默地玩了一上午的Splat，当我打开时间线时，每个人都沉浸在庆祝的心情中。今天早上是多么幸福啊！\n 这里的问题是你的立场。有两个主要选项。\n ①真诚地为日本的胜利感到高兴并参与时间线。\n ② “足球？我不感兴趣……”他歪着头说道，试图表现得像个被遗弃的人。\n 或者，您可以完全忽略它，但是当时间线都是关于同一主题时，需要大量技巧才能与不相关的内容竞争。除非他发展出“世界团结意识”以外的东西，否则他将成为与②中相同的逆势失败。\n 当然，①是安全的。我没看过比赛，也不知道谁打谁。目前尚不清楚目前正在举办什么类型的比赛。也许这是足球，所以这是世界杯，对吧？我是这么想的，但是体育比赛很多，所以可能会有所不同。那个程度的理解。这样的宅男突然发推文“恭喜日本！”真是令人怀疑。你干得很棒！”即使你不感兴趣，但感觉自己骑着一匹获胜的马，这是很蹩脚的。在这种情况下，有必要提前低声说：“我支持你！”或“我很感兴趣！”。互联网监控很严格。\n 那么，利用消除法，②就是阿修罗道。或者更确切地说，他只是一个丑陋的宅男，只会向那些为他兴奋的人泼水。对于初中生和高中生来说，可以塑造“违背公共利益的我”的角色，加深与同学之间的友情。但我是一个好成年人。一个好成年人继续批评别人正在享受的事情，说“哼……那是垃圾”，这是很蹩脚的。如果你只是忽略它，那么如果你特意提及它，它也不会很受欢迎。而且，尽管他看似反叛流行趋势，但他却完全沉迷于《喷射战士》。他看起来一点也不像穿着……如果你说出这样的话，那就只剩下耻辱了。\n 既然如此，我们只好采用第三种选择，“用难以理解的句子来掩盖它们”。换句话说，就是这样的情况。尽管他承认日本的胜利，但他对此既不高兴也不生气。这只是一份难以理解的宅男自我意识清单。通过这样做，他们能够“通过直接提及庆祝情绪来熟悉时间线，而不确认或否认它，并通过将其转移到另一个话题来隐藏他们无法解读情绪的能力。”出现！\n 所以，今天的日记只是一串毫无意义的信件，而你在如此庆祝的心情下写这样的文字，只是浪费了几分钟而已。老实说，为历史性时刻感到兴奋会更有意义一千倍（尽管我只能预测这将是一个巨大的胜利）。\n\n请欣赏收录了日常日记（新版已发行）和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

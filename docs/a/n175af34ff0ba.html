@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：20岁出头</title>
+<title>一口随笔: 20岁出头</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-18 13:59</p>
-  <h1>短文：20岁出头</h1>
+  <h1>一口随笔: 20岁出头</h1>
   <p class="ja-title">一口エッセイ:20代前半</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
 商業エッセイ集もよろしくね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：20岁出头\n\n我对自己的睡眠时间感到惊讶。我总共睡了将近20个小时，只在动画时间短暂醒来。我只是在睡觉，没什么可写的，所以我就看问题了。\n\n总而言之，她问道：“尽管我已经 20 岁出头，但仍然有青春期般的担忧，这正常吗？”\n 说实话，我觉得这很正常。 20出头的人还是孩子。恰当的表达是“青春期长头发”。回想起来，我感觉就是在那个时候。\n 就我而言，我青春期的第一个目标是“与父母断绝关系，离开冲绳”，这个目标在我18岁的时候就得到了解决。当我实现这个目标的那一刻，其他一切都变得无关紧要，在我20岁出头的时候，除了偶尔写博客，我只从事动漫、游戏、书籍，偶尔也打工。这不可能是个成年人。\n 推特上我周围的人也说，“我是一个很有成就的人”，但与我不同的是，他们不知何故上过大学。我确信他们有过留级、找工作困难等各种问题，但最终他们找到了工作，抱怨社会的推文虽然增多，但逐渐减少，现在有很多人（像我这样30出头的人）几乎不上网。与初中生和高中生不同，他们被允许有一小段暂停，所以他们表现得过分，营造出一种颓废感。但现在我明白了，生活就是这样。但我还是觉得有点被背叛了。\n 也就是说，除了极少数踏实的人之外，与青春期并没有太大区别。事实上，随着行动范围的扩大，这可能是最麻烦的时期。错误的规模也会加大。也是在这个时期，我开始吸毒。\n 然而，我确实怀念每个人都为“成为成年人”而紧张，拼命智取对手，同时试图把自己描绘成无用之人的感觉。渐渐地，我的生活出现了差异，不知不觉间，现实就被二十多岁的各种数字清晰地展现出来了。这也可能是亨特所说的“忍受各种残酷的妄想”的准备期。能够减少发推文以换取成为一名职业成年人，以自由职业者的身份过着赌博生活，或者除了最低限度的工作之外享受自己的爱好，这些都有好处和坏处。\n 正如提问者所说，咨询可能是个好主意。国外有一本著名的自助书，叫《人生在20多岁就决定了》，是一位专门针对20多岁人群的心理咨询师写的（我不推荐，因为它会让你的思维变硬），但书中每个人都担心自己和别人比较。然而，正如上面提到的，下半场差距确实扩大了，所以现在获得一个不会动摇的身份很重要。为将来发生更残酷的事情做准备……\n\n包含每日日记的同人志正在 BOOTH 发售！\n\n我期待着阅读您的商业论文集。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

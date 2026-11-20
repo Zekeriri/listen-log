@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：毛毛虫君</title>
+<title>一口随笔：毛毛虫君</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-05-28 07:12</p>
-  <h1>短文：毛毛虫君</h1>
+  <h1>一口随笔：毛毛虫君</h1>
   <p class="ja-title">一口エッセイ:芋虫くん</p>
 </header>
 <main>
@@ -23,11 +23,10 @@
  芋虫は今日も狭く暗い地面を無意味に往復し、ゴミを食べて満足したあと、横たわっているうちに次第に惰眠に落ちるを繰り返す。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：毛毛虫君\n\n我觉得这个世界虽然扭曲，但还是正常而美丽的。然而，承认这一点需要很大的勇气。不以大事为恶，必遭灭亡。因此，他无法接受世界上的其他人并不像自己一样阴险、狭隘、肮脏、懦弱，所以他试图与这样的人一起躲在井里，在看不到真相的情况下感到舒服。这是最聪明的事情。\n 那么，当你感到绝望的那一刻，你就会接触到比你想象的更善良、更纯洁的自己。当你看到人们以自己的方式过着自己的生活和文化，欢笑，受伤，被伤害，在犯下许多错误和正确答案的同时仍然前进，更具体地说，当你看到周围的人真正努力，被感动，诚实行事的那一刻。\n 这一定是令人恐惧和难以忍受的。它们不是同一块岩石下的昆虫吗？你们不是曾经有过怨恨，嫉妒过在阳光普照的地方大步走来走去的朋友吗？这不是一个错误。我们实际上都是人，我们知道别人的优点和缺点，所以我们可以原谅和爱别人。我逐渐认识到，人总是想象别人的不好的行为和缺点，并一直耿耿于怀，这是不正常的。害怕周围的人爬上墙壁，从井里逃走。没错，我是地底深处唯一一只丑陋的毛毛虫，吞噬着自己和他人的不幸而长大。\n 但我现在该怎么办呢？努力、学习、创造性活动和人际关系都被歪曲和蔑视。我尽力让自己出丑。大家都这么说吧？匿名帐户仍然这样做。他们每个人在面具下其实都过着正常的生活吗？他付出了很多努力，过着这样的生活吗？或者也许这些匿名者确实是我们的盟友。但有什么用呢？最终，当你竭尽全力的时候，这些家伙就会攻击你，把你的贪婪变成活力，展现你的性感。\n 是不是堵住了？从什么时候开始？当你还是个孩子的时候，当你还是个学生的时候，当你成为心智不成熟的成年人的时候？或者也许是因为他的进步从根本上是错误的，以至于从来没有一个事情是“正确的”。我从来没有在光线充足的地方见过世界和人，因为我总是把目光从天空上移开，所以我对真相一无所知。由于我没有看到任何东西，所以我从来没有客观地看待过相对的自我。天空明亮得我无法直视，也不想。如果你这样做，你就会否认自己在沮丧中度过的那些毫无价值的时间。毛毛虫不可能有这种力量。\n 那些被生活在阴影中的人嘲笑却仍向阳光蜿蜒走向阳光的幽默者能否得救？他是否以某种方式意识到了这一点并背叛了地球的最深处？这不是骗子吗？不对，我是那个偷偷摸摸的人吗？之所以会发生这样的事，是因为他是最狡猾的。\n 今天，毛毛虫又在狭窄、黑暗的地面上漫无目的地来回走动，吃完垃圾后，它又重复着躺下、逐渐陷入昏昏欲睡的过程。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：观察某人的戏剧时</title>
+<title>一口随笔：观察某人的剧情时</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-21 05:07</p>
-  <h1>短文：观察某人的戏剧时</h1>
+  <h1>一口随笔：观察某人的剧情时</h1>
   <p class="ja-title">一口エッセイ:誰かのドラマを観測する時</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：观察某人的戏剧时\n\n有时人们偶然看到某人的戏剧。\n 有一家我常去看书的咖啡店，但附近有一家相机店，每次路过都没什么兴趣，在最近月全食的晚上，当我从咖啡店出来时，我看到一群工作人员和熟客聚集在相机店前，拿着大相机拍摄暗月。\n 平常只是漫不经心地走过，透过窗户盯着我看的店员们，今天晚上却非常兴奋地看着镜头。我相信，对于城市摄影师来说，拍摄渐渐消失的月光是他们一生中最珍贵的时刻之一。一次偶然的机会，我发现他们的镜头生活充满了戏剧性。\n 今晚我又看到了一些不寻常的事情。\n 雨后。深夜，当我在中野漫步时，我听到一家古老的自助洗衣店里传来女人洪亮的声音。远远望去，我看到褪色的洗衣机上放着一部智能手机，他的双臂和头靠在洗衣机上，正在和屏幕另一边的一个人说话，这个人似乎是他的情人。她的头随着洗衣机的嘎嘎震动而摇晃，两人笑了起来。多么戏剧化啊。\n 不知道今晚的雨是不是把衣服弄湿了。他肯定是深夜才来洗衣店晒明天的衣服的。因此，为了在等待洗衣服时消磨时间，她给心爱的人打电话，享受轻松的时刻。不管你是否意识到，简单的日常生活让你最快乐。毫无疑问，这个女人现在正在中野地区度过深夜最幸福的时光。\n 我已经完全忘记了，但是冬天的深夜很冷。而且，由于下雨，今晚特别冷。从自动售货机购买热可可。我在昏暗的灯光下走回家，感受着手中罐子的温暖。\n 看来明天也会下雨。\n 我不喜欢被淋湿，但我更不喜欢一个人呆着，所以明天我可能会在深夜在中野散步，寻找躲在街上的人。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

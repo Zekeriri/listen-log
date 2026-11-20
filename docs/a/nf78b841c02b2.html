@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：超级马里奥兄弟。</title>
+<title>一口散文：超级马里奥兄弟</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-05-06 16:33</p>
-  <h1>一篇简短的文章：超级马里奥兄弟。</h1>
+  <h1>一口散文：超级马里奥兄弟</h1>
   <p class="ja-title">一口エッセイ:スーパーマリオブラザーズ</p>
 </header>
 <main>
@@ -23,11 +23,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：超级马里奥兄弟。\n\n我看了《超级马里奥兄弟》简单来说，还是挺有趣的。我很高兴路易吉，虽然受到了适当的惊吓，但仍能勇敢地面对挑战，作为马里奥世界中哥特式恐怖的代表，他获得了独特的个性。当有路易吉洋楼的故事时，我会很兴奋。在《任天堂明星大乱斗》电影中，路易吉的角色是探索恶魔的城堡。\n 至于内容，从头到尾都是“是马里奥！”的感觉，所以看马里奥电影的人一定会喜欢它，电影院的孩子们也很满意。看到一个小胡子男人疯狂地跳上跳下，简直太搞笑了。我是疯狂玩《超级马里奥64》的一代人，所以我想体验一下在低多边形空间里在孤独而空旷的桃子城堡里奔跑的忧郁。很高兴有很多关于64的小故事。\n 我最早的记忆是从观看《游戏王》、《数码宝贝》和《暴跌博士》三部曲开始的。我对之前的事情仍然有模糊的记忆，有时我感觉不到自己在榻榻米上，但当我清楚地认识到自己的“自我”的那一刻，是因为我对《游戏王》中三个蓝眼睛的组合感到非常兴奋！电影，因为我觉得数码宝贝电影中演奏的波莱罗舞曲的旋律很美。斯朗普博士什么都不记得了。\n 我想，在我去看电影的电影院里，孩子们会开始看到马里奥的记忆。有些孩子已经非常喜欢马里奥了，甚至头上戴上了蘑菇帽。我仍然模糊地记得和爸爸妈妈一起看马里奥的激动人心的经历。这不是一个好的开始吗？在我们的时间里，我们看到了《青眼》和《流星黑龙》有多酷，还设置了一个陷阱，自动将我们引向在剧院外设置的卡达斯，全国各地父母包括我妈妈的小小的变化都被孩子们的兴奋所取代。谢谢你，妈妈。\n 映前广告中宣传了马里奥游戏和乐高，因此印有这些形象的孩子们在电影结束后会到淀桥等地讨要马里奥游戏和玩具，甚至回家后也会沉浸在电影的余韵中，爱上水管工兄弟。那挺好的。游戏界最刺激、最无敌、获得星星的男人，和我的三只蓝眼+鹦鹉兽的组合，是时候来一场难忘的比赛，看看谁更强了！\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

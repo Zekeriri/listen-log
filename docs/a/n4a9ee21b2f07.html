@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>快速文章：VS Kinshibari</title>
+<title>一口随笔：对抗鬼压床</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-26 12:38</p>
-  <h1>快速文章：VS Kinshibari</h1>
+  <h1>一口随笔：对抗鬼压床</h1>
   <p class="ja-title">一口エッセイ:vs金縛り</p>
 </header>
 <main>
@@ -21,11 +21,10 @@
  しょうがないので、せめて金縛り中でも楽しめるよう、最近はスピーカーで音楽をかけながら眠っています。そうすると金縛り中にも好きな音楽を堪能できてお得。身体のバグに対して、文明の力で勝負していくぞ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"快速文章：VS Kinshibari\n\n我被逮捕的次数显着增加。\n 看来我目前服用的安眠药有一个副作用，就是限制性的。虽然到目前为止我还没有出现任何问题，但如果我在骑自行车和仰卧起坐感到疲倦时服用药物并睡着，我几乎可以肯定我会受到限制。\n 如果睡着的时候只是睁开眼睛，动弹不得也还好，但由于处于半梦半醒状态，意识不清的时候可能会出现一些奇怪的梦境现象，让景点一半吓人一半好玩。从空旷的空间听到隆隆的声音或类似游戏SE的声音是一种相当恐怖的体验，即使你没有戴耳机，也几乎就像听到幻觉。\n 如果你仔细聆听那些低语的声音，你会想象他们在对你说坏话，你会感觉这是一种真正的心灵现象，并且在体验过程中你会颤抖。奇怪的是，尽管我在颤抖，但我的身体却一动不动。过去的人如果遇到这样的错误现象，自然会相信有灵性的存在。有一次，在被捆绑的时候，我不知为何确信凶手即将来到我家，但由于我的身体无法动弹，我被迫意识到自己快要死了。这就是束缚的终极境界。\n 我无法控制，所以最近我在睡觉时在扬声器上播放音乐，这样我至少可以在被束缚时享受一些乐趣。这样，即使您受到束缚，您也可以享受自己喜欢的音乐。我们将利用文明的力量来对抗物理虫子。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +44,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

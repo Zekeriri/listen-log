@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：不健康不是亚文化</title>
+<title>一口随笔：非次文化的不健康</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-03 22:50</p>
-  <h1>短文：不健康不是亚文化</h1>
+  <h1>一口随笔：非次文化的不健康</h1>
   <p class="ja-title">一口エッセイ:サブカルでない不健康</p>
 </header>
 <main>
@@ -28,11 +28,10 @@
 商業エッセイ集もよろしくお願いします。こっちは、同人誌よりもさらに不健康な人生が見れる。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：不健康不是亚文化\n\n不久前我见到 Nyarula 桑时，有人问我最喜欢的东方角色，她称赞我诚实地回答了“灵梦”。 — Da Da Osorezan (@d_d_osorezan) 2021 年 12 月 27 日\n\n前段时间我见到奥索雷赞先生时，我们进行了一次谈话，他说，“这很难在网上说，但你正处于一个需要注意自己健康的年龄”，“不健康的健康可以被视为一种亚文化，但背痛不是。”我不健康的事实就像……很酷，就像一个伟大的文学人物（尴尬）。即使在游戏发行前夕我去世时，我也想：“如果我死在这里，这将是讲故事的最佳时机。”\n 这就是为什么当你年轻的时候，你有很大的余地。不要害怕疾病。然而，当我快到30岁的时候，我意识到，虽然我认为这是一件好事，因为我忍不住生病，但实际上，我的健康状况不佳来自于我的头部和臀部。\n\n从照片上看不出来，但由于制作游戏的压力，他的刘海已经变白了。如果让它滴下来，就会出现白线，看起来就像是劣质的战国龙马。制作粗糙的战国龙马是最糟糕的。营养不良可以进行继代培养，但白发、头发稀疏、臀部僵硬等问题却不能进行继代培养。这太可怕了。\n 所以，由于我常年坐着，肩膀和臀部很疼，所以我决定找一位脊椎按摩师。我觉得能够在身体健康的情况下顺利创作，才是花钱的最好方式，让自己和粉丝都开心。我还计划修复我的眼睛、鼻子和牙齿。老师惊讶地发现，即使他的背靠在墙上，他的骨骼也扭曲得如此厉害，以至于他的手臂可以塞进他的背和墙之间的缝隙中。我怀疑这是一种让他们过度焦虑并让他们参加的策略，但当他们告诉我，“你需要经历50次……”我嘲笑这个数字有多大，并意识到这并不夸张，但这是非常危险的。\n 作为完成游戏的交换，我失去了头发营养和直骨盆。确实，盖姆的世界观是，战斗的代价就是全身崩溃。呼呼呼……\n\n包含日常文章的同人志正在摊位上出售！当你在书中回顾这一年时，你会发现根本没有健康的元素。\n\n我期待着阅读您的商业论文集。你可以在这里看到比同人志中更不健康的生活。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

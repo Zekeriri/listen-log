@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：加入东道主经历的回忆</title>
+<title>一口散文：体验主机打工的回忆</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-19 04:55</p>
-  <h1>短文：加入东道主经历的回忆</h1>
+  <h1>一口散文：体验主机打工的回忆</h1>
   <p class="ja-title">一口エッセイ:ホスト体験入店の思い出</p>
 </header>
 <main>
@@ -28,11 +28,10 @@ boothにて、毎日のエッセイ集をまとめた同人誌などを販売中
 今月末には、長文エッセイをまとめた商業本もでます。電気もネットも止まりまくりだったアパート時代の話も多数収録。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：加入东道主经历的回忆\n\n正如阿散井恋次在他的漫画报告中简要提到的他访问主持人俱乐部的经历一样，我过去也有过当主持人的经历。我当时19岁左右。\n 早在公寓楼不交钱就会停电的年代，他就跑到不夜城歌舞伎町给家里买电，靠着只要参加主持俱乐部体验就能得到几千日元的消息。\n 它从面试开始，业主给你一个名字。我的名字是“Korataro”，这可以是我想要的任何名字。如果我在夜色中保持染色，我可能会以虎太郎而不是尼亚拉的身份见到你们。\n 虽然前辈们给了他各种各样的指导，但一个突然分不清是非的御宅族不可能无法与华丽的女人顺利沟通，他很多时候都是被嘲笑，只能以友好的微笑回应。高级主人比我想象的要友善，但这就是为什么它如此困难。\n 只要拿到钱就清楚了，但正当你觉得自己应该再努力一点的时候，你却看到眼前的女孩有一个VOCALOID手机壳。我确信现在是进攻的时候了，于是我鼓起勇气问她最喜欢的 Vocaloid 歌曲是什么，她也跟着过来了。他似乎很惊讶自己从未在店里谈论过 Vocaloid。这个故事相当生动，即使作为一个业余爱好者，我也很满意它有点用。我也收到了很多钱。\n 回家路上和学长打招呼时，他告诉我：“那个VOCALOID女孩大概16岁左右。”本来应该是高中生，每天晚上听着VOCALOID给主持人做贡献的她和虎太郎说话时，心里在想什么呢？\n\n仁吉为她写了一篇推荐《女性认可欲望百科全书》，这个月用Kindle半价+无限量可以无限阅读。体验SNS时代女性的黑暗。\n\n在摊位上，我们正在出售包含每日随笔集的同人志。您可以阅读各种经历！\n\n一本包含长文的商业书籍也将于本月底发行。包括许多公寓里停电和网络断电时的故事。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

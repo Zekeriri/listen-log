@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>作文：建议回复</title>
+<title>随笔：建议回复</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-07-16 20:51</p>
-  <h1>作文：建议回复</h1>
+  <h1>随笔：建议回复</h1>
   <p class="ja-title">エッセイ：アドバイスリプライ</p>
 </header>
 <main>
@@ -30,11 +30,10 @@
 こういうアドバイスが何度も送られてくると、ひょんなことからそれが爆発してガチギレしたっておかしくない。野菜の件は、そういう日々の鬱憤が限界を迎えたのではないかと思っております。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"作文：建议回复\n\n很久以前，有一个事件，一位名人在Instagram上发布了一张肉的照片，当一个陌生人回答“你吃蔬菜吗？”时，他很生气并回复了一条很长的信息。人们开玩笑说他为什么这么生气，我有点理解他的感受。我认为它太生气了，不能说“我还不如死了”。\n\n当你不认识的人突然告诉你真相时，你很容易感觉良好，但当这种情况发生时，你可能会感到非常沮丧。例如，如果我发布诸如“我从楼梯上摔下来”之类的内容，而有人只是问“你还好吗？”，我就非常高兴，但如果我不认识的人竟然说：“在情况变得更糟之前，你应该去医院！”，我不知道！ ！我们有自己的判断，所以你不觉得我们应该让他们为所欲为吗？你一定会这么想吧！如果您担心您的家人，我可以理解。\n\n首先，对于像“我从楼梯上摔下来”这样的愚蠢的事情，很难有一点幽默感，因为被夸大的担忧压垮了。\n 我今天去看了一位精神科医生，当我告诉他我同时睡眠有困难时，他告诉我，“最好睡个好觉”，所以我发推文说，“我的精神科医生告诉我，最好睡个好觉”，试图通过写下这个明显的事情来创造一些幽默。我自己常常在深夜自言自语，“我应该睡个好觉”，所以有人告诉我这件事很有趣。\n 然后，我收到了一个不认识的人的回复，他告诉我：“我认为你应该问是否有夜猫子和早猫子，以及是否有什么办法可以纠正这一点。”\n\n乌鲁斯~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~！ ！ ！ ！ ！ ！ ！ ！ ！ ！ ！ ！ ！第111章 你是谁！ ！ ！ ！ ！ ！ ！ ！\n\n如果您有睡眠困难或生活方式紊乱，您绝对应该寻求建议。仅仅因为我与精神科医生进行了这次谈话，我就必须写下所有细节吗？我一遍又一遍地谈论我对尝试各种安眠药、想看深夜动画和日朝的担忧，这打乱了我的日常生活节奏。\n 在这种情况下，虽然与说“我比你想象的更健康”有点不同，但除了“哇！”之外没有其他方法可以回应。如果你有非常严重的问题，你应该向适当的地方咨询，或者以更严肃的方式谈论它。这不是重点，这只是一个毫无意义的玩笑……\n\n当你一遍又一遍地收到这样的建议时，它突然爆炸并变得一团糟也就不足为奇了。关于蔬菜，我想我每天的挫败感已经到了极限。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

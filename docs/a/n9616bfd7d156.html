@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一次性文章：有趣的 Flash 仓库失败</title>
+<title>一口随笔：有趣Flash仓库的失败</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-24 06:18</p>
-  <h1>一次性文章：有趣的 Flash 仓库失败</h1>
+  <h1>一口随笔：有趣Flash仓库的失败</h1>
   <p class="ja-title">一口エッセイ:おもしろフラッシュ倉庫の敗北</p>
 </header>
 <main>
@@ -28,11 +28,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一次性文章：有趣的 Flash 仓库失败\n\n我的一个年轻朋友告诉我，“好像以前有一种东西叫滑稽闪光”，他在知识上知道，但从未真正见过，所以我让他看看当时的文化，然后在他面前播放。\n Gabaso 和 Yazuminachi 的演奏音质很刺耳。 “即使现在看着他，我也笑得很厉害。”当我检查他时，我自言自语道，发现他面无表情，难以置信。这甚至不是一个笑的舞台，而是一种完全面无表情的“困惑”表情。 「诶？什么？以前的人只要看到肌肉发达的哆啦A梦就会大笑……？为什么？智力下降……？」他们目睹了一种完全未知的文化，并认为“即使现在也很有趣”，他们盯着我看，仿佛他们已经被传送到了一个平行世界，那里的常识仅仅通过理解语言就变得不正常了。太可怕了。\n 这是不同的。就连我们也厌倦了肌肉发达的哆啦A梦、哆啦美和唐纳德，他们很快就变成了凶残的小丑，尽管那是我们当时唯一的幽默！这就是有趣的闪光灯发挥作用的地方！我恢复了平静，尝试播放 Sora Mimi 的歌曲，例如 Mosukau 和 Too Too Touma Sherry，但是……\n 认真的面无表情！\n “这很有趣，”他说，好像朝我走来，但随后我的思绪突然爆发出一些更无意义的东西，我说“没什么”，就好像我的思绪爆炸了一样。 “虚无”走向兴趣，就像Neuro，吃完了神秘的东西。他的眼神更像是在怀疑我的理智，而不是因为视频很有趣。\n\n这是骗人的……当我们看到AA的饺子和日本的饺子一样大时，我们笑得肚子都快炸裂了。现在看真的很有趣。\n 即使我说，“不，你知道像空拉米时间这样的事情有多有趣，对吧？”，答案是，“什么！？我懒得看《索拉米时刻》。”我对所有幽默都失去了信心。 “我很高兴我们生活在 TikTok 时代。我不想笑这样的事情，”他继续说道，我感到悲伤，心想，“不，不是这样的，即使是肌肉发达的哆啦A梦也会根据时间和情况变得有趣......”与 TikTok 和 YouTube 上的高质量幽默视频相比，我不想看有男子气概的哆啦A梦或面包超人互相打架的视频，即使我有报酬这样做......\n 在那之后，我播放了韩国版的《残酷天使的论文》和《东鸠OP》，并说“这绝对会让我发笑”，但它没有成功。我什至被告知，“尼亚鲁拉桑，这是有趣的骚扰。”骚扰……我？现在，我把腐败的幽默强加给年轻人，造成了麻烦……？\n 和男朋友分手后，我心情很郁闷，但当我看到屏幕上显示的日式饺子AA时，我笑得很厉害。听着，阿洛埃琳娜，这有点难说，但我是一个老混蛋，在我的笑声中添加了“记忆修正”。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

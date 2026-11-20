@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：追随者的爸爸</title>
+<title>一口随笔：关注者的爹（爸爸）</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-03 03:33</p>
-  <h1>短文：追随者的爸爸</h1>
+  <h1>一口随笔：关注者的爹（爸爸）</h1>
   <p class="ja-title">一口エッセイ:フォロワーの爹（パパ）</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪ 買ってくれたり、Amazonレビューや評価をしてくれたら、僕の自己肯定感も上がっていきます。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：追随者的爸爸\n\n我的中国粉丝开始叫我“爹”。\n 显然，长天酱的父亲曾经被称为“长天爸爸”，但他被缩写为“爸爸”，使他只是他的追随者的父亲。然而，我很高兴他们似乎因此而受到钦佩。\n 由于Nidiga的影响力，来自英语国家、中国和韩国的读者数量有所增加，他们甚至隔着大洋也热情支持我们，给我们带来了非常真诚的信息。当我嘀咕一些伤心的话时，她会真诚地担心，问“怎么了？”“你还好吗？”当我嘟哝“早点睡”时，她会表达她的担忧，说“我根本睡不着（;;）”，或者给我一个合理的警告，“老师总是熬夜！”真是太可爱了，每天都在安慰我。 “我们大多数人都喜欢这样称呼你（也可能回复）。”我更高兴了。有些孩子甚至寄来自己的 Nidiga 商品的照片。看来小阿米布制动物是通过对现成物品进行改造而制成的。这让我微笑。还有其他纯粹支持的信息，也有关于精神问题的咨询。无论你生活在哪个国家，人际关系问题似乎都很常见，生活也很困难。让我们都竭尽全力，变得更强。\n\n说到生活的不易，今天早上制作人跟我说了“等Switch版发售了，我们就休息一下”之类的话。冷静想想，他是想让我休息一下，因为我的工作量增加了，但当时可能是因为我睡眠不足，我心烦意乱，以为他说的是“游戏发售后，我就不再需要它了。”这是一个自卑造成的愚蠢误解。真是蠢啊。\n 我没有意识到他说的真正含义，整个晚上我都在想：“我做了游戏就没有价值了吗？”确实，如果他不写文字，他就是一个趾高气扬、令人毛骨悚然的书呆子，如果他被抛弃了，那瞬间就结束了，他会沮丧。后来联系他的时候我才明白他的用意。比赛结束后我想休息一下，但我仍然会继续努力。毕竟还有支持我们的粉丝这样的回复。这是多么大的祝福啊！\n 我意识到自己的错误的原因是因为我的追随者非常支持我，而且我能够记住现在有人需要我。说实话，白天我就靠着墙坐着做体操，心想我终于没有爱情了。\n 我没有父亲，所以我不确定自己以后是否能成为一个好父亲，但如果大洋彼岸有人叫我“一”，那将是我一生中最幸福的事情。请继续做好朋友。\n\n请支持我的日记和商业文章集的同人志♪如果您购买它或在亚马逊上留下评论或评分，我的自尊心就会增加。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

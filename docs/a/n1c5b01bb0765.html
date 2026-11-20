@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>新假面骑士……非常满意！</title>
+<title>新·假面骑士……非常满意！</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-03-18 09:49</p>
-  <h1>新假面骑士……非常满意！</h1>
+  <h1>新·假面骑士……非常满意！</h1>
   <p class="ja-title">シン・仮面ライダー……大満足！</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"新假面骑士……非常满意！\n\n我在最早的上映日期去看了《新假面骑士》。简单来说，我很满意。\n 毕竟这一集充满了庵野导演的怪癖和喜好。 「无论如何我一定会展示这个场景」……早期的怪物路线和漫画版《尊重》的故事，敌方怪物的独特特征，战斗场景，与女主角的对话，铁轨和电线杆的切割，在昏暗的看不清的隧道中令人沮丧的自行车动作，以及对现代来说过于坦率的主角，主题是善良。 ``我想这样做！我想我喜欢这个！”一切都传达了这一点，并且嘲笑似乎被迫连接每个亮点的一致性是很有趣的。他充满了推动“这就是它的本质”的想法的力量。这确实是一部骑士电影。 “我有很多话想说，但那个场景或这个场景太棒了，我很满意，我想再看一遍！”这种现象就会发生。我很高兴能够以这种方式欣赏骑士电影，甚至是庵野秀明的电影。情况很复杂。\n 《新哥斯拉》绝对是一部让每个人都兴奋不已的电影，《新奥特曼》则是一部非常喜欢原著故事的电影，以至于它组合得太整齐了。至于奥特曼，我也想，“我明白主故事的原始体验太棒了，但我希望我能看到更多庵野英明！”然而，这就是为什么它是一部好电影，即使你不知道奥特曼，你也能了解光之泰坦的存在。这两部作品真是太有趣了！\n ……那么，《新假面骑士》呢？我不喜欢假面骑士系列或庵野秀明的氛围，我认为第一次看到它的人都不能完全享受它。在了解了《昭和骑士》之后，不禁让人觉得“庵野秀明会这么做吗！？！？”。在拍了哥斯拉和奥特曼之后，他能够在世界上引起如此轰动，这一定是庵野导演的奖励。你所要做的就是微笑着说：“人们喜欢这样。”不需要合作歌曲来吸引大众。因为当时有一些很棒的主题曲，我们应该播放它们。如果你不了解石之森作品中的英雄人物，你可能会想，“这家伙是谁？”这很好。这很好。\n 好的。我真的很满意。我明白。我很高兴看到剧本的组合方式，“我想这样做，那么我一定会这样写！”是他随心所欲地写剧本的结果，没有做任何假设。即使它遗漏了那些第一次看到它的人，它也是一部假面骑士电影，所以这都是有关假面骑士的酷事。这个时候天就放晴了。岛本先生也承认失败。它具有不可否认的势头。\n 这是一部我可以自豪地自信地说：“我喜欢它！”的电影。留下那些跟不上旋风速度的人是一种令人兴奋的感觉。这是不可抗拒的。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

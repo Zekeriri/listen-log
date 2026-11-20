@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：需要批准的奴隶</title>
+<title>一口随笔：认可欲望的奴隶</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-25 02:59</p>
-  <h1>短文：需要批准的奴隶</h1>
+  <h1>一口随笔：认可欲望的奴隶</h1>
   <p class="ja-title">一口エッセイ:承認欲求の奴隷</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 商業エッセイ集もよろしくね。感想もらえると死ぬほど嬉しい。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：需要批准的奴隶\n\n在昨天的日记中，我写道，我几乎是强迫性地阅读，因为我已经没有材料了，而炫耀琐事感觉很好。出于同样的原因，我无法停止上网。\n 我担心如果我不继续提供某种内容，我会感到无聊并被切断，而当我在制作游戏时，在完成之前我将无法进行任何重大活动，所以我决定改为发布每日日记，以便我可以安心地继续进行某种活动。游戏发售后我也不知道该停在哪里，今天带着不写就被抛弃的焦虑又开始写了。\n 当然，如果你看一下结果，我认为这是一个很大的优势。通过写出自己的想法，我能够整理自己的情绪，最重要的是，我获得了更多支持我的读者。我经常因为写得不好并试图博取同情而被责骂，但我认为尽管如此，我能够表达自己是件好事。如果你在心情低落的时候强迫自己写点什么，内容必然会变得黑暗。对不起！\n 当我告诉制片人这件事时，他建议我去桑拿，在那里我可以强迫自己远离智能手机。我明白了，桑拿不仅感觉很好，而且还给了我一种自由感，因为我能够断开互联网和工作联系！难怪忙碌的成年人会沉迷于此。这对我来说是一个全新的想法。\n 即使您确信自己应该每周至少一次花时间完全与世隔绝，您也可能会继续追随自己的痴迷，明天又会继续盯着智能手机度过这一天。因为他们是渴望认可的奴隶，“我希望有人看到我。”\n\n我们目前正在销售编写每日文章的同人志。最大的快乐就是有人读它。\n\n我期待着阅读您的商业论文集。如果我收到任何反馈，我会很高兴。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

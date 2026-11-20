@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：生日和未来的家庭</title>
+<title>一口随笔:生日与未来的家人</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-20 01:44</p>
-  <h1>短文：生日和未来的家庭</h1>
+  <h1>一口随笔:生日与未来的家人</h1>
   <p class="ja-title">一口エッセイ:誕生日と未来の家族</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 塚本穴骨先生がイラストを描いてくれたエッセイ集はこちら。是非手に取ってみてね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：生日和未来的家庭\n\n那天是我的生日。前一天，我从岩仓文也那里收到了负责我的散文集封面的冢本穴越的插画。非常漂亮。谢谢你！现在，在我生日这个重要的日子里……什么也没发生。我醒了，开始懒洋洋地躺着，但什么也没发生。我很高兴收到网上熟人和 SNS 和 LINE 上关注者的这么多祝贺，但在现实生活中，我完全被忽视了。孤独。\n\n嗯，每年都是这样，所以我也习惯了，但是转念一想，我发现一般情况下只有家人才会联系我。我和妈妈已经7.8年没有联系了，我们也不知道如何联系。今年，他出了一款游戏，人生也进入了一个新的阶段，或许他们可以通过户口信息联系到对方，来一次感人的团聚，但很容易想象Kim的冷漠，他说：“如果游戏卖了，就有钱了，对吧？”我想偿还养育我的债务，但当我比较与家人团聚的兴奋和父母向我要钱的震惊时，后者是更大，所以我认为不值得付出努力。首先，我的新伴侣（也就是我的嫂子，我不认识）的继女与新的男人和女儿相处得很好，所以我对她已经不太关心了。我在这本开发书中读到了它。\n 如果你这样想的话，我的家庭很可能只是由我未来的妻子和她的孩子组成。不管他是否会结婚，他唯一的家庭始于一个慈爱的妻子，这很酷。我正在努力将这种孤独感转化为对我尚未谋面的妻子的爱。什么是爱...?我还是不明白那种感觉...\n\n包含日常文章的同人志现在正在展位上出售。还有岩仓文也的同人志。\n\n点击这里查看冢本穴越插画的散文集。请捡起来。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

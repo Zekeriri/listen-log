@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：人物的父母</title>
+<title>一口随笔：角色的父母</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-18 03:34</p>
-  <h1>短文：人物的父母</h1>
+  <h1>一口随笔：角色的父母</h1>
   <p class="ja-title">一口エッセイ:キャラクターの親</p>
 </header>
 <main>
@@ -33,11 +33,10 @@ DOUBLE BIND pic.twitter.com/wM1VGHwl3j— にゃるら (@nyalra) May 17, 2022
 商業エッセイ集もよろしくね。僕の昔の病んだ時期に書かれた、影なる部分ですね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：人物的父母\n\n前几天，一条推文疯传，称“《SPY x FAMILY》的作者对角色没有任何感情”，很快就被纠正为“这种说法只是一些人无视作者评论的上下文，将其删减、夸大”。这就是推特式的日常生活。\n\n说到作者和角色之间的关系，我收到了一条可爱的信息，上面写着“很遗憾，Couten-chan变得比Nyarula-san更受欢迎。这让我的心揪紧。”我很高兴你已经爱了我很长时间，但作为原作者，我希望Couten-chan活跃并受欢迎，所以不需要担心。她就像一个女儿，现在孩子已经红了，父母只是在背后支持她。您的角色是尽可能避免与您的孩子交谈，但有时要严格要求他们。今天，曹天酱被宣布为独立游戏现场活动的嘉宾之一。如果她逐渐进入媒体并享受乐趣，那么每个人都可以忘记我。\n\n来了~ https://t.co/N1AYIJuJT0 — 🎀超级可爱🎀天使酱 (@x_angelkawaii_x) May 17, 2022\n\n不仅如此，我对“Ame-chan”的存在在推特上变得越来越不明显这一事实感到遗憾，因为只有超级tenchan帐户才能被曝光。虽然光与影是二合一，但好女孩脾气暴躁的一面越凸显，小雨的自我就越黯淡。因为我对此无能为力……有时我不得不自言自语，以免忘记阿梅酱。\n\npic.twitter.com/86thD0DJya — Nyalra (@nyalra) 2022 年 5 月 9 日\n\n如果媒体继续寻找可爱且易于理解的女孩，只为公司的利益说正确的话，那么杀了小Ame的人将是那些不明白的大人。\n\n双重绑定 pic.twitter.com/wM1VGHwl3j — Nyalra (@nyalra) 2022 年 5 月 17 日\n\n包含日常日记的同人志现已在摊位上出售。很高兴见到你！\n\n我期待着阅读您的商业论文集。这是我的一个阴暗的部分，是在我过去生病期间写的。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,7 +56,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

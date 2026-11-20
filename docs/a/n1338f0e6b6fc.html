@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一招文章：提及它是一个令人愉快的陷阱</title>
+<title>一口随笔：在提及中舒适的陷阱</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-19 12:32</p>
-  <h1>一招文章：提及它是一个令人愉快的陷阱</h1>
+  <h1>一口随笔：在提及中舒适的陷阱</h1>
   <p class="ja-title">一口エッセイ:言及で気持ち良く罠</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
  それこそ、侮辱罪を厳罰化され、国も少しずつインターネットを清らかにしようと動き出したいま、羽目を外して訴えられる可能性は、確実に増してきているのですから。沈黙は金。答えは沈黙なのですね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一招文章：提及它是一个令人愉快的陷阱\n\n我对涉及网络上发生的事件的法庭案件的内容很感兴趣，所以我读了一本最近流行的漫画，名为《书线是别人的事》，该漫画正是基于该主题。这是一部关于一位律师将众多案件视为“别人的事情”并冷静地解决与互联网有关的请求的有趣作品。\n\n有一个能够充当“冷静的第三者”，不带任何情绪地做出判断的人真是太好了。无论是律师还是精神科医生，他们都能鸟瞰对方的情况，给予他们客观的评价。做一个冷静的法官，是只有真正聪明的人才能做到的事情，他们也有实力以残酷的仁慈“陈述事实”。这很酷。我觉得这部作品的受欢迎让活动人士了解了如何因诽谤而被起诉的现实路线并放松了心情，这简直是一件好事。\n\n无论如何，这部作品中最准确、最令人惊讶的台词是“当你沉浸在SNS中时，你会想说些什么，对吗？”到这里，你就离写它只有一步之遥了，对吧？”这很容易理解，也反映了SNS初学者的心理。是的，有时人们患有某种疾病，使他们想要从更高的角度来谈论新闻。这是因为，当你提到某人犯罪时，你所要做的就是取笑它，或者以一种让你听起来好像你知道什么的方式解释它，所以很容易获得认可和自我肯定。\n 有趣的是，在这部漫画中，提到会引起火灾的事情并冒充文化人物的账号正在陆续被起诉。这个流程作为漫画来说很容易理解，而且流程描绘得很现实，是一部平衡性非常好的作品。\n 这个场景看起来像是一条应该被更广泛地称为网络上容易陷入的陷阱的台词。如果你不擅长过多地观看社交媒体，你最终会不必要地提及一些事情并对此感觉良好。然而，在大多数情况下，这并不是通往幸福的道路。在这个世界上，通过网络就能轻易得到刺激，总是存在着危险。一种容易给你带来快感的行为就像一种毒品，一旦你习惯了，就很难戒除。\n 现在，侮辱行为受到更严厉的惩罚，而且国家正在慢慢开始使互联网变得更清洁，某人因做错事而被起诉的机会肯定会增加。沉默是金。答案是沉默。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

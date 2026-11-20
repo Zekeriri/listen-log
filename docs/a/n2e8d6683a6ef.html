@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>穿上你最喜欢的衣服</title>
+<title>穿上喜欢的衣服</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-06-25 03:53</p>
-  <h1>穿上你最喜欢的衣服</h1>
+  <h1>穿上喜欢的衣服</h1>
   <p class="ja-title">好きな服を纏う</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"穿上你最喜欢的衣服\n\n我已经有一段时间没有打开情书了，所以我会偶尔尝试回答读者的问题。这次我们要谈论的是时尚，尤其是洛丽塔服装。\n\n这个问题。简而言之，就是“我想穿洛丽塔，但我担心别人怎么想！”还有一件事。这不是一个问题，而是一份感谢的报告。谢谢你的来信。\n\n在制作 Nidiga 的时候，我觉得为了让“Cho Ten-chan”这个角色更加真实，我经过了深思熟虑，学习了面孔、时尚和配饰。否则，超级天禅的台词就会失去说服力。\n 了解任何类型都很有趣。高端品牌为什么奢华，为什么为自己的品牌感到自豪，这些都很有趣，我特别喜欢Vivienne Westwood的朋克精神，这和Manson有相似之处。所以我的耳环是Vivian。当你以这种方式了解衣服和配饰时，你会越来越想要它们。通过体现设计师的精神，我很高兴感觉自己正在创造一个产品。\n 这句话一半正确，一半错误。仅仅穿自己喜欢的衣服并不能提高自己。那么每个人就只能穿昂贵的衣服了。令人惊奇的是，第二封信瘦了10公斤。他明白时尚是可以通过努力实现的，并自信地说：“我要成为穿这些衣服的人！”\n\n最近，我大部分时间都穿着山本耀司的衣服。最后我觉得黑白的单调是最舒缓的，类似于男性的哥特或者朋克风格。如果我生来是个女人，我一定会穿哥特洛丽塔的衣服。哥特欲望的表达。顺便说一句，自从我开始穿这套衣服以来，我一直在尽量避免携带包。 Yohji 的理念是，他不喜欢包袋轮廓发生变化。\n 事实上，《超级天禅选集》的一位负责编辑是一位时尚极客，经常称赞我的衣服。快乐的。如果你穿这样的衣服，每个人都会认为你是一个与众不同的人。当我第一次见到某人时，他们问我的第一件事是我是否在服装行业工作。到时候，如果你回答“我做奇怪的游戏，写文章”，他们就会信服。 “这就是一个奇怪的人会穿的衣服。”洛丽塔服装也会出现类似的现象。同样，洛丽塔有“可爱”的优雅，哥特洛丽塔有“恐惧”的优雅。这时候，周围的人会问，“你有资格这样做吗？”这很可怕，但这就是脱颖而出的意义。\n 所以，第一个也需要努力。您可能会练习化妆、节食并了解品牌的背景。这是一种谦虚的努力，与褶边连衣裙完全相反。然而，结果肯定会改善人的生活和美感。 “最喜欢的衣服”的概念通常应该给买家一种优雅的感觉。由于吃得不多，尽管很讨厌，但每天仍继续运动，我现在的体重只有50公斤。为了不被衣服打败。为了保护我们的心灵免受社会“庸俗”的影响，我们需要穿着不污染灵魂的衣服和行走。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

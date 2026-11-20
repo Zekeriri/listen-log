@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：出治子爱上冬季花园</title>
+<title>一口散文：Winter Garden 与恋爱的数字女生</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-17 02:44</p>
-  <h1>短文：出治子爱上冬季花园</h1>
+  <h1>一口散文：Winter Garden 与恋爱的数字女生</h1>
   <p class="ja-title">一口エッセイ:ウィンターガーデンと恋するでじこ</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 今月末には、商業エッセイ集も発売します。こっちは十数年分の生き様をたっぷり読める。時の流れは悲しいね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：出治子爱上冬季花园\n\n昨天讲了《蔷薇少女的奥伯特》，今天就讲一下同时播出的《Di Gi Charat 的冬季花园》。\n 该作品描绘了成年后的出治子和普奇子。我已经很惊讶了。如果那个出治子在玩家之外工作，眼睛里不发出光芒，他甚至不会说出结尾“nyo”。一个来自 Di Gi Charat 星球的不是普通公主的女人。还有一个不会说“nyu”的普通妹妹。出治子平凡的爱情故事就这样展开。\n 暗恋八神庵的出治子成年后发现自己爱上了一个普通男人。故事从一块蛋糕开始，却再也没有他过去在蛋糕里放炸弹送给宇佐田当礼物的痕迹。相反，蛋糕成为了他们与异性交往的机会。\n 看着它，我就充满了那种出子的感觉……姐妹们的真人大小的生活被细致地表现出来，给人一种时间的残酷和平等的感觉。就我个人而言，我喜欢Puchiko作为女高中生的调味料。她是一位因娇小可爱而受到崇拜的妹妹，并且用严厉的舌头照顾着姐姐。他说话有点像御宅族。不知怎的，我觉得我是一个女学生，感觉我属于那里。这个普奇子大概很快就会像她姐姐一样懂得爱情了。值得庆幸的是，他有强烈的描绘爱情和生活的愿望，没有意识到自己是一个御宅族，也不回避搞笑。另一个优点是她否认与主要故事有任何联系，因为她不认识成为著名女演员的乌萨达。只有一种可能。\n 曾是“萌”象征的秋叶原女孩，终有一天会成为一个普通的女人。这既充满希望，又残酷。这就是这样的作品。\n\n成为一个成年人，静静地收起过去的自己的照片，真好……\n\n包含日常文章的同人志现已发售。你可以看到一年的人类成长。没有太大改变。\n\n商业论文集也将于本月底出版。在这里你可以读到很多关于过去十年的生活。时间过得真可悲。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

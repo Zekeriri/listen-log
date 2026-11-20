@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>快速文章：VS 中暑和 VS 系列</title>
+<title>一口随笔：对抗中暑与VS系列</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-07-12 06:28</p>
-  <h1>快速文章：VS 中暑和 VS 系列</h1>
+  <h1>一口随笔：对抗中暑与VS系列</h1>
   <p class="ja-title">一口エッセイ: VS熱中症とVSシリーズ</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
  そんなノスタルジーに浸るために、VSシリーズと学校の怪談は観返すことが多い。もう夏だ。夜の校舎へ忍び込むジュブナイルな冒険を浴びて、熱中症なんかキッズパワーで吹き飛ばすのもアリかもしれない。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"快速文章：VS 中暑和 VS 系列\n\n我中暑了，整天心情低落。由于疲劳，我的体力很差，而且天气这么热。\n 没什么特别值得写的。那是因为我整天都在睡觉，防止中暑的唯一方法就是呆在家里补充水分。上面只是写着“请大家小心”，而且既然是夏天，似乎没什么需要注意的。想想看，当我懒惰的时候，我会在日记标题上加上“VS”，但这是因为哥斯拉。\n VS 系列是哥斯拉历史上最有趣的系列之一。每年一部电影的制作周期很短，工作人员每次都知道“这是最后一部”的粗心大意，每次从科幻到冒险剧的主题变换，工作人员各种意义上的聪明和疲惫，但最后一幕以燃烧的哥斯拉在崩溃边缘发出红光结束，真是太酷了。哥斯拉和工作人员已经达到了极限，这一事实创造了“光辉和力量即将爆发”的奇迹。\n 是不是预告片让你觉得他们真的尽力了呢？每年他们都会坚持到最后一刻，所以在放映预告的时候，可用的素材肯定很少，所以他们就剪切粘贴那几个镜头，用尽一切办法创造出几十秒看起来很有趣的镜头，以某种方式让人们对下一部电影产生期待。有时，昭和时代的镜头也被广泛使用。首先，昭和哥斯拉秘密使用了上一部电影的镜头（有时很明显，连小孩子都会注意到重复使用），所以从某种意义上说，这是一种回归本源。\n 虽然科技在不断发展，但依然保留着平成初期的感觉，昭和时代的无忧无虑的本质依然存在。这是我出生的时代，所以观看那个时代的视频很令人欣慰。\n\n哥斯拉大战魔斯拉的广告很好。一场色彩绚丽的“大战”展现在眼前。这是一次很好的挑衅。事实上，VS Mothra特别讲究画面的美感。与魔斯拉的出现、夜晚的摩天轮、犀利酷炫的王者基多拉和机甲哥斯拉不同，魔斯拉是第一个被大家认为“美丽”的怪物，所以我觉得这是正确的做法，我就是这么觉得的。这是一部好电影。\n 我经常重温 VS 系列和校园鬼故事来吸收那种怀旧之情。已经是夏天了。不妨利用孩子的力量，进行一次青少年冒险活动，比如晚上偷偷溜进学校大楼，来消除中暑。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

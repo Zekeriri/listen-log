@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>快速文章：符卡战斗之美和风见由香</title>
+<title>一口随笔：符卡战的美丽与风见幽香</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-01 02:24</p>
-  <h1>快速文章：符卡战斗之美和风见由香</h1>
+  <h1>一口随笔：符卡战的美丽与风见幽香</h1>
   <p class="ja-title">一口エッセイ:スペルカード戦の美しさと風見幽香</p>
 </header>
 <main>
@@ -33,11 +33,10 @@ View this post on Instagram A post shared by にゃるら (@nyalra_)
 Instagramを始めました。よろしくね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"快速文章：符卡战斗之美和风见由香\n\n我之前写过，《北斗神拳》和《星光歌舞团》中与犹大的战斗，都是一样的，“无论战斗的过程如何，当你觉得对手‘漂亮’的时候，你就输了”。这个决心是精神上而不是身体上的“嫉妒”和挫败的奇妙结合。\n\n现在，在VRC上，有一个可以3D体验东方弹幕的世界，我观看了风见优香实际上试图躲避弹幕的视频，但正当我全神贯注于躲避大量子弹时，风见优香瞬间射出一颗子弹，这只子弹只会让“美丽的花朵绽放”。难度上没有复杂性，只是花朵在屏幕上盛开。\n\n那一刻，我想：“哦，我输了。”我完全被迷住了。当我拼尽全力用头躲避无数子弹时，我突然被眼前盛开的一朵花所吸引，我的思绪停止了。大概和犹大一样，从雷伊天鹅般的动作中感受到了挫败感。那一刻，无论比赛内容如何，​​我都觉得对手“漂亮”。\n 在漫画版中，魔理沙将符卡战斗称为“世界上最毫无意义的游戏”，其原因不仅仅在于过程：“美丽的人获胜。”在幻想乡，这种心理战斗总是在发生。\n\n顺便说一句，风见优香只有两种类型的符卡，因为她在原作中出现的不多。 《Soon I Will Be You》的作者中谷大志在他的同人志中将风见由香的“虚无”描述为“不符合花语的颜色”、“无法成为星座的星星”、“情书的字里行间太宽”。当你看到如此美丽的比喻时，你所能做的就是欣赏它并承认失败。\n\n包含日常文章的同人志正在摊位上出售！\n 买刚出版的新书。\n\n我期待着阅读您的商业论文集。我情不自禁地感受到其中的美，因为它是青春期的一把赤裸裸的刀。\n\n在 Instagram 上查看此帖子 Nyalra (@nyalra_) 分享的帖子\n\n我开始使用Instagram。很高兴见到你。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,7 +56,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

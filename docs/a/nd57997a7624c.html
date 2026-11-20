@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇短文：VS 粉丝的噩梦</title>
+<title>一口随笔：VS粉丝的噩梦</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-27 05:08</p>
-  <h1>一篇短文：VS 粉丝的噩梦</h1>
+  <h1>一口随笔：VS粉丝的噩梦</h1>
   <p class="ja-title">一口エッセイ:VSファンの悪夢</p>
 </header>
 <main>
@@ -28,11 +28,10 @@
 商業エッセイ集の方もよろしくね。まさか、ここから海外のファンもつくような人間になるとは。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇短文：VS 粉丝的噩梦\n\n哼……\n充其量，我会继续平静地做个好梦 pic.twitter.com/TQWqzXg3fh — Nyalra (@nyalra) 2022 年 3 月 26 日\n\n游戏发售以来，海外粉丝数量有所增加，所以我偶尔会用中文推文与他们交流。我很高兴有人有勇气翻译和回应日语句子。我很高兴。也许是因为他们不遗余力地在全国各地支持我们，看到这么多热情而真诚的粉丝令人鼓舞。\n 当我用中文低声说：“最好睡个好觉，好好想想，而不是担心一切。”我收到了一个中国女孩的回复，她说：“但我的梦里总是有很多不愉快的事情，我无法逃避。”他就像一个吵架的角色。\n 据说梦的机制是对大脑进行整理（整理），至于内容，似乎场景就是一切，就像旅行一样。当你感到悲伤时，做美梦的可能性很低。如果是这样的话，我想我应该回答说：“我确信今晚我会做一个好梦”，即使这只是为了安慰。如果我支持的创作者给予我肯定，我会很高兴，也希望我能受到他们的影响，让我的梦想实现哪怕一点点。\n 第二天，她联系我说：“很长一段时间以来，我第一次睡得安稳。没有梦境，没有怪物，没有鲜血，没有战斗，无尽的黑暗温柔地笼罩着我。这是魔法吗？”我惊讶地发现这是多么壮观的梦，但看到她睡得安稳又安稳，我也松了口气。\n 这不是魔术，只是一件毫无根据的美丽的事情，但我确实拯救了女孩的精神，无论以后我受到多少非议，此刻的我确实是一个好心救人的善良成年人，如果我能够帮助甚至一个支持我的粉丝并报答我的恩情，我可以说我的人生有意义。\n\n我们正在出售编辑日常文章的同人志。昨天刚出版了一本新书。买吧！\n\n我还想要一本商业论文集。我没想到，从这里开始，我会成为一个在海外拥有粉丝的人。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>小作文：樱桃之吻</title>
+<title>一口散文：樱桃之吻</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-11 07:45</p>
-  <h1>小作文：樱桃之吻</h1>
+  <h1>一口散文：樱桃之吻</h1>
   <p class="ja-title">一口エッセイ:さくらんぼキッス</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 今月末に発売する商業エッセイ集の方でも、美少女ゲームの話をたくさんしています。どこにいっても、そんな話しかできません。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"小作文：樱桃之吻\n\n随着我们创造的游戏发行日期的临近以及每个人都可以玩的未来成为现实，我想到了主题曲“INTERNET OVERDOSE”。\n 在期待已久的录音那天，当我见到我的偶像KOTOKO时，我感到非常紧张。正因如此，我没能将自己的爱传达给对方。\n 我错过了告诉他 KOTOKO 吸引我的原因以及为什么我要求他这样做的机会。老实说，在思考我喜欢哪首歌后，我跳过了这个阶段。是的，无论我说什么，我都爱死《樱桃之吻》了。从小学起我就疯狂地重复播放它，而《Baki MAD》确实让我发脾气。顺便说一句，那个MAD之所以以Syspuri开头，是因为当时有很多Syspuri MAD，这似乎是一个笑话，让人们在一开始就放松警惕，认为“这又是一个可爱的视频。”\n 然而，“我喜欢樱兰花之吻”似乎不是一个完美的表达方式吗？令人难以置信的怀疑出现了。当被问到我最喜欢的海贼王角色时，我觉得这就像回答路飞一样困难。然而，如果我提到另一首歌，那我就是在撒谎。经过一番争论，我决定提前结束谈话。\n 樱桃之吻真是太棒了。她表现出一种复杂的少女感，“请稍等一下，然后再吻我”，最后她说，“这些嘴唇是为了迎接他而生的”，这将故事与一首不可抗拒的诗联系起来。我认为这是一首不愧为广播歌曲先驱的杰作。我真的很遗憾没能表达对这首歌的感激之情。\n 在我漫长的一生中，也许我会再次遇见KOTOKO。当时我自豪地说：“我最喜欢樱兰花之吻！”\n\n包含日常随笔集的同人志现已在摊位发售！我在这篇文章和其他同人志（Internet 2）中谈论了很多关于美少女游戏的内容！\n\n在本月底即将发行的商业随笔集中，我们谈论了很多美少女游戏。无论走到哪里，我都只能这样说话。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

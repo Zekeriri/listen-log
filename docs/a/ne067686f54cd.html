@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇短文：人工智能写的尼亚拉日记</title>
+<title>一口随笔：AI写的喵拉拉日记</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-09 00:09</p>
-  <h1>一篇短文：人工智能写的尼亚拉日记</h1>
+  <h1>一口随笔：AI写的喵拉拉日记</h1>
   <p class="ja-title">一口エッセイ:AIが書いたにゃるらの日記</p>
 </header>
 <main>
@@ -37,11 +37,10 @@
 商業エッセイ集の方もよろしくお願いします。よくもまぁ、こんな恥ずかしい文章を人間が書けるよな。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇短文：人工智能写的尼亚拉日记\n\n由于拔智齿的痛苦，我很懒，所以我打算让 AI 阅读我 4 个月的日记，并自动生成一本 Nyalla 风格的日记。简单的！\n 我有一段时间第一次重读《小王子》。\n从那时起，有一件事没有改变，那就是圣皮埃尔谈论爱情。那是因为我总是在自己内心寻找答案。\n 什么是爱？什么是爱？什么是友谊？活着的意义是什么？\n 我一遍又一遍地问自己这个问题。\n 我现在就回答这个问题。\n“你想要什么？”\n 译者赤川二郎对原文添加了新的解释，所以我对译文进行了相应的修改。应该比上次更有趣吧。\n当我读完这本书的时候，我感觉它真的净化了我的灵魂。还有这样温柔、温暖、充满慈悲的故事吗？\n 我相信每个人都会在某个地方至少遇到一次。\n 如果你找到了自己的宝藏，我希望你永远不要放手。\n 我希望你能够感恩并珍惜诞生在这个世界上的奇迹。\n1 月 23 日 星崎空\n 最后发现是一个名叫“星崎空”的无名之人的日记，不过没关系。我每天都可以使用人工智能。星崎空的写作很烦人，因为有太多美丽的东西......\n\n^ 《小王子》.不幸的是，翻译者不是赤川二郎。\n\n包含每日日记的同人志现已发售！\n 让AI为你写下一切。\n\n我们也欢迎有关商业论文集的询问。嗯，我想知道一个人是否可以写出如此尴尬的句子。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -61,7 +60,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

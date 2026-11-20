@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇短文：中野百老汇故事</title>
+<title>一口随笔：中野Broadway故事</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-23 03:41</p>
-  <h1>一篇短文：中野百老汇故事</h1>
+  <h1>一口随笔：中野Broadway故事</h1>
   <p class="ja-title">一口エッセイ:中野ブロードウェイ物語</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
  こちらは、もっと混沌としているぜ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇短文：中野百老汇故事\n\n我读了《中野百老汇故事》。\n 正如标题所示，这是一本对于喜欢中野的人来说不可抗拒的小众书，因为它讲述了中野百老汇从起源到现在的故事和历史。当然，对于像我这样住在距离中野百老汇只有几分钟步行路程的人来说，这是非常令人兴奋的。\n 读完这本书后，我重新思考了为什么我对中野百老汇如此着迷，我想这是因为，正如书中所写，这是一个体现混乱的空间，值得被称为“日本的九龙城寨”。\n 管理一般商业设施的人会说中野百老汇是“一个无用的空间，里面只有B级商店，没有指导如何聚集商店。”事实上，作为一个每天走在中野百老汇的人，我不得不说确实如此。但这就是中野的魅力。随心所欲地开一家御宅族/亚文化商店，而不考虑盈利能力。最近，出现了专门出售稀有神奇宝贝卡的商店。 4楼在此期间增加了一个单元喷漆车间。不过与秋叶原不同的是，这里不仅有御宅族商店，还有正规的服装店和手表店，所以肯定比较混乱。我每天都会散步来吸收这种混乱的气氛。\n 中野百老汇已经庆祝了成立 55 周年，但正在迅速恶化。说实话，它已经处于随时可能被拆除的状态，“日本九龙寨城”突然消失、我们这些永远陷在复古亚文化中的人从梦中醒来的那一天很快就会到来……在那一天到来之前，我能做的就是一次又一次地走下去。\n\n包含每日日记的同人志现已在 BOOTH 发售。它有很多不同的故事，混乱而有趣。\n\n感谢您的商业论文集！\n 这下就更乱了。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

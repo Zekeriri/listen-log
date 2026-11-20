@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：如果别人看起来很高兴，就在深夜去松屋吃牛丼吧。</title>
+<title>一口随笔:如果别人看起来很幸福，就在深夜去松屋吃牛肉饭</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-16 02:59</p>
-  <h1>短文：如果别人看起来很高兴，就在深夜去松屋吃牛丼吧。</h1>
+  <h1>一口随笔:如果别人看起来很幸福，就在深夜去松屋吃牛肉饭</h1>
   <p class="ja-title">一口エッセイ: 他人が幸せに見えたら深夜の松屋で牛丼を食え</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 商業エッセイ集もよろしくお願いします。僕の人生から勝手に人生訓を読み取ってみてね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：如果别人看起来很高兴，就在深夜去松屋吃牛丼吧。\n\n我读了一本很有趣的书，叫做“如果别人看起来很高兴，深夜在松屋吃牛丼。”\n 这本书是一系列专栏的汇编，主题非常不寻常，其中只有内行人士知道的“Ura Mono JAPAN”编辑部向当地酒吧里蹩脚的老人询问他们的人生教训。\n\n伟大而成功的人的话是说不完的。当然，有这样的需求，但同时，感到困惑和思考的情况并不少见，“但是这个人有才华和能力，所以我可以说……”但是，从这本书的生活教训来看，没有必要有这样的担忧或嫉妒！因为这本书里说话的人都是匿名的老人，没有人知道他们说的对不对！因为没有深层意义而有意义，因为不必担心对方的情况而产生同理心和学习。\n 我特别喜欢这位74岁老人的一句话：“如果你认为来世会有比今世更好的成员，你就不会害怕死亡。”当然，已经去世的名人更加奢侈，我印象深刻的是，这种积极的思维方式是那些近距离经历过死亡的普通人所独有的。我晚年还能达到这个境界吗？\n 还有很多其他的事情可供选择，从“○○女人被操”这样的琐碎事情到“每个成功的人总是在幕后努力工作，所以不要被愚弄”这样强大的事情。有一天，我想在50岁的时候一边喝酒一边自言自语。 “嗯，互联网是一种重温青春的有趣方式。”\n\n我们正在出售编辑日常文章的同人志。可以把它想象成充满了酒吧里老男人的阴暗评论。\n\n我期待着阅读您的商业论文集。请随时阅读我的​​人生教训。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

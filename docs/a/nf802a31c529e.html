@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>如同观看《Kirara》动画的电影版一样欣赏《库库鲁斯岛》。</title>
+<title>《库库鲁斯·多昂的岛》，享受像看Kirara系动画电影版的感觉</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-11 04:32</p>
-  <h1>如同观看《Kirara》动画的电影版一样欣赏《库库鲁斯岛》。</h1>
+  <h1>《库库鲁斯·多昂的岛》，享受像看Kirara系动画电影版的感觉</h1>
   <p class="ja-title">『ククルス・ドアンの島』は、きらら系アニメの劇場版を観る感覚で楽しむ</p>
 </header>
 <main>
@@ -23,11 +23,10 @@
 商業エッセイ集もよろしくね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"如同观看《Kirara》动画的电影版一样欣赏《库库鲁斯岛》。\n\n前几天，我看了《机动战士高达 库库鲁斯岛 多安》（我想我应该在那天写一下它）。这部电影采用了原作中存在的奇怪的经验丰富且插图精美的情节，并将其扩展到剧场版的规模。令我印象深刻的是，事情似乎很好，有这样的口号，“电影三部曲中没有放映的一集的电影版本！”\n 这又是一个令人满意的内容，但如果说有什么不同的话，那就是它更像是一部日常生活动画，而不是一部高达电影……这部作品让我想起了电影版的《Kirara》系列。虽然故事情节不是很宏大严肃，但并没有辜负“为了保护孩子而生活在荒岛上的前吉翁军士兵和被他捡到的阿姆罗”之间的关系，以及观众们一直期待的昭和时代复古的人类故事和战斗场面，这并没有让人失望。其吸引力在于日常生活中温馨的互动与高达横冲直撞的恐怖之间的差距。真正的白衣恶魔。\n 事情就是这样，我们知道主角不会死，因为这是主要故事之间的间隔，所以就像看日常生活动画的电影版一样。这本身就很有趣，而且在媒体上，第一季往往只剪掉严肃的场景，所以一段时间以来第一次能够享受原作的轻松氛围真是令人耳目一新。所以，直觉上，我的感受和我观看电影版《Gochiusaya Kinmoza》时的感受是一样的。我当时想，“无论如何，我很高兴阿姆罗看起来很开心。”这就是那种完成的电影。就我个人而言，我很满意，因为马库贝看起来很高兴。\n\n包含每日日记的同人志正在 BOOTH 发售！新书刚刚出版。如果你能接起来，我可以去看电影。\n\n我期待阅读您的商业论文集！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一点作文：一定有差距</title>
+<title>一口随笔：必须有偏差</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-07-22 10:05</p>
-  <h1>一点作文：一定有差距</h1>
+  <h1>一口随笔：必须有偏差</h1>
   <p class="ja-title">一口エッセイ:ズレなければいけない</p>
 </header>
 <main>
@@ -23,11 +23,10 @@
  早くまた睡眠サイクルがズレてほしい。社会の時間とカチッとハマってしまうと、自分がそのまま現実世界の歯車になるようで怖いんだ。真っ直ぐに立って直視するより、ズレにズレてふにゃふにゃしていないと苦しいでしょう。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一点作文：一定有差距\n\n最近，我晚上睡觉，早上就醒了。也就是说，我并没有意识到自己的健康状况；随着我的睡眠周期继续下滑，我只是碰巧陷入了早睡早起的转变。这种情况每年发生一两次。\n 再加上正值盛夏，世界一片光明。我通常在太阳快要落山的时候醒来，所以我很惊讶太阳占据了天空这么长时间。这是漫长的一天。除了餐馆外，所有商店都在晚上 8 点关门，因此您每天晚上醒来时往往只会进行一项活动，但如果您早上醒来，则可以逛 3-4 个地方。而且，能见度极其明亮。糟糕的。\n 不久前，我在日记中写道，我把房间的窗帘从黑色换成了白色，由于人类基本上依赖于通过眼睛接收到的信息量，我开始意识到我不得不承认我们的心理受到颜色的影响。我斜着握着，以为把房间弄白一点，心情就会明亮一点，但也有让房间看起来大一点的效果，说实话，我不禁心旷神怡。可悲的是，这种说不出话的感觉，给人一种无力感。总之，我心里承认，白色的窗帘也是一种选择。\n 如果是这样的话，我们必须承认，当我们在早上和下午光线极其明亮的时候出去时，我们比晚上出去时更容易被它吸引。天气很热，人也很多，这可能会让人不舒服，但是当你在阴凉处这样舒适的地方悠闲地散步时，绝对有“白天的好处”。通常，我会在深夜在空荡荡的街道上散步，感觉自己像大雄一样是夜城之王，但走过快乐的父母和孩子以及无聊的老人也不错。虽然这有它的优点和缺点，但我感觉我现在已经成为这个城市的一部分，越来越熟悉这个背景。\n 另一个变化是，当我早上醒来时，我根本不看互联网。它充满了新闻，人口众多，所以我很快就关闭了它，心想：“现在不是时候”，然后退回到我的 Kindle 上的书籍、作者和读者的狭隘世界中。深夜，周围人不多的时候，可以静静地回想一天的事情，气温也平静到了让人无法入睡的悲伤的地步。白天我感觉健康但感到恶心。\n 我在城里随意走走，在咖啡店放松一下看看书，不上网，晚上看个电影或者看一些自己积累的动漫再入睡。就在我上床睡觉之前，我跳到网上，骚乱已经平息了，看看当天发生的事情。写下这篇文章让我感觉更加健康和恶心。每当我得知健康就意味着幸福时，我都会感到悲伤，仿佛我迄今为止的生活都被否定了。\n 我希望我的睡眠周期很快再次出现问题。当你陷入社会时代并感觉自己只是现实世界中的一个齿轮时，这是很可怕的。与其站直直视它，如果软软的，那就更痛苦了。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

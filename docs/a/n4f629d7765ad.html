@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：我一生中最快乐的时光</title>
+<title>一口随笔: 人生中最快乐的时光</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-12 01:15</p>
-  <h1>短文：我一生中最快乐的时光</h1>
+  <h1>一口随笔: 人生中最快乐的时光</h1>
   <p class="ja-title">一口エッセイ:人生で最も楽しかった時間</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 商業エッセイ集もよろしくね!</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：我一生中最快乐的时光\n\n我看到一条50多岁的人发推文说，“现在回想起来，我一生中最开心的时光就是年轻的时候，去TSUTAYA和GEO消磨时间”（我依稀记得），我非常同意这一点（我才20多岁），我忍不住跪下来说：“我明白了！”\n 我在初中和高中的时候，还没有订阅视频分发服务这样的东西，所以 Nichiasa 基本上是一个千载难逢的机会。所以，我不得不跑去TSUTAYA看我最喜欢的节目，所以我租了一张DVD，里面有我最喜欢的《Rider》、《战队》和《光之美少女》的剧集，尽管我有点尴尬。\n 然而，与 Nichiasa 相关的 DVD 经常被划伤，并且经常在播放中途停止。毕竟是小孩子借的东西，难免不好处理。每当视频在我最喜欢的场景中停止时，我都会生气地说，“我不会让孩子们……”，但我不断冷静下来并想，“不，原来的日浅是属于孩子们的！”那些日子，当我特意向店员展示 PreCure DVD 并说，“我要在这个场景停止时，”但我只是优雅地放弃并前往另一个茑屋。\n 如今，我什至不想做放入和取出光盘的动作，因为这太麻烦了，但是一遍又一遍地在商店里走来走去，抓着几百日元，仔细检查本周的同伴作品的紧张和兴奋，无疑是我一生中最愉快的时光之一。\n\n包含每日日记的同人志现已在 BOOTH 发售。我希望我的文章成为你生活的一部分。\n\n我期待阅读您的商业论文集！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

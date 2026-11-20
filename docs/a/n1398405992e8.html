@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇短文：公园里的一位素食祖母和一个孩子</title>
+<title>一口随笔:素食主义的奶奶与公园的孩子</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-06-17 03:06</p>
-  <h1>一篇短文：公园里的一位素食祖母和一个孩子</h1>
+  <h1>一口随笔:素食主义的奶奶与公园的孩子</h1>
   <p class="ja-title">一口エッセイ:菜食主義のおばあちゃんと公園の子供</p>
 </header>
 <main>
@@ -31,11 +31,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇短文：公园里的一位素食祖母和一个孩子\n\n日课の中野ブロードウェイ散歩中、以前にちょっとだけ书いた菜食のお店へ行きました。 「台湾料理」是由一位来自台湾的奶奶经营的。大概是和台湾佛教有关，店内的装修也是相应的。好店。\n\nこのお店は、なんと50年前から存在する。50年了！ なんと気が远くなる年月だろう。店主のおばあちゃんは70を越えており、「あなたが」生まれる前からお店やってるんだよ」と悪戏に笑う。仆はこのおの在り方が大好きだ。\n 奶奶很爱听故事，给我讲各种故事。まず、お店の诞生エピソードが面白い。 一位从台湾来到日本的店主，因日本缺乏素食餐厅而苦恼。日本.店铺はたくさんあるのに、自分が口に入れられるものが无いわけだ。台湾有很多素食餐厅が、日本には无い。このままだと店主は食事ができないので、自分で菜食オンriの店を开くことにした。后に「サブカルの圣地」とも呼ばれる异様な商业ビル、中野ブロードウェイの一角に。\n 店主从来不去日本料理店吃饭。自らが创った自らのための料理を食べ続ける。吃味道淡的清淡食物，其实对身体有好处。虽然她已经70多岁了，但皮肤依然年轻，最重要的是，她还有继续在这一带经营店铺的体力。毫无疑问，这不过是因信仰而生的礼物。店主说。 ``蔬菜也有阴阳，即使是蔬菜也不吃阴阳的蔬菜。阴。''仆にはまだその违いは分からないが、この食への拘りが50年以上、このお店と店主を支えてきた。なんと素晴らしいことだろうか。\n 店主也讨厌酒精。肉というより、身体に溜まる商品れ全てを避けているので、当然arukoールなんてもっての外。“人一喝酒就会变得疯狂，”他说，并自豪地说，“我还没有喝过酒。” 70 年来酒精含量下降了。”这是令人钦佩的。太令人佩服了。あまりに虔诚しくて、おばあちゃんが存在するだけで仆が救われてしまう。一个人可以通过信仰保持70年纯洁。这个事实是美丽的。\n 今日も、定食代の1000円ちょっとを支払い、「またきます！」と告げて退店する。我要你长寿life.そして、仆のような俗な若者にたくさんのことを教えてほしい。为此，我尽可能在散步时尽量吃清淡的食物。\n 回家的路上，我在公园停下来。\n サブカルのメッカ、混沌の象徴がすぐそばにあるのに、3分歩くと雄大な自然広がる大きな公园が见える。このギャップも中野の魅力。他靠在田野里的一棵大树上，享受着读。缔め切りはたくさんあるけれど、まずは本を読む。どんなに忙しくとも、読みたいときに本を読む。这才是自由而幸福的生活。\n\n过了一会儿，孩子们开始和我说话。 “你在干什么？” “我正在看书。” “你一个人吗？为什么？”我想知道为什么。如果你想读书，在家也可以做。他的怀疑是有道理的。简短的交谈后，他很快就感到无聊并开始到处乱跑。然后，当她再次来到我身边时，我重复问她的过程：“你想和我一起玩吗？”\n 我看起来很孤独吗？他们快乐地、自由地跑来跑去，但我静静地坐在树根上，可能会感到局促。你怎么认为？我觉得我比世界上其他人有更多的自由，但从孩子的角度来看，我仍然受到常识的束缚。\n 探访亚文化圣地，吃素食体验佛法，在公园树下静静沉浸在书的世界里。我想，只要能让我做这个例行公事我就很高兴了，但与他们不等回复就开始拼命冲刺的人相比，我只是又一个无聊的成年人。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

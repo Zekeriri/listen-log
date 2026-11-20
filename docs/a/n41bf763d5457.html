@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：每天一点点变得更可爱、更酷</title>
+<title>一口随笔：每天一点点变得可爱又帅气</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-09 05:20</p>
-  <h1>短文：每天一点点变得更可爱、更酷</h1>
+  <h1>一口随笔：每天一点点变得可爱又帅气</h1>
   <p class="ja-title">一口エッセイ:毎日少しずつかわいくカッコよくなる</p>
 </header>
 <main>
@@ -28,11 +28,10 @@
 毎日の日記をまとめた同人誌（さいきん新刊が出たよ）や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：每天一点点变得更可爱、更酷\n\n自从我被诊断出患有抑郁症后，我引入了“Asuken”来帮助我努力康复。 Asuken 是一款应用程序，可让您输入当天的膳食和运动量，并评估您的营养和卡路里平衡。如果你遵循 Asuken 并不断获得高分，理论上你会变得更健康并且减肥。就我而言，我真的不需要减肥，所以我的目标是肌肉生长和健康。我试图设定一个严格的目标。无论如何，如果我要做的话，我想彻底征服它。\n\n最近，我逐渐掌握了窍门，所以我一直得到高分。这是第一次有人如此善意地称赞我。我很高兴。\n 由于我的嗅觉不太好（而且我的味觉也很差），所以我不太关心饭菜的内容，所以我只是在便利店购买一些让年轻女性满意的菜单项，以平衡我的膳食。\n 所以，考虑到“蛋白质”、“脂肪”、“碳水化合物”和总热量摄入之间的平衡，其中任何一个都不可能过多或过少，因为这会降低效率，但调整这些参数是很有趣的。和 Nidiga 一样，我喜欢《怪物农场》这样的游戏，在其中你可以管理数字并找到最有效的游戏方式。如果我把它拉长，这个就会下降，所以下次我会用这个覆盖它......我在尝试和错误的过程中感受到了快乐。自从我意识到 Asuken 也是如此，我就沉迷于创造营养均衡的沙拉鸡肉和饭团的组合。这也有助于我不必担心每天吃同样的饭菜。\n 最重要的是，我在看动漫和阅读时使用固定自行车。我还继续每天做深蹲、平板支撑、俯卧撑和仰卧起坐。我意识到日夜颠倒是永远无法治愈的，所以我放弃了。如果某件事是不可能的，那么最好将其视为不可能。\n 说实话，它并没有真正改变那么多。现在还很短的一段时间。我没有特别减少用药，但这比不健康并陷入抑郁循环要好。到目前为止我还没有做过任何运动，这真的很令人惊讶，所以我想我现在可能处于最健康的状态。全盛时期就是现在。\n 至少，通过调整饮食和锻炼，你肯定每天都在离健康的身体越来越近。如果你说“如果你每天变得更可爱一点、更酷一点，一切就都迎刃而解了”，那么我每天都会继续向“正确答案”爬楼梯。如果这成为与自信的紧密联系，你的精神状态也会改善。但阳光明媚又令人毛骨悚然，所以走开吧。\n\n多喝水！ ！ ！ ！ ！ ！\n\n敬请欣赏每日日记（新版《西金》已发行）和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

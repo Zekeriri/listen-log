@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：永远郁闷是很蹩脚的。从现在开始，是时候健康起来了！</title>
+<title>一口随笔：总是消沉很土。从今以后是元气时代！</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-11 04:32</p>
-  <h1>短文：永远郁闷是很蹩脚的。从现在开始，是时候健康起来了！</h1>
+  <h1>一口随笔：总是消沉很土。从今以后是元气时代！</h1>
   <p class="ja-title">一口エッセイ: いつまでも落ち込んでいるのはダサい。これからは元気の時代！</p>
 </header>
 <main>
@@ -29,11 +29,10 @@ pic.twitter.com/9DKvmR0ah6— にゃるら (@nyalra) May 10, 2022
 若い頃に書いた長文が載りまくりの商業エッセイ集もよろしくね。同情するなら、Amazonレビューもくれ！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：永远郁闷是很蹩脚的。从现在开始，是时候健康起来了！\n\n虽然我因为项链掉了、电视坏了等各种不幸而心情郁闷，但在得到很多人的安慰后，我不知怎么又恢复了力量。假期结束后，我第一次能够在人不多的情况下在中野百老汇散步，而且还给新奥特曼预留了座位！\n\npic.twitter.com/9DKvmR0ah6 — Nyalra (@nyalra) 2022 年 5 月 10 日\n\n永远保持抑郁状态是很糟糕的。从现在开始，是时候健康起来了！于是，为了更换项链，我决定花重金从“定做饰品”订了一条颜色超级可爱的原装项链，而电视则是让朋友给我打电话（我连自己查的力气都没有），厂家来修了。还有其他一些因素导致我感到沮丧，但我别无选择，只能想办法解决它们。毕竟，这个世界对于那些无所事事的人来说是残酷的。\n 当然，每个人都告诉我，“你不必把自己逼得太紧”，“你可以休息一下。”这是善意，这并没有什么错，但如果你什么都不做，时间一长，人们就会逐渐从你的周围消失。在互联网上，关注者数量、创意PV和销量都在明显下降。活动一旦停止，即使恢复也很有可能回不来，正确的说法是“可以休息，但会吃亏”。\n 这已经没办法了。如果我们支持的艺术家的活动停止了，大家最终都会忘记他们。由于互联网不断地提供内容，因此它常常被抛​​在后面。相反，你做的人越多，聚集的人就越多。但仅此而已。这里面有一些运气，但如果你不做，它就不会开始，如果你不做，你就会沉下去。\n 毕竟大家都是陌生人。如果别人有困难，他们自然会告诉你休息一下，休息很重要。然而，直到她生命的尽头，他都没有照顾她，因为她仍然相信他的话。粉丝们劝他休息也是为了他康复后的活动着想。在这个世界上，每个人都通过努力互相支持。事实上，并不能保证在中断期间数字会减少。那么你应该成为公司员工。\n 好吧，我写到这里的一切都只是常识，重点是我必须逐渐恢复某种活动，并适当升华我那难以抑制的认可欲望，这样它才不会朝着消极的方向失控。确实很悲哀，但是网络没有那么善良，让一无所有的人可以继续善良的生活。让我们尽力而为吧。我适度地走动，时不时地抱怨和感到疲倦，重复着睡得很多、醒来、受到不同人关注的日子，直到我死去的那一天。\n\n包含日常日记的同人志现已在摊位上出售。如果你觉得对不起我，就买吧！\n\n希望你喜欢我的商言文集，里面全是我年轻时写的长文。如果您为我感到难过，请给我留下亚马逊评论！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

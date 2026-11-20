@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：14:00 银座</title>
+<title>一口随笔：银座的14点</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-26 02:40</p>
-  <h1>短文：14:00 银座</h1>
+  <h1>一口随笔：银座的14点</h1>
   <p class="ja-title">一口エッセイ:銀座で14時</p>
 </header>
 <main>
@@ -31,11 +31,10 @@
 Instagramも始めました。よろしくね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：14:00 银座\n\n我起得很早，因为我要开会。即使我说早，也是13:00，对于一般人来说已经相当晚了。\n 下午1点了，我还是没有睡够。我坐上前往银座的电车，困惑地摇着头。银座是一座有很多穿着西装的成年人走来走去的城市。\n 下午2点。银座的一家咖啡店。在多名成年人的簇拥下，一场关于游戏的会议开始了。制片人请他吃饭，他拒绝了，说：“我最近不喜欢吃东西。”确切地说，我觉得很奇怪，我根本不能接受碳水化合物，而咖啡店只提供面包和面食，所以我认为这是不可能的。我猜有甜点，但我什至不喜欢甜食。由于他被称为一个奇怪游戏的原作者，所以他应该以奇怪的理由拒绝食物，所以我认为这是正确的做法。\n 关于未来行动的讨论开始了，并提出了几个问题，但我太困了，无法正常思考。虽然他们愿意征求意见，因为“原作者的意图是最好的”，但原作者的主要愿望是“我现在想睡觉”。\n 您点的冰咖啡中的咖啡因会刺激您的大脑，从而促进一些恢复。我真的不喜欢咖啡因。我不认为强迫大脑工作有什么好处。如果你困了，你现在就应该去睡觉了。我认为精神兴奋剂的兴奋所带来的注意力没有任何价值。总是有人问我“你觉得怎么样，尼亚拉桑？”，所以尽管我被认为是个怪人，但如果我突然开始抱怨咖啡因，我也忍不住，所以我就安全地回答。\n 刚才问我这个问题的人是我以前的同事，因为当时他是我的上司，所以他随意地叫我“尼亚鲁拉君”，但不知道为什么，当我们决定再次合作时，他开始叫我“尼亚鲁拉桑”。因为原作者的意图是最重要的。不过，偶尔会犯错并称他为“尼亚鲁拉君”，这很有趣。\n 如果你的能力得到认可，最好称呼某人与你同名，而不是加上“桑”。这让我想起了我是多么喜欢阿姆罗和布莱特在《逆查亚》中互相称呼对方的名字而不做任何解释，因为这传达了他们的关系中没有等级制度。当我喝完剩下的冰咖啡时，我意识到富野由之的剧本写作技巧在于她如何自然地描绘这样的“活生生的人”。咖啡因刺激我的大脑。因为我是个怪人，所以很容易让人认为我只是安静地思考着什么。\n 令我惊讶的是，谈话结束后，大人们很快就离开了，说：“我还有别的事要做。”似乎每个人每小时都有固定的时间表。当然，我也没有什么特别的事情，就拖着沉重的脚步回家了。这是出去的好机会，但如果我这么困，我就无法享受任何事情。\n 如果“原作者的意图是最好的”，那么我希望他们能睡个好觉，然后晚上聚在一起看深夜动漫，谈论自己喜欢的角色，最后强迫自己讨论游戏的未来，睡个好觉。我不能接受这样无理的意见，而且大人每小时都有时间表，所以现在不是看动漫的时间。\n\n我们正在出售编辑日常文章的同人志。今天刚出版了一本新书。\n\n我们也欢迎有关商业论文集的询问。我很高兴最近由于某种原因评论数量有所增加。\n\n我还开始使用 Instagram。很高兴见到你。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

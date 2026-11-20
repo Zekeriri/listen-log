@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：小伙伴们，圣诞节有什么计划吗？</title>
+<title>一口随笔：粉丝们，圣诞节有计划吗？</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-11 02:46</p>
-  <h1>短文：小伙伴们，圣诞节有什么计划吗？</h1>
+  <h1>一口随笔：粉丝们，圣诞节有计划吗？</h1>
   <p class="ja-title">一口エッセイ:フォロワーちゃんは、クリスマスの予定とかある？</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：小伙伴们，圣诞节有什么计划吗？\n\n各位朋友，圣诞节有什么计划吗？是的。我的追随者看起来很孤独，所以如果你愿意的话，我们一起过圣诞节吧……什么？我已经有计划了。我明白了，没错。啊哈哈……追随者很受欢迎，所以这是很自然的。哈哈....\n 图片？没关系。仅仅因为你有空闲时间并不意味着你应该考虑类似的事情。亲爱的追随者，我想如果你有一条围巾就好了，因为你会冷……这不像是我编织的或者什么的。\n 真的不用担心。我想我会叫一些朋友来这里玩。 ……也许。\n 想想看，你的追随者在圣诞节遇到的人是他们的朋友吗？ ……一个。对不起！如果你不回答也没关系。 ……别回答。虽然是儿时玩伴，但也太难相处了。我们不能互相教任何东西。是的。\n 啊，那么今天我们是否会时隔一段时间第一次一起回家呢。啊……也许你很着急？明白了，我现在要去挑选圣诞礼物了。啊哈，追随者很棒。我相信我的追随者会对精心挑选的礼物感到满意。我的追随者非常友善。我想那个人一定会很高兴受到善待。\n 抱歉，我好像拖了你的后腿。反正离我家很近，想玩就随时玩。我们改天再说吧。那么，走吧！图片？看起来有那么糟糕吗？这只是我的想象。或者也许是因为天气有点冷。啊哈哈。看来天气有点冷了。我会尽快回家。再见。\n 啊，我也不想让我的追随者着凉，所以改天我要去买个消声器……哦，我已经有了。我懂了。这是一个很好的消声器，不是吗？我觉得它很可爱。也许这是某人的礼物。哈哈……很适合你。很快再见，追随者。请再跟我谈谈。别感冒了。啊哈哈……\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

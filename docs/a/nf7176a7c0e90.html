@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文精选：追随者，让我们变得聪明吧</title>
+<title>精选一口随笔：关注者，让我们开动脑筋</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-30 11:15</p>
-  <h1>短文精选：追随者，让我们变得聪明吧</h1>
+  <h1>精选一口随笔：关注者，让我们开动脑筋</h1>
   <p class="ja-title">選り抜き一口エッセイ: フォロワー、頭をよくしてあげよう</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 今月に発売した商業エッセイ集もよろしくお願いします。僕の頭も良くなってないことがわかります。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文精选：追随者，让我们变得聪明吧\n\n在Muscle Girl Belt的歌曲中，我最喜欢的是《Kana，让你变得更聪明》。从初中第一次听到到现在，它一直萦绕在我的心头。\n 这首歌里，主角是一个亚文化极客，他向傻女友加奈传授各种亚文化作品和生存知识，让她即使有一天爱情结束也能活下去。我对所有的关系都是这样的感觉。\n 我基本上只谈论动画和漫画，因为我不能这样做，所以谈话就到此为止。我只能说，“我前几天看的那部电影很有趣”，或者“如果你喜欢那个，你也应该看这一集奥特曼。”而且，他们害怕成年人，因为成年人是社会生物，所以他们只与他们可以教东西的人建立关系。当有人饶有兴趣地听我说话时，我会和他们一起看电影或读书，就像主角对假名所做的那样，“让我们帮助她变得更聪明。”\n 我想我对网络氛围也有一些了解，所以我也谈谈这个。 “我不想让你害怕生活在互联网上，”他傲慢地说。因为这就是我所拥有的一切。可以肯定的是，这样的人会逐渐被抛弃。这正是他们所说的，“总有一天爱情会结束。”最终，每个人​​都会独自生活。到那时，就不再需要像我这样傲慢的人说“让你变得更聪明”。\n\n我们正在出售编辑日常文章的同人志。不能保证读者会变得更聪明。\n\n我期待阅读您本月发布的商业论文集。我发现我的头也没有好转。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

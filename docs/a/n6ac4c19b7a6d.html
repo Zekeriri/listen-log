@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>随笔：关于冲绳洋基队智力极限的故事</title>
+<title>随笔：冲绳不良青年的智力极限的故事</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2019-11-12 21:05</p>
-  <h1>随笔：关于冲绳洋基队智力极限的故事</h1>
+  <h1>随笔：冲绳不良青年的智力极限的故事</h1>
   <p class="ja-title">エッセイ：沖縄のヤンキーの知性の限界の話</p>
 </header>
 <main>
@@ -53,11 +53,10 @@
 と、（記事執筆当時）ウシジマくんに地元が出てきて、なんだか帰省した気分になり、思わず昔を懐かしんだりした一日でした。オワリ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"随笔：关于冲绳洋基队智力极限的故事\n\n*这是我几年前在博客上写的一篇文章的翻版。\n\n一个关于冲绳洋基队智力极限的故事。\n\n我没有考虑任何事情，所以我最终得到了一个里面有很多“不”字的标题。如果这是一款色情游戏，它会有一个缩写，例如“Nononono”。\n\n这次我要谈谈我在冲绳度过学生时代的记忆。\n\n我出生的辻地区是连牛岛君都认为治安最差的红灯区之一。\n\n（图：图1）在冲绳牛岛郡，这里是世界上最糟糕的街道，对于妓女来说，包括老妇人和疯子，她们最终都会到这里，被当作最后的手段，但从这里步行几分钟就是我和妈妈住的公寓。\n\n辻是一个无法无天的地方，一个稍微高一点的男小学生就会毫不犹豫地被邀请去歌舞俱乐部。我已经很多年没回来了，所以只能通过牛岛君了解那里的现状，但从朋友那里听来，情况并没有任何好转，未来几年这里也不会发生太大的变化。\n\n这是到冲绳旅行时，比去美丽海水族馆或首里城（现在首里城已经……）刺激很多倍的推荐景点。著名的旅游景点之一的“国际通”，除了有名的商店之外，简直就是罪恶的巢穴，如果你仔细寻找的话，你会发现那里有可以兑换你在初中时玩的Amuse老虎机（我高中时就被破坏了）获得的奖牌的游戏厅。\n\n从这里步行几分钟就是波之上海滩，这个海滩很容易找到，海边有很多情趣酒店。当然，由于靠近辻，这个海滩也非常不安全。这次我要写的是我和住在附近的朋友的经历。\n\n说到小学生，可以毫不夸张地说，火箭烟花就是一切，他们非常喜爱火箭烟花。这太夸张了。确实很喜欢火箭烟花，但也想到了Jump和高达模型。\n\n我的朋友们似乎也很喜欢火箭烟花，那天我们在波之上海滩一起玩火箭烟花。大概是我们三年级的时候吧。\n\n小学生互相发射火箭烟花。心不在焉的小学生们的火箭烟花飞向了错误的方向。它被选中并发布给当地的洋基队。也就是说，海滩上只有游客和洋基队，所以机会很大。\n\n正如所料，一群小学男孩被愤怒的北方佬召唤。即使是愤怒的北方佬也不会严重殴打小学生，而且我认为小学生也没有足够的钱要求道歉。\n\n那样的话，对于成年人来说，适当地道歉和原谅固然是好事，但如果是一个有过错的灵魂，却认为这是一种失败。在拼命思考如何让他们吃沙子后，他们指着海滩命令：“吃沙子！”\n\n犹豫良久，朋友们给出了再平常不过的答案：“沙子是不能吃的。”可见小学生比大一岁的洋基队想得还周到。\n\n这里常见的形象是一个北方佬对坦率的答复感到愤怒，但这是一个冲绳北方佬。也许他们将其与“吃沙子→不能吃→我赢了”联系起来。他们心满意足，转身回去了。\n\n因为在这样的地区，所以有很多与洋基有关的记忆，我可以超越字符的限制来谈论，但这一集是我最喜欢的，因为它易于理解的愚蠢。我喜欢冲绳的那一部分。\n\n还有一个从卡片店偷走游戏王卡片，廉价卖给同班同学的御宅族，在背后为他们赢得了“食尸鬼”的绰号的家伙；还有一个朋友，他捡起妈妈的坏自行车，修理它们，然后把它们卖掉，他更像是一个回收商，而不是美国佬，从他的 Facebook 来看，他似乎过得还不错。\n\n（写这篇文章时）当牛岛君提到他的家乡时，我有一种回到家乡的感觉，这是我不禁怀念过去的一天。尾张。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -77,7 +76,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

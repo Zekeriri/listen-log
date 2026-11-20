@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>X转设计</title>
+<title>Turn X的设计</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-08 15:21</p>
-  <h1>X转设计</h1>
+  <h1>Turn X的设计</h1>
   <p class="ja-title">ターンXのデザイン</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 昔のエピソードをまとめた商業エッセイ集もよろしくお願いします。黒歴史！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"X转设计\n\n当我被问到“你最喜欢的高达是什么？”我很困惑。 F91和Exia的时尚灵动设计和武器，即使是机器人，也散发出女性美感，而Turn A高达温柔圆润的造型和月光蝴蝶的美丽也很精彩。\n 在这一点上，如果你问“你最喜欢的MS是什么？”包括不带有高达名字的飞机，你可以立即回答Turn X。这就是我对这种不对称、残酷和恶魔般的设计的吸引力。我喜欢他那双锐利、倾斜的眼睛，这让他看起来像一个反英雄。\n\n席德·米德的机动战士设计艺术书《米德高达》是我最喜欢的艺术书之一。收录了席德·米德的前卫设计的整个故事，以及富野监督与他们的互动，让您可以看到在Turn A中出现的MS的创作中融入了什么样的想法。\n 米德先生和富野主任每次交流时，都会忍不住看到极其精致的工程线汇聚到A弯和X弯。\n 尽管《Turn A》的设计经历了诸多波折，但这架设计如此离经叛道的《Turn An》飞行器由一位名为Ginganam的动态角色操作，并利用大量的噱头和狭窄的屏幕进行横冲直撞。这是一个极其令人震惊的画面。\n 未来，我想成为像Turn X一样，能用全身作为武器压倒敌人的男人。\n\n我们正在出售编辑日常文章的同人志。我们偶尔会谈论高达。\n\n我还想要一本总结旧剧集的商业文章集。黑历史！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

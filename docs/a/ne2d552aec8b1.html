@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：一直守护日浅未来的老人。</title>
+<title>一口随笔：持续关注周日早晨动画未来的大叔</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-17 11:31</p>
-  <h1>短文：一直守护日浅未来的老人。</h1>
+  <h1>一口随笔：持续关注周日早晨动画未来的大叔</h1>
   <p class="ja-title">一口エッセイ:ニチアサの行く末を見守り続けるおっさん</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
  これから、どうなっていくんでしょうね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：一直守护日浅未来的老人。\n\n由于东映动画未经授权访问，《光之美少女》的新一集在五周内首次播出。然而，我从没想过除了 Go-Busters 之外的任何人都有机会对 Nichiasa 的未经授权的访问感到愤怒。我已经看《日朝》很多年了，但这是我第一次遇到这样的问题（在冠状病毒影响我的那段时间也很困难），我不禁担心节目缩短5集会如何影响接下来的故事。即使你把那些对主线剧情没有太大进展的日常生活片段删掉，每个角色的内心描写也会因此而减少，这会改变你看结局时的感受。\n 尽管我对此感到难过，但我对以元方式看待日朝这一事实感到难过。自从我每周日早上盯着电视几个小时以来，已经过去了大约 20 年。这是本周的起点，所以我无法想象日朝会再从我的生活中消失，但作为一个简单的孩子，我对此感到兴奋。这样一直持续下去，现在我快30岁了，我开始失去以纯真的角度看电影的能力。通过从预算、趋势和日程安排等不同角度看待事物，我试图想出一些方法，让程式化的每周日程安排不再变得无聊，或者更确切地说，以成人的方式享受它。\n 这么邪恶的大人现在竟然担心日朝，真是太扭曲了。重要的是无论幕后发生什么，男孩女孩们都玩得很开心，虽然我觉得无关的大人说“减少集数”之类的事情很奇怪，但它仍然很有趣，我无法移开它的视线，所以我每天都在享受《光之美少女》动画播出的快乐。\n\n我们正在出售编辑日常文章的同人志。我也有一种责任感来记录这些天。\n\n感谢您的商业论文！\n 我想知道从现在开始会发生什么。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

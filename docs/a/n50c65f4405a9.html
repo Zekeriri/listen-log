@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：评分低的医院</title>
+<title>一口随笔：低评价的医院</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-01-31 04:24</p>
-  <h1>短文：评分低的医院</h1>
+  <h1>一口随笔：低评价的医院</h1>
   <p class="ja-title">一口エッセイ:低評価の病院</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：评分低的医院\n\n过去一周左右，我一直胃痛，不需要去医院，但今天当我和KOTOKO一起去录音室录制新歌时，即使我们说话的时候我也感到不舒服，所以我决定是时候去医院了。\n 当我搜索附近的设施时......我找到了一家评级为1.7的医院！ 1.7星！医院被许多急需的人使用，因此他们往往给出较低的评分，但有超过 70 条评论，1.7 颗星是一个令人难以置信的数字。就新平人这个评价不佳的医生来说，他可能是一位技术精湛的医生，因为他正在治疗患有严重精神疾病的患者。然而，一家普通医院之所以评价如此之低，很可能是因为医院整体质量不好。\n\n1星风暴。反正反应很马虎，而且医生检查时的态度也显得傲慢。当我听到人们说这会很不舒服时，我真的很担心。\n\n罕见的防守意见。导演表示这只是他的情绪波动，心情好的时候没有问题。该如何判断导演的情绪波动呢？有趣的是，“体检”有很强的运气成分。如果你心情不好，他们会做你听不懂的检查，拿走你的钱，给你吃药而不告诉你结果。即使我出于好奇而选择了这家医院，大概率也是这样的结果。我的天啊。\n 听说附近的医院被当作垃圾对待，这很有趣，我很高兴在那段时间我能够忘记我的胃痛。如果这是一篇正常的评论，我可能会胃痛地仔细审视它。\n 如果能正常醒来的话我想去医院，但明天我要在真人大小的超级十酱的监督下去秋叶原，所以可能会有点困难。嗯，太好了，让我肚子疼。如果它能让你微笑。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

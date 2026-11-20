@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>对着月亮嚎叫</title>
+<title>在某个月吠叫的东西</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-02-05 03:34</p>
-  <h1>对着月亮嚎叫</h1>
+  <h1>在某个月吠叫的东西</h1>
   <p class="ja-title">月に吠えるもの</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
  明日こそは文章を書くんだ。自分の頭の中をさらけ出して、生きた証をデータのかたちでもインターネットに残すんだと固く誓って。いつか自分が何万人のフォロワーができたりするのを夢見たりしながら。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"对着月亮嚎叫\n\n当你在漆黑的夜晚打开显示器时，蓝黑色的光感觉就像月光一样。因为月亮温柔而安静地照耀着，接触它的人可能会变得情绪化，加速他们在深夜的孤独和凄凉的感觉。\n 我无法忍受孤独，而在我的房间里独自度过六个月而不与任何人交谈的记忆是如此可怕，以至于我立即打开互联网并假装通过屏幕与某人联系，给我一种虚假的安全感。\n 大学退学后的前六个月，我独自一人在东京这座偌大的城市里，而且由于我对超自然现象的天生兴趣，我最终住在墓地旁边，所以深夜的寂静令人恐惧。冬天，一切都是寒冷和蓝色的，所以更加引人注目，我忍不住想和某人说话，即使我只是墓地里的鬼魂。\n 我穿好衣服，走到阳台上，吹着夜风，望着墓地，读了《对月嚎叫》等诗集。萩原作太郎将月亮升起的方式描述为“轻柔地抚摸着白衣女子的耳朵”，这让我把月亮想象成一个女人。\n 当这种情况发生时，此刻唯一靠近我的人就是那个女人，Tsuki，我认为Tsuki是我生命中的女英雄。我喜欢诗歌和美少女游戏，所以我想知道是否会发生如此戏剧性的事情，相反，我什至欣赏孤独。但我知道，如果我不这么想，我就承受不了。\n 因此，我没有开灯，而是坐在一个只有月光的房间里，坐在电脑前。深夜的互联网比白天更安静、更少喧闹，我发现自己想成为其中的一部分并与每个人交谈。\n 我没有勇气做任何事，所以我犹豫是否要创建一个SNS帐户，因为我害怕。我不知道该和谁沟通，也不知道如何与他们沟通，只能呆呆地看着眼前纷繁的帖子。我立即打开视频网站，播放了我最喜欢的动漫MAD，庆幸自己今天没有为难自己，以为自己还只是在看内容。\n 我知道事情正在放缓和停滞，但可怕的是它是多么难看。尽管我喜欢晚上的墓地，但我还是忍不住害怕活人的情绪会袭击我。\n 随着月亮渐渐消失，我更加害怕，幻想着自己会永远孤独，为了分散自己的注意力，我把视频的音量调大了。与此同时，太阳升起，我受不了光线，睡着了，试图逃离。\n 明天我就写文章。我发誓，我要把我脑子里的东西暴露出来，把我的生活证据以数据的形式留在互联网上。同时梦想有一天拥有数万粉丝。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

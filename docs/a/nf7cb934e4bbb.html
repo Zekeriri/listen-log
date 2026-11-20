@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇快速文章：信用卡和人类</title>
+<title>一口随笔：信用卡与人类</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-10 06:46</p>
-  <h1>一篇快速文章：信用卡和人类</h1>
+  <h1>一口随笔：信用卡与人类</h1>
   <p class="ja-title">一口エッセイ:クレカと人間</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 商業エッセイ集もよろしくね。印税がなかったら、今でも毎日怪しい業者たちから鬼電されていたのでしょうね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇快速文章：信用卡和人类\n\n我终于拿到了信用卡，准备支付我的鼻子、眼睛和牙齿手术费用。由于几年前就被拦住了，无论查了多少次，都立即被拒绝，但他的信用信息很可能因为时效而被重置，他被当作无罪对待。\n 刚搬到东京后，我就没有钱了，所以我在进入大学到退学的六个月内开了一张信用卡。从那时起，他很快将信用卡变成了现金，结果欠下了30万或40万日元的债务。加上学生贷款，我有大约100万日元的现金。\n 我和朋友合住一个房间，所以房租是30,000日元。我的伙食费都是朋友打工的残羹剩饭，只要一本消磨时间的书和一台电脑，就可以安逸地生活一两年了！当然，我也付诸行动，开始重复看动漫、看书、上网、困了就睡觉的日子。我的债务一点一点地增加，信用卡也能停止使用，但我的感觉麻木了，完全不明白事情的严重性。无论如何，我意识到我已经脱离了社会的齿轮，我的信用信息完全是黑色的。然而，人们的看法是黑色更酷。\n 即使在我付清了稿费和稿费后，我也因为信用信息不明确而无法动弹，但似乎我已经得到了机构的原谅。我终于在18岁的时候第一次拿到了信用卡，回到了现实世界的一员，但这证明我也重新成为了推动经济发展的齿轮之一。如果说有什么不同的话，我认为作为一个不被政府信任的黑人过着自由的生活更人性化。\n\n包含日常日记的同人志现已在摊位上出售。您可以了解如何过正确的日常生活。\n\n我期待着阅读您的商业论文集。如果不是为了版税，我每天仍然会被可疑公司诈骗。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

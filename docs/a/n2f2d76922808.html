@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：让我看到未来的木枕头</title>
+<title>一口随笔：展示未来的树枕</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-28 00:29</p>
-  <h1>短文：让我看到未来的木枕头</h1>
+  <h1>一口随笔：展示未来的树枕</h1>
   <p class="ja-title">一口エッセイ:未来を見せてくれた木の枕</p>
 </header>
 <main>
@@ -22,11 +22,10 @@
 毎日の日記をまとめた同人誌や、若い頃の文章をまとめた商業エッセイ……よろしくね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：让我看到未来的木枕头\n\n我的一个高中朋友帮我搬家，我们聊得很开心，所以我想谈谈我们的高中时光。\n 我们所有冲绳的低水平技术高中生都过着完全不考虑未来的生活，此时我们意识到我们在世界上正在走下坡路，所以我们相信那些上了体面学校的人有责任过诚实的生活。太悲伤了。\n 我做出这个决定的那一刻是我在学园祭上制作了“木枕头”的时候。一个好年纪的高中生所做的就是雕刻一点木头，然后将其抛光，制成一个木枕头。不到1-2小时，即使是小学生只要有工具也能做。 HG 的高达模型提供了更具创意的体验。这是我们的文化节演出。由于我们一开始就怀疑我们能否上学，所以我们决定这就是我们所能做的。嗯，事实上，我们绝对不可能举办一个普通学校特有的节日。\n 当然，这样的学园祭是没有人来的，只有偶尔来的学生家长才会花200日元给儿子买个木枕头。看着那些随意排列的木枕，“空虚”，没有个性，我确信“我们没有未来”，这让我意识到，如果我们继续这样下去，这样的事情将会一直持续到我们死去。从某种意义上说，文化节是一次非常重要的经历。真是令人怀念啊……\n\n整理我日常日记的同人志，整理我年轻时候写的商言文……期待与您合作！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +45,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

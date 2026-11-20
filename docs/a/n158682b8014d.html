@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>速文：普罗大众与网民携手海贼王的时代</title>
+<title>一口随笔：在《海贼王》中普通人和网络居民携手合作的时代</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-06 04:38</p>
-  <h1>速文：普罗大众与网民携手海贼王的时代</h1>
+  <h1>一口随笔：在《海贼王》中普通人和网络居民携手合作的时代</h1>
   <p class="ja-title">一口エッセイ:ワンピースで一般層とネット住民が手を取り合う時代</p>
 </header>
 <main>
@@ -36,11 +36,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"速文：普罗大众与网民携手海贼王的时代\n\n终于看了《海贼王红》。\n\n简单来说，真的很好……从视觉美感、音乐、战斗场面、副角色选择到亮点，我都非常满意。\n 毕竟，在一部持续了100多卷的作品中突然创造出一个“青梅竹马的角色”的勇气是令人惊叹的。突然插入了与主角路飞的性格发展相关的情节。最重要的是，故事结构和制作都令人信服，儿时好友女主人公乌塔的突然出现。我简直被只有日本最好的漫画家才能做到的大胆精神所震撼。\n 我非常高兴普通大众和网络观众都齐心协力，迷上了《海贼王》，部分原因是这部作品太棒了，也因为和之国篇之后的最终章的介绍是如此令人兴奋。\n\n正如天空岛篇在这段免费期间被重新评估一样，我可以预见，当德雷斯罗萨篇可供阅读时，被谈论很多的多弗朗明哥将得到适当的评估，多菲使用的最后一个技术的名称“16颗神圣的子弹”的美丽将成为一个热门话题（Kibunshoku no Haki） - Nyalra（@nyalra）2020年3月17日\n\n《海贼王》发生了很多事情，因为它是一个长期连载的系列，很多人可能在《阿拉巴斯坦》和《空岛》之后就离开了它，甚至有一段时间御宅族回避它，因为它是一本洋基队读的漫画。最后一战后，我感觉有点热，就跟着他跳了下去，但当多弗朗明哥的最后一招有了完美的名字“16颗神圣子弹”时，我惊讶地说：“织田老师的感觉太棒了。”Big Mom对整个蛋糕岛的横冲直撞只能用“灾难”来形容，彻底重新点燃了火焰，我相信这部漫画一定会再次大热，收视率也很高。互联网将会飞速发展（Kibunshoku no Haki）。\n\n在路飞大战卡塔库栗的时候，我一直在说，“这是一场会在男孩漫画杂志上载入的伟大战斗，所以你一定要读它”，在一个没有人提到海贼王的时间线上，所以我真的很高兴现在御宅族们正在谈论海贼王，随着海贼王在爱情和失败者故事中的传播。那时，我感觉自己就像一个孤独的老人，仍然相信天空中有一座岛屿 — Nyalra (@nyalra) 2019年1月19日\n\n此后一段时间，香克斯和失败者们开始被人们谈论，《海贼王》虽然是个话题，但话题度也逐渐高涨，每次免费发布，都会引起正经读者的议论，而在《RED》这部作品中，香克斯终于展现了四皇典型的“阶级”，彻底俘获了大众和网络的目光。我对这个事实感到非常高兴。\n 原著将不断走向巅峰，变得更加精彩。即使电影在上映时大获好评，即使在停映期间，小田内的“王者风范”也令人心痛。\n 毫无疑问，第三次海贼王热潮即将到来。是不是大家都该重读一遍海贼王呢？让我们和香克斯、路飞一起见证“新时代”。\n\n各位追随者，你们害怕吗？\n“新时代” - 2 (@nyalra_copy) 2022 年 9 月 4 日\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -60,7 +59,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

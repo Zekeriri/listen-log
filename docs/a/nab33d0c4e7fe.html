@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：对不起</title>
+<title>一口随笔：对不起</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-17 07:18</p>
-  <h1>短文：对不起</h1>
+  <h1>一口随笔：对不起</h1>
   <p class="ja-title">一口エッセイ:ごめんなさい</p>
 </header>
 <main>
@@ -21,11 +21,10 @@
  とにもかくにも頭を下げ続けるしかないのですが、本当にねぇ、ただ眠りたいですね。謝罪とか後悔とか自責とかどうでもよくって、ただただぐっすり寝たい。この頭痛と発汗が二度と起きないくらい、なんなら文字通り僕の意識がもう起きてこないくらいに、思いっきり眠りたいものです。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：对不起\n\n今天早上，我写道：“不同寻常的是，我能够早睡早起，我很健康！！！”但是，我在这种状态下保持的时间不会超过几个小时，而且我迄今为止积累的睡眠债即使只睡了8个小时也不够。我的头很疼，无论我做什么，我都会头疼，所以我最后就去小睡了。此后，我多次短暂醒来并试图重新入睡，但结果直到现在（早上7点）我仍然无法睡个好觉。换句话说，我们仓促地回到了昼夜逆转。\n 不管怎样，当我睡眠不足时，我似乎会出汗，也许是因为我的自主神经系统受到干扰。我的身体开始感觉异常的燥热，全身开始有刺痛、麻木的感觉。虽然我知道我的身体正在发出愤怒的信号，告诉我要休息，但我却因为头痛和发烧而无法入睡。我的身体充满了矛盾。帮我！ ！ ！\n 不管怎样，我希望有人带我去看心理医生。安眠药就能解决这个问题。保证充足的睡眠。睡得像泥一样。但我太害怕了，不敢服用足够的安眠药来睡个好觉。我失去了记忆。拉里变得疯狂。我本来应该只吃一粒药的，但从那到我睡着之间，我混乱的头脑立刻就往嘴里塞了两三粒。是婴儿吗？当你意识到这一点时，你已经给你认识的每个人都带来了麻烦，你的生活就结束了。我不喜欢它。当你制作了一款游戏后，看到每个人都抛弃你，真是太难过了。不要保持距离。既然如此，他只能被隔离在精神科病房里。我会在医院住一两个月，恢复正常的生活节奏，然后回家。网络被限制了，我可以冷静下来，一石二鸟。 ……我想这是不可能的。只要你发布了一款游戏，你就必须做很多与之相关的事情，作为你工作的一部分。这是只有我能做的事，所以我几个月都不能休息。很好，我现在有想要守护的东西，有我不想失去的东西。这是令人钦佩的。在过去的几周里，我的头脑一直不太正常，我什么也做不了。对不起。与其道歉，不如做点什么。我知道，但是当你可以充分发挥大脑的潜力时，你难道不想创造吗？我不想在心不在焉的情况下做出半生不熟的东西。所以，我只能说，把睡个好觉当作工作，并且尽快去做。对不起。\n 然而，我想为我写这篇文章是为了让我的读者关注我、观看动漫和发推特这一事实表示歉意。事实上，如果我不与人交往，不从事这样的活动，我担心我的线会断掉，我就再也站不起来了。听着，如果你开了一个先例，哪怕有一天不写日记，你也得不写一天，甚至是后天。虚无的日子一天天累积，我离人类也越来越远。而且我没有精力从那里回去。\n 我能做的就是低着头，但我真的只想睡觉。我不在乎道歉、遗憾或自责；我只想睡个好觉。我只想尽我所能地睡觉，这样头痛和出汗的情况就不会再次发生，以至于我真的不会再醒来。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +44,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

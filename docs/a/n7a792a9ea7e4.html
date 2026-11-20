@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：游戏和严肃之间的界限</title>
+<title>一口随笔: 娱乐与认真之间的界限</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-07 08:35</p>
-  <h1>一篇简短的文章：游戏和严肃之间的界限</h1>
+  <h1>一口随笔: 娱乐与认真之间的界限</h1>
   <p class="ja-title">一口エッセイ:遊びと本気の境界</p>
 </header>
 <main>
@@ -22,11 +22,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：游戏和严肃之间的界限\n\n我连续玩了《喷射战士 3》大约 12 个小时，我的头很痛。全身感觉毛茸茸的，到现在都还不够握着手柄的感觉，脑子里不断地在战场上，让我坐立不安。今天玩了半天，然后昨天玩了8个小时左右。两天时间里，我在《喷射战士》上投入了 20 个小时，剩下的时间只是睡觉、吃便餐和看动漫。再这样下去，我脑子里全是墨水了！\n 由于长期持续孤军奋战，乌德前已经濒临S+。但我们输掉了升级赛。显然，为了从 S 升级到 S+，您需要准备好付出一些认真的努力。具体来说，他们从自学毕业，开始“学习”，通过查阅攻略维基和游戏视频，依靠集体知识和信息交流。当这种情况发生时，它不再只是一个游戏，而是大量的时间和思想。最后，我们已经达到了这个阶段。\n 如果每天只做一点点，就很难再爬得更高了。另一方面，您可以将此设置为您的限制并一直保持下去，直到朋友邀请您为止。今天我已经头晕目眩，手在颤抖，但我想这种事每天都会发生……而且，我正在利用空闲时间“学习”如何玩。\n 这是关键时刻。是“认真的”还是“只是玩玩”？我现在正站在边境上。如果我醒来后仍然无法忘记开枪打人的感觉，那么我……\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +45,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

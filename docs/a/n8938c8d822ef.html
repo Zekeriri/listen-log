@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：快乐的一天</title>
+<title>一口随笔：幸福的一天</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-21 08:30</p>
-  <h1>短文：快乐的一天</h1>
+  <h1>一口随笔：幸福的一天</h1>
   <p class="ja-title">一口エッセイ:幸福な一日</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：快乐的一天\n\n当我醒来的时候，已经是下午五点了，已经是晚上了。现在是冬天，外面天黑了。此时此刻，我已经没有精力去做这一天其他的事情了。而我还是很困。显然，他服用的精神药物和安眠药 Deevigo 的作用仍然存在。睡觉可以稳定心情。然而，如果你一直在睡觉，你就会以现实的速度落后。像这样。\n 在这种时候，我至少会读一本书。如果你在连锁咖啡店呆了很长时间，你可以看一本书。感觉自己已经取得了一些进步，即使只是一点点，这一点很重要。我挪动着慵懒的身体，把平装书塞进包里。冷风拂过肌肤，让你感受到季节的气息。\n 今晚我读的书是一本哲学相关的书，名叫《论生命的短暂》。\n\n当你打开目录时，你会立即看到核心主题：“关于生命的短暂”，“关于心灵的平静”，“关于幸福的生活”。所有这些都很有趣，但我觉得人们最终会思考“幸福”意味着什么。\n 直到我死去的那一天，我都会继续思考“幸福”的定义和效率。然后，我们将幸福视为一种当我们与他人比较时所获得的优越感，或者当我们感到一种不与他人比较的平静心态时的幸福。连过去的哲学家都是如此，所以普通人就会继续兜圈子，思考没有答案的幸福。\n 一想到这里，我就觉得有点累。由于精神药物的作用，我的头仍然很模糊。如果我能带着模糊而可疑的头脑生活，我会很高兴，但不知何故，这个世界不断迫使我走向理智。当我环顾四周时，我发现每个人都在忙着在电脑上工作并与他人交流，尽力保持理智，不让自己的生命在这个快节奏的世界中缩短。我很困。\n 我看书注意力不集中，就回家躺在床上。我最近感觉真的很困。是因为冷吗？最后，我很好奇这本书的后续，想知道内心的平静意味着什么，但我可以告诉自己，像现在这样屈服于平静的睡眠，绝对是一件平静而幸福的事情。\n 晚安。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

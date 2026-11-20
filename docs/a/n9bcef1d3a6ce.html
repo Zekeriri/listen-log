@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：他是如此善解人意，令人惊叹！</title>
+<title>一口散文：理解他的男朋友太厉害了！</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-14 07:05</p>
-  <h1>短文：他是如此善解人意，令人惊叹！</h1>
+  <h1>一口散文：理解他的男朋友太厉害了！</h1>
   <p class="ja-title">一口エッセイ:理解のある彼くんが凄すぎる！</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 今月末には、商業エッセイ集もでます。印税、最高！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：他是如此善解人意，令人惊叹！\n\n网上有很多关于“善解人意的人”的说法，所以我在理论上也意识到了这一点，但当我自己遇到这样的人时，我从心里而不是言语上理解了他的慷慨的价值和他的泥潭。\n 我是游戏制作组的联系人介绍给我认识的税务会计师，而且他和御宅族公司有过多次业务往来，所以他不仅知道我现在的活动，也知道尼亚拉。他们很期待比赛，也很期待看到自己喜欢的解说员解说。我很高兴......\n 出现这种情况时，没有必要隐瞒自己的不足或对税收缺乏了解。 「我什么都不知道！」但我不想亏税！”我自信地告诉他，他回答说：“我会用通俗易懂的方式给你解释，并给你推荐一些省钱的方法。”太神奇了！最重要的是，他们甚至说：“你不必再担心了！”有什么事情请LINE我！”当然，因为职业的原因，他也是一个干净清爽的男人。这样的人了解你的个性和生活方式，并以同理心对待你。我确信我会为此感到自豪。\n 当然，这种人情是行政费用和家族关系，但事实是，有比我敬佩无数倍的人对我好。这可不行。我害怕遇到这么方便的人，我会发疯。\n 通过我的税务会计师，我终于明白了“善解人意的男朋友”的精髓。如果这是一段异性之间的浪漫关系，而这个人后来被甩了或者分手了，我会发疯的。 “理解”真的那么可怕吗？\n\n我们目前正在销售编写每日文章的同人志。如果你买了，我可以交税。\n\n商业论文集也将于本月底出版。版税是最好的！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

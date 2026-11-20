@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>随笔：我就是一个连煮意大利面都做不到的垃圾</title>
+<title>随笔：我连煮意大利面的步骤都无法完成的真正废物</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2020-05-05 22:51</p>
-  <h1>随笔：我就是一个连煮意大利面都做不到的垃圾</h1>
+  <h1>随笔：我连煮意大利面的步骤都无法完成的真正废物</h1>
   <p class="ja-title">エッセイ：僕はパスタを茹でる段階にすらたどり着けないマジのゴミ</p>
 </header>
 <main>
@@ -55,11 +55,10 @@
 はやく人間になりたい。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"随笔：我就是一个连煮意大利面都做不到的垃圾\n\n由于关注的读者已经超过2000人了，所以黄金周期间我每天都在努力更新，但今天我敏锐地意识到自己生活的无奈，脑子里充满了它，所以我就来说说这个。\n\n我从一位追随者那里收到了培根蛋面。也许他是出于对我健康的关心才把它发给我的。谢谢。\n\n然而我对烹饪的认识为零。我连外人的层次都没有，我真的对此一无所知，也完全没有兴趣。不过，我知道仅靠培根蛋面我无能为力。我需要买面食。\n\n我不想浪费我的善意。我很长一段时间第一次去超市，不知怎么买了一些看起来像意大利面的东西。有很多类型，但我不知道有什么区别。我希望教程在我进入超市的那一刻就开始。\n\n之后，我兴奋地回家尝试做饭。尽管它被称为烹饪，但它只是煮意大利面和培根蛋面。我不太明白煮沸的过程，但如果你用谷歌搜索，你可能会发现一些东西......\n\n然而，当他踏入厨房的那一刻，他就发现事情不会那么顺利……\n\n（图片：图1）\n\n家里没有炊具。\n\n此时我的头已经完全冻结了。我曾经认为锅和其他类似的东西在厨房里是绝对自然的。仅仅因为每个家庭都备有这种东西，并不意味着它是无中生有的。\n 每个人都至少做过一次买锅的行为。尽管我在那里住了两年，但我什至还没有完成如何在那里生活的教程。\n\n现在想来，我什至从来没有碰过那个转动它来点亮它的东西。仔细观察的话，你会发现炉子上不小心放着动画文件夹和药品，再这样下去，Lucky酱和贝尔索姆拉就会起火。\n\n那么，您如何利用提供的烹饪空间呢？当我环顾四周时……\n\n（图片：图2）\n\n由于某种原因，“Winbee's Neo Cinema Club”被列出。当然，Konami Square Wave Club 很棒，边听恶魔城歌曲边做饭会是一个优雅的时刻。但这是假设你有锅之类的东西。有没有一间厨房里没有锅却还放着Konami的著名专辑的房子？现在就是这样。\n 背面是《歌之王子殿下》的DVD。我在脱口秀节目中从一位女顾客那里收到了它，但现在我想起来，这不是恩惠什么的，它只是一个库存物品。所有帅哥都看着我，这很可怕。难道是黑帮跟踪狂？\n\n（图片：图3）\n\n我一抬头，就看到小麦的POP。很可爱很舒服，但是无论怎么想，都满足不了你的胃口。右下角有一个宇宙开关。如果你从宇宙的角度思考，面食可能没什么大不了的。\n\n（图片：图4）\n\n我别无选择，只能让缩略图看起来像 Youtube。 Yumetsuki 的插图非常天才。\n 我知道我的生命已经结束了，我没有生存的能力，但我没想到我连煮意大利面都做不到。\n 就算他们有锅，恐怕也不知道接下来要做什么。由于我已被正确诊断为阿斯伯格症，每当我被告知适当的剂量时，我都会当场僵住并流泪。我不太明白“煮”、“焖”、“炒”是什么意思。\n\n我想快点变成人类。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -79,7 +78,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>超七第45集“碟子来了”</title>
+<title>《奥特七》第45话“飞碟来了”</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-12 22:59</p>
-  <h1>超七第45集“碟子来了”</h1>
+  <h1>《奥特七》第45话“飞碟来了”</h1>
   <p class="ja-title">ウルトラセブン45話「円盤が来た」</p>
 </header>
 <main>
@@ -34,11 +34,10 @@
 商業エッセイ集もよろしくね。こちらは、若い頃の長文エッセイをまとめたものなので、もっと自意識ゴリゴリなので通報もやむなし。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"超七第45集“碟子来了”\n\n明天，我要和 GanQ、Kemurian、幻境魔剑 Beriarok、Zetton 先生和 Metron 外星人成员一起看《辛奥特曼》pic.twitter.com/MW79124v45 — Nyalra (@nyalra) 2022 年 5 月 12 日\n\n明天就是《新奥特曼》的上映日期，让我们一起兴奋地聊聊奥特曼吧！ ！ ！\n 也就是说，我观看《超七》的次数比原版多，所以这次我想写一下我最喜欢的《超七》的一集。\n\n实相寺昭夫的《目标城镇》和《第四星球的噩梦》是著名的剧集，在研究读者人气调查中获得第一和第二名，但实相寺的第三部作品，第 45 集《光盘已到达》也是一部雄心勃勃的剧集。\n\n主角是一个木讷的年轻人，他的工作表现不佳，似乎与社会格格不入。为了逃避现实，他每天晚上观察星星，结果发现了一张光盘。他向超级安全部队报告了这一情况，但当每天充满询问的安全部队认为他们犯了错误时，他感到很失望。之后我尝试举报，但依然被视为无稽之谈。年轻人对河岸上那个愿意听他说话的男孩唯一说的一句话是：“我想去星辰世界。”他不仅厌倦了现代社会，而且还因为在奥特卫队的庇护下而精神疲惫……当他去男孩家里用望远镜观察时，他发现男孩竟然是他一直在观察的佩罗林加外星人！然而，究极卫队并不相信年轻人的报告……这是一个悲伤的插曲。\n\n我认为这一集有两个亮点。\n 第一个是《七世界普通公民的悲伤》。当然，这个世界上也有与社会格格不入的劳动者，没有网络，就没有我们今天所拥有的虚拟世界的享受。当这种情况发生时，他别无选择，只能沉浸在自己的爱好中，转向孤独的天文观测。他的背影传达了昭和时代的悲伤，每晚独自仰望星空，因吵闹而被邻居责骂。\n 第二个是“日常入侵者”。就像那个接近伪装成男孩的年轻人的佩罗林加外星人一样，在你不知不觉中，一场外星人入侵可能就在你身边开始了……超级安全部队的恐惧和疏忽结合在一起，他们被大量的报告所麻痹，没有采取任何行动，光是想象就令人恐惧。最终，在安妮和丹的努力下，他被救了，年轻人也获得了一枚奖章，但他的生活却不太可能好转。这种现实就是这一集的味道。\n 除了深入探讨“超卫士的疏忽”这个禁忌话题之外，还有以星空的美丽为母题，加上导演实素司对经典的运用，给了我非常“美好”的观看体验，让我想再看一遍这一集。\n 如果 Alien Peroringa 有更受欢迎的设计，它可能会更受欢迎。不过我喜欢这种深色。\n\n包含日常日记的同人志现已在摊位上出售。这都是关于一个令人毛骨悚然的书呆子的自我意识，但请不要举报。\n\n我期待着阅读您的商业论文集。这是我年轻时候的长文合集，因为我比较自觉，所以只好举报了。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -58,7 +57,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文精选：现实电车问题</title>
+<title>精选一口短文：现实的有轨电车问题</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-10 14:31</p>
-  <h1>短文精选：现实电车问题</h1>
+  <h1>精选一口短文：现实的有轨电车问题</h1>
   <p class="ja-title">選り抜き一口エッセイ:現実的なトロッコ問題</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 商業エッセイ集もよろしくお願いします。評価までしていただけると、大変嬉しい。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文精选：现实电车问题\n\n网络上日夜争论着电车问题，但这里有一个思想实验：“如果电车继续这样下去，它会碾死前面的五个人，但如果你作为旁观者，拉动杠杆，它会移向另一条路线，只碾过站在那里的一个人。你会拉动杠杆来减少伤亡吗？”当然，这个思想实验没有答案，也不能说是对的。让五个人全部死去，或者只选择一个人被牺牲。\n 这个思想实验是一个独特的情况，所以看起来不太现实，我想很多人都不理解。一个答案可能是承认考虑这个问题没有意义，因为这种情况一开始就不太可能发生。\n 然而，有工程师正在努力解决这个问题。那是针对安装在汽车上的人工智能。据说在不久的将来，汽车将由自动驾驶人工智能系统来操作，但如果汽车即将发生事故，你将被迫决定是牺牲自己还是牺牲他人。如果你手动做，当你思考的时候就会发生意外，但有了人工智能，你可以在最后一刻做出选择。也就是说，出现了类似于电车难题的情况。此外，让你自己参与进来。\n 当然，作为汽车制造商，我们希望将驾驶员的安全放在第一位，但以牺牲他人为代价可以接受吗？ AI应该如何做出决策？ “正确的道德”将由人类建立。\n 这个答案将如何得出，是我最近感兴趣的一个话题。\n\n包含日常文章的同人志现在正在展位上出售。请随时领取。\n\n我期待着阅读您的商业论文集。如果您能给我一个评价，我将非常高兴。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

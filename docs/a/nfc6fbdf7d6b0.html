@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：参观教堂</title>
+<title>一口随笔：教堂巡礼</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-09 12:19</p>
-  <h1>短文：参观教堂</h1>
+  <h1>一口随笔：教堂巡礼</h1>
   <p class="ja-title">一口エッセイ:教会巡り</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 商業エッセイ集もよろしくお願いします。レビューや評価まで押してもらえると、なお救われていく。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：参观教堂\n\n我去了卫斯理神圣教会淀桥教会。当时正在举办慈善活动，所以我就进去参加了。我还每100年听一场由一个声音演奏的歌剧。多么有文化气息的一天啊！\n\n我一直想参观越来越多的教堂和宗教建筑，所以我很高兴能够作为垫脚石体验东京最大的设施之一的力量。大教堂的朴素之美带有淡淡的蓝色调，很漂亮，天花板上装有十字形的窗户，所以当阳光射入时，在自然光下会出现一个十字架。不幸的是，由于我是晚上来的，所以没能看到这个宗教标志。\n 宗教建筑的概念令人难以忍受，因为它以雄伟的方式建造，以拉近人们与上帝的距离。可以形象地理解，音乐和建筑最初都是通过宗教和信仰发展起来的。宽阔的天花板上，彩色玻璃闪耀着神圣的光芒，仿佛升到了天堂。以及虔诚信徒的行动。可见，这个存在的‘美’，才是最重要的传教工作。\n 不过，由于位于大久保站前，教堂对面的驴肉店和烤肉店闪闪发光，街道上挤满了年轻人和疲惫的上班族。虽然是免费活动，但毕竟是慈善活动，所以在出口处需要支付几千日元（虽然这不是问题，因为这只是一种体验），而且这是一次很有价值的体验，包括走出去后现实与现实的差距。\n\n欢迎来到最近出版的新书。如果有人买了它，一个人的灵魂就会得到拯救。\n\n我期待着阅读您的商业论文集。如果你能获得评论和评级，你会节省更多。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

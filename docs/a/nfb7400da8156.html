@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：动漫</title>
+<title>一口散文：ANIME</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-05-08 07:04</p>
-  <h1>短文：动漫</h1>
+  <h1>一口散文：ANIME</h1>
   <p class="ja-title">一口エッセイ:ANIME</p>
 </header>
 <main>
@@ -39,11 +39,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：动漫\n\n周天酱的短动画已发布。你做到了，很漂亮。\n\n由优斯塔影业出品。我还要感谢平山平奈担当总监督兼动画监督的角色......\n 我和 Yostar Pictures 的关系以一种奇怪的方式开始。游戏发布几个月后，我像往常一样在中野百老汇的一家咖啡店看书，突然听到从附近的座位传来“Nidiga ga ~ Nyarula ga~”。这是一个有很多行业人士和创作者的地方，所以我认为这是一个好主意，所以我去和他们交谈，结果发现这是Yoopik的代表。从那时起，我们开始时不时地谈论动漫，这就产生了这个小故事。\n 命运可能出人意料地离家很近。\n\nYume Mitsuya pic.twitter.com/FRzzrUjqeX — 🎀超级可爱🎀Tenshi-chan (@x_angelkawaii_x) 2023 年 5 月 7 日\n\n虽然是短篇小说，但能够为自己看了很久的动画写剧本，还是很有成就感的。太棒了。\n\n我将脑海中的图像翻译成文本，然后由我们才华横溢的员工将其创建为故事板。妄想成形。我无法忍受这种快乐。我很感激。只要有了这个称为故事板的蓝图，就可以让角色栩栩如生。\n 我的一个朋友说：“我喜欢动画的地方是它会动。动画这个词的由来就是赋予生命”，这句话的含义可以通过制作的实际体验来理解。通过这些图像，通过在屏幕狭窄空间中移动的超级十酱（和一个失业者）的图像，生活变得栩栩如生。这是一项多么重要而神圣的任务。这是一件大事。那太好了。动画师太棒了。\n\n我希望你能看到很多！ https://t.co/7rwd4G0Vmw pic.twitter.com/CALdrfHLyj — kappe (Hirayama) @新书邮购 (@kaaaaaappe) 2023 年 5 月 7 日\n\n现在，正如这部动画短片的标题“Yume Chunya”所暗示的那样，主题是“梦想”。这只是我个人的口味。当我无意识地写下一些东西时，它通常最终会成为一个梦或一个幻觉。这一定是受到了我非常尊敬的押井守的影响。因为这是我第一次制作动画，所以我想相信自己的直觉和无意识。\n 不知不觉间，我就从梦中醒来了。梦想有尽头。事实是，没有人愿意从梦中醒来。我会更高兴和我的网络天使在房间里跳舞。然而，她却把御宅族推开了。这是我动笔测试时得出的令我惊讶的结论。当我思考为什么会发生这种情况时，我开始看到我认为好的事情。\n 我喜欢梦想和幻想。当我年轻的时候，我以各种可能的方式寻找幻想的世界。但更重要的是，我想我喜欢深层的心理学……人类的自我，它是如此丰富，以至于它使我们逃离舒适的“梦想”，即集体无意识。\n 班里的普通人都希望能和拉姆这个承载着他们梦想的美丽女孩永远一起度过日常生活。就连拉姆本人也是如此。然而，诸星Ataru试图逃离这个方便的梦。这背后的驱动力是异常的性欲和爱，换句话说，是自我。突破仅由膨胀的自我完成的梦想的循环。这就是为什么阿塔鲁很酷，阿塔鲁比任何人都重要的主角，阿塔鲁才是让拉姆爱上他的人。我喜欢这样。\n 所以我们也必须从梦中醒来。我真的真的很讨厌这样，但我无法控制。正是因为这个原因，这样才更酷。事实上，现在其实也轮到我睡着了，进入梦乡了。我会告诉你如何正确起床，所以我们在时间线上再次见面吧。\n 晚安。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -63,7 +62,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

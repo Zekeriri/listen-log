@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：对一年一度的年终盛事的嫉妒</title>
+<title>一口随笔：对年末惯例活动的嫉妒心</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-25 04:23</p>
-  <h1>短文：对一年一度的年终盛事的嫉妒</h1>
+  <h1>一口随笔：对年末惯例活动的嫉妒心</h1>
   <p class="ja-title">一口エッセイ:年末恒例イベントへの嫉妬心</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：对一年一度的年终盛事的嫉妒\n\n圣诞节前后，互联网上充斥着对这对夫妇的仇恨评论。\n 话虽如此，骂情侣的风潮已经平息了许多，宅男嫉妒的笑话也变得乏味乏味，广播公司为孤独的御宅族举办特别节目也成了默认，所以我给人的感觉是大家都来享受神圣的夜晚。\n 顺便说一下，我今年不但什么也没收到，而且我这辈子也没有收到过所谓情人送的礼物。圣诞节和生日也一样。但我让你们都读这个......！所以，如果你问我是否嫉妒享受圣诞节的情侣，我不这么认为。事实上，我更羡慕人们在年末新年假期回家，而不是圣诞节。\n 有一天，通过自己的努力，也许可以和爱人一起经历圣诞节和生日。更重要的是，你将能够享受这个年龄段之前从未有过的活动，所以到时候你会非常高兴。嗯，也不是不可能，就看我以后的努力了。他会成为一个很酷的人。如果我不先摆脱我的嗅觉和失眠，我就没有资格在日常生活中与异性分享时间。\n 然而，问题是回国。我不能这样做。要做到这一点，无论是精神上还是家庭条件上都有太多的障碍。以后我再也没有机会微笑着见到妈妈和继父了。如果是这样，如果我的岳父先死而我母亲独自一人（如果我知道的话）会发生什么？无论如何，即使这是可能的，也可能需要几十年的时间。你或许可以找到爱人，但你无法建立自己的家。\n 所以，每次看到朋友和宅男们回家，我都会嫉妒自己再也无法触及的温暖。即使是心情看起来很危险的人，也会在年末年初与家人团聚。我住合租的时候，住在那里的十几个人都会回老家过年，所以有时会只剩下我一个人在大房间里。真的很孤独。\n 因为生活在这样的环境中，每次有人问我“你不回冲绳吗？”我都会模仿飞坦回答“家人？”那是什么？” 对于无法重来的事情，我无能为力。他一生梦想着有一天与未来的妻子建立一个幸福的家庭，给他的儿子 Rider Belts，给他的女儿 PreCure 变身物品，并成为给他的孩子们在家带来安全感的人。我很期待。我和你有同样的生活。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

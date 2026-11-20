@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>那种固执已经是嚣张了。</title>
+<title>那种卑鄙已经是傲慢了哦</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-13 18:50</p>
-  <h1>那种固执已经是嚣张了。</h1>
+  <h1>那种卑鄙已经是傲慢了哦</h1>
   <p class="ja-title">そのヒクツさはすでに傲慢ですよぉ</p>
 </header>
 <main>
@@ -21,11 +21,10 @@
  誰かと話していても、「どうせ自分より全てが上の人間がまわりに居るだろうから、何話しても無駄じゃないか」と卑屈な考えが頭をよぎります。そうなると飽きられないように振る舞うのに必死で、その結果また失敗したり、相手を恵まれてるくせにと傲慢な態度で見ることで自己防衛したりを繰り返す。こんな人間が存在していてはダメですよね。死んでお詫びをしましょうか？</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"那种固执已经是嚣张了。\n\n《告诉我再见》中我最喜欢的台词是“那样的固执已经是傲慢了。”\n 像我这样的人渣，每个人生活中的杂质，很快就会以卑躬屈膝的方式自嘲，看不起人，并试图通过说“你太幸福了，不是吗？”来增加痛苦，但这太傲慢了。即使你认为自己被人瞧不起，但你实际上也瞧不起别人。\n 很抱歉看不起你。不过，尽管他道歉了，但他还是微笑着。趁着我看不到他低头时的表情，他嘴角上扬，笑得内心和脸上都在笑，说出了他从未想过会说的话：“我要死道歉吗？”\n 基本上大多数人都比我聪明，所以我感到自卑。这是我的真实感受。我没有常识，没有学术能力，没有尊严，或者类似的东西。我觉得每个人都这么聪明真是令人惊奇，他们把像我这样可疑和恶心的人当作实验动物来看待，但我也感到内疚，用这样的偏见来看待人是傲慢的。\n 甚至当我与某人交谈时，我的脑海中也会闪现出一个谦卑的想法：“我周围可能有人在所有事情上都比我更好，所以说话是没有意义的。”当这种情况发生时，他们拼命地表现得好像他们无法得到足够的，结果，他们再次失败，或者他们不断地以傲慢的方式看待对方来保护自己，尽管他们很幸运。有这样的人存在就不好了。我要死并道歉吗？"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +44,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

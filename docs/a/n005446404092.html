@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：深夜电视节目和自我</title>
+<title>一口散文：深夜电视节目与自我</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-29 04:24</p>
-  <h1>短文：深夜电视节目和自我</h1>
+  <h1>一口散文：深夜电视节目与自我</h1>
   <p class="ja-title">一口エッセイ:深夜のテレビ番組と自我</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：深夜电视节目和自我\n\n看完深夜动画后，我打开电视，开始了深夜邮购节目。对不酷的字体有夸张反应的演员。家电产品层出不穷，只强调其好处。这个节目没有任何自我。\n 深夜的邮购节目令人平静。小时候，熬夜看着综艺节目结束，变成邮购节目的空虚，感觉就像是“结束后的世界”。尽情享受这一天后，就没有什么值得期待的了，那些只让叔叔阿姨们用方便的工具开心的虚无就被冲走了。感觉就像电视在告诉我我现在应该去睡觉了。\n 即便如此，这仍然是一部看不到自我的作品。这里所展示的人都没有说出他们的真实感受。就像剧本一样，他不断地给予无情的赞美。他一直在微笑，但他的眼睛却没有微笑，这几乎是令人毛骨悚然的。一个可以改善睡眠质量的枕头，一个可以精细吸进你看不到的区域的吸尘器。这些人对他们推出的产品赞不绝口，但他们永远不会在现实生活中使用它们。只有一小部分观众觉得喜欢，给他们打电话，虽然没有节目里说的那么方便，但也不是没有效果，所以他们不会退货，也不会提出任何投诉，最终将这种体验当作一种奇怪的体验而忘记。时间到了。\n 当我住在合住的房子里时，当深夜动漫节目结束后邮购节目开始时，一位居民匆忙关掉了电视。也许他对邮购项目中充满欺骗的气氛感到不舒服。闹剧无论闹多远都只是闹剧。\n 当我第一次独自观看它时，我觉得人类自我的灭绝和死亡是同一件事。只按照剧本行动、说话的存在，不能称为活着。然而，社会是一个以自我换取金钱和安全的不断循环。如果换个角度看，我们的日常生活就充满了欺骗和闹剧。即使在互联网世界，我也看到人们直接从摘要网站发布他们的意见，以至于我怀疑他们是机器人或人工智能。如果你试图获得生活必需品，你的自我就会磨损，但如果你失去了自我，你就不能真正称自己是活着的。这是一个考验你是否能在不失去平衡的情况下过桥的游戏。\n 今天，我再次入睡时思考自己是谁，这样我就不会出现在深夜的邮购节目中。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

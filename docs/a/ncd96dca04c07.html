@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>简短的文章：WSS 似乎已经宣布了两部新作品。</title>
+<title>一口随笔：好像从WSS发表了两部新作</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-08-06 05:44</p>
-  <h1>简短的文章：WSS 似乎已经宣布了两部新作品。</h1>
+  <h1>一口随笔：好像从WSS发表了两部新作</h1>
   <p class="ja-title">一口エッセイ:WSSから新作2本が発表されたらしい</p>
 </header>
 <main>
@@ -39,11 +39,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"简短的文章：WSS 似乎已经宣布了两部新作品。\n\nWSS 宣布了两部新作品。我没有参与这部作品，但 Nidiga 的制片人参与了制作。我只是参与了一方面的插画师选拔，但既然有机会，我就会写一些各种各样的东西。\n\n[少年时代角色PV结束] https://t.co/IVmvRFl0nk\n以角色为中心的PV已公开。\n我们将重点关注两个男孩之间温馨（？）的互动，介绍为这个星系增添色彩的角色。\n而且……我们还推迟了系列的开始……！ pic.twitter.com/mKYYn6UdUS — WSS 游乐场官方 (@infowssJP) 2023 年 8 月 1 日\n\n首先，这是《少年时代的终结》。从片名就知道这是一部科幻电影，从主视觉就知道银河铁道是一个主题。这与我无关，但制作人之所以批准这个项目，是因为当我在尼迪加的一次活动中使用“银河铁道之夜”主题时，他看到了用户的反应，并觉得“这可以成功！”\n 有时去见制片人，看到制作组通宵工作，几乎快要死了，我会怀念那种混乱的气氛。对了，好像推迟了两个月，不过也没关系。我不得不把Nidiga推迟了半年多！制作游戏并不那么容易。尤其是如果按计划进行的话……我希望他的努力能够得到回报，因为我亲眼目睹了代表艺术家坐在沙发上凝视着太空，仿佛他即将死去。由于所谓的作游戏氛围，已经拥有了很多固定粉丝，而且公布时的反响似乎也不错，真是太好了。\n 这是另一张。\n\n【百合大反派女儿攻略开发中】\n我们正在 WSS 进行规划和起草！\nSaiko 的关键视觉和主角是 Rolua (@Rolua_N) https://t.co/drGz4qG9Ye\n官方主页：https://t.co/oFBbIvmQux pic.twitter.com/IvLQe7OPO7 — WSS 游乐场官方 (@infowssJP) 2023 年 8 月 1 日\n\n这似乎是由很多人开发的。这是作弊。 Nidiga 基本上是 4 个人。\n 据说是很多成年人共同创造的重型仿真产品。这就是我们推荐的插画家“Lolua”。除此之外，我根本没有参与，但制片人相信我的眼睛，向我咨询了“主视觉”的问题。我很高兴。读完提案后，我单方面提到了我喜欢的人的名字，并说：“也许Lolua桑会适合这个。”他们立即联系了我，谈话进展得很快。\n 我对完成的主视觉感到惊讶。毫无疑问，第一眼看起来很酷，最重要的是，角色设计令人惊叹。我特别喜欢服装和风格，但在这张宣传图中它隐藏在标题标志后面，所以这是一种浪费。右下角爆炸的画风，以及所有小物体都集中在两个主角脸上的构图，给人一种绘画的感觉。\n 不过原图中，两个人是面对面的，我本能地觉得这样更有视觉冲击力，也更酷，但用在横幅和广告图片上时，如果不是面对面的话，点击率就会下降，所以制作者必须纠正，让他们面对面。从画面的完整性来说，我觉得如果他们面对面就完美了，关系会更生动，制作人虽然理解这一点，但碍于成人的情况，也不得不指出。这世上有些事是没办法的事。\n 所以，我几乎没有什么关系（甚至还没有发布的作品我只选择了插画师），但我很期待看到新游戏在这个时代会产生什么样的结果，所以我会继续远远地看着制作者们疲惫不堪的调整。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -63,7 +62,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

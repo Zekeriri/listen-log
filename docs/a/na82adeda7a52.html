@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：宗教/精神倾向</title>
+<title>一口随笔：宗教·灵性倾向</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-18 04:13</p>
-  <h1>短文：宗教/精神倾向</h1>
+  <h1>一口随笔：宗教·灵性倾向</h1>
   <p class="ja-title">一口エッセイ:宗教・スピリチュアル傾倒</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくお願いします♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：宗教/精神倾向\n\n当我和一个熟人交谈时，他说，“如果我没有立场，我现在就会陷入阴谋论，”他给我的理由是，“一起为某件事感到兴奋绝对是有趣的，而且（在这个框架内）他们都是善良的人。”我非常同意这一点，如果有的话，我开始对精神和宗教领域感兴趣，其原因是，“这绝对是”比面对怪诞的现实更有趣。”也就是说，虽然他们的目的地不同，但他们都朝着同一个方向前进。他们在认真面对现实时感觉不到任何乐趣或刺激。\n 了解宗教和哲学很有趣（我对佛教思想特别感兴趣）。看着桌上的佛像，默念《心经》，内心会平静下来。从现在开始，我要学习各种宗教的各种“祈祷”。当我安静地祈祷时，我喧闹的心就会平静下来，我感觉很好。将自己托付给神佛的巨大存在的舒适感，会让你忘记现实，给你一种几乎像旅行一样的体验。\n 我对来世一无所知。然而，我想尽可能地摆脱今生的业力，拥抱我所信仰的正直。这绝对是事实，但归根结底是因为被一个大存在包围的“陶醉”感觉很好。这是现实生活中无法获得的乐趣。当然，我是异教徒，因为我痴迷于“快乐”，但我一直是玛丽莲·曼森和克苏鲁的信徒。其核心是对充满欲望的邪神的渴望。只学习方便且容易掌握的部分。我只是想忘记现实。\n 另一方面，以正确​​的方式生活并满足于真正的幸福则更可怕。我永远不能那样。我总是想沉醉于某件事。我只想吃点甜的东西，比如糖。我想追随我大脑所渴望的快乐，并被一种难以理解的迷幻狂喜所笼罩。在一个没有人知道什么是正确的世界里，沉迷于某些东西是理智的，无论是阴谋论还是灵性。\n 我会继续在日记里写下我就是上帝。这是最令人愉悦的事情，感觉自己的心被净化了。\n 它不必被任何人理解。如果你的祈祷没有得到回应也没关系。然而，对我来说，“假装”深入自己的精神世界并与神圣、巨大、深奥的“某种东西”联系起来，比以过高的分辨率看到现实世界更重要。\n\n感谢大家对日记总结和商文集同人志的支持♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

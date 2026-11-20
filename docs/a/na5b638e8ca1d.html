@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：当你沮丧时要做的事情</title>
+<title>一口随笔：抑郁时期的种种</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-21 01:21</p>
-  <h1>一篇简短的文章：当你沮丧时要做的事情</h1>
+  <h1>一口随笔：抑郁时期的种种</h1>
   <p class="ja-title">一口エッセイ:鬱時のあれこれ</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 毎日のエッセイをまとめた同人誌をboothにて販売中です。落ち込んでいたり、妙に元気だったりします。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：当你沮丧时要做的事情\n\n“如果你想死，就拿2万日元，去发廊，吃烤肉，泡温泉，睡酒店的床，你就会感觉好一些。”另一方面，也有一些批评的声音，“当你抑郁的时候，你不可能这样做。”\n 对此，我认为两者都是对的，确实，如果你真的抑郁了，你就不能出去，即使你能出去，你也不能和别人说话，也不能吃一顿丰盛的饭菜。\n 然而，如果你没有处于抑郁的边缘，我认识到最重要的是不要沉迷于“焦虑”，所以我认为专注于豪华的膳食、舒适的沐浴以及最重要的是优质的睡眠是正确的。所以我想，既然他们的说法都是正确的，那么这个故事就永远是平行的。\n 当我因适应障碍而无法动弹两周时，我以意想不到的方式康复了，当我像往常一样顽皮地发推特时，我发现有趣的是，尽管我的身体如此沉重，但智能手机的另一边我却异常高兴，渐渐地我可以出去吃饭了。你做到了！\n 嗯，这可能只是我的情况，但言语是有力量的，所以我想我表现得越开朗，我就越被别人吸引。另一方面，如果你用语言表达你的抑郁情绪，你会因此而更加抑郁。我了解到最好的办法就是睡觉。\n 然而，当你经历非常艰难的时刻时，你就无法推理。即使我知道这一点，我仍然会发狂。人类是很难的。反正2万日元想用烤肉、美容院、温泉、酒店也太难了。\n\n包含日常文章的同人志现在正在展位上出售。有时我感到沮丧，有时又感到奇怪的精力充沛。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

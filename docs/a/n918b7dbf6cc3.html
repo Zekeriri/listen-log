@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：我的工作的代价</title>
+<title>一口随笔: 自己工作的价格</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-08 08:16</p>
-  <h1>短文：我的工作的代价</h1>
+  <h1>一口随笔: 自己工作的价格</h1>
   <p class="ja-title">一口エッセイ:自分の仕事の値段</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：我的工作的代价\n\n我收到了一些有趣的问题，所以今天我将回答关注者的问题。\n 总结要点，“我在skeb上画插图，我是一个有抱负的创作者，每次我接受请求时都会收到很多人的请求。但我不能提高价格，因为我担心如果不值这个价格，客户会失望。当我在写信息的时候，想到我无法接受的请求以及我必须在截止日期前完成的时间，我感到很难过。”\n\n这是创作者的问题。关键是，“我收到了很多请求，所以我不想一直拒绝它们，所以我想通过提高价格来缩小范围，但我担心我是否能得到物有所值的插图。”你称自己为“创作中的创作者”，所以我猜你还很年轻。最重要的是，我不知道他是否无法控制自己突然走红。这是一种现代咨询，可以对有才华的年轻创作者进行适当的评估。\n 插画技术的发展是惊人的。它变得越来越充满顶级人才，甚至是青少年。当然，随着艺术家越来越受欢迎，插图的佣金正在迅速上涨。这是一件好事。例如，曾几何时，插画师找到了一份工作，并被要求以合理的薪水为美少女游戏绘制数十张原创插画，但由于社交网络服务，插画师本身变得比他们的作品更受欢迎，我们已经进入了一个即使是自由职业者也能找到梦想工作并赚钱的时代。要使用当今流行插画家绘制的数十张原创插图来制作游戏，需要大量资金，甚至会耗尽预算。我经常和游戏行业的人谈论这个。\n 除此之外，借助 skeb，向尚未进入职场的插画师发送请求变得更加容易。多么美妙的时光啊。这个问题本身是如此现代，以至于我觉得这是一件好事。\n 我个人认为，应该增加金额。因为现在有钱的人太多了，这个人的天赋必定更高。我理解你可能会担心自己的技能是否值得，但源源不断的请求就是你能力的证明。这就是这个人的插画的吸引力，每个人都想在你的插画中看到他们的要求。事实上，我关注的艺术家意味着我也想看到他们！\n 当我开始通过写作获得报酬时，我害怕拒绝请求，因为金额太低。好像我有点得意忘形了，正规媒体的要求太高了，压力也很大。然而，最终，我确信我的能力是由于反复试验的过程，信任愿意付钱给我的客户，即使它很昂贵，并努力工作以达到物有所值的质量。创作者就像水一样，所以有一个简单的想法：最好在可以的时候获得它们。没关系，有足够热情向你索要长信的粉丝宁愿花更多的钱，如果你对你交付的插图是真诚的，他们一定会喜欢的。\n 我喜欢插画家和漫画家。创作 Nidiga 过程中最有趣的部分是当我委托我最喜欢的艺术家创作相关插图和漫画时。 （出钱的是制作人，不是我。） 我从来没有觉得我收到的插画不值这个价钱。我非常爱你们，我祝愿所有有才华的人一切顺利。尼亚鲁拉支持创造者的蛋破壳而飞的那一刻。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

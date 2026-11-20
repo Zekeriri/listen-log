@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇短文：“成为某人的梦想”被嘲笑。</title>
+<title>一口随笔：被笑的“成为某人的梦想”</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-03-04 01:41</p>
-  <h1>一篇短文：“成为某人的梦想”被嘲笑。</h1>
+  <h1>一口随笔：被笑的“成为某人的梦想”</h1>
   <p class="ja-title">一口エッセイ: 笑われた「何者かになる夢」</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇短文：“成为某人的梦想”被嘲笑。\n\n很久以前，有一些仇恨者嘲笑我复制和粘贴我的推文。嗯，考虑到我当时的年纪，说自己是反派就有点夸张了，事实上我是一个不太喜欢我的人。\n 通过转载我所说的话，我暴露了他并说：“这家伙太痛苦了”，就像我班上的洋基队在模仿一个胆小的御宅族的言论并欺负他一样。即使是书呆子也可能成为互联网上的恶霸。\n 那样的话，我很好奇这个人在多大程度上才算是“痛苦的言论”。例如，如果你诚实地低声谈论你未来的愿望，这对这个人来说会“痛苦”吗？作为测试，我在推特上写道：“我不能放弃成为某人的梦想。请大家支持我！”这也是事实。由于您每天都发布文章，因此您希望能够影响某人。\n 然后呢？我最终在推特上发布了完全相同的内容！这句话是“我不能放弃成为某人的梦想”。请支持我！”被发布在其他人的帐户上。我写的每一个字。在这些人中，我无法放弃自己的梦想是多么痛苦，我要把它揭露出来。\n 这很有趣。基本上，我以为网民们都爱挑刺，但即使是看到一个人尽力成为对方的刺，也会被嘲笑，认为这是“每个人都应该嘲笑的事情”。当你把“网络人”的角色扮演得如此彻底时，你就不再觉得自己是NPC了。\n 不知道对方心里有没有这样的想法：“这家伙是想变成别人啊！”无论如何，这毫无意义，”或者“他就像一个在推特上谈论他的梦想的孩子。”无论如何，我在表达我的决心并将其暴露出来时感受到了“痛苦”。不知怎的，我本以为他会用这条推文来做到这一点，但他仍然复制并粘贴了它。我很好奇……当有人突然公开谈论他们的梦想时，我确实有点生气。也许这只是一种非理性的反射。现在我连他的用户名都忘记了，我无从确认，但真相却依然扑朔迷离：他当时嘲笑了我“梦想”的哪一部分，是否仍然有同样的感觉？这种扭曲的千载难逢的邂逅是互联网特有的现象，而且非常有趣。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

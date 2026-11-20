@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>作文：每个人都平等成长</title>
+<title>随笔：人人最终都会平等地长大成人</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-05-29 20:19</p>
-  <h1>作文：每个人都平等成长</h1>
+  <h1>随笔：人人最终都会平等地长大成人</h1>
   <p class="ja-title">エッセイ：だれもが平等に大人になってしまっていく</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
  まだ、まだ勢いだけでやれるはずなんだという気持ちを削り、代わりに常識を纏って武装する、適合する。いずれは僕が若者に叩かれる。「なにも理解してくれない大人の一人」と、「子供の気持ちを忘れたつまらない人間」だと認識されて。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"作文：每个人都平等成长\n\n我要活下去。以后还会这样。\n 当我还是个孩子的时候，我无法想象自己会成为一个成年人，但我已经二十多岁了。无论他多么认为自己是个孩子，客观上他已经足够成为一个成年人了，但他却一直过着懒惰、不光彩的生活，背叛了他在成为成年人之前就会死去的天真期望。\n 我相信他们会继续这样生活。他与小时候想象中的儒雅绅士相去甚远，虽然他把所有的时间都花在了网络上，感受着日常生活的极限，但他知道自己实际上要深刻得多。\n 最后，无论你做什么，时间总是平等地流逝，所以无论你是躺着还是努力工作，同样的时间都会流逝，时间的力量会抹去过去的一切。通过经验，我们知道艰难的时光、所谓的黑暗历史、嫉妒、仇恨、悲伤和爱都会随着时间而消失。\n 我经常接到年轻人的电话，说：“我现在过得很艰难。”也许你会回忆起痛苦的经历，或者无法停止对悲惨未来的幻想。但遗憾的是，即便如此，随着时间的推移，这一点也被削弱了。时间和睡眠是无敌的，任何糟糕的旅行都会在一夜的睡眠后消失。当我收到这样的建议时，我告诉他们要相信，无论现在有多痛苦，只要他们忍耐，就会过去。\n 我很高兴看到这种“减少”，但也很悲伤，经历的创伤和情感摩擦越少，我就越意识到自己已经老了。我如此担心的事实让我觉得自己很愚蠢，我厌倦了自己表现得如此有远见，以至于我不禁感受到自己年轻时所犯的错误。不鸟瞰，而是视野更窄，只朝一个方向看，会更酷、更好。\n 今后，我将接触越来越多的年轻人，我将被迫成为一个相对的成年人。责任和最后期限出现了，我获得了毫无意义的社交技能。受到许多人的羡慕和嫉妒。最终，我们只能继续在“正常”的范围内假装急躁。\n 作为坏孩子的记忆和感觉最终会消失。我只是希望成年人继续感到他们情不自禁地讨厌学校。我不想忘记老师和继父根本不理解我的悲伤，我不想忘记青春期的平凡冲动。但无论擦多少次，都无济于事。说得越多，就越显得陈词滥调。\n 你不应该觉得自己只要有动力就可以做任何事情，而应该用常识武装自己并适应。有一天，我会被年轻人殴打。他被认为是“一个什么都不懂的成年人”和“一个忘记了孩子们感受的无聊人”。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>论文选：《疯狂的贡》</title>
+<title>精选一口随笔：疯狂东</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-12 17:31</p>
-  <h1>论文选：《疯狂的贡》</h1>
+  <h1>精选一口随笔：疯狂东</h1>
   <p class="ja-title">選り抜き一口エッセイ:クレージーゴン</p>
 </header>
 <main>
@@ -23,11 +23,10 @@
 毎日の日記をまとめた同人誌をboothにて販売中です。よろしくね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"论文选：《疯狂的贡》\n\n对奥特曼不是很熟悉的人，大概都没有见过这个“疯狂小杰”。虽然是《超七》中出现的怪物，但《七》中有一个超级有名的机器人乔王。由于其压倒性的实力和设计，乔王在后来的作品中受到了很高的追捧，甚至成为了奥特曼Z的盟友。 另一方面，来自奥特曼七号的机器人疯狂小杰在现代很少被谈论。\n\n尽管如此，我还是喜欢这个疯狂的小杰。令人惊讶的是，这个怪物一度被称为“吉贝机器人”。如今，它被赋予了一个更正式的名字，“机器人怪物”，但早在昭和时代，它就被视为完全“不寻常”。\n 《超七》中还有一个怪物，每次出现时编号都会缺失，因为它被命名为“原子弹外星人”。尽管这是实相寺明夫的剧集！而且，在主线故事中屡遭诟病的神秘任务中的“狂魔人类”根本没有被包括在内。然而，疯狂小刚的名字已被秘密更改，但它仍然存在。当然，这是一件令人高兴的事情，但我认为这也是一个展示这个家伙有多么谦虚的插曲。\n 不过这破烂的造型倒是不错。它很迷人，想象一下如果这样的巨型机器人出现在城市中，会产生与怪物不同的影响。我最喜欢这个名字，疯狂。既然您已经不厌其烦地阅读了这篇文章，我希望您记住这个疯狂的机器人，它的名字是“疯狂”。\n\n包含日常日记的同人志现已在摊位上出售。很高兴见到你。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

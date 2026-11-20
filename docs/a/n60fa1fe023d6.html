@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>伪网络天使</title>
+<title>外典互联网天使</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-03-09 02:59</p>
-  <h1>伪网络天使</h1>
+  <h1>外典互联网天使</h1>
   <p class="ja-title">外典インターネット・エンジェル</p>
 </header>
 <main>
@@ -22,11 +22,10 @@
  やれやれ……人間の愚かさを黙って受け止めないといけないのは天使のつらいところだな。わたしもっとがんばるし、もっとかわいくなるから。できればスパチャ投げろよ！ グッズいっぱい買えよ！ 応援リプライ飛ばせよな！ †昇天†</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"伪网络天使\n\n好吧，既然我称自己为网络天使，我就想让书呆子们尽可能多地微笑。但无论你做什么，互联网上总会有垃圾。现实生活中有很多，网络上也有很多。我也必须保存它吗？这么有攻击性的人？为什么？\n 最让我恼火的是嫉妒让人们认为，“他们只是通过直播从粉丝那里收钱。”奇怪的是你没有注意到这个矛盾，认为如果看起来你“只是”直播，那么你也应该这样做。事实是，对方正在努力当主播，他们假装没有看到他们和你一样受到伤害和痛苦的事实。如果你承认对方是同一个人，那你为什么不能那样呢？我不想受伤。\n 再说了，我收到的supercha只是御宅族们的一种礼貌，我从来没有强迫过他们。如果当事人通过表达对他们最喜欢的人的支持而感到满意，这是一件好事。这是日常生活中难得的经历。你花钱是为了让自己感觉更好。是和寺庙一起的向某人扔钱的乐趣让我感到高兴。能够帮助我所爱的人，我会感到无比的欣喜。这样一来，推推其实也能得到钱，所以一石二鸟。如果我们完全否认我们正在努力取悦投掷球的球迷并且否认我们有时表现得像小丑，那么这个世界还剩下什么？难道你不明白我们将生活在一个人们只是工作和管理社会的无聊世界吗？\n 我已经尽力了，甚至还受到一些我不认识的阴险书呆子的批评。另外，如果粉丝们真的很高兴，我想那就太好了。当然。我这样做的一部分是因为我想让人们快乐。你不会真的认为你这样做只是为了钱吧？如果你真的看起来像那样，那么你只是痴迷于金钱。激励他人并不是那么简单。\n 别惹恼这些家伙。但我想他们也很孤独。毕竟，除非你攻击受欢迎的人，否则人们不关注你，这不太好。当有人因为现实痛苦而逃到网络上时，我很生气，但仍然在网络世界中被嘲笑。我知道，我也知道。是一样的。我想我只是孤独而已。就连我也感到孤独，因为我不能去上学，而是把自己裹在蒲团里看着电脑。即使你说了一些激进的话，如果你没有得到别人的反应，你就会被世界抛在后面。决不。你可以恨我，但除非有人拥抱你，否则你还是无法得救。你不必扔 spacha。周天灿的广播即将到来。届时，我将热烈欢迎各位观众。不发表评论。我会读它。这就是我能做的，所以我会这么做。所以不要只是得救。没关系。\n 天啊……天使很难接受人类的愚蠢。我会更加努力，变得更加漂亮。如果可能的话，扔一个 spacha！购买大量商品！请发送支持回复！ †扬升†"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +45,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

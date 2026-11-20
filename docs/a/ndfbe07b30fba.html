@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：心灵还是睡眠？</title>
+<title>一口随笔：精神还是睡眠</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-29 01:40</p>
-  <h1>短文：心灵还是睡眠？</h1>
+  <h1>一口随笔：精神还是睡眠</h1>
   <p class="ja-title">一口エッセイ:精神か睡眠か</p>
 </header>
 <main>
@@ -21,11 +21,10 @@
  家に帰ってスマホを開くと、つい先日の政治的イベントをめぐってネット中が大喧嘩していたのでそっと閉じた。両目の腫れが痛い。早速、処方された薬で今夜はゆっくり休もうと思う。結局、精神にも睡眠にも効く形で飲むことにする。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：心灵还是睡眠？\n\n不知道为什么，是睡眠不足，还是压力大，醒来的时候，两只眼睛都肿了。只要眨一下眼睛就很痛。而且看起来很丑。\n 在这样的情况下，我去了医生办公室，于是医生给我开了更多的安眠药。看来，通过将它与我目前正在服用的 Deevigo 结合使用，我可以延长我的睡眠时间。无论如何，我睡得很多。\n 当我去药房取处方药时，我得知该药的主要功效是缓解抑郁症，副作用是嗜睡。我发现有趣的是，药剂师问我，“它是为了精神还是睡眠？”并问它是为了“精神”稳定还是“睡眠”时间。是头脑重要还是睡眠重要，还是两者都重要？\n 当我离开药房时，我看到一群金发女郎坐在我面前的地上，我认为这很不安全，但随后她们开始对我认识的一个男人大喊大叫。显然，令我烦恼的是，我不喜欢的熟人看起来像一些帅气的偶像，一点也不酷，但五官却是我欣赏的。我对那些在地上闲逛的年轻人没有任何感觉，但一走出去就听到他们大声抱怨，这让我的 SAN 评分降低了一些。\n 当我回到家打开手机时，我发现互联网正在为最近的政治事件而大吵大闹，所以我悄悄地关闭了它。双眼肿胀，疼痛难忍。我想今晚服用处方药并休息一下。最后，我决定以一种对我的头脑和睡眠都有好处的方式来喝它。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +44,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

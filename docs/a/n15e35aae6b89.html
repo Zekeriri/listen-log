@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：健康、税收、婚姻、考虑预期寿命......</title>
+<title>一口随笔：健康·税务·结婚 计算寿命……</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-14 11:19</p>
-  <h1>一篇简短的文章：健康、税收、婚姻、考虑预期寿命......</h1>
+  <h1>一口随笔：健康·税务·结婚 计算寿命……</h1>
   <p class="ja-title">一口エッセイ:健康・税金・結婚 寿命を勘定して……</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
  Amazonレビューや評価までしてもらえると、嬉しさでさらにぐっすり眠れます。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：健康、税收、婚姻、考虑预期寿命......\n\n近 600 天以来，我每天都会发布日记的小细节，虽然我通常在深夜或清晨发布（因为当它被用作在安静的夜晚阅读时我最高兴），但最近我在白天发布的越来越多。原因很简单，就是我开始“睡着了”。\n\n事实上，你在没有告诉所有人的情况下买了一辆健身车。我一边看动画一边努力划船。以前，我对那些谈论健康和金钱的成年人感到厌烦，并在内心取笑他们，但现在我自己也快三十了，我已经成为我年轻时所鄙视的丑陋的成人形象。我无能为力。即使年轻人取笑成年人，他们仍然活着。我想，“我不在乎税收，你这个白痴！”但当轮到我拿钱时，我感觉“这是我做游戏赚的钱！”我不会向国家捐出一日元！”如果你不缴纳一日元就会被逮捕，所以我咨询了税务会计师，以尽可能降低价格。\n 最后，当我边听着Kraftwerk的环法自行车赛而疯狂踩踏板时，我实在太累了，当我从浴缸里出来躺下时，我很快就睡着了。我在健康上花费了太多的精力，以至于在我因担心的想法而陷入失眠之前就睡着了。多么健康的生活啊！我会变成一个无聊的成年人，只谈论工作、税收、健康、玩弄女人、婚姻、酒精等吗？考虑到使用寿命...\n\n包含每日日记的同人志现已发售！\n 买新书。如果你买了它，我在骑固定自行车时就会多读一本书。\n\n我期待阅读您的商业论文集！\n 如果您给我们留下亚马逊评论或评级，您会很高兴并且睡得更香。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

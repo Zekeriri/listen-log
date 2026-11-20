@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：我在路上睡着了</title>
+<title>一口随笔：中途睡着了</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-10 11:31</p>
-  <h1>短文：我在路上睡着了</h1>
+  <h1>一口随笔：中途睡着了</h1>
   <p class="ja-title">一口エッセイ:途中で寝ました</p>
 </header>
 <main>
@@ -23,11 +23,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：我在路上睡着了\n\n我在睡觉时就写日记，所以我正在服用一种名为 Deevigo 的安眠药。所以，如果几分钟过去了我还没有找到任何可写的东西，药物的作用就会让我变得非常困。就是现在。\n 安眠药会让你极度困倦。感觉就像我的大脑试图强迫自己关闭。最重要的是，写长句子是一个骗局，它会迫使你的大脑全速工作，因此让大脑休息的效果和你让它工作的愿望之间存在冲突。当这种情况发生时，我会变得非常困并且头痛。头还疼，每次写一行字就困得脑子不灵了。按下关机按钮后，大脑会出现轻微的头痛。\n ↑写完这篇文章我就睡着了，所以我就醒了。我什至不知道接下来要写什么，最后的结局就像是>>1由于一系列错误的点击而变成了疯子的线索。\n 顺便说一句，我之前的梦想是，当我买了一个再现千年谜题的玩具，并在阅读说明书时，不知为何游戏被称为“Gi”，Yami Yugi被称为“Yamigi”，所以我忍不住问，“避免搜索！？”\n 尾张。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

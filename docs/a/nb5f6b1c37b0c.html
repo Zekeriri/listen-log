@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇文章：我的三！</title>
+<title>一口随笔：在马斯利就来了！</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-03-11 09:25</p>
-  <h1>一篇文章：我的三！</h1>
+  <h1>一口随笔：在马斯利就来了！</h1>
   <p class="ja-title">一口エッセイ:マイスリーでた！</p>
 </header>
 <main>
@@ -22,11 +22,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇文章：我的三！\n\n最后，米斯利在米店开了处方。\n Myslee是一种会导致失忆的安眠药，服用后如果在强烈的睡意中醒来，你的大脑就会处于一种模糊的状态，最终会陷入一种混乱的状态。发很多你不记得的推文，给熟人打听不懂的电话……在你二十岁出头之前，你或许可以原谅，因为你还年轻，但二十岁后期之后，人际关系开始破裂。糟糕的。\n 所以，为了避免重蹈覆辙，我对 Deevigo 这种不会导致失忆的药物非常满意，但由于呼吸问题，我最终在中午醒来。当我和老师讨论这个问题时，我决定使用Myslee，它可以让我即使在中午醒来也能很快入睡。如果你从Deevigo到中途觉醒到Deevigo，Deevigo的效果会很长而且很慢，所以你的一整天都会被毁掉。如果你把它改成“我的三”，你就可以轻松地回去睡觉了。\n 但很可怕。即使吃安眠药，你也睡不着，半梦半醒，每次醒来，你都害怕查看社交媒体或联系工具，心想：“你昨晚什么也没做……？”如果可以的话我不想经历那种感觉，最重要的是我不想给别人带来麻烦，让他们讨厌我。由于我的性格，我无法阻止自己每天只吃一粒药。我真的只是使用我现在拥有的一切。我已经知道了。现在，我们现在应该做什么？\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +45,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

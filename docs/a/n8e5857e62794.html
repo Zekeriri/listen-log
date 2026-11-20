@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口エッセイ：奴隶市场と千夜一夜物语</title>
+<title>一口随笔：奴隶市场与《一千零一夜》</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-19 05:03</p>
-  <h1>一口エッセイ：奴隶市场と千夜一夜物语</h1>
+  <h1>一口随笔：奴隶市场与《一千零一夜》</h1>
   <p class="ja-title">一口エッセイ:奴隷市場と千夜一夜物語</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくお願いします♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一口エッセイ：奴隶市场と千夜一夜物语\n\n我的一个朋友曾经说过，我每天都会以散文的形式发布短篇小说，他说：“就像山鲁佐德一样。”\n Scheherazade is an important character in ``The Thousand and One Nights,'' a collection of Islamic tales in which a mad king who was angry at being betrayed by his wife executed women every night.She prolonged his life by telling him an interesting story every night, and by the time he finished telling the story for 1,000 days, the king had reformed.\n Now that I've been telling stories to readers every night for about 700 days, I'm sure I'll be a person who has been telling stories for 1,000 nights.太棒了。我太懒了......\n ということで夜のお话ですが、仆が千夜一夜物语を意识した作品の话をします。\n\nThere is a beautiful girl game called ``Slave Market'' that was released in 2000, and as the title suggests, it is a typical game set in the Middle Ages where you purchase slave women and enjoy various rapes.しかし、本作の真骨頂は抜き部分にない。 Surprisingly, despite this title, each heroine has a pure love true ending.\n\nこれがまた、全てにおいて「良い」。主人公である貴族の軍人が奴隷市場で女性を一人見繕う。 Each of the female slaves he chooses has a complicated situation, and the actions of the protagonist who feels love for the heroines beyond their social status... The story unfolds in a traditional and hard manner, but even within the pure love route, the depth of the multiple endings, and the cruelty of treating the heroines as nothing more than tools for sex if they make a mistake, give this work a unique depth. Users who were expecting something radically erotic based on the title ``Slave Market'' ended up shedding tears not in their lower bodies but in their upper bodies as the love romance unfolded unexpectedly.\n 本作の主題歌『To lose in amber』がまた素晴らしくI'veサウンドしていて満点。 Eiko Shimamiya's ephemeral singing voice makes you feel the harsh fate of aristocrats and slaves, and the last chorus of ``I embrace the warmth you gave me and believe in a dream of a thousand and one夜晚”非常美丽。这是一首我想让你听的歌。\n Going back to the story, the original ``One Thousand and One Nights'' only contains stories from the Islamic world, and many of the stories depict faith in Allah.数多くの出场人物たちが正义を贯き奇迹に救われたり、悪に流され道を踏み外したりしていく各物语のキャラクターの行动を善とするか悪とするかは、すべてアラーの判断次第というわけですね。\n What I especially like about ``Slave Market'' is that there are two paths: pure love and rape, and the future of the hero and heroine is a test of the ``goodness'' of the player. How we can understand love in the story, and how our hopes and endings change depending on the choices we make, is a one-night dream, like the one thousand and one nights told by Scheherazade.\n\n感谢大家对日记总结和商文集同人志的支持♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

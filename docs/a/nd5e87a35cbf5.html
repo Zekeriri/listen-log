@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：空中晚安</title>
+<title>一口随笔：在空中晚安</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-03-22 03:14</p>
-  <h1>短文：空中晚安</h1>
+  <h1>一口随笔：在空中晚安</h1>
   <p class="ja-title">一口エッセイ:宙でおやすみ</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：空中晚安\n\n我负责为Aiobahn的个人歌曲《Sora de Goodnight》作词。这首歌与Nidiga相关的歌曲不同，有人问我是否要为Aiobahn创作的器乐作词，所以我只是说“当然”。到目前为止，因为这是与我合作的，所以它包含了我的精髓，但这一次可以说是一首完整的Aiobahn爱好歌曲。\n 不过，这个标题是我自己想出来的。我有一段时间想做一首以“晚安”为主题的歌曲，但到目前为止我和Aiobahn制作的歌曲都太激烈了，无论怎么看都没有睡觉的气氛。所以我认为这是一个完美的时机。\n 由于我不是歌曲和声乐方面的专家，所以我不会讨论它们。好吧，你应该听听。\n 现在，我之所以选择“晚安”作为主题，是因为我认为睡眠是最重要的。不管是我的创作还是散文，我真正想传达的信息就是“晚安”。睡眠对于人类来说是最好的事情。生活就是为了更好的睡眠。那个时候是最幸福的。\n 然而，我总是失眠，除非鼻子痊愈，否则我总是半夜醒来。这就是为什么我希望每个人都有充足的睡眠。这首歌飘逸的感觉和温柔的歌声非常适合作为催眠曲来听。如果有人能因为这首歌而多睡一秒钟，那么没有什么比这更让我高兴的了。\n\n换个话题，我买了一架钢琴。敲击琴键并听到优美的音调比一边敲击键盘一边浏览互联网更好。虽然对于孩子来说，这是一个便宜又小的物品。看完《千梅里》后，我更加佩服坂本龙一了。\n 我从来没有真正上过音乐课，所以我什至不知道什么是C和A。现在，我拼命地想记住C和D在哪里。这很难，因为我不喜欢学习。不过，我喜欢Aiobahn融入歌曲中的钢琴旋律，所以我也想演奏它。 “INTERNET YAMERO”插曲中的钢琴部分非常完美。虽然我没说过要加钢琴，但我和Aiobahn都觉得，断网后应该会有钢琴声。\n 今晚睡觉前我会练习钢琴。我不知道我现在弹奏的音符是C还是D，但是当我可以弹奏我想要的音符时，我确信我能够睡得更安稳。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

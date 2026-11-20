@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇文章：黑须香气</title>
+<title>一口随笔：黑须阿罗玛</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-07 02:52</p>
-  <h1>一篇文章：黑须香气</h1>
+  <h1>一口随笔：黑须阿罗玛</h1>
   <p class="ja-title">一口エッセイ:黒須あろま</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
 商業エッセイ集もよろしくね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇文章：黑须香气\n\n6月6日是666……恶魔的数字，也是出演《PriPara》的偶像黑须香的生日。作为恶魔角色，出生在6月6日真是太神奇了。伊藤润二作品中出现的角色宗一为了让自己看起来更恶魔，谎称出生于6月6日，并因忘记自己的实际生日而感到悲伤。\n\n除了宗一之外，我永远不会忘记《PriPara》中阿罗米吉多顿的出现给我带来的震撼。首先，在现场表演的第26集，当大家都措手不及的时候，我很兴奋地看到法鲁鲁突然出现（就像Double-O第一季的最后一集，最后一个boss被击败，剩下的格雷厄姆攻击他，所以很令人兴奋），而关于法鲁鲁这样一个强角色的那一集总结得非常精彩，不知道未来会是什么样子？在他们斜视的同时，出现了一支更加激烈的二人组，阿罗玛和蜜柑。我爱上了PriPara的魅力，它从来不让我放松。\n\n分享您对 PriPara 的回忆...\n第一次表演《Debi＆En Reversible-Ring》时，我看到了Aroma酱和Mikan酱之间的对比，Aroma酱自信地行走，没有试图讨好粉丝，Mikan酱像天使一样对观众微笑，表达了他们相互的魅力，我想，“这两个人……来了！” pic.twitter.com/DCGU85ew0R — Nyalra (@nyalra) 2021 年 12 月 12 日\n\n难道这两个人的魅力真的就在于“成双成对”吗？现场表演时，天使图案的小蜜柑向观众温柔地挥手，而恶魔图案的阿罗玛则心无旁骛地走着……这一对比，我们观众完全被阿罗米吉多顿迷住了。歌词中还融入了意味深长的“假吻”……我记得就像昨天一样，我无法停止兴奋地看到这两个人会发展出什么样的奇妙关系。\n 阿罗玛酱，生日快乐！\n\n你每天写日记真是太好了。新书刚刚出版，大家一定要收藏起来。\n\n我期待阅读您的商业论文集！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

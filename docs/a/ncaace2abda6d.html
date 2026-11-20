@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：青春期特有的烦恼</title>
+<title>一口随笔: 青春期特有的烦恼</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-07 01:16</p>
-  <h1>短文：青春期特有的烦恼</h1>
+  <h1>一口随笔: 青春期特有的烦恼</h1>
   <p class="ja-title">一口エッセイ:思春期特有の悩み</p>
 </header>
 <main>
@@ -28,11 +28,10 @@
 商業エッセイ集もよろしくね！ 過去の話に縛られまくり！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：青春期特有的烦恼\n\n我会回答关注者的问题！当你没有什么可写的时候，这是一件非常容易的事情......\n “我现在正处于青春期，我想知道青春期特有的感觉，比如虽然我被爱，但我无法用语言表达，但我想被爱，当我成年后，是否会改善。”\n 青春期就像坐过山车一样，充满了欢乐、愤怒和悲伤，因为你必须做的事情（以及成年人强加给你的事情），将自己与同龄人进行比较，以及由于荷尔蒙失衡而焦虑。你对此无能为力，成为成年人的第一步就是磨损你的感性，变得麻木不仁。在你长大的同时，你也接受了无趣的生活。太悲伤了。\n 现在，这已经是题外话了，但当我还是个青少年的时候，我情不自禁地恨我的继父，我已经再婚了，我真的相信他是一个恶魔，偷走了我的母亲，并试图摆脱我。夺走了我深爱的母亲后，我讨厌书呆子。一个你永远无法和解的宿敌。\n 不过现在想来，一个把自己关在房间里、不肯上学的孩子，不管他有什么宅男爱好，向我传教也是理所当然的事情，而且我妈妈也是人，所以我不能永远一个人呆着（她知道我以后一心想搬出家乡）。现在我冷静下来，就能和岳父加深相互了解。然而，一切都已经太迟了，因为感情价值观已经变得如此顽固。\n 当然，我的岳父也是一个霸道的人，但我也因为年轻而很天真、悲观。我当时就隐隐约约感觉到了，但又不愿意承认。青春期不是吗？我很内疚，忽略了我的岳父试图以自己的方式表达他对他那令人毛骨悚然的宅男儿子的爱的可能性。当我过了青春期，成为一个受人尊敬的成年人时，我终于能够承认这一点。\n 回到正题，换句话说，青春期发生的事情都是敏感时期的结果，可悲的是，随着年龄的增长，这些事情就会平静下来。冷静的人很难为自己的创作活动增添尖锐的味道，所以我不禁羡慕你的感性。我一直想恨我的岳父，我想继续承受必须随岳父姓的痛苦。随着时间的推移，这一点也变得不那么重要了。我偶尔会谈论我的成长经历，因为这样更容易写，但我已经决定我的父母是我过去的人。\n 我会让读者来决定这是好事还是坏事，但即使是提问者的麻烦感最终也会在社会中根深蒂固，变得无关紧要。即使你不担心，人们最终也会被迫成年，所以我希望他们充分担心“即使我被爱，我也想被爱”这样新鲜的、年轻的担忧。我现在明白了，这些天的担忧和痛苦也是我幸福的一部分。\n\n包含每日日记的同人志正在 BOOTH 发售！我想知道我是否会一点点成为一个成年人。\n\n我期待阅读您的商业论文集！我被过去的故事所束缚！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

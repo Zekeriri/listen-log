@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：逃离这个社会，去看海</title>
+<title>一口随笔：逃离这样的社会去看海</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-16 04:43</p>
-  <h1>短文：逃离这个社会，去看海</h1>
+  <h1>一口随笔：逃离这样的社会去看海</h1>
   <p class="ja-title">一口エッセイ:こんな社会を抜け出して海を見に行く</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 毎日のエッセイをまとめた同人誌や、沖縄にいた頃の思い出多めな商業エッセイ集をよろしくお願いしますね。こんな文章読まずに、今すぐ走り出したりした方が健康になれますよ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：逃离这个社会，去看海\n\n当我还是个孩子的时候，我会在路上去看海，而不是去上学。因为是在冲绳，所以步行两小时之内就可以看到大海。\n 并不是说我真的那么喜欢海。其实我不喜欢，因为人太多了。游客太多了，大家都在笑，而且比我们冲绳人还占地方，所以我觉得我不应该玩得开心。然而，我喜欢跳过一些事情去看大海的行为。\n 我今天有两次会议，晚上还有一次面试，中间我预约了一位脊椎按摩师。这是一个相当严格的时间表，但我并不那么不喜欢它。在比赛会议上，每个人都明白我作为原作者的意图，当结果出来时我们和粉丝都很高兴。面试也是如此。如果你去看脊椎按摩师，你常年坐着受伤的肩膀和腰部就会得到缓解。这没有什么坏处。\n 不过，我真的很担心要不要去看海。我无视所有的电话，坐火车前往乡村。不幸的是，天空阴云密布，但周围人不多也许是件好事。\n 然而，他的腿却不太容易移动。这不是一个孩子。我知道在这里坐火车去任何地方都会更有趣，但我不成熟的道德和社交技能不允许我这样做。没关系。我已经很多年没有见过大海了，所以我认为这是一个绝佳的机会。如果有人道歉并说：“我去看海，因为我不喜欢一切。”如果你把它简化为一个故事，它就变成了制作过程中令人难以置信的一集，这实际上是一个优点，对吗？\n 尽管如此，我还是会打开电脑并登录 ZOOM 之类的软件。最后我感觉真的很糟糕。最后，我不喜欢自己，因为我必须遵守正确的行为。分享意见、总结讨论并完成截止日期前出现的任务。完成这两个案例后，我前往脊椎按摩师那里。太棒了，既然我的肩膀和腰部不再疼痛，我还有另一场会议要做。\n 如果我还是个孩子，今天我就会跑很多次去海滩。早春只有一场小雨的时候，沿着荒凉的海滩奔跑，跳入海浪，真是太好了。我们当地的孩子冬天去海滩。因为没有游客。冲绳的海水即使在冬天也不是很冷。我完全会游泳。然而，在繁忙的夏季，游客们会不遗余力地前来。把我们当地人赶走了。如果冬天去游泳，周围就没有别人了，会有更多悠闲的回忆。如果你真的想充分享受大海，你不应该这样做吗？\n 这不是我能说的，因为我根本就没有上火车。如果是这样的话，我就应该扔掉手机，不假思索地跳进海里。即使你不这样做，你也不能对别人发号施令。\n 不管什么时候，我知道最好逃离这个社会，去看大海。\n\n我想看一本带有日常随笔和商业随笔集的同人志，里面有很多我在冲绳的时光的回忆。如果您立即开始跑步而不是阅读本文，您会更健康。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

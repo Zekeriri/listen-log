@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：独自旅行的原因</title>
+<title>一口小作文：独自旅行的理由</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-04-08 05:12</p>
-  <h1>短文：独自旅行的原因</h1>
+  <h1>一口小作文：独自旅行的理由</h1>
   <p class="ja-title">一口エッセイ:ひとり旅の理由</p>
 </header>
 <main>
@@ -31,11 +31,10 @@
 あおいめだまの小いぬ……</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：独自旅行的原因\n\n我尝试过各种理论，但事实是我没有去银河站的票。\n 当我在冲绳时，只有一条比自行车更快的单轨电车，所以我从来没有觉得我可以骑任何东西去任何地方。\n 于是我决定自己坐新干线。从东到西。高速移动。但就是这样。你根本看不到窗外煤袋的昏暗光芒，你也不会在每个车站停下来与乘客交谈几句。只需保持静止约 2 小时，您就会到达目的地。\n 我住的是一家普通的商务酒店，在附近的闹市区逛了一圈。即使在这样的小镇，平日的午夜，似乎所有人都消失了。在烤肉店里，我唯一交谈过的外国人是个友善的人。 “我很少独自旅行，”他笑着说。工作时，他不断使用智能手机摄像头与来自同一国家的熟人聊天。晚上只有摊位里面是亮的。\n\n然后我们就去乡下参观寺庙。当地火车上的紧张气氛有点高。大片的绿地和鳞次栉比的日式房屋在东京很少见，可以近距离感受人们的生活。尽管如此，搬家还是搬家。而已。我被晚霞中略带红色的铁轨迷住了。毕竟我只是没去过，基本上还是喜欢火车和周围的环境。\n 接下来，我乘坐了晚上的卧铺火车。我觉得深夜的城市灯光从我的私人房间掠过，让我感觉到了什么。\n 老实说，这感觉很好。随着远离东京，光线逐渐减弱，我们进入了无机工厂和未开发的森林。在这种地方也有人存在，并且在那里做生意。这感觉很奇怪。\n 然而，即使这列火车也不会移动到空中。当我醒来时，我发现自己在岛根，并且没有北十字星或白鸟站。我什至没有可以一起谈论幸福的朋友。\n 这就是不满足的意思。毕竟，既然你生来就是一个在地球上爬行的人，那么你唯一能体验到升天时刻的方法就是学习善事、积德、热爱知识、超越信仰。我不可能这样生活。\n 我所能做的就是播放音乐盒直到火车到达。在这片黑暗中，只要闭上眼睛，银河和现实就会保持原样。\n 包房里播放着一首关于明星巡演的歌曲。\n红美达玛蝎子\n鹰的翅膀展开了\n青梅妈妈的小狗..."</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

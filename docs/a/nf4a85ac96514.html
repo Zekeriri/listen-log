@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇短文：灵魂的杂质</title>
+<title>一口随笔: 灵魂的污秽</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-02 02:50</p>
-  <h1>一篇短文：灵魂的杂质</h1>
+  <h1>一口随笔: 灵魂的污秽</h1>
   <p class="ja-title">一口エッセイ:魂の穢れ</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 いろいろと重めな商業エッセイもよろしくね。若くて煩悩まみれ！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇短文：灵魂的杂质\n\n今年以来，我越来越多地思考“灵魂的玷污”。当我做/想到做一些我在自己内心划下界限的“肮脏”的事情时，我想象我的灵魂被污垢污染并侵蚀我的整个身体，如果我死时灵魂仍然不纯洁，我想象我在来世会受到适当的惩罚。\n 例如，乱扔垃圾和匿名侮辱之类的事情对我来说有很高的业力点。我感觉我的精神之根正在腐烂。并不是我想变得漂亮或者虚伪，只是我感到生理上的厌恶。不能强加给别人。但是，我不想污染我的灵魂。\n 我不是一个虔诚的佛教徒或印度教徒，相信天堂、地狱或轮回，但我对“死亡语言”有一种模糊的热情，并且前提是我为了我认为好的东西而“美好”地生活。人们应该在自己划定的界限内保护和培育自己的灵魂。我相信这样做最终会带来幸福。\n 然而，我从《假面骑士OOO》中了解到“欲望”在生活中也很重要，而我还远远没有达到失去欲望本身的程度。虽然善恶已经模糊，但我还是珍惜自己划定的界限，尽可能地满足自己的欲望，以便在晚年时能够舍弃世俗的欲望，心怀善意地死去。我不知道是否有天堂，是否有来世，但我希望我濒临死亡的灵魂是纯洁而美丽的。\n\n包含每日日记的同人志现已在 BOOTH 发售。这也是一件好事。\n\n我期待着阅读您的各种重型商业文章。年轻多烦恼！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

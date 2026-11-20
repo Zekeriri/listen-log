@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>随笔：模糊焦虑的真正本质</title>
+<title>随笔：模糊不安的真相</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-08-20 02:51</p>
-  <h1>随笔：模糊焦虑的真正本质</h1>
+  <h1>随笔：模糊不安的真相</h1>
   <p class="ja-title">エッセイ：漠然とした不安の正体</p>
 </header>
 <main>
@@ -43,11 +43,10 @@
  泳ぎを止めて、陸に打ち上げられて死んでしまわないように。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"随笔：模糊焦虑的真正本质\n\n我在凌晨醒来，这是很少见的。\n 虽然是个阳光明媚的下午，但我没有朋友突然邀请出去玩，所以我就呆在家里看电影。\n\n过去，我们共用房间或共用房子，所以无论我们做什么，我们身边都有朋友。 I think I was a child who had a strong yearning for family because I grew up with my mother alone, and when I moved to Tokyo, I experienced living alone without friends.\n 我嫉妒兄妹关系，血缘关系，一起看动漫，一起打游戏，偶尔也会打架。当我和朋友住在同一屋檐下时，这个愿望实现了，我玩得很开心。无论你玩什么动漫或游戏，如果你的朋友在那里并且你开怀大笑，那本身就是一个美好的回忆。\n\n我放弃了那些快乐的日子，开始独自生活。\n 有各种各样的原因，但我想一个人住。我决定多写一点，表达自己。我又笨又没受过教育，只能说说自己的自觉，所以除非逼着自己，孤身一人，否则写不了。\n 我相信抑郁使笔运转，我相信力量在于升华抑郁的情感。我不认为这是错误的，但世界上还有更多的事情。但这就是我能做的。\n\n如果我满足了，我就什么也写不出来，如果我什么也写不出来，我也无能为力。\n 那么，我会独自死在我的房间里，周围都是人物、软乙烯基和玩具吗？话虽这么说，我不认为御宅族的死有那么糟糕。然而，我向往的家庭生活却与公共生活截然相反。\n 如果我死了，我收集的物品谁来继承？虽然我住在秋叶原和中野，但这里有很多我引以为豪的产品。由于他没有家人，与任何人都没有血缘关系，所以被抛弃是痛苦的。\n\n考虑到这一点，我希望我早上没有醒来。\n 我什么时候起床并不重要，因为我所做的就是在家看视频或读书。在这种情况下，在外面明亮而热闹的时候醒来是一种浪费，因为你会听到另一个世界的喧嚣。\n 在这样的时代，我们拥有互联网。我不太喜欢白天上网，因为人太多，但还是比在外面好。\n 我很感谢我的追随者。因为它让我感觉不那么孤独。\n 人们甚至开玩笑地指出你对你的追随者太宽容了。 However, since I spend my life staring blankly at a pale white monitor in my dimly lit room, I am grateful for the connections I have with a large number of unspecified others, even if it is through my smartphone.\n 我真正担心的是我会对互联网感到厌倦。到那时，现实就只剩下空壳了。一颗悲伤的蛋，其幼鸟从未飞翔。\n 然而，由于如果你快乐就无法写任何东西，因此除非你主观上不快乐，否则你无法在网上生存。当“饥饿”停止时，它就结束了。 For the rest of my life, I continue to move through the sea of ​​information, feeling unfulfilled, like a migratory fish that keeps swimming in order not to die.\n\n这种模糊的焦虑的真实本质是什么？\n 即使我用语言表达出来，我也无能为力。\n 不管怎样，为了掩饰这一点，我沉浸在动漫和书籍中，悠闲地度过我的一天。\n 让大家不觉得无聊。\n 停止游泳，这样你就不会被冲到陆地上而死亡。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -67,7 +66,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

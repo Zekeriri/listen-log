@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：埃隆·马斯克和模拟假设</title>
+<title>一口随笔：埃隆·马斯克与模拟假说</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-04 04:59</p>
-  <h1>一篇简短的文章：埃隆·马斯克和模拟假设</h1>
+  <h1>一口随笔：埃隆·马斯克与模拟假说</h1>
   <p class="ja-title">一口エッセイ:イーロン・マスクとシミュレーション仮説</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 商業エッセイ集もよろしくね。Amazon評価も入れてもらえたら、いつかイーロン・マスクも手に取る確率が上がる。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：埃隆·马斯克和模拟假设\n\n不完美的难以捉摸的美丽\nWabi Jaku — 埃隆·马斯克 (@elonmusk) 2022 年 5 月 2 日\n\n我之前写过埃隆·马斯克如何对模拟假设充满热情，但我会再次谈论它，因为这是我喜欢的话题。\n 马斯克先生曾说过，这个世界是一个计算机控制的空间，不太可能是基本现实。 “如果不是虚拟现实，人类很快就会走向灭亡。所以我才期待它是虚拟现实。”由于他比任何人都更持续地观察技术的发展，因此他得出​​了这样的结论：存在一个科学以这种速度进步的世界，而我们存在于那里创建的虚拟空间中。这是一个史诗般的故事。\n 我希望这个世界上存在更高等级的存在……神。因为你热爱克苏鲁神话，所以你梦想有亵渎的生物潜伏在太空或海底，它们是如此高贵和神圣，超出了人类的理解范围，或者说是疯狂的本质。最好以“有一位看顾人类的上帝”为前提来生活，因为相信道德理论并遵循自己的“善”，可以获得接近上帝的理由，并且更容易将其作为生活的指南。这是“通过良好的生活/或崇拜魔鬼，你将被上帝/邪神拯救”的道德证明。\n 这就是为什么我喜欢模拟假设，这个世界是一个由计算机构建的虚拟现实，并且有一个高级存在在控制和控制我们。我是从宗教角度而不是科学角度来看待它。所以，当我追求这个理论时，我也了解了埃隆·马斯克并对他产生了兴趣。 Twitter的未来已经托付给了马斯克先生，既然我同意上述意识形态，我就有资格支持马斯克先生。他是一个有趣的人，包括他对毒品和摇滚音乐的热爱。\n\n包含日常文章的同人志正在摊位上出售！埃隆·马斯克也推荐。\n\n我期待着阅读您的商业论文集。如果你包含亚马逊评论，那么有一天你选择埃隆·马斯克的机会将会增加。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

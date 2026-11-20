@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：让优秀的人亲自来到网站的重要性</title>
+<title>一口散文：重要人物亲自来到现场的重要性</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-01-10 06:35</p>
-  <h1>短文：让优秀的人亲自来到网站的重要性</h1>
+  <h1>一口散文：重要人物亲自来到现场的重要性</h1>
   <p class="ja-title">一口エッセイ:偉い人が自ら現場に来てくれる重要性</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：让优秀的人亲自来到网站的重要性\n\n在让许多观众陷入愤怒漩涡的《水星魔女》第一季的最后一集中，我喜欢的是那个专横的老头独自出去，而不是一系列令人震惊的事态发展。这只是从我的角度来看。\n\n我认为下属对任何项目有安全感的条件是现场是否有一个能承担责任的好人。我有各种项目、会议、发行幕后等等的经验，我可以随时这样说。即使现场没有伟大人物所做的工作。只要在那里就很好。\n 即使不是紧急情况，能够在现场进行详细检查也是有帮助的，通过闲聊营造积极的氛围很重要，让下属看到他们在工作中的表现如何可以提高士气。最重要的是，伟大的人们与我们一起享受乐趣并分享时间，这一点很重要。即使你能力极强，当你被一个不了解职场氛围和工作量的人委以命令和任务时，你也会感到不安。我知道伟大的人有很多会议，而且这很困难。你必须处于一个位置，你的时间比任何人都更有价值。这就是为什么花时间去那里可以让人安心。\n 事实上，高层只付钱，不出现现场，不参加会议的情况很多。活跃在该领域的创作者和发行商自然想要钱，但更重要的是，他们希望人们了解他们的创意方面和承诺。如果仅仅根据结果和数字来给予赞扬也就不足为奇了，但两者之间的裂痕却加深了。令人惊讶的是，我觉得人们的动机仅仅因为受到一句赞扬就发生了很大的变化。这不是一件漂亮的事情，而是我在观察了近 30 年的各种网站后明白的一条经验法则。\n 因此，尽管机器人动漫剧本通过直接击败你不喜欢的人可能会感觉更好，但你会想要支持专横的老人亲自扮演这个角色。就高达来说，强者亲自与主角战斗是为了宣泄，但在正常的战争中，顶层永远是站在自己一边，除非受到指挥，否则不会采取行动。不管结果如何，兄弟，你已经尽力了。我想我的下属们也很高兴，心想：“这个人在紧急情况下是可以依靠的！”\n 似乎有一种说法认为，明智光秀之所以背叛自己，是因为信长不再腾出时间来交流。尽管这是否属实还是个谜，但这样的误解似乎有可能导致叛乱。只是伟人都是直视自己的下属而已。如果这是维持组织和平的唯一途径，那么这难道不是最重要的任务吗？人际关系真的非常非常脆弱且转瞬即逝。\n 顺便说一句，我最喜欢的分季最后一集绝对是《Double-O》第一季的最后一集。一个你不喜欢的当权大老爷子（最终boss），用看起来极其邪恶的机器派遣自己，主角把他砍倒了！正当你放松警惕时，你发现自己正与对手展开一场激烈的战斗。最终boss之后的对决是关于男孩的。那就好……你也这么想啊！ ！\n 非常期待水星魔女第二季♪\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

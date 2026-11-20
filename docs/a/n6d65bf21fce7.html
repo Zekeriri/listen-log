@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：一个无关紧要的故事（总是无关紧要）</title>
+<title>一口随笔：无关紧要的话（虽然总是无关紧要）</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-08-11 10:00</p>
-  <h1>短文：一个无关紧要的故事（总是无关紧要）</h1>
+  <h1>一口随笔：无关紧要的话（虽然总是无关紧要）</h1>
   <p class="ja-title">一口エッセイ:どうでもいい話（いつもどうでもいいが）</p>
 </header>
 <main>
@@ -28,11 +28,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：一个无关紧要的故事（总是无关紧要）\n\n我对此无能为力，所以我决定整天熬夜，强迫自己治愈昼夜颠倒的问题。如果你不这样做那就不好了。现在不是说“我必须早起去看精神科医生，但我无法入睡，因为我没有去看精神科医生，所以我无法得到药物！”的时候，除非你在某个地方认真对待，否则事情不会好转。\n 换句话说，我必须一直保持清醒，直到今晚晚上 10 点左右，这个时候大多数人通常都会睡觉。如果你在这个过程中睡着了，你的生命周期将会进一步被打乱。艰难的。如果你一直保持清醒，你可能会没事，但因为你总是在半睡半醒的状态下工作，所以看书和看电影是没有好处的。当我头脑清醒的时候我想享受它。另一方面，我也不想在SNS上闲逛。\n 那么冥想就是唯一的选择。\n 于是我闭上眼睛盘腿而坐，但由于我不是佛教徒，所以产生了很多杂念和世俗的欲望。然而，当我静坐10或20分钟时，我就会想起一些通常不会发生的事情，一些被锁在我记忆深处的事情。\n 当我还是个孩子的时候，我会熬夜看那些顽皮的场景。也许是因为同样的情况，我现在才被迫醒来。有两部深夜剧我很期待。他们是“哦侦探社”和“德明课长多田野仁”。\n 尽管它是出于色情目的，但你永远不知道它什么时候会变得性感，所以你会被粘在屏幕上，如果发生这种情况，你自然会关注这个故事。由于还在上小学，所以很难谈论成人，但《哦侦探社》有很多滑稽的场景，光是气氛就很愉快。另一方面，特使团长只知道有某种了不起的上班族总是把女人当作手提包。我想知道成年人是否觉得后者更有趣……或者他们只是想看顽皮的场景，同时假装他们实际上在看一部困难的戏剧？我还看了《Sky High》，因为它并不淘气，只是很有趣。\n 几年后，带着这种痛苦的感觉，我惊讶地发现一个和我不太亲近的同学在Book Off读《哦侦探社》。没想到除了我之外还有一个小朋友知道《哦侦探社》！我很惊讶，试图和他说话，原来我们都是强迫自己熬夜、期待看《哦侦探社》情色片的变态朋友！\n 不过，对方已经开始创作原作了（虽然是临时阅读）。当然，情色深夜剧的原作不可能不情色。而且光是标题就让人觉得你在看一本相当硬核的悬疑小说，所以即使你的同学看到你这样，他们也可能会认为你是花花公子悬疑漫画的粉丝，而不是色情男！ Book Off距离学校也很近，所以有时会有女孩出现的风险，但在“哦侦探社”，你可以毫无问题地享受色情场景。我在这个调味料上犯了一个错误，并自豪地为尼吉玛服务！当我读到它时，我被视为一个粗俗的宅男而不是色情，并立即被淘汰。然而，即使你只是为了色情内容而阅读《GUNTZ》，战斗场面也太多了。在二手书店浏览时，进行如此精细的调整是极其困难的。\n 正在打坐的时候，我突然想起了当时的感受，不禁怀念起来。如今，有很多漫画可以在智能手机上免费阅读。既然可以在家偷偷地看色情漫画和视频，那么你可能不必像圣经一样特意欣赏《哦侦探社》。令人羡慕。\n 那么到底是怎么回事呢？以这样的速度我必须保持清醒状态大约12个小时。我已经害怕这样会挖出多少无用的记忆了。\n\n请欣赏整理日常日记和商业随笔集的同人志。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

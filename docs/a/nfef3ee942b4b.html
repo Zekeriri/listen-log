@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：我觉得我很幸福，因为我觉得自己一无是处。</title>
+<title>一口随笔：会觉得平凡的小事曾经很幸福</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-25 03:32</p>
-  <h1>短文：我觉得我很幸福，因为我觉得自己一无是处。</h1>
+  <h1>一口随笔：会觉得平凡的小事曾经很幸福</h1>
   <p class="ja-title">一口エッセイ:なんでもないようなことが幸せだったと思う</p>
 </header>
 <main>
@@ -30,11 +30,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：我觉得我很幸福，因为我觉得自己一无是处。\n\n几天前，我正在与房地产经纪人讨论我是否必须搬走，因为我家的排水系统已经受到结构性损坏，最好的承包商走过来说：“我们也许可以在一天之内完成！”然后他就开始在我的房间里进行主要的建筑工作。\n\n上午 9 点。几个男人聚集在自己的房间前开始工作。自然，这个时候我一般都在睡觉，所以我就彻夜未眠。房间每个角落的地板都被打开，阳台上进行高压冲洗，周围有客人的时候我睡不着，而且吵得我看不了视频，连读书都睡不着。我没办法，只能忍受在沙发上躺8个小时、偶尔上网的严酷。真的很难。我已经很久没有在坐着的时候感觉到知觉了。\n 不过，经过老人们长达8个小时的疯狂施工，排水管道获得了新的排水路线。现在浴室和厕所的水都顺畅了，我不再被迫去公园厕所或公共浴室。非常感谢。\n 之后，我睡了几个小时，看了一些深夜的周六动画，几天来第一次走进家里的浴缸，深深地思考《订婚之吻》有多好。\n\n今天的读物是《本田鹿子的书架》。\n 这是一部关于父亲翻阅书架的漫画，书架上装满了青春期女儿做出的独特选择，每次都感到困惑，但这个“唯一”的方面很精彩。这是一本短篇小说集，会让你兴奋地看到你的女儿每次都在读什么样的奇怪的书。\n\n一路上，有一个模仿《Jojo Part 7》的面板，上面写着“这是我的时间”，当我发现它时，我欣喜若狂。令人惊讶的是，我在未发表的手稿中写了对同一场景的戏仿，但编辑告诉我，“你一定是个疯子，选择了第七部分的场景！”我知道这是每个人都能产生共鸣的最佳场景，所以它出奇地难以理解！ ？正当鹿子担心的时候，奇怪的是，鹿子的父亲也做出了同样的模仿。不错啊，第7集\n 几个小时过去了，我在浴缸里的身体已经沸腾了。因为看到这么好的漫画，所以忍不住翻了几页。\n “当我一段时间以来第一次在房间里洗澡时，我完全沉浸在有趣的漫画中，以至于忘记了时间。”你有过这么开心吗？生活充满了无尽的事件和坎坷，但最终，真正的幸福是当你在家看书或看动漫或电影时。我想我很高兴，因为这看起来没什么。这是有意义的一天，因为没有什么特别的妙语让我重申这一点。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：与产生幻觉的父母和孩子沿着中野百老汇漫步</title>
+<title>一口随笔：与幻觉的亲子一起走在中野Broadway</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-28 03:13</p>
-  <h1>短文：与产生幻觉的父母和孩子沿着中野百老汇漫步</h1>
+  <h1>一口随笔：与幻觉的亲子一起走在中野Broadway</h1>
   <p class="ja-title">一口エッセイ:幻覚の親子と中野ブロードウェイを歩く</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 商業エッセイ集もよろしくお願いします。中野より秋葉原の話だらけだぜ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：与产生幻觉的父母和孩子沿着中野百老汇漫步\n\n假期我不会在中野百老汇散步。平时这里是一个充满复古、怀旧和亚文化风格的御宅族商店的混乱地方，但每到周六和周日，中野百老汇就会成为适合家庭的热闹场所。\n 由于它位于中野市中心，对于居住在中野的普通家庭来说是一个非常方便的度假胜地。一家人可以在假面骑士和高达专卖店尽情享受。看着陈列柜中排列的骑手腰带，父亲对昭和骑手商品仍然存在这一事实印象深刻，孩子想要旁边有最新的令和骑手腰带。另一层有专门卖女生的商店和娃娃店，女生可以去那里玩玩。偶尔，我会看到父母们兴奋地回忆起过去的日子。\n 步行只要几分钟，人多的时候就不用走路了。周六和周日，这里是这座城市的旅游景点，可疑的书呆子不会在那里。\n 话虽如此，周六和周日我很少有太多的空闲时间去散步。在那种情况下，我会带着我的“幻觉儿子和女儿”，我会四处走动，幻想着教我的儿子（他正在高兴地看着软乙烯基）关于酷炫的超级怪物，并甜蜜地为我的女儿购买所有光之美少女变身商品，她正在乞讨它们。当他和孩子们谈论他当父亲时的日浅时，袋子里装满了玩具，他对虚幻的妻子生气，妻子问道：“我不知道哪一个是孩子……”然而，其中一个玩具实际上是她曾经喜欢的女孩动漫的礼物……想到这里，可疑的书呆子继续独自在百老汇闲逛，有太多的空闲时间。\n\n包含日常文章的同人志现在正在展位上出售。一本新书刚刚出版。如果你买了它，我就可以在中野百老汇闲逛的时候买本书了。\n\n我期待着阅读您的商业论文集。关于秋叶​​原的故事比中野还多。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

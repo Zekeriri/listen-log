@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇快速文章：写作节奏的句子和对习惯发推文的恐惧</title>
+<title>一口随笔：文章的节奏感与对推文习惯的恐惧</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-13 06:47</p>
-  <h1>一篇快速文章：写作节奏的句子和对习惯发推文的恐惧</h1>
+  <h1>一口随笔：文章的节奏感与对推文习惯的恐惧</h1>
   <p class="ja-title">一口エッセイ:文章のテンポ感とツイート慣れの恐怖</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇快速文章：写作节奏的句子和对习惯发推文的恐惧\n\n今天，我很高兴，因为我收到了一位杂志编辑的称赞，他说：“我特别喜欢尼亚拉的写作节奏。”\n 我认为写作只是由节奏决定的。为了阅读流畅、舒适，我想是否可以刻意插入一些有特色的短语、汉字如何打开等，让读者的大脑感到舒服。从某种意义上来说，它可能类似于音乐。你们能读到我这样的长句子，可能是我在用词、标点符号等方面调整的结果。我想，有时候，你是否愿意大声说出来，比内容更重要。我通过宫泽贤治的诗歌认识到了这一点。贤治的诗从文字上看有一种温柔的感觉，但最重要的是，朗读时的节奏感非常出色。我意识到这就是“诗”这一体裁的意义之一。\n Twitter要求140个字符以内的速度感，因此标点符号的放置比原文更加独特。有时最好根本不使用标点符号。这本身就是一种有趣的文化，但我担心如果你以含糊不清的方式写长句子，你就有失去节奏感的风险。那就有点吓人了。有一次，由于这种恐惧，我什至开始减少发推文。\n 开始为 Twitter 写作的最佳方式是“○○，△△ 是 □□ 和 XX”。诀窍是先写出名词，然后总结你对此的想法和评论。由于 140 个字符的限制，这种情况很容易发生。这在推文中没有问题，但我认为这种语法不能无限制地用在长文本中。我不想习惯它。好吧，即使是现在，当我遇到麻烦时，我也会这样发推文。\n 模板让您很容易感觉自己写的东西很简洁。\n ↑ 这就是推文的样子。我应该扩展这个还是就这样？最好让它尽可能紧凑，以给人一种节奏感，所以我有时会进一步缩短它，将其保持在 140 个字符以内。将意义浓缩为少量字符的神秘技术正在开发中，但它可以用于推文以外的其他事情吗？这是值得怀疑的。\n 然而，正如我在制作游戏时了解到的那样，节奏在游戏和文本中都非常重要，所以如果可能的话，我希望文本保持简短和连续。口袋妖怪和其他游戏基本上只是几行消息。这是一场比赛，看你能多好地描述你的角色并用尽可能少的单词解释它。我惊讶地发现我实际上可以应用通过发推文磨练的技术。即使是我每天听到的愚蠢的低语也以我看不到的方式喂养着我(;;)\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

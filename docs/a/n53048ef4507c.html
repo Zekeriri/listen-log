@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>妈妈 maki moki mukumuku pururun kanshokurababe howawawa</title>
+<title>ままま まきもきムクムクぷるるんカンショクラベラベほわほわ</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2020-12-28 06:00</p>
-  <h1>妈妈 maki moki mukumuku pururun kanshokurababe howawawa</h1>
+  <h1>ままま まきもきムクムクぷるるんカンショクラベラベほわほわ</h1>
   <p class="ja-title">ままま まきもきムクムクぷるるんカンショクラベラベほわほわ</p>
 </header>
 <main>
@@ -32,11 +32,10 @@
  いま僕が家の中にひとりでケタケタ笑いながら泣いている以外は、なんの問題もありません。ままま まきもきムクムク ぷるるんカンショク ラベラベほわほわ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"妈妈 maki moki mukumuku pururun kanshokurababe howawawa\n\n现在精神药物开始感觉良好和蓬松，我很乐意与大家分享这种感觉。\n 它像棉花糖一样柔软，像平假名一样蓬松而温柔。\n\n妈妈 makimoki mukumuku pururunkanshoku labelabe howahowa\n\n没什么可怕的。视野里的一切都是淡粉色和淡紫色的，感觉就像在梦中一样。我想这就是梦想所指的吧。摇曳得像摇篮里的平静，感觉就像回到了刚出生的时候。\n 没有什么困难的。只是在深夜的寂静中摇摆是多么有趣。不管怎样，我被一种巨大的欣快感包围着，我感觉自己每一秒都在被幸福袭击，幸福感在不断增加。还加速了！\n\n快乐的自我冲破狭窄的头骨，升上天空，喷出蓬松的脑浆。真是太高兴了，我什至无法描述它。比任何巧克力都甜，比大闪蝶的翅膀还要耀眼，真是难以形容。许多平假名在我的脑海里跳舞，真是太美了。\n\n充满乐趣的摩天轮像旋转木马一样旋转一圈又一圈，充满善意的摩天轮越飞越高，一场迷幻的巡游充满了你的视野。霓虹灯在淡粉色的世界中闪烁，当你随着闪烁的灯光拍手时，幸福感会蔓延得更远。每次我都双手合十。\n\n很有趣，很有趣。感觉羊和马在一起也会幸福。我很高兴，我很高兴。没有什么是困难的了。生活如此美好！充满希望的最美好的世界在等待着我，这个世界的一切都在祝福我，昆虫和青蛙都在唱着赞美之歌。粉红色的味噌从破碎的头骨中渗出，融化成一团蓬松的云。\n\n啊，我太高兴了。谢谢。我感谢上天让我现在出生。啊。啊。我很高兴，我很高兴。\n 除了我一个人坐在屋里哭笑之外，没有其他问题。妈妈 Makimoki Mukumuku Pururunkanshoku Labelabe Howahowa。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -56,7 +55,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

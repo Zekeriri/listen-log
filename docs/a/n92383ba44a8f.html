@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：你是最可爱的</title>
+<title>一口随笔：最脏的你最可爱</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-20 00:09</p>
-  <h1>短文：你是最可爱的</h1>
+  <h1>一口随笔：最脏的你最可爱</h1>
   <p class="ja-title">一口エッセイ:きたない君がいちばんかわいい</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 商業エッセイ集もよろしくね。こっちは、かなりダークで汚い！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：你是最可爱的\n\n我读了《Kinanai Kimi ga Ichiban Kawai》的最终卷。虽然它是由莉姬系列，但它是一部以欺凌问题为中心的相互依存黑暗主题的雄心勃勃的作品，是一部有力的作品，描绘了它想要描绘的东西，而不是停下来。本书精心整理成5册，敬请阅读。以下是带有轻微剧透的评论。\n 最重要的是，我认为这是一部非常细腻地描绘了青春期女孩的情感的作品。一个年轻女孩拥抱青春力量的故事。从一个冷静的第三者的成年读者的角度来看，如果有人表现得更诚实一些，放下骄傲，事情就不会那么糟糕。然而，这种观点已经耗尽了一个无聊成年人的情感。对他们来说，课堂上的关系和种姓关系就是世界上的一切，他们会为此冒着生命危险。这大概就是青春期吧。如果你认为课堂环境所主导的生活是无聊的，那么你只不过是一个忘记了孩子的悲伤的孤独的成年人。\n\n这种误解所导致的欺凌、自残、自残等极端行为，绝非“美好”。相反，他们飘忽不定的思想和行为却被大众视为“肮脏”。然而，他们的爆炸性敏感性仍然没有减弱。正如标题所示，“金内君最可爱”。他们无法跟上课堂上瞬息万变的人际关系，逐渐失去了正确答案，但他们总是做的一件事就是认识到与自己一起误入歧途的另一个人是“可爱”的。\n 正是因为每个人都是“肮脏”的存在，所以当他们试图相互理解时，他们的相互依赖就会加深。对于其他人来说，这只是一连串的错误，但也许正是因为她能够在这些错误中尽力而为，所以她是一个女孩。不管有多糟糕，在他们的冒险结束时，他们继续相信对方的“永恒”，对他们两个来说一定是最“美丽”的事情。\n\n包含日常日记的同人志现已在摊位上出售。这不是最好的内容，但如果人们购买这本新书，我会很高兴。\n\n我期待着阅读您的商业论文集。这个地方又黑又脏！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：我们自己去尝试一下男士咖啡馆吧！</title>
+<title>一口随笔: 尝试独自挑战男士咖啡厅！</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-10 14:20</p>
-  <h1>短文：我们自己去尝试一下男士咖啡馆吧！</h1>
+  <h1>一口随笔: 尝试独自挑战男士咖啡厅！</h1>
   <p class="ja-title">一口エッセイ:一人でメンズコンカフェへ挑戦してみよう！</p>
 </header>
 <main>
@@ -30,11 +30,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：我们自己去尝试一下男士咖啡馆吧！\n\n我去看了《哥特式制造》。\n 长野守的审美观是，视觉效果是压倒性的美丽，角色设计和机械设计都是纯粹的美感，无论画质还是声音，数据量都很大，而且没有转换成软件。因此，这部作品的粉丝们每次都会聚集来看放映，每年只有一次。一切都是一次美丽而独特的体验。我很高兴我看了......\n 那不是主要话题，我半夜去新宿看演出，所以我想趁机逛一下歌舞伎町然后回家，但我已经有过Concafe和Girls Bar的经验了。既然如此，我决定去一家由英俊的男演员经营的骗局咖啡馆，俗称“男士骗局咖啡馆”，去发现一些新的东西。\n 歌舞伎町的某栋建筑。电梯一开，走廊里已经有一群帅气的男士和一位女顾客在给我拍照，他们似乎没有认出我这个唯一的男顾客是顾客，所以我鼓起勇气从他们身边走过，走进了店里。\n 餐厅里很忙，桌子上挤满了顾客，当然全都是女性。就咖啡馆和女仆咖啡馆而言，寻找可爱女孩的女性顾客并不少见，但男性咖啡馆的同性顾客似乎仍然较少。\n 无奈之下，我只好放心地坐到了男人指引的椅子上。我很兴奋，一个长发、灰白的男人看上去很帅气，他出现在我面前，并很快给我倒了一杯酒。他对意想不到的男性顾客总是很友善。\n 当我问他此事时，他告诉我，虽然有时会有同行业或朋友的男性过来，但新来的男性顾客却极为罕见。而且只有一个人。倒是听那边白发男子说话，原来是一名十九岁的大学生。搬到东京后，他白天获得大学学分并参加俱乐部活动，晚上则为许多女性顾客实现梦想。多么好的一个人啊。此外，这家餐厅有一个系统，根据演员们收到的饮料和支票的数量来排名，这几乎就像一个主持人，而且还有一个故事，因为他是未成年人，不能喝酒，所以他因为不能点酒而处于不利地位。尽管如此，他似乎仍在努力成为该团体中最年轻的成员。当你听到这样的困难时，你别无选择，只能支持他们……！所以，我决定点一杯演员饮料。每次对方都高兴地喝着Sofudori。钱应该流向有光明前途的年轻人，而不是流向这些疲惫不堪的老书呆子。我们还讨论了Jump漫画，我很高兴听到他们很高兴能够如此多地谈论漫画。\n\n最精彩的是，演员们搞恶作剧，制造出了一种浓度极高的液体，所以我们必须参加一场剪刀石头布的侠义游戏，看谁会喝下去。当女顾客们玩得很开心的时候，一个很酷的金发小伙子邀请我一起玩，并说道：“嘿，我们也来玩剪刀石头布吧。”我觉得这是一种只有男顾客才能享受到的有趣氛围。\n\n之后，我们聊了很多事情，拍了照片，就离开了商店。不管性别如何，被一个有美感且努力的人服务的感觉很好。我高兴极了，因为就连我这个碰巧过来的男顾客也感受到了如梦似幻的魔力。身为同性，让我们可以毫无犹豫地交谈，即使付出代价，也没有猥亵之事。难怪女孩们会向可爱的咖啡馆女孩致敬。谢谢。\n 再过一年他就可以喝酒了。到时候，他可能已经成为歌舞伎町最顶尖的帅哥演员之一了。这是一个美好的夜晚。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

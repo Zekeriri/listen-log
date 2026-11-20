@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>速文：VS包房音像店</title>
+<title>一口随笔：对战包间录像店</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-04 03:08</p>
-  <h1>速文：VS包房音像店</h1>
+  <h1>一口随笔：对战包间录像店</h1>
   <p class="ja-title">一口エッセイ:VS個室ビデオ店</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 商業エッセイ集もよろしくお願いします。終電を逃した夜のおともに最適です。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"速文：VS包房音像店\n\n你在晚上逛街的时候有没有遇到过“包间影像展”店？私人音像店并不是什么可疑的地方，但粗略地说，它是成人版的网吧。在Necafe，你可以租借漫画等，但在私人音像店，你可以在私人房间里观看选定的AV来“享受”。当然，直接睡觉也可以，一晚1500日元左右（包含淋浴和简餐），非常划算！作为末班车后的便捷选择。\n 一个名叫尼亚拉的年轻人年轻时错过了末班车。当我走进店里，兴奋地想到要花 1,500 日元出去过夜时，工作人员警告我先选择 6 部 AV 视频。 “强迫！？”我很惊讶。不管我说什么，我看AV都不是为了它的预期目的，无论是现在还是过去。并不是说它是纯粹的，只是一个人所使用的物体是二维的。\n 这是出乎意料的。没想到还要仔细挑选AV……店里排列着无数的光盘。问题是，我不能真正把它们都认出来。我太不感兴趣了，无法判断它是好还是坏。他是一个把所有游戏都称为Famicom的老人。\n 还有一种奇怪的自豪感，我不想被一个随便挑选一个人并说“这个人很好！”的人看不起。您会通过堆叠 6 张散卡来争取“特别胜利”吗？你敢只加载色情动漫来炫耀你的“主题甲板”吗？诸如此类的想法其实并不重要，令人犹豫不决。结果，我用排名第一的“Good Stuff”进行了攻击。说实话，我很懒，因为我想快点睡觉……我肯定店员会骂我，说：“你是一个信息饥渴的顾客，盲目相信排名。”这是一个惨败的夜晚，充满挫败感换来的是一夜好眠。\n\n我们正在出售编辑日常文章的同人志。我根本不是在谈论 3D！\n\n我期待着阅读您的商业论文集。当您错过末班车时，非常适合夜间伴侣。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

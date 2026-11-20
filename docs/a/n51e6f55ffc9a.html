@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>快速文章：假姓氏</title>
+<title>一口随笔：假的姓氏</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-29 00:57</p>
-  <h1>快速文章：假姓氏</h1>
+  <h1>一口随笔：假的姓氏</h1>
   <p class="ja-title">一口エッセイ:嘘の苗字</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 今月は、商業エッセイ集もでました。生い立ちのことがいっぱい載っていて、読むと暗い気持ちになると好評です。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"快速文章：假姓氏\n\n我仍然强烈反对我的姓氏。\n 我现在的姓是我的第二名。第一个是我母亲的姓氏，我喜欢这个姓氏，因为它是我出生和长大的冲绳特有的，但自从我母亲再嫁给一个来自东京的男人后，我现在就用了我岳父的姓氏。这是一个常见的姓氏，没有冲绳特色的痕迹。\n 当我的姓氏被改变时，我的朋友们玩得很开心，但我却很高兴。玩弄它表明你对你的新姓氏感到不舒服，同时，这可能是因为你的旧姓氏更适合你。在这种情况下，人们会说，如果你身边的人开个玩笑，你会更容易感觉好一点，这确实是事实。\n 我仍然无法习惯我的姓氏被改为一个我不认识的人的名字。每次我填写表格时，我都会感到羞辱，因为我被赋予了一个不属于我的血统的假姓氏。即使现在，尽管他已经过着与家人分离的生活，但他的姓氏却没有改变。她必须采用一个直到她死的那一天她都不会知道的男人传给她的姓氏。\n 这几乎感觉像是一种“耻辱”。我感觉自己就像一个奴隶，犹大上刻着“UD”字母。如今，我被称为“Nyalla”的次数远多于我的真名，而且我当地的朋友也直呼我的名字。就在她忘记自己姓什么的时候，在她面临必须证明自己身份的现实的那一刻，她看到了公公在她身上留下的强奸证据。\n 我的人生目标之一是结婚并将我的名字改为我伴侣的姓氏。我以为婚姻生活与我无关，但当我想象未来我将摆脱继父的诅咒，并继承我所爱的人的姓氏时，我开始认为我应该结婚。只有这样你才能使用你的真实姓名，而不是“Nyalla”或“假姓氏”。\n\n包含日常文章的同人志现在正在展位上出售。我写一切，无论光明还是黑暗。\n\n这个月，我们还有一本商业论文集。其中包含了很多关于他的成长经历的信息，读起来给人一种黑暗的感觉，很受欢迎。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

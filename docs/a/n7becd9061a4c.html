@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>快速文章：AI 2 写的尼亚拉日记</title>
+<title>一口随笔: AI写的喵拉拉日记2</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-06 11:13</p>
-  <h1>快速文章：AI 2 写的尼亚拉日记</h1>
+  <h1>一口随笔: AI写的喵拉拉日记2</h1>
   <p class="ja-title">一口エッセイ:AIが書いたにゃるらの日記2</p>
 </header>
 <main>
@@ -34,11 +34,10 @@
  AIによると、このままユーリとクロエが森を脱出するために、だんだんと心通わせていくそうです。これからは、僕の日常なんかよりユーリたちの冒険のことを書いていこうかな。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"快速文章：AI 2 写的尼亚拉日记\n\n我忙到睡着了，所以我让AI帮我写了这篇日记。\n 我睡着了。\n 23:47 梦境世界里，以我为主角的故事一如既往地继续着。\n 但这和你平常的噩梦有点不同。主角按照自己的意志行动，也按照自己的意志决定事情。我却无能为力，从心底里有一种不好的预感。\n 这可能是我第一次不想醒来。但当我醒来时，我的日常生活又恢复如常。逃避现实是没有意义的。如果真是这样的话，至少让我们看到梦想能够延续到最后吧。想到这里，我睁开了眼睛。\n 眼前是一张巨大怪物的嘴巴。哦，你被吃了吗？想到这里，我立刻就失去了知觉。\n***\n 当我睁开眼睛时，眼前是一片森林。绿色植物遍布整个视野。抬头仰望天空，树叶重叠在一起，看不到蓝天。就像身处森林中一样。\n我坐起来，试图逃离梦境。我环顾四周，发现旁边躺着一个和我差不多高的女孩。\n 金色的长发散落在地上。看来她还在睡觉。我恐惧地走近他，看着他的脸。一个脸型匀称的女孩，却又带着一丝纯真。他们的年纪应该差不多吧现在，我把手放在他的肩膀上，摇晃他。随后，她的眼皮缓缓睁开，露出一双清澈的蓝眸。\n 当他看到我的脸时，他模糊的目光最终变得清晰并放大。然后他用力地拥抱我。女孩惊得跪倒在地，把脸埋在他怀里哭了起来。这到底是怎么回事？一想到这些问题，我就有一种奇怪的感觉。\n 这意味着我无法发出自己的声音。我试图说什么，但我只能听到空气从我嘴里逸出。我不能说话。为什么……？混乱中，女孩停止哭泣，看着我。\n 他似乎终于平静下来，微笑着擦了擦泪痕累累的脸颊。不知道为什么，当我看到那个表情时，我的心在颤抖。她的名字叫克洛伊。克洛伊告诉我她对这个世界的了解。\n 这是一个叫做Asteria王国的国家。目前居住在西大陆的一个小村庄里。我的家人只有我的父母。他的父亲是商人，母亲是药剂师。显然我的名字叫尤里。 ……真的吗？我不记得我的名字了。首先，我对迄今为止发生的事情几乎没有记忆。我唯一能说的是，我应该死在那个地方，但我在这里，还活着。\n 根据克洛伊的故事，当她被怪物袭击而濒临死亡时，他救了她。每当想起那一次，我的身体就发抖。不知道是因为恐惧还是其他什么情绪。\n不知不觉间，克洛伊就用关切的目光看着我。我微笑着好像让她知道没关系。\n 之后，我们两个就穿过森林。\n 根据AI的说法，为了让尤里和克洛伊逃离森林，他们将逐渐开始相互交流。从现在开始，我想我会更多地写尤里的冒险，而不是我的日常生活。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -58,7 +57,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

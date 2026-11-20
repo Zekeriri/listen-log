@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>速文：绫托转移与男孩杂志的性感框架</title>
+<title>一口随笔：Aya Tora转会与少年杂志的情色档</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-18 09:26</p>
-  <h1>速文：绫托转移与男孩杂志的性感框架</h1>
+  <h1>一口随笔：Aya Tora转会与少年杂志的情色档</h1>
   <p class="ja-title">一口エッセイ:あやトラ移籍と少年誌のお色気枠</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 長文エッセイをまとめた商業エッセイ集も、よろしくお願いします。お色気いっさいなしで、ひたすら重い。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"速文：绫托转移与男孩杂志的性感框架\n\n矢吹健太郎在《周刊少年Jump》上连载的漫画《妖怪三角》已转至Jump+。与此同时，全卷都可以免费阅读，大家一定要趁这个机会体验一下男生漫画性感的刺激。\n\n在目录部分，矢吹老师自己评论道：“我再也无法控制铃的黑暗了。”一如既往，黑暗有太多的含义，而且女主角的性欲无法控制，所以看看她如何从这本杂志中走出来很有趣。女主角就像《To LOVE-Ru》中的主角一样，负责性欲的爆发。即使在这本杂志出版时，它也是一部很棒的漫画。我想全世界的高中生如果不向矢吹老师求助就无法入睡。\n 当我还是学生的时候，《To LOVE-ru》连载了，非常了不起。小学的时候，读《一护100%》被认为是情色，但读到《To LOVE-ru》的时候，御宅族和美国佬都承认失败，开始谈论他们最喜欢的角色。事实上，他似乎为自己能够在适合年龄的水平上面对自己的性欲而感到自豪，这让他能够在不欺骗他的情况下接受矢吹老师。除了支持鸣人和神经外，我还喜欢可爱的女孩。毕竟我有时也是这样读《BLEACH》的。矢吹先生的理智让我们这些跳跃男孩听话了。\n 也就是说，尼吉玛！就像疾风一样！读到这里的宅男们都有些愣住了。那个年代，如果你误解了这方面的界限，你就会瞬间失去理智。\n\n买一本编译日常文章的同人志。每天与你保持联系真是太好了。\n\n我还想要一本由长篇文章组成的商业论文集。只是很重，没有任何性感。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

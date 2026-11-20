@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：选择一个真正的妈妈</title>
+<title>一口随笔：选择真正的妈妈</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-30 03:46</p>
-  <h1>一篇简短的文章：选择一个真正的妈妈</h1>
+  <h1>一口随笔：选择真正的妈妈</h1>
   <p class="ja-title">一口エッセイ：真のママを選ぼう</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
 今月末には商業エッセイ集もでました。こちらも宜しくお願いします。お母さんの話いっぱいあります。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：选择一个真正的妈妈\n\n请告诉我们您最想成为这三位（所有小学生）中的哪一位 pic.twitter.com/Zwuf0frEQq — Hanekoto🌻 (@hanekoto2424) 2021 年 12 月 27 日\n\n电击G杂志和电击文库共同制作的项目，内容是“即使我还是个孩子，我也想成为一名母亲！”已经开始了。人工智能技术高度发达的未来。在人工智能匹配已经司空见惯的社会里，你确定自己需要的家庭是“妈妈”，故事是你被选为三个小学生的母亲……\n 在只准备了最低限度的必要设定后，强力推进的力量是电击G杂志的典型特征，该杂志创造了12个妹妹出现的世界观，多胞胎的三角恋，与19个姐妹的生活，以及学校偶像的概念是自然的。细节很好。\n 于是，独自和母亲一起长大的尼亚拉，从三个小学生身上审视了自己真正的母亲……\n 小小崎是一位充满温柔和母爱气息的母亲。很容易理解他是一个好男孩，但因为他是如此的好男孩，一想到他会在突然变成一个令人毛骨悚然的成年男性书呆子的恐惧面前崩溃，就很可怕……\n 看似意志坚强的小夜，虽然举止尖锐，但似乎隐藏着对他的爱，但她就是很难被骂。我觉得我的心受不了一个女小学生的教训。\n\n最后一位是玛丽卡，一位自由奔放、神秘的妈妈。它们天真又友善，似乎只要和它们一起玩就会成为妈妈。我认为这孩子是最好的。我确信他会随心所欲地和成年男人玩耍，而不会打扰他们。看来我们可以彼此保持合理的距离。有一天，当玛丽卡变得成熟一点，意识到自己的生活时，我希望她抛弃她无用的儿子，获得自由，同时痛苦地道歉，说：“对不起。”\n\n包含日常文章的同人志现已在 BOOTH 出售。它还包含有关我亲生母亲的信息。\n\n商业论文集将于本月底出版。非常感谢您的支持。关于我母亲的故事有很多。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

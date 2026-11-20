@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：VTR先生与机械怪物的悲伤</title>
+<title>一口散文：VTR先生与机械怪人的悲哀</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-05-24 11:19</p>
-  <h1>短文：VTR先生与机械怪物的悲伤</h1>
+  <h1>一口散文：VTR先生与机械怪人的悲哀</h1>
   <p class="ja-title">一口エッセイ:ミスター・VTRと機械の怪人の悲哀</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：VTR先生与机械怪物的悲伤\n\nCCP的VTR先生来了。 Mr.VTR是我最喜欢的超人设计。我不是特别喜欢他的性格或活动。这只是金肉人展示的敌人1，虽然机械机关很有趣，但只是用精神来突破的攻击，而使用身体的职业摔跤部分却极其薄弱。他并不是一个即使犯了错误也能变得很受欢迎的超人。正因为这个位置，这个三维版本就显得极其珍贵。\n\n不过，VTR先生还是很酷的。一眼就能看出的机械品质令人惊叹。与 Suteka Seking 不同的是，我喜欢那种冷漠的感觉，你甚至无法读懂他的表情。我喜欢这种莫名其妙的人形机器。说到昭和时代的怪物，我最喜欢假面骑士V3中出现的“TV Bae”。这个也不是很受欢迎。看完你就明白了...\n\n这一幕不得不接受不可逆手术的恐怖感非常强烈。它不仅仅是电视，它还与苍蝇结合成为电视苍蝇。不管怎么看，脱离了邪恶组织，你都活不下去了。我喜欢那种悲伤。\n 是的，看VTR先生或TV Fly让我感到悲伤。 VTR先生别无选择，只能通过播放视频进行攻击，TV Fly别无选择，只能利用电视屏幕进行攻击，它们就是为此而设计的。既然是机器，它的用途就很明确。我喜欢这样。只有机械超人和怪物才有可能拥有如此清晰的生活方式，连小孩子都能明白它们为何存在。 Warsman 的人类部分是如此之大，无论你做什么，它都会变成一幅画。另一方面，这些家伙除了被操之外没有什么可炫耀的。回想起来，我在塞卡塞金对阵图博门的比赛中尽了最大努力。那是一场载入金肉曼历史的伟大比赛。\n 我也觉得这就是我想要的样子。很容易明白你有什么功能，做什么，而且形状很奇怪。既不是人类也不是机器。然而，它被赋予了个性。她别无选择，只能过着急躁的生活，而她背后的表情却是忧郁的。它有这样的魅力。我想尽快得到 TV Bae 软胶唱片。我想把它放在我的桌子上，吸收他们所有的冷静和悲伤。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

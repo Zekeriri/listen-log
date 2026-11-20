@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文选：Yone Qing Neshin Heto ιKO 彳〒 ιNA</title>
+<title>精选一口随笔：米青 神 禾斗 ιこ 彳〒 ιナ</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-05 12:07</p>
-  <h1>短文选：Yone Qing Neshin Heto ιKO 彳〒 ιNA</h1>
+  <h1>精选一口随笔：米青 神 禾斗 ιこ 彳〒 ιナ</h1>
   <p class="ja-title">選り抜き一口エッセイ: 米青 ネ申 禾斗 ιこ 彳〒 ιナ</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
 先月は商業エッセイ集もでました。情緒不安定な本ですね。Amazonで評価などしてもらえると、僕の精神が安定します。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文选：Yone Qing Neshin Heto ιKO 彳〒 ιNA\n\n今天，当我和一位精神科医生交谈时，他说：“我最终睡过头了，”他说，“（我患有自闭症）我在生活中比其他人更累，所以睡那么多觉很好。”我意识到精神病学是一种女孩游戏，她们总是回应对方的担忧，并立即提出快乐的选择。 - Nyalra (@nyalra) 2021 年 2 月 5 日\n\n自古以来，网上就有人说“去北青、新信、加藤！”，但当我来到办公室时，却经常收到这样的问题：“我的问题是XX，要不要去看心理医生？”或者“我是不是有病或者发育障碍？”\n 在这种情况下，我总是回答：“我不是医生，所以我只是做出业余判断，那你为什么不先去看一下呢？”缩写就是“去看精神科医生”。\n 我并不是要否认这一点，但是一个不合格的人不可能说，“你没有病！”或“我的三将解决你的失眠！”咨询医生而失败的机会较小，所以我认为预约是个好主意。\n 如果你选择一位写过抑郁症治疗抑郁症、发育障碍治疗发育障碍书籍的精神科医生，那么你就不会有太多问题。我还去了一家诊所，书中的医生对我进行了检查。现在剩下的就是信任对方并开诚布公地说话。由于精神科医生是冷静的第三方，你将能够得到客观的意见。\n 今天，当我试图用“我无法停止使用互联网！”来表达我的真实感受时，我的老师告诉我：“光看互联网就很累，所以如果你一边看互联网一边以为自己在休息，你只会累。”腾出时间放下你的智能手机放松一下。”大家立即停止使用互联网！\n\n我的心理医生总是冷静得可怕，有一次看到我的脚，立刻不高兴地说：“什么、这是什么鞋！？” pic.twitter.com/9BGHoAaPwG — Nyalra (@nyalra) 2021 年 4 月 26 日\n\n包含日常文章的同人志现在正在展位上出售。可能是心里话太多了。\n\n上个月还出版了商业论文集。这是一本情绪不稳定的书。当我在亚马逊上收到评论时，它稳定了我的精神。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

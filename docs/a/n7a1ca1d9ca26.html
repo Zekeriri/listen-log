@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：我完全被吉茨的最终形式迷住了。</title>
+<title>一口随笔：被吉诃德的最终形态完全吸引</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-06-10 04:09</p>
-  <h1>短文：我完全被吉茨的最终形式迷住了。</h1>
+  <h1>一口随笔：被吉诃德的最终形态完全吸引</h1>
   <p class="ja-title">一口エッセイ:ギーツの最終フォームで完璧に心奪われてしまった</p>
 </header>
 <main>
@@ -41,11 +41,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：我完全被吉茨的最终形式迷住了。\n\n吉茨的最终形态很酷。\n 不，用“美丽”来形容更合适。小时候我并不兴奋，但我完全超越了童年，爱上了成年的自己。\n\n精彩的。由于主题是一只狐狸，所以我们预计九尾会以通电的形式出现，但基于如此简单的预期，我们并没有偏离这个想法，而是交付了一只完美的狐狸，其设计超出了我们的预期。哇，我从来没有想过可以有如此神秘的凝聚力，同时与日本和机械元素共存。我忍不住要点个赞。如果非要说的话，我是有点担心战斗中劳森在后台的一瞥……！关于。\n\n她的翻白眼也很好看。据设计师介绍，\n“当白狐成为最强大的存在时，我相信他会需要一双充满了更高级别的威吓和疯狂的眼睛。”\n\n骑手眼睛的存在极其重要，并且始终是设计会议上讨论的话题。在 IX 眼最终确定之前，人们提出了几个想法，但我强烈推荐的是 Guruguru 眼。当白狐成为最强大的存在时，我想它必须拥有一双充满上位者的威吓和疯狂的眼睛。是的，你是对的。 pic.twitter.com/xHJ7ZlSaS9 — 田岛秀树 (Tajiyan) (@tajimax1968) 2023 年 6 月 4 日\n\n他就是这么说的。那种恐吓和疯狂的感觉真是惊人……九尾狐不仅强大、酷炫、美丽，还因为它的神秘。\n 这个姿势太棒了。\n “嘘！”他太过于利用了白狐的魅力。当我看到这个动作的那一刻，我几乎要发疯了，想要用Figuarts重现它并展示在我眼前。取决于狐狸的疯狂程度。我现在被那双黄色的眼睛粘住了，一动也不敢动。我真的很喜欢假面骑士Geets作为尊重Ryuki的Rider Battle Royale的Reiwa版本。当然，我是抱着双臂看这一集的，心想：“这太有趣了！”\n 但已经……！最终形态的揭晓是如此完美，以至于我无法正确评价它。即使从玩具的角度来看，我也被腰带的九尾展开的噱头所吸引。孩子们会很高兴的。我买的骑行带上的最后一个功能叫做“Kyuubi”。我永远不会忘记它。\n\n顺便说一句，我给战队买了一些玩具。蜘蛛单胞菌。当我注意到蜘蛛图案时，我将其添加到我的购物车。当你打开锁时，双腿张开，变成狼蛛，令人难以忍受。我的心砰砰直跳，不知道奥格王以后会发展成什么样子。今年的日朝太有趣了，我真的很困惑。\n\n在宁静的夜晚时间线中，蜘蛛莫诺斯，将被永远铭记的间隙之王，出现了...... pic.twitter.com/ZaOo4dvvoc — Nyalra (@nyalra) 2023 年 5 月 28 日\n\n回到骑手，粗略地说，平成骑手的最终形态是粗略的设计，令和版则呈现出修长设计的形象，这是初始形态的合理演变。平成时代的忙碌感是 Rider 的典型特征，但我也喜欢 Reiwa Rider 的最终形态如何从最初的形态转变为最低限度的形态，赋予它新一代的感觉。\n 当然，骑手们最看重的还是初始形态，所以我们往往认为普通形态是最简单、最好的，但已经很久没有被人们谈论“漂亮”的最终形态了。大家都举手称赞Geets IX。感觉是重视初始形态的令和路线的完整版。\n 然而，我迫不及待地想看看最后阶段会发生什么。就好像我的自我意识是从龙骑的影响中成长起来的，所以我只能希望我能够看到现代骑士大逃杀的新答案和最终形式，即使它们在最终形式中伪装成“美丽”。\n 盖兹这也太搞笑了吧！ ！ ！\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -65,7 +64,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

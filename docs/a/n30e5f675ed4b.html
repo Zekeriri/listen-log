@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：哥布林突击队</title>
+<title>一口随笔：哥布林突击部队</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-01 02:44</p>
-  <h1>短文：哥布林突击队</h1>
+  <h1>一口随笔：哥布林突击部队</h1>
   <p class="ja-title">一口エッセイ:ゴブリン突撃部隊</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 商業エッセイ集の方も、よろしくお願いします。妙に重々しい、独特の読書体験があると評判。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：哥布林突击队\n\n有一个恶棍发了极其激进的回复，当我看到图标时，我笑了，因为我看到了“哥布林突击队”。\n 哥布林突击队是游戏王中一张有趣的卡牌！虽然攻击力很高，但攻击结束后就会转为防御模式，防御力变为0。也就是说，顾名思义，它们是为了“攻击”而制造的一次性大脑碎片。\n\n他意识到自己是一个凶猛但手无寸铁的妖精，当他听到辱骂性话语时，他会通过呕吐来缓解压力。我曾经认为激进的人会想：“白痴比我聪明却能赚更多钱，这很奇怪”，所以他们很少能足够客观地称自己为妖精。\n 毕竟，如果你意识到自己是一个“攻击性白痴”，你应该知道，就效率而言，花时间攻击别人在线阅读、观看视频、甚至散步会有用100倍。这并不是什么“反是不好的”之类的道德问题，但如果你冷静地想一想，你应该明白把时间花在粘人的行为上是徒劳的。他自己也意识到了这一点，这就是为什么他以哥布林为偶像来折磨自己。\n 然而，我选择暂时缓解压力，而不是让我的生活变得有意义。尽管他知道自己的灵魂因为自己的反行而变得越来越不纯洁。他们被攻击他人的刺激所带来的快感所吞噬。从某种意义上说，他是网络的真正受害者，而且他今天可能仍在某个地方与某人战斗。他们是SNS召唤出来的悲伤的哥布林突击队，只有这样才能生存。\n\n摊位上正在出售同人志日常随笔集。还有一本专门讨论美少女游戏的书。\n\n我们也欢迎有关商业论文集的询问。它以提供独特而深刻的阅读体验而闻名。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

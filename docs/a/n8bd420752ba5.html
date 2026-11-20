@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：“我热爱生活”歌词</title>
+<title>一口随笔：《我喜欢活着》这句歌词</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-10 06:21</p>
-  <h1>短文：“我热爱生活”歌词</h1>
+  <h1>一口随笔：《我喜欢活着》这句歌词</h1>
   <p class="ja-title">一口エッセイ:「生きることが好きさ」って歌詞</p>
 </header>
 <main>
@@ -22,11 +22,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：“我热爱生活”歌词\n\n一位朋友告诉我，“如果你的孩子说，‘我没有要求你生孩子’，你无法反驳。你让他承受着独自生活的痛苦和悲伤。”所以我想到了我在脑海中创造的想象中的儿子的青春期，当我想象中的儿子在争吵后对我说：“不要让我生孩子！！”的那一刻，我感到非常受伤。当然，如果有人对我说这样的话，我不会有任何言语来回应。拜托，拜托不要对我的父亲说这么痛苦的话……我在不存在的儿子面前情不自禁地流下了眼泪。\n 这是一个难题。没有人是通过要求别人生下我而出生的，有时生活充满了痛苦。回想起来，我记得当我第一次听到《假面骑士BLACK》主题曲“我喜欢生活”的歌词时，我感到很惊讶。\n 我从来没有意识到我喜欢生活本身……当然，生活中也有一些让我快乐的事情。我热爱生活，精力充沛。我希望我想象中的儿子想，“我热爱生活。”不，我仍然对此感到有点难过……相反，说“不要让我生孩子！”并告诉她她会经历一次青春期可能会更健康。\n 嗯，我没有儿子，而且我和我谈过此事的朋友冈岛也失业了，所以现在不需要特别关注孩子的问题。不管我是否喜欢生活本身，当我这样和朋友们随意聊天时，我感觉我很享受生活。这才是生活真正的样子。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +45,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>快速文章：Evolto 和古董手表</title>
+<title>一口随笔：Evolt与复古腕表</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-03 02:59</p>
-  <h1>快速文章：Evolto 和古董手表</h1>
+  <h1>一口随笔：Evolt与复古腕表</h1>
   <p class="ja-title">一口エッセイ:エボルトとアンティーク腕時計</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
 商業エッセイ集もよろしくお願いします。僕の人生が全て載っておりますが、僕の人生は龍騎から始まっている。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"快速文章：Evolto 和古董手表\n\n当我被问到谁是最酷/最喜欢的骑手时，我仍然犹豫，但如果是我认为最漂亮的骑手，我会立即回答Evolto...假面骑士Evol。对于恶棍骑手来说，这似乎是完美的设计。伊库萨获得亚军。\n 首先，当你第一眼看到它的时候，你就知道“这家伙绝对是一个强大的邪恶！”它有着邪恶的外表和强大的性格，令人想起蒸汽朋克和古董的迷人部件，以及由蓝色、红色和金色组成的宝石般的色彩。这模样，实力绝对是最强，行动自如，让人难以抗拒。\n\n暂且不谈电影里的故事，游戏上映了，我本来打算赚大钱，在熟人的推荐下，我去了中野百老汇看表。这家伙一拿到钱就是名贵手表吗？ ？您可能会这么认为，但这是一个误解，并且存在神秘的经济情况使得成年人使用它们更有利可图。税收很奇怪，不是吗？\n 在那里我发现了这块 1950 年古董手动上链手表。金色的身体搭配闪亮的红色珠宝。我非常兴奋，心想：“这就是 Evolto！”并选择了这款神秘的腕表作为我的终生伴侣。价格也疯狂！但是...\n\n当你把它缠在手臂上时，感觉就像拥有了 Evolto 的力量，感受到邪恶的感觉很有趣……即使发生了不好的事情，我也可以看着我的左臂思考，“你还好吗？”如果我认真的话，地球很快就会来到这里。”拥有真正美丽的东西在你身边是巨大的保证。现在你明白为什么成年人戴手表了吧。它有优雅。没有特别的妙语。再见！\n\n也许我应该看看我还年轻时的照片，相信我可以成为一名骑手 pic.twitter.com/uPs89ssQzh — Nyalra (@nyalra) 2021 年 6 月 22 日\n\n我们目前正在销售编写每日文章的同人志。请看一下。骑士有一个故事。\n\n我期待着阅读您的商业论文集。这里列出了我的全部人生，但我的人生是从Ryuki开始的。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

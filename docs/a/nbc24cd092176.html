@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：审美意识</title>
+<title>一口随笔: 审美感</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-29 03:05</p>
-  <h1>短文：审美意识</h1>
+  <h1>一口随笔: 审美感</h1>
   <p class="ja-title">一口エッセイ:美的感覚</p>
 </header>
 <main>
@@ -34,11 +34,10 @@
  こちらは若い頃の文章すぎて感性びんびん！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：审美意识\n\n“感性”这个概念很模糊，我认为青春期男女的感性是他们才华的顶峰，而“创造”和“活动”的关键在于成年后能回忆和提炼出多少当时的情感。\n 敏感性是指当你看到某样东西时产生的感觉和印象，当你只关注它的“美”部分时，它就变成了“审美敏感性”。这似乎不是你可以训练自己做到的。这大概与我们年轻时形成的美丑价值观有很大关系：我们崇尚什么是美丽的，什么是我们回避的丑陋。欲了解更多信息，请阅读哲学家兼作家翁贝托·艾柯的《美的历史》和《丑的历史》！我现在喜欢图书馆，因为它不是很贵！\n\n口袋妖怪\n美/丑 pic.twitter.com/x1algcZSID — Nyalra (@nyalra) 2021 年 9 月 6 日\n\n我之所以这么说，只是因为我很高兴我的审美得到了制片人的称赞。由于他处于和我一起制作游戏并付费的位置，所以他对我的能力评估非常严格，并清楚地告诉我哪里出了问题。制作方看到我的优点是“诗情画意”和“审美感”，所以才投巨资让我制作这款游戏​​。谢谢。\n\nNidiga 的艺术部分也是如此，与此相关的插图订单通常是根据我的品味和判断来完成的。我从来没有对我选择的人有任何抱怨，我说：“这就是我想与之共事的人！”，而我的员工总是说：“我喜欢它！”。上次播出的纪念插图的选择也是如此，当我向我认为很棒的创作者打招呼时，我感到很高兴。你怎么认为？这个三边的图解不是很好吗？根据制作人的决定，我还帮助完成了其他游戏的美术部分。他的“歌词和美感”受到高度赞扬。我很高兴。\n 我并没有做什么特别的事情。我生来就对创造者抱有坚定的信念，而我对创造事物的人的尊重也许是很酷和令人惊奇的。前面说过，这或许就是所谓“理智”的天赋。\n 换句话说，就是炫耀而已！你可能这么认为，但这绝对是真的！能得到我信任的大人的表扬，我感到很高兴！ ！ ！就这样。这是我的日记。偶尔有时间提升你的自尊心是件好事。\n 当我小时候看到玛丽莲·曼森时，我同时感到恐惧和美丽。不久之后，当我看到水银岛时，我也有同样的感觉，我意识到这是从黑暗中提取美的行为……换句话说，“哥特式”品味的开始。我想这就是我的美与丑的根源。\n\n包含每日日记的同人志现已发售！\n 如果像这样写下我的日常情绪可以培养我的敏感度，我会很高兴。\n\n我期待阅读您的商业论文集！\n 这是我小时候的文字，所以很敏感！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -58,7 +57,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

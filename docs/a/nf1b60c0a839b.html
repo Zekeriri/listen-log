@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：素食朋友</title>
+<title>一口随笔：素食主义者的朋友</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-06 04:18</p>
-  <h1>短文：素食朋友</h1>
+  <h1>一口随笔：素食主义者的朋友</h1>
   <p class="ja-title">一口エッセイ:菜食主義者の友だち</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 商業エッセイ集の方もよろしくね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：素食朋友\n\n宫泽贤治是一位素食主义者，不吃任何肉。即使他自己生病了，他也说：“我宁愿死，也不愿夺走另一个生物的生命。”\n 当你听到这个时，如果你首先想到的是对素食主义的反对，例如“不，吃肉更健康”或“人们只是活着就杀死了微生物”，请阅读健二的短篇小说“游客大斋”，其中总结了反对他们的论点。尽可能选择“不食而过着与生物死亡联系在一起的生活”的人……即使你试图说服一些认为这接近于宗教信仰的人，你也会发现，即使你试图用这样的逻辑说服他们，他们也会继续并行进行。\n\n还有一个故事，穆斯林否认他们不吃猪肉，说：“我们不应该这样逻辑地谈论它。”我们根本不吃猪，因为它们不干净。”穆斯林似乎试图通过虔诚地禁止寄生虫等卫生问题来提高人们的认识。无论如何，不​​吃肉的人坚持吃肉有着复杂而微妙的理由。\n 与此同时，我的一个朋友非常尊重宫泽贤治，以至于他自己尝试了几个月不吃肉。他本来就是一个敏感的人，所以在强烈的忌肉意识的同时，他也逐渐害怕动物肉被出售给大众。当我去超市时，当我看到陈列着这么多死去的动物时，我感到害怕。\n 所以，如果他不吃肉，他应该吃的主要是土豆和普通的披萨，而且因为他是如此偏执和失业，他不能买蔬菜，因为它们太贵了。因此，当我每天吃薯条和披萨时，我的碳水化合物饮食变得越来越不健康，使我的健康状况变得更糟，而且由于薯条和披萨要花钱（即使它们比蔬菜少），我最终失去了一切。最终，在周围人的鼓励下，他逐渐恢复吃肉。\n 所以，我不认为可以从中学到什么，但它就发生在我周围。当时我就有一种预感，有一天我可能也会采取类似的素食心态。尽量不承认动物的死亡。\n\n包含每日日记的同人志现已在 BOOTH 发售。一本新书刚刚出版了！\n\n我还想要一本商业论文集。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

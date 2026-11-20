@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：抑郁症的诊断</title>
+<title>一口随笔：抑郁症的诊断</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-22 21:59</p>
-  <h1>短文：抑郁症的诊断</h1>
+  <h1>一口随笔：抑郁症的诊断</h1>
   <p class="ja-title">一口エッセイ:うつ病の診断</p>
 </header>
 <main>
@@ -22,11 +22,10 @@
  良くも悪くも、他人に認識されないと生の実感がわかないタイプ。ですから、こうしてあなたが僕の文章を読んでくれるだけでも、少しずつ回復しております。ありがとうね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：抑郁症的诊断\n\n我被诊断出患有抑郁症。不过，没有什么特别的问题（？），并不是现在的情况有什么问题，只是为了支持独立而已。一直都是这样，所以不用担心。\n 确定我的症状恶化是因为我想太多与工作相关的文字和游戏场景，但我实际上为自己的真诚感到自豪。这就是我在画Ame-chan时面对她的灵性的证明。我可以说，没有它，一个角色就不会诞生。好吧，如果说创作者不高兴就无法创作，这并不是一个好主意，但这一次是关于主题的。\n 毕竟，当比赛被推迟时，我觉得最后一击是当我被这么多情绪同时轰炸时：“我想这对这家伙来说毕竟是不可能的”，“我们会尽力而为”，“我们会尽力而为”，“我担心这是否会有趣......” - 焦虑，失望，以及仍然支持他们的压力。不过，我写的一些路线是基于我当时的感受，所以现在回想起来，我认为这是一次重要的经历。如果它超过了你的喉咙，那就没事了。\n 不过这也改变不了我现在精神状态不太好的事实，所以我要休息一段时间。所以今晚的日记会很短。\n 我最近了解到，当网上没有回应时，真的很难，适度地创造一些东西对你的心理健康更好。这就是为什么我每天都会写日记。寻求认可的怪物！\n 无论好坏，我是那种除非别人认出我，否则我感觉不真实的人。所以，就通过这样阅读我的帖子，我正在慢慢康复。谢谢。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +45,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

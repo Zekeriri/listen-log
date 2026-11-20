@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>文选：英雄还是真正的垃圾混蛋？</title>
+<title>精选一口短文：是勇者还是彻头彻尾的混蛋</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-09 18:16</p>
-  <h1>文选：英雄还是真正的垃圾混蛋？</h1>
+  <h1>精选一口短文：是勇者还是彻头彻尾的混蛋</h1>
   <p class="ja-title">選り抜き一口エッセイ:勇者か真のゴミクソ野郎か</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 商業エッセイ集もよろしくね。真のゴミクソ野郎の生き様をみよ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"文选：英雄还是真正的垃圾混蛋？\n\n我最喜欢的搞笑漫画《Biyori》中的一集是一个名为“拔出剑的人”的短篇小说。这个主角的处境非常有趣。\n\n首先，从第一页开始，主角就拔出了一把只有“打倒魔王的英雄”或“真正的垃圾混蛋”才能使用的剑。他因为自己是“打倒魔王的英雄”而感到不安，但一个看似村长的老人警告他，“哦，你真是个垃圾。”\n 此后，主角的举动相当嚣张，虽然有恶意，也可能没有恶意，但还是不断地给党员制造麻烦。正如村长担心的那样，他似乎是一个“真正的垃圾混蛋”。\n 然而，这个故事的妙语却很精彩，即使聚会散去，这个男人仍然独自继续他的冒险。即使他的性格阴险扭曲，但他仍然有保护世界的意志。而且，最终他还是凭借一己之力击败了魔王。\n 而最后，主角嘀咕自己到底是“打倒魔王的英雄”，还是“真正的垃圾”。当然，从读者的角度来看，没有正确答案。\n 虽然他的性格非常恶劣，经常给别人带来麻烦，但因为打倒了魔王，他更是给世界带来和平的英雄。这种事情在现实生活中经常发生，而且极其烦人、让人心疼，但也有很多创作者创作出同样有趣的作品。事实上，我想没有它你就无法做出任何好事。没有人能够过上平衡的生活。\n\n包含日常文章的同人志正在摊位上出售！如果您喜欢这个选择，如果您能阅读它，我将非常高兴。\n\n我期待着阅读您的商业论文集。看看一个真正的垃圾混蛋的生活。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

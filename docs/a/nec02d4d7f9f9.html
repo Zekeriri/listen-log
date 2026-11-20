@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：御宅族最酷的生活方式</title>
+<title>一口随笔：最帅的御宅族的生活方式</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-20 06:26</p>
-  <h1>短文：御宅族最酷的生活方式</h1>
+  <h1>一口随笔：最帅的御宅族的生活方式</h1>
   <p class="ja-title">一口エッセイ:最もカッコいいオタクの生き方</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくお願いします♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：御宅族最酷的生活方式\n\n我有一个很喜欢的Yukkuri解说员，他主要玩和介绍海盗游戏。他甚至第一次飞往海外寻找正版盗版。现代版的“香港网络宅男市场”。\n\n他还制作了在海外钓帕奇诺的回忆的视频，但当然，他的“抓帕奇诺之旅”没有人陪伴，所以他一个人去。更重要的是，我会毫不犹豫地购买任何我在当地找到的弹珠机视频，即使它很贵，而且即使我在镜子中看到自己，我也不会编辑任何内容。他们如此专注于帕奇蒙游戏，以至于他们甚至不关心修正自己面孔的努力。\n 控制不是很好，难度也很残酷，而且由于这是一款弹球游戏，一开始就一点也不好玩，但他在发布视频之前先完成了这一切。这不再是一个游戏，而是一种忏悔，但他有一种使命感：“没有人会留下任何关于这个游戏的东西，所以我会把所有视频上传作为参考资料。”他是一个真正的男人......\n 这种生活方式非常酷，具有很大的历史价值，最重要的是，它让很多 Pachigame 粉丝感到高兴。人生最好有一个固定的目标：“收集并介绍所有的帕奇游戏。”\n 这样的生活才是最精彩的，我想这才是宅男该有的样子。今后，我们将继续为那些在《帕奇物》中静静享受马里奥和索尼克的欢乐和悲伤的人们提供支持。\n\n感谢大家对日记总结和商文集同人志的支持♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

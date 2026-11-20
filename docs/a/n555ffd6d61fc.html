@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>论文选：失眠、坂口安吾和毒瘾</title>
+<title>精选一口随笔：失眠症、坂口安吾与药物中毒</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-29 16:00</p>
-  <h1>论文选：失眠、坂口安吾和毒瘾</h1>
+  <h1>精选一口随笔：失眠症、坂口安吾与药物中毒</h1>
   <p class="ja-title">選り抜き一口エッセイ: 不眠症と坂口安吾と薬物中毒</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 先月に発売した商業エッセイ集は、↑の内容より、さらに濃いです。是非よんでみてね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"论文选：失眠、坂口安吾和毒瘾\n\n我睡不着，因为我没吃安眠药了。最重要的是，我无法通过鼻子呼吸，所以我几乎肯定会因为呼吸问题而在半夜醒来。我需要安眠药来预防这种情况，但我最终还是尽可能多地服用了，而且失忆等症状非常严重，令人痛苦。我想如果我强迫自己定期戒酒，会比失眠要好。\n 不管我的故事如何，当谈到睡眠和毒瘾时，坂口安吾是很有名的。\n 当坂口安吾忍不住感到困倦时，他开始使用兴奋剂。因此，三四天后我都无法入睡。这是一个问题，所以我喝了一些威士忌，强迫自己睡觉。由于他的“觉醒”，他写书赚来的稿费都花在了喝酒上。这是本末倒置。\n 他还开始在喝威士忌的同时服用一种名为 Adrum 的安眠药。由于兴奋剂、酒精和安眠药的结合，他很快就染上了毒瘾。最后，同为作家的太宰治自杀后，甚至患上了抑郁症。\n 不过坂口安吾的文笔却极其优美。\n 在毒品、抑郁和朋友去世的折磨下，他在困境中写下的自我意识的片段充满了一个健康作家永远不会有的魅力和力量。\n 文献出卖的是一个人的自我意识和经历，所以如果你受苦，一些美丽的东西可能会在你受苦的过程中诞生；如果你跌倒，你经历的地狱也会有很多。也许我应该回到用酒精服用安眠药的日子。\n\n摊位上出售编写每日文章的同人志。有关于失眠和医学的故事。\n\n上个月发布的商业散文集比上面的内容更有深度。请读一下。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

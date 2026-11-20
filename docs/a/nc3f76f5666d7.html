@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一点文章：Rozerem</title>
+<title>一口随笔：罗泽烈姆</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-20 15:04</p>
-  <h1>一点文章：Rozerem</h1>
+  <h1>一口随笔：罗泽烈姆</h1>
   <p class="ja-title">一口エッセイ:ロゼレム</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 商業エッセイ集もよろしくね。こちらの本には怨念が込められているので、どれも読み応えがある。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一点文章：Rozerem\n\n我沉沉地睡着了。当我在床上躺了一会儿，我感到轻松了几个小时。\n 当我第一次开始使用 Twitter 时，总有人夸张地将入睡描述为“昏倒”，甚至有人警告他们，“将入睡称为昏倒不是错误的吗？”我记得我很害怕社交媒体有多么困难。我理解你们俩的感受。\n 不管怎样，我之所以能睡着，可能是因为我喝了很多Rozerem。 Rozerem 是一种安眠药，可促进“自然睡眠”，并温和地作用于调节生活节奏的褪黑激素。他是一个善良的人。\n 然而，这些促进“自然睡意”的安眠药不会让你发疯并忘记你的记忆，但它们也不会立即起效或效果较差。 “那种迫使你的大脑关闭的感觉”并不存在。所以，就我个人而言，我觉得它根本不起作用，所以我还剩下一些。\n 所以也许是量起作用了，当我喝完剩下的水后，一下子激发出来的褪黑素就努力工作了，半夜就感觉很困，就睡着了，一直睡到中午。太棒了。\n 无论如何，“调整生活节奏的药物”听起来非常优越和可怕。与强迫你睡觉的药物不同，你的性格似乎正在被纠正，这让我感到恼火（自私）！我认为他是一个人，因为他想睡觉的时候就睡觉，但我最终还是照顾了他，因为他想睡觉的时候却睡不着。\n\n包含每日日记的同人志正在摊位上出售！\n 像我今天刚睡醒时那样写出潦草的句子，真是浪费时间。\n\n我期待着阅读您的商业论文集。这本书里有恩怨，所以都值得一读。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>快速文章：新庄茜</title>
+<title>一口散文：新条茜</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-05-05 03:10</p>
-  <h1>快速文章：新庄茜</h1>
+  <h1>一口散文：新条茜</h1>
   <p class="ja-title">一口エッセイ:新条アカネ</p>
 </header>
 <main>
@@ -31,11 +31,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"快速文章：新庄茜\n\n前几天，我去看了《网格人宇宙》。简直就是电影版的特效英雄，横冲直撞让人非常满足和爽快。尽管这是城市中两个巨大生物之间的冲突，但 SE 却特别出色，给人一种玩具的感觉。这种玩具般的感觉（从好的意义上来说）是一种只有通过 Gridman 系列的现实主义路线和世界观才能实现的技能。\n 在《网格人》的动画版中，有一些部分让我对主角的处理方式感到有点困惑，但我很高兴电影版很好地掩盖了它。我喜欢《Dynazenon》不仅仅表现了一个不上学的不良女孩回到学校的成长，所以我认为他们在最后展示了一个轻松的用餐场景来结束一个有点脱离日常生活的男孩和女孩的冒险故事，这是完美的。总的来说，我感觉我看到了一些好东西。\n 好吧，现在我已经写下了我对这项工作的感想，我要做好准备了。我是新城茜……我爱茜酱。\n 小茜是这部作品中特别梦幻的人物。不，其他女主角也不是真实的，但小茜本来就被设计成“对宅男来说太方便的角色”，而在正片中，她被礼貌地视为“一个班上所有人都喜欢的美丽女孩，但她对怪物的了解比任何人都多”这一事实证明了她没有动。是的，新条茜的存在就是一个幻想。\n\n这是我的旧房间。通过将柔软的乙烯基怪物放在小茜周围，我感觉自己内心的某些东西被拯救了。\n 她的理想很简单：“她是一个喜欢怪物的美丽女高中生。”当然，她不仅仅喜欢怪物，她的房间里 90% 的空间都摆满了软乙烯基的陈列柜，而且她总是把怪物放在第一位。然而因为是宅男，所以在课堂上并不显眼，见谁都觉得她很漂亮，而且性格不好，让宅男们对她产生了共情。这种不好的性格也是她“网络宅男”性格的关键……或者说，茜酱被描绘成浏览匿名公告板，所以她实际上理解这些微妙之处，你会对她有一种安全感和熟悉感。它的设计目的是。\n 太方便了！\n\n一个充满特效极客理想的蛇蝎美人，这可以原谅，因为它是动画和圆谷认可的作品。即使在故事中，这个茜酱也是一个虚拟角色。由于电影版中真人部分的增加，相信很多粉丝都对她的感情更加郁闷了……总而言之，茜君是个危险的存在。\n 你想要。一个关于美丽女孩和超级怪物的故事。您想花一整夜的时间谈论您最喜欢的超级野兽。我是卡梅尔国王和黑鸽子。当然，我也会和老人一起做。当我们一起在中野百老汇散步时，我们看到了奥特曼和骑士玩具，并就它们进行了很多对话。那是一段无可替代的时光。但！与美丽的二次元角色（同班）进行一场令人心潮澎湃的对话的愿望是完全不同的。你们很弱，书呆子。看到女孩们在她们最喜欢的类型中感到高兴。\n 这就是御宅族追求的御宅美少女的概念，建立在这样的“便利”之上。最重要的是，他还神秘地和异性玩弄，所以这已经很令人沮丧了。反之亦然。 「这个家伙……！雨宫总监……！还有圆谷和扳机……！」他咬紧牙关，直到血液流血。目前正在观看。我无法原谅你，你这样玩弄人心到底想做什么？真令人沮丧。\n 这很令人沮丧，但是当我在茜酱面前时，我就像，“啊，我爱你......（我是一个令人毛骨悚然的书呆子）。”这令人沮丧，真的令人沮丧。我真的感到很沮丧，甚至很生气，但我希望你能在我身边，和我一起看奥特曼，开怀大笑。这是真爱。我非常非常沮丧。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

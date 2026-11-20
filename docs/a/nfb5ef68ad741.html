@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：我创建了一个 Discord 服务器</title>
+<title>一口随笔:创建了Discord服务器</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-18 23:35</p>
-  <h1>短文：我创建了一个 Discord 服务器</h1>
+  <h1>一口随笔:创建了Discord服务器</h1>
   <p class="ja-title">一口エッセイ:Discordサーバー作った</p>
 </header>
 <main>
@@ -27,11 +27,10 @@ Discord、他人とコミュニティを形成するためのツールなのに�
 商業エッセイ集もよろしくお願いします。よかったら、レビューしたり星をつけたりしてくれると嬉しいです。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：我创建了一个 Discord 服务器\n\n我建立 Discord 服务器已经有一段时间了。欢迎大家，所以请慢慢来。基本上，我希望每个频道都可以用来谈论和交流有关动漫、漫画、音乐等的信息，宣传和咨询创意活动，有时也可以谈论生活，这取决于频道。\n 正如我在Note中多次写到的那样，我觉得所有的SNS对于晋升的人来说越来越有利，积极的人受到鼓励和钦佩是很自然的，但我觉得闲着看的人与陌生人互动的机会正在减少。尤其是在 Twitter 上，无论你写什么，都有可能突然疯传，或者被作者捕获，无论是好是坏，所以如果你被困在家里，最好将其保存在你家庭的 Discord 服务器、LINE 群组或钥匙串上。然而，如果你只使用匿名公告板，你的想法就会有偏差。\n 我曾经是一个普通的动漫偶像，所以我认为能够以轻松的御宅族方式与普通大众交流是很困难的，所以我想创造一个我不必担心数字或关系的地方。了解很多人喜欢什么以及他们的意见很方便。我不想产生等级关系，所以只能公事公办的评论！伤心。\n\nDiscord 是一种与他人形成社区的工具，但翻译成日语时是“discord”，太酷了 — Nyalra (@nyalra) 2021 年 7 月 4 日\n\n我们之所以逃到网络，是因为现实太糟糕了，而我们成长的唯一途径就是经历网络空间中的痛苦、坎坷和错误。就这样，他们在其他人面前体验到各种各样的事情，即使以正常人十分之一的速度，他们也一定能体会到人与人之间的距离感。\n\n包含日常文章的同人志现已在摊位发售！请花点时间看一下。\n\n我期待着阅读您的商业论文集。如果你喜欢它，如果你能评论它或给它一颗星，我将不胜感激。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

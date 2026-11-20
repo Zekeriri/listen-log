@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：关于睡眠的一切</title>
+<title>一口随笔：关于睡眠的种种</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-09 13:10</p>
-  <h1>一篇简短的文章：关于睡眠的一切</h1>
+  <h1>一口随笔：关于睡眠的种种</h1>
   <p class="ja-title">一口エッセイ:睡眠についてのあれこれ</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 毎日の日記をまとめた同人誌をBOOTHにて販売中です。商業エッセイ集の方もよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：关于睡眠的一切\n\n由于安眠药的作用，我还没写日记就睡着了，所以我想借此机会总结一下我目前的睡眠情况。\n\n目前，医生给我开了一种安眠药，它的名字很奇怪，叫 Deevigo。它是安全的，因为它会导致自然睡意而不是强迫睡意，因此不会发生健忘症（奇怪的行为或由于兴奋而做出的行为），并且几乎不存在依赖性。效果有点弱。但与失忆后的疯狂相比，这根本算不了什么……\n\n相反，它有很强的“噩梦”副作用。更准确地说，由于快速眼动睡眠或非快速眼动睡眠的持续时间较长，“记住梦境”的概率似乎更高。梦通常是混乱的，不会让你感觉良好，所以你更有可能记住“噩梦”。服用 Deevigo 后，我还记得大部分梦境。作为一名学生，我很难在梦中看到自己。\n 当我非常焦虑或紧张时，我也会服用精神药物，其副作用就是嗜睡。综合起来，这些影响让我变得非常困，而且我发现自己更频繁地睡着，因为我再也受不了了。对此没有特殊的对策。\n 不过，我还是在 2.3 小时后醒来。这可能是因为我的体质使我根本无法通过鼻子呼吸。我醒了，但由于药物的作用，我的身心无法正常运转，常常陷入困境。\n 就是这样。感谢您的支持。\n\n包含每日日记的同人志现已在 BOOTH 发售。我还想看一本商业论文集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

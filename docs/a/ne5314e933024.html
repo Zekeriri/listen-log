@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：不要在意粉丝群的年龄</title>
+<title>一口随笔：大胆不去在意粉丝层的年龄</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-07 02:34</p>
-  <h1>短文：不要在意粉丝群的年龄</h1>
+  <h1>一口随笔：大胆不去在意粉丝层的年龄</h1>
   <p class="ja-title">一口エッセイ:ファン層の年齢を敢えて意識しないこと</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
 毎日の日記をまとめた同人誌（最近、新刊がでました）や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：不要在意粉丝群的年龄\n\n我很高兴 Nidiga 的选集系列每次都受到好评。我提交了一份我想要请求的作家名单（尽管大多数情况下我选择他们），所以我很高兴能够阅读我最喜欢的作家的短篇小说，也阅读他们对我自己作品的解读。\n\n当我问负责人“购买尼迪加选集的人都是些什么人？”他们是那种看《Omoshiro FLASH Warehouse》和《Nico Nico》的人吗？”他说，“不，年轻女孩才买。”我的眼前一片空白。 — Machinery Tomoko@Jump + 每隔周五连载/Cyborg VTuber/ (@barzam154__) 2022 年 12 月 6 日\n\n嗯，这次我负责的是机械智子（因为麻烦所以简称智子），她和编辑交流的推文很有趣。\n 幸运的是，Nidiga 的粉丝群非常广泛。对于不与年轻女性一起工作的智子来说，这些信息一定感觉像是一个考验。有趣的。\n 我也能感受到他在这样的压力下提出“Sound MAD”主题的艺术性。非常感谢。\n 现在，关于 Nidiga 粉丝群的性别比例，实际上根据您使用的标准略有不同。观看长天酱直播的人、购买游戏的人、购买商品的人，男女比例为4：6或6：4。我们的共同点是，有很多编辑所说的“年轻女孩”。不过，这部作品的不同寻常之处在于，它既有男性粉丝，也有女性粉丝（数量往往偏向一侧），所以我认为没有必要如此在意。\n 所以，开会的时候经常会被外人问到，“既然我们有很多年轻的粉丝，我们是不是应该向他们做推广和销售呢？”，但我认为绝对不是这样的。我现在已经快30岁了，所以我只是根据自己的感受来创作我喜欢的东西，我并不会去考虑自己是年长还是年轻。说谎。我想这在一定程度上取决于材料，但差别不大。\n 这几乎是一种痴迷；当我十几岁的时候，互联网上到处都是比我大很多的书呆子。我喜欢现实生活中很少遇到的成年宅男们自由地谈论他们最喜欢的漫画、动漫和游戏，感觉很自然。因为这些人对 Jojo、Baki 和 Kaiji 的模仿非常有趣，所以我确信他们会很有趣，所以我通读了他们。甚至为了学习更深层次的作品而活下去也是值得的。如果涉及到考虑或妥协，那就变得不自然了。请尽管与我谈论高达和Rider！我满怀希望。我想让御宅族们谈论他们余生的超级机器人记忆。\n 考虑到这种感觉，我无意低估 Nidiga 并说：“这不会影响年轻人。”事实上，既然订阅和分发已经到位，他们就有能力访问任何内容。研究你最喜欢的作品的来源和引用的元素也很有趣。即使你不能向我传达，如果你有什么感觉，我也会调查的。这就是谷歌搜索的用途。这一定是现代人的“幸福”之一，因为你可以不断地追求自己喜欢的作品，并一遍又一遍地了解其他作品。\n\n请欣赏整理日常日记（最近出版了新版）和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

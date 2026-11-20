@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：《无敌信徒》和镜子里的我</title>
+<title>一口散文：《无敌级*信徒》和镜中的自己</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-07 03:02</p>
-  <h1>短文：《无敌信徒》和镜子里的我</h1>
+  <h1>一口散文：《无敌级*信徒》和镜中的自己</h1>
   <p class="ja-title">一口エッセイ: 「無敵級*ビリーバー」と鏡の中の自分</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 月末には、長文エッセイ＋書き下ろしをまとめた商業エッセイ集も発売予定です。こちらも、表紙がとてもかわいいので、予約してくれると嬉しいです。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：《无敌信徒》和镜子里的我\n\n这次要说的是《Love Live!》中出现的可爱学园偶像中洲霞的歌曲《Mutekiju*Beliver》。虹崎学园学园偶像部。”\n 这首歌是《Love Live!》中我最喜欢的一首歌。相关歌曲。当我在动画中看到卡斯敏时，我的印象是她唱着更容易理解和可爱的歌曲，因为她太执着于自己的可爱，所以我被“Muteki*Beliver”的明亮和悲伤和努力之间的差距所吸引。作曲家DECO*27的理解力之高可见一斑。他在《Prichan》中也表现出色。\n 我想这首歌的歌词很可能是受到了迈克尔·杰克逊的《镜中人》的启发。对于迈克尔，他说：“为了一个更美好的世界，尝试改变镜子里的那个人。”让我们从审视自己开始吧！歌词如.迈克尔有很高的意识水平。\n 另一方面，卡斯敏只是不断告诉镜中的自己微笑，说：“墙上的镜子谁哇。”即使在那之后，每次我觉得我要放弃，觉得我不能再做任何事情时，我都会看着镜子里的另一个自己，问自己，“不要忘记，你比任何人都最可爱。”\n 迈克尔唱道：“让我们为了世界而改变镜子里的男人”，这首歌是以“其他人”为前提的，而霞则唱道：“让我们让镜子里的女人笑起来，为了成为世界上最可爱的自己。”我认为她基于自己的可爱而表现得很棒。一个首先把“镜子里的自己”而不是世界放在第一位的女孩。我觉得这是一首迷人的歌曲，真实地表达了卡斯敏的生活方式。\n\n封面非常可爱的同人散文集正在展位上出售。包含每日随笔。请来体验一下这一努力。\n\n月底，我们还将推出商业论文集，其中包括长论文和新写的论文。这个封面也很可爱，如果你能预购的话我会很高兴。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

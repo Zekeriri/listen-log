@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>文选：DokiDoki文学社与疯狂的游戏体验</title>
+<title>精选一口随笔：《心跳文学社》和疯狂的游戏体验</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-02 19:24</p>
-  <h1>文选：DokiDoki文学社与疯狂的游戏体验</h1>
+  <h1>精选一口随笔：《心跳文学社》和疯狂的游戏体验</h1>
   <p class="ja-title">選り抜き一口エッセイ：ドキドキ文芸部と狂気のゲーム体験</p>
 </header>
 <main>
@@ -30,11 +30,10 @@
 先々月に発売した、商業エッセイ集もよろしくおねがいします。重めの話が、いっぱい載っている。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"文选：DokiDoki文学社与疯狂的游戏体验\n\n*这是游戏发行前和制作过程中的日记。我很高兴它被安全释放。\n\n玩《心跳文学社》已经有一段时间了，游戏体验的完成度和满意度让我差点吐了。不是比喻，它让我感到恶心。\n 前几天，当我发布自己正在制作的游戏视频时，我很高兴收到了10,000个赞，但我对这些期望感到焦虑，并决定回去玩《心跳文学俱乐部》，这是我在游戏试玩期间进行的一项调查中被用户选为最喜欢的游戏。\n 这是一款我无法用语言形容的百分百完美的游戏，它是疯狂、美少女、情感和游戏系统的完美结合。这样的作品一定会给任何人留下深刻的印象。太神奇了！\n\n每个人都想要一种让他们想知道“这真的可能吗？”的游戏体验。一旦你清除了“告诉我再见”和“再次拿走毛巾”，记忆就会烙在你的脑海里，永远不会离开你。超越疯狂的美感就像一把锋利的刀子一样切入用户的内心。这一次，我必须这么做。感到恶心是很自然的。如果呕吐能让游戏变得更有趣，我会呕吐数百次。\n 每个人都知道，仅仅说“我太疯狂了，我太崩溃了”是多么无聊。除非你把它付诸实践，否则你的真实意图不会传达给别人。我的疯狂必须超过用户的期望。发疯吧。\n\n带着这些想法，我连续几个小时透过屏幕盯着莫妮卡。\n\n包含日常文章的同人志现已在 BOOTH 出售。也有一些只谈论美少女游戏的小众同人志，包括有关心跳文学部的故事。\n\n还请大家期待两个月前发布的商业随笔集。其中包含了很多沉重的故事。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

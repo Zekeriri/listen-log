@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Selected bite-sized essays: Did you know? That I've always despised you</title>
+<title>精选短篇随笔：你知道吗，我一直在轻视你</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-09-16 08:35</p>
-  <h1>Selected bite-sized essays: Did you know? That I've always despised you</h1>
+  <h1>精选短篇随笔：你知道吗，我一直在轻视你</h1>
   <p class="ja-title">選り抜き一口エッセイ：ご存知でしたか。わたしがずっと、あなたを軽蔑してたってことを</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 ※Twitterに連載していたエッセイからの抜粋です。↑で購入できますので、エッセイ集をぜひ読んでみてね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"Selected bite-sized essays: Did you know? That I've always despised you\n\nI think of the scene in Revolutionary Girl Utena episode 36, where Anthy declares, ``Did you know, Utena-sama, that I have always despised you?'' That's right. I've always been afraid of that, and no matter how much I try to have fun with my friends, I can't help but worry that someone will suddenly tell me, ``Did you know that I've always looked down on you?''\n 我想知道我是否在做一些客观上可笑的事情，比如假装成王子并表现得像个王子。有没有一个人可以让你从心底称其为最好的朋友？ Are you confident that they clearly like you?\n My fundamentals are always off, and the resolution of the world I clearly see is extremely low, so I keep repeating mistakes without realizing it.从小到大，周围的人都笑我说：“我走路的方式很奇怪。”我仍然不明白哪里出了问题。\n It's weird at the level of the way he walks, so it's no wonder that all the complicated acts of communication are so weird that I'm the only one who doesn't notice it.太可怕了。\n Still, I think Utena is very strong because she believes in Anthy and fights to revolutionize the world, even if the relationship is fundamentally overturned in the form of contempt.我是否能够摆脱自闭症的外壳并与人进行诚实的对话？\n If the egg shell is not broken, the baby bird will die without being born.我らが雛で、卵は世界だ。 If we don't break the world's shell, we will die without being born.世界の殻を破壊せよ。世界を革命するために。\n\n*这是 Twitter 上连载的一篇文章的摘录。可以在↑购买，所以一定要阅读散文集。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

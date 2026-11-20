@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：有趣的失业者</title>
+<title>一口随笔：有趣的无业者</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-13 13:40</p>
-  <h1>短文：有趣的失业者</h1>
+  <h1>一口随笔：有趣的无业者</h1>
   <p class="ja-title">一口エッセイ:おもしろ無職</p>
 </header>
 <main>
@@ -22,11 +22,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくお願いします♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：有趣的失业者\n\n我又睡着了，所以我把它当作一个问题来读。最近，我因为安眠药而睡得很多，我觉得如果我睡眠不足，我就会遇到麻烦。\n 嗯，这次的问题简单明了：“如何在心理上应对因为住在家里不工作而被朋友嘲笑。”这是常识，但显然提问者家里的每个人都靠买卖股票谋生。多么有趣的一家人啊……\n 总而言之，看到一个靠买卖股票谋生的家庭其实很有趣，所以如果你公开说出这一事实，对方可能会认为你是一个有趣的朋友。当有人问我“你以什么为生？”我回答说“我买卖股票”时，我最终将其放入“有趣的人”文件夹中。与那个人交谈绝对比与办公室职员交谈更多。无论如何，无法理解独特性的人与我们根本不相容，所以我们忽略他们吧！\n 即使你失业了，取决于你如何生活，你也可以成为一个有趣的人（其实失业一般更有趣），而且在“个性”方面，我认为你甚至可能有优势。在我发布游戏之前，每次我自信地回答“我看动漫、看书、睡觉！”时，都会得到笑声，这样更容易产生话题。如果说一个普通的上班族和一个处于特殊情况下的失业者之间有什么区别的话，我肯定会对后者感兴趣，而且世界上有很多这样的人。\n\n感谢大家对日记总结和商文集同人志的支持♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +45,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

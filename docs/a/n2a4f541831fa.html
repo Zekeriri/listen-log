@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇文章：好好生活</title>
+<title>一口随笔：善良地生活</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-19 05:59</p>
-  <h1>一篇文章：好好生活</h1>
+  <h1>一口随笔：善良地生活</h1>
   <p class="ja-title">一口エッセイ:善く生きる</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
 商業エッセイ集もよろしくね。レビューや評価までしてもらえると、なお魂が救われます。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇文章：好好生活\n\n我们偶尔聊聊大话吧。\n 今天，我们来谈谈我人生的意义和目标。凌晨 5 点是一个可以接受尴尬独白的时间，因为没有其他人在看。\n 基本上，我会等待适当的时机去追随佛教，并努力“戒除贪婪”和“不与他人比较”。由于我们不是苦行僧，所以我们不可能突然获得这样的解脱。年轻的时候，你随心所欲地生活，一点一点地实现你的愿望，然后取得某种成就，建立你的“自我”。\n 只要你有“自我”，你就不太可能将自己与别人进行比较。在当今世界，当我们打开智能手机并使用社交媒体将自己与其他人的数字进行比较时，即使我们不喜欢它，如果我们有诸如“创建游戏”之类的记录，这就会成为我们的个性......我们的身份，我们用别人无法做到的知识和经验来抵制自卑感。最终，随着年龄的增长，我们将能够放弃我们的欲望，然后我们就会满足并慢慢死去。\n 到时候，你这一生带的业力越少越好。尽量避免不可饶恕的行为，成为清净的身体。我没有足够坚定的信念去相信轮回或天堂地狱，但我应该保护我所建立的道德。例如，我不会做匿名攻击某人之类的事情。当你有那种阴险的时候，你会感觉你的灵魂被污染了。虽然这还不足以阻止其他人这样做。此外，划清界限并不是犯罪，我认为我不会因为求知欲而厌恶犯罪。这一切都取决于灵魂抽象部分的感觉。\n 这样，在抛弃贪婪和业力的同时，目标就是过上美好的生活。 “为善”的模糊指示困扰着我自闭症患者，但随着我读了越来越多的哲学书籍，我开始认为吸收知识和增加世界的分辨率是一种“善”。\n 知识并不一定意味着好的，但相信知识并过我的生活对于我这样一个天生自闭症患者来说是一个很容易的选择。如果你每天坚持看书、看动漫、看评论，就会走向“知识=善良=幸福”，而且会很容易。你不必考虑困难的事情。\n 所以，我今天确立个性、磨练手艺（虽然节奏很悠闲），朝拜亚文化圣地中野百老汇，通过阅读和动漫/电影内容培养知识（虽然我只是一个宅男消磨时光）的日子，都证明了我在做好事，过着幸福的生活。\n 写下这些似乎有点傲慢，但如果你不相信自己正在走向幸福，你将无法理智地生活。\n\n包含每日日记的同人志正在 BOOTH 发售！如果你买了，我看的书就会增加。\n\n我期待着阅读您的商业论文集。如果您甚至可以留下评论或评分，这将拯救您的灵魂。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

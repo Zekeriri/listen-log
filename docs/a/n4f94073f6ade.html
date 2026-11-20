@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>毕竟我想成为“萌”……</title>
+<title>果然还是想“萌”啊……</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-03-10 02:54</p>
-  <h1>毕竟我想成为“萌”……</h1>
+  <h1>果然还是想“萌”啊……</h1>
   <p class="ja-title">やっぱり&quot;萌え&quot;たいんだよなぁ……</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"毕竟我想成为“萌”……\n\n我想起了 Young Jean 的特别单曲“白金诺埃尔最喜欢的叔叔”中的台词，“不，不，不，叔叔......我真的很想成为萌......”\n\n是的，我想成为“萌”。 “Oshi”则不同，因为它太活跃了。 “珍贵”并不适合这种神圣和宗教的感觉。尊重是社交性的，并且具有很多传教意义，说：“我喜欢的人太棒了！”这本身就是一件好事。告诉其他人您最喜欢的角色的优点。分享话题也有助于销售和受欢迎程度。在社交媒体时代，口碑的力量变得更强，这似乎是一个恰当的表达。\n 但情况不同。毕竟，老夫想当“萌”。\n “萌”的概念完全是内在的。你可以称其为御宅族般的自闭症表达。其他人的存在并不重要。她只是看着眼前走来走去的美少女角色，一脸傻乎乎地说：“你真可爱……”。不多不少。它非常接近“可爱”，但它更像是一部深夜动画，这是一种因精心制作而产生的独特感觉。韩的态度是接受任何给他的东西，没有任何抵抗。我不关心细节。我嘴里只会说“萌~~~~哈哈”，我不在乎别人怎么看。在我说任何太困难的事情之前，我所能做的就是告诉你，你也应该感到兴奋。\n\n比如说这位小樱呢？ “我可以推荐它......”“珍贵”“情感”“可爱”。毕竟，没有什么感觉是对的。是的，我感到一种兴奋的刺痛感，一点点尴尬，以及对二维角色未实现的祈祷的悲伤。这些东西的混合体不是“萌~~~哈哈”吗？\n 我想这就是这个意思。从今往后我还要继续捣乱。只要有萌，二次元角色就不断在这个世界诞生。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

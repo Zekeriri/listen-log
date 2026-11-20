@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：光线昏暗的房间</title>
+<title>一口随笔: 昏暗的房间</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-03 02:41</p>
-  <h1>短文：光线昏暗的房间</h1>
+  <h1>一口随笔: 昏暗的房间</h1>
   <p class="ja-title">一口エッセイ:薄暗い自室</p>
 </header>
 <main>
@@ -23,11 +23,10 @@
  次はもっと明るい部屋にしてみよう。太陽の光はまだ怖いけれど、せめて有機交流電灯の青い照明くらいは、僕の内面を優しく照らすことになっても許してくれるでしょう。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：光线昏暗的房间\n\n房间很暗。\n 我的房间感觉很暗，所以当我环顾四周时，我发现里面很冷很冷。特别是房间本身的照明似乎没有问题，所以我想知道发生了什么事，然后发现我的房间总是很暗，因为光线没有一直到达边缘。在这里生活了一年多，我终于明白了。\n 我现在的房间有白色的地板，这是我喜欢的，而且我根据如何装饰人物和书籍来规划布局，所以我想我一开始并不担心房间本身缺乏光线。无论春夏秋冬，白天黑夜，外界的一切光线都被漆黑的窗帘隔绝。我觉得我的房间就像一座城堡，是一面反映我内心世界的镜子，所以我在拒绝别人的“光”……换句话说，他是自闭症。这没有什么问题。\n\n然而，今晚很特别，我感到一种人格解体的感觉。有时候也会有这样的时候。这是与我们自我意识的脱节，我们看不起自己，客观地看待自己，强迫自己从“极其冷静的第三方”的角度来评判自己。当我以天堂的第三人称视角环顾房间时，我发现尽管我布置得很讲究，里面摆满了我喜欢的东西，但由于光线不足，一切都显得昏暗。这是本末倒置。\n 我其实不太喜欢阳光。因为我体内流淌着吸血鬼的血液，我本能地避开它。然而，由于我独立的生活方式，我什至没有意识到，如果我只是给我的房间增加更多的光线，我就能更舒适地享受事物。如果一个展示你傲人身材的展示柜被埋在阴影中，它就无法充分发挥其潜力。这是我人生的一大损失。\n 下次，尝试让房间更明亮。我仍然害怕阳光，但至少我能够忍受有机交流灯的蓝光，即使它轻轻地照亮我的内心世界。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

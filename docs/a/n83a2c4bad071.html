@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：“不读书证明你并不孤单。”</title>
+<title>一口随笔: 「不读书的人，正是未曾孤独的证据」</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-17 09:11</p>
-  <h1>短文：“不读书证明你并不孤单。”</h1>
+  <h1>一口随笔: 「不读书的人，正是未曾孤独的证据」</h1>
   <p class="ja-title">一口エッセイ: 「本を読まないということは、そのひとは孤独ではないという証拠である」</p>
 </header>
 <main>
@@ -22,11 +22,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：“不读书证明你并不孤单。”\n\n用太宰治的话来说，“不读书，就证明一个人并不孤单。”太宰治对此如此讽刺，很有趣。\n 这句话揭示了太宰的“孤独的人用书作为逃避的地方”的想法，相反，孤独的人必须通过读书来生活。或者，通过阅读互动来结交朋友。如果你们有共同的兴趣，你们就可以相对容易地交到朋友。昭和时代的读书文化也是寻找志同道合的人的一种手段。现在游戏和动漫可以替代，正是好时机。\n 此外，用太宰的话来说，“那种不读书就能享受生活的人”会感到孤独。即使不刻意加入亚文化，他们也有朋友。你不必感到孤独。这样的事能忍吗？那些拥有充分享受生活的天赋的人。\n 所以，为了超越他们，你必须大量阅读，积累知识，并基于这些知识进行竞争。因为书是我们唯一的武器，所以我们在书的世界里战斗。就这样，太宰治成为了文学巨匠。如今，不仅可以在书本上竞争，还可以在互联网上竞争。为了与不孤独的人竞争，只有互联网的人可能别无选择，只能集中精力并掌握它才能“获胜”。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +45,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：一个人坐在人群边缘玩智能手机。</title>
+<title>一口随笔：在聚会边缘蹲着玩手机的人</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-23 09:57</p>
-  <h1>短文：一个人坐在人群边缘玩智能手机。</h1>
+  <h1>一口随笔：在聚会边缘蹲着玩手机的人</h1>
   <p class="ja-title">一口エッセイ:人の集まりの端っこで体育座りしながらスマホ弄っているヤツ</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 商業エッセイ集の方もよろしくね。みんなが集まっている時に、そっと群れから離れて読んでみてね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：一个人坐在人群边缘玩智能手机。\n\n我本质上是一个孤独的人，在现实世界中我一个人看书、看动漫、一个人睡觉就很好了，但当我打开智能手机时，我总是希望有人能和我说话。\n 这是我的特点。我喜欢看到别人大惊小怪，但我并没有特别想和他们互动或者和他们交往的欲望。当Twitter引入社区功能时，我创建了一个房间，700个陌生人聚集在一起，每个人都在日夜谈论某种话题，而不用担心关注者的数量或他们是谁。我什么也没写。\n Discord 服务器建立已经一个月了，我们现在有 4000 名会员。在这里，很多人也通过与自己感兴趣的领域相关的渠道慢慢地相互交流。不管什么时候打开，看上去都是轻松有趣的（虽然仔细看的话可能会看到一些小战斗），我觉得还是不错的。不过，除了生意上的事情，我还是很少说什么。\n 有时我不喜欢经理插手事情时产生的等级关系，但如果有的话，我可能喜欢“不舒服地坐在很多人聚会的角落里”的位置。我想加入谈话，但我没有勇气或话题可以谈论，但我感到不舒服和害怕回家，所以我觉得我在等待有人关注并与我交谈。出于某种原因，我喜欢人们可以在互联网上体验这一点。\n 这种“虽然孤独，但更喜欢独处，虽然看别人热闹，但从不参与”的心态，导致了他神秘古怪的行为，经营社区、服务器，拉拢尽可能多的宅男。\n\n包含日常日记的同人志现已在摊位上出售。谢谢。\n\n我还想要一本商业论文集。当大家聚集在一起时，尝试远离人群安静地阅读。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

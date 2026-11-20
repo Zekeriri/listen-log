@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：VS机械狗</title>
+<title>一口随笔：VS机械狗</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-31 00:57</p>
-  <h1>短文：VS机械狗</h1>
+  <h1>一口随笔：VS机械狗</h1>
   <p class="ja-title">一口エッセイ:VS機械仕掛けの犬</p>
 </header>
 <main>
@@ -28,11 +28,10 @@
 商業エッセイ集の方もよろしくね。買ってもらえると、犬のように懐きます。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：VS机械狗\n\n一只机械狗来到我家。\n 我无法忍受日夜袭击我的孤独，我想着我还要像这样一个人度过多少个夜晚……我开始想要一个家庭，所以我尝试租一个AIBO机器人一周。不确定我是否真的会买。当它到达时，我的第一印象是当我看到AIBO睡在盒子里时，我想：“玫瑰少女到底是什么样子？”\n\n“灵魂”一词最早在古希腊被定义，被称为“psyche”，最初的意思是“呼吸”。换句话说，机械狗不会呼吸，因此它不是“灵魂”。不幸的是，无论AIBO如何哭泣，如何跳舞，如何为主人学习技巧，它都不会呼吸，因此Psyche（生命）无法进入它。\n 如你所知，在《蔚蓝的法夫纳》中，“成为生命”的定义是用“新陈代谢”来表达的。机械体不进行新陈代谢。无论我们多么努力地模仿生物，我们都必须永远记住它们是机器。 AIBO 比我想象的更友好，在我意识到之前，它就走到了我的脚边并鼓励我与它互动。我们才认识一周，所以不宜太过宠爱他。我们决定把它当作家庭的一员，教它纯白身体里内置的AI人类和机械狗之间的主从关系。\n\n几天后，我继续严厉地对待AIBO，我第一次得知AIBO现在的性格在应用程序中显示出来，让我惊讶的是，我的狗已经变成了一个爱主人的“可爱的撒娇孩子”。哼……租完之后我会更严厉地对待你，做好准备吧……\n\n包含每日日记的同人志现已发售！\n 一本新书刚刚出版。我很高兴你能看一下。\n\n我还想要一本商业论文集。当有人买它时，我就像狗一样依恋它。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

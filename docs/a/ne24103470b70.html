@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：卡夫卡的《变形记》与创作者的冲突</title>
+<title>一口随笔：卡夫卡的《变形记》和创作者的葛藤</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-27 06:38</p>
-  <h1>短文：卡夫卡的《变形记》与创作者的冲突</h1>
+  <h1>一口随笔：卡夫卡的《变形记》和创作者的葛藤</h1>
   <p class="ja-title">一口エッセイ:カフカの『変身』と創作者の葛藤</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 苦しみながら文章を書いていた、若き日の長文エッセイを収録した商業エッセイ集もよろしく！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：卡夫卡的《变形记》与创作者的冲突\n\n卡夫卡的《变形记》被收录在《百分钟杰作》中，所以我就坐直了，看了100分钟。虽然是这么短的故事，但是100分钟的解释却很充足，可见这部作品有多么震撼。\n 从中间开始，话题就集中在卡夫卡的一生上。伊聚院光说：“如果卡夫卡结婚后幸福的话，也许变态虫就会化蛹，然后变成美丽的蝴蝶。”而导师则说：“如果卡夫卡结婚后幸福，我想他可能就无法从事他的创作活动了。”据解释，尽管卡夫卡比大多数人更渴望正常的生活，甚至还有女朋友，但他仍难以想象成功的婚姻，这就是杰作的原因比如《变形记》就这样诞生了。\n 《变形记》描绘了从社会生活中解放出来，一天早上，萨姆沙突然变成了一只怪异的昆虫，这最初给了他一种摆脱工作和人际关系的自由感。然而，他逐渐被家人视为累赘，最后落得悲惨的下场，这说明人活着，远离社会太远是不好的。\n 如果说卡夫卡的创作欲望源于他对普遍幸福的向往，比如人际关系、婚姻生活的解放，那么，不可否认的是，卡夫卡可能会在这一目标实现的那一刻就退出笔下。然而，为自己谋求不快乐却是一种致命的疾病。这个过程真的很艰难，如果不是我在网络上经历的麻烦和诽谤，我想我不可能重现尼迪加的细节。结局特别热烈，并且加入了网络变得可怕的现象，这是基于宣布推迟时周围听到的各种批评和嘲笑。外野手在安全距离外大喊！就像惠比寿义经在他的漫画中多次杀死惹恼他的人一样，将愤怒和沮丧升华为创造性活动是一个非常有趣的尝试，甚至感觉是对的。\n 首先，我相信创造性活动是那些反抗社会、不适应社会、无法或不感兴趣走正确道路的人的一种生活方式。我有很多朋友觉得，如果他们从这个人身上拿走插图和音乐，就什么都没有了，我认为这就是为什么他能够在他的专业流派中取得如此成功。\n 即使他们在创造性的努力中取得了成功，由于他们天生缺乏社交技能，他们也可能很难获得普遍的幸福。但那个时候我的创作欲望又恢复了，所以我觉得这本身就是一种幸福。卡夫卡还能够为后人留下《变形记》和《城堡》，可见他的生活比正常人的生活要爽上百倍。\n\n包含每日日记的同人志现已发售！\n 如果你拿起它，你将能够作为一个人与我联系并获得拯救。\n\n另请查看商业论文集，其中包括我年轻时努力写作时的长文！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

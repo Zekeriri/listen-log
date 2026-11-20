@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：青春期及其他</title>
+<title>一口随笔: 青春期与他人</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-10 05:47</p>
-  <h1>短文：青春期及其他</h1>
+  <h1>一口随笔: 青春期与他人</h1>
   <p class="ja-title">一口エッセイ:思春期と他者</p>
 </header>
 <main>
@@ -31,11 +31,10 @@
 思春期のような初々しさ溢れる商業エッセイ集もよろしくね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：青春期及其他\n\n很抱歉回答了这么多问题，但我想回答这个问题。\n 总而言之，他说：“每个人都处于青春期，所以他们都会说，‘我应该长大了。’没有人独自面对我，我用青春期这个词来消除我的忧虑和痛苦。”\n\n在问这个问题之前，我认为这篇文章是基于我对青少年担忧的回应，即“当你成为成年人时，痛苦会消失。”这个人说的是正确的。由于每个人都是不同的，因此将一切都与“青春期”联系起来是不公平的。不过，大人的看法也没有错。\n 与一个人打交道是极其昂贵的。发言3.4分钟需要支付多少千日元（费用的30%）？然而，残酷地说，直面你的个人问题直到它们得到解决，对你来说简直是一件坏事！\n 因此，在写作中听不认识的人说话时，有必要划清界限。否则，你的时间就会无休无止地浪费在咨询上。你别无选择，只能在某个地方彻底切断它。在这种情况下，“年轻”被用作根本原因，或者反过来，作为解决方案的线索。这对于说这句话的人来说可能没有说服力，但我希望你记住，这也是成年人随着时间的推移解决了各种问题的真理。\n 提出这个问题的人总结道：“我只是想让你说，‘我希望你生活在肯定中。’（这是诗意且美妙的），但在这种情况下，它不再是一个‘咨询’，而更像是一个‘测验’，看看你能说什么来回应。”也有可能是大人根据经验察觉到孩子处于问答情境，从而放弃了谈话。如果每次发生事情就有人问我测验，那就有问题了。\n 其他人就是这样。即使是家人或朋友，除非有重大问题，否则他们不会深入了解对方。我认为善良意味着理解，但理解别人需要很大的耐心。因此，我们也划清界限，说：“除此之外，没有什么能真正被理解。”我认为，最能体现那些尚未放弃的人的青春的答案是“因为这是青春期”。\n 毕竟别人就是别人，要让他们真正面对自己，唯一的方法就是去医生办公室（大约5分钟）或者咨询（他们谈了大约一个小时，但是很贵）！由于孩子们没有那么多钱，所以老师和学校辅导员会为他们提供帮助。我怀疑前者是否愿意从性价比的角度来处理，但后者是他们的工作，所以我认为他们会仔细倾听。\n 毕竟，知道除了自己以外的所有人都是别人，这才是让你登上成年阶梯的原因，但为了成长，你必须学会​​这样一种逆来顺受，这是非常可悲的。\n\n包含每日日记的同人志现已发售！\n 现在我可以面对我的心了。\n\n希望您喜欢这本充满青春纯真的商言文集！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

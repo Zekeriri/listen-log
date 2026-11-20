@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文精选：一座巨大的精神病房</title>
+<title>精选一口随笔：巨大的精神病院</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-22 21:24</p>
-  <h1>短文精选：一座巨大的精神病房</h1>
+  <h1>精选一口随笔：巨大的精神病院</h1>
   <p class="ja-title">選り抜き一口エッセイ:巨大な精神病棟</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 かなりアレな時期の長文エッセイをまとめた商業エッセイ集もよろしくお願いします。かなりアレな内容。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文精选：一座巨大的精神病房\n\n当人们突然开始批评我“正确”时，我感到很惊讶。当每个人沉迷于互联网时，他们都会在某种程度上崩溃。这对我和你来说都是一样的。我的印象是，我在一个叫做SNS的巨大精神科病房的摇篮里接受了很长一段时间的治疗。\n 这就是为什么每当我看到人们用诸如“这家伙没有常识”或“这家伙有发育障碍”之类的评论来激怒别人时，我很惊讶他们在互联网上利用自己的健康和社交能力作为武器。\n 由于我们的学习能力很低，我们别无选择，只能通过我们的身体来学习这一点，反复误读他人的距离和感受，从而导致我们自己的毁灭。这样，你就会一点一点成长。\n 我认为从现实世界来看，我们都是奇怪的人。只是损坏的部分有所不同，但损坏得恰到好处。首先，你继续看不起别人、揭露别人，这可能是一种病态或情结。如果你没有真正注意到它，那么你很可能患有同样的疾病。精神病房里的病人之间没有等级关系。\n 我认为偶尔引起一些问题是无济于事的，因为我正在努力在前进的过程中治愈。我想我不会再过多地提起旧故事了。尽管进展缓慢，但正在取得进展，所以最好放弃过去。宽容意味着有余地，有余地是成熟的标志。\n 我希望人们和病人呆在同一个地方。我一直这么想。\n\n我们正在出售编辑日常文章的同人志。如果你能买这本新书，我会很高兴。你在哪里读到的并不重要。\n\n我还想看一本商业论文集，其中汇集了非常不寻常时代的长篇文章。相当奇怪的内容。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

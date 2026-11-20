@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：道歉访问</title>
+<title>一口随笔：致歉拜访</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-04 07:09</p>
-  <h1>短文：道歉访问</h1>
+  <h1>一口随笔：致歉拜访</h1>
   <p class="ja-title">一口エッセイ：お詫び訪問</p>
 </header>
 <main>
@@ -23,11 +23,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：道歉访问\n\n我住在一个奇怪的房间里，墙壁很大（所以我用了书架），所以好几年没人租了，所以房间一直被忽视，而且水倒流了，所以我不得不做一些大的建设，走廊里的设备发出奇怪的噪音，但我没能找到半导体来修复它，所以令人毛骨悚然的声音在整个房间里回荡。不过，这并不是我不能忍受的事情。\n\n我曾多次就这个问题与房地产经纪人联系过，但今天他们再次在电话中道歉，说：“我们无法获得半导体，对于由此造成的不便，我们深表歉意。”既然他们终于租到了多年来一直闲置的房间，他们可能想和她住在一起很长一段时间。但他接着说道：“我下次可以过来道歉吗？”\n 道歉！ ？只要让他们通过电话解释一下情况就足够了，即使他们道歉，也不会让他们更快获得半导体。如果有的话，我尽可能不希望房间里有其他人。我对这个意想不到的提议感到惊讶，我的思考加速了。难道道歉是假的，重点是进房间检查什么吗？还是背后另有隐情？和。\n 最后，因为我不想尽可能多地见到其他人，所以我拒绝了，谎称我很忙，但我担心如果他接受道歉会发生什么。世界上有这样的体育文化吗？世界依然充满奇迹。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

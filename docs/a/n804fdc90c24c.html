@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：在 Twitter 上发布内容背后的原则</title>
+<title>一口随笔：在Twitter发布文章会被挑刺的原理</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-25 03:13</p>
-  <h1>一篇简短的文章：在 Twitter 上发布内容背后的原则</h1>
+  <h1>一口随笔：在Twitter发布文章会被挑刺的原理</h1>
   <p class="ja-title">一口エッセイ:Twitterに文章を投稿すると突っ込まれる原理</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくお願いします♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：在 Twitter 上发布内容背后的原则\n\n“Instagram 比 Twitter 更平和，”我在日记中写道。请注意，这并不是要推翻 Twitter（尽管这在某种程度上是我的意图），我只是写下了我的感受。\n 然后Waku先生（我喜欢写文字）同意我的观点，并补充道，“在Twitter上，即使带有图像的推文被传播，你也不会被陌生人吸引，但如果你用文字推文，你就会被（平行翻译）。”正如你所说。即使一张温馨、平和的图片或让你开怀大笑的图片在网上疯传，你也很少会收到不好的回复。如果它变成基于文本的，无论你做什么，你都会得到无穷无尽的回复。\n 我认为御宅族是如此充满了匿名文化的摔跤精神，以至于当他们读到他们不认识的人写的东西时，他们会不自觉地感到紧张。在 Twitter 上更是如此，其中的细微差别只能用 140 个字符来传达。你们是否都有被别人的推文困在脑子里的习惯，即使你没有真正回复或说出来？这就是御宅族明显的本能（大胆的假设）。\n 你无法在写作中读出情感，而且与书本不同，你不是独立的，在网上你可以反驳别人的写作。无论好坏。如果发生这种情况，人们可能会受到接管坐骑并占据上风的欲望的驱使。当然，大多数人心里都会做这种不必要的事情。然而，有些人可能无法抗拒，最终说出了真相。我说的是：“不管你说多少，这不是不礼貌吗？”\n 在匿名留言板的鼎盛时期，这很好。因为他们不是“个人”，所以即使被激怒，也是一生一次的不负责任。然而，现在每个人都有一个“个人”，称为账户。那样的话，在匿名的幌子下不断地受到指责和批评就会感觉很麻烦。也许读到这里的你已经渴望反驳我的理论了。这是我的日记，所以我可以写任何我想写的东西。\n 如果这个假设是正确的（我只是在思考，所以可能有点粗糙），那么年轻人离开 Twitter 并转向 Instagram 和 TikTok 等图像和视频文化也就不足为奇了。毕竟，你受到奇怪批评的可能性很小。因为有图片，情感才能正确传达。\n 不过，即使是这样，也无所谓了。如果有一件事情是确定的，那就是匿名公告板的阴险氛围肯定会被今天的互联网所回避。我想这只是我们这些二十多岁及以上的人应该如何应对的问题。在这个日新月异的网络社会，匿名公告牌的风格还能维持多久？ （斋藤 vs. 海水）。\n 这次之所以有这么多评论，很可能是为了减少无良吐槽（爆料）的一次实验。\n\n感谢大家对日记总结和商文集同人志的支持♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

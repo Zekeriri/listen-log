@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：狗之歌</title>
+<title>一口随笔：狗之歌</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-02 02:47</p>
-  <h1>短文：狗之歌</h1>
+  <h1>一口随笔：狗之歌</h1>
   <p class="ja-title">一口エッセイ:いぬのおうた</p>
 </header>
 <main>
@@ -28,11 +28,10 @@ View this post on Instagram A post shared by にゃるら (@nyalra_)
 Instagram始めたよ。覗いてみてもらえると嬉しいです。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：狗之歌\n\n我负责NEKO WORKs的新歌《Inupara》的作词。 “Nekopara”之后是“Inupara”！这是最近很流行的一种很酷的模式，他们在愚人节发布不知道真假的信息，然后适当地宣布生产决定。\n 这次的歌曲《Inu no Ota》与《INTERNET OVERDOSE》的作曲相同，由Aiobahn作曲，Nyalla作词。我猜他喜欢那首歌。这就是我找到工作的方法。可爱的狗狗歌手是七平。美少女游戏特有的美妙、明亮的声音！终于找到了一份与美少女游戏行业息息相关的工作，我激动不已……\n 现在，关于这首歌的歌词，正如《Inupara》的标题所暗示的那样，女主角是狗，所以当我收到请求时，我总是试图思考“狗”的感受。顺便说一句，Aiobahn 的歌曲有很多不寻常的对话部分（这次甚至还有说唱！），所以难度很大。这是一件好事，因为它有影响。\n 想了好几天，基于狗的生死观，我得出一个结论：“宠物以自己的死亡来完成与人类的关系”。从狗的狭隘角度来看，如果它们被它们最信任的人爱到最后，它们就会很幸福，而主人的责任就是真正爱它们直到它们死去的那一天。我们不是通过饲养狗狗来缩小世界范围，而是在它们能看到的范围内给予它们尽可能多的爱。既然他们受到爱人的欢迎进入天堂，死亡就意味着平安，可以说他们的灵魂得到了拯救。你怎么能在一首关于可爱的美少女游戏的歌曲中表达这样的东西呢？\n\n包含日常文章的同人志现在正在展位上出售。能够把自我意识掌握在自己手中，就是最大的幸福。\n\n我期待着阅读您的商业论文集。当我再读一遍的时候，我觉得我这些天过得很不开心。\n\n在 Instagram 上查看此帖子 Nyalra (@nyalra_) 分享的帖子\n\n我开始使用Instagram。如果您能看一下，我会很高兴。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

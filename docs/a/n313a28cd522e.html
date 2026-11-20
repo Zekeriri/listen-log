@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>论文选：母亲的男朋友和非法ROM</title>
+<title>精选一口随笔：母亲的男友与非法ROM</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-11-30 01:56</p>
-  <h1>论文选：母亲的男朋友和非法ROM</h1>
+  <h1>精选一口随笔：母亲的男友与非法ROM</h1>
   <p class="ja-title">選り抜き一口エッセイ: 母親の彼氏と違法ROM</p>
 </header>
 <main>
@@ -23,11 +23,10 @@
 ※Twitterに連載していたエッセイからの抜粋です。↑で購入できますので、エッセイ集をぜひ読んでみてね</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"论文选：母亲的男朋友和非法ROM\n\n我上小学的时候，我妈妈的一个男朋友是个中年男人，现在想起来，还挺宅男的。当然，我母亲的男朋友一般都不太讨人喜欢，我不喜欢他为了取悦她母亲而强迫自己与她相处的方式。我立刻就看出她不喜欢孩子。\n 然而，这个男人却不同。当他递给我一张可疑的CD-ROM时，他说：“如果你把它放到你的电脑上，你就可以玩所有你最喜欢的Game Boy Advance软件。”那一刻，我意识到这是极其违法的。这个人似乎真的很期待通过光盘和我一起玩这个游戏，我可以看出他很兴奋，因为他想象着当我启动模拟器时我的眼睛会发光。\n 我以为还有这样的大人呢。不出所料，磁盘中的内容充满了非法ROM，这些ROM一定是被丢弃在某个地方的，而那个人礼貌地指导我如何做错误的事情，说：“选择你最喜欢的软件，然后点击这里。”我只是惊讶于她与那些只教正确东西的学校老师完全相反。\n 过了一段时间，他的母亲显然和他分手了，只来看望过他一次。做一个中年极客大概不是他母亲的爱好。我的下一个男朋友是一个像美国佬一样喜欢EXILE的人。他是一个可能连电脑都没碰过的人，所以我并没有和他真正交谈过。\n 不知不觉中，CD-ROM 已经不知去向了。也许她的母亲抛弃了她。没想到这比你带我来的那些人的假善好几倍地感动我的心。\n\n*这是 Twitter 上连载的一篇文章的摘录。可以在↑购买，所以一定要阅读散文集。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

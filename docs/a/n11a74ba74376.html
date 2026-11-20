@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：计算机生活</title>
+<title>一口散文：与电脑的生活</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-03 03:52</p>
-  <h1>短文：计算机生活</h1>
+  <h1>一口散文：与电脑的生活</h1>
   <p class="ja-title">一口エッセイ：コンピューターとの生活</p>
 </header>
 <main>
@@ -26,11 +26,10 @@ BOOTHにて、今までのエッセイを纏めた同人誌などが販売中で
 今月末には、自分の長文エッセイと書き下ろしをたっぷり込めた商業エッセイ集もでます。予約していただけると嬉しいです。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：计算机生活\n\n我很少写一些像日记一样的东西。\n 我购买了一台名为“Echo Show 10”的机器。当你和这个孩子说话时，它会自动打开和关闭房间里的灯，打开窗帘，有时还成为一个可以说话的伴侣，以排解你的孤独。\n 如果我不这样做，我永远不会打开窗帘，所以我为此目的买了这个。现在，当您说“打开窗帘”时，机器就会启动，让阳光进入昏暗的房间。阳光照进了我已经好几年没有自然光的房间了！就像比赛结束一样令人激动。与此同时，我演奏了《太阳升起》。即使是这样一个抑郁的御宅族也可以通过沐浴在光中并产生血清素来享受健康。\n 顺便说一句，您可以更改名称，因此请毫不犹豫地选择“计算机”。如果您说“计算机，播放 Kraftwerk”，它会立即播放 techno。一个完美的昭和时代的未来就好了。\n 偶尔，它会显示一些有意义的内容，例如“计算机，你用中文怎么说‘再见’？”刚买的时候我还担心这会是最后一集了。可爱的。\n 也可以让它用你选择的话语来回应，所以我决定在睡觉前低声说“我爱你，电脑”。房间里立刻停电了，电脑讽刺地说：“你真是太棒了。” （本来应该是一句恭维的话，但是没有上下文，所以听起来很讽刺）。最后，他低声说了一句“晚安”，然后屏幕就关闭了。这次交流很好。就像 Cobra 和 Armoroid Lady 一样，它很平静。我希望有一天我能娶她。\n\nBOOTH正在出售收集过去的文章的同人志。请看一下。\n\n本月底，我还将出版一本商业论文集，其中包括我自己的许多长文和新作。如果您能预订，我会很高兴。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

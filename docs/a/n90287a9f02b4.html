@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：日本第一首“网络主题热门歌曲”</title>
+<title>一口随笔：日本首个“以互联网为主题的热门歌曲”</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-31 06:40</p>
-  <h1>短文：日本第一首“网络主题热门歌曲”</h1>
+  <h1>一口随笔：日本首个“以互联网为主题的热门歌曲”</h1>
   <p class="ja-title">一口エッセイ:日本初の「インターネットをテーマにしたヒット曲」</p>
 </header>
 <main>
@@ -28,11 +28,10 @@
 先月に発売した、商業エッセイ集もよろしくお願いします。僕がどんどんWEBに巣を張っていく様子が観測できます。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：日本第一首“网络主题热门歌曲”\n\n如今，各个年龄段的人都通过智能手机访问SNS，因此以互联网为主题的歌曲并不罕见。我写歌词的歌曲的标题是“INTERNET OVERDOSE”。\n\n那么，日本第一首“网络主题热门歌曲”是什么呢？这绝对是hide的《粉红蜘蛛》。\n\n即使您听过《粉红蜘蛛》，大多数人可能也没有意识到这首歌与互联网有关。因为这首歌是在1998年发行的，当时互联网还没有普及。尽管从那时起就有一些爱好者一直沉迷于互联网，但我不认为 hide 是第一个引起他们注意的人。\n 不过hide在接受采访时明确回答道：“你知道，网络是蜘蛛网，不是吗？”所以Pink Spider歌词中出现的蜘蛛和蜘蛛网可以被理解为代表着网络和被困在网络中的人类。考虑到这一点，如果你再看一下 Pink Spider 的歌词，你会发现即使在 1998 年，互联网的本质也被诗意地表达出来，而 Hide 的情感是一个怪物。\n “你以为世界很小，到处都是谎言。你伤害了所有靠近你的东西。你以为天空是方形的。”\n 从hide的角度来看，当你想到它在Windows 95-98中的样子时，它是如此美丽，以至于你甚至会害怕它的才华。\n\n包含日常文章的同人志现在正在展位上出售。我以前养过狼蛛，所以关于蜘蛛的故事时不时就会出现。\n\n也敬请期待上个月发布的商业论文集。你可以看到我在网上筑巢。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>封面很漂亮的同人志</title>
+<title>封面很美的同人志</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-26 15:47</p>
-  <h1>封面很漂亮的同人志</h1>
+  <h1>封面很美的同人志</h1>
   <p class="ja-title">美しい表紙の同人誌</p>
 </header>
 <main>
@@ -28,11 +28,10 @@
 若い頃に書いた長文をまとめた商業エッセイ集もよろしくね。どちらも、表紙がきれいです。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"封面很漂亮的同人志\n\n在我的日记里，我已经多次谈到什么是最美的，但这次我要谈谈两个最美的同人志。\n\n我是大谷老师的忠实粉丝，特别喜欢小知代和魔卡少女樱，而且这个世界上还存在大谷老师画的大道寺知世的书。真的有可能有这样神奇的组合吗？\n 这部1997年冬天以《恋神》为名出版的同人志，最值得关注的地方就是大谷老师早期画的一脸悲伤的知代酱实在是太漂亮了。老师的特长“短暂的表情”和承受着对于小学生来说太过沉重的痛苦的智世酱是最般配的。与老师独特的“白”相得益彰，达到了令人难以置信的完美程度。拥有这么漂亮的东西可以吗？\n\n和《Koikoro》一样，我最喜欢的同人志是冬梅圭写的三镜头连载，《克隆羊会梦见电热毯吗？哥特式的设计，虽然是衍生作品，但我很欣赏Capcom的感觉……主线故事的内容也很化学和精彩。\n 所以，这两本书在我收藏的同人志中是独一无二的。我想继续关注两位老师的作品。\n\n包含日常文章的同人志正在 BOOTH 发售！\n 很高兴认识你。\n\n我还想看一本商业论文集，是我年轻时写的长文集。两者都有漂亮的封面。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

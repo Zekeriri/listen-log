@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇文章：心</title>
+<title>一口随笔：心脏</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-09 03:47</p>
-  <h1>一篇文章：心</h1>
+  <h1>一口随笔：心脏</h1>
   <p class="ja-title">一口エッセイ:心臓</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇文章：心\n\n除了头痛和极度困倦之外，我还耳鸣、出汗，所以我感觉我的自主神经系统可能疯了。\n 今天，当我和某人说话时，我开始感到心悸和困倦，这让我感到非常困难。谈话结束时，我太专注于勉强听清谈话内容，以至于我根本不记得自己在说什么。我实在是太困了，让我很惊讶，但我还是尽力忍着，认为在和别人说话的时候睡着是很不礼貌的。然后，我的心悸就更加剧烈了。\n 人体的运作依赖于心脏，所以心脏这个能量罐如果出了问题，一切都会出问题。正如我之前在日记中写到的，人在心跳的时候会感到焦虑。如果你焦虑，你的心跳就会加快，如果你的心跳加快，你就会自动变得焦虑。精神变态者即使在做危险的事情时通常也不会心跳加快，因此即使在犯下谋杀罪后，他们也能冷静地行动。很方便。\n 不知道是压力大还是植物神经紊乱，最近心跳加快，自动感到焦虑。这令人惊讶。即使我只是在和人说话或走路，我的心却在狂跳，无法保持平静。我现在就想逃跑。这样做根本没有任何好处。人体是很奇怪的。\n 我在房间里还算平静，但实际上我遇到了麻烦。如果我在和你说话的时候逃跑了，那与谈话无关，只是我的心跳得太快，以至于我失去了冷静。这是一个无法阻挡的浪漫局面。如果我现在就谈恋爱的话，我的心跳恐怕会跳得很厉害。\n 最好是有一个神秘的美丽女孩出现，拉着我的手臂，带我去合适的医院，虽然我紧张得要疯了，但我正在慢慢接受治疗……\n 我本想今天早点睡觉，集中精力恢复，但因为病了，我不得不熬夜。你想看女孩子的动漫和特效吗，哪怕这意味着缩短你的寿命？我问我的心，我的心开始跳得很快，所以我想我爱上了周日早上的节目。这个家伙能承受《漂亮》系列结局的震撼吗？\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：从一开始就没有什么的不幸福，和失去本来就拥有的东西的不幸福</title>
+<title>一口散文：从一开始就“没有”的不幸与失去“已有”的不幸</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-18 03:38</p>
-  <h1>短文：从一开始就没有什么的不幸福，和失去本来就拥有的东西的不幸福</h1>
+  <h1>一口散文：从一开始就“没有”的不幸与失去“已有”的不幸</h1>
   <p class="ja-title">一口エッセイ:初めから「無い」不幸と「ある」ものを失う不幸</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 今月末には、商業エッセイ集も発売します。表紙がかっこいいので、加湿器より優先して買って下さい。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：从一开始就没有什么的不幸福，和失去本来就拥有的东西的不幸福\n\n回想起来，我意识到我一生中从未接触过加湿器，所以我决定买一个，因为我可以用 Alexa 控制它。\n 拥有它当然很方便。醒来时的不适感明显减轻。只要几千日元，就能让每天的起床变得更轻松，所以拥有它绝对是一件好事。\n 不过，二十多年来我都不知道这个好处，这也没关系。确实，我每次醒来都感觉口干舌燥，但我不能抱怨这样的自然现象。我毫无忧虑地过着自己的生活，心想“这就是我醒来的方式”。\n 首先，我生下来就没有嗅觉，无法通过鼻子呼吸，所以我确信我在某种程度上感到不方便，但由于我不明白有鼻子有什么用处，我认为就是这样。然而，一旦你通过手术变得健康，你绝对不想再失去它。既然我知道加湿器有多方便，就很难再被要求回到没有加湿器的粘稠日常生活中。\n 某样东西消失的不快感，或许比某样东西从一开始就没有的不快感更大。我喜欢佐助生气对鸣人说的那一幕：“你从一开始就是一个人，你了解我什么！”佐助坚持认为，虽然没有家庭的结果是一样的，但过程的痛苦是不同的。我之所以能对鸣人一直令人遗憾的成长过程说这么多，是因为他是一个遭受过同样痛苦的人，也是因为他处于一个能够表达自己真实感受的对手的位置。\n 考虑到“拥有”幸福与“失去”不幸福并存，我觉得我们不应该希望那些不符合我们最大利益的事情。不过买个加湿器还是可以的。宇智波一族会怎么想？\n\n包含日常随笔集的同人志现已在 BOOTH 发售。拥有更多的书当然更好。\n\n商业论文集也将于本月底出版。盖子很凉，所以在购买加湿器之前先买它。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

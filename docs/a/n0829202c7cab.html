@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>“小说读者”和钢笔</title>
+<title>《读小说的人》与钢笔</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-03-08 11:36</p>
-  <h1>“小说读者”和钢笔</h1>
+  <h1>《读小说的人》与钢笔</h1>
   <p class="ja-title">『小説を読む人』と万年筆</p>
 </header>
 <main>
@@ -33,11 +33,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"“小说读者”和钢笔\n\n从今年开始我就迷上了钢笔。\n 一切都始于一次偶然，我得到了一支带有伸缩机构的标准钢笔，一个大人告诉我，“我买了一支便宜的钢笔来尝试，但我不太懂，所以我把它给你。”\n 伸缩式就像圆珠笔一样，从顶部按下，笔尖从底部弹出，与钢笔相比并没有什么特别困难的地方。一旦你尝试使用它一段时间，你就会比你想象的更习惯它。它绝对比普通圆珠笔更容易书写。就像一个作家。这很重要。\n 气氛很重要。因为我非常注重“气氛”，所以努力在舞台上表现得很好很重要。当你买一件你绝对喜欢的好衣服时，我认为重要的是要有一种决心精神，这种精神说：“我必须努力工作，成为一个穿这件衣服看起来很好看的人......”奢侈品应该是让购买者努力匹配其光彩和价格的物品。\n 虽然有这样的想法，但我却迷上了钢笔的书写体验。而且，我在笔记本上写了很多东西。当我写长文本或总结项目想法时，我将所有内容直接写在笔记本上。我在键盘上敲击它并将其传输到我的电脑上。尽管我在一张白纸前忧心忡忡，但实际上我花更多的时间握笔。时间越舒服，我就越快乐。我要去寻找这个...最适合我的...\n\n我去了那里。涩谷“松馆”。\n 凉爽的。看到它如此精美地展示，就会点燃收藏家的精神。当我目睹这一幕时，我对自己的气质深信不疑。 “我确信我将来会买很多这样的东西并将它们展示在我的房间里。”你知道......我肯定会这样做。\n\n好的……。这些家伙在我手中跳舞，为白纸着色。多么美妙啊！\n\n我已经选择了。以梵高的《小说朗读者》为主题的深绿色钢笔。我有很多漂亮的钢笔，但我觉得没有什么比手里有一支梵高更满足的了……有好几个梵高的图案，但我也有预感，这个地方应该是一个看小说的人，和书有关。最重要的是，我真的很喜欢这种深绿色的平静质感。我基本上在咖啡店工作。我家里有太多的淫秽陷阱，比如书籍（漫画）和网络，引诱我走向堕落。我的例行公事是读完一本书到咖啡店，然后写一些手稿。当时看书时，我手里拿着的钢笔是……《小说阅读器》。还有这么优雅的事吗？为了有一天能成为一个不负梵高审美的人，我会一直写下去，直到我能掌握这本书。\n\n现在，制造这种级别的钢笔已经很困难了。墨水和笔尖怎么样？维护和储存也有规则。说实话，2000日元左右的圆珠笔总体来说还是比较舒服的。所以，从现在开始，这是一个爱好和意志力的世界。我握笔是为了一些我觉得比方便更重要的事情。既然我们正在做一件任重而道远的事情，比如写作，那么我们最应该意识到的就是这种精神。文献中没有效率的概念。\n 图书馆的人也这么说。 “当你写作时，你是孤独的，所以最好有一个可以依靠的人。”这是正确的。我猜他很孤独。我每天都在咖啡店的办公桌前或房间里写作。那段时间，你总是一个人。一边和别人聊天一边写东西是不可能的。既然如此，有一个朋友来分担这份孤独就好了。那是一支钢笔，对我来说它是一个“小说阅读器”。没有人只想从合作伙伴那里得到便利和效率。今后，我们将通过梵高的审美，通过我们两个人共同成长。顺便说一句，那是不久前的事了，果然，我喜欢的钢笔的数量不断增加。结尾。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,7 +56,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

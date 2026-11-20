@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇短文：TikTok 和超级十酱</title>
+<title>一口小作文：TikTok与超天酱</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-04-04 06:49</p>
-  <h1>一篇短文：TikTok 和超级十酱</h1>
+  <h1>一口小作文：TikTok与超天酱</h1>
   <p class="ja-title">一口エッセイ:TikTokと超てんちゃん</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇短文：TikTok 和超级十酱\n\n我打开了抖音。\n 据传新歌《INTERNET YAMERO》很受欢迎。自从上一部作品以来，很多人都在唱歌跳舞，但这一次似乎更受欢迎。我真的没有什么感觉，因为故事的另一面发生了很多事情，尽管我是其中的一方。另一边肯定有一种文化，了解它的唯一方法是通过实地考察。\n 所以我尝试立即安装它。\n 不，我很惊讶。如果您使用默认设置发送几个视频，那么每几个视频中就有一个是关于 INTERNET YAMERO 的。惊人的。当然，可能从一开始就存在某种偏见，但即使没有搜索，Chotenchan也被推荐在主页上。哦。\n 根据这首歌发布了许多歌曲、歌曲、恶搞和原创MV，并且当你滚动屏幕时，越来越多的衍生作品会出现。就像 Nico Nico 动画一样。当一个素材火了，衍生视频眨眼间就会涌来，视频一下子就火了。粉丝和反粉丝都抓住了这种势头，互相喊叫，并在混乱中找到一些可以成长和理解的东西。本以为Niconico那种混乱的感觉已经消失了，结果却出现在了TikTok上。这是一件好事。这个混乱的互联网正在出现一些东西。太干净或太脏都不好。我们需要青春的纯洁，而我们这里就有。这是一件好事，我感到安心。虽然我们无法跟上老年人的步伐，但这里肯定有一种独特的文化正在发展，它将创造下一个时代。\n 评论区里挤满了许多正在重制原版游戏的外国粉丝，并充满了超十酱的问候语“†BLESS†（升天）”。中国和韩国民众通过Nidiga与日本互动。他们可能也不关心民族差异。他们是朋友，在同一个 TikTok 上玩得很开心。当然也有打架的时候。如果我没有精力跳舞，人们就会批评我，问我，“你只是想露出你的脸吗？”如果我给你看一个看起来很昂贵的包，你会怀疑并问，“你是怎么得到它的？”基于帕罗的方向有一些争议，还有一些人批评曹天灿说，“我厌倦了看这个家伙。”这都很好。这些人甚至不再需要了解我或 Aiobahn 的任何事情。这种地方大人是不可以接触的。我希望人们记住主唱 KOTOKO 的歌唱能力……无论一个年长的男人闯入这里说什么，这都是不礼貌的。我不想做那样的事情。如果几年后，人们会突然想起这首歌，哪怕只是一瞬间怀念，想着“也有类似的事情”，那就太好了。这让我最高兴。\n 很好。老男人女人，包括我自己，无法理解新文化。我们害怕我们不理解的事物，我们攻击我们不理解的事物。太丑了。这就是为什么对 TikTok 文化的批评必然会增加。但那很好。每当一个受到惊吓的成年人不知为何进入新的领域时，年轻人之间的团结就会加深。其实这种事情不应该是大人能够理解的。我把它写进了INTERNET YAMERO的歌词里：“这是所有成年人的秘密。”所以没有必要担心。请留下那些乘着社交媒体和匿名公告板之船的书呆子，他们的价值观日益过时。我们只会继续下沉。在水底互相安慰并没有什么错。\n 首先，Nico Nico Douga 本身当时在 2channel 上受到了成年人的批评，所以现在只有 Nico Nico Douga 一代在批评 TikTok。嗯，时间是循环的。\n 是这样吗？这对我来说很有意义。很好。我的生活是值得的，因为我能够通过我的游戏和歌曲播下下一代文化的种子。我的心得救了。谢谢。我也会从另一边回到我的成年生活。能够沉浸在青春的氛围中，哪怕只是片刻，也是很满足的。因为总有一天你必须从梦中醒来。 †扬升†\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：系统和场景</title>
+<title>一口随笔:系统与剧情</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-25 23:50</p>
-  <h1>短文：系统和场景</h1>
+  <h1>一口随笔:系统与剧情</h1>
   <p class="ja-title">一口エッセイ:システムとシナリオ</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 商業エッセイ集もよろしくね。重たい話がたくさん載っている！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：系统和场景\n\n在空间中，我被邀请谈论若木民木，所以我谈论了《只有神知道的世界》，但我最喜欢的是它是一部以女孩游戏为主题的作品，并且以最好的女孩游戏之一《在世界尽头吟唱爱的女孩YU-NO》为基础展开。作者在他的博客中明确地谈到了他对YU-NO的喜爱。\n 《YU-NO》的伟大之处在于它的游戏系统和场景的融合。流程图、保存和加载在多结局美少女游戏中确实存在，但以地图的形式将它们可视化，然后将场景进展甚至保存功能纳入“游戏内设置”，真是令人震惊。当然，这个游戏系统和场景融合的完美程度应该永远铭记在游戏历史中。\n 曾参与制作《YU-NO》的菅野博之先生继续密切关注该系统，当他的其他作品作为游戏受到好评后，他开发了与该系统相匹配的场景。 90年代美少女游戏的一个特点是大量强调“游戏性”的作品。随着叶键的爆炸性流行，游戏的方向也变得越来越容易阅读场景。在我的游戏中，我优先考虑系统和场景之间的平衡，但你必须玩过它才能找到答案。\n 顺便说一句，《假面骑士Build》的最终话这个系统和场景的融合令人惊叹。有许多骑手都有令人惊叹的场景，但“构建”是唯一利用该程序承诺的噱头。我想让你体验一下最后的震撼。\n\n包含日常文章的同人志现在正在展位上出售。甚至还有专门讨论美少女游戏的书！\n\n我期待着阅读您的商业论文集。其中有很多重要的故事！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：死亡是一种解脱吗？</title>
+<title>一口随笔: 死是救赎吗？</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-11 05:04</p>
-  <h1>短文：死亡是一种解脱吗？</h1>
+  <h1>一口随笔: 死是救赎吗？</h1>
   <p class="ja-title">一口エッセイ:死は救済か？</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 商業エッセイ集もよろしくね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：死亡是一种解脱吗？\n\n“死亡是一种解脱吗？”和“我死后会发生什么？”经常被问到。今天我在太空上再次被问到这个问题。我认为每个人在思考死后的生活时都会感到焦虑。\n 简单回答一下，我认为死亡并不一定就是救赎。如果真的有救恩的话，所有人立刻死掉都可以得救。我认为来世应该是那些在这个世界上过着“美好”生活的人的救赎。通过这样的解释，人们可以得到如何生活在这个世界上的指标。\n 我不信仰任何特定的宗教，所以我不相信轮回或天堂净土，但我想如果我相信这些东西的存在，我最终会更幸福。如果你用它作为指标和目标，你的生活会变得更轻松。然后你意识到自残不应该是达到目标的捷径。\n 也许生活就是决定什么是“善”并为之而生活。这样我在精神上更容易追求自己的目标。\n 结合我对“模拟假设”的钦佩，我也希望这个世界像一个游戏一样，由一个更高的存在（如神）管理，并且在我们死后由那个更高的存在评估。我把这种生活解释为一场游戏，你可以看看你能离你所信仰的善良有多近，而不是国家或社会制定的规则。\n\n包含每日日记的同人志正在 BOOTH 发售！\n\n我期待阅读您的商业论文集！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

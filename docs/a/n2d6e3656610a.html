@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇文章：震惊！蔷薇少女</title>
+<title>一口随笔: 震惊！蔷薇少女</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-04-25 03:52</p>
-  <h1>一篇文章：震惊！蔷薇少女</h1>
+  <h1>一口随笔: 震惊！蔷薇少女</h1>
   <p class="ja-title">一口エッセイ:衝撃！ローゼンメイデン</p>
 </header>
 <main>
@@ -30,11 +30,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇文章：震惊！蔷薇少女\n\n小时候，我居住的冲绳是一片动漫荒地，深夜没有动漫播出。幸运的是，我最终真正迷上了日朝，并为作为御宅族打下了坚实的基础。\n 而且我是那种会逃学、在家待的时间比上学还多的小学生，所以就想看动漫和游戏来消磨家里的时间。然而，要购买一款售价数千日元的游戏却并不容易。御金田妈妈的解决办法是和Kids Station这个24小时播放动漫的频道签约，让我暂时继续看动漫，别管我了！\n 这一策略非常成功。夜复一夜，我不知道的往日名作不断播出，彻底点燃了我小学时就开始萌芽的宅男精神。 「机动战舰纳德西科」、「城市猎人」、「鲁邦 TV Special」、「高达各作」……等都在播出，所以我都录下来看了。大约在这个时候，我正好沉迷于超级机器人阿尔法系列，所以我非常期待这部机器人动画杰作的播出。每天晚上我打开儿童电台，里面都会播放《勇者之王，高盖加尔》。\n 与此同时，公告终于出来了。是的，《蔷薇少女》。\n 已经是电流了。短片广告中，球形关节的美丽女孩穿着哥特式的氛围，做出意味深长的表情，其中最精彩的部分是ALI PROJECT的OP。\n “我爱你，摘下玫瑰手铐，将我白皙的手腕缠绕在一起，触摸彼此的奇迹。”这就是歌词。这是动画OP！ ？ OP不用喊主角的名字或者飞机的名字！ ？毕竟刚才播放的节目OP是《嘎嘎嘎嘎嘎嘎嘎嘎！》那是你……“跪下，把它递给我。痛苦的爱的话语是透过绷带（纱布）流血的红色蔓藤花纹。”有这么酷的歌词可以吗？\n 太可怕了。即使是小学生也能理解。这不是我以前看的早间或晚间动画。这就是成年人可能会喜欢的“深夜动漫”世界！ ！ ！\n 赶紧查一下播出时间吧。他们开始匆忙地记录准备工作，确保为被称为“蔷薇少女”的未知威胁做好充分准备。然后，广播开始，ALI PROJECT开始流动。一个小学生根本不可能承受这样的事情。刹那间，我脑子里的所有价值观都颠倒了。原本以为最酷的「飞翼高达零式」被重新涂装成「水银灯裙上刻着的倒十字」，每次真空和翠石说话的时候，我都会感叹「真是可爱又美丽的少女啊……」。\n 不知不觉中，我已经爬到了不归路。之后，Kids Station继续播放《地狱少女》和《大变调》。当然，可怜的男孩接触了所有这些东西，到了初中，他有限的思维能力全部都指向了“萌萌美少女”！\n 第一次接触水银灯的震撼。我永远无法再经历那样的事情了。无论以后遇到多少迷人的角色，我都再也无法拥有那天吞下男孩心、满脑子玫瑰花的那种惊喜了。因为我已经成为一个成年人了。\n 小学生的那些鲁莽的梦想全部消失了。作为一名宇航员、一名首相、一名昆虫博士，我对未来的所有希望都被从N场出现的水银头的脸化为泡影，下一刻我恨不得“我不介意吸干我所有的生命，这样我就可以成为水银头的一根黑色羽毛……”\n 每次我关掉灯，滚到床上时，我仍然会幻想它。我看到一个银发哥特洛丽塔女孩，脸上刻着一个倒十字，敲着窗户，微笑着诱惑我，试图让我签下一份冒着生命危险的合同。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇短文：那些反对“正确答案”的人</title>
+<title>一口随笔：逆向“正确”的人们</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-30 03:24</p>
-  <h1>一篇短文：那些反对“正确答案”的人</h1>
+  <h1>一口随笔：逆向“正确”的人们</h1>
   <p class="ja-title">一口エッセイ:「正解」に逆張りする者たち</p>
 </header>
 <main>
@@ -21,11 +21,10 @@
  とは言え、正解としては運動とか入浴とか健康的なことでしかない。両目の腫れも適度な運動からの入浴、そして快眠のコンボでみるみる良くなることでしょう。では、今の僕の最適な行動は筋トレになるが、そんな正解に絶対従いたくない。いったい何に逆張りしているのか、もう自分でも分からない。とにかく両目が痛くて、今も真っ赤に染まった眼球からは涙が溢れ続けております。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇短文：那些反对“正确答案”的人\n\n两只眼睛仍然肿胀、疼痛。\n 很痛，我无法停止哭泣，而且我的视力也很差。每当泪水从眼睑流下时，我都会感到疼痛，这也很麻烦。\n 当这种情况发生时，有趣的是看到你所有的担忧如何汇聚成“痛苦”。前几天，当我双眼健康的时候，我会担心很多事情，但现在我觉得只要我的眼睛痊愈了，我就能解决一切。即使您能再次看见，您仍然会遭受自主神经紊乱、人际关系问题、睡眠不足和压力的困扰，这些可能与眼睛肿胀有关。\n 我认为有很多方法可以用大痛苦来掩盖小痛苦。比如肌肉训练肯定是一样的。在承受着“剧烈运动”带来的巨大身体痛苦的同时，根本不可能去想任何其他事情。难怪这么多人推荐锻炼，因为它可以让你逃避现实，而且对你的健康也有好处。这就是我讨厌它的原因。你的行动效率有多可怕。\n 然而，唯一正确的答案是做健康的事情，比如锻炼和洗澡。通过适度的运动、洗澡和良好的睡眠，双眼的肿胀会很快得到改善。所以，现在对我来说最好的行动方案是肌肉训练，但我绝对不想遵循正确的答案。我什至不知道我到底在反抗什么。不管怎样，我的双眼很痛，红红的眼珠子里还溢满了泪水。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +44,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：钻石是坚不可摧的</title>
+<title>一口随笔：钻石不会受伤</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-01 07:13</p>
-  <h1>短文：钻石是坚不可摧的</h1>
+  <h1>一口随笔：钻石不会受伤</h1>
   <p class="ja-title">一口エッセイ:ダイヤモンドは傷つかない</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
 若い頃の長文エッセイを収録した商業エッセイ集もよろしくお願いします。些細なことで笑えた夢見る頃ですね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：钻石是坚不可摧的\n\n我很喜欢90年代初期的东京表演娃娃乐队的一首歌曲《Diamonds Don't Hurt》。音乐由小室哲也作曲，因此具有90年代风格的小室声音，但作词却是由《Mizu no Hoshi wo Ai o Koite》和《Kaze No Reply》等歌曲的负责人绿野正佑作词。这首歌的标题可能源自同名小说。 《JOJO 第四部》的主题是“钻石坚不可摧”。很高兴的是，副标题在最后连接到了主角的立场名称，“疯狂的钻石是坚不可摧的”……让我们回到正题吧。\n“即使那些让我嘲笑小事的梦想日子太过分了，即使有人的鞋子踩到了我，钻石也不会被损坏。”\n 副歌是“即使有人的鞋子踩到了钻石，也不会受伤”，歌词很精彩，给人一种力量和自豪感。每当我看到有人做某事被别人踩在脚下时，这句话就会在我的脑海中重复出现。\n\n即使他因为某种原因误入歧途，成为众人的敌人，但他是一个积极主动的人才，足以成为人们谈论的话题……他仍然是一颗钻石，所以他的光辉永远不会消失。我希望事情是这样的。人类犯错是很正常的事，所以我不想看到他们屈服在那些只是嘲笑他们、将他们踩在脚下的人的脚下。我也是被批评的人，而不是批评别人的人，所以我对批评对象的同情是先于我考虑对错的。这不再符合逻辑。这是一种反思。同理心首先作为一种本能出现。\n 所以每当一个郁闷了一段时间的创作者凭借自己的能力再次成为热门话题时，我都会感到非常高兴。我想让他们表明，只要不忘记钻石的高贵和璀璨，它们就会一次次绽放光芒，尽情颠覆大众的期待。\n 无论如何，那些轻易踢别人脚的人，大多数只是被世界潮流冲昏了头脑，随波逐流，没有太多思考和舒服，所以如果他们直视钻石的光芒，他们会立即背弃他们。不放弃继续活动并重新获得人气的艺人的例子不胜枚举。不然我觉得直接踢别人的人优势太大了。\n 亲自创作这首歌曲的小室哲也，克服了无数的艰辛，直到今天也逐渐为偶像、游戏、特效等提供音乐，并因此在令和时代再次复兴，这也证明了它尽管历经坎坷，仍是一颗钻石。作为一名粉丝，我对此感到非常高兴。\n 当你在社会面前感到压抑的时候，当一个态度粗俗的人踩在你身上的时候，你就认为自己是一颗钻石。无论公众如何污染它，它都是最坚硬、最明亮的水晶，所以它永远不会伤害我们的骄傲。\n\n我们目前正在销售包含每日日记的同人志。每天更新很难，但是读者会拿起书来，所以我不会屈服！\n\n我还想要一本商业论文集，其中包含我年轻时的长文。那是我梦想着嘲笑一些琐事的时候。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

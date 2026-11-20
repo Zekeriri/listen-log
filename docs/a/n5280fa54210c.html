@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：我最喜欢的富野导演的锐利</title>
+<title>一口随笔：最喜欢的富野监督的爆发</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-16 02:10</p>
-  <h1>短文：我最喜欢的富野导演的锐利</h1>
+  <h1>一口随笔：最喜欢的富野监督的爆发</h1>
   <p class="ja-title">一口エッセイ:好きな富野監督のキレっぷり</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪ 買ってもらえると、僕が新たな本を買うことができます。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：我最喜欢的富野导演的锐利\n\nAnimage 富野由之的提问角“问富野！” ” 我喜欢它。\n 说起富野导演，人们的强烈印象是他的锐利已经成为传统演艺界的一部分，近来甚至有一种通过粉丝服务“提供锐利”的形象。事实上，在这个问答环节感到困惑的人的比例大约是50/50。我觉得这真是罕见，不过考虑到他每两次就对提问者讲课一次，他也太有活力了。\n 其中，有一些特别尖锐的回答，其中包括一位年长女士的来信，她说：“我不喜欢最近的动画。”对此，富野导演愉快地建议：“正如你所说，现在的动画是工业产品，所以我们还是看一下‘真实的东西’吧”。\n\n作为粉丝，我很高兴听到他是一个如此固执的老人，我不知道他所说的“真实”是什么意思。顺便说一句，我认为最好还是全部吞下去，因为它正在播出。好吧，我不能否认这样一个事实，一季中有几部动漫是根据一些原作创作的，以保持路线。\n 之后，一位勇敢的御宅族抱怨道：“上一期的回答似乎很粗鲁，但在我看来，这似乎很粗鲁。”这在Animage的悠久历史中不是第一次有普通人批评富野导演吗？信中继续说道，“在欣赏过往的杰作之后发现新的作品是很有趣的。”我完全同意你的观点。你能表达自己的感受真是太好了！\n 当我翻过这一页，想到连导演也会退缩并说“当然，这就是答案”时，他真的很生气。他前所未有地嘲讽对方，就像在“否认你的一切”。这样的事情曾经发生过吗？\n\n“当你看一部新作品时，发现一些新东西是很自然的，但说实话，是否真的有新发现是很值得怀疑的，对吧？”，当我被要求说实话时，我很惊讶。我们这个层面的新发现都是谎言吗？ ？之后，他继续说道：“扩展你的知识，以辨别真正的差异！”不过，这确实是事实！ ！\n 我对老人的麻烦程度印象深刻。导演的立场是，“如果你惹我生气了，就把它拍成电影，超越这个老男人！”这种固执就是他的生活方式。他向年轻人说教，激怒他们，并将他们的愤怒和仇恨转化为力量。就像Z高达一样。\n 总有一天，我也会认为导演会生我的气，说“像《Needy Nantara》这样的游戏实在是垃圾！！！”，但我意识到富野由之是一个善意的人，他只是口头上支持流行作品，因为他知道这就是粉丝们想要的。\n\n请支持编辑日常日记和商论集的同人志♪如果你买了它们，我就可以买新书了。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇文章：变得狂躁</title>
+<title>一口随笔：变得躁动</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-20 03:10</p>
-  <h1>一篇文章：变得狂躁</h1>
+  <h1>一口随笔：变得躁动</h1>
   <p class="ja-title">一口エッセイ:躁になる</p>
 </header>
 <main>
@@ -19,11 +19,10 @@
  これが継続の難しさか。日々の出来事を言語化するだけなら簡単で、問題はどんな精神状態でもやり遂げることにある。今すぐに現実から逃げ出したい気持ちを抱えながら、漠然とした不安をひたすら書き連ねる感触が気持ち悪い。書いてはいけない本音まで飛び出しそうになり、それを抑えるのに必死です。でも、こうして書かずに耐えたのだから偉い。躁鬱の「躁」はそれはそれで恐ろしいですが、鬱で動けないよりはマシです。自分を鼓舞して無理やり動かす。僕は偉い。感情を抑えて行動できるし、日記も一年半連載している。頑張っているよね。誰かに褒めてもらいたい。鬱は嫌だ。ようやく端まで書けたので薬が飲める。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇文章：变得狂躁\n\n当我感觉沉重的时候，有人给我开药来帮助我，但这些药大多都有“嗜睡”的副作用。这其实是一件好事，因为它可以让你在感觉轻松后入睡，这是一个非常有效的方法来忘记难以忍受的现实，抑制你的情绪。\n 不过，因为我每天都会更新日记，即使遇到什么困难的事情，我也会在写完当天的日记之前睡不着觉。因此，很难逃避精神药物、快速入睡、忘记。确实，现在仍然如此。我想快点去睡觉，调整一下心态，但我不能接受，因为我担心我的日记会被打断。然而可怕的想象不断向我袭来，不肯放手，让我无法满意地挥动画笔。\n 这就是继续下去的难度吗？仅仅用语言描述日常事件很容易，问题在于如何度过你所处的心理状态。写下模糊的焦虑，同时感觉你想立即逃离现实的感觉是恶心的。我觉得我不应该写的真实感受即将流露出来，我正在努力压抑它。但很高兴你忍受了这一切而没有写下来。躁狂抑郁症的“躁狂症”本身就很可怕，但这比因抑郁症而无法正常工作要好。激励自己并强迫自己行动起来。我很棒。我能控制自己的情绪和行动，一年半以来我一直在写一系列日记。你正在努力工作。我想要有人夸奖我。我讨厌抑郁症。现在终于写完了，可以吃药了。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -43,7 +42,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

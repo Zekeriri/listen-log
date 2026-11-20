@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇快速文章：文本网站之光</title>
+<title>一口随笔：文本网站的灯火</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-18 03:20</p>
-  <h1>一篇快速文章：文本网站之光</h1>
+  <h1>一口随笔：文本网站的灯火</h1>
   <p class="ja-title">一口エッセイ:テキストサイトの灯火</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇快速文章：文本网站之光\n\n像往常一样，我将在本周末举行的文学跳蚤市场上提交每日论文摘要。这是第五卷。\n 嗯，自从我每天写日记和发日记以来已经两年了。我发了700多篇文章，总共大概写了100万字左右。太棒了……我忍不住为自己感到骄傲。\n 而且，从今年开始，我们取消了一张截图的限制，字符数也增加了一倍或三倍，所以原来的140页的同人志现在已经有190页了！结果打印成本增加了，所以我想是否应该相应提高价格，但我决定保持1,500日元的价格不变。\n 毕竟通过回看笔记就可以读懂所有的内容，而且是一本总结日记的小众书，所以如果减去印刷成本和其他杂项，还是值得的。那么，我为什么还要继续发表同人志呢？因为我想通过书的形式留下“我生命的证明”。\n 在文字网站时代，一位作家写的日记拯救了我的心。他如今已是一位受欢迎的作家，但他无名时忧郁的文笔却显得格外耀眼。我被在网络上直接表达自我意识也可以的想法所感动，为了向粉丝们传达我当时的感受，我每天都发一些类似文字站的文字，甚至采用了截图黑底的方式。\n 你的外表如何或你的样子并不重要。他重复着那些在互联网上被回避的自言自语和情绪宣泄。就像陀思妥耶夫斯基的《地下室笔记》一样，他在孤独中记录了自己所有的情感，无论是悲伤还是喜悦。有些人只能这样做。\n 我希望有一天有人能收到我的工作证明。数据可能有一天会消失，但书籍会留下来。哪怕只有一小部分陌生的人看，只要能作为一小部分人的食物，那就可以了。这与萨亚所说的感觉是一样的：“当你知道沙漠里只有一个人爱那朵花时。”\n 即使我最终退出活动，也许有人能够继承文本网站的光芒。考虑到这一点，我将继续写作和制作同人志，而不用担心时间和金钱。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

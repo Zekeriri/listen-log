@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选咬文：银奖</title>
+<title>精选一口散文：银色</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-06 22:21</p>
-  <h1>精选咬文：银奖</h1>
+  <h1>精选一口散文：银色</h1>
   <p class="ja-title">選り抜き一口エッセイ：銀色</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 今月末には、長文エッセイを多数収録と書き下ろしたっぷりな商業エッセイ本も出ます。こちらは、ちゃんと社会で生きた証ですね。光ってる。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"精选咬文：银奖\n\n《银》的第一章很漂亮。\n Nekoneko Soft 优先考虑故事的沉浸感，通过用黑色覆盖顶部和底部屏幕来创建类似电影的屏幕，这一做法令人印象深刻。\n 回到正题，当我被问到我最喜欢的美少女游戏时，我肯定会把 Giniro 列为前五名杰作之一。尤其是第一章的完成度非常出色。\n 《基尼罗》的第一章讲述了一个连自己的名字都不知道、从记事起就和男人一起生活的女孩，却试图留下至少一个证明她还活着的证据的故事。\n 当女孩从女孩家逃出来，第一次在外面的世界看到萤火虫时，她结合了萤火虫的光芒和她对生死的看法提出了一些问题：“如果它不发光，你就死了吗？”“如果它发光，是否意味着你还活着？”对于一个仅仅因为出生而没有任何目的和梦想而过着自己生活的女孩来说，她想知道一只不发光的萤火虫是否可以被称为活着？它有任何存在的价值。女孩说。 “我发光了吗？”他问道。\n 毫不夸张地说，我通过博客、社交媒体、日记等分享生活的方式深受 Giniro Issho 的影响。即使我这样，我也想留下一些我的生活的证据。我想像萤火虫一样照亮夜晚，哪怕只是一瞬间。考虑到这一点，我开设了一个 Twitter 帐户，作为一个谈论我最喜欢的作品的地方，从某种意义上说，这可能是我第一次存在的时刻。\n 所以，当我有一天从互联网上退休时，我决定要说什么。 “我发光了吗？”\n\nBOOTH正在出售包含作为我的生活证明的日常文章的同人志。这是一本很棒的书，所以请阅读它。\n\n本月底，一本包含大量长篇文章和大量新写文章的商业论文集将出版。这是在社会中正确生活的证明。它闪闪发光。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>作文：刚刚发生的失败</title>
+<title>论文：刚刚发生的失败</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2020-09-21 17:03</p>
-  <h1>作文：刚刚发生的失败</h1>
+  <h1>论文：刚刚发生的失败</h1>
   <p class="ja-title">エッセイ：今起きた失敗</p>
 </header>
 <main>
@@ -35,11 +35,10 @@
  歓迎の笑顔が嘲笑に代わったものの、快く対応してくれるメイドさん。7階から4階まで降りてくるエレベーターを待つ気まずい数秒間を乗り越え、ようやく喫茶店に入り、わずか3分の間に起きた失敗の数々を振り返って涙を流しながら、こうして文章を書いています。死にたい。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"作文：刚刚发生的失败\n\n至于失败是什么，生出这样一个人本来就是一个巨大的失败，但既然是这么大的一个故事，我就先到此为止，说一下刚刚发生的一个无关紧要的失败。\n\n我只是在秋叶原闲逛，但由于是公共假期，路人数量是平日的两倍。光是走累了，我就想休息一下，就挤过秋叶原般的路人，包括穿着紧身洛丽塔装的变装男和满口脏话的盲人，来到了一家咖啡店。\n\n我不知怎么地走到了二楼有一家咖啡店的大楼前面，但我不想再迈出一步。我决定使用电梯，享受文明带来的便利，哪怕只有一层楼。然而，出现了我没有预料到的异常情况。出乎我意料的是，老人奋力奔跑，上了船。\n\n一个老人，尽管气喘吁吁，仍按着“7”。看起来他是在找一家手办店，所以也许他是那里的店员。这时，我的脑海里升起了一种神秘的感觉：“这么多人这么着急，直接推到二楼真的可以吗？”\n 如果你现在按“2”，这位老人就会认出你是“十级台阶都爬不了的奢侈青年”或者“不懂常识的可怜闲人”。最坏的情况下，可能会被曝光在网络上，引起轩然大波。当我冷静下来的时候一点也不。\n\n战斗就在电梯关闭前的几秒钟内展开。\n 我应该直接按“2”并感觉好一些，但由于我的思维过程由于我不重要的骄傲而被全力激活......我按了“4”。我是一个很麻烦、很糟糕、有很多虚荣心和骄傲的人。\n 如果你在四楼，自然不走上去，如果你在更高的楼层，你就会花很多时间和老人坐在一起。根据我的完美计算，我查了一下目的地，发现女仆咖啡厅的入口在四楼。\n 再这样下去，一打开门，女仆们就会用“欢迎回来♡”来打招呼。然而，如果你现在按“2”或“3”来争取时间，那就是本末倒置了。如果发生这种情况，我别无选择，只能依靠一种可能……\n\n是的，敞开的电梯和商店之间应该有一扇门。这样，你就可以在门前等，确保老人在7楼下车，然后再回到2楼。我还没有决定这是失败...\n 然而，现实是无情的。 4楼打开的电梯已经到了店内。由于水流，我不得不下车，几个女仆热情地欢迎我，说：“欢迎回来♡！”\n 磨难仍在继续，如果仔细观察，你会发现这不仅仅是一家普通的女仆咖啡馆，而是一家可以和女仆们一起享受扑克等赌博乐趣的概念咖啡馆。如果你不赶紧回头，你就会和女仆以及你不认识的书呆子友好地翻牌。\n 侍女们满脸笑容地等待着。我真的很抱歉在这些垃圾上浪费了您宝贵的时间和表情。我转来转去的结果又是谎言：“哦，我忘了带钱包了！”我决定像个小丑一样活下去。\n 女仆的欢迎笑容变成了冷笑，但她还是很乐意接待我。克服了等待电梯从七楼到四楼的尴尬几秒钟后，我终于走进了咖啡厅，回顾这短短三分钟内发生的所有错误，我含着泪写下了这篇文章。我想死。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -59,7 +58,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

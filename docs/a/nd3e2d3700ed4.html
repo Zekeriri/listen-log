@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>如果你太害怕死亡，你最终就会想死。</title>
+<title>如果太害怕死啊，会想去死的</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-01-12 02:19</p>
-  <h1>如果你太害怕死亡，你最终就会想死。</h1>
+  <h1>如果太害怕死啊，会想去死的</h1>
   <p class="ja-title">あんまり死ぬの怖がるとな、死にたくなっちゃうんだよ</p>
 </header>
 <main>
@@ -22,11 +22,10 @@
  宗教には、死の恐怖を薄めて、迷える民に安心感を与える側面もある。死後の平穏のためとして、現世で徳を積ませるんだね。誰もがそうすることで国の平和も保たれる。じゃあ、わたしはオタクを導く天使になろう。みんながわたしを、インターネット・エンジェルを見ている間は救われて、死を忘れておけるなら、それでインターネットにも平和が来るなら。死の先までは保障できないけど、画面越しにわたしを眺めている時だけ、生を実感してもらえたら。青白いモニター越しの光を通し、オタクの孤独を癒して回る、わたしはインターネットの天使なのだ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"如果你太害怕死亡，你最终就会想死。\n\n当我走到外面时，我突然抬头看着一栋大楼或一间公寓，然后想：“如果我愿意，我可以走进那栋大楼，然后从楼上跳下去。”每次我想象自己这样做时，我都会不寒而栗。\n 我并不总是想死。也有这样的时候，但我想如果有的话，我更害怕死亡。我从小就是这样。当我读到《死亡笔记》的最后一集时，我震惊地发现人死后不会去天堂或地狱。当我死后，我只是回到“虚无”。好吧，你说“我会回来”的方式仍然让我充满希望。然而，大脑活动停止，你将永远无法思考。就是这样。从某种意义上来说，他们是平等的。\n 我很害怕，在床上哭了。不管你是好人还是坏人，死了就结束了。只有完全信仰某种宗教的人才能体验轮回和来世。我不能那样。甚至当我和周围的人谈论这件事时，他们也只是友好地微笑着回答：“别想傻事，早点睡觉吧。”你为什么笑？成年人就不怕死吗？他不可能有这样的远见。我只是看着别处。\n 确实，思考这些是没有意义的，所以不思考它的生活才有意义。继续害怕死亡是没有意义的。那么，生活是否只是为了忘记有一天你会死去而用事件和工作填满你的日程安排呢？爱情、工作和休息都是为了消除对即将到来的死亡的恐惧吗？\n 北野武在《奏鸣曲》中说过，“如果你太害怕死亡，你最终就会想死。”我认为这是对的。对我来说，真正死去比继续承受对死亡的恐惧更容易。但这是本末倒置。尽管我知道这一点，但我还是想死。因为我是个白痴。\n 宗教还可以减少对死亡的恐惧，为迷失的人们提供安全感。为了死后有平安，我们让人在今生积德。如果每个人都这样做，国家的和平就能保持。那么，我就成为御宅族的引导天使吧。如果每个人都能够在看着我这个网络天使的时候忘却死亡，那么网络上就会有和平了。直到死亡我也不能保证什么，但我希望你透过屏幕看到我的时候能感觉到自己还活着。我是互联网的天使，通过我苍白的显示器发出的光来治愈书呆子的孤独。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +45,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

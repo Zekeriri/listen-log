@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：当你不得不这么说时</title>
+<title>一口随笔:不得不那样说的时候</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-06-14 02:28</p>
-  <h1>短文：当你不得不这么说时</h1>
+  <h1>一口随笔:不得不那样说的时候</h1>
   <p class="ja-title">一口エッセイ:そう言わざるを得ない時</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：当你不得不这么说时\n\n好久没去妙讷新Heedo了。我很紧张，因为我已经偷懒了一段时间了。当你真的有智力障碍时，去学校是很困难的。是因为不像其他医院，没有立竿见影的效果吗？\n 半个月来第一次去医院。我的医生给了我最诚实的建议，他说：“我知道你很难受，不能来医院，但如果你来医院吃药，就会好得更快。”我知道这说起来容易做起来难，但我也明白，作为一名老师，我别无选择，只能这么说。\n 是的，这个世界上有很多时候，我们因为距离而不得不说出最高效、最美丽的话。 “越是困难的时候，越早到达”就是一个很好的例子。\n 例如，如果你认识的人含糊地说：“我感到难过”，我只能说：“请好好休息。”当有人问我“那我怎样才能睡个好觉？”我只能说：“你为什么不健康饮食，洗澡，做点运动，然后睡个好觉呢？”你不知道对方的详细情况，一旦知道了，你就知道了。别无选择，只能介入。如果这是朋友或工作伙伴，那就另当别论了。\n 不过，对方应该也有麻烦。我明白这个逻辑。然而，由于各种情况，不可能轻易地纠正自己健康的生活方式。我也是。昼夜循环总是恢复正常，失眠还在继续。如果有一个人可以做所有对你健康有益的事情，那么当你只能做对健康有益的事情时，你可能会经历另一种痛苦。\n 尽管如此，我还是不得不说。归根结底，即使是老年人申惠斗也会说：“吃药，睡个好觉，早睡早起，一日三餐，锻炼身体，洗澡。”他们可能会给你具体的建议，让你更接近这种状态，但为了让你的身体更接近你所谓的健康状态，生活在令人沮丧的正常循环中是安全的。尝试进行一个小时的肌肉训练，然后睡觉。很明显，我的身体恢复得比平时要好。\n ……但是，尽管如此。事实上，我入睡困难，因为我的安眠药已经失效了。正因为如此，我的身体一直不好，有一段时间我总感觉自己的力气不及一半了。既然如此，还是尽快去北清讷神何道，吃点药，睡觉吧。我知道，我知道，但是……！我的身体极其沉重！\n 故事在这里循环。然而，我不能让医生来我家给我开药，如果我能对他说些什么的话，那就是“我希望你来我家后过上健康的生活。”我没有说谎。我的老师也告诉我，“当你遇到困难时，你应该好好休息”，但是当你遇到困难时，很难好好休息！我睡不着，因为不愉快的事在我脑子里翻腾！我会被一些琐碎的事情所困扰......！然而，即使考虑到这一点，正确的答案是“去睡觉吧。”老师是对的。毕竟，既然关系只是在医生办公室里几分钟的交谈，这才是最有效的教学方式。\n 所以，我只好随口发一条推文，“你应该睡个好觉。”事实上，你应该睡个好觉，你没有奢侈也没有义务去接受和面对一个你根本不关注的人的痛苦和担忧。至少，我们俩最好在深夜快速浏览一下我们的时间表并讨论睡眠的重要性。\n 所以今天我要按处方服药并好好睡觉。我希望我能睡觉。请大家也这样做。无论现实或身体状况多么艰难，或者即使这是一件隐隐约约美丽的事情，最好先好好睡觉并思考一下。\n 让我做个甜蜜的梦吧，黛比戈。 DeVigo 不仅听起来很糟糕，而且副作用也很可怕。这是一种有用的安眠药，但我不认为它有一个可爱的名字。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nico Nico 动画与奇怪家伙的碟子</title>
+<title>NicoNico动画与奇怪的家伙们的受容所</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-06 04:25</p>
-  <h1>Nico Nico 动画与奇怪家伙的碟子</h1>
+  <h1>NicoNico动画与奇怪的家伙们的受容所</h1>
   <p class="ja-title">ニコニコ動画と変なヤツらの受け皿</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 商業エッセイ集もよろしくね。こんなバカが生きていきた証です。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"Nico Nico 动画与奇怪家伙的碟子\n\n《走吧！阴阳师》似乎正在庆祝开播15周年。对于各种问题都通过科学得到解决的平成时代的结束，以及阴谋论和混乱的令和时代的到来，矢部野彦麻吕有何感想？\n 如您所知，这个视频是一个非常古老的 Nico Nico Douga 视频。这是历史。即使我当时还是个孩子，我也经常使用移动视频转换器在 PSP 上观看视频。我认为这是最有未来感的事情。\n 随着时间的推移，当我长大成人并开始在管理公司 Dwango 工作时，这种感觉很奇怪。大概是2017年吧，我写的关于Nekomasu的文章疯传后，一位来自Dwango的大佬半夜来找我，让我给他讲讲刚刚出现的Vtuber文化。我和坐在我旁边的朋友冈岛一起乘坐出租车。之后我负责策划，冈岛负责视频剪辑。公司内部自由度很大，很多员工都是起床就来，方便走就走，工作环境轻松，社交能力不是问题，只要有才华有能力。毕竟，他们突然吸引了像我这样的白痴。\n 然而，我不能长期做外人，所以当我别无选择，只能继续当员工时，我就辞职了。当时，被时尚气息引诱的成年人纷纷涌入商店，令人恐惧。社会！\n “他们确实很有趣，但他们与这个世界格格不入。”我认为这是一个很好的环境，适合主播、创作者和工程师聚集在一起，度过一个混乱但喜庆的时光。如今，互联网上有很多向有趣的人收费的频道，但请记住，在此之前，这是一个陌生人可以去的地方。\n\n包含每日日记的同人志现已发售。我确信这些日子有一天会被美好的回忆所取代。\n\n我期待着阅读您的商业论文集。这就是证明这样的白痴还活着。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

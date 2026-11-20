@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：懂得与狗共度时光的平静幸福的人</title>
+<title>一口小作文：与狗一起度过平静幸福的人们</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-04-05 03:35</p>
-  <h1>短文：懂得与狗共度时光的平静幸福的人</h1>
+  <h1>一口小作文：与狗一起度过平静幸福的人们</h1>
   <p class="ja-title">一口エッセイ:犬と過ごす平穏の幸せを知る人たち</p>
 </header>
 <main>
@@ -33,11 +33,10 @@ Yostarさんへ遊びに行きました
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：懂得与狗共度时光的平静幸福的人\n\n那天，实施了一个有趣的游戏，在 Twitter 页面上显示了神秘的柴犬“Kabosu-chan”。据说，Kabosu-chan是一只因其独特的面部表情和柴犬的可爱而奇迹般地受到海外网友喜爱的狗，并成为一个巨大的表情包。我真的很喜欢当你打开SNS时，别人的狗突然出现，这毫无意义。\n 卡博苏的母亲救了小卡博苏，当她心爱的狗成为模因时，她最终赚了数亿美元，但她自然决定捐赠它。她在接受采访时说：“我希望每天都能享受两次散步，今天和昨天一样，明天和今天一样。仅此而已。”他是一个很棒的人，就像照片中的那样。不管以卡博苏为推特图标的玩笑有什么好处和坏处，我认为只是为了传播这样一个善良的人在日本存在的消息是有意义的。\n 对于与心爱的家人和宠物共度时光的人们来说，最重要的是平静的日常生活。这就是伟大的灵性。或许人们都应该回到快乐的日子，因为到头来还是一样的。这是伊壁鸠鲁式的。当然，我的经验太浅，无法得出这样的结论。\n\n我去拜访了Yostar。\n我感到非常高兴，因为两位非常性感的女士向我打招呼，她们旁边甚至还有一个巨大的光♪ pic.twitter.com/ag43K2WMZH — Nyalra (@nyalra) 2023 年 4 月 4 日\n\n今天我去了Yostar，在丰满的美少女角色和迪迦奥特曼的包围下度过了令人兴奋的一天。她打发时间的方式与Kabosu的妈妈形成鲜明对比，Kabosu的妈妈可能会带着她的柴犬悠闲地散步（在她的博客中，她散步去看樱花。多么美好的一天！）。\n\n现在的我，是一个贪婪的人，每天都在开会、写稿子，拼命地趁着青春的活力，在我出生的世界上留下痕迹。卡博苏酱，请帮帮我。不过，我知道这是我20多岁、30多岁应该做的事情，所以我不后悔。和有御宅族内容的人交谈其实很有趣。然而，我们今天必须比昨天计划得更多，明天比今天计划得更多。寻求改变。这是最大的区别。我的生活变得多么忙碌啊。\n 事实上，我最近遇到了一个似乎过着与卡博苏妈妈相似的生活的人。\n\n那是我一个人爬了岛根一畑药师两个小时，去看八万四千佛。山顶上有一个小小的休息区，看门狗小桃在那里迎接你。里面有小桃和一位在这里住了十年的老妇人，在等车的时候给信徒们端上茶和其他饮料。起初我以为这是生意，但既然茶歇都是服务，而且老太太也不计较钱，还和我说好话，我就点了柠檬水来报答她的恩情。显然，有一个系统，如果你点茶以外的任何东西，你都会被扣钱。也许这对奶奶来说已经成为次要的了。\n 我们爬山花了两个小时，所以回来的时候我们决定坐公交车。在我们等车的几分钟里，奶奶讲了很多关于我和小桃在这座山上生活了很长时间的事情，时不时地和顾客这样说话是多么有趣，以及我和小桃现在都老了，所以我有点担心。也许这个人应该庆幸今天和昨天一样，这一天平安结束。作为住在寺庙旁边的人，这似乎是正确的生活方式。\n 正如我之前提到的，我仍然无法过上接近那种启蒙的生活。我还想继续一个人玩。但我明白，卡博苏妈妈和安息之地祖母的生命是宝贵和重要的。有一天，在遥远的未来，我可能会躲在山里。到时候，如果你和你的狗狗能放松下来看看新闻，明白偶尔出去走走是最幸福的事情就好了。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,7 +56,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

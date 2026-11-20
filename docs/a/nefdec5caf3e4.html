@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：人生策略：“成为一个好人”以及过着软弱生活方式的罪恶</title>
+<title>一口随笔：人生攻略法“成为好人化”和淡薄生活的罪</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-21 06:00</p>
-  <h1>一篇简短的文章：人生策略：“成为一个好人”以及过着软弱生活方式的罪恶</h1>
+  <h1>一口随笔：人生攻略法“成为好人化”和淡薄生活的罪</h1>
   <p class="ja-title">一口エッセイ:人生の攻略法「良いヤツ化」と薄い生き方の罪</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 若い頃の文章をまとめた、商業エッセイ集もよろしくお願いします。欲望塗れの罪な人生でした。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：人生策略：“成为一个好人”以及过着软弱生活方式的罪恶\n\n我认为人生的策略之一就是“像一个好人一样生活”。这里的“好人”是指不说别人坏话、尽量说实话、避免流言蜚语的人。之后，就是兑现承诺。仅此一点就可以帮助您被认为是易于交谈的人并获得一定的职位。\n 秘密是花，沉默是金。即使你嘴硬，你也有很大的价值。不说不必要的话是一种美德，但在该保持安静的情况下保持安静却会被认为是无趣的。但是，如果你保持沉默，你一定会获得更多的信任。然而，由于他也被视为“无聊的人”，这也对友谊和工作产生了负面影响。由于他们不太刺激，所以不太可能受到别人的强烈喜欢。即便如此，由于信任他的坚定，他还是受到一些寻求成为“好人”的人的喜爱。\n 由于他是一个“好人”，所以他很少受到批评。因为我不是很有攻击性，所以人们可能不太依赖我，但有些人更适合那么冷静。如果你厌倦了社会，担心自己的地位，为什么不放松下来，立志做一个至少有一个朋友的好人呢？\n 不过，这是一种自卫手段，应该是暂时的缓解。 《孩子们回来了》中的角色之一是一个很少有主见的人，但他死了。从北野武的感性来看，没有自我的生活，假装隐藏自己的本性，放弃贪婪，谦虚地生活，也是一种罪过。在生活中找到平衡是很困难的。然而，我认为当你不确定如何生活时，可以暂时“成为一个好人”。\n\n包含日常文章的同人志现在正在展位上出售。希望我的无用之文能够对读者的生活有所帮助。\n\n我还想要一本汇集了我年轻时的作品的商业论文集。这是一种充满欲望的罪恶生活。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

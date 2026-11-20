@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：想想冬天，我想他肯定喜欢色情游戏。</title>
+<title>一口散文：一想到冬天，我就觉得那家伙肯定喜欢美少女游戏</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-15 07:31</p>
-  <h1>短文：想想冬天，我想他肯定喜欢色情游戏。</h1>
+  <h1>一口散文：一想到冬天，我就觉得那家伙肯定喜欢美少女游戏</h1>
   <p class="ja-title">一口エッセイ: 冬考えたらヤツは絶対エロゲ好きだと思う</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 商業版のエッセイ集もよろしくお願いします。長い文章が読めて楽しいかもしれません。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：想想冬天，我想他肯定喜欢色情游戏。\n\n想想冬天，我想他肯定喜欢色情游戏。\n 整体阴郁悲伤的气氛，厚衣美少女们的衣着变化，圣诞节、新年等容易展现CG的活动，最精彩的部分就是飘落的雪花，让名场面令人难忘。\n 我出生在冲绳，所以在搬到东京之前的18年里我从未接触过雪。所以，当我玩移植到PS3的《WHITE ALBUM》时，我对美丽的雪花的羡慕感到不安，它轻轻地包裹着扭曲的人际关系。无论你对现代故事有多么的依恋，下雪的那一刻，它就变成了你永远不会经历的故事。\n 例如，在我最喜欢的佐仓沙织的歌曲《Awayuki》中，歌词“我渴望爱情，如果雪融化了，还会剩下什么？”让我觉得我们“什么都不是”，因为冲绳本来就没有雪。听工口游戏歌曲也很困难。\n\n顺便说一句，对于像我这样没有见过雪的冲绳人来说，我推荐“Patissier Nanyanko”。故事背景是冬天，女主角的路线看起来像是要下雪，但没有CG表现下雪，所以不会伤害冲绳人的心。每个人都穿得像冬天，这让我很高兴。\n 嗯，我没有想得那么深，但我确实对雪的渴望已经培养了18年了。这就是为什么当我搬到东京后第一次看到雪时我感到如此惊讶。我独自一人在东京，没有朋友，也没有网上的熟人，所以没有人可以表达我的兴奋之情，我记得我感到很难过，因为雪落在一个孤独的人的肩膀上是如此寒冷。\n\n包含许多这位可悲的御宅族在冲绳的时光的故事的散文集现已在摊位上出售！如果你不读这篇文章...\n\n我们还希望获得该论文集的商业版本。阅读长文本可能会很有趣。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

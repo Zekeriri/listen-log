@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇文章：限制</title>
+<title>一口随笔：极限</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-10 07:21</p>
-  <h1>一篇文章：限制</h1>
+  <h1>一口随笔：极限</h1>
   <p class="ja-title">一口エッセイ:限界</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 商業エッセイ集もよろしくお願いします。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇文章：限制\n\n“弱眼之咒”、“哭脸的蜜蜂”、“一苦又一苦”……随便怎么说，但加上一连串的不幸，再加上换季时节的五月病，我的心情很不好。昨天，我吃了一些药，睡了24小时，然后又睡了10小时。您可能已接近自己的极限，并试图减少醒来和面对现实的时间。\n 首先，我丢了我最喜欢的项链。制作完游戏后，我就冒险买了一些我一直想要的东西，我和那个品牌的店员聊了很多次。结果，店员读了我的书，有时我在店里向他展示新产品时开始和他交谈。我印象深刻，这种服务是品牌的力量，但后来我失去了它。因为实在是太蠢了。我很难传达这一点，所以我一直回避。既然他们也知道我的账号，我只好直接告诉对方，这是我写的。\n 另外，电视坏了。昨天晚上突然听到一声巨响，之后就没再开机过。在《日朝》之后，这对我来说是因祸得福，但有一段时间我无法通过动画或视频逃避现实。事已至此，除了继续睡觉，我什么也做不了。\n 顺便说一句，我想搬家，有更多的空间来放置我的书和人物，但我无法联系上我的父母，必须做担保人。我希望我能重新开始，但就在这种情况下，我接到了一个老熟人的电话，要钱。没有办法的事，就没有办法了。今天我会尽可能多地睡觉。有什么好东西吗？\n\n包含日常日记的同人志现已在摊位上出售。我也会在月底把它带到 Bunfuri。我懒得做这个了！\n\n我期待着阅读您的商业论文集。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：当人们生气时</title>
+<title>一口随笔：人发怒的时候</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-20 10:56</p>
-  <h1>短文：当人们生气时</h1>
+  <h1>一口随笔：人发怒的时候</h1>
   <p class="ja-title">一口エッセイ:人が怒るとき</p>
 </header>
 <main>
@@ -21,11 +21,10 @@
 毎日の日記をまとめた本たちをよろしくね。寝落ちして寝ぼけた頭で書いている日は、わかりやすく雑。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：当人们生气时\n\n我又睡着了。这不是问题，因为这证明安眠药发挥了良好的作用，但最近她似乎感觉很累。 Comiket 结束后我已经筋疲力尽，并且有很多截止日期相互重叠。\n 我认为，当人们的日程安排不会让他们太忙或太忙而无法思考不必要的事情时，他们是最有效率和最健康的。基本上，你应该调整你的日程安排，以便这种情况发生，但随着年龄的增长，与人际关系或健康状况不佳相关的意外事件往往会扰乱你的日程安排感。人们有一个看不见的压力表，随着压力表的增加，他们会变得烦躁。根据时机的不同，即使对方没有过错，你也可能会对对方感到恼火并最终陷入困境，所以我觉得人际关系也会受到运气的影响。\n 前几天，我无意中把在寺庙里找到的和尚的照片，写着感谢的话发给一个因欠租而即将被驱逐的朋友，他无理地骂我，说：“你别太聪明了！”后来他冷静下来，向我道歉，说：“我太绝望了，对和尚的善意之言，甚至对可爱的沙米子的照片感到愤怒，所以别担心，”然后他继续说道，“我肯定你生气了，因为你认为我和沙米子一样穷，”这让我笑了。他很放松，即使我笑也没有生气。我以为生活就是这样。\n\n请欣赏整理每日日记的书籍。睡着的日子里，半睡半醒地写着，很容易理解，也很潦草。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +44,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

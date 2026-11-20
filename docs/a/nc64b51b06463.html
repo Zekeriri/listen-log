@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>选文：当我快要疯了的时候，铃声响起了。</title>
+<title>精选短篇随笔：发狂时门铃响了</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-09-13 23:44</p>
-  <h1>选文：当我快要疯了的时候，铃声响起了。</h1>
+  <h1>精选短篇随笔：发狂时门铃响了</h1>
   <p class="ja-title">選り抜き一口エッセイ：発狂している時にチャイムが鳴ったので</p>
 </header>
 <main>
@@ -21,11 +21,10 @@
 ※Twitterに連載していたエッセイからの抜粋です。↑で購入できますので、エッセイ集をぜひ読んでみてね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"选文：当我快要疯了的时候，铃声响起了。\n\n昨晚，当我快疯了的时候，门铃响了，所以当我出来时，一位老人说：“我可以检查你的房间。”当我问“我现在疯了可以吗？”时，她友善地回答：“我疯了也没关系”，所以我决定把她送到我的房间。这是一个非常宅男的房间，所以我真的很舍不得让非宅男进去。\n 当我来到房间前面时，那个人突然说：“你不需要一个净水器来让你的日常生活更方便吗？”我很惊讶说：“我很害怕”，想知道他是否也像我一样疯了。然后她回答说：“我不害怕。”所以我想如果她不害怕就好了。但我不需要净水器，所以我遇到了麻烦。当我遇到麻烦时，他说：“你不是把钱浪费在煤气和电上吗？”我们将为您组合它们。只要签名就够了。”我确信这个人错了。\n 当我说“我不喜欢奇怪的人，对不起”时，他回答说“我不是奇怪的人”，于是我想：“这不是很奇怪吗？”然后我想：“对不起。”我说：“对不起。”但是，不需要净水器，也不需要整合电和燃气。我非常害怕，于是我问：“我可以发疯吗？”她告诉我，“我从一开始就发疯了。”我想，“我明白了，这是真的。”我意识到他是一个善良的人。不过，我真的不需要净水器。\n\n*这是 Twitter 上连载的一篇文章的摘录。可以在↑购买，所以一定要阅读散文集。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +44,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

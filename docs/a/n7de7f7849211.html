@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>快速文章：10,000 人和帐户</title>
+<title>一口随笔：note一万人与各个账号们</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-02-25 06:47</p>
-  <h1>快速文章：10,000 人和帐户</h1>
+  <h1>一口随笔：note一万人与各个账号们</h1>
   <p class="ja-title">一口エッセイ:note一万人と各アカウントたち</p>
 </header>
 <main>
@@ -41,11 +41,10 @@ pic.twitter.com/sudh1GThTj— 2（ツー） (@nyalra_copy) February 24, 2023
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"快速文章：10,000 人和帐户\n\nNote 拥有超过 10,000 名粉丝。感谢您阅读有关像我这样的人的自我意识的文章。既然都写得这么公开，可能有人会生气，觉得“这家伙每天都在想这种恶心的事情！”或者“他的自我放纵的文笔太恶心了，好像是在乞求怜悯！”但是，这毕竟是我的日记。\n 旧的互联网上流传着这样一个教训：“在你的日记（传单背面）中进行自言自语”，但这正是我在日记（传单背面）中所做的，所以我对此并不后悔，并且将来我会继续这样做。相反，现在我已经大三了，平均每天的单词数是刚开始时的两倍，我内心的自我意识怪物也变得如此之大。深夜的兴奋让我对自己写的东西有无尽的悔恨，但也正因如此，味道才会随着时间的流逝而显露出来。 「你居然能写出这么丢脸的东西」、「这不过是「尼亚拉小姐已经尽力了，所以我会等待」。回想起来也很有趣。那天的真实感受在那一刻被捕捉到，弥足珍贵。\n\n顺便说一句，我们还每月向订阅者发送大约 3 次更新，就像每日日记扇盘一样，每月费用为 500 日元。如果你因为他每天努力工作而想给他一些钱，或者如果你想看到他的真实感受（这可能很难公开表达），请这样做。这没什么大不了的，所以如果你能负担得起的话，那就没问题了。一旦你进入，你就可以阅读到目前为止的所有日志，所以如果包括回去的话，我相信这500日元的阅读价值是值得的。\n 好吧，我的笔记上的关注者数量是 0，但这就是我做除主 Twitter 帐户之外的所有事情的方式。例如，Instagram\n\n在 Instagram 上查看此帖子 Nyalra (@nyalra_) 分享的帖子\n\n关注 1.仅限超十酱的账号。我发布了一些东西，比如我家里有的御宅族物品、时尚和我喜欢的风景，最近我一直在发布一些不值得在故事上发布的问题的图像和答案。\n 我不擅长通过关注他人来建立人际关系，我在想，“为什么在 Twitter 上是相互的，而在其他地方却不是？”或者也许情况正好相反，所以我决定只专注于发帖而不关注任何人。无论是笔记还是 Instagram。\n 所以我很少看别人的帖子。我把它当作一个完全独立的工具，但在一个没有其他人的世界里只被我喜欢的东西包围对我来说是完美的。即便如此，Instagram上的人们每天都用他们的故事和帖子对我很好，他们的礼貌给我留下了深刻的印象......还有像这样的SNS。当然，我很高兴得到笔记的支持和评论，也很高兴海外读者阅读译文并提出意见。我会继续竭尽全力。\n\npic.twitter.com/e9wnldqNtU — 我在中野百老汇 (@nyalra_uso) 2023 年 2 月 6 日发现的东西\n\n我每天都会发布在中野百老汇散步时发现的有趣的事情。我很高兴听到人们有时会在看到这个帐户后去买东西。今后，我将继续在亚文化的圣地悠闲漫步。标题是一片假蓝天，铺展在中野百老汇的天花板上。嘿，有一天我想逃离中野，看看真正的天空！\n\npic.twitter.com/sudh1GThTj — 2 (@nyalra_copy) 2023 年 2 月 24 日\n\n你好？这是医院吗？\n我的追随者已经停止工作了。\n是的。我以为我正确更换了电池，但是 — 2 (@nyalra_copy) 2023 年 1 月 27 日\n\n这个账号……目前就是这样。以上就是我的SNS账号情况♪\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -65,7 +64,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

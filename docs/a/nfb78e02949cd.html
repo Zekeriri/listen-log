@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：每当我恢复健康时，我就感觉自己被剥夺了与互联网的联系。</title>
+<title>一口随笔：每次健康起来都有被互联网剥离的感觉</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-01 07:24</p>
-  <h1>短文：每当我恢复健康时，我就感觉自己被剥夺了与互联网的联系。</h1>
+  <h1>一口随笔：每次健康起来都有被互联网剥离的感觉</h1>
   <p class="ja-title">一口エッセイ:健康になるたびインターネットから剥がされていく感覚がある</p>
 </header>
 <main>
@@ -22,11 +22,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：每当我恢复健康时，我就感觉自己被剥夺了与互联网的联系。\n\n每当我变得健康时，我就感觉自己被剥夺了互联网的权利。我忍不住想快点摆脱这个。毕竟，健康的人一定会更快乐。但暗网并不是一个接纳快乐的人的地方，所以你必须不健康才能在这个狭小而宽广的电子空间中生存。 ……这种思维方式其实已经过时了，在人人拥有智能手机、上SNS的时代，只有一些宅男无法逃脱老式的吹牛权利竞赛。大多数人即使在网络空间里也是光芒四射、幸福快乐的。没有什么可以因为健康而感到羞耻的。每个人都在谈论自己的酗酒和不规律的生活方式，一边保持着“恰到好处的颓废才有好消息”的台词，但在幕后他们却过着井然有序的生活。这就是为什么我注意自己的健康并乘坐火车上班。我做得对。\n 所以我会毫不犹豫地继续我的生活。一定要早睡早起，一日三餐适量，每天洗澡、锻炼身体。频繁的交流、喝酒聚会、工作电话、创意活动……不行。我的身体不肯早睡，吃饭只是个麻烦，出门的日子只需要洗澡。首先，你什么时候出去？总是在家。你到底在和谁沟通？啊，这样自嘲的感觉真好。我试图表现得像一个悲观的蛰居族，试图诉诸我糟糕的健康状况，而且我已经对自己感到满意了。然而，它无法被拯救，因为它只说对了一半。事实上，我已经很少出去了。最近，你有被迫出去卖同人吗？这个月我可能一次都没睡过觉。我为自己不健康的自我感到自豪，即使我没有意识到。你是白痴吗？尽管你一开始就说了结论，毕竟人还是健康的好。\n 出现这样的情况可不太好。不好。健康确实是最重要的。当我身心健康地生活，偶尔为工作或爱情之类的事情担心，并与朋友喝酒时分享我的真实感受时，我很高兴。好吧，当我写这篇文章时，我实际上感到讽刺。更何况，其中竟然还包含着嫉妒，欣赏这样的光辉。多丑啊！太丑了。长得丑不好，所以我现在就去死，道歉。他再一次用夸张的表情佯装贬低人，取笑其实理智的人，质问他们在平庸的跑道上奔跑到底在做什么。\n 当我在自怜和自嘲的无休止循环中痛苦和欣喜时，那些以正常方式醒来的人，请忽略这些岩石下的蠕虫，继续你的生活。对于那些从半夜就睡不着觉的人来说，让我们裹上被子，安心地睡吧，望着那可恶的太阳，希望明天会是幸福的一天。晚安。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +45,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

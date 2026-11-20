@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：我将获得独立支持。</title>
+<title>一口随笔：接受自立支援</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-13 04:17</p>
-  <h1>短文：我将获得独立支持。</h1>
+  <h1>一口随笔：接受自立支援</h1>
   <p class="ja-title">一口エッセイ:自立支援を受けるよ</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：我将获得独立支持。\n\n由于我经常去北澳新河，我现在能够得到“独立支持”。感觉隐藏的元素被释放了，这是令人兴奋的。顺便说一句，独立支持意味着医疗费用和药品费用将减少至10%。耶！既然你从制作游戏中赚到的钱都被税收拿走了，那么能收回一点就太好了。\n\n既然我们支持“独立”，那么在政府支付我的医疗费用的同时，我必须以某种方式保持身心健康并实现独立。然而，每次去医院，处方药的数量实际上都增加了，今天给我开了精神药物来缓解我的抑郁症。我总共服用 4 种不同的药物。我停止服用治疗发育障碍的药物，因为我的大脑被改造的感觉很不愉快。\n 想到即使我继续按照这个速度，我最终也能独立，我就感到害怕。我已经忘记没有 Deevigo 的时候如何入睡了。当其他人联系我时，我的心跳开始加速，所以我服用精神药物。真可惜，这样的人有一天会以独立的名义，用国家的钱……我开始感到难过，所以我要去吃点药。\n\n当我在 Instagram Stories 上发布此内容时，一位关注者给我发消息说：“哇！我今天也去领取独立援助了！我喜欢它！！！”我从来没有想过通过自力更生的支持我会感受到一种命运感，但如果最后有人幸福，我会很高兴，因为我觉得我做了一件好事。让我们一起努力，在这个现实中变得独立。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

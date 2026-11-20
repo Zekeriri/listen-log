@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇短文：如何扮演“御宅女”作者：Remon Kokoaai</title>
+<title>一口随笔：心爱れもん氏的“御宅女”放开自我的方式</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-01 07:06</p>
-  <h1>一篇短文：如何扮演“御宅女”作者：Remon Kokoaai</h1>
+  <h1>一口随笔：心爱れもん氏的“御宅女”放开自我的方式</h1>
   <p class="ja-title">一口エッセイ：心愛れもん氏による「オタク女」のはっちゃけ方</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 今月末には、長文エッセイと書き下ろしをたくさん詰め込んだ商業エッセイ集もでます。予約していただけると幸いです。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇短文：如何扮演“御宅女”作者：Remon Kokoaai\n\n我想到了“Shokoai Lemon”，也被称为“Jet Black Myojo†”，前几天终于在“Whatcha Prima Magi！”上进行了现场表演。\n 我觉得她御宅族的感觉很精致。她是一个喜欢哥特洛丽塔的网络游戏迷，擅长主动给其他偶像发长评，但她是个害羞的人，只在家里兴奋。\n 这样排列起来，听起来太现实、太激烈了，但故意加入了第一人称“我”、结尾“gozaru”、“哇！”、“这是色情游戏吗？”等老式网络俚语。 （动画中改为horage game）“现实感实际上消失了，变成了像少女动画中的角色一样可以放心观看的角色。\n 她的现场场景也非常独特。不知怎的，确实有一种御宅族特意的氛围。看这舞蹈，他闭着眼睛举起双臂，大喊“为什么、为什么！为什么、为什么！”，就像喜剧演员一样！宅男正确的玩乐方式！这种独特的“酸痛”和完美掩盖它的美感和唱功创造了独特的现场体验。这是一个有价值的视频。\n 我不知道这是什么气氛，重复了一遍又一遍后，我终于明白了。啊，这让我想到，“就像我们班上这个平时很安静的女宅男走进卡拉OK，开始唱《Denkare》和《Yosei Teikoku》之类的歌曲！ （她很擅长）。”\n 不，什么样的少女动漫用最新的CG技术来重现那种“感觉”呢？\n\n包含日常随笔集的同人志现已在 BOOTH 发售。如果你能买的话我会很高兴。\n\n本月底，一本包含长文和新作的商业论文集也将出版。如果您能预订，我将不胜感激。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

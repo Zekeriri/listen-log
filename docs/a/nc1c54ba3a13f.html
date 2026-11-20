@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：在四国停止使用互联网</title>
+<title>一口散文：在四国尝试不上网</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-05-16 00:22</p>
-  <h1>短文：在四国停止使用互联网</h1>
+  <h1>一口散文：在四国尝试不上网</h1>
   <p class="ja-title">一口エッセイ:四国でインターネットをやめよう</p>
 </header>
 <main>
@@ -31,11 +31,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：在四国停止使用互联网\n\n让我们摆脱网络，去看看大海吧！于是我就去了四国。这是海！ ！ ！ ……不过，我其实是为了不同的目的才来到四国的。这是一个艺术博物馆。\n\n前段时间和恐山先生一起出去玩的时候，话题就提到了四国的大冢国际美术馆，于是我决定去看看，然后就搭上了飞机。我想他们也害怕我采取行动的能力。当我联系他时，他高兴地回答：“很高兴你能来。”四国方面的人吗？\n 这个世界上，行动突然的人就会获胜。大冢国际美术馆太大了，几个小时很难逛完，而且我们到达的时候已经是下午了，所以明天我们就去美术馆本身看看。\n\n平日游览景点时，即使空间广阔，你也会发现自己孤身一人，沉浸在那种黑暗和孤独的感觉中，就是旅行最好的部分之一。事实上，仅仅兴奋可能就超过了旅行的主要目的。这种景象可能比较罕见，因为这是在东京或其他热门旅游景点不容易看到的景象。好……（叹气）。\n\n桥的结构很酷。当我发现一个看起来可以用于特效战斗场景的空间时，我很高兴。说起四国，十个人中有十个人首先会想到假面骑士BLACK RX。\n “四国”这个地方的名字是如此超现实，以至于你无法真正掌握这个计划有多么危险，这使得它变得有趣。\n\n漩涡。\n 虽然人们说“我要逃离网络，去看大海”，但事实是，无论你去海边还是去山里，你都可以访问互联网。日本通信环境的改善延伸到了自然世界。在这种情况下，你必须自愿关闭你的智能手机，但如果你有意识的话，你可以在家里这样做。嗯，既然出去了，我觉得我应该忘掉网络，出去玩玩。\n 事实上，最近我浏览互联网的时间少了很多。感觉几乎所有可以通过SNS等体验的东西现在都已经司空见惯了。在这种情况下，接受挑战，专注于我们迄今为止一直回避的现实，会更有趣。海亦如此。今天我又爬了一座山。这很有趣，在附近散步也是如此。现在任何人都可以逃离互联网。唯一剩下的就是你的自制力。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

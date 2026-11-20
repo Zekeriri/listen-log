@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：孤独的病人</title>
+<title>一口随笔：孤独的患者</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-17 01:56</p>
-  <h1>短文：孤独的病人</h1>
+  <h1>一口随笔：孤独的患者</h1>
   <p class="ja-title">一口エッセイ:孤独の患者</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 先月に発売した商業エッセイ集もよろしくお願いします。わりと好評で、これまで生きてきた甲斐を感じますね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：孤独的病人\n\n几年来我第一次乘坐救护车。\n 昨天的日记里，我写到了《Never Google Your Symptoms》这首歌，但当我写下这篇文章的时候，我已经感觉不舒服了，“呕吐”、“胃痛”、“头痛”、“头晕”。此时，我自己做了一些研究后不禁感到担心，所以我一边写一边告诉自己“不要用 Google 搜索症状”。文章。\n 尽管我决心要一直看下去，但我几次感到头晕目眩、虚脱不堪，几分钟都无法动弹。也许他已经掌握了游戏，却失去了勇气，在制作过程中被疲劳和压力压垮了。\n 在救护车运送途中，医护人员问他：“如果你做手术或住院，有家人可以来看你吗？”他回答说：“我母亲在冲绳，所以她肯定不会来。”这是我们第二次这样的谈话；很久以前，当我患上阑尾炎时，我们就进行过同样的谈话，我曾经让一名护士同情一个没有家人或朋友可以探望的未成年人。独自一人在陌生的环境中的悲伤比腹痛本身更痛苦。\n\n这次倒也没什么大不了的，吃了营养补充品和抗生素，现在已经好了。别担心，等游戏发布的时候我就没事了。但是，我不能吃，因为我的胃不接受。我无法庆祝。\n 不过，当我告诉他们我倒下了的时候，还有制作人和剪辑师以各种方式支持我，所以我并不感到孤单。我很高兴，因为我觉得自己长大了一些。\n\n包含日常文章的同人志现在正在展位上出售。不管我的健康状况多么糟糕，我仍然坚持每天写作！\n\n也敬请期待上个月发布的商业论文集。反响非常好，我觉得我到现在为止的人生都是值得的。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

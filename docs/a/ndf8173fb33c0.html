@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：生活在摇滚中！</title>
+<title>一口随笔：摇滚地活吧！</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-20 02:11</p>
-  <h1>短文：生活在摇滚中！</h1>
+  <h1>一口随笔：摇滚地活吧！</h1>
   <p class="ja-title">一口エッセイ:ロックに生きろ！</p>
 </header>
 <main>
@@ -28,11 +28,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：生活在摇滚中！\n\n我剪了头发。因为明天我要参加文学跳蚤市场并出现在公众面前，所以我决定梳洗一下。然后，由于我的外表发生了变化，我将其发布在Instagram上，以便人们可以看到它。正如预期的那样，我收到了粉丝的称赞，说“太好了！”和“你看起来棒极了！”多么健康的一天啊！是的，我这一次的所有举动，完全是被“一般感性”控制的！ ！我很傻。\n\n这条消息帮助我恢复了理智。我放松了警惕，心想自己已经30多岁了，“正常”一点就可以了。每次我剪短头发，我都会明显地从第一次见到的人那里得到更好的第一印象（如果有的话，当我遇到长发的人时那种“我会很麻烦！”的感觉消失了），所以我接受了拥有合理长度的黑发会更容易生活。毕竟那种东西不好吃，但老了就是这个样子。\n 但这条消息又如何呢？ “不要成为一个有好印象的人，”他敦促道。我能感觉到人们对我的复杂感情，他们正在变得正常，但仍然想支持我。首先，向别人表达你的真实感受是一件好事。这需要认真对待。\n 因为我要去参加一个活动。事实上，既然是活动，就应该自己去，不要有任何装饰。你为什么去美容院？不一定是给人留下好印象并且容易交谈的人。另一方面，如果一个人不是“一个一眼就能看出他很奇怪的危险人物”，那么他就不是摇滚乐。即使事情发生翻天覆地的变化，玛丽莲·曼森也无法脱掉白发，剪出清爽的短发。即使当他被当作暴力罪犯接受采访时，他也是一个真正的男人，把脚放在椅子上说：“闭嘴，听罪犯的话。”\n\n酷……。曼森不会因为要出现在文学跳蚤市场上而保持头发新鲜，他也没有丝毫为了给自己的工作留下好印象的意图。事情应该是这样的。以后的聚会，我将过着白脸、魔妆的生活，到了“害怕”的地步。戴上隐形眼镜，让眼睛变白。他还在音乐会期间吸食可卡因。无论如何，在吸毒的同时去参加同人特卖会也没什么问题。曼森在音乐会期间撕毁了《圣经》，所以我应该撕毁会场里的每一本书。\n\n就像曼森不是一个不存在的神的奴隶一样，我也不是想取悦社会……！ ！\n 虽然我已经重新下定决心，但我所要做的就是重新长出头发，我总是很高兴在 Twitter 和 Instagram 上得到支持 ^_^ 另外，曼森教会了我一些重要的东西。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

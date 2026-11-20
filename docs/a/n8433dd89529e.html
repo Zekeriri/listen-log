@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>作文：错觉</title>
+<title>随笔:虚业</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-24 06:44</p>
-  <h1>作文：错觉</h1>
+  <h1>随笔:虚业</h1>
   <p class="ja-title">エッセイ:虚業</p>
 </header>
 <main>
@@ -40,11 +40,10 @@
 前述した通り、本音を吐露したようで、これを読んだ人がどう思うかまで考えてしまっているわけで、そこまで含めて、傷を舐め合う道化芝居です。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"作文：错觉\n\n很长一段时间以来，我第一次服用精神药物，打字时却无法集中注意力。\n 当我独自坐在房间里喝酒，大脑因药物作用而变得模糊时，我可以鸟瞰游戏发布以来我的精神状态。\n\n首先，我太努力保持冷静了。我尽量不为自己的成功而高兴得太早，与读者保持适当的距离感。事实上，我真的很高兴看到团队中的每个人都玩得开心，但我觉得我无法从看到别人快乐中醒来，除非我是他们的亲戚。这就是为什么我试图在空间、会议，当然还有社交媒体上保持冷静。我想我能做到这一点，而且我不是那种用全身来表达那种喜悦的人。\n\n在这种状态下，前几天我庆祝了我的生日，但当网上的所有人都在祝贺我时，现实生活中却没有人在我面前和我说话。这就像是在讽刺“只能在网络上生存的人的现实”。当时我笑着说：“好吧，人们在我的智能手机另一边庆祝”，但现在我冷静下来并服用了精神药物，我终于意识到我的精神状态不正常。\n\n到最后，没有家庭的那部分是我的核心，所以我无法一个人这样生活，所以虽然我真心觉得我不需要家庭，但我也意识到我无法摆脱无法拥有家庭时的情结。之前我还没有在意，因为这很正常，但现在游戏发布后关注度越来越高，我感觉网上的待遇和我空荡荡的房间里玩的差距很大，我感到很孤独。\n\n所以，无论是赞扬我的人还是批评我的人，都感觉有一个隔阂，“但是，这个人周围可能还有其他人”，而且这个隔阂太大了，即使他们现实地谈论这件事，我也觉得这是别人的问题。比这更重要的是，我认为让你的母亲、父亲或家里的兄弟姐妹与你联系并告诉你“保持健康！”或者给他们一个小小的布道，“不要过多考虑金钱！”\n 但这并没有发生。尽管如此，我还是很高兴我的网上朋友，那些与我合住房间或长期合租房屋的人联系我，但我确实感受到了一种不同的不满足感。\n\n读到这里的人可能会生气并说：“你在游戏中如此成功，为什么还要沮丧？”即使我只是一个读者，我也肯定这么认为。如果你假装痛苦地这样写，你会认为你这样做是因为每个人都会注意到并欢呼。这没有什么问题。\n 毕竟，当我写这样的东西时，我想我知道你会如何看待它，我真心希望这篇长篇被宠坏的文章的奇怪读者能有一些同情。\n 如果我这样写，想读这样故事的人会高兴，想看我摔倒的人会生气说：“我这么兴奋在做什么？”，无辜的读者会担心和可怜我，所以有很多算计。\n\n这是获得善意的无用方法。包括这一点，我的生活也只不过是一份“假工作”。这是业力。如果你背负着业力，你就无法获得美好的来世。到了某个时候，我应该放弃这个业力，但我还不到30岁，所以我还达不到那个程度。话虽如此，我的生活还不够好，无法选择“水果”。\n 这一切都被称为“虚假工作”。直到我死的那一天，我仍将是“想象中的”网络小丑。\n\n不，如果我能坚持做小丑就好了。当小丑表演小丑的时候，观众无论多么荒唐，都应该鼓掌。问题是，尽管我是一个小丑，但我有一个自我，除了表演的奇观之​​外，我实际上想要一个正常家庭的“真实”现实。我一直无法弄清楚这一点，所以我一直担心它。\n\n当我意识到我可以不放手地快乐的那一刻，我再也无法离开马戏团的笼子，因为我很害怕看到一直期待着表演的观众一下子扔东西。\n\n正如我前面提到的，他看似在表达自己的真实感受，但他也在思考读到此文的人会怎么想，所以这是一场互相舔舐伤口的小丑戏。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -64,7 +63,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

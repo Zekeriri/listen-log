@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇短文：40万本书和克服噩梦</title>
+<title>一口随笔：40万本与噩梦的克服</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-05 02:53</p>
-  <h1>一篇短文：40万本书和克服噩梦</h1>
+  <h1>一口随笔：40万本与噩梦的克服</h1>
   <p class="ja-title">一口エッセイ:40万本と悪夢の克服</p>
 </header>
 <main>
@@ -30,11 +30,10 @@
 商業エッセイ集もよろしくね。このエッセイ時代は、ベルソムラの影響もあって悪夢いっぱいだよ！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇短文：40万本书和克服噩梦\n\n为了支持曹天酱的直播，我们整个工作室都在努力工作。请夸奖我。\n感谢您成为热门话题第一名和 10,000 名观众！\n有一天好好休息后我会再做一次 https://t.co/ka8NtUslS8 pic.twitter.com/lxCARGJCW1 — Nyalra (@nyalra) 2022 年 4 月 4 日\n\n我们对 Nidiga 进行了现场直播。我们花了很多时间和很多成年人一起准备，最重要的是，所有超级粉丝都很兴奋，所以尽管最初发布突然，我们还是能够在 Twitter 趋势上排名第一，并拥有超过 10,000 名同时用户。我很高兴。\n\n不幸的是，在播出前，这个数字是39万，但在播出期间，它达到了40万……目指せ100万本！ 得到来自世界各地这么多的支持，感觉就像做梦一样。真的很好。我以为我精神上快要死了。\n 好吧，有时我会梦见尼迪加推迟之前发布的世界线。发布的质量并不完美，虽然亲戚们都给了他夸奖，但他并没有太兴奋，而是采取了“尽力而为”的态度。事实上，如果不延期上映的话，也会是这样的气氛。但那并没有发生。\n 那些噩梦开始消退，就在前几天，我做了一个梦，梦到了我上中学时的情景。我很有可能在初中和高中时做梦。而且，因为年轻，所以经常会经历一次又一次的失败……当时我有一个在教室里的梦想，但当我还是学生的时候，我的座位是倒数第五，所以我基本上讨厌坐在桌子前。为什么每个人都在取笑自己？我猜是这样的。\n 然而，在梦中，我终于意识到，“但是，与周围的其他人不同，我完成了一个游戏。”时间轴バグ。见闻色の霸気。我感觉我终于对自己的生活有了核心的自信。从现在开始，无论有人对我说什么让我生气，我都会在脑海中重复，“但是，与这个家伙不同，我完成了一场比赛......”\n\n我们正在出售收集日常文章的同人志！最近刚刚发售的最新卷，充满了尼迪加制作过程中的压抑时刻！\n\n我期待着阅读您的商业论文集。这个论文时代充满了噩梦，部分原因是贝尔索姆拉的影响！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

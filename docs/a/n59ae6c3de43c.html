@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>神秘的海外表情包“只有我们两个”</title>
+<title>神秘的海外迷因『Just The Two Of Us』</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-24 03:52</p>
-  <h1>神秘的海外表情包“只有我们两个”</h1>
+  <h1>神秘的海外迷因『Just The Two Of Us』</h1>
   <p class="ja-title">謎の海外ミーム『Just The Two Of Us』</p>
 </header>
 <main>
@@ -31,11 +31,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"神秘的海外表情包“只有我们两个”\n\n最近，我一直在观察一个神秘的海外表情包，叫做“只有我们两个”。我认为除非我给出一个参考示例，否则我无法传达任何信息，所以这里是。\n\n伴随着名曲《Just The Two Of Us》的曲调，将自己喜欢的人和二次元美少女排成一排，进行复古风格的处理。就这个。我根本没有玩过这些歌曲，所以我真的只是依靠基于拼贴图像的缩略图的味道。标题是《只有我们两个》，翻译得超级酷，所以就像是一个表情包，只是展示了“我心目中的最强男演员和二次元美少女”。我没有仔细研究过，但从气氛和规则来看，我认为是这样的。这段视频可能是最著名的，观看次数已超过 1000 万次，可见这首歌有多么伟大。\n\n这是4K版本。图像质量确实有所提高，但我更喜欢原来的饶舌纹理。仅此一项就有100万次观看。音质没有任何变化，《我们两个人》一如既往地静静流淌。以奇怪的方式安排事情是不是很不酷？\n 最近的热门作品。是尼吉卡酱。这张海报的其他视频只有几千次观看，但一张拼贴图像有 50 万次观看，所以这是一个令人惊叹的模因。当然，音乐是《我们两个人》。\n\n这很好，因为它可以很容易地理解组合的目的。然而，它的颜色与气氛不相符，所以我想我丢了分。当然，打开它时出现的歌曲是《Just The Two Of Us》。\n\n最后上传了一个总结视频。变化如此之多，令人惊讶，有趣的是，即使是真男人和二次元美少女的单一组合，也能有如此不同的品味。那些开玩笑或者只是缺乏理智的人会悄然沉沦。然而，每个视频中播放的歌曲都是《Just The Two Of Us》。\n\n至此，立体男元素终于消失了，变成了动漫美少女x动漫美少女。当你把槙间先生和小林放在一起时，你肯定能看到相似之处。这是发帖者认为最好的《我们两个人》。\n 虽然完全无视规则，我担心会没事，但是已经玩了60万次了。也许海外人士会批评它无视规则，也可能会被认为“这是一个新的解释！”我没有丝毫想查的欲望，因为这真的不重要，但我可以从缩略图中看出我不需要玩它，但当它作为推荐出现时，我发现自己打开了它。这是一个如此迷人的模因。只有我们两个人。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

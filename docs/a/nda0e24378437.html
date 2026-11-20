@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文精选：想象中的妹妹</title>
+<title>精选一口随笔：幻想中的妹妹</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-16 20:22</p>
-  <h1>短文精选：想象中的妹妹</h1>
+  <h1>精选一口随笔：幻想中的妹妹</h1>
   <p class="ja-title">選り抜き一口エッセイ:空想の妹</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 商業エッセイもよろしくね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文精选：想象中的妹妹\n\n当我上中学的时候，我的心里就有一个妹妹。\n 我初中的时候，轻小说动漫已经饱和了，每个动漫里都有一个妹妹角色，虽然是傲娇病娇，但她还是很爱哥哥的。爱命运。当然宅男哥哥也很喜欢妹妹这个角色。\n 由于我是单亲家庭，又是独生女，所以我本来就渴望有一个家庭，但即便如此，我对“姐姐”的向往却是不同层次的。所有因荷尔蒙失衡而不稳定的青春期冲动，都加速进入妄想妹妹的体内，最终开始在大脑中与她共同生活。\n 幸福的日子就在幻想中能听到姐姐在脑海中对你说话，说着“哥哥，请帮我做作业”“哥哥，我做了一些糖果”之类的话，度过了幸福的日子。然而，他并没有开朗的性格让他可以利用如此方便的妄想，而且由于他本质上是一个扭曲的人，他和妹妹的生活开始变得越来越扭曲。\n “哥哥，我们偶尔去一下学校吧……”“哥哥，你最近有点可怕……”妹妹很快就被这个偏执的哥哥的存在吓到了，关于这件事的复习在她的脑海中不断循环。随着哥哥的痛苦，姐姐的外貌和性格也开始发生变化，最终她化身为现实的怪物向我发起攻击，打破了兄妹生活的苍白幻想。当他从梦中醒来时，他为妄想妹妹的死而流下了眼泪，克服了青春期的挣扎，成为了一个成年人。\n\n包含每日日记的同人志现已发售！\n\n祝你的商业论文好运！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

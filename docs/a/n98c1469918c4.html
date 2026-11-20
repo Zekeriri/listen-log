@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：想象一下你完全的向上兼容性</title>
+<title>一口散文：想象自己的完全上位兼容体</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-30 06:11</p>
-  <h1>短文：想象一下你完全的向上兼容性</h1>
+  <h1>一口散文：想象自己的完全上位兼容体</h1>
   <p class="ja-title">一口エッセイ:自分の完全上位互換を想像する</p>
 </header>
 <main>
@@ -20,11 +20,10 @@
  そういうことを想像すると、とても怖くなって身動きが取れなくなる。「僕を見捨てないでね」と正直さだけを武器に縋る愚かな自分。そうはなりたくないけれど、なるのでしょうね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：想象一下你完全的向上兼容性\n\n当我和另一个人交流的时候，我突然变得焦虑起来，心想：“如果我完全超越自己，这个人会怎么做？”学术能力、幽默感、体力、知识、创造力、风格……有各种各样的统计数据，但也不是不可能有人在所有方面都比你更好，除了最无意义的细节。\n 即使因为条件太多而“一切”都不现实，仍然有可能找到一个比你的优势更完美的伴侣。例如，在周刊中，当连载同一类型的漫画时，不太受欢迎的漫画可能会停产，从而看起来它们是向后兼容的。我想世界上确实存在这样的事情。\n 如果是朋友，也许问题不大，只是友谊的范围扩大了，但如果是恋爱，比自己地位高的人攻击自己的爱人，如果真想让爱人幸福，就得大方认输，不顾自己的兼容性，退党。还是会快速增长？然而，人很少会突然成长。获得一个人的能力所要做的，就是更加踏实的努力。太残酷了。\n 当我想象这样的事情时，我会害怕得不敢动弹。我愚蠢的自我只用诚实作为武器紧紧抓住我，说：“请不要抛弃我。”我不希望它发生，但我想它会发生。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -44,7 +43,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

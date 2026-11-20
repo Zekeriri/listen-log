@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一次性作文：对话仅限4人</title>
+<title>一口随笔：对话最多四个人</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-22 02:36</p>
-  <h1>一次性作文：对话仅限4人</h1>
+  <h1>一口随笔：对话最多四个人</h1>
   <p class="ja-title">一口エッセイ:対話は4人が限界</p>
 </header>
 <main>
@@ -23,11 +23,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一次性作文：对话仅限4人\n\n除非是非常亲密的朋友聚会，否则我认为能够聚集在一起并与每个人面对面交谈的最多人数限制为四个。梅原还在广播中说过，“举办超过5人的酒会的人都是业余爱好者。”我不禁同意这句与他人一对一打交道的游戏专业人士的名言。\n 这个世界上有人喜欢开5.6人以上的酒会，邀请几个陌生人，我自己小时候也参加过几次这样的聚会。但总的来说，只是被简单地理解为组织者的“吹关系”，从经验来看，这种情况很少考虑成员之间的兼容性和氛围。这是因为，此类聚会的组织者肯定认为，如果他们不能享受酒会，那是他们自己的错。换句话说，目的不是“对话”，而是“酒精刺激下的部分兴奋”。这里面充满了偏见，但恩怨也有很多种。当然，也有人喜欢它。\n 在海贼王一章的结尾，当我在“这是一场派对！！！”时模式下，我想象自己脸色煞白，因为我看着路飞和其他人在远处用一次性筷子跳舞而不是加入圆圈。渐渐地，他意识到“和白人在一起可能会很麻烦”，并想回家，但他不敢说“我要回家”，所以他什么也没说，继续坐在健身房里。尽管路飞和他的朋友们知道没有什么问题，但孤独是痛苦的，只会让他们感到悲伤。\n 制作人建议我邀请相关人员来发布我的游戏，但我也拒绝了这个想法。我没有信心面对一大群人中的每一个人，一想到发脾气把事情搞砸就让我害怕。在没有原作者的情况下发布有点奇怪，但看起来他们无论如何都会在没有我的情况下进行。这有点悲伤。真是又烦又烦啊！但可怕的事情就是可怕的。女孩子的心是复杂的。\n 我不想以阴暗的语气结束，所以我会附上一张我制作的图像，希望“当酒会上充满了劳动人民时，这是很难的，所以我希望有像黑暗萨姆斯和雷德利这样的人。”\n\n请欣赏由每日日记组成的同人志和商业文集！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

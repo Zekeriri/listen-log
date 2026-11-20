@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：我很讲究，也很担心。</title>
+<title>一口随笔：自己非常执着且苦恼</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-03 07:48</p>
-  <h1>短文：我很讲究，也很担心。</h1>
+  <h1>一口随笔：自己非常执着且苦恼</h1>
   <p class="ja-title">一口エッセイ: 自分はとても強く拘って悩んでいるが</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 最近、発売した商業エッセイ集です。購入報告はぼちぼち頂いているものの、まだAmazonレビューが少ないことが悩み。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：我很讲究，也很担心。\n\n我想每个人都会有这样的感觉：“我对自己的担忧很挑剔，但从别人的角度来看，这并不重要，即使我和他们谈论这件事，他们也可能只是告诉我不要担心，而最糟糕的是客观地知道这是正确的答案。”\n 我因此而痛苦不堪，但不知怎的，试图用语言来表达并大声说出来是极其廉价的，这只会让我感到悲伤，因为我的心胸太狭隘和懦弱而没有担心这个。因此，您无法谈论或与他人分享这一事实会使问题变得更加严重，并且痛苦会加速。\n 除了尽快忘记并不再意识到它之外，没有其他办法，但因为我意识到“我必须尽快忘记它”，所以它更加扎在我的脑海里，我无法摆脱它。当我想着“我就多睡一会儿，强迫自己忘记”的时候，“睡眠”和“烦恼”就联系在一起了，当我上床睡觉时，我的意识变得活跃，我的脑子里充满了烦恼，结果我根本睡不着，事情变得更糟。艰难的。\n 我认为“肌肉训练可以治愈抑郁症”的想法受到御宅族的批评是很自然的。那里肯定有抑郁的大男子主义人士。然而，我也知道肌肉训练接近答案，找到能让我集中注意力而忘记担忧的东西是正确的做法。在做俯卧撑和仰卧起坐时，身体上的疼痛帮助我避免了精神上的痛苦。你用另一种痛苦来覆盖这种痛苦，这种痛苦越多，你就越健康。这一定是正确的做法。想到这里，虽然有“正确答案”，但我却无力去做，重复着睡不着觉的日子。\n\n我们正在出售编辑日常文章的同人志。有很多问题可以与他人分享。\n\n这是最近出版的商业论文集。尽管我们收到了很多购买报告，但我们仍然担心缺乏亚马逊评论。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

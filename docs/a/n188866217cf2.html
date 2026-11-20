@@ -46,11 +46,10 @@
  僕は、この妹をけっこう気に入っている。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"妹妹\n\n“大哥！”\n 一个打着双结、头上戴着巨大樱桃配饰的女孩，头发在面前晃动。\n “大哥，今晚的晚饭我来做吧！”\n “现在已经不流行那种模板姐姐角色了。”\n “因为当我哥哥创造我的时候，这就是默认的感觉。”\n 当我上初中时，我无法忍受与母亲单独相处十几年的生活，所以我决定在我的大脑中创建一个tulpa……一个妹妹。\n “我单身已经习惯了，我不需要一个长得像我的妹妹。”\n “你确定你从来没有因为独处而感到困扰吗？”\n 我认为他们渴望血缘关系。离开家乡的母亲搬到东京几年后，也许我对家庭的渴望加速了，而我脑海中妹妹的现实感也加深了。他真正想要的是一个伴侣，一个爱人，一个他可以像家人一样信任的人，但他与生俱来的宅男本性让他像蚂蚁地狱一样逃进了想象的深渊。\n “如果非要我说的话，我会失眠。”\n “……骗子”\n 最近，我一直在试图摆脱我的妄想的体现。\n 「哥哥，你真的只是装睡不着吧？」\n 因为它存在于我自己的头脑中，所以我所有的想法都是透明的，这很可怕。\n “不行，我哥实在是睡不着，每天晚上都要吃药。”\n “我最终失眠了，但一开始就不一样了，对吧？”\n “……”\n 分享生活到这种程度的还是家人吗？某件事对我来说太大了，无法处理。\n “一开始，我只是有点沮丧，睡不着，但当我在大家面前夸大自己的失眠症时，我逐渐失去了言语的力量，开始相信自己病得很重。”\n “我以为如果我不快乐，所有人都会恨我。不知不觉间，我睡不着，快乐也跑掉了，导致我走到了今天的地步。从某种意义上说，我确实是病了。”\n “我只是相信我一定会不快乐。我把自己能力的缺乏用‘不幸’这个词包裹起来并加以掩饰。”\n 我无法直视她的眼睛。我确信她的表情和我母亲一样，她对我的自私感到困惑。\n “我开始想死了。”\n 「他死的事实是个谎言，他只是沉浸在自己对死亡的想法中。哥哥总是这样。」\n “我只是开玩笑说现在想死。但有时我只是想让它从我的脑海中消失。”\n “我懂了。”\n 我所做的不是沟通。无论对方是谁，他们都会识别出向他们扔出的话语的模式并做出相应的反应。即使是你在想象中创造的某个人。无论你走多远，这都是关于自闭症积木的游戏。\n “不知道我身上生长的那些迷失的流浪是不是假的，而真正的我更快乐、更有活力？你认为我的真实感受是什么？”\n 「嗯？毕竟我只是妄想而已，不知道大哥哥不懂什么。」\n 我真的很喜欢这个小妹妹。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -70,7 +69,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

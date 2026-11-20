@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：寻找哭泣游戏的风景</title>
+<title>一口随笔：寻找泪游的风景</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-02-23 01:28</p>
-  <h1>短文：寻找哭泣游戏的风景</h1>
+  <h1>一口随笔：寻找泪游的风景</h1>
   <p class="ja-title">一口エッセイ:泣きゲーの風景を探して</p>
 </header>
 <main>
@@ -37,11 +37,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：寻找哭泣游戏的风景\n\n独自旅行的第四天。由于住在养老，所以早上我去了养老，一个由一位名为“养老命运逆转之地”的艺术家创建的奇怪画廊。\n\n这是一个异常的艺术空间，由于其极其复杂的结构，你的平衡感很快就会出现偏差。\n天命逆转 pic.twitter.com/0Sd8mL6RFV — Nyalra (@nyalra) 2023 年 2 月 22 日\n\n游戏充分利用了广阔的土地，并且有很多让人失去平衡感的技巧。感觉天地都颠倒了。事实上，似乎有很多人在被冲倒时受伤。这是艺术和有趣的。继续下山，从名古屋前往岛上。我想我应该趁这个机会去那里……一个偏远的岛屿！\n 于是我从港口小镇坐船来到了日间贺岛。这是一个小岛，大约一个小时就可以走完一圈。此时，我决定拍一张看起来像夏天哭泣游戏的场景的照片。不过现在是冬天了。\n\n果然是岛电。无论从哪里剪下来，美少女游戏的背景都是惊艳的！而且，虽然是隆冬，但现在还是夏天。我周围的游客都是情侣，所以我很伤心独自一人在周围漂浮......\n 一扇有意义的门。这也是一个很好的噱头，隐喻女主角的心理景观。\n\n一张长凳可以俯瞰大海。我想他就是在这个时候突然了解到女主角复杂的家庭情况，轻轻地抱住了她的肩膀。为什么不呢？\n\n当地男孩在日落的背景下全神贯注地打球。这张照片太好了，连我自己都感到惊讶。\n\n拍了太多哭泣游戏的 CG 照片... pic.twitter.com/2EbLey2Lyt — Nyalra (@nyalra) 2023 年 2 月 22 日\n\n最精彩的部分是这个令人难忘的挥杆。这绝对是那种女主角微笑着推开她的CG啊！然后，随着世界的秘密被揭开，她消失了，空荡荡的秋千猛烈地摆动着……\n 我拍的是情侣照，但由于客栈只有两人间，所以有两张床，价格是两人间。没办法，因为这是我唯一可以呆的地方，但我对这里有多少空间感到难过。最糟糕的是，我最终在一家周围都是情侣的餐厅里独自吃了两个人的饭，显然我没想到自己会单身。我周围的人和女服务员都很难把我当作一个在旅行前被抛弃的可怜人。当我一个人躺在床上，彼此挨着的时候，我感觉自己真的失去了我的爱人，我的心因为有一个不存在的爱人的幻觉而疼痛。事实上，我吃得太多了，我都吐了。我付了很多钱，吐了很多，感到孤独，现在我的一整天都是一场哭泣游戏。哈哈……尼亚鲁拉酱，我错了……\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -61,7 +60,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

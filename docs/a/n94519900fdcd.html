@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：超现实的推文之战</title>
+<title>一口小随笔：超现实推文大战</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-02-10 07:02</p>
-  <h1>短文：超现实的推文之战</h1>
+  <h1>一口小随笔：超现实推文大战</h1>
   <p class="ja-title">一口エッセイ:シュール・ツイート・バトル</p>
 </header>
 <main>
@@ -33,11 +33,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：超现实的推文之战\n\n推文必须控制在140个字符以内，因此用讲述故事的复杂句子很难让人发笑，而且往往会归结为短句的超现实性。当被问到他在反对什么时，他并不清楚。无论如何，我们都在战斗。\n 例如，仅仅嘀咕“天气很冷”是没有意义的，所以这里有一点幽默。\n “太冷了，我变成了萨姆斯。”\n 基本形式。我很赞成语感良好，但故事突然从温度感觉的话题跳到了《银河战士》的主角萨姆斯身上。简单是最好的，但也很累，缺乏原创性。毫不夸张地说，现在就是大显身手的时候了。这太夸张了。对于90%的用户来说，从心底来说这并不重要。\n “太冷了，我变成了火星。”\n 天气太冷了，萨姆斯也在预期范围之内，所以我惊喜地介绍了《任天堂明星大乱斗》连线的玛斯。因为他们没有共同的“samu”这个词，所以它并不真正符合爸爸的笑话。不过，我觉得突然的决定有点意思。实际上大声说出来的感觉很好。当然，她不是萨姆斯的对手。这种创新可以说是迈向个性的第一步。我想说，这就是我们的目标和挑战。\n “天气太冷了，变成了一座冷山。”\n 从此，这就是一条不顾一切的路线。这是超现实的笑话和根本没有意义的事情之间的界限。首先，虽然《超级马里奥64》很出名，但很少有人记得早期的雪地阶段是“冷山”。最重要的是，即使它传开了，它也不能真正起到搞笑作用。萨姆斯与任天堂相连，她的脖子上有一个类似皮肤的连接。然而，根据时间的不同，突然出现寒冷的山的愚蠢声音可能会有点烦人。完全是一场赌博。我仔细衡量时间线的时间和流程，在适当的时候嘀咕一下，成功率最多也就30%左右。不过，我并不讨厌做出错误的赌注。\n “我成为参孙老师是因为天气太冷了。”\n 大胆离开任天堂前往金肉人。虽然因为有共同的“samu”这个词而成为一个笑话，但即使在金肉人中也很难说它是一个众所周知的角色，而且，因为它不是以“○○人”风格命名的，所以很难传达出它是金肉人中的超人。与《冷山》不同的是，它没有奇怪的人物外观，对于不了解它的人来说，这是一串令人毛骨悚然的字符。而且，金肉人本身就有一种老人的味道。相信追随者的年龄范围和御宅族水平的全力攻击。相信火的力量所带来的奇迹......\n “太冷了，我只好到处跳。”\n 这是前所未有的领域。你一定玩过《超级马里奥64》，背过《冷山》，甚至还记得之后还有《Acchichi Sabaku》。而且，就在你以为山上会很冷的时候，萨巴库阿奇奇违背常理而发生的混乱已经超出了超现实搞笑的范围。以防万一，如果您搜索前面的例句，您就会找到它们。然而，到处都是零处理。进入一个无人涉足的世界是一场冒险。只有攻击到这里，时间线上才会出现一片新雪。\n 《奥索托沙米子》\n 这是一种甚至打破了“太冷了”的格式的弹丸。不过，意思还是比较容易理解的，大家都很高兴看到流行动漫中的美少女角色出现。至少肯定比参孙老师好。从语气上来说，也可以用来当噱头。看似简单，却又融合了可爱与幽默的作品。脑海中浮现出三子在破旧公寓里冻得瑟瑟发抖的场景，甚至让人感觉故事的开头让人想起川端康成。这是原创吗？\n 让我们通过与时间线上许多看不见的敌人战斗来磨练我们的推文技巧。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,7 +56,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

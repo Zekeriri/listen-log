@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文精选：哲学的幸福</title>
+<title>精选一口随笔: 哲学的幸福</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-25 14:43</p>
-  <h1>短文精选：哲学的幸福</h1>
+  <h1>精选一口随笔: 哲学的幸福</h1>
   <p class="ja-title">選り抜き一口エッセイ:哲学的な幸福</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 毎日の日記をまとめた同人誌をBOOTHにて販売中！ 気に入ってくれたらよろしくね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文精选：哲学的幸福\n\n^ 内容与上述类似。\n\n人只要活着，就总会有某种忧虑，我想担心是很容易的，只有你一个人一年到头都在忧虑，但事实上，这其实是一种正常的情况。\n\n想到这里，我想起了我之前在日记中引用过的伊壁鸠鲁的哲学：“幸福和祝福不在于拥有大量的财富、身居高位、拥有权威或权力，而在于无忧无虑、情绪平静。这是灵魂设定其自然界限的状态。”这是一种奇怪的解释，正确的答案是人们继续忧虑，追求一种情绪平静、无忧无虑的状态。尽可能多的。这是吉良吉影。\n 然而，担心的行为是人类的特权。我们之所以是人，是因为我们不断地忧虑，哲学家约翰·斯图尔特·密尔说过：“与其做一头陷入困境的猪，不如做一个忧心忡忡的苏格拉底。”如果你毫不犹豫地凭本能生活，你就跟动物一样。如果我们加上这个想法，这个故事就会变得更加有趣，它会变成“幸福就是没有忧虑，但我们是人类，因为我们有忧虑。”\n 如果是这样的话，我们将继续生活在这样一种状态：作为人类，我们的目标是拥有一个无忧无虑的环境，但却因为无法实现该目标而遭受痛苦。我们越担心，我们就越成为人，我们也许可以说我们正在朝着我们的目标前进，无论目标多么小。如果加上“幸福地生活！”混入其中，就变得更加困难。让我们都多忧虑，多快乐。\n\n包含每日日记的同人志正在 BOOTH 发售！我希望你喜欢它。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：“擅长游戏”的人</title>
+<title>一口随笔：“游戏很厉害”的人</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-11 04:06</p>
-  <h1>短文：“擅长游戏”的人</h1>
+  <h1>一口随笔：“游戏很厉害”的人</h1>
   <p class="ja-title">一口エッセイ:「ゲームが上手い」人</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：“擅长游戏”的人\n\n虽然逐渐好转，但我还是头疼、心悸，只能一直躺在床上。我已经厌倦了看漫画和书籍，所以今天我打算花一天时间看视频内容。\n 我打开YouTube尝试关注热门主播，但我对所谓的“游戏解说”完全没有兴趣。如果是这样的话，我会强迫自己观看它，以了解更多关于现场游戏文化的信息。不知道的话就自己看看吧！\n 然而我对热门游戏一无所知。我不玩竞技游戏，也发誓再也不玩社交游戏。首先，我想玩我还没玩过的游戏。于是，我决定观看我只知道的著名游戏《超级马里奥64》的现场解说。最重要的是，它必须是知名广播公司的第一次观看。当有人第一次遇到我喜欢的作品时，我的反应给了我生活的活力。\n 然后我看了三位著名主播的现场解说，看他们三人的发挥很有趣。具体来说，“第一次观看时对游戏的理解程度”是完全不同的。\n 该游戏以可爱、擅长游戏而受到人们的喜爱，确实游戏进展很快，而且很好玩。几分钟后我就得到了我的第一颗星星，到了 30 分钟后，我已经学会了《超级马里奥 64》的基础知识。难怪这个女孩如此受欢迎。她很可爱，但她很擅长玩游戏。那是最好的。\n 下一个人对马里奥64的理解相对较慢，花了10多分钟才得到第一个星星。搞清楚舞台噱头需要花很多时间。相反，每次犯错，他都会和观众争论评论，哭喊叫，表现得淋漓尽致。不管他的演奏技巧如何，他对事物的反应总是很华丽，所以我永远不会厌倦看他。适当专业。我确信它会流行起来。\n 顺便说一下，另一个人介于两者之间。他们三个人总是在说话，所以画面很有趣是很常见的。他是专业人士。\n 我认为“第一次观看时对游戏的理解程度”是一个有趣的参数。透视“机制”的能力至关重要。除此之外，我确信您会被问及您的努力工作能力，如果是多人游戏，还会询问您的沟通技巧。当我看到一个职业格斗游戏玩家第一次玩《任天堂明星大乱斗》SP并立即成为VIP，或者一个职业《任天堂明星大乱斗》玩家快速掌握《喷射战士3》时，我惊讶地发现游戏本身有多么出色。\n 对我来说，大多数游戏不需要像《怪物农场》或《信长之野心》那样的动作，你只需花时间去进步……我很佩服他，因为需要花费非常长的时间来弄清楚“机制”并找到有效的玩法。\n 想想看，我妈妈对《超级马里奥64》的手感异常出色，我比幼儿园时更着迷，虽然我收集到了118颗星，但我玩羽毛马里奥的关卡无论我尝试多少次都无法通关并收集红币，所以我几乎放弃了一切。我记得我从后面看起来多么悲伤。\n 感谢今天观看的三个主播，我感觉自己能够回忆起小时候在妈妈身边观看马里奥活动的一些感受。很怀旧，谢谢。你们玩游戏比我妈妈，甚至我好很多倍。请继续用你的技巧和魅力为许多迷失的观众带来幸福的时刻。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

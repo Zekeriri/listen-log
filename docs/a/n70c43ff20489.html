@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇短文：我的背景迷恋和押井守的“习惯”</title>
+<title>一口随笔: 我的背景控与押井守的“癖好”</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-15 03:03</p>
-  <h1>一篇短文：我的背景迷恋和押井守的“习惯”</h1>
+  <h1>一口随笔: 我的背景控与押井守的“癖好”</h1>
   <p class="ja-title">一口エッセイ:僕の背景フェチと押井守の&quot;癖&quot;</p>
 </header>
 <main>
@@ -24,11 +24,10 @@ Twitterでも、いい路地の写真を貼ったりするbotやLimimal spaceを
 文章をまとめた同人誌や商業エッセイ集をよろしくね。僕が押井守監督に大きく影響されたように、僕の影響された若者もいるかもと想像すると嬉しくなりますね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇短文：我的背景迷恋和押井守的“习惯”\n\nI really like architecture and backgrounds.我自己也不太明白其中的逻辑，但是看着楼梯、走廊、还有稍微不寻常的房子，我就感觉很踏实。我一直很迷恋水木茂和柘毛良晴的漫画，也是因为喜欢两位作者画的精致的背景。 Kochikame and Tsutomu Nihei are also good. 《电锯侠》第二部还有很多库容城堡和港式违章建筑的图画，这是我最兴奋的。\n 当我不看动漫时，我通常会看《来自世界之窗》或我在耶路撒冷散步的视频。\n\n在 Twitter 上，我会查看发布漂亮小巷照片的机器人和“Limimal Space”，而且我还有一个爱好，就是收集有关复古游乐园和建筑的书籍。我非常喜欢像《好楼梯照片集》这样小众名字的书。之所以每天沿着中野百老汇散步，大概就是因为这股复古气息的风景还在延续。前几天去的南迦町的昭和街景也很漂亮。\n\n回想起来自己为什么有这样的爱好，大概是因为押井守导演吧。在《攻壳机动队》中，在河合贤治厚重的背景音乐下，用长达几分钟的时间展示了香港的城市景观，而在《激浪》中，则在市中心进行了表演。敢把背景露出几分钟……这是大牌导演才能有的“习惯”（他自己说就是这个钩子），而我就被这个习惯迷住了，每次看这样的东西都被骂得先看背景。我的人生受到押井守的影响有多大？\n\n敬请期待同人志和商业文集。我很高兴地想象，可能会有年轻人受到我的影响，就像我深受押井守教练的影响一样。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇短文：一个与我完全相反的生活的故事。</title>
+<title>一口随笔：与我完全相反的人生故事</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-11 03:09</p>
-  <h1>一篇短文：一个与我完全相反的生活的故事。</h1>
+  <h1>一口随笔：与我完全相反的人生故事</h1>
   <p class="ja-title">一口エッセイ:僕と真逆の人生の物語</p>
 </header>
 <main>
@@ -22,11 +22,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪ まさしく僕の人生の物語です。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇短文：一个与我完全相反的生活的故事。\n\n我喜欢《你一生的故事》。一个既美丽又残酷的神秘故事，科幻主题与女性敏锐的情感混合在一起。星新一短篇小说般的妙语，加上细致的心理描写，将积累的情感碎片最终串联起来，我感到一种宣泄的感觉。而且我越喜欢一部作品，就越想看评分低的评论。这证明你拥有永远不会来自于你自己的想法和想法。\n\n这次我发现的评论是这样的，“星新一把故事拖得很简洁，所以他给了0分！”我的印象有180度的不同。有人说，这部作品的优点其实是它的“弱点”，所以了解这个世界上的陌生人如何相互理解，以及互联网的异常现象，让我们与其他人无休止地联系在一起，是很有趣的。\n 我很好奇是哪种生活方式导致我的想法与我的想法完全相反。幸运的是，这个人按照时间顺序写下了他从出生到现在的一生，我惊讶地发现他似乎是东京大学的精英学生，他的成长经历与我这个低级工业毕业生的背景完全相反。虽然我没有分享我对《你一生的故事》的印象，但我发现《这个人的一生的故事》读起来很有趣。互联网的伟大之处在于，我可以与与我完全不同的人联系，但同时，对于某些人来说，这也是互联网最糟糕的事情。\n\n请欣赏我的日常日记和商业随笔集的同人志♪ 这才是真正的我的人生故事。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +45,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

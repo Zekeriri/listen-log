@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：站在被嘲笑的一边</title>
+<title>一口随笔：成为被嘲笑的一方</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-15 04:29</p>
-  <h1>短文：站在被嘲笑的一边</h1>
+  <h1>一口随笔：成为被嘲笑的一方</h1>
   <p class="ja-title">一口エッセイ:笑われる側でいる</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 商業エッセイ集の方は、本当に全て丸出しだから読まないでください。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：站在被嘲笑的一边\n\n因为我会立即在日记和推特上发布自己的情绪、愤怒、悲伤和快乐，所以有时我觉得周围的人不知道如何回应我。一个极其烦人的存在。我想被骂就该被骂，但因为我一参与就麻烦的气场，我不轻易被骂，而且我的态度只会变得更糟。\n 当谈到如何与某人互动时，正确的答案是“笑”或“被逗乐”。我的出身是建立在“开推特账号交朋友”之上，当时，作为一个没有受过教育的穷人，我选择了“揭露一切，站在被嘲笑的一边”。“选择”是一个用词不当。这是我唯一的选择。好吧，还有其他选择，比如“攻击一切并横冲直撞”。\n 现在仍然有这种感觉，或者更确切地说，这种感觉可能会永远困扰着我，我基本上希望人们取笑我。我想成为一个孩子。与被嘲笑的人打交道会更容易。就像是，“这家伙是个白痴，所以我不在乎他说什么。”交朋友的一个快速方法就是陷入“一个不能被利用，但能让你感到安心的人”的位置。\n 所以，即使我在哭泣或生气，当人们看着我说：“我又大惊小怪了，哈哈”时，我就放心了，因为对方只是嘲笑我并放松了警惕。你真的不需要担心。请取笑我。如果你在某些事情上遇到了严重的困难，你可能会在正确的地方告诉它（基本上是精神科医生）。当我被嘲笑时，我感到轻松。我感觉它正在履行其作为“在线奇观”的功能。出于某种原因，我是一只疯狂的猴子，不介意被展示，并且想要自己的笼子。\n\n哇。购买充满白痴生活的同人志。\n\n如果您正在寻找商业论文集，请不要阅读它们，因为一切都已完全暴露。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：凭气氛炒股</title>
+<title>一口随笔：凭感觉炒股</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-19 02:33</p>
-  <h1>短文：凭气氛炒股</h1>
+  <h1>一口随笔：凭感觉炒股</h1>
   <p class="ja-title">一口エッセイ:雰囲気で株をやっている</p>
 </header>
 <main>
@@ -28,11 +28,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくお願いします♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：凭气氛炒股\n\n几个月前，我决定购买股票，因为我相信从 Prichan 那里学到的重要精神：“只有尝试，你才会知道。如果你不知道，就尝试！”\n 我们认识到，有四种方法可以给大脑带来强烈的快乐：“工作/运动的成功”、“爱情”、“毒品”和“赌博”。工作、运动和爱情的成功很困难，因为时间和关系至关重要。以负担得起的方式获得良好感觉的唯一方法是转向毒品或赌博。然而，药物通常伴随着巨大的风险。那样的话，无用的人就会通过淘汰的过程开始更加重视赌博。\n 然而，您从老虎机和弹珠机中赚到的钱是惊人的。股票和外汇是其他高价值游戏（合法），可以让你的脑汁流动。觉得这样的感觉一定不错，他就开设了一个账户来尝试一下。我用40万日元购买名字可爱或提供股东福利的公司。他连一丁点的既定知识或者知识都没有。我完全是根据气氛来炒股的。当我看着价值40万日元的股票时，我看到它们每天波动几百日元，我心里想：“如果这一切突然上涨，我会很兴奋！”但我厌倦了看几百日元的波动，大约在这个时候，我忘记了我一开始就拥有这只股票。\n\n当我突然想起来并第一次开设账户时......\n 涨到46万日元了！\n 严重地？另外，这是60,000日元。再说一遍，我没有做出任何预测或阅读任何内容。我只是点击了一家名字很可爱的公司。另一方面，由于我没有受到任何干扰，我想我有一个初学者的运气。本来我只是想体验一下“买股票”的感觉，甚至还以为自己最终会损失几万几万美元。那可赚大钱了。我刚刚在家睡觉。\n 这太可怕了……如果购买10倍的话，简单计算一下就赢了60万日元。与弹珠机不同，您甚至不需要坐在机器前。当你打开屏幕时，看到估值损益+约6万日元以红色显示，感觉很好。危险的。这很危险。从这里开始，我就陷入了“下次，我会更加努力地学习，尝试投入更多的钱♪”这样的想法，并且我想在我的大脑中获得更大的药物。因为我是一个坏人，在工作和运动中很难成长，距离恋爱还很远，而且必须摆脱吸毒的过去。\n “如果我放着它的话，它不是会增加更多吗？”我突然想到，但我决定卖掉它，并得到+60,000日元的满足。我想我会一次性买下所有海贼王。\n 一时间我感受到了“Stock”的气氛。这就是你所需要的。很有趣，而且结果是一个加分项，所以让我们牵着手，作为一个美好的回忆。下一个将是 100 万...我们不要这样做。甚至不要开始认为任天堂一定会成长。有人请阻止我。仅仅开个账户就可以转移数万美元的火热感觉开始引诱我走上地狱之路！\n\n感谢大家对日记总结和商文集同人志的支持♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

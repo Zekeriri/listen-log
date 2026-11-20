@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>兄弟，晚上你要好好睡一觉。</title>
+<title>哥哥，晚上最好好好睡</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-06-08 04:56</p>
-  <h1>兄弟，晚上你要好好睡一觉。</h1>
+  <h1>哥哥，晚上最好好好睡</h1>
   <p class="ja-title">お兄ちゃん、夜はちゃんと寝た方がいいよ</p>
 </header>
 <main>
@@ -37,11 +37,10 @@
  おやすみなさい、お兄ちゃん。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"兄弟，晚上你要好好睡一觉。\n\n兄弟，你醒了吗？\n 不。晚上睡不好对您的健康有害。图片？我很好。你什么时候保持清醒并不重要。我不去学校...我不介意早上和下午睡在我的房间里。呵呵。\n\n嗯，关于学校的事情就够了。那样的地方。这很奇怪。我们都是孩子，孩子。一只自私的猴子。那些家伙不配看到我特别的衣服。兄弟你想看多少就看多少。相反，看看它。你看，裙子在飘扬。它在包内膨胀并散开。美丽的？\n 不行，就算你是哥哥，碰我的衣服也不行。这是一个承诺。比那早点睡觉。月亮出来的时候最好睡觉。因为我不喜欢阳光。如果你要睡觉的话，可以稍微碰一下我的丝带。特别的。\n 太阳为什么这么热？看起来很愚蠢。我认为只要它是明亮的并且任何事情都可以被原谅就可以了。就像教室里的男孩一样！人们在死去时却不知寂静之美。太可悲了。从这一点来说，月亮是冷酷而仁慈的。这样，即使我们熬夜说话，他们也假装没有注意到我们。喜欢。\n 正确的？大哥。\n 如果早上发生这种情况就不好了。这些家伙很容易被人激怒。我会马上告诉爸爸妈妈我和弟弟在一起了。因为那不好。\n 哦，顺便说一句，我得到了一个新的蝴蝶标本。我在网上搜索了很多。我可能擅长互联网。诶嘿嘿。看。\n\n蓝色和绿色的翅膀很漂亮。\n 它被称为伯里克利燕尾。既然是燕尾蝶，我想知道它是否和大闪蝶一样大。然而，当它扇动小翅膀时，感觉很神奇，好像只有颜色在跳舞。啊哈哈。你看起来像我。嘿，我转身说我掀你的裙子。铜？它看起来像蝴蝶吗？\n ……故事就这样结束了！我来这里是为了让我弟弟上床睡觉。我必须履行我的职责！来吧，赶紧上床睡觉吧！ ！如果你想吃药，我会带水给你。现在，躺下。\n 没关系。我会坐在你旁边直到你睡着。是的。我在看蝴蝶。根据角度的不同，它看起来呈绿色。我永远不会厌倦它。很美丽。\n 怎么这么多……嗯，是我们一起去河边的时候，弟弟抓到的。我认为那是一只菜粉蝶。这让我很高兴。我哥哥抓住了它，但当我把他锁在笼子里时，他非常伤心，所以我立即打开笼子，它飞上了天空。毕竟我觉得蝴蝶只有扇动翅膀才能看到！\n 我担心他会生气，因为我抓住了他，然后他放开了，但他称赞我说：“你真好。”这也让我很高兴。\n 啊哈哈。我弟弟已经困了。好吧，趁着月光灿烂，去睡觉吧。\n ……哥哥，总有一天我会去学校的。我脱下全黑连衣裙，脱下背带，穿上与班级相配的素色连衣裙。让它尽可能不显眼。没关系。他们让我没有意识到，在家里我把裙子像一只黑蝴蝶一样展开，看起来比什么都漂亮。应该只有我和我弟弟知道。\n 晚安，兄弟。我喜欢它。\n 早上我会睡觉，所以晚上请叫醒我。我彻夜不眠，但我哥哥是那个可以出去的人。因此，晚上最好保持良好的睡眠。\n 晚安，兄弟。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -61,7 +60,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

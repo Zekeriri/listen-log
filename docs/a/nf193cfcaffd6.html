@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇短文：一个初中生和高中生读我的书</title>
+<title>一口随笔: 读我的书的中学生和高中生</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-30 02:32</p>
-  <h1>一篇短文：一个初中生和高中生读我的书</h1>
+  <h1>一口随笔: 读我的书的中学生和高中生</h1>
   <p class="ja-title">一口エッセイ:僕の本を読む中高生</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 僕が書いた同人誌や商業エッセイ集が、あなたの孤独を一瞬でも忘れさせてくれることを願います。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇短文：一个初中生和高中生读我的书\n\n最近，我不断收到初中生和高中生的报告，他们正在读我的论文，这让我很高兴。最重要的是，那封写着“我们在学校孤独的休息时间一起读书”的情书让我感到最幸福。\n 我在初中、高中的时候，也是那种利用课余时间看书的人。我不喜欢被迫学习体育和音乐的感觉，以至于我最终留在教室里，躲到书本里，而不是在这些课上移动。\n 那时的陪伴是洛夫克拉夫特、大月健二、泷本龙彦全集等书籍，浓缩了青春期的压抑。每次读完书中所表达的郁闷心情，我都会有一种如释重负的感觉，仿佛我被肯定了，像我这样的人与青春截然相反。当我想象自己的写作可以成为一种能量的源泉，减少并肯定我的孤独时，我很感动。事实上，我以这种方式支持学生的自我意识，就等于将自己从那一天中拯救出来，超越了时间。我从来没有这么高兴过。\n 青少年的每一天都是一团糟，在课堂上被人拿来比较，在家里背负着父母的压力和期望，友情和爱情很容易因为人际关系不好而破裂。我们应该依靠的大人只会吐出美丽的东西。这很困难，因为对未来有一种模糊的焦虑感。\n 我就喜欢这样有问题的年轻人。由于他的敏感，他像一把生刀一样伤害别人，最终也受伤了。那种无所不能和焦虑的感觉交替出现。毫无疑问，你们是世界的英雄。与那些时刻提心吊胆的日子相比，我成年后所做的一切都不过是表面上披着严肃外衣的玩物而已。如果我的作品和文字能够成为人生这么大的舞台的一部分，那才是我真正的愿望。\n 当其他人都在关注热门内容和视频时，我正在关注一位名叫 Nyalla 的御宅族的作品。他有很好的判断力。\n 佛说。 “无论你读到或听到什么，除了你自己的理性同意的之外，不要相信任何东西。”大人和我周围的人都说各种各样的话。然而，我认为相信那些与你内心产生共鸣的话，比相信他们说的肤浅的话要准确得多。毫无疑问，现在是我一生中最好的时光，我可以真正享受这么多的作品。我希望他们在年轻的时候多看动漫、电影、读书。我很自豪其中一篇是我自己写的。\n\n希望我写的同人志和商言文集能让你暂时忘记孤独。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

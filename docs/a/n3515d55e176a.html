@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇短文：《怪物》和结尾的风景</title>
+<title>一口随笔: 《MONSTER》与终章的风景</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-03 04:37</p>
-  <h1>一篇短文：《怪物》和结尾的风景</h1>
+  <h1>一口随笔: 《MONSTER》与终章的风景</h1>
   <p class="ja-title">一口エッセイ:『MONSTER』と終わりの風景</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇短文：《怪物》和结尾的风景\n\n我们来谈谈浦泽直树的《MONSTER》。\n 我第一次读《怪物》是在四年级和六年级之间，因为我在牙医那里看到了它。书架上排列着的《面包超人》、《哆啦A梦》等儿童读物中，混杂着“MONSTER”这个词。当然，任何人都会选择浦泽直树。内容对我的孩子来说很难理解，但我在中学时就花时间读完了。\n\n《MONSTER》的主角是一位英俊、神秘、聪明的骗子约翰，故事基本上是关于主角如何解开许多谜团来找到他的。在这么容易受影响的年纪，遇到了这么迷人的反派，我感觉我的脑子好像被打飞了。\n 现在，他和大多数反派一样，因暴力的成长而背负着孤独和孤独，而通过与伴侣分享这些感受，他被展现了一幅“终结的风景”。一切都是那么酷。不过，就算他是约翰的追随者，他也不会表现在脏老头面前。因为她是一个浅薄的人，远离他的感情。\n\n“你……看不到它，”约翰冷冷地说。我非常害怕这一幕。这是因为，作为一名读者，我也对约翰着迷，所以我一直在读约翰，而不是主角。换句话说，他是他的追随者之一。我也想看看他所说的“末日风景”。但是，约翰不会允许这样一个三心二意的人这么做。那么，我这个初中生，浏览了Book Off并进入了最终卷呢？不用说，他们会说，“你看不到它。”尽管我对此感到高兴（烦人的粉丝）。\n 一般来说，一个故事都有一群有吸引力的人物，在这个例子中，主角约翰和一群凸显他们才华的暴民，而这个老人也是开场，直到主角给约翰展示最后的风景。那一定是太痛苦了。如果你不是一个更正直、更冷静的信仰、更讨人喜欢的人，你就不可能成为主角。我对在学校或社会中占据显赫地位不感兴趣，但我想成为能够向约翰展示结局的人。我记得很清楚地这么想。\n\n是的，这就是我想要被告知的。 “你可以看到它......”要做到这一点，你需要成为一个不是约翰的追随者的人，而是一个准备用枪指着他的人。这不正是人类应该追求的目标吗？\n 每次我重读《怪物》时，我都会想起那种震惊。我不确定我是否已经成为一个值得约翰认可的人。尽管如此，他用手指指着额头说“瞄准这里”的样子太酷了……我死后也会把手指放在额头上，所以请准备好拿着枪，因为我会变成怪物。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

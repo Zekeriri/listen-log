@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：福星小子和押井守</title>
+<title>一口随笔：福星小子与押井守</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-02 07:14</p>
-  <h1>短文：福星小子和押井守</h1>
+  <h1>一口随笔：福星小子与押井守</h1>
   <p class="ja-title">一口エッセイ:うる星やつらと押井守</p>
 </header>
 <main>
@@ -34,11 +34,10 @@ BOOTHにて、毎日のエッセイをまとめた同人誌を販売中です。
 先月は、商業エッセイ集もでました。自分語りばっかりの自意識のバリバリな一冊となっております。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：福星小子和押井守\n\n✬电视动画《#福星小子》✬\nAtaru Moroboshi（CV #Hiroshi Kamiya）和 Ram（CV #Sumire Uesaka）又回来了！\nTV动画公开预告PV公开！ https://t.co/LJfGo1pkLY #Noitamina #Darling pic.twitter.com/UXUAIMsDUY — 《福星小子》电视动画官方 (@uy_allstars) 2022 年 1 月 1 日\n\n新动画系列《福星小子》已经公布。据说是根据原著中的热门剧集改编的，所以画风恐怕会更接近原作。\n 原作和动画版对福星小子的印象完全不同。原作当然是高桥留美子的作品，但动画版感觉更像是押井守的作品，而不是留美子的作品。突然间，角色们开始兴奋地站着吃荞麦面，谈论军事话题，并且插入了很多亚文化模仿。整个事情就像御宅族一样。\n\n宅男们都把见到的第一个路普当作自己的父母，所以小时候看《美丽的梦想家》，就误以为押井守是我的父亲，把《假面骑士龙骑》中的小林泰子误认为是我的母亲。 - Nyalra (@nyalra) 2021 年 12 月 4 日\n\n这种“押井相似度”在第二部电影《美丽的梦想家》中爆发，不再是高桥留美子饰演的角色，而是押井守饰演的油星小子。无论好坏。就我个人而言，我很喜欢这部电影，受不了，但它与原著不同。\n 押井不仅风格如此强烈，而且关系也比原作更加高级，以至于有传言说原作者勃然大怒。对此，留美子老师在最近的采访中回答说：“与导演不和的传闻只是传闻。我们只是短暂见面，所以我认为大家有裂痕会更有趣。”\n 然而，前几天接受押井守导演采访时，他说：“高桥留美子讨厌我。”我的猜测是，留美子老师并不在意，至少现在不关心（尽管她当时可能这么认为），但她认为押井导演讨厌她。从追随者的角度来看，我喜欢这种宅男式的假设，因为这是导演的典型特征。果然，即使在最近的卢平斯中，他也是一个写出动摇世界观基础的剧本的人。\n\n如果我是《Lupin》的制作人员，我喜欢押井守的作品并要求剧本，那么当我收到这样的回复时，我会很高兴地跳到天花板上，比如“这次，我要以天使化石和达尔文进化论为主题，写一个藤子迷失在小说和循环世界中的故事。”——Nyalra (@nyalra) 2021 年 12 月 18 日\n\n在BOOTH，我们出售编辑日常文章的同人志。阅读它。你经常谈论押井守……\n\n上个月还出版了商业论文集。这是一本充满自我意识、充满自言自语的书。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -58,7 +57,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

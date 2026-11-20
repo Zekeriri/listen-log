@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：Twitter 的 Nora Gallery Fake</title>
+<title>一口散文：Twitter的野生画廊伪造</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-01-04 02:33</p>
-  <h1>一篇简短的文章：Twitter 的 Nora Gallery Fake</h1>
+  <h1>一口散文：Twitter的野生画廊伪造</h1>
   <p class="ja-title">一口エッセイ:Twitterの野良ギャラリーフェイク</p>
 </header>
 <main>
@@ -32,11 +32,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：Twitter 的 Nora Gallery Fake\n\n只写永远感到沮丧是没有意义的，所以今晚我们来谈谈一些与我的精神状态无关的事情。\n 最近，Twitter 上关注推文真实性并渴望“证明”推文为谎言的账户数量似乎有所增加。有一段时间，存在一种批评和嘲笑病毒式传播的虚假推文的文化，这可能是这种文化的残余。\n 这只是我的经验，但在2channel时代的痕迹很快消失的今天，“无论真实性如何，只要有趣/只是感觉良好”类型的老式复制粘贴推文的数量似乎已经减少了。这就是为什么现在有这么多的账户在回复部分指出这是一个谎言。因此，由于将大多数推文的开头、发展、发展和结论压缩为140个字符，一些小细节被省略了，彻头彻尾的谎言的数量应该会减少。当我看到那些专门批评此类推文并给它们贴上谎言标签的账户组时，似乎一旦我学会了“抨击”它们，我就永远不会忘记“抨击”它们的乐趣。现在，更容易将对方视为骗子。没有证据、没有推理能力的骗子。\n 有点偏离主题，出于某种原因，Twitter 现在默认显示推文的展示次数。这表明，如果一条推文正在增长，即使在回复部分也会有数万人在查看它。对于抱怨热门推文的休闲帐户来说，他们的推文通常会获得大约 100 次展示。另一方面，只要回复一条“这是谎言”的热门推文，就会有数万人看到，因此他是SNS上最引人注目、千载难逢的名人。所以，如果你得到了包括点赞和转发在内的认可，你就会上瘾。\n 尽管如此，继续像匿名公告板一样，人们可以用虚假故事为所欲为，这是不健康的，所以有趣的是，如果盖亚理论应用于SNS，谎言证明者将不可避免地广泛传播，因为他们在调节互联网平衡方面发挥着作用。这一次，由于骗子数量的增加，可能轮到那些对每条有点搞笑的推文都用吵闹的回复的无良人士受到批评了。\n\n嗯，说到能够准确辨别真伪的漫画，那就是“Gallery Fake”了。没有读者不佩服他远超常人的洞察力，以及他揭开一件又一件艺术品周围的黑暗、揭露真相的方式。我确信 Twitter 的谎言验证者想要像 Galaxy Fake 这样聪明的东西。\n\n主角以 50 亿日元的价格将莫奈的真迹《积原》卖给一位富有的艺术品收藏家。随后，他与一位正在着迷地看着《积原》复制品的老人交谈。老人似乎几乎没有艺术知识，但他似乎非常喜欢这幅画。\n\n老人甚至不知道莫奈的名字，但他说他理解这幅画所表达的“农民的感情”。主角回应了他的感受，以 5 万日元的价格把他卖了。当然，正如所承诺的，这是真实的故事。莫奈赋予《津原》的灵魂，并不是托付给富有的政客收藏家，而是托付给一个以农民为生的朴实老人。\n 第一集是我最喜欢的剧集之一。艺术是只存在于真正理解它的人手中的东西。这让我想起不久前日记里写的一位老人，他举着“请给我你的梵高展门票”的牌子四处走动，挤过情侣，比谁都更久地凝视着“柏树”。\n 充满感情的作品，一定会感动有同样感情的人。仅仅靠继续盲目地回复是无法培养出需要帮助的慧眼的……\n 读到这里你可能已经注意到了，前半部分的故事和后半部分有关Gallery Fake的故事只是强行放在一起，根本没有任何联系，我只是想炫耀一下我最喜欢的短篇故事并自我感觉良好。感谢您的阅读。这就是作家说谎的方式。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -56,7 +55,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

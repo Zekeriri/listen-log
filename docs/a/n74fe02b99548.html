@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>随笔：我只是无法忍受冬天的寒冷和没有父亲的现实。</title>
+<title>随笔：冬天的寒冷和父亲不在的现实是无论如何也无法抗衡的</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2019-12-30 23:36</p>
-  <h1>随笔：我只是无法忍受冬天的寒冷和没有父亲的现实。</h1>
+  <h1>随笔：冬天的寒冷和父亲不在的现实是无论如何也无法抗衡的</h1>
   <p class="ja-title">エッセイ：冬の寒さと父親が居なかったという現実にはどうしても敵わない</p>
 </header>
 <main>
@@ -37,11 +37,10 @@
 夢を見ていたい心地よい温もり満たされたい、叶うならせめて寒い冬が通り過ぎるまで。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"随笔：我只是无法忍受冬天的寒冷和没有父亲的现实。\n\n令和时代第一次经历冬天让我发现了很多关于自己的事情，而我出生在冲绳的单亲家庭，无法忍受冬天的寒冷和没有父亲的现实。\n\n温度和抑郁之间可能存在关系。事实上，我在冲绳生活的时候很少感到寒冷，所以我并没有因为自然环境而感到沮丧，而不是因为我的人际关系。事实上，我一生中从未感到过深深的沮丧或沮丧。\n\n我想我现在正处于抑郁期。我终于意识到我最近的笔记不知不觉地变得令人沮丧。再加上我被明确诊断为阿斯伯格自闭症，活了25年后我终于明白了。冬天的寒冷对我的精神产生了强烈的影响。\n\n我能够再次确认我喜欢这个时期。这是因为我不费什么力气就可以写出这样无用的句子。我想我喜欢被彻底搞砸，或者用一个常见的表达方式，糟糕。\n\n我对冬天的经历很少。我想除了冲绳人以外，很多人都没有这种感觉。不只是冷，如果从更根本的意义上来形容的话，一切都是冷色。我什至不知道其他人凭直觉知道什么。你长什么样并不重要。脸上满是汗。我不会因为冷而出汗。\n\n我在蒲团里动弹不得，只能继续打坐，然后我意识到，正如我在开头所写的那样，我的扭曲是由于我是单亲家庭。家庭对性有很大的影响。我不想承认这一点，因为我已经与家人断绝了联系，但这是事实。\n\n尤其是他没有父亲，从来没有得到过强者的夸奖。尤其是我的母亲只是一个每天拿着政府的钱到处玩耍的人，所以根本没有一个有尊严的人称赞过我。当然，这是我无能为力的垃圾。它从一些更基本的事情开始，比如第一次跑腿或数学得了 100 分。然而，我却始终没能完成一项任务。\n\n所以我只是在网上表达我能做到这一点，我知道这一点，我有这样的观点。我希望得到别人的赞赏。\n\n仅此而已，但在我意识到之前，我在 Twitter 和 Note 上的关注者数量已经增加了。这是好事，但实际上，我只是希望有一个坚强的人认识我。\n\n我意识到这是因为寒冷。从现在开始我要做什么？我害怕当我变得快乐时，当我得到别人的认可时，我实现了我的目标，而我的写作能力却下降了。如果真是这样，我宁愿呆在深冬，把心埋在不断飘落的小雪中。因为我可以这样写东西。我觉得我终于彻底理解了《December Without Angels》的歌词。\n\n我想要梦想，想要充满舒适的温暖，如果梦想成真，至少要等到寒冷的冬天过去。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -61,7 +60,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

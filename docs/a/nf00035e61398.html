@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：对抗性欲下降的事情</title>
+<title>一口小随笔：抵抗性欲减退的存在们</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-02-08 03:51</p>
-  <h1>一篇简短的文章：对抗性欲下降的事情</h1>
+  <h1>一口小随笔：抵抗性欲减退的存在们</h1>
   <p class="ja-title">一口エッセイ:性欲減退に抗うモノたち</p>
 </header>
 <main>
@@ -30,11 +30,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：对抗性欲下降的事情\n\n我的性欲正在下降。\n 具体来说，我手淫的次数明显减少了。这不好。\n 他的三大欲望中有两项因先天性疾病而被压抑，而细说起来，他享受食物的能力因嗅觉而并不完整。目前，他吃东西只是为了在 Asuken 测试中获得高分，而且他也因为无法通过鼻子呼吸而睡眠困难。如果真是这样，剩下的即时快乐就是毒品或手淫。如果您因为无法再服用药物而决定放弃药物，最好的解决办法就是享受手淫。\n 但遗憾的是，当我进入30多岁时，我的性欲自动下降。这是谎言，当我20出头的时候，我曾经一天做3次。我彻夜未眠寻找顽皮的图片。与此同时，继续持有它。现在我只看DLsite和Komiflo上的排名。我曾经很鄙视那些凭等级做决定而不深入挖掘的人！\n 是这样吗？你的性欲会下降。我现在已经老了，无法回避这个问题。没有人可以违背生活。我了解，人在30岁左右结婚，性欲也是生活的原动力。当然，这并不是一切，但它可能与你的活力直接相关。当你意识到这种情况正在减少时，你就不再是你生活的主角了。在这里，你和你心爱的伴侣创造了一个孩子，并将主角的角色改为他或她。多么高效的一出戏啊！\n 首先，作为对策，针对你已经厌倦了基本的顽皮事情这一事实采取一些措施。我喜欢催眠和戴绿帽子，但我从中学起就已经自慰了15年，所以我对这些模式非常熟悉。尤其是在催眠方面，我确信我的头脑中80%的知识都是从业余小说、游戏、漫画和CG收藏中获得的。年轻的时候什么都知道太多，最后就擅自在日本性行为的插画里加了文字，在催眠中强迫自己变得自给自足。现在我没有那么多精力了...\n 我想知道进入一个我到目前为止还没有任何兴趣的类型会是什么样子。我想了想，但当我意识到强行增加性偏好是徒劳的时候，我停了下来。首先，你喜欢某样东西是因为你喜欢它，而仅仅为了它而坠入爱河是很奇怪的。\n 另一方面，通过减弱刺激来重置怎么样？例如，保持男孩杂志中性感场景的水平。我觉得这确实是事实……但后来我想起我的老朋友们说，他们一到35岁，就突然爱上了凹版偶像。我想这也是一种本能，因为我已经厌倦了直接的作品，通过弱化刺激来探索新的可能性。我不喜欢...我不想成为那个对偶像回复“嘿，你今天也很性感^^”的人！\n\n当我和一个成年人谈论这件事时，他告诉我，“前几天，我们通过拳头打斗来重演《搏击俱乐部》，这很棒，”以缓解压力，他警告我，“我正在向其他人谈论《搏击俱乐部》。”你不应该向任何人谈论《搏击俱乐部》。\n\n我们别无选择，只能战斗。深夜我会在地下竞技场等你。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：周天灿的人物创作与“Hitorino之夜”</title>
+<title>一口随笔: 超天酱的手办化与《独自的夜》</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-25 09:28</p>
-  <h1>短文：周天灿的人物创作与“Hitorino之夜”</h1>
+  <h1>一口随笔: 超天酱的手办化与《独自的夜》</h1>
   <p class="ja-title">一口エッセイ:超てんちゃんのフィギュア化と『ヒトリノ夜』</p>
 </header>
 <main>
@@ -30,11 +30,10 @@ pic.twitter.com/Ky6kLthrLJ— にゃるら (@nyalra) July 24, 2022
 毎日の日記をまとめた同人誌や、若い頃に書いたエッセイを収録した商業エッセイ集、よろしくね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：周天灿的人物创作与“Hitorino之夜”\n\n周天酱的手办已公开。由于这是她的第一个人物，因此姿势是在主要故事中出现的人物的再现。是超十酱从下面往外看的那张。\n\n再次宣布……！\n这将是一个超级十酱人物（我已经更正了符号）\n各位不舔不偷看的请♫ https://t.co/F0ngqiYc4Z — 🎀超可爱🎀天使酱 (@x_angelkawaii_x) July 24, 2022\n\npic.twitter.com/Ky6kLthrLJ — Nyalra (@nyalra) 2022 年 7 月 24 日\n\n现在，随着Switch版本的发售，制作组和发行商都在认真地努力争取100万份的销量，甚至在过了50万份的一半之后，手办制作等各种项目也没有停止，我非常希望100万份不会只是一个梦想。\n 当我接近100万的时候，我开始想起Porno Graffitti的Hitorino Yoru的歌词，“我不会轻易爱上一首为100万人唱的情歌”，每次我这样做时，我都会在脑海中反驳，“我为自己做的，我本来就没有打算为100万人做它......！”\n 首先，《一人之夜》本身就是一部可能有超过一百万人在思考的杰作，虽然它已经成长为一部达到一百万人的作品，但我也认为最初有很多情歌是为极少数与我有相似感受的人唱的。\n 也许有人会像《一人夜》歌词中的那个人一样，不轻易向我表达自己的感情，但我会继续努力，让长天酱成为百万女性。祝你好运！\n\n我想看一本包含我的日常日记的同人志和一本包含我年轻时写的文章的商文集！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

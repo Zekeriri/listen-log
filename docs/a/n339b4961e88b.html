@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一次性论文：所有稿件均被拒绝</title>
+<title>一口随笔：稿件全被淘汰</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-15 05:20</p>
-  <h1>一次性论文：所有稿件均被拒绝</h1>
+  <h1>一口随笔：稿件全被淘汰</h1>
   <p class="ja-title">一口エッセイ:原稿全ボツ</p>
 </header>
 <main>
@@ -22,11 +22,10 @@
  つらい消えたい終わりたい、この気持ちを米青ネ申禾斗にぶつけたら処方薬は増えたものの、そのぶん副作用の眠気がひどくて頭が働かない。とにかく全てに謝りたいですが、自分でもなにに謝罪しているのか不明で、こんなに他人を舐めたやつは、やっぱり今すぐ社会から消え去るべきなのだ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一次性论文：所有稿件均被拒绝\n\n也许这是他自己心理健康状况的反映，但他提交的工作稿子却如此阴郁，以至于他几乎彻底死了。此时我已经羞得想从这个世界上消失了，但无论如何我都要给稿子，所以制片人对我很好，我现在羞得想死。不过，我害怕如果选择死亡就会下地狱，所以我想以一种不对某种事故负责的方式来祈求。好吧，我不在乎这种脆弱的想法。\n 即使在这种状态下，我仍然需要一份手稿，而且我有一种不必要的自豪感，我无法忍受让别人为我写或修改我正在写的东西，所以我的制作人说他明天会在我写的时候给我打电话。我想如果我能和某人交谈，我就会对死亡感到不那么焦虑。\n 竟然允许它走到这一步，实在是太可悲了。令人惊讶的是，制片人和他的妻子目前正在海外旅行，这段时间他们正在帮助我写稿子。我很抱歉。当你和家人一起在国外享受美好时光时，你绝对不想被这些垃圾日本书呆子打扰，你也绝对不想把他们放在心上。只要我赶紧交出一份像样的稿子，对方就以幸福的情侣的方式结束了一次愉快的旅行。好难过，现在就想消失……不过，这个时候逃跑，对于很多人来说当然是最不方便的。\n 今晚，不久前（凌晨 4 点）我接到了一个简短的电话。我猜他们担心我的心理健康。那边好像是早上了。监视那些一觉醒来就变得如此怪异的无能书呆子的情绪是一项多么艰巨的工作。这是一个成年男人才能做到的技能吗？\n 情感上，我觉得，“对不起！！！”我要承担责任，把我的胆子砍掉！”但我没有勇气这么做，而且我一直认为这会给别人带来麻烦。即使我以某种方式敲击键盘，输出的文本也是字符串“Kill me now”。我们计划在电话交谈时将其纠正为常识句子。一个成熟的成年人会占用正在出国旅行的老板的时间，去做一些像让小学生在他的书评上写红记号这样的事情。对不起，对不起，对不起。\n 当我向邻居沉熙托表达我想离开并结束生命的痛苦感受时，他开了更多的药，但副作用太昏昏欲睡，让我无法正常思考。不管怎样，我想为一切道歉，但我什至不知道我在道歉什么，而且我认为像这样侮辱他人的人应该立即从社会上消失。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +45,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

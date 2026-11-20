@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>文章：如果您在网上感到恼火，最好远离互联网并放松一下。</title>
+<title>随笔：在网络上感到烦躁时，离开网络稍微放松一下会比较好</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-07-17 19:03</p>
-  <h1>文章：如果您在网上感到恼火，最好远离互联网并放松一下。</h1>
+  <h1>随笔：在网络上感到烦躁时，离开网络稍微放松一下会比较好</h1>
   <p class="ja-title">エッセイ：ネットで苛ついたら一度ネットから離れてゆっくりしてみると良い</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
  陰湿だったり、過激だったりするのもインターネットの一つですが、そればかりになると、アニメや漫画で盛り上がりたい時に窮屈に感じてしまう。たまには、ほんとうの意味で休みなさい。それから気持ちがちょっとネットから離せたら、その時はゆっくりしていってね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"文章：如果您在网上感到恼火，最好远离互联网并放松一下。\n\n在向心理医生咨询我的担忧时，我意识到我的大部分烦恼都源于互联网，从那时起，我就有意识地减少了上网的时间。\n 首先，网络上的新闻和你时间线上的喧嚣基本上与你无关。即便如此，我想我之所以想生气并想提起这件事，是因为我变得更上瘾了，因为我一直被困在家里花更多的时间浏览互联网。你可以很容易地站在正义一边，或者愤世嫉俗，这会让情况变得更干净。\n 不重要的事情都没关系。当您对新闻或时间表感到恼火时，远离互联网可能是个好主意。我并不是想让你停止使用互联网，开始现实生活或工作，但如果你喜欢动漫和书籍，保证充足的睡眠，然后看看互联网，你就能通过远离他人来冷静地看待事物。我相信真正网络强者或者心智强的人，都有适当的距离感，不会太依赖。\n\n首先，一位精神科医生曾经告诉我，浏览充斥着信息的互联网本身就会带来压力。当我咨询我的失眠问题时，有人问我：“你休息的时候做什么？”我回答说：“我用智能手机上网。”她告诉我，“光是看互联网就让我很累，所以也放下你的智能手机吧。”通过让自己暴露在有偏见的信息中来刺激你的大脑并不是放松的方式。\n 著名的《智能手机大脑》一书描述了智能手机成瘾的现状，书中指出，即使你不打开智能手机，只要在附近有一部智能手机，就会降低你集中注意力的能力。我相信你们都有过这样的经历：在阅读时或睡觉前因为担心别人的信息而被智能手机分散注意力。将您的智能手机放在远处。尤其是睡前。自智能手机出现以来，人们今天的平均睡眠时间有所减少。我相信能够睡很多觉绝对是一件幸事。\n\n我大部分的空闲时间都花在看动漫和书籍上，但一旦安定下来，我就买了一台 FireTV，这样我就不用在空闲时间上网了。由于您无需打开浏览器即可连接到 Youtube 和视频内容，因此您可以减少上网和接触不必要信息的时间。\n 在Youtube上，我主要是慢慢看评论。两个既不是人类也不是怪物的断头热情地迎接我，让我放轻松，我看着正在高兴地听魔理沙解释琐事和历史的由香里灵梦。我觉得这是现代视频内容中非常美妙的一种文化，既可以放松心情，又可以吸收知识。\n 这就是为什么当我有时看到人们在网上谈论低俗话题或极端政治思想时，我感到如此悲伤。我慢慢地开始在自己内心形成一种哲学，即节目的基本前提是让观众“慢下来”。\n\n无论如何，拥有“放轻松！”的心态非常重要。当你在网上情绪动摇时，重要的是要冷静下来，并意识到也许你只是因为沉迷于网络而夸大了自己的感受，但当你仔细想想，这并不重要。\n 互联网的一部分是它可能是阴险的或极端的，但当它变成这一切时，当你想对动漫和漫画感到兴奋时，它可能会让人感到不知所措。偶尔，真正休息一下。然后，当您觉得可以暂时离开互联网时，放松一下。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

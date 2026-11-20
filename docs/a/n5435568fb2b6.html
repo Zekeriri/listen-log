@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一文：悠闲创作论</title>
+<title>一口随笔：悠闲的创作论</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-03 01:12</p>
-  <h1>一文：悠闲创作论</h1>
+  <h1>一口随笔：悠闲的创作论</h1>
   <p class="ja-title">一口エッセイ:のんびり創作論</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一文：悠闲创作论\n\n我有一个新的创作想要创作，所以我请了两位剪辑师来看看剧情。我一直在奔跑，直到《Nidiga》的 Switch 版本发布，我想，“我厌倦了做别的东西~”，但当我有一些空闲时间时，我发现自己想做点什么。我完全沉迷于让我的产出影响他人并对其利弊进行辩论的乐趣。\n 我展示的两幅图都受到了好评。如果您是编辑，请不要在此处使用社交语言。这是因为艺术家的工作是将他们带来的东西放到商业线上并进行销售。如果您认为“这还没有达到向全世界发布的质量”，您必须清楚地传达给对方。这一次，他们也会拿走我带来的项目并出售它，所以除非他们认为这是一个好主意，否则他们会让我一遍又一遍地重写它。把你的心变成恶魔。\n 不过，这次我一口气就过去了。两个人一致认为，“如果尼亚鲁拉能够按原样制作这部作品，那么将其带入现代世界将具有意义和价值”，他们很自豪地以自己的名字作为该作品的编辑。当然，这只是一个情节，所以我还不知道它是否真的很好。你做到了！生长！\n 话虽这么说，我们三个人还是感觉自己能够一枪过去。这是我写完剧情时的感受，如果一定要打分的话，那就是80分。作为商业作品来说并没有什么问题，相信目标观众也会满意的。故事也没有崩塌。然而，如果你回头看，这并不是100分。还不够乱。\n 我认为当你用 120 分得到一些有趣的东西时，它几乎总是应该是一种投注模式。 《进击的巨人》的谏山教授说，“一部包含你内心自我的作品比一部80分的作品更有价值，即使它是负200分。”我对此的解释是，有两种类型的作品：“80分但以商业为中心的作品”和“浓缩版我想做的作品，我无法决定是打-200还是120分。”我认为创作者会想尝试后者。当然，也有例外，也有一些作品直接失败，最终只剩下30件左右。没有什么比意识到你想出的东西根本不够好更悲伤的了！编辑的工作就是把乐谱重新制作到可以给别人看的最低水平。这是一个“客观读者”。顺便说一句，尼迪加只是想，“我只是想把我喜欢的东西传递给我的一些粉丝。”\n 回到正题，我想我对这次提交的内容感觉还是不错的。编辑们还决定该作品可以商业发行，并且会获得良好的声誉和销量。但这不是120分。当你提交你的情节时，除非你的对手说：“什么？这是什么？可以吗！？可以吗！？”，你将无法获得奇迹般的分数。这就是我在今晚的会议上的感受。\n 也就是说，80分正是读者想要的，仅此一点就已经相当令人印象深刻了。麻将并不是一种每次都以大奖为目标的游戏。这不是借口或什么。它的优点让你觉得，“这个家伙可以用正确的方式做到这一点，而不是试图变得奇怪！”相反，令人惊讶的是他带着诚实的直球而不是曲线球。人生很长，面对“这次我敢给自己打80分的自我评价！”的挑战又是一次挑战。\n 思考各种各样的事情很有趣。嗯，我以为的 80 分可能是别人的 20 或 120 分。小编还说，重要的是要站稳脚跟，不怕犯错误。也许，由于我的性格，我喜欢重写一些超出编辑理解范围的东西。\n 这并不是那么简单，你越努力，它就会变得越有趣。明年我们也放轻松吧。可以肯定的是，我已经制作和计划的几件事将在 2023 年发布（其中一些我已经写完了）。到时候，希望大家能够从多种角度来消费，比如冷静的第三者，盲目的粉丝，或者彻底的负面仇恨者。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

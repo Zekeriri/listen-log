@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇短文：短篇小说集</title>
+<title>一口随笔: 小趣闻集</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-04-23 11:50</p>
-  <h1>一篇短文：短篇小说集</h1>
+  <h1>一口随笔: 小趣闻集</h1>
   <p class="ja-title">一口エッセイ:小ネタ集</p>
 </header>
 <main>
@@ -33,11 +33,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇短文：短篇小说集\n\n我有一段时间第一次睡着了。显然，当大脑因压力和疲劳而超负荷时，无论睡多少，自主神经系统都会变得昏昏欲睡，这几天我一直困得在家里什么也做不了。所以，唯一值得一提的是，我受最近成为朋友的动画师的邀请，参加一个聚会，和大家一起看动漫，真的很有趣，所以今天我会比平时更加​​投入，写一些琐碎的东西。\n\n・散步时，我在住宅区发现了一个名为“中野蓝色纳税申报协会”的办公室。大概顾名思义，就是在报税的时候可以提交蓝色报税表的地方。我觉得蓝色报税是一个非常重要的制度，因为只要报一下就可以扣除几十万的税款，但我没想到会有一群人去做。我相信您一直在考虑如何帮助日本各地的人们全年提交蓝色纳税申报表。当我在蓝色纳税申报表上遇到麻烦时，我想跳入中野蓝色纳税申报协会寻求他们的帮助。\n・由于某种原因，飞往海外的 Nakyam Panrietta 说：“我在欧洲，所以不能参加超级会议，但我真的很想要一个超级十酱毛绒玩具！”所以我试图准备将货物发送给在异国他乡徘徊的朋友，但 Nakyam 目前连地址都没有，所以我无法发送。对于一个连家都没有的人，我们完全无能为力。\n\n・我一直在听工藤静香的歌曲，特别喜欢《FU-JI-TSU》。这似乎是中岛美雪为她填词的第一首歌。\n 从歌词中我可以推断出主题是“不忠诚”，但由于这首歌是用罗马字母写的，所以我认为这可能是富士通广告的合作歌曲，但当我仔细研究时，结果恰恰相反，而且工作人员似乎添加了一条旁线，以防止人们将其与富士通联系起来，这与富士通无关。事实上，边线是不是更让你想起富士通呢？ ？我很担心，但很多年过去了，我不再关心这个了，所以我决定不再担心。\n\n・和朋友一起在公园散步时，信息板上写的每个设施的名称都令人惊叹。\n 「龙沙山」肯定会有boss战，所以要先完成「地下泉水」的强化活动吗？或者你可以在《森林森林》中提升你的等级，或者在《风滑梯》中享受绕行小游戏……我太兴奋了。希望来到这个公园的孩子们也有同样的感受，充满期待。\n・DLsite 上似乎将销售“Ihi 语音”而不是 Oho 语音。一个女孩尖叫着：“哎呀！”从纸面上看，这听起来很愚蠢，但尽管 Ahe 和 Oho 最初被用作笑话，但它们逐渐建立起来，因为每个人都了解它们的真正价值（Ahe 从一开始就是一个流行的流派），几个月后，Ihi 声音可能会成为标准。开拓新时代的先行者的勇气，总是从无知群众的嘲笑开始的。\n・前面说过，这几天我的大脑似乎已经到了极限，一直很困（睡着了就恢复了），但昨天我在美容院理发时睡着了，理发师把我叫醒聊天。\n 几分钟的静默后，当我意识到自己已经闭上了眼皮时，突然有人喊我：“听说中野站南口要越来越开发了！”我吃了一惊。\n 我知道作为一名理发师是一项需要通过闲聊来填补任何尴尬时刻的工作（我的岳父是一名理发师），但我从未想过有人会在对方睡得很舒服的时候优先考虑闲聊。而且，问题并不是关于现状或顾客，而是关于中野站南口的再开发状况。并不是我不太喜欢这里，也不介意闲聊，只是我很惊讶，因为我没想到一觉醒来就开始谈论中野站南口的事情。我忍不住不解地回答：“北口会怎么样？”\n 这就是我这些天的感受。就在我写这篇文章的时候，我的心因缺乏睡眠而剧烈跳动，所以我又回去睡觉了。晚安。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,7 +56,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

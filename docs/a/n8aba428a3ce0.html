@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：我的一生奉献给《究极怪兽怪物农场》和《怪物农场2》</title>
+<title>一口随笔：献给《超人怪兽怪物农场》与《怪兽农场2》的我的人生</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-20 03:46</p>
-  <h1>短文：我的一生奉献给《究极怪兽怪物农场》和《怪物农场2》</h1>
+  <h1>一口随笔：献给《超人怪兽怪物农场》与《怪兽农场2》的我的人生</h1>
   <p class="ja-title">一口エッセイ:ウルトラ怪獣モンスターファームと、モンスターファーム2に捧げた僕の人生</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：我的一生奉献给《究极怪兽怪物农场》和《怪物农场2》\n\n《超怪兽怪兽农场》已发售。结合了我最喜欢的怪物农场和超级怪物的梦幻作品。真的可以这么幸福吗？\n 系统上基本沿袭《怪物农场2》，但本质是与奥特曼混合的世界观。现在一切都是100%完美的。与怪物不同，怪物的体型更大，因此从强大的角度来看，即使是日常对话也很有趣。零式奥特曼突然出现，我的眼睛像孩子一样闪闪发光。我很高兴......\n\n回想起来，毫不夸张地说，我的小学时光是通过《怪物农场2》、《特里的仙境》和《传奇边境》度过的。对于像我这样不常上学、从不读课本的人来说，游戏是理解“算术”概念的唯一途径。首先，感谢Game Boy上的特里的仙境，我学会了如何使用组合系统进行组合，然后《怪物农场 2》教会了我如何管理时间和战斗。最后，这些应用程序被用于 Saga Frontier。通过这三款游戏，我学会了享受游戏，或者更确切地说，充分“玩”所必需的要素。\n 其中《怪物农场2》尤为重要。首先，隐形状态有很多，数值的增减也要牢记在心。它不会像勇者斗恶龙或FF那样随着等级的增加而增加。而且，由于怪物的寿命是有限的，所以需要知道如何在有限的时间内有效地行动。虽然没有解谜元素，但难度也绝不是随便玩就能通关的。其实对于小学生来说，玩起来太难了。这种复杂性让我思考了很多。\n 因此，我买了很多策略书籍。我什至还买了一本图画书，上面显示了哪些CD会诞生什么样的怪物。讽刺的是，他拿着几本战略书籍一遍又一遍地研究“效率”的方式给尼亚拉男孩带来了比教科书更多的智慧。除了在学校学习之外，肯定还有其他好处。与考试不同，我有一个遥远的目标“通关游戏”，所以我可能比学校里的同学花更多的时间看书。这就是我将半生奉献给 Monfar 2 的原因。\n 我现在能够在一定程度上高效地行动，能够学会游戏复杂概念的常识，成为一名创造者，都是沉迷于《怪物农场2》的结果。亨格已经成长到了这样一个成年人的水平，如果没有柯尔特，他是否能够交流都值得怀疑。这款新游戏是与我最喜欢的 Ultra Monster 合作的。我从来没有这么高兴过。再次，感觉真的就像在梦中一样。谢谢你，我现在被难以置信的幸福包围着。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

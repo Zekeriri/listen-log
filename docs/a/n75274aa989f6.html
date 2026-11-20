@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文精选：戴绿帽子会破坏大脑吗？</title>
+<title>精选一口短文：寝取会破坏大脑吗</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-05 18:12</p>
-  <h1>短文精选：戴绿帽子会破坏大脑吗？</h1>
+  <h1>精选一口短文：寝取会破坏大脑吗</h1>
   <p class="ja-title">選り抜き一口エッセイ: 寝取られは脳を破壊するのか</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 商業エッセイ集もよろしくね。そこそこ読み応えあると思うので、信頼してください。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文精选：戴绿帽子会破坏大脑吗？\n\n如今，“戴绿帽子毁脑”的教训越来越广为人知，但如果你的爱人真的被戴绿帽子，你会处于一种什么样的心理状态呢？\n 虽然我说“戴绿帽子”，但情人在威胁下被迫与异性发生身体关系几乎是不可能的（这种情况你可以报警），我认为这基本上指的是情人屈服于性欲、人际关系或气氛而出轨的情况。如果是这样，被破坏的就是“信任关系”。\n\n有本书叫《信任研究课堂》，里面讲解了与信任有关的沟通，如何获得信任，如何恢复信任。然而，这里写的是一个残酷的现实：“不好的事件会给人们留下更强烈的印象（消极偏见），所以虽然很难获得信任，但摧毁它只需要片刻。”\n 换句话说，即使在爱情中，人们更多地会重复被背叛的震惊，而不是与爱人的美好回忆。获得足够的信任来克服这种冲击是极其困难的。信任是通过积累和价值建立起来的，但像作弊这样的巨大错误会立即摧毁所有的积累和人性的价值。\n 当这种情况发生时，戴绿帽子的震惊会一遍又一遍地在他们的大脑中重演，他们会被灌输恐惧和对再次信任对方的拒绝感。说这“毁了大脑”也许并不夸张。心脏这种血管一旦破裂，就再也无法使用了……\n\n这是新一期同人志的选集，是一本散文集。如果您喜欢，请看一下。\n\n我期待着阅读您的商业论文集。我认为它值得一读，所以请相信我。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

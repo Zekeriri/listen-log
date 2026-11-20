@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：Nidiga 赢得了游戏系统奖！ ？</title>
+<title>一口随笔: NIDIGA获得游戏系统奖！？</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-26 11:21</p>
-  <h1>一篇简短的文章：Nidiga 赢得了游戏系统奖！ ？</h1>
+  <h1>一口随笔: NIDIGA获得游戏系统奖！？</h1>
   <p class="ja-title">一口エッセイ:ニディガがゲームシステム賞 受賞！？</p>
 </header>
 <main>
@@ -31,11 +31,10 @@
 商業エッセイもよろしくね。この若さがあったから、今のゲームが存在する。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：Nidiga 赢得了游戏系统奖！ ？\n\n我不但又睡着了，还在日朝开始前就醒了。自从我开始骑健身车以来，日浅的兴奋似乎超过了我的健康睡眠。愚蠢的宪法。\n\nNidiga 在 CEDEC（一项令人惊叹的游戏设计活动）上荣获卓越奖。\nAme-chan 与 Arceus 和 Elden Ring 一起荣获殊荣，这太棒了 https://t.co/zh2Rfg2wyX pic.twitter.com/9RxQ3eTAYk — Nyalra (@nyalra) 2022 年 6 月 24 日\n\n无论如何，看来我的作品《NEEDY（以下略）》已经获得了著名组织CEDEC游戏系统类优秀奖的提名（显然，制作者们对此非常高兴）。从这里看来，它将与Arceus、Elden Ring、project:;COLD等争夺最高奖项。目前还不清楚阿梅是否有那样的耐力。\n 像Nidiga这样不道德、与社会和游戏行业为敌的作品可以获奖吗？我很惊讶（我觉得如果在适当的地方获奖，气氛会很奇怪，所以我打算拒绝），但如果仅限于“游戏系统”，那么可能没有问题。确实，这个系统很棒。这是通过程序员的不懈努力才得以实现的。我所做的就是说“我想做这个”和“我想做那个”，但我根本不理解编程部分。\n 我喜欢新颖的游戏和系统的融合，EVE Burst Error和YU-NO的精彩游戏系统就省略了，我就从那里开始规划。我觉得《尼迪加》里的黑暗表现得特别好，完成后我什至跳了一下。\n 借此机会给大家介绍一下系统，不过当尼迪加选择“出去”时，约会的过程就被省略了，只剩下两人一起出去的“结果”，这是我从来没有想到过的。我是一个十足的美少女游戏玩家，我知道和女主角约会时甜蜜、悲伤、激情、感性的时光就是“寂”，所以我拼命地想知道如何将约会的描绘融入到这个系统中。\n 与此同时，对美少女游戏没有太执着的工作人员却漫不经心地建议道：“我们约会的时候就跳过吧。”我的脑子里已经有电流涌过。 “你就这么把副歌扔掉了吗？”那一刻，我抛开了所有美少女玩家的先入为主的观念，感觉真的很好。从一开始，我就对最近的美少女游戏界产生了强烈的反叛感，因为美少女游戏界已经放弃了游戏系统部分，所以我很高兴他们能够用如此新颖的想法打破旧式思维。他和Ame-chan有什么样的约会只能在用户的脑海里。这有它自己的美丽。\n 这是我们优先考虑与系统的和谐而不是场景的时刻。多亏了这个，“合唱团”转移到了以前的美少女游戏中从未有过的“分配”位置，我很自豪自己能够完美地融入其中。这当之无愧地获得了游戏系统优秀奖。你应该多夸奖我们。他是游戏行业真正的敌人......\n\n包含每日日记的同人志正在 BOOTH 发售！请阅读游戏发售前的躁狂抑郁症和痛苦♪\n\n我期待您的商业论文。正是因为有这样的年轻人，这项运动才有了今天。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

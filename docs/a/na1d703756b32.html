@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>快速文章：称自己为阴女没有任何意义。</title>
+<title>一口散文：自称阴沉的人毫无意义</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-01-13 08:09</p>
-  <h1>快速文章：称自己为阴女没有任何意义。</h1>
+  <h1>一口散文：自称阴沉的人毫无意义</h1>
   <p class="ja-title">一口エッセイ: 陰キャの自称になんの意味もない</p>
 </header>
 <main>
@@ -21,11 +21,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"快速文章：称自己为阴女没有任何意义。\n\n嗯，除了漂亮之外，人类肯定有一种羡慕/讨厌成功人士的倾向，这在互联网上尤其明显，所以我认为最好的解决办法是尽可能假装不开心，并表现出你很痛苦，即使只是为了你的外表。当然，也有一些人可以利用这一点，让自己的“光明”和“无忧无虑”成为个性。基本上，他为了调整自己在周围人中的好感度，不得不称自己为“银亚人”。现在大家都这么随意地称自己为“yinkya”，我觉得对这个词连一丝信任都没有。如果是这样的话，一个真正阴郁的人就不太可能称自己为殷克亚人。目前，他可能不想被视为那种自称Yinkya的人。\n 这不是任何人的错；互联网系统本身可能并不适合“幸福”。最后，在与他们交谈一段时间或回顾他们的推文后，你可以看出“这个人真的以书籍和动漫为朋友”。然而，没有关于属性“yinkya”的信息。每个人都有自己的阴暗面。\n 所以，我觉得坂口安吾所写的“被孩子们喜欢的人，就是懂得孩子们悲伤的人”（我依稀记得）就是这个意思。我有自己的判断标准，如果我还记得年轻时的孤独感，我就不会说出这样的话。你应该看看对方背上的孤独，看看这个人是否愿意面对你的感情。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +44,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇文章：巨大的灵梦</title>
+<title>一口随笔：巨大的灵梦</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-07-07 06:52</p>
-  <h1>一篇文章：巨大的灵梦</h1>
+  <h1>一口随笔：巨大的灵梦</h1>
   <p class="ja-title">一口エッセイ:でっかい霊夢</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
 100万本のおいわいに、プロデューサーからでっかい霊夢をもらったよ♪ pic.twitter.com/BgC8oMfuuZ— にゃるら (@nyalra) July 6, 2023</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇文章：巨大的灵梦\n\n一个巨大的灵梦来到了我家。为了纪念我的游戏销量突破100万份，我向制作人询问，他给我买了它。我很高兴。\n\n它很大。又可爱。巨大的丝带增添了可爱感。夫莫。\n 它太大了，感觉就像有人在你的房子里一样。每当我看到有人出现在我的视野边缘时，我都会感到警惕并问道：“这是谁！？”，结果却发现自己在想：“灵梦在注视着我……”。谢谢博丽巫女。\n 我想要一个巨大的毛绒动物的原因是因为我想要一个可以睡觉的抱枕。不知道为什么，最近我感觉自己已经很久没有在床上除了枕头和毯子之外什么都没有了，睡觉的时候感觉有种奇怪的孤独感。我以为旁边有一个大毛绒动物会让我感到安全，但是......\n\n太大了！\n 太大了，放在床上根本睡不着！这里完全变成了灵梦睡觉的空间。不，但灵梦总是为了幻想乡的和平而竭尽全力，所以我所要做的就是确保她尽可能多地睡觉，并让我表现出足够的理智让我睡在地板上。\n 当我这样想时，我很荣幸能够在博丽灵梦的休息中扮演一个角色。我很高兴。灵梦先生不需要花很多时间在地板上放松，即使你是一个疲惫的老人。\n\n我想有一天和玛丽莎一起做。魔理沙在幻想乡飞来飞去，炫耀她所学到的琐碎知识，灵梦一边喝茶，一边听着她说：“是的，是的。”当玛丽莎对自己感到满意并准备离开时，她微笑着说道：“再见，玛丽莎。”尽管他似乎打扰了她。\n\n我从制作人那里收到了 100 万份的巨大灵梦 ♪ pic.twitter.com/BgC8oMfuuZ — Nyalra (@nyalra) 2023 年 7 月 6 日"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

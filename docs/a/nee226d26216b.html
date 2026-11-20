@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：恢复一般性欲</title>
+<title>一口随笔: 复苏的一般性欲</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-25 11:44</p>
-  <h1>一篇简短的文章：恢复一般性欲</h1>
+  <h1>一口随笔: 复苏的一般性欲</h1>
   <p class="ja-title">一口エッセイ:蘇る一般的な性欲</p>
 </header>
 <main>
@@ -28,11 +28,10 @@
 商業エッセイ集もよろしくね。若い頃の文章だらけで、あの頃はこんな大人になると想像もしていなかったことが分かる。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：恢复一般性欲\n\n最近，我中午发的日记越来越多，只是因为我晚上睡得很晚。\n 自从买了健身车后，我就一边骑车一边看动漫和读书，多亏了朋友加藤新给我开的新安眠药的作用，我常常发现自己早上不知不觉就醒了。我正在慢慢地接近健康的生活。\n 现在，我想谈谈“健康”，但今天我在一次会议上和两个比我大一岁的男人（30多岁）闲聊（冲突）。最有趣的故事之一是关于他们的“性欲回归根源”。\n 目前，我对凹版偶像或性感女演员没有任何反应。杂志上的凹版版面给我留下的印象除了“那是什么”之外，我不可能记住女演员的名字并关注她们的作品（我几乎从不看AV）。 90%的手淫是二维的。当然，我认为3D女性很可爱（尤其是哥特式洛丽塔和朋克），而且我确信当顽皮的事情发生（或被迫）时她们会很高兴。有些夜晚，我想念人们，就会去歌舞伎町。然而，当我看到凹版偶像或性感女演员时，我无法想象自己会想“哇~^^”。\n 对于三十多岁的御宅族来说也是如此，不过最近他们似乎更加关注惠奈子的胸部，并刻意让她远离她，以确保不会误认为她是女下属（显然他们到现在都没有想到这一点）。我们自己分析了为什么会发生这种情况，得出的结论是，随着年龄的增长，我们御宅族与社会的联系越来越紧密，获得了健康感。\n 我发现，即使我和朋友聚会，我仍然以动漫和游戏为主，但即使是宅男，在运动、酒会、歌舞俱乐部和与商务相关的互动方面也变得越来越社交。结果，男性对性感女性的正常兴趣得以发展，性欲回归其根源。\n 我不知道这个假设是否正确，他们可能只是助平的父亲。不过，自从我开始骑健身车（我20岁出头的时候就没骑过），这种情况发生的可能性就不为零了。当他们二十多岁的时候，他们对凹版印刷没有任何想法。\n 想象这种事发生在我身上，我感到不寒而栗，但我觉得看到两个接受衰老和现实的成年人之间如此俏皮的气氛很酷。然而，我仍然怀疑我会不会像“呃~^^”。\n\n包含每日日记的同人志正在 BOOTH 发售！读新书。\n\n我期待着阅读您的商业论文集。里面全是我小时候写的东西，看得出来我当时根本没想到自己会长成这样。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

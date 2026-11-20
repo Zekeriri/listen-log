@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文选：我们一定可以在一起直到地。</title>
+<title>精选一口散文：能够在一起，大概直到地面为止</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-18 14:27</p>
-  <h1>短文选：我们一定可以在一起直到地。</h1>
+  <h1>精选一口散文：能够在一起，大概直到地面为止</h1>
   <p class="ja-title">選り抜き一口エッセイ: 一緒に居られるのは、きっと地面までよ</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 今月末には、商業エッセイ集もでます。こちらも読んでもらえると嬉しい！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文选：我们一定可以在一起直到地。\n\n《没有天使的十二月》对我的生活产生了惊人的巨大影响，我认为把所有美少女游戏的女主角都变成menheras是可以的！ “高达模型免费！”我兴奋地喊道。\n 我已经讲过很多次了，但特别令人震惊的是女主角须麻寺幸男。\n 如果您能参考我附上的注释文章，看看 Sumadera 先生的方案有多么创新，我将不胜感激。是我非常喜欢的一个女主角。\n 须麻寺路线中最精彩的部分就是最后在屋顶的兑换处。主人公决定与有自杀念头的女友一起自杀，他用丝带挽起彼此的双手，跳了下去。\n 她当时说出的那句“我确信我们可以在一起直到地面”非常精彩，充分表达了须麻寺幸雄这个人物的诗意。对所谓“一起死去，成为永恒”的行为做出平静而美丽的回应。正因为她不是那种会说“死也要在一起”之类甜言蜜语的人，所以十多年后的今天，她才成为了许多御宅族记忆中的女人。\n 黄昏的屋顶上，一男一女凝视着对方，双臂被丝带绑着，准备同时死去。这正是女诗人所希望的完美境地，她低声说道：“我们唯一能在一起的方式就是倒在地上。”此时此刻，我觉得她那不稳定而执着的青春期情感已经达到了顶峰。我可以花一个晚上去思考“我确定”部分所包含的复杂感情。\n\n包含日常文章的同人志现已发售。请阅读它。\n\n商业论文集也将于本月底出版。如果你也读到这篇文章，我会很高兴！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

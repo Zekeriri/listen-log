@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：受 90 年代启发的动漫歌曲</title>
+<title>一口随笔: 90年代如理念般的动画曲</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-13 04:03</p>
-  <h1>一篇简短的文章：受 90 年代启发的动漫歌曲</h1>
+  <h1>一口随笔: 90年代如理念般的动画曲</h1>
   <p class="ja-title">一口エッセイ:90年代のイデアのようなアニメ曲たち</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
 商業エッセイ集もでた！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：受 90 年代启发的动漫歌曲\n\n我喜欢并演唱受 90 年代启发的动漫歌曲和游戏歌曲。这篇日记太小众了，似乎传达的内容不多。\n 比如《洛克人8》的《电气通讯》就很有名。结合OP和视频，让人有种“洛克人到了PS时代！”的感觉，清脆的电音、女声、未来感的歌词，给了它100分的90分！ “让我们为我们两个人窃取信号，让它飞吧”这句话太好了……X4的OP和DASH的ED都很精彩，我认为洛克人与快速数字化时代的兼容性是最好的。\n 动漫的话，《野兽大战II》的主题曲也不错！从歌名《GET MY FUTURE》中，你就能感受到90年代的气息……短暂的女声和响亮的声音营造出令和世界无法重现的氛围。\n 特效方面，《千年III火枪手Vunny Knights》的OP！首先，“深夜特效”这个小类型获得了满分。你听过标题吗？内容很有趣，明显地体现了Eva的影响力，主唱林原惠菜简直就是御宅族，让人热泪盈眶。歌词的抽象感也给人一种世纪之交的感觉。 Megaranger的插入曲《COSMIC WORLD》也不错。尽管是战队系列，但《梅加兰杰》却带有一种成熟、时尚的感觉，散发着当时儿童节目典型的未来感。 Timeranger 的 OP 比这更时髦，会把孩子们抛在后面。\n 最近，我迷上了90年代动漫《SHADOW SKILL》的主题曲《Born Legend》。当我真正听过它时，我发现这听起来太90年代了，不再真实了。奇幻的歌词太美了，现在想想都快尴尬了。第一副歌“只有你可以，传奇现在开始”也让我“哦！”，但我特别喜欢的是第二副副歌：“了解，讨厌，忘记我。”这句“忘记我”，听起来像一个有远见的女英雄，有一种世纪末才能出现的美丽。配合视频真是太好了...\n 如果您有任何“90 后”建议，请随时告诉我们。我不怕受伤，但我一点也不坚强……\n\n我们目前正在销售包含每日日记的同人志。很高兴见到你！\n\n还提供商业论文集！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

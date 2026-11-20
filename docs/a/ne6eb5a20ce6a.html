@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：脊椎按摩护理和每个人的生活</title>
+<title>一口随笔:整体与各自的人生</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-28 06:56</p>
-  <h1>一篇简短的文章：脊椎按摩护理和每个人的生活</h1>
+  <h1>一口随笔:整体与各自的人生</h1>
   <p class="ja-title">一口エッセイ:整体とそれぞれの人生</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 商業エッセイ集もよろしくね。Amazon評価とか入れてくれるとなお嬉しいよ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：脊椎按摩护理和每个人的生活\n\n我的下背部和肩膀状况很严重，所以我每两天去看一次脊椎按摩师。这意味着她看过脊椎按摩师、全身脱毛、心理医生，所以从她的日程安排来看，她就像一个为结婚而着急、变得更加爱美的白领女郎。嗯，精神科偷懒了半年左右。我想要药物，这样我就可以去看精神科医生。\n 安静地说话。反正我的全身都是僵硬的，光是坐着就感觉有种奇怪的紧张和疼痛。即使我躺着，我的肌肉也会紧张，我很难入睡和保持睡眠状态。换句话说，我不能再“放松”了。他是一个危险的老人，总是在动作上付出努力。\n 我被要求至少参加 50 次，所以我报名了无限次参加计划。如果你可以随心所欲地通勤，那么你走得越多，得到的就越多。反正我没有固定的作息时间，所以两天就去一次医院。起初我每天都去，但我觉得对不起自己，所以放慢了频率。\n 既然如此，身为大法弟子的哥哥就很关心我的生活。 “虽然他和我同岁，但他似乎每天都很无聊，整个身体也太僵硬了。他怎么了？”当然。我别无选择，只能告诉他们，“我是一名作家，”他们开始说，“那太好了。”我羡慕自己可以随时工作，想休息的时候就休息。每天起得很早，工资却很低……”无论怎么看，最好是每天早起，用通过培训学到的技能来满足客户。作家的收入不稳定。对我来说，我的哥哥看起来很酷，因为他有工作而且稳定，但其他人却嫉妒我，因为我一年到头都有空闲时间。每隔两天就会度过一次奇怪的时光，两种完全不同的生活在这里交汇。\n\n包含日常文章的同人志现在正在展位上出售。这是第二年，也是第100次。太棒了！\n\n我期待着阅读您的商业论文集。如果您能留下亚马逊评级，我会更高兴。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

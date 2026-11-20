@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：世嘉的女孩游戏移植和 Sono Sheet 的终结</title>
+<title>一口随笔：世嘉的美少女游戏移植与唱片的最后</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-01-30 03:21</p>
-  <h1>一篇简短的文章：世嘉的女孩游戏移植和 Sono Sheet 的终结</h1>
+  <h1>一口随笔：世嘉的美少女游戏移植与唱片的最后</h1>
   <p class="ja-title">一口エッセイ:セガのギャルゲー移植とソノシートの最後</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：世嘉的女孩游戏移植和 Sono Sheet 的终结\n\n《Canvas》的封面很可爱，所以我在中野百老汇买了《Weekly Dreamcast Magazine》。世嘉每周出版一本信息杂志，做得非常出色。最后封面上全是美少女游戏，看起来就像是一本老少皆宜的美少女游戏杂志……\n\n顺便说一句，书中的内容也充满了美少女游戏。面对索尼和任天堂的猛烈攻击，世嘉的生存策略是专攻美少女作品。\n 这就是当你正确翻页时会发生的情况。低分辨率的美少女肖像让人怀念。\n 顺便说一下，这款游戏附带绷带和药盒作为奖励物品。如今，它似乎在某些人群中流行，但它还处于早期阶段。据说预计在夏季发布，但实际上是在秋季发布。连世嘉都推迟了女孩游戏！我也推迟比赛了！\n\n这是Sega Mania的雄心勃勃的作品“Sega Gaga”的介绍页面。让人感觉仿佛置身于“我们能打败‘萌萌乐园’吗？”的时代的台词和角色设计很萌。那些都是过去的美好时光。我认为世嘉本身真的很绝望，尽管他们只是在开玩笑......\n 嗯，我最近和一位 50 多岁的美少女游戏开发者进行了交谈，说实话，早在 PlayStation 和 Dreamcast 时代，他就是那个忙着将美少女游戏作为全年龄段版本移植给消费者的人。如果有他喜欢的美少女游戏，他会立即问：“你能移植这个吗？”多亏了这个人，我们未成年游戏玩家也得到了一些帮助。\n 当时，新的角色和路线经常与移植一起添加，显然有一位插画师专门“绘制看起来与原版游戏一模一样的附加CG”。他把它们画得非常相似，几乎没有人注意到它们。嗯，就像PS版的ONE一样，有一些图案实际上是由不同的人绘制的，并不受欢迎。你喜欢的那个额外角色实际上可能是代笔的。\n\n顺便说一句，您还记得曾经出现在杂志增刊中的名为 Sonosheets 的薄光盘吗？因为太薄了，所以显然被当成了赠品，对方告诉我，在Sonosheet工厂压的最后一张是PS2软件《Dear My Friend～Love like Powdery Snow～》的赠品。正好是最后一次印刷，所以他和工厂工人一起观看了《Sonosheet》的结尾。就这样。这些都是无用的知识，明天肯定用不到。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

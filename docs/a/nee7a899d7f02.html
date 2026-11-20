@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇短文：女孩和肋骨</title>
+<title>一口随笔：少女与肋骨</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-08-02 05:55</p>
-  <h1>一篇短文：女孩和肋骨</h1>
+  <h1>一口随笔：少女与肋骨</h1>
   <p class="ja-title">一口エッセイ:少女と肋骨</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
  このような女性に触れてみたいと願ってしまうが、こんな雪細工のように繊細な身体に傷をつけてしまったらと怖く、そのような妄想をするたびに自らを戒め、なおかつ一般的には痩せぎすの部類に入る自分でもまだまだ醜い肉がついてしまっている現実が、不快で仕方なくなる。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇短文：女孩和肋骨\n\n我保存了一个刚刚出现在我的时间线上的女孩的插图，我不知道她的名字，但她可能是《蓝色档案》中的角色，完全赤身裸体地坐着。有了所谓的 R18 插图，在你不知不觉中，Twitter 已经成为 Burakaa 色情图片源源不断地流动的设备。这可不是普通的景象。\n 然而，我被那个裸体女孩所吸引。黑头发上的蓝丝带。虽然她的眼睛又蓝又大，像宝石一样，但看上去却有些浑浊，看上去缺少幸福感。我喜欢她那不平衡的眼神，反映出她内心的不稳定，却又因年轻而闪耀，但最重要的是，她被画得很瘦，看起来如果我拥抱她，她很容易就会破碎。\n 肋骨从骨头上的小皮肤中脱颖而出。\n 出奇的薄。\n 最重要的是，她的乳房有一个很大的凸起。\n 她的臀部太瘦了，即使坐在体操姿势下，她的生殖器也清晰可见。我不知道她为什么全裸地坐在健身房里，但我被她那根本没有“肉”的身体迷住了。\n 由于他以坐姿抱歉地看着我，我自然而然地将目光从右上方聚焦到他的脸上，然后沿着突出的肋骨和他可怜的身体轮廓追踪流线，到达左下方他的脚尖。据说，杰作就是每个部分的排列方式都被引导，不占据屏幕上的任何空间，在欣赏和顺着女孩插画中从头部到四肢的线条时，你自然会从右上、右下、左上、左下看整幅画。也许正因为如此，这幅插画让我感觉自己仿佛看到了一幅具有艺术价值的裸体女人的杰作。美少女游戏时代大谷理老师画的女孩子，白皙的皮肤下也有可爱的肋骨。\n 体型大概是因为“肉”被削到了极点。我非常喜欢这个。一个与这个世界接触很少的女孩。支撑您的身体并以最小的质量行走。坐。读一本书。在这里微笑。盯着虚空，仿佛在憎恨什么。精彩的。\n 我希望自己能抚摸这样的女人，但我又怕伤害到她娇嫩的雪体，所以每次幻想的时候我都会告诫自己，心里不免有些不自在，虽然我一般都被认为很瘦，但我身上还是有一些难看的肉。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

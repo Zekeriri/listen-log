@@ -34,11 +34,10 @@ pic.twitter.com/nwLTTpGJ4X— 中野ブロードウェイで見つけたもの (
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"寻找无人旋转木马\n\n我想拍一张无人旋转木马的照片，尤其是百货公司游戏中心里的旋转木马。我想在没有人的游戏中心里感受Liminal Space的孤独。我曾经在横滨的一个主题公园拍过一张照片，我很喜欢它，但由于它是在户外，我认为它并不完美。\n\n百货商店游戏中心里，无人旋转木马闪闪发光。如果可能的话，背景应该像童话故事一样适合孩子们……这就是“孩子的梦想”的概念。\n 于是，我就在YouTube上查找了当地商业设施游戏中心的旋转木马视频。最后，我达到了理想。\n\n好像是岐阜县的一家百货商店，名叫“玛莎21”。旋转木马看起来像一个巨大的闪亮玩具和柔和的城堡背景。裸露的展品增添了“梦幻”的感觉。满分！\n ...但是，当然，孩子们会出现在这样的视频中。重点是，旋转木马不是主角，而是我自己的孩子们玩的旋转木马。这是正确的。看到有人在农村的儿童角独自拍摄视频来传达“无人旋转木马的孤独”，是很可怕的。更糟糕的是，如果你为了不让别人看到，就想把店关掉，那就更糟糕了。\n 这意味着，如果您想拍摄真正想要的图像或视频，您需要亲自前往那里。然而，如果我告诉别人“我要去岐阜过夜，拍摄无人旋转木马”，大多数人都会认为我疯了。唯一的原因是“拍梦幻的照片可以稳定我的心态。”\n\npic.twitter.com/9jdy2QwRDf — 我于 2022 年 10 月 30 日在中野百老汇 (@nyalra_uso) 发现的东西\n\n我每天都会在一个名为“我在中野百老汇发现的东西”的账号上发布照片，但这也是为了满足类似的感觉，在我看来，这是“无人旋转木马”的延续。很难用语言来表达和传达给别人。\n 但这也没办法，因为这确实是事实。那天晚上，我突然意识到，人越是追求理想，就越变得毫无意义。\n 晚上的中野百老汇很棒。请大家尝试步行。这里大概是超级任天堂时代最接近女神转生的地方了。\n\npic.twitter.com/nwLTTpGJ4X — 我在中野百老汇 (@nyalra_uso) 2022 年 11 月 7 日发现的东西\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -58,7 +57,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

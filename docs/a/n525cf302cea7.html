@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：格斗玩家的朋友和他们的尸体</title>
+<title>一口随笔: 格斗游戏玩家的朋友和伙伴的尸体</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-22 01:29</p>
-  <h1>一篇简短的文章：格斗玩家的朋友和他们的尸体</h1>
+  <h1>一口随笔: 格斗游戏玩家的朋友和伙伴的尸体</h1>
   <p class="ja-title">一口エッセイ:格ゲーマーの友達と仲間の死体</p>
 </header>
 <main>
@@ -30,11 +30,10 @@
 商業エッセイ集の方も、買ってくれたら嬉しいな……。評価やレビューもしてくれるとなお最高!</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：格斗玩家的朋友和他们的尸体\n\n我的一个高中朋友终于在《强袭5》中达到了大师级的目标。他一直是一个很讲究的人，认为格斗游戏是“对话”，非常看重“一对一面对对方，互相理解”。因此，我们一遍又一遍地重赛，直到我们了解对手。出于这个原因，在当今时代，他们会去游乐场，在那里他们可以接近对手，即使他们可以在家里玩。\n\n因为他很挑食，所以他用很多不同的哲学来对待游戏，说实话，我不能说他真的很擅长。除了我玩得最多的《街头霸王V》之外，当我玩其他格斗游戏时，我通常是更好的玩家（并不是说我更强）。即便如此，他也不后悔，只想着自己能否面对对手。换句话说，我只想知道为什么我当时会这么做。\n 而且，他真的只玩格斗游戏。我知道我需要比别人付出更多的努力，因为我本来的天赋很弱，但正因为如此，我除了每周乘坐两次 Uber 之外，根本不工作。剩下的时间大部分都花在打格斗游戏上了。独自一人，安静地，在一个小房间里，除了一台街机和一台显示器之外什么都没有。\n 自从我们见面以来我就是这样，所以我想这就是我的生活。最大限度地减少您的劳动，只专注于游戏。我也喜欢坏的一面。我确信他也会玩《Strike 6》，这很酷。与很多人进行“对话”。\n 他不喜欢的游戏是FPS，因为人太多了，他不知道该面对谁。在这么多人混在一起的战场上，根本没有机会单独面对每一个人。因此，他没有被邀请参加FPS。尽管我很喜欢这个游戏本身，但我还是感到遗憾。\n 令人难忘的一幕是，当他强迫自己玩第一人称射击游戏时，当他看到盟友的尸体时，他转身面向后方。对此，一名习惯了这一点的玩家称赞道：“哪里有尸体，哪里就有敌人，这是一个好举动。”\n 然后他说：“不，我只是条件反射地转过身去，因为我看到了一个死去的盟友……”\n 因为他就是这样的人，如果继续这样在战场上奔跑，他就会像卡米尔一样被诸多思绪笼罩而崩溃。希望大家继续通过格斗游戏去面对每一个人，理解别人。伙食费我付，你偶尔工作一下吧！\n\n包含每日日记的同人志现已发售！\n 这种积累很重要。\n\n如果有人也购买商业论文集我会很高兴...如果您能给我们评分或评论就更好了！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

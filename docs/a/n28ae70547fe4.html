@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇简短的文章：称为互联网的第二个现实</title>
+<title>一口随笔：所谓的网络作为第二现实社会</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-19 00:33</p>
-  <h1>一篇简短的文章：称为互联网的第二个现实</h1>
+  <h1>一口随笔：所谓的网络作为第二现实社会</h1>
   <p class="ja-title">一口エッセイ:ネットとかいう第二の現実社会</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 毎日のエッセイをまとめた同人誌をboothにて販売中です。ごく稀に真面目な話もあったりします。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇简短的文章：称为互联网的第二个现实\n\n我认为，随着人口增长如此之多，将现代互联网称为第二个现实并不夸张。\n 以此为前提，我认为“不仅要生活在网络上，还要生活在现实生活中”是正确的。我觉得避免自己的观点和思维过于偏颇，偶尔看看现实，感受一下另一个世界的氛围是正确的。\n 另一方面，“虽然在现实生活中很蹩脚，但只在网络上活跃有什么意义？”的煽动感觉已经过时了。在当今时代，仅仅在网络上拥有一个好名字就已经是非常令人钦佩和有价值的了。当你在第二个现实中获得力量时，你肯定有潜力利用这种经验在现实世界中发挥积极的作用。\n 当我打开空间时，有人说：“在我找工作的间隙，我第一次尝试视频编辑，并让《乌麻娘》疯狂了，我很高兴它获得了数十万的浏览量。”对此，他说：“那么我认为，如果你利用你的编辑能力和对互联网趋势的理解，而不是你的大学经历，你会更好地找到你理想的工作。”好吧，我对求职一无所知，但我知道知道创建受大量人欢迎的内容的能力无论在现实生活还是在网络上都是宝贵的资产。\n 网络和现实生活一样要求人际关系和常识，这可能很困难，但它的优势也是，即使你没有学术能力或社交能力，你也可以用幽默、理智和创造力来竞争。\n 如果你说，“如果你不战斗，你就无法生存！”，那么至少准备一个能给你带来优势并让你感兴趣的战场会好一点。对于那些已经从第一个现实中溢出的人来说，制定利用第二个现实的策略似乎是一种解脱。\n\n包含日常文章的同人志现在正在展位上出售。很少有严肃的故事。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

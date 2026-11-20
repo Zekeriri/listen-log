@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：睡觉需要体力</title>
+<title>一口随笔：睡觉也需要体力</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-07 06:41</p>
-  <h1>短文：睡觉需要体力</h1>
+  <h1>一口随笔：睡觉也需要体力</h1>
   <p class="ja-title">一口エッセイ:眠るのにも体力がいる</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 商業エッセイ集の方も、買ってあげてね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：睡觉需要体力\n\n你可能以为我一直这么说，但我从五月份开始就一直失眠。\n 我记得有人说过，“睡觉需要体力”，我每天都亲身体会到这一点。一旦睡不着，就没有力气，总是感觉头晕，感觉脑子半没运转，即使我用那种半死不活的头脑去睡觉，也很难入睡，即使能睡着，也会在1.2小时内醒来。我似乎无法再入睡了，我也只能醒来，但因为睡眠不足，我无法运转，我什么也做不了，而且我上气不接下气。即使在这种状态下睡觉，我也会睡不着，再次受苦。虽然睡觉是为了恢复体力，但需要体力才能睡觉，这不是平衡调节错误吗？\n 如果你有精力，你可以洗澡帮助自己入睡，做一些轻微的运动，吃适量的食物，但如果你的头脑一片空白和模糊，你就无法做到这些。然而，如果我在蒲团下的“虚无”中度过一段时间而无法入睡，我的精神就会被摧毁，所以我会假装能够移动，以掩饰这种感觉。我只是假装，所以当然没有什么真实的。只有结局还在继续。\n 如果可以用安眠药强行关机的话，那就容易多了，但是去吃安眠药需要相当健康的生活方式，甚至需要良好的判断力去打电话、预约。这已经是死路一条了。\n 现在，我们能做的就是等待时间来解决问题。我希望有一天我可以睡很长时间。我每次都这么做。然而，总有一天，这不会到来，事情会这样持续几个月……甚至几年。\n\n我希望您喜欢这本由我的日记组成的散文集。抱歉，这几天因为睡眠不足，心情很不好。\n\n请同时购买商业论文集。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>快速文章：蓝色安眠药</title>
+<title>一口随笔：安眠药的蓝</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-27 02:28</p>
-  <h1>快速文章：蓝色安眠药</h1>
+  <h1>一口随笔：安眠药的蓝</h1>
   <p class="ja-title">一口エッセイ:睡眠薬の青</p>
 </header>
 <main>
@@ -21,11 +21,10 @@
 毎日の日記をまとめた同人誌や（新刊出たばかりだよ！）商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"快速文章：蓝色安眠药\n\n最近，我一直靠服用Daevigo入睡，所以我完全忘记了从国外进口的安眠药带来的蓝色幻觉。颜色非常蓝。主要是时间线是蓝色的。\n 当你服用安眠药后在漆黑的房间里打开智能手机仍然无法入睡时，黑暗模式下会出现一条蓝黑色的时间线。当我观察因药物而变得模糊的大脑时，它看起来是一种极其美丽的蓝色。然而，人们的图标开始闪闪发光，推文文本脱颖而出并开始跳舞，让你感觉就像在观看一个精彩的节日。这几乎就像一场梦，仿佛电子蓝海里正在举办一场秘密的节日，那里只有我喜欢的人聚集。由于安眠药的作用，我的一半意识已经步入了梦幻状态，感觉很好。毕竟，如果在半夜的海滩上举办一场秘密的节日，那肯定会很有趣。\n 它是蓝色的。真的很蓝。深蓝色的颜色，让人一眼望去，仿佛要将你吞噬。与致幻剂的七种颜色不同，这是安眠药特有的只存在于失眠和入睡之间的时刻。我不敢再服用导致谵妄的药物，但我确实希望我能看到更多那条蓝色的时间线，那只有我能看到的深夜节日，以及它以一种似乎超出这个世界的方式闪耀的光彩。\n\n请欣赏由日常日记和商业随笔集组成的同人志（新版刚刚出版！）♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +44,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

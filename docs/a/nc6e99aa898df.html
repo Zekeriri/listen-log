@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇文章：VS 孩子</title>
+<title>一口随笔：对抗孩子</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-07-04 04:19</p>
-  <h1>一篇文章：VS 孩子</h1>
+  <h1>一口随笔：对抗孩子</h1>
   <p class="ja-title">一口エッセイ:VS子供</p>
 </header>
 <main>
@@ -23,11 +23,10 @@
  そういうことを考えさせられる1日だった。世界にはたくさんの刺激があるのだから、たまに家に来る謎の男に褒められたところで、それへの反応なんて一分先で全然いいよな。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇文章：VS 孩子\n\n如果我有一个预定的会议，我发现这样做最有效率，所以我住在制片人家里。住在别人家本身就是一件大事，所以很有趣。\n\n无论如何，制片人有一个女儿（2岁），所以当她做饭或打电话时，我必须照顾她。和 2 岁的孩子一起玩是一种新鲜的体验。\n 他在幼儿园好像很喜欢画画，在白板上乱写乱画，所以为了炫耀他的班级，我画了哆啦A梦、面包超人、皮卡丘、恐怖人等，让他们看看有什么不同。每次她都求我多画一些，所以我想我是因为我们能力的差异而疯了，所以我开始画Baikinman和其他东西。对了，他好像很喜欢小鸡，所以我画了很多小鸡的图。他兴奋地跳上跳下。多么简单的生物啊！\n 过了一会儿，负责商品的人过来，把我要监督的商品放在桌子上，但制片人的女儿仍然全神贯注于白板，每次画线的时候，她都会打断我的监督，说：“看！”我画了一只小鸡！”真是个麻烦的女孩。更重要的是，白板上只剩下乱七八糟的四面八方的线条，当我问他“这是小鸡的哪一部分？”时，他开始生气，又开始画线了。我想我自己已经放弃画小鸡了，但是在开会的时候，我会要求我多画一些小鸡，所以因为这个孩子，我最后只能听着会议，在白板上画小鸡。这完全是困难的。\n 当我送她到她的房间时，她主动按下了电梯按钮，所以我称赞她说：“你做得很好。”不知道为什么，在我说完这句话后一分钟，她就开始跳上跳下，说“耶！！！”当然，没有规定说你受到称赞就必须高兴。一分钟后感到高兴并没有什么错。这孩子说得完全正确。\n 这一天让我思考这个问题。世界上有很多刺激，所以即使一个神秘的男人来到你家并称赞你，一分钟后做出反应也是完全可以的。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

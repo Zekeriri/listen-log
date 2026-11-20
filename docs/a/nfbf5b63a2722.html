@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：真爱</title>
+<title>一口随笔：真实的恋爱</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-20 07:11</p>
-  <h1>短文：真爱</h1>
+  <h1>一口随笔：真实的恋爱</h1>
   <p class="ja-title">一口エッセイ:リアルな恋愛</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：真爱\n\n当我听到别人讲述他们的爱情生活不顺利时，我心里想：“我们到底有没有可能分手……尽管我们见面时就像互相打电话一样……”\n 我是一个十足的美少女玩家，所以我意识到爱情是一件非常奇妙的事情。一对男女，或者说同性，突然如缘的相遇，两人克服重重困难，经历了一场充满泪水和欢笑的冒险，虽然有轻微的误会，但在发现彼此的好感度达到顶峰后，终于开始约会。此时，出现了一张满脸笑容的恋人CG图像，纯白的裙子在月光下飘扬。我相信是这样的。\n 然而现实却并非如此，看来还存在“分手”这回事……多么残酷啊！不，当你们分手的时候，你们俩的心情是否都是这样的：“嗯，是这样，不是吗？”你是否忘记了，在你们开始约会之前，你深夜回家，发现你的女朋友在你的门前哭泣？你赶紧去喝杯热咖啡。就是这样…！\n 另一方面，由于这种认知，我不太明白为什么人们会说自己的恋人或前男友的坏话，或者谦虚地说“没有那么好。”在经历了一场在世界和女孩之间做出选择的伟大爱情之后，你终于和一个可以称之为你的另一半的人在一起了，那么如果你说那个人的坏话，那和说你自己的坏话不一样吗？如果你认为你的爱人不好，就好像你在承认选择这样爱人的人无能。\n 比如说，如果我能打败我最喜欢的美少女游戏的女主角，我会非常高兴。我相信你会热情地告诉你的朋友，“我一边玩着严酷的场景，一边征服了这个女孩，我哭了。”好吧，即使你称之为策略，大部分只是点击鼠标。不管怎样，我真的很喜欢她，我为自己能和这样的女主角约会而感到自豪。即使我感到尴尬并想：“哦，嘿！他不是那样的……”，但当有人说“这不是很可爱吗？”时，我捂着胸口说：“什么？！”这只是一个想象中的故事……\n 因为这个想法是故事的根源，所以每当我看到人们在现实讨论后选择分手时，我都觉得很有趣，尽管这种事情在美少女游戏中很少发生。你们还记得那些一起拯救学校脱离危机的日子吗？然后，几个月后，他以某种方式找到了其他人并开始约会。是不是有“十年后，当我们在雪乡擦肩而过，蓦然回首”的感觉？我的天啊。\n 嗯，吓人。即使是现在，我也不想放弃这样的遭遇：“当我晚上为了好玩而潜入校舍时，我看到了我的同学，一位巫女，在与恶魔的战斗中受伤倒地......！？”\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

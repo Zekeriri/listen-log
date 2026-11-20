@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇快速文章：决定会议的成功</title>
+<title>一口随笔:会议的成功判定</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-18 03:33</p>
-  <h1>一篇快速文章：决定会议的成功</h1>
+  <h1>一口随笔:会议的成功判定</h1>
   <p class="ja-title">一口エッセイ:打ち合わせの成功判定</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
 これが、その編集さんと去年の年末に作った商業エッセイ集です。締め切りが早くて鬼かと思ったよ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇快速文章：决定会议的成功\n\n我在秋叶原开会，那边的人很友善，虽然我这个27岁的年轻一代的孩子出现了，但我感觉他对我很尊重，所以我很高兴。\n 80%的“会议”不就是聊天吗？事实上，如果谈话主要是与业务相关，我们就认识到这是失败的，并且因为我们双方都对对方有兴趣和尊重，所以我们不断地离题到难以理解的话题，有一天，我们在聊天中谈到的观点会连接起来，成为一部大作品或作品。如果我能说“这家伙不行”，我就会只说我的要求然后回家。\n 当我第一次接到角川主管的电话时，我才 21 岁左右。显然，他是在看到他博客的内容后给我发了一条DM，但从文章内容来看，他显然误会自己是一个三十多岁的宅男，当他最终出现时，他是一个负债累累、刚刚成年的蹩脚孩子。他们很惊讶，但既然他们这么有才华，他们很快就切换到“抚养这个孩子”。总之，我们一起计划一下吧！就是这样的感觉。而且他还定期请我吃饭！每次他都会和我聊各种行业，我就决定陪他到死。我之所以还收到商言之类的，大概是因为负责人还是很照顾我，认可我的成长，哪怕是缓慢的。谢谢……。\n 从现在开始，我会越来越多地与年轻人交谈。那时的你总是跑题到不相关的话题，对于年轻人来说可能只是无聊的成人谈话，但这证明我喜欢你的才华，对你的个性感兴趣。\n\n包含日常文章的同人志现在正在展位上出售。一切都是无稽之谈。\n\n这是我去年年底和编辑一起创作的商言文集。截止日期太快了，我以为是恶魔。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一点文章：Deevigo</title>
+<title>一口随笔：德艾比哥</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-03 16:47</p>
-  <h1>一点文章：Deevigo</h1>
+  <h1>一口随笔：德艾比哥</h1>
   <p class="ja-title">一口エッセイ:デエビゴ</p>
 </header>
 <main>
@@ -26,11 +26,10 @@
  Amazonレビューや評価をしてもらえたら、なお気持ち良く眠れるようになります。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一点文章：Deevigo\n\n多亏了朋友申熙人给我的新安眠药“Devigo”，我睡了很多觉。我睡得很晚，睡得很晚，所以也许我第一次能够依靠药物的力量，一下子摆脱每天的睡眠债。我希望我能做到。\n 就像我以前喝的“Belsomra”一样，Daevigo 似乎促进了自然的困倦，而不是强迫有意识的关闭。在前者的情况下，存在失忆的风险，导致我在不知情的情况下与熟人联系或发布毫无意义的事情，但对于后者，我感到安全，因为我自然而然地变得困倦。对于像我这样在前者上搞砸了很多的人（我会在失去知觉时增加服用量，然后醒来并开始猛烈抨击），我非常感激。而且，它不太容易上瘾！\n\n不过，由于它是依靠自然的睡意，所以它的缺点是效果没有那么强，但是这次的Deevigo却非常有效和安全。当你习惯了之后它就开始停止工作了，这很可怕……至少我可以放心，我能安稳地睡一会儿。最近，我发了一张自己出门在动漫展板旁边的照片，海外粉丝开始指出我的黑眼圈太严重了，他们希望我早点睡觉，而不是因为动漫展板。我昨晚睡了很多！\n 另一个问题是Daevigo有“噩梦”的副作用，更正确的说法是“记住梦想”而不是噩梦，这是有问题的，因为大多数梦想都是噩梦。今天醒来是我梦到学校以来最糟糕的一次（90%是我学生时代的梦）。请有人带我在梦中离开学校！ ！ ！\n\n包含每日日记的同人志现已在 BOOTH 发售。购买刚刚出版的最新一期！\n\n我期待阅读您的商业论文集！\n 如果您在亚马逊留下评论或评级，您将能够睡得更舒服。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

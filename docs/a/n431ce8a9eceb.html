@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>随笔：Nyarula，东京生活的记录</title>
+<title>随笔：东京生活录喵拉拉</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-04 01:23</p>
-  <h1>随笔：Nyarula，东京生活的记录</h1>
+  <h1>随笔：东京生活录喵拉拉</h1>
   <p class="ja-title">エッセイ: 上京生活録ニャルラ</p>
 </header>
 <main>
@@ -36,11 +36,10 @@ View this post on Instagram A post shared by にゃるら (@nyalra_)
 Instagram始めました。たまに覗いてみてね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"随笔：Nyarula，东京生活的记录\n\n我读了新版的《上京生活六条》。\n 我也喜欢利根川和半町，但与描绘30多岁以上的现实的两人不同，一条是关于年轻人对自己的感情不满意的故事，对于像我这样有过这种经历的人来说，我立刻就能理解。我非常同情他，以至于引起了一位编辑的注意，我什至采访了他。\n\n怀着一搏梦想移居东京的一条，和无法面对安逸生活的村上，与住在破旧公寓里的年轻人同住一个房间。我自己开始和一个叫冈岛的朋友住在一起，他也是大学辍学生，我们一起住在一套破旧的2K公寓里，没有空调，价格是6万日元。我们在那里度过了短暂的青春。与一条不同，他的意识水平不高，所以从来没有打架过。相反，我觉得很可怕，我们在一起好几年了，却没有吵过架。\n 一条相信自己会利用（在学校）的高智商，成功创业或投资，但没有真正将任何计划付诸行动，他变得越来越沮丧，日复一日地打工。起初，他毫无意义地瞧不起普通人，但当他继续以年轻的方式与同事和室友互动时，他开始在最平凡的生活中找到意义。这是一个好故事。\n\n另一方面，我连打工都没有，靠写作来维持房租（3万日元）。我只靠着每次更新博客时增加的关注者和读者的数量，每天都靠着“我的人数比别人多，所以总有一天一切都会好起来”来强迫自己冷静下来。两人一边吃着冈岛从便利店上夜班回来后扔掉的午餐，一边看着日朝。在《美丽节奏彩虹现场》的最后一集，我们都保持沉默，这样就没有人知道我们在哭。\n 那时候，推特上的粉丝数真的没有任何意义，人们把你当作白痴，而且没有办法付费。出于一种神秘的自豪感，我不会在我的博客中添加附属链接（如果添加，我就不能谈论色情游戏），而我得到的唯一支持是古怪的编辑偶尔要求稿件。我周围的动漫偶像们开玩笑说，如果他们的成绩下降，他们的生活将如何结束，但随着他们开始找工作，他们逐渐演变成更正常的东西，他们继续取笑我，我的身份是基于粉丝数量的。有人这样看不起我是理所当然的，所以我无法反驳什么……\n 他将矛盾心理转化为写作，在被嘲笑贫穷的同时增加了追随者数量，每次停电或停水时都向冈岛鞠躬，向社会找借口说：“总有一天，总有一天，一定会发生一些事情......”与他关系不好的追随者批评他说：“我应该回到冲绳而不是做一个愚蠢的兼职。”尽管他沮丧地弄湿了枕头，但他没有精力。去做任何特别的事情。这样的日子还在继续。\n 但这很有趣。我知道，在我二十岁出头的时候，我体会到成功并不是快乐的唯一来源。虽然一条输给了海二，但他仍然是一个能够达到那个位置的人。想到这个过程的一部分包括我和同事一起度过的愚蠢、毫无意义的日常生活，真是太好了。\n我们生来不是为了哭泣\n我们生来就不是为了失败\n\n包含日常文章的同人志正在 Booth 发售！即使您不知道谁在读它，写这样的内容也可能很重要。\n\n过去的故事，如果你看一下商文集，我会很高兴。这是我还活着的证明。\n\n在 Instagram 上查看此帖子 Nyalra (@nyalra_) 分享的帖子\n\n我开始使用Instagram。请偶尔看一下。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -60,7 +59,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

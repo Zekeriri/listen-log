@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：工人东京的雪花</title>
+<title>一口随笔:降落在劳动者东京的雪</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-06-28 06:44</p>
-  <h1>短文：工人东京的雪花</h1>
+  <h1>一口随笔:降落在劳动者东京的雪</h1>
   <p class="ja-title">一口エッセイ:労働者の東京に降る雪</p>
 </header>
 <main>
@@ -30,11 +30,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：工人东京的雪花\n\n我一直对《Golgo 13》中的一个休闲场景感到好奇。\n 该面板与主要情节无关（这只是一群暴徒解释角色有多忙），而且说话的人也没有再出现。这个框架。\n\n令保安感到惊讶的是，一位在日本顶级广告公司广津公司工作的严肃AE（看上去很忙，负责为客户做策划）的年轻人，凌晨两点就来到办公室开始工作。从台词的脉络来看，当时（本书出版于1988年）一度流行“拼命”工作，后来又被重新考虑。\n 尽管如此，支持日本顶级公司的年轻人却24/7 忙着工作。即使因为不约会而被女友甩了，他仍然在工作。那天晚上，我正努力地赶来参加一家汽车制造商的新品发布项目。 20 世纪 80 年代末，一家新汽车制造商的产品发布对于该国来说是一件大事。\n 一位充满热情的年轻人被一位老保安惊呆了，他说：“我不敢相信我工作这么辛苦……”虽然他认为自己无论如何都不会在凌晨两点来上班，但他也明白日本之所以繁荣就是因为有这样的人工作（事实上，汽车制造商发布新产品很重要，他负责人流）。如果大家都好好工作，包括这家广告公司在内的日本顶尖企业就不会成立。而老人虽然上夜班，却在前台悠闲地度过，他表示自己对自己的生活很满意，与公司那些酷酷的员工相比，自己的工资还算不错，生活也还不错。这也是生活的一部分。\n 事实上，这条线感觉就像是社会的一个缩影。许多事情的发生都是由于少数人在大公司努力工作中找到了自己的人生目标而导致的异常行为。当然，这对你的健康或道德都没有好处，但正如老人所说，如果你不这样做，你就不会繁荣。最重要的是，扮演主角的年轻人是那种因为热爱而工作的人。\n 人们认同自己在公司中的“地位”，感受到对工作场所的归属感，并全心全意地为同事和上级工作。对我来说这感觉完全不可能。并不是我不明白。我确信世界上有人热爱他们的工作。我们应该在不知不觉中享受到这些人的好处。或者您可能是广告公司“诡计”的受害者。他们的工作是引起他人的焦虑，让他们消费新产品和服务。\n\n想这些是没有用的，所以我会忘记上面的故事的一切，但我喜欢这一集背景中带有小魔怪标志的风景。受水木茂的影响，我对漫画背景产生了迷恋，但不知为何，我很高兴在《Golgo》的世界里，也有喜欢《小魔怪》这样的垃圾电影的普通人，在城市里走来走去。白津堂也可能负责推广《Gremlin》。\n 故事开始于东京一场大雪，他深夜乘出租车前往白津堂上班。\n 东京街头被雪染成白色的画面，与工人的辛劳和汗水完全无关，却具有讽刺的美感。从这雪开始的味道就是戈尔戈本身的苦味。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>快速文章：服用降低敏感性药物的意义</title>
+<title>一口随笔：服用会减少感性的药物的意义</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-24 09:58</p>
-  <h1>快速文章：服用降低敏感性药物的意义</h1>
+  <h1>一口随笔：服用会减少感性的药物的意义</h1>
   <p class="ja-title">一口エッセイ:感性が減る薬を飲む意味</p>
 </header>
 <main>
@@ -25,11 +25,10 @@
 若い頃の感性ギトギトで書かれた商業エッセイ集もよろしくね！！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"快速文章：服用降低敏感性药物的意义\n\n当我去美国的一所学校时，我谈到了我自闭症的一面，并得到了“帮助我融入社会的药物”。如果你喝了它，你会发现更容易表现出所谓的“社会工作者”的方式。我可以专注于办公室工作。\n 当我查看副作用，看看是否有这样的药物时，我发现了类似“它会让你变得不那么敏感。”从服用相同药物的人的报告来看，它似乎也会降低敏感性。我自己尝试了一下，看看感觉如何，发现我比平时更少受动漫、音乐和所谓“文化”的驱动。这就是“感觉敏感”的意思吗？\n 对于我这种每天看动漫看书就是人生唯一目的的人来说，喝这个就是我人生的一大损失。如果社交技能可以通过变得不那么敏感来获得，那么我根本不需要这样做。所以我停止服用该药。\n 首先，“以变得不那么敏感为代价来获得社交技能”不是和渐进性脑白质切除术一样吗？这个“敏感”部分就是你的“个性”、“个人”、“自我”，那么把你的“自我”去掉，用“社会性（群体）”填充，岂不是很奇怪？我想太多了。生活中有时你应该优先考虑社会而不是自己。\n 重要的情感……我不认为现实中有什么东西需要你为了抓住而失去自己，但我觉得很奇怪，有一种药物可以帮助你尝试抓住它。\n\n包含每日日记的同人志现已在 BOOTH 发售。如果你的敏感度变得迟钝，你将无法记录你的日常记录。\n\n希望您喜欢这本用我年轻的情感写成的商业散文集！ ！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

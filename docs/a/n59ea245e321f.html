@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一篇短文：目标是成为一家章鱼烧餐厅</title>
+<title>一口随笔：以章鱼烧店为目标</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-07-05 01:59</p>
-  <h1>一篇短文：目标是成为一家章鱼烧餐厅</h1>
+  <h1>一口随笔：以章鱼烧店为目标</h1>
   <p class="ja-title">一口エッセイ:たこ焼き屋さんを目指して</p>
 </header>
 <main>
@@ -22,11 +22,10 @@
  将来、花音さんの夢が叶うことを、今年の僕の短冊への願いとしよう。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"一篇短文：目标是成为一家章鱼烧餐厅\n\n今天我发现了一张非常好的纸条。\n\n“你可以成为一家章鱼烧餐厅，Kanon。”\n 好……。不仅是愿望，孩子的名字也很棒。加隆大人，加隆酱。这是一个典型的女孩动漫名字，而且听起来非常好听。更妙的是，它说的是“我希望我能成为你”而不是“我希望我能成为你”。在这个年纪（我不知道多大），他甚至能够创作出一种软化词汇的表演，以适应他幽默的愿望。这是一项专业技能。像“我想成为披萨店的女朋友”这样朗朗上口的句子很有吸引力。\n 章鱼烧店……我从来没想过成为其中之一。我不喜欢它，因为煎锅总是离我很近，而且看起来很热。 「从今天开始我就是了！！ ︎'，给人的印象是摊位会被路过的不良少年（偏见）破坏。然而Kanon并没有关注其他餐厅，而是特意选择了一家章鱼烧餐厅。一定有深刻的原因。那天我和家人围坐在桌子旁，妈妈称赞我在章鱼烧派对上翻转的章鱼烧做得非常完美。\n 我今年的愿望是卡隆的梦想在未来实现。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +45,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

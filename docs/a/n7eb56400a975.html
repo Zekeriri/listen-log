@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：暴民努库莫利蒂</title>
+<title>一口随笔：配角的温暖感</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-24 05:52</p>
-  <h1>短文：暴民努库莫利蒂</h1>
+  <h1>一口随笔：配角的温暖感</h1>
   <p class="ja-title">一口エッセイ:モブ・ヌクモリティ</p>
 </header>
 <main>
@@ -27,11 +27,10 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくお願いします♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：暴民努库莫利蒂\n\n独自一人在一个房间里自然会让我感到孤独，尤其是空旷的寂静让我感到孤独，所以我经常开始在 YouTube 上随意观看视频。无论如何，我想听到角色们生动活泼的声音。我想用别人的声音来填补我的孤独感。\n 这时，主屏幕上出现了一个蓝发美少女的等待画面，所以当我打开它时，我看到正在播放《蓝色阿卡》的女主角阿罗娜酱，阿罗娜酱在屏幕上欢快地跑来跑去，为观众（=老师们）加油。这景象太可爱了，我几乎要流泪了。我猜她可能更多地将这个女孩视为“女儿”而不是“女主角”。我也很快就30岁了。\n\n现在，直播屏幕边缘，观众的评论纷纷溢出。他们公开表达了“实施____”和“穿得调皮”的愿望，但前提是他们喜欢阿罗娜，因为她很可爱，这使得评论区和平而统一。看到所有御宅族齐聚一堂，让内容变得更加精彩，最重要的是，玩得开心，真是令人振奋。最棒的是，御宅族看起来很开心。\n 我没有勇气和精力作为一个“乌合之众”来发表评论。自从我出生以来，我几乎没有过匿名写作的经历，我一直通过与《Nyalla》相关的媒体表达我的观点和意图。即便是现在，还是这样。\n 当然，我从来没有在YouTube的聊天区发过任何东西，但直播中的第二个主角是参与者，每个人都发表自己的评论，这让创作者和艺术家感到动力和感动。比如阿罗娜酱的这个视频，我觉得大家互相看着对方，大呼“可爱”，对其他人说“嘿！”的那种团结感，是一种美妙的观看体验。我认为这就是互联网的本质，暴民成为内容的一部分。\n 那真是太棒了。我是ROM专家，所以评论区的团结感完全归功于你们。我认为给我的回复和粉丝来信真的很棒。这是一个微妙但重要的部分，可以稍微改变互联网的大流量并发挥作用。\n\n突然要说起自己的创作了，但数据显示，Chotenchan的直播间评论量与观看量相比异常多，参与其中的大人们总是感到惊讶。嗯，原因是有很多标准格式很容易评论，但这就是为什么他们有如此大的热情。这是一种祝福。就像灰尘堆积起来一样，每一个小小的评论无疑都是艺术家和他的作品的灵感源泉。这就是互联网核武器。\n\n感谢大家对日记总结和商文集同人志的支持♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

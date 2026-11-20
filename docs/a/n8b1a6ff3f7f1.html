@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：一张通往地狱的门票，名为求婚</title>
+<title>一口随笔: 那个叫企划书的通往地狱的票</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-08 14:00</p>
-  <h1>短文：一张通往地狱的门票，名为求婚</h1>
+  <h1>一口随笔: 那个叫企划书的通往地狱的票</h1>
   <p class="ja-title">一口エッセイ:企画書とかいう地獄への切符</p>
 </header>
 <main>
@@ -28,11 +28,10 @@ pic.twitter.com/zCdLml4kkT— にゃるら (@nyalra) July 7, 2022
 商業エッセイ集もよろしくね。こちらも読んでもらえたり、レビューや評価をしてくれたら、なお支えになります。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：一张通往地狱的门票，名为求婚\n\n我脑子里对接下来要做什么有一个大概的想法。而且，当我向制片人解释大纲时，他看起来很高兴。制片人一旦批准一个项目，他或她就处于投入（筹集）数千万日元以使其成为现实的位置，因此他们不会那么轻易地赞扬该项目。因为涉及数千万日元，涉及的人也很多，所以必须非常严格，绝对不能根据社交闲聊去做事情。制片人对我的想法很感兴趣。这是一种荣誉。\n 然而，提议是一把双刃剑，它是以自由为代价的。一旦我们把头脑中的想法变成文字，用 PowerPoint 打印出来并提交，我们就开始了另一场长达两年的游戏制作马拉松。就是那种默默地坐在显示器前直到它发布的感觉，不确定它是否真的很有趣。完成一两次就很不理想，而且一遍又一遍地重复调整是很痛苦的。如果你犯了一个错误，人际关系可能会在空气中瓦解。这是一场疯狂的赌博，只有那些“准备好”克服所有困难的人才能跟上。\n 然而，有一小部分疯狂的人并不讨厌这种糟糕的赌博，他们只能因从极端情况中解脱出来的刺激而兴奋。当产品发布时，涌入的反馈浪潮比任何药物都更令人兴奋。我不介意为此目的牺牲我的个人生活或我的精神。我的经验告诉我，如果你不这样做，你就无法创作出令你满意的作品。\n 毕竟，我可能会在不久的将来将脑海中的项目转换为 PDF。这是一张通往地狱的门票，无论你走哪条路，你都会在这个过程中崩溃。即使有Nidiga，也有一条路线被创建，因为我的心在一次推迟后被撕裂。下一次，我的自私将让我付出超过数千万日元和我才华横溢的创作者们的时间。除此之外，为了寻找大脑中药物的过度分泌，观察某人因他们的创造而高兴或受伤的那一刻。毕竟，我是一只可怜的猴子，被敲击老虎机杠杆的快感所支配。\n\n顺便说一下，这张照片是昨天在南迦镇拍摄的店内景色。走着走着，我的心砰砰直跳，心想我要自愿破坏这种轻松观光、心情安定的乐趣。\n\npic.twitter.com/zCdLml4kkT — Nyalra (@nyalra) 2022 年 7 月 7 日\n\n包含每日日记的同人志正在 BOOTH 发售！如果你能把它握在手里，那么在你工作的时候，它会帮助你的头脑稍微稳定一些。\n\n我期待着阅读您的商业论文集。如果您也阅读本文并留下评论或评分，我将感谢您的持续支持。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

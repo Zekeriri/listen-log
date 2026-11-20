@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Alice Soft 最喜欢的 BGM，您可以订阅收听</title>
+<title>在订阅服务中可以听到的Alice Soft喜欢的BGM</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-05-23 05:04</p>
-  <h1>Alice Soft 最喜欢的 BGM，您可以订阅收听</h1>
+  <h1>在订阅服务中可以听到的Alice Soft喜欢的BGM</h1>
   <p class="ja-title">サブスクで聴けるアリスソフトの好きなBGM</p>
 </header>
 <main>
@@ -30,11 +30,10 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"Alice Soft 最喜欢的 BGM，您可以订阅收听\n\n我注意到 Alice Soft 的很多原声带都可以通过订阅获得，所以我要谈谈我最喜欢的流媒体 BGM。我最喜欢的歌曲 Atraq Naqua 的《Going On》在订阅服务上不可用...\n\n首先，GALZOO岛的“称号”。顾名思义，就是标题画面的BGM。这首歌暖心又好听。它充满了经典超级任天堂流行游戏的刺激，我喜欢它的可爱，就像爱丽丝一样。情色游戏在萝莉萝莉的氛围、你想不到的重情色和严肃与地下的刺激之间存在着差距。\n\n下次就更激烈了。 Rance 5D 的最终首领歌曲《All Your Power》。 《兰斯 5D》是《兰斯》系列中最亮眼、最愚蠢的作品之一，但最终的 Boss 战却是一场精彩的战斗，虽然不会显得太酷，但也很令人兴奋。这不是一场 6 或更高版本的宏大冒险，但这无疑是一个故事的结局，也是结束故事的最后一战。 5D的最大优点是它有一种华丽、轻松的OVA般的氛围。\n 普通的战斗歌曲也不错。当这首歌突然从傻乎乎的前半部分变成严肃而激烈的歌曲的那一刻就做得对了。\n\nMamanyonyo 改编的《正义》。 Mama Toto的原曲很精彩，来自MIDI时代的音源充满了梦想和希望，但这种音乐盒般的编曲，包括“哭泣”，却让我热泪盈眶。\n 因为全明星的性格和无限的可玩性，感觉就像是2000年代初期Alice Soft的概念，对我来说，这首歌就是Alice。这是我玩的时候听得最多的一首歌。因为我一直在潜入地牢。 Alice Soft 最好的游戏和最好的 BGM，我非常希望它能在智能手机上发布。当我在Rance 9听到这首歌时，我被感动了。\n\n说到Alice Soft，如果不说说《兰斯》系列中的情色场景BGM“我的荣耀”，那就是失职了。无论什么情况，只要响起这首歌，你就能变得所向无敌。可以毫不夸张地说，我们花了几十个小时敲击鼠标，只是为了聆听我们的荣耀（在很多方面）。\n 而《Rance 9》中的《My Glory》则有些不同。当我屏息以待这张专辑什么时候发行时，一场听起来像英雄国歌的大型表演令人兴奋不已。毕竟是情色游戏，情色场景就是最好的奖励，游戏系统和故事都是为了宣泄而存在的。这首歌就是精髓。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

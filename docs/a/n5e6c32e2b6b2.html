@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>随笔：不得不这样的诅咒</title>
+<title>随笔：必须如此的枷锁</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2020-07-22 19:50</p>
-  <h1>随笔：不得不这样的诅咒</h1>
+  <h1>随笔：必须如此的枷锁</h1>
   <p class="ja-title">エッセイ：こうあらねばならないという呪縛</p>
 </header>
 <main>
@@ -39,11 +39,10 @@
 自分は何を守り、何故守ってきたのか考えると良いのかも知れません。これは、まだまだ自意識を拗らせて色んなものを縛っている自分への戒めを込めての回答でした。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"随笔：不得不这样的诅咒\n\n我收到了这样的咨询。\n\n请不要笑，但是除了羽立之外，中二病没有其他治疗方法。如果你是宅男，就必须这样！由于被困在这种自我意识中，它开始感觉像是一种强迫。这种情况已经持续了几年了，也挺累的。我们怎样才能摆脱自我意识呢？\n\n问题的内容非常清楚。\n 御宅族的生活需要很多层面的默契和承诺，社区内也有很多约束和氛围。\n 不受欢迎的人不应该与异性交往，不应该露脸而得意忘形，如果只谈论日常动漫，人们会认为他们很弱……人们通过对自己施加各种誓言和约束来进行活动。\n 我的一个朋友为了专注于工作而禁止漫画和动画，作为反应，即使在他辞职后，他也开始对漫画和动画产生负面反应。这就是枷锁的沉重，烙印在无意识的层面上。\n\n我认为我的帐户是建立在各种承诺和限制之上的。\n 他们几乎从不谈论社交游戏，回避爱情、美食等现实生活话题，完全排除社交话题。绑定的越多，其他部分就越强化，对于念能力和账号来说可能也是一样的。\n 不过，如果你说是因为保护了自己，按照自己喜欢的方式生活更有趣，那就仅此而已。事实上，宅男们都会恋爱，“表现出快乐的自己”的禁忌就不会像以前那样受到周围人的批评了。由于网络的动荡，每个人都变得更加友善。\n 人口增加，其中包括御宅族和互联网用户。对于像我们这样生活在阴影中的人来说很难想象这一点，但世界上大多数人都过着光明的生活，所以随着人数的增加，我们会接触到越来越多的阳光。互联网也是如此。\n 然而，它被禁止是有原因的。 XXXHOLiC还谈到了“如果你晚上剪指甲，你就看不到父母死去”这样的教训有什么值得传承的意义。\n\n“不红的人不宜与异性交往”，就是说，即使没有什么恋爱经验的宅男试图与异性交往，也只会被人看不起，而“不露脸，得意忘形”正是网络素养的定义。如果你说“如果你只谈论日常动漫，人们会认为你很弱”，你可以找一些牵强的借口，比如告诉人们看各种各样的作品，而不仅仅是漂亮的女孩。\n 保护它是有意义的。所以，提问者自觉的那几年并不是没有意义的。我认为这是有意义的。\n 之后，逐渐了解你自觉绑定的东西的含义，一旦你确信你可以有效地使用它们，就将它们移除。比如，我打破了“不露脸”的氛围，主动在网络上露脸。\n 这是因为我认为这样活动会更容易进行（无论如何我都会在活动中露面），并且突然打破禁忌所带来的乐趣会更有益。\n 随着年龄的增长，我们的英雄意识逐渐淡化，自我意识逐渐消失，我们逐渐变得更加圆润。目前，我实际上在想，“也许退出日本性爱是可以的。”我还没有尝试过，所以我有一些保留。\n 我相信这种“御宅族群体中无意识的羁绊”会从25岁开始释放，而且我也认为让它一直持续到那时可能会更有趣。\n\n考虑一下您正在保护什么以及为什么要保护它可能是个好主意。这个答案是对我自己的一个警告，我仍然感到不自在，并在很多方面限制自己。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -63,7 +62,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

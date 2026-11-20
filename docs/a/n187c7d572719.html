@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>短文：结果，我成了最后期限的守望者</title>
+<title>一口随笔：结果成了守截止日期的人</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-05-26 01:32</p>
-  <h1>短文：结果，我成了最后期限的守望者</h1>
+  <h1>一口随笔：结果成了守截止日期的人</h1>
   <p class="ja-title">一口エッセイ:結果的に締め切り守りマンになってしまった</p>
 </header>
 <main>
@@ -24,11 +24,10 @@
  結局、わけのわからんやつによる意地が全てであって、フリーで生きることに王道やコツなんてありゃしないのだ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"短文：结果，我成了最后期限的守望者\n\n可悲的是，自由职业者总是在与最后期限作斗争。无论您是与朋友在公园散步，还是最终观看一部您等待多年的电影，您都会情不自禁地在脑海中浮现某种截止日期。多么可悲的生物啊！\n 期限是与魔鬼的契约，但还有最后的方法可以和平地逃离对方的要求。是石加藤。他在各个社交媒体上压制自己的活动，并忽略负责人的通讯，就好像他没有看到它们一样。过了一会儿，当他写完稿子时，他终于坦白地告诉她：“对不起，我感冒了！”病魔是无敌的。即使知道，也不能责怪病人（暂定）。即使你在截止日期前几天突然感冒了。相反，你会失去所有可信度。\n 有些人无意中使用了这最后的手段。过了截止日期后，他们会感到内疚，无法主动联系他们，而当他们打开社交媒体时，他们会因为感觉不好而关闭。向某人伸出援手并说：“很抱歉，截止日期太长了，但我还没有完成！”但我必须这样做。\n 像这样的情况经常发生。我自己就处于经常委托别人创作的境地，年轻的时候也常常不经意间发现自己处于这样的境地，惊慌失措。由于缺乏社交技能而无法找到工作，即使成为自由职业者后，他自然也会害怕截止日期和准时性。即便如此，信任肯定会下降，如果信任的无形参数变成负值，每个人都会突然抛弃你。完全自制。糟糕的。\n 然而，事实是，我与这种不得不放弃的情况无关。事实上，自从游戏发布以来，我已经能够遵守最后期限并且沟通更加顺畅。你长大了……有点不一样了，原因也清楚多了。由于我每天晚上都会发日记，所以无法进行寻人行动。如果你没有在截止日期前发布日记，人们会认为，“你有时间写！”，你的可信度就会下降。然而，我不能放弃写日记，我已经这样做了三年多了。\n 结果，我必须确保在截止日期前完成，或者当看起来无法完成时，我必须向他们伸出援手说：“请稍等一下！”当时，我也联系了他们说：“作为日常习惯，我也发日记，但是请......”。我工作中最可怕的部分是无法与他人沟通，无法理解他们的处境和情绪。即使你迟到了，只要知道对方的情况并能够联系到他们就会有很大的不同。正因为如此，在过去的几年里，我被认为是一个善于沟通的人。如果您在发布日记之前没有回复所有详细信息，您就会被发现。\n 这感觉真好。因为这与“过了截止日期胆怯地看对方表情”的汗流浃背的恐惧无关。我肯定会推荐给大家，但我反而会让你走上每天发日记的阿修罗之路。这显然比按时完成任务更麻烦。\n 说到底，全靠不明白为什么的人的意志力，过上自由的生活没有什么坦途，也没有什么窍门。"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

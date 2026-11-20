@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>“致命疾病”克尔凯郭尔与信仰</title>
+<title>《通向死亡的疾病》克尔凯郭尔与信仰</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-14 01:49</p>
-  <h1>“致命疾病”克尔凯郭尔与信仰</h1>
+  <h1>《通向死亡的疾病》克尔凯郭尔与信仰</h1>
   <p class="ja-title">『死に至る病』キルケゴールと信仰</p>
 </header>
 <main>
@@ -29,11 +29,10 @@
 若い頃のせいいっぱいな文章が載っている商業エッセイ集もよろしくね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制译文</button></div>
+<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
 <div class="toast" id="toast"></div>
-<script id="zh-copy" type="application/json">"“致命疾病”克尔凯郭尔与信仰\n\n既然你会到处找到与宗教和信仰相关的新闻，那么让我们来谈谈克尔凯郭尔吧。\n 克尔凯郭尔是一位虔诚的基督徒。克尔凯郭尔出版了许多著作，但大部分都是以基督的教义为基础，为传播基督教而写的。\n\n他是一名虔诚的基督徒，为信仰而活，所以他的思想是美好的，直指“善”。特别是，我最喜欢的书的标题是《致命的疾病》、《美丽的生命理论》和《美丽与伦理》。所有这些书都是为了传达基督的奇迹。似乎最受读者欢迎的部分是《绝症》中的绝望。这本书解释了各种“绝望”，但每个人都应该牢记对“使自己的低自尊成为一种身份的绝望”的恐惧。尤其是在这个社交媒体使自嘲流行的时代。绝望、相信“我一定会不快乐”也可能导致“一种导致死亡的疾病”。\n\n克尔凯郭尔继续宣扬“信仰”的重要性，认为这是面对这种绝望的正确方法。这与克尔凯郭尔奇怪的成长经历有关：克尔凯郭尔的父亲是一个非常富有的人，但在他变得富有之前，事情出了问题，他诅咒了上帝。此后，父亲的地位迅速提升，但家庭却遭遇不幸。他的父亲认识到这种巧合是上帝创造的命运，于是将他的儿子克尔凯郭尔送到斯巴达学习神学。他相信他的儿子会像基督一样在34岁时死去，所以他强迫自己的信仰避免这种情况。\n 克尔凯郭尔因压力和真理而变得粗暴，但在克服了一段颓废时期后，他能够活过35岁，从此他对基督的信仰变得更加精致。他致力于写作，甚至与心爱的爱人分手，并通过他的各种作品，以哲学家的身份传播基督教。我被那种宗教生活方式深深吸引。\n 克尔凯郭尔的结论是相信基督是绝对的至高无上，过着美好的生活，而不陷入低俗（一种粗俗和情感化的生活方式），但我们大多数日本人并不信教。那么，我们会“绝望”并患上导致死亡的疾病吗？事实并非一定如此。如果我们有能力走向我们所信仰的“善”而不是宗教，我们或许就能拥有克尔凯郭尔一样的“美与道德”，尽管我们信仰的对象不同。\n 我什至还买了克尔凯郭尔的日记，内容竟然全是“信仰”。因为我们国家的宗教观如此薄弱，所以我们应该记住这样的人存在的事实。街上有很多关于邪教的讨论，但我认为否认信仰本身并不美好。\n\n包含每日日记的同人志正在 BOOTH 发售！我们很少进行严肃的谈话。\n\n也希望大家喜欢我的商言文集，里面有很多我年轻时候的作品！"</script>
 <script>
-const text = JSON.parse(document.getElementById("zh-copy").textContent);
+const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
