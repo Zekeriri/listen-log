@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口散文：太肮脏的现代网络广告，以及邪神酱的新作应用游戏</title>
+<title>一篇简短的文章：太肮脏的现代互联网广告和 Jashin-chan 的新应用游戏</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-01-05 07:33</p>
-  <h1>一口散文：太肮脏的现代网络广告，以及邪神酱的新作应用游戏</h1>
+  <h1>一篇简短的文章：太肮脏的现代互联网广告和 Jashin-chan 的新应用游戏</h1>
   <p class="ja-title">一口エッセイ:汚すぎる現代のネット広告と、邪神ちゃんの新作アプリゲーム</p>
 </header>
 <main>
@@ -31,10 +31,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇简短的文章：太肮脏的现代互联网广告和 Jashin-chan 的新应用游戏\n\n继续昨晚，我还要讲一下互联网。谈论互联网很有趣。\n 有一天，我在电脑上浏览……浏览是一种有趣的说法，不是吗？这么时髦的“上网”怎么说呢？我偏离主题了。我的一个朋友主要在电脑上浏览互联网，搬家后有一段时间无法使用他的电脑，所以他决定一段时间以来第一次在智能手机上浏览。\n 然后，我对每个网站上的广告数量和广告的丑陋程度感到惊讶。到现在为止，他一直在使用浏览器扩展来屏蔽广告，所以他很震惊地发现网络在他没有注意到的情况下变得如此糟糕。她跟我说话就像一位公主，第一次得知她的国家有贫民窟。 “现在的网络太肮脏了！！！”\n 不过我完全同意。尤其是现在的广告，只要点击就可以是任何东西，所以充满了色情、血腥的东西。即使你只是浏览一个正常、健康的网站，你也会看到无穷无尽的让你惊叹不已的广告图片，甚至推特的时间轴上也充斥着可疑的健康食品。当我打开一个视频网站时，我最终会看到我不感兴趣的产品广告数十秒。当我冷静下来后，我意识到这绝对是奇怪的。\n 此外，当搜索某些内容时，出现在列表顶部的是附属博客，询问“怎么样？”不涉及任何情感。现在的年轻人似乎在查找东西时都会在 YouTube 上搜索。难道不是因为Google上显示的网站缺乏人性化吗？这只是从某处获取的不确定信息的列表。 「10款推荐洗衣机！」为何大众会备有10款推荐洗衣机？\n 然而，这本日记里并没有给出答案。无论你多么努力，最有效的赚钱方法就是投放色情和图形广告或写“怎么样？”的信息，这样互联网上就会充斥着这样的信息。我们没有抵抗的手段。\n 您无法抱怨，因此我们决定通过创建一款名为“Save！”的应用游戏来利用这个充满广告的世界。我们来谈谈Jashin-chan Dropkick。\n\n以前出过好几款Jashin-chan应用游戏，都以各种方式令人震惊，评论部分写着“Jashin-chan……你又未经许可使用了开发资金”的妙语，但这款应用的威力不同！此外，它拥有有史以来最多的游戏玩法！因为他们只是把海外应用游戏中常见的角色换成了Jashin-chan和Yurine！\n 你所要做的就是一击创建一堵墙，并保护 Jashin-chan 免受落下的铁球和 Yurine 的攻击。连声音都没有，BGM也经常有问题。不过，游戏玩法很有趣。这很有趣，或者更确切地说，感觉就像我情不自禁地这样做。嗯，这只是一个常见的应用游戏，因此您几乎可以玩任何常见的应用游戏。\n 更重要的是，这个应用程序出人意料地充满了广告，每次你玩大约一分钟，就会弹出一个广告，这可能很烦人。如果这是一部普通的动漫作品，粉丝们一定会愤怒不已，但这款游戏是关于Jashin-chan的。如果是Jashin-chan，用这样一个充满广告的应用程序赚点小钱也情有可原。如果这是第四季的基础，粉丝们会很乐意做出贡献。还有计费功能（部分广告消失）。\n\n当涉及到金钱的时候，小贾辛突然变得客气了。浩瀚的互联网有其独特的魅力。 Nyarura 期待《Jashin-chan Dropkick》第四季。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +55,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

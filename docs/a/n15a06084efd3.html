@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：独角兽高达VS彩虹路</title>
+<title>短文：独角兽高达 VS 彩虹之路</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-02-27 07:07</p>
-  <h1>一口随笔：独角兽高达VS彩虹路</h1>
+  <h1>短文：独角兽高达 VS 彩虹之路</h1>
   <p class="ja-title">一口エッセイ:ユニコーンガンダムVSレインボーロード</p>
 </header>
 <main>
@@ -34,10 +34,11 @@ SDがずらっと並んで展示されているスペースは一番良かった
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：独角兽高达 VS 彩虹之路\n\n我和一些朋友去了台场。感觉就像是在没有计划的情况下悠闲地走来走去，与动物互动，尽管我是一个御宅族，却去Spocha，感到困惑，这确实是一个“假期”。对我来说，即使几十年后，台场可能仍然是《数码宝贝冒险》中被破坏者破坏的地方。\n\n嗯，我去台场过夜，很少来，所以我去看了全尺寸的独角兽高达，但我们五个人中，包括我在内只有两个人看过独角兽，甚至我有一个朋友对高达的反应是：“它们不都是一样的吗？”此外，我对独角兽本身的感受很复杂，虽然我喜欢泰坦等飞机设计的精致，但我不太喜欢浮华独角兽系列。我喜欢《全甲》，因为我是个男孩。我也希望台场也有全甲独角兽装饰！\n 更重要的是，网上流传着无数真人大小高达的图片和视频，让人感觉不新鲜。这是一架我喜欢设计的飞机……如果是像 Turn X 或 Ex-S 这样的飞机，我可能会着迷并欣赏它 1.2 个小时。然而，看到巨大的东西仍然很有趣。看到你从小就关注的机器人真正站在街道上时，一定会感到兴奋不已。我们马上去广场吧。\n\n所以，我看到了。毕竟，亲眼看到一个巨大的物体真是太神奇了。自古以来，人类在有困难的时候都会竖立大佛。未来我想看到越来越多的高达，而不仅仅是大佛。接下来是 Exia 维修。\n 不管怎样，正当我想着如果独角兽能通过毁灭模式发出迷幻的光芒就好了，我的朋友看到了一个完全不同的地方并且很兴奋，所以我转过头……\n\n彩虹路就出现在你的身边了！\n 小伙伴们不再关注独角兽变身的场景，而是全神贯注地关注彩虹之路的七色光华。我的心被刺眼的光芒击碎了，这比精神错乱还要糟糕，我变成了马里奥赛车。\n 但我也喜欢彩虹路。我特别喜欢第64版，太迷幻了，背景中马里奥的脸漂浮在霓虹灯下。我喜欢它充满了裸露的多边形和“使用早期平成技术制作的最讨孩子喜欢的作品。”\n 此时，我决定看彩虹路比我在网上看过很多次的独角兽更好。楼梯的颜色会逐渐变化，七种颜色让人无法移开视线。每个人都对独角兽亮灯感到疯狂，但我们是唯一想到彩虹路的人。巴纳吉和马里奥之间，马里奥凭借积累的记忆获胜。\n 不管过程如何，最终我们还是很充实的一天，因为我们欣赏了只有在台场才能看到的景色。而且高达基地的机体种类也很丰富，所以我很满意。\n\n最好的部分是 SD 并排展示的空间。 BB战士能获得如此大待遇的地方，只有在原来的高达基地。\n 不过，0083高达在SD中看起来确实不错。我认为这些高达的变形身体看起来很棒。尤其是第二个原型，我认为SD型反派/boss氛围才是正确答案。感谢您对超级机器人的帮助。谢谢你，原子火箭筒。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,7 +58,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

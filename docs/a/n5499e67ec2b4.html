@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔: 自己的神秘习性</title>
+<title>短文：我的神秘习惯</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-15 12:44</p>
-  <h1>一口随笔: 自己的神秘习性</h1>
+  <h1>短文：我的神秘习惯</h1>
   <p class="ja-title">一口エッセイ:自分の謎の習性</p>
 </header>
 <main>
@@ -23,10 +23,11 @@
  ただ、CM動画を漁るだけで一日を消費してしまうのは大変困る。でも、まあ身体が自然にそれを行っているのだから、それは真相意識での大切なことなのでしょう。幼児退行の手段の一種で、脳へ負荷がかかりすぎた時に、精神を調律するための儀式なのだ。本当に異常なことが起きている時は、そこに整合性なんて一切介在しないということなのでしょうか。不思議だ……。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：我的神秘习惯\n\n今天实在是太困了，所以这是一篇没什么内容的日记。\n 不知不觉，光看老广告片就已经过去半天了。我像被诅咒一样观看昭和时代的商业视频集。我每年都会经历几次这样的时刻。这种行为在我的生活中如此普遍，以至于我感到一种危机感，我需要面对为什么我会处于这种状态。\n 我首先想到的就是“怀念在CRT上看动画的童年时光”。我仍然有在低分辨率显示器上观看音质和图像质量较差的视频的经历，但由于不是特定节目，所以我可能会觉得观看当时正在播放的“质量较差的视频集”会让人感到安慰。\n 除此之外，还有一种欣赏“互联网之前时代的视频”的倾向。自平成时代末期以来，那些已经摆脱了每次发布任何内容时都会浮现在脑海中的“网络接收”概念的视频，从这个厌倦了 SNS 的大脑的角度来看，可能显得非常高贵。\n 换句话说，《昭和CM集》对我来说是最大的共同点，互联网之前的时代的创意作品在其中快速连续地播放，我可以沉浸在怀旧中，怀念一个与我自己完全相反、被互联网污染的概念……我试图在其中加入一些逻辑，但它不太适合我。库洛洛还说，用语言表达你的动机可能是了解自己的关键，但我觉得最好不要强迫自己把这种感觉用语言表达出来。\n 无论如何，看昭和广告集我就觉得安心。这个事实是确凿的，思考其背后的原因可能是愚蠢的。\n 不过，光是看广告视频就浪费一整天的时间，实在是太不方便了。但是，由于身体自然地这样做，因此就真理意识而言，这可能是一件重要的事情。这是婴儿回归的一种，是大脑超负荷时用来调节思想的仪式。这是否意味着当真正异常的事情发生时，就不存在一致性了？很奇怪..."</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

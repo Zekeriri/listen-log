@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：《我们没有翅膀》和王雀孙描绘的人类魅力</title>
+<title>短文：“我们没有翅膀”和奥贾库森描述的人类魅力</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-25 02:33</p>
-  <h1>一口随笔：《我们没有翅膀》和王雀孙描绘的人类魅力</h1>
+  <h1>短文：“我们没有翅膀”和奥贾库森描述的人类魅力</h1>
   <p class="ja-title">一口エッセイ:「俺たちに翼はない」と王雀孫が描く人間の魅力</p>
 </header>
 <main>
@@ -27,10 +27,11 @@
 先月に発売した商業エッセイ集もよろしくお願いします。いろんなオタク話があるよ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：“我们没有翅膀”和奥贾库森描述的人类魅力\n\n今晚播出的《PriConne》第二季是聚焦中吉俱乐部的，非常精彩。我对它的喜爱程度不亚于第一季第五集。现在，负责这个《中吉俱乐部》原案的编剧正是我们这些美少女游戏迷们所相信的Ojason，而他亲自监督的这一集，利用了Ojason独特的对话节奏，粉丝们已经感动得热泪盈眶了。\n\n如果你想体验他的写作能力，以轻松搞笑的方式，以非美少女游戏典型的方式描绘人类的本质，那么你应该玩《我们没有翅膀》。这个游戏的结构是多个主角，在美少女游戏的背景下重现《池袋西门公园》氛围的章节特别受欢迎，但这次我要说的是关于你选择一个人的一章。\n\n《Oretsuba》第一章的主角并不是所谓的“动漫风格的孤独者”，而是一个真正的孤独者。班里的每个人都在某种程度上回避他，这并不是没有道理；他是一个阴郁、极客的网络游戏迷。很多玩家都因为真实的御宅族恶心本质而受到现实伤害，比如女主角说“你在谈论自己擅长的话题时说得太快了”。\n 《Ojaku Son》场景的吸引力在于它正面描绘了这些笨拙的人类。班上的孤独开始与许多美丽的女孩交往，他在尝试和错误中成长。这是真正面对“御宅族”的结果，细致地描绘了“影子”的努力和缺点，而不仅仅是动漫般的便利。\n 由一位描绘如此微妙的作家笔下的美丽女孩三人组是美妙的人物。\n\n包含日常文章的同人志现在正在展位上出售。体验一个笨手笨脚的书呆子的笨手笨脚的生活。\n\n也敬请期待上个月发布的商业论文集。有各种各样的御宅族故事。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

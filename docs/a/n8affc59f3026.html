@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：催眠</title>
+<title>一篇文章：催眠</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-13 03:38</p>
-  <h1>一口随笔：催眠</h1>
+  <h1>一篇文章：催眠</h1>
   <p class="ja-title">一口エッセイ:催眠</p>
 </header>
 <main>
@@ -27,10 +27,11 @@
 商業エッセイ集の方も読んでもらえると、なお狂い悶えます。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇文章：催眠\n\n有时我们会谈论性偏好。简单来说，我从小就是一个天生喜欢催眠和洗脑的人。大概是在看过《战队》、《Rider》、《光之美少女》的邪恶腐败和洗脑场景，以及后来的Creshin的《海格大魔王》之后，他意识到没有什么比“心……自我操纵”更大的侮辱了。正义的英雄陷入黑暗并袭击公民，以及他的精神冲突。我对此感到很兴奋。\n 有一个命题说：“我思故我在。”基于这个逻辑，最重要的“我”被拿走了并被操纵。不可能这么可怕。当我想象我不再是我自己并被别人随意玩弄的那一刻时，我不寒而栗。 《攻壳机动队》传达了在一个越来越假肢的世界里相信自己的感性和直觉的重要性的作品，但既然你不能相信那种直觉，你就会发疯。\n\n从这个意义上来说，现在版本的《美味派对♡光之美少​​女》中出现的Gentle就是个傻瓜。平时温柔严肃的学生会长，被邪恶组织洗脑后，穿着奇怪的衣服，不断摆出愚蠢的姿势、说出一些蠢话。更重要的是，一路上还有挣扎，问道，“请阻止我……”。满分！\n\n我无法相信自己……我的身体开始自行发生不同的行为……如果这样的事情可能发生在现实生活中，这个世界会是什么样子？当我打下这句话的时候，我还是出于自己的自愿吗？\n\n包含每日日记的同人志现已发售！\n 读到这里，大家都被洗脑了！\n\n如果有人也能读我的商业论文集，我会更加兴奋。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

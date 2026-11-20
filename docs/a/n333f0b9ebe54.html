@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>绝对没问题的</title>
+<title>绝对没问题。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-02 01:28</p>
-  <h1>绝对没问题的</h1>
+  <h1>绝对没问题。</h1>
   <p class="ja-title">絶対だいじょうぶだよ</p>
 </header>
 <main>
@@ -22,10 +22,11 @@
  「絶対だいじょうぶだよ」。さくらちゃんは、薬の効果が切れるまで僕に笑いかけてくれます。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"绝对没问题。\n\n我脑子里的小樱微笑着说：“绝对没问题。”但是可以吗？我的生活真的就这样好吗？我一遍又一遍地检查我的大脑产生的幻觉。\n 我想知道我是否会没事。这样的生活继续下去可以吗？是否可以用酒精和精神药物来淹没模糊的焦虑，对一切不愉快的事情视而不见，将一切托付给未来的自己，继续白天睡觉呢？\n “绝对没问题。”小樱以天真无邪的微笑向他打招呼。多么美妙啊！我相信您会想尽可能长时间地保留如此美丽的东西。灯代不断旋转视频的原因是有道理的。因为没有什么比这更重要的了。\n 从小我的骄傲就愈加强烈。可能是因为我从来没有过被大人骂的经历吧。由于不必要地害怕失败和不断地自嘲，我养成了设置障碍以防止触碰我的敏感部位的习惯。随着年龄的增长，对我们的要求越来越高，我们担心这份自豪感随时会被击碎。\n “绝对没问题的。”小樱的幻觉微笑道。每次微笑时，她的长刘海都会轻轻摇曳。我猜他从心底里认为这没什么问题。因为这对我来说是一个方便的幻觉。因为如果有人不告诉我这一点，我就会崩溃。\n “绝对没问题。”小樱对我微笑，直到药效消失。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔: 欢迎来到这疯狂时代 欢迎来到这个疯狂的SNS时代</title>
+<title>短文：欢迎来到这个疯狂的时代 欢迎来到这个疯狂的SNS时代</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-04-19 05:55</p>
-  <h1>一口随笔: 欢迎来到这疯狂时代 欢迎来到这个疯狂的SNS时代</h1>
+  <h1>短文：欢迎来到这个疯狂的时代 欢迎来到这个疯狂的SNS时代</h1>
   <p class="ja-title">一口エッセイ: Welcome to this crazy time このイカれたSNS時代へようこそ</p>
 </header>
 <main>
@@ -27,10 +27,11 @@ Welcome to this crazy time このイカれた時代へようこそ。人生の�
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：欢迎来到这个疯狂的时代 欢迎来到这个疯狂的SNS时代\n\n“不要被不负责任的陌生人的意见所左右”和“不要被自己和周围人的反应和气氛所左右”并不矛盾。没有必要相信网络上流传的这句话的表面意思，但即使你是井底之蛙，只在一小部分地方感觉良好，你也会被扫到脚下。\n 这大概就是佛陀所说的“中道”。偏向任何一方都是不好的；一切都必须在中间正确的层面上进行。然而，这种感恩的教导无非是抽象的唯心主义，但却是最强烈的，因为与一个已经达到开悟境界的人争论是没有意义的。我觉得你说的无论是否现实，都没有错。\n 换句话说，你应该“坚持自己，不受他人影响”，如果你“只相信自己和亲人，不回头地向前冲”，你的结局将是不可逆转的。但是，一个常人不可能冷静地看待自己的立场，客观地行事，如果能做到这一点，那就已经达到了上面所说的神佛的层次。\n 这里的重点是后者……如果有一个人在被限制在只有自己和周围人的世界后变得暴力，我认为没有人能够明确地说他是否一定不快乐。只要青蛙在井里度过它的时光，它就是幸福的，也许这是比过多担心别人而成为一只鹅更明智的生活方式。缺点是当你突然醒悟时，你会被愧疚和悔恨淹没。\n 我们不应该批评或评价，而应该忽视逻辑失败的反派的嫉妒和谩骂，同时避免被盲目追随者变成方便的领导者。由于我们连接到了这个庞大的互联网，即使我们留在自己的壳里，也会出现无数的“他者”。这仍然是好的，因为信徒和反对者都有行动原则。最糟糕的是，在这个世界上，不再讲同一种语言的人们经常会发生冲突。无论你多么小心，都不可能将发生事故的几率降低到零。\n\npic.twitter.com/p7xSl6HSb7 — 我在中野百老汇 (@nyalra_uso) 2023 年 3 月 20 日发现的东西\n\n欢迎来到这个疯狂的时刻。欢迎来到这个疯狂的时刻。当今的世界是地狱，生活中最大的问题“人际关系”不断发生。他越是正派，他的感觉就越是不好。这并不意味着“你很幸运能够保持理智”。互联网上没有人可以保证你的理智。在你意识到之前，你可能已经在某个地方产生了偏见，正如我之前提到的，这样你可能会更快乐。任何人只要不再做人，就很容易变得快乐。京极堂也这么说。有一些与此类补救措施类似的选择。可以说，正是因为这种尖锐的游戏平衡才变得有趣。在左右逢源的SNS社会里，你还能生气多久？\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

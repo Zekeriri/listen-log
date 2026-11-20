@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口短文：灵梦与魔理沙</title>
+<title>短文精选：灵梦与魔理沙</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-13 11:56</p>
-  <h1>精选一口短文：灵梦与魔理沙</h1>
+  <h1>短文精选：灵梦与魔理沙</h1>
   <p class="ja-title">選り抜き一口エッセイ: 霊夢と魔理沙</p>
 </header>
 <main>
@@ -27,10 +27,11 @@
 商業エッセイ集の方も、よろしくお願いします。まだ若くて忙しい内容ですので、あまりゆっくりはできません。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文精选：灵梦与魔理沙\n\n【神篇】两位人气YouTuber终于出现在Nyalla的房间了……！ ？ [最强嘉宾] pic.twitter.com/OMI7iuqgXV — Nyalra (@nyalra) 2022 年 4 月 9 日\n\n毕竟我也有像东方衍生作品一样慢慢看解说的一面。通过灵梦和魔理沙慢慢的交谈，我们看到了真正的灵梦和魔理沙的幻象。\n 首先，魔理沙兴高采烈地在幻想乡飞来飞去，散发着各种各样的信息……从与日常生活密切相关的琐事，到这些东西在生活中有何用处的琐事。然后，魔理沙高兴地去和灵梦谈论这件事。他炫耀自己的专业知识，取笑对此感到困惑的灵梦，同时也尊重她简单的意见。\n 灵梦对魔理沙的无拘无束的行为感到震惊，但我相信她也很高兴自己每次都能去看望他。不管我说什么，在玛丽莎不来探望的日子里，我可能会担心或者有太多的空闲时间而变得不忠。\n 然后，他听着信息，毫不犹豫地再次来玩的魔理沙，重复着为此而高兴和悲伤的日子。我们正在慢慢观看视频，两人热情地向观众打招呼：“请慢慢来！”你有过这样快乐和善良的时候吗？\n 灵梦和魔理沙都必须珍惜这样的日常生活。虽然他们看起来缓慢而顽皮，但他们一定都在想着对方。这就是为什么由香里灵梦在视频的最后说道：“今天我听到了一些有趣的故事。谢谢你，魔理沙。” 这时，灵梦慢慢地忍不住看到了真正的灵梦对着魔理沙微笑。\n\n我们正在出售编辑日常文章的同人志。一本新书刚刚出版，所以如果你愿意的话，请阅读它并放松！\n\n我们也欢迎有关商业论文集的询问。我还年轻，又很忙，所以不能花太多时间。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

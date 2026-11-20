@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>夏天与少女与水月</title>
+<title>夏天、少女与水月</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-05 04:36</p>
-  <h1>夏天与少女与水月</h1>
+  <h1>夏天、少女与水月</h1>
   <p class="ja-title">夏と少女と水月と</p>
 </header>
 <main>
@@ -28,10 +28,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をチェックしてみてね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"夏天、少女与水月\n\n夏天结束了。\n 夏天是女孩子的季节。\n 我想象着一个穿着白色连衣裙的女孩的背影，在海边，在山上，在乡间小路上，在透过树林的阳光下。是的，就像《水月》的夹克一样。\n\n《水月》的夹克很棒。这可能是所有美少女游戏中的瑰宝之一。\n 通常，美少女游戏的夹克会以一种让你想征服游戏的方式来展示女主角。大多数作品都是以一件夹克的形式发布的，其背景可以让人们对世界的背景和多个女主角有所了解。\n 水月呢？不仅是女主角一个人，而且只露出了她的背影。但也正是因为如此，我们才能看到这款游戏将夏天与女孩转瞬即逝的本性的协同作用倾注了全部的力气，清晰地表达了宅男们所追求的“夏天”之美。通过一张图片传达的故事的背景和美感是杰作的艺术性和力量。\n 当然，这首作品所传达的怀旧、忧郁、少女感，都融入到了主线故事中。以柳田国男的《远野物语》为基础的神秘世界观，对传说中的美少女游戏的繁荣起到了一定的作用。厌倦了这个世界的宅男们会在真夜贺这个大山深处的世外桃源中寻找永恒，并会一遍又一遍地思考水月的故事。\n 我们将继续追逐夏天和女孩的幻象，直到死去。他仍然陷在想象中的青春里，而他永远无法通过非凡的经历接触到，比如在公交车站的阴影下喝汽水，或者看着一辆破旧的电车在夕阳下变红，或者看着她穿着明亮的白色连衣裙在月光下被吸进大海。\n 今年夏天将再次结束，没有任何事情发生。如果我们能和一个穿白裙的女孩一起在海滩上欢笑片刻，或者能和一个穿着浴衣的女孩坐在神社的台阶上看烟花，我们肮脏的成年人永远不会体验到像雪花这样精致的景象。活在这样的现实中还有意义吗？今晚，我也用冷水冲洗掉安眠药，祈祷至少能和女孩一起度过一个“夏天”，哪怕只是在梦里。\n\n看看收录了日常日记和商业随笔集的同人志吧♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

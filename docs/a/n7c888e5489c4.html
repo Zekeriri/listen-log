@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>随笔：动画头像的自卑感与青春的日子</title>
+<title>随笔：动漫偶像的自卑感和青春岁月</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-01-22 05:48</p>
-  <h1>随笔：动画头像的自卑感与青春的日子</h1>
+  <h1>随笔：动漫偶像的自卑感和青春岁月</h1>
   <p class="ja-title">エッセイ:アニメアイコンの劣等感と青春の日々</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"随笔：动漫偶像的自卑感和青春岁月\n\n我第一次感受到强烈的自卑感是在我18岁拥有Twitter账户之后。\n 在我看来，冲绳作为“温水浴”的环境非常好。因为大家都很傻。虽然县内存在一些差距，但内地人民生活贫困。既然大家都很穷，就没有必要比较，大家都在慢慢走向死亡。这或许是一件幸福的事情。\n 所以，直到我创建了一个 Twitter 帐户，获得了我的第一个互联网名人，并被我这一代的动漫偶像包围时，我才意识到这个世界是建立在竞争之上的。尽管同为“动漫偶像宅男”，但他们之间存在着各种身份差异，比如学历较高、家庭成员年长、受欢迎与否，即使他们假装“我们都是同样糟糕的宅男”，但他们偶尔也会展示出高于一般宅男的能力。因为是技工高中所以不知道，不过普通学校的氛围大概就是这样吧。\n 我没有丝毫“让我们好好相处吧！”的想法，但我记得当我看到有人试图通过一下子暴露自己并在木桩上敲打来展示自己的能力时，我感到非常人性化。但这就是当你十几岁的时候就会发生的事情。每个人都还年轻。当然，我也是。\n 我在那里处于一个不平衡的位置。我的学历和收入……也就是说，我的未来前景垫底，我觉得自己被那些总是在找工作的动漫偶像们看不起。然而，我有一个明显的优势，那就是熟悉互联网，对御宅族内容有丰富的了解，因此，我比他们有更多的粉丝。所以这是一个突出的钉子。我永远不会忘记每次线下会议时周围人的眼神，他们说：“现在，你在推特上很引人注目，但几年后，你就会在社会上死亡。”尽管他因为是动漫偶像而被认为是御宅族，但人们认识到，在“真正的”竞技场上竞争，他总是可能被击败。\n 从18岁到20岁，表面上我还被当作平等的朋友对待，但此后，找工作的“现实生活”逐渐开始向我袭来。不知何故，他们一边上大学、一边找工作，一边承受着来自父母和同学的压力。那时，他们的性格逐渐变得更加社会化。他们将我们定义为“把所有时间都花在网上玩的人”。嗯，我是一个一直在网上玩游戏的人，所以这是完全正确的。毕竟，墙是可以以某种方式建造的。除了与我成为亲密朋友的少数人之外，我还经常收到我的追随者的目光，我每六个月会在线下会议上见到他们一次，并说：“我很高兴事情没有变成这样。”\n 我也开始变得敏感。他们看起来就像叛徒，主要在社会问题上工作和嘀咕，在推动互联网的同时巧妙地处理现实生活。渐渐地我开始不喜欢它并把它删除了。或许这种自卑感成为了跳板，每次我移除追随者，我的追随者数量就会增加。然后，有人就生气了，说：“这家伙是个没心没肺的人，粉丝多了就抛弃我了。”而我却在想：“是你们先为了找工作而背叛了我。”这真是一个令人难以置信的误会。\n 今天是我的作品《NEEDY GIRL OVERDOSE》一周年纪念日，我宣布了我准备的项目，得到了很多人的祝贺。生活在同一时间线的动漫偶像们会不会把我视为“巧夺天工的叛徒”呢？我一点也不方便。其实我对你的感觉只是一种自卑和孤独。也许他们在找到工作时也同样绝望。我现在明白了。现在我们都已经是成年人了，也许对方会真心实意地支持我们，让我们不再对他们有任何怨恨。事实上，两人都成长了。那些我们互相瞪视到觉得自己是“叛徒”的日子，那种赌上赌注、努力让自己脱颖而出的紧迫感，或许就是我们作为动漫偶像迟到的“青春”，现在我才感受到动漫偶像青春的珍贵和扭曲的光彩。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

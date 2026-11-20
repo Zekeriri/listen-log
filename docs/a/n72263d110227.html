@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>lain 这里留下的痕迹</title>
+<title>这里有标志</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-05-15 02:37</p>
-  <h1>lain 这里留下的痕迹</h1>
+  <h1>这里有标志</h1>
   <p class="ja-title">lain ここにいたしるし</p>
 </header>
 <main>
@@ -24,10 +24,11 @@ PS版lainのインターネット観が好きなんです。たくさんの情�
  数年前に安倍吉俊の展覧会が開かれた際、PS版lainの特大イラストに出会った。そこには絵のタイトルとして『ここにいたしるし』と書かれていた。つまり、この「血」はたしかに玲音が居た証であり、そしてそのしるしはジャケットを貫きディスクの盤面にも表れ、そして僕らはそのディスクを再生する。ゲーム本編ではたくさんの情報が流れ始め、玲音の人格が断片的に描かれる。僕らはそれらを繋ぎ合わせて、玲音という少女がここにいたことを記憶に刻んでいく。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"这里有标志\n\nPS版的lain是我最喜欢的游戏。\n 令我印象深刻的是，这样一款小众作品在PlayStation上发布，游戏玩法是你自己收集和解释零散的信息，对话是你通过咨询面对彼此的心理。\n\n我喜欢PS版的lain在网上的样子。周围有很多信息，每一条都没有什么大的意义，你可以从这些信息中感受到什么，这取决于你。当我刚开始使用互联网时，社交网站没有固定的站点，所以我喜欢每天访问各种网站并获取一些信息。以日记为导向的文本网站和介绍邪教漫画和动画的博客也是独立的。\n 信息量很大……这正是我对互联网的感受，当诸如“有些人可能喜欢这部漫画的粗鄙”之类的线条和框架图像被发布时，接收者可以跟随该框架并确认来源材料，或者忽略它，以及人们以一种蓬松的感觉“也许其他人会读它”的方式分享他们的印象、观点和信息。即使是现在，我也喜欢阅读不是特别出名或创作者的帐户和博客，但只需发布他们的日常想法和行动。这是一个决定哪些文章和哪些句子是你感兴趣的问题，所以如果你能准确地写出你的想法或发生的事情，那将会非常有帮助。\n\n嗯，PS版的Lain在光盘表面有指纹。是的，可以解释为是从雷因的手指转移到夹克上的。板子被漆成血红色的方式太酷了。我当时向游戏界的人士证实了这一点，但用特殊颜色打印光盘是很难实现的，除非你非常挑剔地订购它。里昂的这份热血，也是制作人员对这部作品世界观的执念。\n 几年前，在举办安倍芳俊的展览时，我看到了PS版lain的巨幅插画。这幅画的标题写着“这里有一个标志”。换句话说，这个“血”确实证明了雷因在那里，那个标志刺穿了夹克，出现在光盘的表面，我们播放了那张光盘。在主游戏中，大量的信息开始流动，雷昂的性格被碎片描绘。我们把它们联系在一起，并在我们的记忆中留下了一个名叫雷恩的女孩在这里的记忆。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

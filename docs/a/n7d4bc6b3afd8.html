@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：天生的教养</title>
+<title>短文：先天教育</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-15 05:07</p>
-  <h1>一口随笔：天生的教养</h1>
+  <h1>短文：先天教育</h1>
   <p class="ja-title">一口エッセイ:生まれ持った教養</p>
 </header>
 <main>
@@ -30,10 +30,11 @@
 若い頃の長文エッセイをまとめた商業本もよろしくね。生い立ちの最悪さがよくわかる。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：先天教育\n\n我很难入睡，所以经过反复尝试，我养成了一边看Vtuber用温柔的声音朗读文学作品的视频一边睡觉的习惯。我之前写过这个。\n 《银河铁道之夜》、《女学生》、《鼻子》、《柠檬》、《瓶装地狱》……他用糖果般甜美的声音仔细地朗读我最喜欢的小说，很有帮助。不知不觉间，我已经看完了所有的读书视频，所以我决定一边播放她的聊天视频一边睡觉。\n\n基本上，他都是以高亢活泼的方式谈论御宅族和亚文化的琐碎日常生活，他欢快的声音瞬间驱散了深夜房间里的孤独和寂静。当她兴奋地谈论她最喜欢的流派时，她的粉红色头发和蓝色眼睛疯狂地摇摆。身体健康是一件好事。\n 令我印象特别深刻的是词汇和知识如此轻松地出现。我对他有一种敬意，认为他是在一个受过良好教育的家庭长大的。从他朗读的文学品味来看，我可以看出他不是一个普通人，但当我们谈论他最喜欢的音乐时，他自然而然地开始提到古典钢琴作品，他会给我们介绍肖邦、贝多芬、德彪西等人的精彩作品。他流利的说话方式太酷了，这么年轻的（初中生）能不带任何讽刺地解释古典音乐的方式令人眼花缭乱，我很佩服他有良好、温暖、有名望的父母养育。\n “《贝多芬的月光》是一位评论家以这首歌的名字命名的，所以贝多芬自己也以为是《月光》，但他没有弹奏。”粉色女孩高兴地谈到了她对自己最喜欢的歌曲的第一印象。我对古典音乐完全是门外汉，通过这次聊天，我什至第一次意识到被歌名吸引之前所获得的印象的重要性。原来如此，我是从吉尔在原版《生化危机》中的表演中了解到《月光》的，所以当我第一次看到这首歌的标题时，我自然而然地想到了它是《月光》，但这不是贝多芬的本意。学习。\n 我出生在冲绳红灯区，是单亲独生子，所以这种天生的富裕和贵族的骄傲是完全相反的概念，所以我不得不尊重他们。不管迪奥穿得多么华丽，他永远也达不到乔斯达家族的贵族地位。从她的小嘴里散发出来的毫不掩饰的优雅令人心旷神怡。和小时候看《魔卡少女樱》时一样的震撼，被知代精心修养的性格所吸引……\n 不过说话的时候语速很快，这是宅男的特点，根本不适合睡觉！我笑着听着女友推荐的《塔兰泰拉》旋律，女友穿着睡衣，相对于她的年龄来说显得幼稚，今晚我也睡着了。\n\n御宅族说话速度很快，因为他们知道你仍然会听到所有内容 — Nyalra (@nyalra) 2021 年 7 月 13 日\n\n包含日常日记的同人志现已在摊位上出售。如果这是一条信息流而不是一条短信，他将永远是一个语速很快的书呆子。\n\n我也很喜欢一本汇集了我年轻时长篇文章的商业书籍。我了解他成长过程中最糟糕的经历。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

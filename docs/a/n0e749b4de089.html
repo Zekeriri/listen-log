@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：成功实现早睡早起的奇迹……</title>
+<title>短文：我成功了早睡早起的奇迹……</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-16 09:07</p>
-  <h1>一口随笔：成功实现早睡早起的奇迹……</h1>
+  <h1>短文：我成功了早睡早起的奇迹……</h1>
   <p class="ja-title">一口エッセイ:早寝早起きの奇跡に成功……</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 長文エッセイをまとめた商業エッセイ集もよろしくね。この頃は若かったから、勢いだけで文章が書けたのだ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：我成功了早睡早起的奇迹……\n\n从五月初开始，我的身体状况出奇的差，加上反复失眠，昼夜颠倒打乱了我的作息规律，我在日期变更之前就睡着了，早上八点就醒了，这是一个非常正确的早睡早起方法。你做到了！\n 《魔法光之美少女！》讲述了魔法世界与人类世界重叠，两个本不该有片刻相见的女孩之间诞生了奇迹的故事。对我来说，一年一次或一次或一次的巧合所带来的“早睡早起”的时机也感觉像是一个奇迹。我不是故意去那里的；由于长期缺乏睡眠，我的身体已经到了极限，半夜前我就失去了知觉，当时已经是早上了。\n 然而，尽管事实如此，早睡早起的快感却是惊人的。早上就算洗脸洗澡，也还是中午，做什么都可以，不像白天黑夜颠倒的时候，你什么都不想做，因为一觉醒来大多数商店都关门了。我的头脑也很清醒。你能否做到这一点，将极大地影响你的精神状态。精神科医生热衷于建议早睡、早起、锻炼、吃得好、洗澡。我往往会感到沮丧，因为我不能那样生活，但当我能够遵循正确的生活习惯时，我感觉好多了。基本上，你应该以这样的生活方式为目标。\n 但无论如何，大约三天后，我开始醒来直到凌晨，晚上又醒来。如果有的话，我会睡不着。深夜动漫和互联网很有趣。即使放弃健康，也值得享受乐趣。正因为有“晚上好好睡”这一条绝对的真理，所以晚上反常玩耍的乐趣才是最好的。\n\n包含日常日记的同人志现已在摊位上出售。就我个人而言，我不喜欢这几天的内容，因为我的大脑运转不正常。\n\n我还想看一本整理长文的商业论文集。那时我还小，光有气势就能写出句子。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

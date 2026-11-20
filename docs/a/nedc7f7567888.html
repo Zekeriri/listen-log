@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口随笔: 小奏鸣曲与颓废之美</title>
+<title>短文选：奏鸣曲与颓废之美</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-08 20:11</p>
-  <h1>精选一口随笔: 小奏鸣曲与颓废之美</h1>
+  <h1>短文选：奏鸣曲与颓废之美</h1>
   <p class="ja-title">選り抜き一口エッセイ: ソナチネと退廃の美</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 毎日の日記をまとめた同人誌をBOOTHにて販売中です。気に入ってもらえたら、ぜひ覗いてみてください♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文选：奏鸣曲与颓废之美\n\n《奏鸣曲》是一部似乎描绘死亡本身的电影。\n 内容感觉像是《愤怒》三部曲合二为一的作品，但与《愤怒》彻底描绘暴力和邪恶不同，《奏鸣曲》让你感受到日常生活的美好和颓废。\n 《奏鸣曲》中的人物虽然都是冷酷无情的黑帮，但他们却充满了冲绳乡村的气息，带着小学生的天真在海里嬉戏。相扑、挖洞、火箭烟花……当然，他们是随时可能被杀的黑帮，所以无论是角色还是观众都知道他们平静的日常生活会突然被打乱。所以，只要玩弄他​​们纯洁无邪的感情，就有一种短暂而美丽的感觉。\n\n著名的俄罗斯轮盘赌场景强调了他们的日常生活和死亡之间的并置。由黑帮老大村川饰演的主角武志微笑着用枪指着自己的太阳穴。他微笑着，表情有些无情，仿佛他知道有一天这一幕将不再是一个笑话，而是一个严肃的现实，清晰地表达了贯穿整部作品的“死亡”的张力，产生了仅仅这个剪辑就可以传达的强大效果。\n 他们说它美丽是因为它有结局，而《奏鸣曲》正是如此，我们会静静地守护他们的结局。虽然很悲伤，但它是一部有很多美丽场景的杰作。\n\n直到现在我对APEX还不太了解，但是当我尝试观看现场视频时，有一个日常部分，我和我的盟友开玩笑，互相用枪指着对方，然后与敌人进行激烈的战斗，每个人都死了，所以我认为它很受欢迎，因为它与“奏鸣曲”具有相同的结构，强调日常生活的美丽，因为死亡就在它旁边。 - Nyalra (@nyalra) 2022 年 2 月 22 日\n\n包含每日日记的同人志现已在 BOOTH 发售。喜欢的话就来看看吧♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔:模糊的不安</title>
+<title>一篇文章：模糊的焦虑</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-01 04:04</p>
-  <h1>一口随笔:模糊的不安</h1>
+  <h1>一篇文章：模糊的焦虑</h1>
   <p class="ja-title">一口エッセイ:漠然とした不安</p>
 </header>
 <main>
@@ -23,10 +23,11 @@
 商業エッセイ集も読んでもらえたら嬉しいです。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇文章：模糊的焦虑\n\n深夜，我隐隐约约感到一种不安。嗯，我的焦虑有很多具体的原因，而且虽然我已经发布了游戏，但由于目前的时间，我无法举办任何活动或发布，所以我感觉制作没有结束，我不知道接下来该怎么做。尽管如此，队员们还是商量着去海外参加一个活动，但他因为没有护照而放弃了。好吧，我所要做的就是拿到护照，但是当我几乎看不到精神科医生时，我可以做这样的行政工作吗？或者什么。她大概是要去拿户口本的相关资料，一想到上面有公公名字的资料，她就觉得恶心，所以最后没能办到。还有很多其他事情，当你想象它们时，就会感到可怕。\n 我想知道是否有人会慢慢地跟我说话，但我没有人打扰我，我唯一的选择就是花钱看心理医生，但我没有精力在附近找到心理医生并打电话给他们。我无法准确地表达自己杂乱而可疑的想法，醒来时已经是晚上了，医院已经关门了。\n 我想我应该早点起床，在一个大公园里躺一躺。这很令人沮丧，但我别无选择，只能依靠血清素。但为了更快入睡，我需要安眠药，并且为了接受它们，我需要去看精神科医生。这是非常困难的。我无法阻止这种负循环，所以我应该尽快去睡觉，但这很困扰我，因为我再也睡不着了。我想去彩虹乐园。我想结束那里的一切，同时被我心爱的珠宝宠物，Rilulilu Fairilu和Myukle Dreamy包围。\n\n有编写每日随笔的同人志，也有专门写美少女游戏的小众书籍。\n\n如果您也能阅读我的商业论文集，我将非常高兴。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

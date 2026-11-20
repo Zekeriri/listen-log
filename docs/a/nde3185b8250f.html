@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：第一次独自去酒吧……大失败</title>
+<title>短文：我第一次独自去酒吧的经历……大败</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-29 06:45</p>
-  <h1>一口随笔：第一次独自去酒吧……大失败</h1>
+  <h1>短文：我第一次独自去酒吧的经历……大败</h1>
   <p class="ja-title">一口エッセイ:一人バー初体験……大敗北</p>
 </header>
 <main>
@@ -27,10 +27,11 @@
 長文エッセイをまとめた商業エッセイ集もよろしくお願いします。こちらは、僕の直接の収入にはなりませんが、購入して頂けたらきっとKADOKAWAの何者かがお酒を飲めるようになるのでしょう。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：我第一次独自去酒吧的经历……大败\n\n这似乎是世界上的黄金周。从某种意义上来说，这与我常年休息无关，所以我对此感到难过，决定晚上在城市里走走。我的第一次单独酒吧经历。我刚刚做过眼科手术，所以后面排列的瓶子反射的光线很刺眼。\n 坐在柜台不同座位上的男士和工作人员友好地交谈着。因为我是因为想念某人才进来的，所以我想我应该加入谈话，但我总是错过了合适的时机，然后就陷入了沉默。虽然我的追随者们都说“尼亚鲁拉桑是个很爱说话的类型”，但这是一个误解，而且我实际上是一个因为自闭症而很难与人交流的类型。如果这个人认出“Nyalla”就可以了。到那时，您已经对互联网和御宅族内容有了一定的了解。如果你问有关互联网、动漫、书籍、灵性、亚文化等的问题，你会陷入其中之一，并且你通过模式学习了解到你应该根据你回答的领域扩展该主题。然而，第一次见到我、不认出我是“Nyarula”的人就不同了。我脑子里没有与对我不感兴趣的人交谈的模式。如果是女孩酒吧或咖啡馆，人们会跟你说话，榨干顾客的积蓄，但在酒吧里不会发生这种情况。\n\n沉默了一会儿，接下来就是点了一杯神奇的酒精饮料‘苦艾酒’，酒精度高达70%。这种酒精饮料的危险性从数字就可见一斑，连玛丽莲·曼森都喜欢它，甚至生产了它。曼森将苦艾酒描述为“暮光”，我记得他将酒精与暮光结合起来的感觉给我留下了深刻的印象。由于是一种特殊的酒，工作人员开始有了一些反应，然后他们试图给他讲一个关于曼森的小故事，但没有任何反应！ ！ ！他非常平静地递了一杯苦艾酒。图片！ ？苦艾酒，对吗？ ？ ？我一边想，一边把所有的酒都喝掉了。我不是在吹牛，但我是冲绳人。即使喝了很短的时间，他也根本不会醉，而且因为不能享受酒精，所以他过去就求助于安眠药。对于给您带来的不便，我们深表歉意。\n 下一个动作是“粉红女郎”。顾名思义，这款鸡尾酒就是粉红佳人的起源，我喜欢粉红佳人作为“第一代搞笑女士”。一对长相性感的姐姐热情地唱着一首奇怪的歌曲。很好……我特别喜欢《变色龙军团》。编舞是如此困难以至于演员们自己都难以处理的故事是美好而富有戏剧性的。然而……粉红佳人也没有什么特别的事情发生而结束。你可能会认为我是一个想要安静地享受体验而不被人交谈的顾客。嗯，我总是看起来很憔悴，因为我的黑眼圈始终无法摆脱。\n 尽管我坚持了下来，但我还是毫无进展地离开了商店。正如我之前提到的，我不常喝醉，所以我回家时没有任何乐趣，我们就在这里。自己去体验酒吧可能还为时过早。共同的追随者，请随时邀请我参加一些活动。我每天所做的就是在家看动漫、看书。我希望能带着酒精逃走，但家乡冲绳的血液却阻碍了我。我应该去哪里寻找答案？\n\n包含每日日记的同人志现已发售！\n 如果你买了，我可以喝一杯。\n\n我还想要一本由长篇文章组成的商业论文集。这不会给我带来任何直接收入，但如果你买了它，我相信角川的人就能喝酒了。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

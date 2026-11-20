@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：刃牙与色情魔王</title>
+<title>一篇短文：巴基与色情魔王</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-06 03:09</p>
-  <h1>一口随笔：刃牙与色情魔王</h1>
+  <h1>一篇短文：巴基与色情魔王</h1>
   <p class="ja-title">一口エッセイ:刃牙とエロ魔王</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 先月発売した商業エッセイ集もよろしくお願いします。刃牙の家と違って優しいレビューを書いてあげてね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇短文：巴基与色情魔王\n\n不言而喻，巴基家的涂鸦令人印象深刻，但每次看到这一页，我都会想起右下角的“色情魔王”。\n 令人意外的是，受伤害最深的不正是“情色魔王”吗？其他诸如“Baki die！”和“Come on！”之类的词只不过是小人物的嚎叫，而DEATH和Ansatsu只是听起来像这些的词。\n 例如，当你看到反人在网络上批评某事时，你是否经历过这样的现象：反反者是如此愚蠢或如此脱离现实，以至于你最终想站在被批评的人一边？即使黑粉写了“这家伙是XX！”之类的话，人们也只能认为是因为这个原因，即使有人写了“这里很痛！”之类的话，这不就是有粉丝的原因，因为疼痛也很有吸引力吗？我想是的。同样的，这些毫无意义的侮辱只能作为实力的证明，而另一方面，巴基也应该对此感到高兴。\n 但《情色魔王》呢？就连巴基也刚刚结束童贞，正处于青春期。如果被不公平地视为“色情”，那就太令人愤慨了，而且，他不仅仅是一个色情，他还是一个“色情恶魔”。由于他非凡的性欲，他统治着恶魔和怪物之王。\n 小津估计也会看到这幅涂鸦，难道他不会担心她不会把他当成“色情魔王”吗？没有必要怀疑女高中生是否能够接受男友是色情魔王的事实。她的父亲裕次郎是真正的色情魔王，在世界各地播种后代，也爱上了同性。没想到，我最后总是担心巴基，想着这种愚蠢的涂鸦造成了多大的伤害。\n\n包含日常文章的同人志现已在 BOOTH 出售。如果你买了，我就原谅你骂我色情魔王了。\n\n也敬请期待上个月发布的商业论文集。请写一篇与 Baki no Ie 不同的善意评论。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

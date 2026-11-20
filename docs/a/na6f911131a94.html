@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：从ZUN先生视角看Yukkuri的隐藏历史</title>
+<title>速文：ZUN视角下的慢历史</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-11-28 04:47</p>
-  <h1>一口随笔：从ZUN先生视角看Yukkuri的隐藏历史</h1>
+  <h1>速文：ZUN视角下的慢历史</h1>
   <p class="ja-title">一口エッセイ:ZUNさんから見たゆっくりの裏歴史</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 エッセイ集、買ってもらえると嬉しいです。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"速文：ZUN视角下的慢历史\n\n“请慢慢来！！！”历史悠久。\n 它的起源可以追溯到2003年。\n 然而，如果你用谷歌搜索一下，你可以找到很多关于表由久里的历史。看看她是如何人气爆棚以及她如何适应目前评论角色的角色是个好主意。具有如此独特地位的吉祥物极其罕见，即使在互联网上也是如此。\n 我多少知道Yukuri的历史，但从Omoto的创始人ZUN的角度来看，它看起来与众所周知的事实不同。\n 如果你看完ZUN的五万字专访的第八部分，你终于会听到ZUN本人讲述他对“请放轻松！！！”的理解。\n 据ZUN称，2channel上的原始消息“请放心！！！”完全被用作煽动。当时，《东方》在2channel上很不受欢迎，这个话题几乎成了禁忌。我想这是其爆炸性流行的缺点。我也记得这样的气氛。孩子的数量增加太多了。嗯，我也是其中之一。\n 当2channel上出现东方话题时，人们会生气地说：“又是东方？”同时，通过发布东方的AA（缓慢），这是不允许的，人们会说“我是在一个越来越粗糙的帖子中一路来到东方的。”从这个背景来看，ZUN似乎不擅长2channel。\n 尽管表示“Yukkuri已在2channel上成立”，但正确的顺序很少被讨论。如果你读过这本日记，请记住Yokuro的悲伤历史。\n\n如果您能购买我的散文集，我会很高兴。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

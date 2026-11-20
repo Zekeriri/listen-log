@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：不要飘飘然，危险</title>
+<title>快速文章：Rariruna 危险</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-05 05:59</p>
-  <h1>一口随笔：不要飘飘然，危险</h1>
+  <h1>快速文章：Rariruna 危险</h1>
   <p class="ja-title">一口エッセイ:ラリるな危険</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 商業エッセイ集の方は、もうイカれまくり。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"快速文章：Rariruna 危险\n\n我在前天的日记中写道，我不再需要担心会兴奋，因为我找到了很好的安眠药，但我首先想谈谈安眠药导致抑郁症是多么危险。\n 首先，如果你在服用安眠药期间睡不着（或有意识地不睡），你会感到头晕，就像喝醉了一样。意识在这样模糊的状态下不再思考小细节，起身开始做大胆的事情，或者增加安眠药的用量，感觉很好。大多数这些行为第二天就会被忘记。这是失忆症。\n 当我进入这种模式时，我开始想念人们。如果他们只是在一个人的表演中闲逛，他们只会受到一个人的伤害，但他们会感到孤独并与他人接触。还有麻烦的是，虽然语无伦次，但我还是能听懂一些意思。能够沟通一点（但还是听不懂）比成为一个完全无法沟通的疯子更可怕。这会让对方感到毛骨悚然和害怕，甚至可能会让他们生气。即使在这种时候，回复你的也是你亲近的人，所以不顾一切地降低你最好的朋友的好感度是非常痛苦的。\n 如果没有人回应，我就在推特上大惊小怪。他开始咕哝着一些不成文的句子，简直就像一首令人尴尬的诗。当我醒来看到它时，我很尴尬，所以我立即删除了它。黑暗历史必须被封存。我不想再失去朋友，所以我想尽可能保持健康。但有时候我又忍不住怀念那种头脑空空的状态。\n\n包含每日日记的同人志正在 BOOTH 发售！早期的内容有时很粗糙。\n\n商业论文集已经很疯狂了。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

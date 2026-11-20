@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：素材收集与阅读的强迫观念</title>
+<title>一篇快速文章：收集材料和阅读痴迷</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-24 03:25</p>
-  <h1>一口随笔：素材收集与阅读的强迫观念</h1>
+  <h1>一篇快速文章：收集材料和阅读痴迷</h1>
   <p class="ja-title">一口エッセイ:ネタ集めと読書の強迫観念</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 商業エッセイ集もよろしくね。こっちは重い話だらけだよ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇快速文章：收集材料和阅读痴迷\n\n我每天都写日记，已经快500天了。这个系列日记是我一生中最困难的部分。无论精神上多么痛苦，我都要这样写。即使你很沮丧或者处于疯狂的边缘，你仍然必须抽出时间坐在屏幕前输入长句子。\n 毫不夸张地说，我是为日常日记中使用的“东西”而活的，每天我都在担心，如果我不牢记某种信息，我就会失去想法。\n\n所以，在空闲的时候，我会听一些我不了解的内容的讲解，并且尝试每天读一两本书。如果有人称赞我读了我的书，我会很高兴，但这只是一种病。我有每周去书店一次买10本书左右的习惯，但从图中可以看出，书种很少，而且我不太感兴趣的书。我不在乎东京的地区经济差距，也不在乎不知道伟人的年收入，但无论如何我都会读它，因为这可能是个好主意。事实上，我买这本书是因为我认为像这样的书“我没那么感兴趣，但读起来并不痛苦”，非常适合写一篇论文，而不会对主题产生偏见。读起来确实很有趣。最后，它继续下去，因为它很有趣。\n 我对自己的强迫倾向感到困扰，只是为了收集材料而随机选择我不感兴趣的类型，但这是磨练突然引入知识的乐趣的唯一方法，这让我想知道，“你是怎么知道的！？”最近，我什至开始为自己在这些时刻花费时间和金钱的方式感到自豪。在日常生活中，我的目标是能够揭示一些难以理解的知识，比如“那个伟人的年收入是多少？”\n\n包含日常日记的同人志现已在摊位上出售。正是通过这些努力，本书才得以完成。请读给我听。\n\n我期待着阅读您的商业论文集。这充满了沉重的话题。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

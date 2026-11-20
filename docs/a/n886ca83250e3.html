@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口散文：Brenpowered 与吻</title>
+<title>一篇简短的文章：大脑驱动和接吻</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-26 04:08</p>
-  <h1>一口散文：Brenpowered 与吻</h1>
+  <h1>一篇简短的文章：大脑驱动和接吻</h1>
   <p class="ja-title">一口エッセイ:ブレンパワードとキス</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 商業エッセイ集も最近発売しました。こちらは、軽く読める同人誌でのエッセイよりも、重めの内容です。是非手に取ってみてください。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇简短的文章：大脑驱动和接吻\n\n由于是圣诞节，我正在回顾《Brain Powered》中乔纳森和妈妈之间的场景。 “这是圣诞礼物！”的流程。真是太神奇了。乔纳森在几个场景中表达复杂情感的能力是舞台演员所独有的吗？\n 我认为富野导演非常擅长描绘“天生温和善良的人们最终会因为最小的误会而发生争斗”，虽然这并不是明显邪恶的情况，但我认为A回合的开头充满了一种不知道战争何时开始的紧张感，令人难忘。\n 在布伦的乔纳森和妈妈的故事中，“乔纳森希望通过成为一个优秀的儿子而被爱（我希望他在我身边）”和“因为儿子是一个优秀的儿子而忽视儿子而专注于工作的妈妈”被演绎得淋漓尽致。爆炸是圣诞礼物的场景。人类的情感被细腻地描绘出来，也会激起你的情感。不过，布伦最打动我的其实并不是乔纳森父子，而是主角勇与女主角姬之间的吻戏。\n 他们见面的那一刻，勇突然将嘴唇放在了姬的嘴唇上，看到他如此轻松地做到这一点真是令人震惊。由于是主角之间的吻戏，我以为她吵闹、生气、拉扯都是理所当然的事，但她只是反应轻轻，吻就一扫而空，显得很成熟。我无法忍受，因为它导致了最后一集的吻（也很轻）。这是一幅非常美丽的画，但我认为它没有任何深刻的含义，这很好。你可以感受到其中的“活力”，用布伦的话说，这是令人兴奋和感性的。如果是能够明确表明这部作品的主题是“爱”的行为就可以了……是的！\n\n包含日常随笔集的同人志现已发售。如果你这样读的话，你会发现我们经常谈论富野导演。对我的生活影响太大了\n\n最近还出版了一本商业论文集。这是比通俗易懂的同人志文章更重的内容。请尝试一下。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

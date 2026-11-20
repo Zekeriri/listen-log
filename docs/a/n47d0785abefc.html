@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔“与过去相比，现在的Twitter真的变得不有趣了吗？思考问题”</title>
+<title>考虑一篇短文：“Twitter 现在真的不如过去那么有趣了吗？”</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-04 03:22</p>
-  <h1>一口随笔“与过去相比，现在的Twitter真的变得不有趣了吗？思考问题”</h1>
+  <h1>考虑一篇短文：“Twitter 现在真的不如过去那么有趣了吗？”</h1>
   <p class="ja-title">一口エッセイ「昔と比べて本当に今のTwitterは面白くなくなったのか？　問題」を考える</p>
 </header>
 <main>
@@ -26,10 +26,11 @@ SNS覚えたての時は僕も10代でしたから、日々のトラブル含め
  ネットが好きだからこそ、適度にネットと距離を置いて、SNSの悪意に呑み込まれないようにする。それさえ守っていけるなら、きっと今も変わらずTwitterは楽しいですよ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"考虑一篇短文：“Twitter 现在真的不如过去那么有趣了吗？”\n\n我想起了题框的存在，所以我有一段时间第一次看题目。 “今天的推特上充满了我不喜欢的东西，我觉得我正在失去发推文的欲望。即使我写下积极的想法，我也会看到消极的反应。”\n 不过，这是可以理解的。随着时间的推移，Twitter上的争吵变得更加激烈，这是一个神秘的社交网站，男女每天都在争吵。最近，我们观察到人们对人工智能失业的大规模歇斯底里。\n 然而，这只是因为我已经过时了，一遍又一遍地观察相同的讨论和有争议的话题，而事实上，Twitter 一直都是这样，所以我的观点只是改变了。因为现在有很多年轻人喜欢 Twitter。这就是我开始思考的。\n 在《湾岸午夜》中，有一个场景，一个老人低声说：“旧车很有趣”，他用事实面对他，说：“并不是旧车很有趣……我想我当时很有趣，”和“我认为今天的汽车也同样有趣。”你可能只是认为旧推特很好。\n\n当我第一次接触SNS时，我还是个十几岁的孩子，所以一切都很有趣，包括日常的烦恼。不过，这很大程度上是因为我还是个青少年，所以我对一切都是第一次经历，很兴奋。也许只是你还没有跟上当前互联网的趋势，但如果你以诚实的心开放自己，接受新鲜的内容，你的观点就会改变，你的视野就会再次开阔。\n 除此之外，还有一些情况是因为你在互联网上花费了太多的时间，所以互联网已经在你的大脑中留下了痕迹。\n 卡在你大脑中的互联网是最糟糕的，所以即使你在街上看到一块漂亮的石头，你也会想出各种各样的负面评论，比如“我无论如何也不会为这样的石头定价”或“你为在街上寻找石头的价值而疯狂吗？”因为互联网已经死了。\n 这就是为什么“退出网络”是亘古不变的真理，在你遭受偏见思想之苦之前，最好远离网络，自己享受书籍和电影，让自己处于一个没有毫无意义的专横的匿名者不会表现得像人渣的环境中。\n 因为我热爱网络，所以我尽量与它保持合理的距离，以免被SNS的恶意所吞噬。如果你能保持这一点，我相信 Twitter 仍然会很有趣。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

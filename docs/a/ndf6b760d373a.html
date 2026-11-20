@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：新的米青神禾斗</title>
+<title>一次性文章：新版申熙人</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-02 04:19</p>
-  <h1>一口随笔：新的米青神禾斗</h1>
+  <h1>一次性文章：新版申熙人</h1>
   <p class="ja-title">一口エッセイ:新たな米青ネ申禾斗</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 商業エッセイ集もよろしくね。Amazonレビューや評価までしてもらえると、さらに僕の精神が救われます。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一次性文章：新版申熙人\n\n我终于可以去新的北奥那新河豆了。我仔细研究了名气，仔细决定了自己要讲的内容，决定尽力而为，但还是决定尽快去附近的地方拿点安眠药。\n 之前我去看了一位因自闭症书籍而出名的医生，他接受了非常彻底的采访（大约一个小时）和智力测试（因为我搬家了，所以不能再去看他了），但这一次，尽管是我第一次看病，他在大约5分钟内就完成了治疗。\n 嗯，它很短的事实可能证明我已经接近正常了，但是我在半句话中被打断并提出了问题，而且看起来我只是在问类似模板的问题，这就是当我不做作业时会发生的情况。事实上，这位著名的教授是如此令人惊奇，以至于我确信他是一位普通的精神科医生。我不太相信选美皇后申熙人的评论，因为它们太主观了（事实上，最糟糕的人可能是一个处理愚蠢病人的好医生），但确实，当他在 5 分钟后被送回家时，我想说，“他并没有真正听我说话！”但我不会说出来。我得到了我想要的安眠药。\n 有趣的是，当我谈到工作时，她说：“互联网太可怕了……”似乎连医生都无法应对变得如此复杂的社交媒体关系。不过，他并没有简单地告诉他“退出网络”，而是递给他精神药物，并说道：“因为你的工作，你可能无法退出网络，所以，如果你感到害怕，至少吃这个药。”他的理解程度给我留下了深刻的印象。我会来这里参观一段时间。不要害怕互联网。\n\n包含每日日记的同人志正在 BOOTH 发售！ ！如果有人买它，我就会感觉更好。\n\n我期待着阅读您的商业论文集。如果你能在亚马逊留下评论或评级，这会对我的精神更有帮助。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

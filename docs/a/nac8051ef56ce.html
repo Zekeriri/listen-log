@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：Atoraku=Nakua</title>
+<title>短文：Atrak-Nakua</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-11-30 07:20</p>
-  <h1>一口随笔：Atoraku=Nakua</h1>
+  <h1>短文：Atrak-Nakua</h1>
   <p class="ja-title">一口エッセイ:アトラク＝ナクア</p>
 </header>
 <main>
@@ -23,10 +23,11 @@
 boothにてエッセイ集が販売しております。みんな読んでね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：Atrak-Nakua\n\n我以前养过狼蛛，但我之所以喜欢蜘蛛，完全是受到Atrak-Nakua的影响。如果您从未玩过该游戏，请立即购买。在我看来，它绝对是一件作品。\n 人们钦佩这些高贵、美丽、神秘、非人的存在。 《Atrak-Naqua》中出现的雌性蜘蛛平坂初音被正确地描绘成这样。\n 故事从主人公奏深夜在体育馆遭到低俗不良少年袭击开始，在学校安营扎寨的初音，因为这些不良少年“丑陋”而将其杀死。从她出现的那一刻起，她就被描绘成一个以自己的审美观为优先的迷人而残酷的生物。从一开始就已经被毁掉了。对待人类的琐碎庸俗价值观，活得轻松的上等存在。她有一头黑色的长发，看起来像是用墨水洗过的，穿着黑色的水手服。还有一只被称为“姐姐”的雌性蜘蛛。\n 在这部作品中，尽一切努力，最大程度地凸显这样一位“姐姐”的魅力。彻底黑暗的世界观和日式音效制作都是一流的，但特别值得一提的是细腻的写作技巧和诗意的对话。为了表达她的美，没有适当的写作技巧就不可能表达她的美，而这部作品就具备了这一点。换句话说，一切都在那里。正因为如此，我永远被困在Atrak-Nakua和平坂初音的绝对存在中。\n 我想找到一个能够充分表达一个聪明、高贵、绝对美丽的女孩的东西。 《一切都变成F》和《梦楼之箱》就是这样的作品。请像我一样，与他们接触，一生相依。\n\n展位上出售散文集。请大家阅读！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

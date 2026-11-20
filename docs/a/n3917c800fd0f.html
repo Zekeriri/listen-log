@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>随笔：渴望被爱</title>
+<title>エッセイ：爱されたがり</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-08-27 03:33</p>
-  <h1>随笔：渴望被爱</h1>
+  <h1>エッセイ：爱されたがり</h1>
   <p class="ja-title">エッセイ：愛されたがり</p>
 </header>
 <main>
@@ -34,10 +34,11 @@
  もし、もし僕がもう一度でも母親に会うことがあるのなら、その時は思いっきり今まで頑張ってきたことを報告してみたいものです。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"エッセイ：爱されたがり\n\n当我上高中时，我对父母爆发了一种典型的青春期不满。\n 我想他主要是因为他母亲再婚后受到了继父的压力，说了这样的话：“我单亲抚养他，没有给他任何教育，我本以为我们应该一起过着悠闲的生活，但现在他找了个男人结婚了，然后他突然开始批评我是一个没有优点的书呆子！”那是很久以前的事了，所以我只是依稀记得，但大致是这样的。\n 当她的母亲听到这句话时，她保持沉默，但她的继父说：“你想要被爱。”然后笑着回到了他的房间。\n すごく、ショッキングだった。\n たしかに义父の言う通りです。总而言之，我想说的是“多看看自己。”我的母亲选择让我过着无忧无虑的生活，而不是让我疯狂的学习，我也不能责怪她在我单身十几年的情况下再婚。成为一个无用的宅男，是我自己不努力的结果，既然如此，一切都是我的错。\n\n当时，我不禁感到沮丧，因为这被概括为“我只是想被爱。”即使现在，尽管我讨厌我的岳父，我也不得不承认他说过这样的话。就像一个前男友，仍然为自己被一个不懂得母爱的男人带走而感到悔恨。如果我这样表达的话，我不免会感到不舒服。\n\n时间已经过去了，我仍然记得那段激烈的经历，当我看着网上的各种账号时，我有时会觉得人们拿着各种各样的观点和知识，攻击别人，但本质上，他们只是想被爱。\n 你并不傻，会抱怨，所以你可能知道，如果你一直批评某件事，你不会快乐。尽管如此，有时你还是想发泄情绪，但每天都这样做并不能改善你的生活。我一生都希望能赢得一张我连一张都没有买过的彩票。\n 我想知道这是怎么回事，就像我当时的做法一样：这不是一种你知道自己有问题但又不承认的情况吗？我认为他希望有人找到他并承认他在这里，尽管他很不幸。不过我并不为此责怪你。\n\n不过，只有婴儿哭了才会被无条件地爱着，而我们这些成年人，更不用说青少年了，都得行动起来才能得到别人的认可。どこかで努力を积む必要がある。虽然我们过度需要认可常常被嘲笑，但出于渴望被爱而寻求认可和行动也是一个很好的理由。\n 也就是说，母亲为了得到岳父的疼爱，在胡作非为，而她的独生子却躲在房间里打游戏。她赢得了担任美发师的公公的心。两人果然如预想般演戏、活动着。その间、仆はなにもしなかった。\n 如果真是这样，我岳父就不能不把我视为一个无能的白痴了。一个没有为他们做过任何事情的孩子，现在却坚持说：“既然你生了他，你就应该负责任地爱他”，而不做任何努力让他这样做，仅仅因为他有血缘关系。即使母亲不知所措，她也可以将陌生的继父斥为“他只是想要被爱”。从某种意义上说，他可能扮演了一个“骂我的父亲”的角色，这是我以前所没有的。这很烦人。\n\n尽管经历了种种坎坷，但他现在已经能够写作、谋生了，所以作为父母，我想我们应该赞扬我们这个愚蠢、宅男、无用的儿子已经能够或多或少地独立了。我很高兴能受到数以万计的追随者的钦佩，但我也希望我的母亲承认我是一个男人。\n 如果我再次见到妈妈，我想告诉她我迄今为止所做的一切。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,7 +58,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

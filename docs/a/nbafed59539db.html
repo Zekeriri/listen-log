@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>论文：再见秋叶原</title>
+<title>随笔：再见秋叶原</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2020-10-09 18:08</p>
-  <h1>论文：再见秋叶原</h1>
+  <h1>随笔：再见秋叶原</h1>
   <p class="ja-title">エッセイ：さよなら秋葉原</p>
 </header>
 <main>
@@ -44,10 +44,11 @@
 何卒よろしくお願い致します。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"随笔：再见秋叶原\n\n我是从秋叶原搬来的。\n 一走出家门就被御宅族包围的奇特景象，是在其他城市无法体验到的强烈体验，而随着潮流不断变化的美少女插画和周边商品，让每一天都令人兴奋。\n\n我曾经写过一篇这样的文章。\n 深夜的秋叶原非常安静，与白天挤满御宅族的场景形成鲜明对比，显得非常美丽。在深夜的秋叶原有一款名为“Azanael”的 Nitroplus 美少女游戏，我会在晚上沿着中央大街散步，想着这款游戏。被充满御宅族欲望的微温夜风所包围的体验是秋叶原独有的。\n\n我什至写过这样的文章。\n 我永远不会忘记在荒凉的秋叶原继续神秘地闪烁着霓虹灯的颜色，仿佛人类已经灭亡。\n\n当我没有带伞，假装自己是人类仅存的书呆子，走在台风肆虐的秋叶原时，突然有双马尾女仆从背后对我说：“今晚！我是女仆！”一场哭戏的最后一幕开始了。 - Nyalra (@nyalra) 2019 年 10 月 12 日\n\n我曾经写过一篇这样的文章。\n 秋叶原的魅力就在于走到哪里都有御宅族的安全感。当我看到御宅族对在街上看到的稀有事物感到兴奋时，我也会感到高兴。\n 当然，这里也是商业区，所以你可能会听到可疑宗教或其他团体的招揽。软弱的御宅族有时会成为可怕的成年人的目标，这让你感受到社会的严酷。\n 继续躲避尤里安和发传单的女仆，训练你的思想。\n\n从高知龟感受秋叶原的变化也很有趣。\n 看看两津吧，它从电子小镇、御宅小镇、女仆咖啡馆小镇，再到旅游小镇，迅速转变。\n 如今，受疫情影响，游客数量开始大幅减少，许多商店被迫关门。当动乱平息后，它会变成一座新城市吗？\n\n大约每周有四次，一位老人会出现在秋叶原的十字路口，站在那里无所事事，直到最后我才明白他在想什么，为什么站在那里。\n 不过，也许正是因为秋叶原的原因，即使是这样的人也会受到如此混乱的热情欢迎。这是一个疯狂的小镇，接纳所有人，无论你是打扮成女人还是男人、哥特式洛丽塔，还是系着骑士腰带。\n\n我很难过离开这个到处都是漂亮女孩、“萌”这个词仍然很被重视的城市，但我也想看看其他地方的御宅族，所以下次我会去中野。\n 充满复古玩具和游戏的中野百老汇也是与秋叶原不同的空间。这次，我将花时间呼吸与中野亚文化御宅族相同的氛围。\n 如果你在中野百老汇看到类似尼亚鲁拉的人，请向他们打个招呼。可能真的是尼亚鲁拉。到时候，我相信你会困惑地回答“啊，伙计们……”。\n\n感谢您的理解。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -67,7 +68,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

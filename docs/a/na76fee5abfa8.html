@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：邂逅，像美少女游戏般突然</title>
+<title>短文：相遇很突然，像一场美少女游戏</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-22 03:38</p>
-  <h1>一口随笔：邂逅，像美少女游戏般突然</h1>
+  <h1>短文：相遇很突然，像一场美少女游戏</h1>
   <p class="ja-title">一口エッセイ: 出会いは、美少女ゲームのように突然だった</p>
 </header>
 <main>
@@ -27,10 +27,11 @@
 商業エッセイ集もよろしくね！ 全然明るいことは書いてないよ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：相遇很突然，像一场美少女游戏\n\n当我时隔一段时间第一次重读桃井晴子的散文集时，我注意到《我和恋津》的开场白是“我们的相遇是突然的，就像一场美少女的游戏”，这句话给我留下了深刻的印象。桃井特有的表达方式，持续活跃在美少女作品的最前沿。\n\n我一直期待着像美少女游戏一样的邂逅。我最喜欢的遭遇是在《樱花初雪》中，她在街上偷情时遇到了一位打扮得像公主的神秘女孩，故事一开始就拉着她的手臂，两人在雪夜里漫步在城市里，态度是“天啊……”。无论我们多大，我们都在等待一个夜晚，一个神态意味深长的神秘美丽女孩强行拉住我们的手臂。\n 当你同意条件并在约会应用程序上见面时，情况已经不同了。没有任何计划，他突然撞上了一个全力冲向他的女孩，当他抓住她痛得快要哭的手后，他带她到他的家，以躲避后面追赶她的神秘老人。他们作为朋友，为了同一个梦想而相遇，虽然有时互相伤害，但他们一起成长，当他们意识到，“我是没有这个人在我身边我会发疯……”，就像他们坠入爱河一样。如果不是这样的话那就不好了。\n 就像美少女游戏中一样，突然发生不可预知的遭遇，最终整个世界都不满意，直到它卷入其中。当面对世界和女孩的选择时，我想与上帝决一死战，并说世界的毁灭与女人的眼泪相比算不了什么。\n 我非常遗憾地确信，如果没有这样的经历，我将永远死去。\n\n包含每日日记的同人志现已发售！\n 也有一些书籍只是谈论美少女游戏。\n\n我期待阅读您的商业论文集！我根本就没有写出什么亮眼的东西。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

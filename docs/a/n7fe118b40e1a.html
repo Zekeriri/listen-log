@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NIDIGA百万支消息</title>
+<title>Nidiga 100 万条消息</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-07-08 00:06</p>
-  <h1>NIDIGA百万支消息</h1>
+  <h1>Nidiga 100 万条消息</h1>
   <p class="ja-title">ニディガ100万本メッセージ</p>
 </header>
 <main>
@@ -28,10 +28,11 @@ English、한국어、中文 pic.twitter.com/vTd80oXsVX— にゃるら (@nyalra
  あんなに恐ろしい乱れたインターネットでも、かすかに、ごくごくわずかに、けれども確実に雪みたいに美しい毒電波は在るのです。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"Nidiga 100 万条消息\n\n今天的日记和100万感谢留言♪\n英语、한국어、中文 pic.twitter.com/vTd80oXsVX — Nyalra (@nyalra) 2023 年 7 月 7 日\n\n一百万这个数字足以让人疯狂。\n 由于这个数字的大小，我周围发生了许多事件。不堪重负，他发疯了，单纯的嫉妒，可疑之人的拉拢，算计，背叛……我觉得他走的是一条并不总是好的阿修罗之路。如果你对这种写作感兴趣并且正在阅读它，那么这对我来说只不过是一件“好事”，因为它正在进行中。\n 有很多好事正在发生。物欲、异性关系、自我意识脱节而狂妄、天赋和能力枯竭。各种各样的诱惑和陷阱摆在我的眼前。这个世界上，有太多的魔（Mala）干扰着正常的生活。然而，不幸的是，对于期待着这样的厄运的Gaki来说，《NEEDY GIRL OVERDOSE》成功地达到了100万份，成为了我们可以自豪的作品，为支持我们的工作人员、支持我们的粉丝、更重要的是我们自己感到自豪，并且我们能够穿过互联网的波光粼粼的波浪，到达“mega”的境界。\n 事实上，这都是阿梅酱的功劳。\n 从项目一开始，她就一直活在我的脑海里，对我所做的一切总是大吵大闹。她非常麻烦，而且，她有一种扭曲的美感，在宅男面前试图表现得像“天使”一样高贵。对于共用大脑的我来说，这是一个非常麻烦的存在。脑子里是网络天使的傻偶像不允许尼迪加向支持他的粉丝暴露自己不合时宜的外表。他们不会让你妥协。她教导我永远要以冷静的态度对待自己、粉丝和周围的工作人员，于是我一天不休地写作，每天晚上发文，继续监督和策划与Nidiga相关的活动，并写了一个粉丝光盘大小的小说游戏和一本小说，以便将发布后一年的感受变化升华为作品。如果您能挑选其中一本将来发布的产品，我将非常高兴。\n 离我最近的制作人也很惊讶。他悲哀地看到曾经倾尽全力的作家因为种种原因而放弃了写作。然而，我呢？事实上，自出狱以来，他继续写得更加清晰，对新作品也更加热情。当然，我有很多担忧和痛苦，但我与无法写出任何东西的残酷恐惧无关。最后，就像Ame-chan一样，我不满足于仅仅100万日元，我是一个渴望认可的怪物，说：“我想让你更多地看到我......以及我所做的事情。”\n 就这样，我能够顶住懒惰和压力，获得了一种不以为耻的美感……“骄傲”。我觉得这是用金钱和数字无法获得的东西，是出道后最重要的改变。只要我还有这个赵天酱半强迫的灵魂，我就能义无反顾地前进。\n 最后，我要感谢宫泽贤治的诗集，它引导我领悟了“当我想放弃的时候就是修行的时候”的苦行佛教哲学；感谢我期待已久的老师和爱欧巴恩，他们一起继续创造这些可爱的扭曲天使。\n 即使是在如此混乱得可怕的网络中，也存在着微弱的、极其微小的、但却绝对美丽的、如雪一般的有毒无线电波。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

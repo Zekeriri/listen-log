@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：《钢之球跑》，一个接一个高贵的男性出现的自豪且至高无上的漫画</title>
+<title>一篇简短的文章：钢球奔跑是最好的、最令人自豪的漫画，其中贵族男人相继出现。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-06 01:43</p>
-  <h1>一口随笔：《钢之球跑》，一个接一个高贵的男性出现的自豪且至高无上的漫画</h1>
+  <h1>一篇简短的文章：钢球奔跑是最好的、最令人自豪的漫画，其中贵族男人相继出现。</h1>
   <p class="ja-title">一口エッセイ: スティール・ボール・ランとかいう、次々と気高い男たちが現れる誇り高き最高の漫画</p>
 </header>
 <main>
@@ -35,10 +35,11 @@ Kindleで、スティール・ボール・ランの面白いところだけ厳�
 商業エッセイ集もよろしくね。漏れだけの時間だぜ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇简短的文章：钢球奔跑是最好的、最令人自豪的漫画，其中贵族男人相继出现。\n\n昨晚我讲了JoJo第6部，所以今天我要讲我最喜欢的JoJo第7部“钢球跑”。\n\n一部令人自豪的最佳漫画，名为《钢球奔跑》，其中贵族人物相继出现 — Nyalra (@nyalra) 2021 年 8 月 11 日\n\n之前我在推特上说过“《钢球奔跑》是最优秀、最值得骄傲的漫画，贵族们纷纷出现”，我认为第七部的吸引力在于读完之后所感受到的自豪感。与其他部分不同，第七部分中的角色为“赢得比赛的荣耀”或“对国家的忠诚”而战，几乎所有人都为骄傲而活。正常情况下，布莱克莫尔看起来像是那种会沦为装饰品的恶棍，但尽管他的外表，他也是一个骄傲的人。这种差距令人麻木。\n 自然，两位主角也是骄傲的。即使在异世界，陀螺的教训和友谊、引导乔斯达一家走正道的齐贝利、约翰尼的成长……就连老板、会长和迭戈，都充满了超越“反派”框架的魅力，每个人都有自己的“男人世界”。所有的女人也都坚定了。\n 这个男人的哲学是围绕着与林戈的著名战斗而展开的，光是读起来就温暖了读者的心，并通过他的生活方式给他们一种自豪感。读完《Jojo》后你感受到的难以形容的“热度”可能是你读完它后得到的最好的感受之一。\n\n谜语\nQ.还有什么比《钢珠跑》更美好的结局呢？\n答：否 — Nyalra (@nyalra) 2019 年 12 月 22 日\n\n这是一个即使要克服在动画中被认为是痛苦的画马的障碍，也一定要在第六部之后将其拍成电影，当你看完的时候，观众的脸上会不自觉地露出无所畏惧的表情的世界。\n\n我精心挑选了《钢珠跑》中有趣的部分，并在我的 Kindle 上购买了它！ pic.twitter.com/ryrb7Py9QY — Nyalra (@nyalra) 2021 年 8 月 11 日\n\n我们出售收集每日随笔集的同人志和只写美少女游戏的同人志。欢迎来到“早口御宅族”的世界……\n\n我期待着阅读您的商业论文集。这只是泄漏的时间。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -58,7 +59,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

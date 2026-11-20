@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口散文：身体的极限</title>
+<title>一篇文章：身体的极限</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-01-07 07:59</p>
-  <h1>一口散文：身体的极限</h1>
+  <h1>一篇文章：身体的极限</h1>
   <p class="ja-title">一口エッセイ:身体の限界</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
  今度こそ、本当におやすみなさい。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇文章：身体的极限\n\n我总是在睡觉前开始写日记，但换句话说，直到写完日记我才能入睡。于是，当我找不到什么可写的时候，我就盯着手机看了几个小时，因为安眠药的作用，我的大脑昏昏欲睡，感觉自己正在被折磨。如果我只是躺下来并屈服于这种温柔的睡意，我会很高兴，但我就是做不到。\n 最近，我一直被年底左右开始的工作问题所困扰，它们像一块大石头一样卡在我的大脑里，让我无法思考其他事情。因为这样我睡眠不足，今天白天头疼、麻木不散，我觉得情况很糟糕，但我必须去开会，因为我要开会。当我的自主神经系统受到严重干扰时，我似乎倾向于出汗。即使是冬天，当你吠叫时，你全身涌出的汗水可能会被别人误认为是戒断症状。凛冽的冬风渗入我满身大汗的身体，让我瑟瑟发抖。\n 我很难为工作而烦恼，即使回到家后，我仍然为之烦恼，直到早晨到来。当时是早上，我决定写一篇日记，试图睡一觉，但我的大脑记忆被忧虑压垮了，什么也想不起来。我不仅缺乏睡眠，而且工作时间也更长，我的精神和植物神经开始受到损害。在我的房间里，我大汗淋漓，头疼，胸口心悸，脚麻木刺痛。我想尽快好起来。\n 由于睡眠不足，我的大脑无法正常工作，所以我发现自己对自己喊道：“放轻松！放轻松！”当我大声说出这句话时，我的悲伤就会增加。我知道我需要早点睡个好觉，但是当我尝试打字写日记时，我只能说，“救救我！”太可悲了。\n 我不想把我可怜的一面展现出来。如果可以的话，你想隐藏自己不合时宜的外表，不是吗？发誓并没有什么错。不，虽然这不太好。好吧，因为我的工作，我对此感到瘫痪。我不喜欢它，但它让我看起来很胖。但被认为“不体面”是很痛苦的。例如，如果有人对我说，“这家伙真蠢”，我就会觉得“我在做一些蠢事，所以这不是问题。”但是，如果有人说我丑陋，我感觉我的整个生活都被彻底否定了，我最终会感到悲伤。但当我在日记中表达那天的感受和想法时，我不想撒谎。其实我现在真的很困，只能按原样写了。可悲，可悲。\n 我打算从现在开始多睡一会儿，但即使我醒来，情况也不会好转。如果一个问题可以通过过度担忧来解决，那么任何人都会过度担忧。晚安。\n 再这样下去，天就太黑了，我会带着沉重的心情醒来再读一遍，所以我就写下新年唯一的美好，作为一种放纵。\n\n开完会回家的路上，我在中野站附近的一家汉堡店看到了一个汉堡，很高兴看到这个汉堡的名字是“莉莉丝”。你可以给你的汉堡起名叫莉莉丝。\n 这一次，我祝你度过一个美好的夜晚。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

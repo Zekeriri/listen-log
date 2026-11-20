@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：早上睡觉</title>
+<title>小作文：早上睡觉</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-10 07:47</p>
-  <h1>一口随笔：早上睡觉</h1>
+  <h1>小作文：早上睡觉</h1>
   <p class="ja-title">一口エッセイ:朝に眠る</p>
 </header>
 <main>
@@ -23,10 +23,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集を発売中です♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"小作文：早上睡觉\n\n早上睡觉。没有任何行为像这样简单地开始偏离社会。\n 世界是由规律组成的。从早上到中午太阳升起，商店逐渐开业，更多的人进入城镇，经济开始蓬勃发展。起床越早，就越有利于度过有意义的一天并参观许多地方。\n 相反，如果你早上睡觉晚上醒来怎么办？商店开始迅速关门，镇上开始挤满了酒鬼和酒鬼。如果你不能按时制定购物计划，政府办公室甚至无法运作。由于本应进行的社会活动进度落后，他们逐渐脱离了社会的轨道。\n 深夜互联网的安静庆祝结束后，已经到了早上七八点，我渐渐经过那些健康地醒来的人们。他们充分利用漫长的日子，“生活”得充实。沐浴着阳光，在天童大人的指引下自信地行走，恢复健康和活力。另一方面，当我们的日常节奏被打乱时，我们的自主神经系统就会被破坏。\n 当我在其他人起床去上班或上学的时候睡觉时，我感觉自己又回到了没上学的时候。我们不再是典型的有趣的一天即将开始，而是成为安静的深夜的居民。让我们将自己与世界分开。让我们抛开炎热的太阳，争取有一颗温柔地守护着我们的月亮，把社会交给有能力的人类。晚安。让我们在安静的深夜时间线上再次相见吧。\n\n目前正在销售包含日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

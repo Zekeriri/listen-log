@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：社会与既定和谐的仪式</title>
+<title>短文：社会与缘和礼</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-23 01:18</p>
-  <h1>一口随笔：社会与既定和谐的仪式</h1>
+  <h1>短文：社会与缘和礼</h1>
   <p class="ja-title">一口エッセイ:社会と予定調和の儀式</p>
 </header>
 <main>
@@ -30,10 +30,11 @@
 過去の長文エッセイをまとめた商業エッセイ集もよろしくお願いします。まだ若くて、社会なんて何も意識してなかった純粋なころ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：社会与缘和礼\n\n今天，我和一家大公司开会。在六本木设立办公室真是太棒了。保安太多了，有点吓人。\n 我觉得与公司的第一次会面是很注定的，或者更确切地说是一场闹剧……如果你愿意的话，感觉就像是一种仪式。尽管我们都知道事情将如何展开，但我们能够以每个人都向对方展示过的方式总结各个阶段。\n 向两人打招呼后，其中一位年轻女子走过来说：“我非常爱你们！我很乐意和你一起工作！！”另一位男老板安抚她说，“给你，哈哈。”此时，我觉得这是一次很好的会面。当然，看到有人对此如此充满热情，比只是进行正式的商务对话要好得多。\n\n这位制作人穿着正式的西装。这是一个表示我们要进行认真谈话的姿势。至少，我们保证安全，以便我们作为一个公司能够相互沟通。最重要的是，我敢于去争取。这次全身是山本耀司的黑色。他描绘了一个看似困难的艺术男人。这留下了更强烈的印象，让我们思考：“这是不寻常的事情。”无论好坏。既然他是奇怪游戏的原作者，他就希望奇怪的人出现，我认为这绝对是正确的事情。我也可以穿成自己喜欢的样子！一旦遇到紧急情况，旁边穿着西装的上班族就能和你进行正常的业务对话，让你不用担心！\n 商务谈话按计划进行。随着对话在社交聊天中进行，他说：“但我会将最终决定权留给原作者 Nyalla。”毕竟，他们假装优先考虑独立开发者特有的个人情感，而不是公司行动。整个会议室气氛紧张……\n 于是，我也开始交叉双臂，做出担心的姿势。一个艰难的创作者，在商业和娱乐之间挣扎，提出了以下条件：“不管钱，让我们朝着让粉丝高兴的方向前进。”这是我们的首要任务。”当然，对方会跳上船并说：“没错！我们先来说说让粉丝高兴的事情吧！”果然，这里没有人会说，“不，钱更重要。”如果你这么诚实，我其实很喜欢。\n 于是，我们在接受难缠的原作者提出的严格条件（仅限摆姿势）的同时，决定尝试寻找一个既能让粉丝开心又能互惠互利的解决方案。年轻的女员工很高兴，项目也就解散了。基本上，第一次见面是这样的。当场考虑了一下，我决定这个人，他会把粉丝放在第一位，所以关键是要营造出我特别允许他的感觉。\n 宫崎骏导演聘请庵野秀明担任声优时，有一段视频，大家开会讨论“谁来担任声优？”我们不打算使用看起来像配音演员的人。”那也会像是，“不，我们就和庵野一起去吧，而不是带路！其实大家都知道，已经决定了！？”但即便如此，当大家都想好之后，导演低声说“好吧，我们和庵野一起吧”的那一刻也很重要。世界围绕着这些有计划且和谐的仪式而运转。这就是社会！\n\n包含每日日记的同人志正在摊位上出售！\n 我每天都在拼命寻找新的材料，而这是一个事情根本不会按计划进行的世界。\n\n我们也希望您会喜欢我们的商业论文集，该论文集是过去长篇论文的汇编。那时我还年轻，天真烂漫，根本不关心社会。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

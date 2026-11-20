@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口散文：萝森梅德与犬神家族的关系</title>
+<title>短文：蔷薇少女与犬神家的关系</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-16 07:29</p>
-  <h1>一口散文：萝森梅德与犬神家族的关系</h1>
+  <h1>短文：蔷薇少女与犬神家的关系</h1>
   <p class="ja-title">一口エッセイ:ローゼンメイデンと犬神家の一族の関係</p>
 </header>
 <main>
@@ -33,10 +33,11 @@ YouTubeのコメント欄で、ローゼンメイデンとしゅごキャラの�
 今月末には、商業エッセイ集でも痛く切ないオタクの思い出を堪能できます。両方買ってくれると嬉しい！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：蔷薇少女与犬神家的关系\n\n我在一个易受影响的年纪遇到了《蔷薇少女》，在接下来的几年里，我的脑海里充满了《蔷薇少女》。毫不夸张地说，他的青春期就像一个被水银杀死的男孩。\n 动画版的罗森是原版的岚。如今，一部热门作品不可能凭借动画走得这么远。也有原作未完成的情况。因此，粉丝们对动漫的发展既兴奋又悲伤。如今，原创作品也在和杂志竞争，我已经不在乎了。\n 当时，正在播出描绘水银岛过去的特别版《蔷薇少女的奥博图尔》。这是水银堂在OP中割草的地方。这引起了极大的争议，当时的御宅族们非常愤怒。这是一个非常受欢迎的角色和主角（真空）的过去故事，所以如果对此有误解，整个故事就会崩溃。\n 住在冲绳，我无法实时关注，所以我尝试通过直播和其他渠道来掌握内容。正如上面提到的，当我为似乎正反两派的分裂而感到不安时，帖子逐渐开始充斥着“犬神家族”的话题。一切都不再有意义了，罗森和犬神家族有什么关系？我害怕极了，无法控制。我以为水银头的上半身会被埋掉，变成垃圾。\n 即使后来看了主线故事，我也无法解开这个谜团，还以为这只是我小时候的一场噩梦。即使我用谷歌搜索也找不到它。然而，当我最近决定搜索推文时，我看到一条推文说：“在 Auberture 之后，播放了犬神家族的广告，每个人都从中得到了乐趣。”多亏了这一点，这一切对我来说都是有意义的。谢谢你，那个还在说起当年气氛的人。如果没有你，罗森和犬神家的关系就会消失在记忆的黑暗中。\n\n奖金\n\n即使你是一个孩子，在 YouTube 的评论部分惊讶地发现《蔷薇少女》和《守护甜心》的创作者是同一个人…… pic.twitter.com/yNtcQ9YUgy — Nyalra (@nyalra) 2021 年 12 月 15 日\n\n正如我在这个空间中谈到的，PEACH-PIT-老师在“Neo-Parasyte”中描绘了 Shinichi 和 Migi，其关系和氛围与 Jun 和 Shinku 几乎相似，我被 PEACH-PIT-老师以这种方式解释寄生虫的能力所感动 pic.twitter.com/W46mjAcMX2 — Nyalra (@nyalra) 2021 年 5 月 27 日\n\n↑充满了各艺术家的艺术性，推荐。\n\n包含许多御宅族敏感时期回忆的日常随笔集现已在BOOTH发售！\n\n这个月底，你可以在商业随笔集里享受御宅族的痛苦回忆。如果您能同时购买两个，我会很高兴！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -56,7 +57,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

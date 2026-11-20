@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：夜晚来临！</title>
+<title>短文：夜幕降临！</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-26 04:28</p>
-  <h1>一口随笔：夜晚来临！</h1>
+  <h1>短文：夜幕降临！</h1>
   <p class="ja-title">一口エッセイ:夜が来る！</p>
 </header>
 <main>
@@ -28,10 +28,11 @@
 先月に発売した商業エッセイ集もよろしくお願いします。鬱屈としたエピソードの連続から、一瞬だけ煌めく綺麗な瞬間を感じてもらえると嬉しい。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：夜幕降临！\n\n我和岩仓文也各自选择了25款美少女游戏，并发表了一本同人志，其中我们简单地写下了总共大约50款游戏中我们喜欢的内容。虽然我自己可能会这么说，但我为自己能够印刷这样一本小众书籍而感到自豪。请大家阅读一下。\n\n好，这次我想谈谈我最喜欢的未列入50选的作品。 《Yoru ga Kuru!》是Alice Soft第一部使用人声OP的作品，追求的只是“酷”。\n 当被问到有多酷时，它太酷了，光是剧情简介就让我忍不住颤抖。\n 当另一颗蓝色的月亮——真月出现在夜空中时，名为“光”的奇怪怪物引诱人们陷入欲望，侵蚀他们的内心……也就是说，拥有特殊能力的学生深夜潜入学校，秘密追捕出现在那里的怪物，然后在第二天早上作为毫无戒心的学生度过。看来你在《女神异闻录3》之前就完成了如此激动人心的设定。\n\n真正引起我注意的是女主角之一七尾木镜花的CG，她在夜晚的屋顶上翩翩起舞，羽毛飘扬。\n 白天当模特的美丽苗条金发女孩，脸上带着难得一见的温柔表情，被问到“你不觉得在月夜里和你最爱的人跳舞该多好吗？”的经历，我觉得那是一种美妙的情况。学园祭结束时，屋顶上举办了专属于他们两人的舞会。这件作品的美丽在于创造了一个完美的时刻，因为这件作品完全是关于夜晚的美丽。\n\n摊位上还出售包含每日随笔集的同人志。阅读书呆子每晚编造的毫无意义的词语。\n\n也敬请期待上个月发布的商业论文集。如果您能在一系列令人沮丧的事件中感受到一丝光彩，我会很高兴。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

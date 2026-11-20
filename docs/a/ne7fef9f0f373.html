@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：喂喂游戏与落伍的御宅老头</title>
+<title>短文：莫西莫西游戏与过时的宅男</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-08 01:51</p>
-  <h1>一口随笔：喂喂游戏与落伍的御宅老头</h1>
+  <h1>短文：莫西莫西游戏与过时的宅男</h1>
   <p class="ja-title">一口エッセイ:もしもしゲーと時代遅れのオタクジジイ</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 先月には、意外と内容が重いと評判の商業エッセイ集も発売しました。Kindleがあるから、こちらももしもしで読めるぜ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：莫西莫西游戏与过时的宅男\n\n今年新动漫不断播出，一部基于社交游戏的动漫今晚开播。妹子很多，专业术语也很多，看的时候得坐下来集中注意力。\n 顺便说一句，我根本不玩社交游戏。这是有原因的，它从被称为“moshi-moshi 游戏”的时代就带有强烈的痕迹。过去，Mobage自己的智能手机应用程序被御宅族嘲笑为“moshi-moshi游戏”，他们嘲笑收费数据和打扮你的头像的想法。\n 然而，随着Mobamas的兴起以及二维角色与社交游戏的兼容，少数人不再将社交游戏称为“moshi-moshi游戏”。我们正在进入一个每个人都在智能手机上玩游戏的时代，扭蛋游戏的结果都是悲欢离合。\n 而我，彻底错过了这波浪潮，陷入了被嘲笑为“莫西莫西游戏”的魔咒，最终变成了一个对社交游戏一无所知的老男人。有多少次你和御宅族朋友一起出去玩，当他们对社交游戏感到兴奋时，你会默默地低头看着他们？更重要的是，曾经看不起“moshi-moshi游戏”的御宅族现在也开始玩智能手机游戏，并谈论他们日夜绘制的美少女的魅力！\n 如果能像这样以动画形式播出的话，一定会让人怀疑这就是那个女孩吧！可以延迟一圈欣赏美女。为了避免成为这样一个可悲的老人，我希望每个人都可以玩有趣的东西，而不必担心奇怪的逆向行为。没有多少人会像互联网上的人那样快速地回馈你。\n\n包含日常文章的同人志现在正在展位上出售。还有电子版，需要的可以看！\n\n上个月，我们还发布了一本商业论文集，该文集因其内容异常丰富而享有盛誉。我有 Kindle，所以我也可以阅读此内容。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

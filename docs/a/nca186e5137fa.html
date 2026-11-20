@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>我制作了整理自己随笔的同人志＋过去的同人志重新发售</title>
+<title>我创建了一个同人志来总结我的文章+我将转售过去的同人志</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-09-01 21:52</p>
-  <h1>我制作了整理自己随笔的同人志＋过去的同人志重新发售</h1>
+  <h1>我创建了一个同人志来总结我的文章+我将转售过去的同人志</h1>
   <p class="ja-title">自分のエッセイをまとめた同人誌を作りました＋過去同人誌を再販します</p>
 </header>
 <main>
@@ -50,10 +50,11 @@ BOOTHにて、紙でも電子でも購入できます。
 何卒よろしくお願い致します。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"我创建了一个同人志来总结我的文章+我将转售过去的同人志\n\n论文集可供购买\n\n（图片：图1）\n\n我已经完成了超过150页的同人志，其中包括新写的论文，这是我每天在推特上发布的四个月的论文集。名字叫《尼亚拉的散文集自我》！这是一本只融合了自我意识的书。\n\n您可以在 BOOTH 购买纸质版或电子版。\n 可爱的封面由 Kumicho (https://twitter.com/kwiozsn) 创作。我向（https://twitter.com/ccnaov）询问了标题徽标。太好了。\n\n作为内容示例，它看起来像这样。\n\n（图片：图2）\n\n我这几天的所想，\n\n（图片：图3）\n\n谈论你喜欢的事情，\n\n（图片：图4）\n\n海量120多个荒唐故事+新写故事！\n 如果你能得到它，我会很高兴。由于它是电子版，您可以在智能手机上阅读！\n\n此外...\n\n・还有网络2转售+电子版\n\n我和岩仓文也合办的杂志《Internet 2》将转售这两部作品。\n 这次我们还出售电子版，所以如果您想以电子版而不是纸质版阅读，请这样做！\n\n内容看起来像这样。\n\n感谢您的理解。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -73,7 +74,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

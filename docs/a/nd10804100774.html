@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口小随笔：请邀请我去做一些有趣的事</title>
+<title>短文：请邀请我去做一些有趣的事情。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-02-15 06:49</p>
-  <h1>一口小随笔：请邀请我去做一些有趣的事</h1>
+  <h1>短文：请邀请我去做一些有趣的事情。</h1>
   <p class="ja-title">一口エッセイ:なにか楽しいことに誘ってください</p>
 </header>
 <main>
@@ -21,10 +21,11 @@
  やむを得ないので、一人旅でもしようかと考えていますが、締め切りも多いので悩み中。締め切りを守って仕事をすると、ご褒美として次の仕事がもらえる。おかしいだろ。誰か助けてください。なにか嬉しいことがあるといいです。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：请邀请我去做一些有趣的事情。\n\n有什么好东西吗？\n 几天后就是我的生日，但我没有什么特别的计划。即使在我的一生中，我也从未度过过一个主要是关于我自己的生日。对了，今天是情人节，但我从来没有收到过异性送的任何东西，无论是巧克力还是圣诞礼物。如果你有过收到异性礼物的经历，你的生活肯定比我的好。恭喜。\n 本来今年韩国有一个游戏活动，恰逢我的生日，听说Nidiga要带我第一次出国去那里参展，所以我很兴奋，但因为早上起不来，拿不到护照。为了办护照，我需要一份户口本复印件，一想到户口本上有父母的名字，我就感到恶心，如果我太懒的话，我就来不及了。后悔。\n 我因为这个自作自受的错误而感到极度沮丧，尽管这几年我一直在努力做各种各样的工作，但我还是充满了这样的感觉……不，其实，是因为我不努力，所以我才变成这样。一切都是有因有果的。\n 由于这是不可避免的，我正在考虑独自旅行，但我有很多截止日期，所以我很难决定。如果您在截止日期前完成工作，您将获得另一份工作。这很奇怪。请有人帮助我。我希望有件事能让你开心。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -44,7 +45,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

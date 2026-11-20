@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：在中野Broadway抓住它</title>
+<title>短文：在中野百老汇遇见我</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-03-01 08:37</p>
-  <h1>一口随笔：在中野Broadway抓住它</h1>
+  <h1>短文：在中野百老汇遇见我</h1>
   <p class="ja-title">一口エッセイ:中野ブロードウェイでつかまえて</p>
 </header>
 <main>
@@ -28,10 +28,11 @@
 毎日のエッセイをまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：在中野百老汇遇见我\n\n前几天，当我沿着我的日常中野百老汇散步时，发生了类似的事情。\n\n我露脸，写着我住在中野，经常在中野百老汇散步，所以看到我的读者大约每个月都会和我聊一次。甚至在秋叶原和下北泽也有人跟我说话。我并不是特别喜欢，所以如果有人让我和他们合影留念，我什至会和他们合影。\n\n是这样的。由于我没有问孩子们在做什么（虽然我看得出他们没有一般的时尚感），所以我想知道他们现在过得怎么样。不知道她是否已经不再想和我合影了，悠闲地过着自己的生活呢？好吧，无论如何，这样的机会是千载难逢的。\n\n然而，有一天，正如你在截图中看到的那样，有人问我“你是尼亚鲁拉桑吗？”我说“不是”，这似乎让我很困扰，所以我匿名道歉。我希望我不必担心这个。本来，当有人问我“你是尼亚鲁拉小姐吗？”时，我会说“嗯？”是很正常的。什么？尼尔……？”，当我简单地回答“不”时，这毫无意义，而且很有趣。\n 事实上，我意识到我不应该被人说话。刚过马路，两个女孩就盯着我看，商量了一下战略会议之类的事情，就从后面跟着我一会儿。不过，停在这里对我来说很奇怪，而且由于他并没有真正和我说话，所以我没有理会他，继续寻找我的书。还剩下大约10分钟，我就完全忘记了那些女孩，全神贯注地看书，以为她们不会再来了。就在这时，有人叫我，让我吃了一惊。那一瞬间，我从阅读模式中回到了现实，思绪归零。\n 在这种情况下，有人会说，“如果我错了，我很抱歉，但我很抱歉”，所以我的两个想法“我想尽快回去读书”和“如果我错了，那一定会很有趣”，我条件反射地说“不”。这只是一种恶作剧的精神。我想知道如果一个明显是尼亚拉人的人坚持认为自己不是尼亚拉人，对方会作何反应。我只能想到这些。我才是最应该道歉的人。但这确实是出于条件反射。最后，事实证明这次经历比平时的拍摄更有价值，所以我很高兴我这么做了。\n 这就是时机。我问问题的方式恰好是反直觉的，当我在书面前问题没有改变我的想法，有人跟我说话之前有一个滞后而我还没有准备好等等。这只是由于巧合而发生的（如果我一开始就回答我就必须离开书店，我想避免这种情况，因为太麻烦了），你没有错。这也只是粉丝服务，所以有时完成，有时未完成，仅此而已。我认为当你如此合适时，像人类一样是件好事。对此我很抱歉。但我就是这样生活的。如果你有胆量，下次请到书店以外的地方来找我。到时候，我们一起微笑着拍一张照片吧。\n\n请欣赏由日常文章组成的同人志和商业文章集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔:世嘉土星</title>
+<title>快速文章：世嘉土星</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-23 06:05</p>
-  <h1>一口随笔:世嘉土星</h1>
+  <h1>快速文章：世嘉土星</h1>
   <p class="ja-title">一口エッセイ:セガサターン</p>
 </header>
 <main>
@@ -31,10 +31,11 @@ pic.twitter.com/RJEdnodUMQ— にゃるら (@nyalra) June 25, 2017
 商業エッセイ集もよろしくね。僕の生い立ちがたくさん掲載されていますが、その裏ではセガサターンを遊ぶ日々があったのだ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"快速文章：世嘉土星\n\nNendoroid Sega Saturn 在 Sega Saturn 上玩 Sega Saturn 游戏 pic.twitter.com/FeOpTpl3UP — Nyalra (@nyalra) 2016 年 1 月 15 日\n\n扭蛋上出现了世嘉土星型手表，我把它转过来，出现了一个白色的土星。可惜的是我家里的世嘉土星是灰色的，不过这个很有趣，因为当你打开它时，一张《樱花大战2》的光盘从里面出来。对了，当你打开灰色手表时，就会出现“Virtua Fighter”。顺便说一句，主机顶部的粘土人是“世嘉土星先生”，这是一个拟人化的游戏机。\n\n现在，我来自 PlayStation 2 和 GameCube 一代，但我仍然是一个坚持使用 Sega Saturn 的孩子。世嘉土星背面附带的卡带被称为电源存储器，当土星的主电池没电​​时，它使用这个记录装置来保存游戏数据，如果数据稍微移动，就无法再读取。为了防止错位，我有时会将游戏附带的调查明信片插入背面以使其笔直。\n 为什么我要经历如此老套的麻烦来继续玩土星？基本上，激进的美少女游戏只能在 Saturn 上玩，所以那些对 PlayStation 或 PC 都不满意的疯狂美少女游戏迷们会不遗余力地拿出这个硬件来玩 EVE、YU-NO、Saturn 和……如今，你可以用 Switch 做一切。另外，我将土星用于超级机器人机器人之类的事情，因为音质更好而且更舒适。\n 虽然是这样的机器，但我对它却有一种强烈的感情。这是一个奇怪的家伙，虽然是家用的，但自诩可以看到漂亮女孩的乳头，但结果却是他最喜欢的硬件。\n\npic.twitter.com/RJEdnodUMQ — Nyalra (@nyalra) 2017 年 6 月 25 日\n\n如果有类似于 Sega Saturn 启动声音的前奏歌曲排名，请听听对我来说排名第一的 Another Part of Me，体验 Sega Saturn 体验 https://t.co/drr8PpRTLK — Nyalra (@nyalra) 2021 年 5 月 2 日\n\n汇集每日随笔的同人志、仅收录美少女游戏故事的同人志等正在展位发售！如果我没有遇见土星，我就不可能写这本书。\n\n我期待着阅读您的商业论文集。我的很多背景资料都已公开，但在幕后我花了很多时间玩世嘉土星。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +55,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

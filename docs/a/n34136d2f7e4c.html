@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>芥川龙之介的《鼻》</title>
+<title>芥川龙之介的《鼻子》</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-05 00:19</p>
-  <h1>芥川龙之介的《鼻》</h1>
+  <h1>芥川龙之介的《鼻子》</h1>
   <p class="ja-title">芥川龍之介の「鼻」</p>
 </header>
 <main>
@@ -26,10 +26,11 @@ boothで毎日のエッセイをまとめて同人誌を販売中です。読ん
 月末には、長文エッセイを収録した商業エッセイもでます。予約してもらえると嬉しい！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"芥川龙之介的《鼻子》\n\n之前写过一篇关于梶井元次郎的《柠檬》的故事，收到了很多回复，所以这次我又来谈谈青空文库了。我喜欢可以免费阅读的文章！\n 我们来谈谈芥川龙之介的《鼻子》。\n 简单解释一下这个小故事，一个对自己天生大鼻子有情结的和尚，设法把自己的鼻子改小了，但鼻子变得平庸后，却不知为何遭到别人的嘲笑。有一天晚上，正当我为这件事发愁的时候，我的鼻子突然又变大了，但我心里松了口气，因为我不用再被人嘲笑了。我就是这么说的。由此我们可以得到这样的教训：“人有两颗矛盾的心，他们同情别人的不幸，但一旦经历了不幸，又感到不满足，想再次陷入不幸，甚至怀有敌意。”\n 这不是网上就能看到的现象吗？如果一个因将自嘲和不满升华为令人兴奋的材料而受到赞扬的人逐渐开始获得支持和金钱，人们自然会开始攻击对方，或者只是对此感到厌倦。\n 针对这一事实，他说：“人有两颗矛盾的心，一颗在不幸福的时候同情，一颗在幸运的时候感到失望。”我认为芥川龙之介的魅力和写作能力就在于他不批判自己的人性，把它简单地斩钉截铁。\n 我无能为力。不管怎样，人就是人。真正能够祝福别人幸福的好人越来越少了。世界就是这样形成的。你甚至不能抱怨人心的行为。正是这种无奈，才使它成为一部永远留在你心中的杰作。\n\n我们在摊位上出售带有每日文章的同人志。如果你读到它，我会很高兴！\n\n月底还会有一篇商业论文，里面有一篇长文。如果您能预订的话我会很高兴！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

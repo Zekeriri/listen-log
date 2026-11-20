@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>同人志《互联网2》将由岩仓文也一同发布</title>
+<title>我正在与岩仓文也一起发行同人志《Internet 2》。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2019-11-16 20:47</p>
-  <h1>同人志《互联网2》将由岩仓文也一同发布</h1>
+  <h1>我正在与岩仓文也一起发行同人志《Internet 2》。</h1>
   <p class="ja-title">「インターネット2」という同人誌を岩倉文也とだします</p>
 </header>
 <main>
@@ -60,10 +60,11 @@
 それでは、よろしくお願いします。当日「キ-42」でお会いしましょう。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"我正在与岩仓文也一起发行同人志《Internet 2》。\n\n（图片：图1）\n\n我创建了一个名为“Internet 2”的同人志。预定11月24日在文学跳蚤市场发行。展位“Ki-42”！\n\n由于这是我的第一个同人志，我不知道如何把它放在合适的位置，所以它变成了140页的大片。价格为1500日元。与页数相比便宜！ ！我向 Kocha 先生 (https://twitter.com/BARD713) 询问了精美的封面。当我告诉他们我的形象时，他们很快就把它画出来了，这让我意识到插画师有多么伟大。\n\n编辑由樋口一雄 (https://twitter.com/higuchi_gd) 完成。谢谢你，这本书很容易阅读！\n\n（图片：图2）\n\n目录。\n\n我也会把它写在这里。\n《简介（岩仓文也）》《互联网与我/INTERNET2/网络随笔（岩仓文也）》《情感歌曲（岩仓文也）》《尼亚拉旅行时的思考备忘录（岩仓文也）》《美少女游戏日记（岩仓文也）》《尼亚拉的思考备忘录解说》 （尼亚鲁拉）、“总有一天我会来（岩仓文也）”、“网络和美少女游戏密切相关的时代”。你现在想玩的10个经典美少女游戏（Nyalla）”、“岩仓文也×Nyalla对话”、“心的尽头，没有翅膀的我们（岩仓文也）”、“后记”。\n\n这次我们邀请岩仓文也来了解诗歌和短歌以外的世界，当然也包括他的诗歌和短歌。\n\n（图片：图3）\n\n他在日记中度过了整个夏天，玩美少女游戏，让我们得以一窥文谷诗歌之外的内心生活，值得一读。\n\n（图片：图4）\n\n我也被吸引去谈论漂亮女孩游戏。美少女游戏的参考文献比互联网还多吗？等等。我应该把杂志命名为“美少女游戏2”。\n\n（图片：图5）\n\n其中还包括两人的对话。\n\n（图片：图6）\n\n（图片：图7）\n\n豪华嘉宾是丰井先生（https://twitter.com/1041uuu）和木泽先生（https://twitter.com/euthanasia_02）！\n\n为了从丰井先生那里拿到手稿，我费了很大的劲。正因如此，这将是丰井首次为同人志做出贡献。\n\n（图片：图8）\n\n强大的介绍页面。\n\n我希望它会在一段时间后在 BOOTH 上出售。页面已准备好。\n\n非常感谢。当天我们在“Ki-42”见面吧。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -83,7 +84,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

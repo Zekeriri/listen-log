@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：堆书</title>
+<title>短文：多读书</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-01 04:05</p>
-  <h1>一口随笔：堆书</h1>
+  <h1>短文：多读书</h1>
   <p class="ja-title">一口エッセイ:本を積む</p>
 </header>
 <main>
@@ -23,10 +23,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね。あなたの本棚を彩る一冊となれたら、それは何より嬉しいことです。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：多读书\n\n搬家的拆箱工作进展顺利，终于到了整理书籍的时间了。首先，我从纸箱里拿出书，里面有几十箱书，并排列起来。\n\n看到书排成一排的感觉真好。如今，电子书越来越流行，和往常一样，我在Kindle上买了很多书，但看着我已经拥有的所有我最喜欢的书，我内心充满了强烈的想要拥有它们的欲望。拥有很多很好。 “有趣的书放在书架上，你需要的时候就可以拿到”这一事实本身就很重要。这种快乐是很难通过电子方式体验到的。\n 而且，当我给买的书套上透明的书皮时，我也感到很高兴。怎么说呢，感觉就像是在以一种干净的状态“存储”信息一样，甚至有一种错觉，它就像我自己的外部存储设备一样存在。就像《攻壳机动队》第一季的最后一集中一样，我感到安心的是，我可以立即回忆起并说出附近书籍中的句子和台词。事实上，在写日记时，我经常发现自己拿出一本书并引用其中的段落。\n 如果“善”意味着积累知识、增加世界的分辨率，那么在房间里积累书籍、扩大大脑的信息量就是一件善行。今天，我将把那些帮助我过上美好生活的书籍一一仔细地收藏起来，放在我引以为豪的书架上。\n\n请欣赏整理日常日记和商业随笔集的同人志。如果能用这本书装饰您的书架，将是我最大的荣幸。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

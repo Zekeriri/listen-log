@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：现在最接近《心跳文学社》的动画《恋爱Flops》</title>
+<title>短文：《Renai Flops》是最接近《心跳文学部》的动漫</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-30 03:38</p>
-  <h1>一口随笔：现在最接近《心跳文学社》的动画《恋爱Flops》</h1>
+  <h1>短文：《Renai Flops》是最接近《心跳文学部》的动漫</h1>
   <p class="ja-title">一口エッセイ:いま『ドキドキ文芸部』に最も近いアニメ『恋愛フロップス』</p>
 </header>
 <main>
@@ -31,10 +31,11 @@ Bパートでは、何もなかったかのような素振りのヒロインが�
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：《Renai Flops》是最接近《心跳文学部》的动漫\n\n“Bocchi the Rock！这一季充满了《电锯男》、《死神》、《福星小子》等热门动画，但在这群人中间，有一部由角川发行的原创动画。\n\n《爱的失败》。简短的剧情是：“无聊的男主角最终和五个美丽的女孩住在一起......！？ （都很喜欢主角）》这是一个走经典路线的原创作品！ ？在令和！ ？然后事情就颠倒过来了。更重要的是，浪漫关系并不是特别强烈或值得一看，而且这个故事基本上只是一部愚蠢的色情浪漫喜剧。但这很好！\n\n在这个时代，我们正在与只有色情和美少女的原创动漫竞争，就像2000年代一样。这是即使会长被捕，角川也想播出的企划。极力还原当时B级轻小说动画的氛围。确实，对于像我这样关注正在播出的动漫的人来说，观看那些愚蠢而传统的深夜动漫感觉就像是在大型、充满活力的动漫之间的一种清爽。然而，令他们印象深刻的是，他们能够从头开始规划并制作一些原创的东西。就“深夜动画应该是什么样子”而言，这可能是我本季最喜欢的作品。\n 动画一共6话，正当我每周都在欢笑、开心的时候，第7话开始了。\n\n第7集 阿文.与未知女主角的有意义的对话突然开始。还有OP剪辑。屏幕噪音到处传来。这让观众感觉到可能会发生什么……在A部分中，这是一部愚蠢的色情动漫，女主角完全赤身裸体，享受着海滩，但突然女主角消失得无影无踪。\n\nB部只有一名女主角出场，装作若无其事的样子。尽管他看起来像往常一样做饭，但经常会插入明显令人不安的切口。男女主角的对话因记忆混乱而变得扑朔迷离。而就在不适感达到顶峰时，世界开始发生变化。简而言之，他们一直在使用类似于“心跳文学部”的噱头，让你认为这是一部典型的美少女动画，但随后揭示了恐怖作品背后的真相。诚然，这只有原创动画才能实现，而且有几集需要以“怀旧B级动画”来掩盖自己。在此之前，极度色情的元素也能有效吸引观众。这已经完成了。\n\n每集的结尾都会展示作为该集主角的女主角的插图，但在第7集中，不仅女主角的外表甚至声音都消失了，这是一个很好的制作。如同深夜动画般活泼的动画歌曲中，当人声突然消失时，亮度变得更加诡异，这是一次宝贵的体验。\n 这是一个很好的情节，让我觉得我因为这样的事情而无法停止观看动画。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +55,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

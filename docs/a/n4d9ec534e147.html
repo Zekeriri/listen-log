@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：梦中的故事之类</title>
+<title>短文：梦中的故事等。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-28 06:45</p>
-  <h1>一口随笔：梦中的故事之类</h1>
+  <h1>短文：梦中的故事等。</h1>
   <p class="ja-title">一口エッセイ:夢の中の話とか</p>
 </header>
 <main>
@@ -21,10 +21,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：梦中的故事等。\n\n当我打开空间时，有人问我一个问题：“尼亚拉，你做过清醒梦吗？”事实上，我根本没有做过清醒梦。 kin-shibari的频率明显增加，当我在kin-shibari时，我有时会意识到“哦，我在kin-shibari=我在梦中。”好吧，这毫无意义，因为我被绑住了，不能动。\n 更何况，我梦想的舞台从学生时代起就基本没变过，我的妈妈和我学生时代的朋友不断出现，我恨自己被困在再也见不到的人的残骸里，每次醒来都感到悲伤。 20岁以后遇到的追随者和商业伙伴很少以学生或老师的形式出现，所以当我醒来时，我感到尴尬并想：“你是学校模仿者吗！？”\n 不管怎样，当我还是个孩子的时候，我因为一大早就约好和朋友一起玩而紧张地上床睡觉，但我无法想象自己醒来，我的“黑暗的自我”出现在我的梦中，并挑战我说，“咕咕……睡觉感觉很好，对吗？你为什么不跳过你的计划，睡个懒觉呢？”，而我的光明的自我说，“那不好！我要和他们一起玩！”在抵抗并进入之后一场战斗，我成功地赢了，而且真的及时醒来，我想这个梦在不知不觉中受到了《游戏王》中的巴库拉的启发。我仍然无法忘记当时对抗黑暗自我的自豪感，每天睡觉时我都在想，作为一个成年人，我是否能够再次对抗他。\n\n请欣赏整理日常日记和商业随笔集的同人志。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -44,7 +45,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

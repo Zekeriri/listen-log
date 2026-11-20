@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口小随笔：各种合格者（值得庆祝）</title>
+<title>短文：各种成功的申请者（开心）</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-02-04 07:38</p>
-  <h1>一口小随笔：各种合格者（值得庆祝）</h1>
+  <h1>短文：各种成功的申请者（开心）</h1>
   <p class="ja-title">一口エッセイ:いろんな合格者たち（めでたい）</p>
 </header>
 <main>
@@ -32,10 +32,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：各种成功的申请者（开心）\n\n我对此一无所知，但显然考试季节进展顺利。\n\n一份令人高兴的报告来了。\n 高中和大学可能会非常困难。如果你遇到困难，可以放弃，但没有什么比尝试一下更好的了。令人惊奇的是，您有勇气离开自己舒适的房间来检验自己的潜力。\n 这是另一个人。其实，如果你想成为一名网络天使，我觉得对于一个初中刚毕业的人来说，对网络产生兴趣，并因为复杂而产生对社会的报复意识，会很有趣，但普通人不会成为网络天使，所以还是努力学习比较好。\n\n相反，这是一个受到网络天使鼓励的人。\n 看来他被艺术大学函授录取了。我有躁狂抑郁症，但交给我吧！相反，他计划专注于治疗并充分享受大学生活。活着真好。我也以每天在Asuken上取得高分为目标，以改善我的抑郁症！让我们一起尽力吧。我立即从大学退学了。\n\n这是来自 Instagram。这孩子能通过似乎要感谢我，而不是因为他太性感了。我什么也没做，但已经很好了。我对考试一无所知，所以我不确定当我说“我想我会通过”时是什么样的情况。\n 每个人都在尽力而为。我认为这真的很神奇，因为我只从高中和大学退学，在那里我可以写下我的名字并卷起铅笔并被录取。继续努力吧！这有点像无聊的校长在入学典礼上的演讲。如果你已经成功进入高中或大学，那么接受许多挑战并失败是个好主意。作为一个成年人，失败是非常痛苦的……我认为，当你还是个孩子的时候，经历很多挫折是最好的。\n\n这个人与此事无关。我的梦想主要是从高中的时候开始的，而我上的是技工高中，里面只有洋基队和书呆子，所以遇到异性的机会极低！有一天，在我的梦里，我想和一位意味深长的美丽女孩约会，她的黑发在月光下摇曳，说道：“尼亚鲁拉酱，我们一起去海边吧。”\n 恭喜大家通过考试。请尽可能多地学习，积累尽可能多的经验，这样你就不会成为那些网络混蛋之一。当你累了的时候，就上网吧。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,7 +56,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

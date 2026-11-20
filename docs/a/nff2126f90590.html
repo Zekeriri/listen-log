@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：岛根与废弃车站，童心的憧憬</title>
+<title>短文：岛根、废弃的车站和童年的愿望</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-03-15 01:06</p>
-  <h1>一口随笔：岛根与废弃车站，童心的憧憬</h1>
+  <h1>短文：岛根、废弃的车站和童年的愿望</h1>
   <p class="ja-title">一口エッセイ:島根と廃駅、童心の憧憬</p>
 </header>
 <main>
@@ -34,10 +34,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：岛根、废弃的车站和童年的愿望\n\n我去了出云大社。\n 我对神道了解不多，所以我的印象是它是一座很大的建筑，但历史建筑本身看起来很有趣。\n 事实上，我正朝着旧大社车站走去。废弃的车站也不错。轨道上长满了青草，无人居住的椅子也悄然消失。这个车站甚至还留着一列火车，仿佛被人遗弃了一样，给人一种无常的感觉。\n\n从出云大社到旧大社站途中的自行车店也不错。一家老式商店，有一棵大树，给人一种日本的感觉。晴朗的天空照耀着阳光，温暖无比。我确信城里的孩子们就是在这里购买他们的第一辆自行车的。在农村地区，每小时只有一班火车，因此这种车辆的存在与否可以极大地改变一个人的世界观。\n 虽然是个好地方，但出云大社本身有点太拥挤了。另一方面，越靠近旧大社车站，人就越少。到达废弃车站站台时，已经没有人了，可以尽情享受废弃车站的安静。您可以在火车上看书，或者坐在站台的椅子上纳凉。目前由于施工没有站房，所以根本没有人。我很高兴您度过了愉快的时光。\n\n农村地区的美妙之处之一就是高纯度的建筑外观，让人想起《你是1000%》的音乐录影带。右上角倒映的大鸟居非常时尚。这里已经是无尽的夏天了。\n\n这个地方也不错。我对计算机新浪潮感到非常高兴。\n\n💈 pic.twitter.com/ZwQxT2ljlv — Nyalra (@nyalra) 2023 年 3 月 14 日\n\n不过，今天给我印象最深的是在出云市的一角偶然发现的一个屋顶等候区很可爱的加油站。我也喜欢墙上的流行色彩。它感觉就像一个玩具，我感觉很接近它。以奢华的方式利用空间的乐趣，只有在乡村才能找到。这可能是我最喜欢的景象。\n 当我还是个孩子的时候，我喜欢巨大的超市和弹珠机店，它们看起来像城堡一样，霓虹灯闪烁。这是在东京这个小城市里不容易看到的东西。换句话说，无论我走多远，我只是继续追求我在冲绳本身的经历。我很高兴能花一生的时间在 Nichiasa 观看令人兴奋的建筑、观看女孩们的特效和动漫。\n 这样也可以吗？成为一个成年人并不是唯一正确的事情。岛根让我意识到了这一点。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,7 +58,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

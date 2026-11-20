@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：与他人的比较等等</title>
+<title>短文：与他人的比较</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-09 04:46</p>
-  <h1>一口随笔：与他人的比较等等</h1>
+  <h1>短文：与他人的比较</h1>
   <p class="ja-title">一口エッセイ:他者との比較とか</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 商業エッセイ集では、僕の生い立ちを垣間見ることができますが、振り返ってみると、貧困な生活に対して結構楽しそうだよなぁ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：与他人的比较\n\n有一条关于自我提升的推文流传，“如果你不再和别人比较，你会立刻感觉好多了。”对此，有人评论说，“如果你不和别人比较，普通人不可能达到和尚临终时达到的境界。”\n 无论是在现实生活中还是在网络上，人们都无法逃避数字。在现实生活中，人们在比较自己的年收入和工作时间时会感到兴奋和失望，而在网上，他们会被每个SNS上的粉丝数量所困扰。虽然“假装看不见”或“努力看不见”是可以的，但只有虔诚的宗教人士才能完全失去兴趣。\n\n那么我们会一直成为数字的奴隶吗？这让我感到悲伤，但当我读到《最穷的女孩》时，随着瓦普阿妇女的不幸故事被一一讲述，有一个开朗的女人，尽管月薪有十万日元，却不断与家乡的朋友玩廉价游戏，故事描述了她在家乡的快乐。\n 因为你看到了太多的事情，你会比较和担心它，所以如果你断开互联网并生活在一个当地的小社区中，你可以通过只与志同道合的人共度时光来消除你的担忧。这个例子给我留下了深刻的印象，但因为我们不满足于狭隘的世界，觉得自己没有归属感，所以我们跳进了互联网，现在我们已经接触到了一个与他人无限联系的广阔世界，我们不能像井底之蛙一样。\n 如果是这样的话，我想我别无选择，只能在这里比赛，提高我的成绩和自尊。我们需要每天变得更坚强，为必将到来的自卑感做好准备。 “如果我们不战斗，我们就无法生存！”也许这就是活着的意义。\n\n包含日常文章的同人志现已在摊位发售！通过阅读一个痴迷于数字的可怜书呆子的日常生活，我可以将其与我自己的生活进行比较。\n\n在这本商言文集里，你可以看到我的成长经历，回想起来，我对自己的贫困生活感到很幸福。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

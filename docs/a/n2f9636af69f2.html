@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：自室作为精神世界</title>
+<title>短文：自己房间的精神世界</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-08-12 07:01</p>
-  <h1>一口随笔：自室作为精神世界</h1>
+  <h1>短文：自己房间的精神世界</h1>
   <p class="ja-title">一口エッセイ:自室という精神世界</p>
 </header>
 <main>
@@ -29,10 +29,11 @@
 毎日のエッセイをまとめた同人誌や商業エッセイをよろしくね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：自己房间的精神世界\n\n当我思考我的人生目标时，我意识到这一切都是为了“为我的房间配备我最喜欢的书籍、雕像和家具，以及我能多么接近我所设想的理想空间。”\n\n我的房间一直都很干净。当我还是个孩子的时候，我和妈妈住在公寓的一个房间里，我们都没有自己的房间，所以我们只住在客厅，但我总是很快地整理和打扫，所以我认为尽管我们很穷，我们的房间还是干净的。一路走来，作为一名小学生，我沉迷于建造高达模型，因此我努力寻找一种方法来整理我母亲的私人物品（化妆箱等），使其看起来与机械MS（例如索萨比和飞翼高达零式特装）格格不入。\n 我根本不介意清洁。事实上，当我的房间乱七八糟时，我会感到恼火，所以我在精神上更容易把它打扫干净。所以，我从小学起就主动打扫房间。即使搬到东京后，我仍冒着生命危险，以便能够以最好的方式展示我的书籍和雕像，而忽略了共享房间和共享房屋的无望的公共区域。\n\n我认为房间本身就是我自己的精神世界，有时我觉得房间比我自己的身体更像一个真实的身体，所以没有什么比看到我喜欢的东西放在房间里凉爽的地方更让人平静的了。我现在的房间很独特，已经好几年没有租客了，但我租用它的条件是我可以把墙壁和其他部分改造成架子。如果能好好利用这个空间就好了，但当我看到这处因人人放弃、没人租而廉价废弃的尖峰房产的那一刻，我本能地知道，如果我能充分利用这个地方，我的灵魂将会得到进一步的提炼。\n\n即使是现在，我仍然喜欢通过逐渐重新布置家具、人物和书籍来进行尝试和错误。有时你必须做减法，即使你最终因为视觉平衡问题而把人物和软乙烯基放在储藏室里，这本身就很有趣。按照自己的喜好重新安排自闭症世界，并在狂喜中感受孤独。对于像我这样患有自闭症的人来说，这可能是最理想的行为。最近进入了比较在意颜色的阶段，所以正在努力调整每件单品的色调。我终于有了一些性感。\n 既然你的房间，也就是你的精神世界变得干净了，吸尘、拖地就等于擦亮了你的灵魂，感觉你心灵里的污垢也被清除了。我对自己的房间如此挑剔可能有三个原因。也许这只是我作为收藏家的自闭本性，我无法闻到，所以我有一种强迫症，如果我不总是干净，就会发出奇怪的气味，或者可能是因为当我还是个孩子的时候，我在《游戏王》中读到Shady如何进入我的心灵空间......？暗游戏的精神世界变成迷宫的制作是虚张声势的，很酷，很容易理解，是一种自我表达。这些东西以复杂的方式交织在一起，在我意识到之前，我的人生目标已经变成了收集和展示雕像、书籍和家具。\n\n如果我失去了对房间的依恋，或者如果我开始允许其他人介入，那么这将证明“尼亚拉”的性格已经改变，无论是好是坏。现在，我坐在自己的房间里就感觉很舒服，但这就是为什么我也感到焦虑，就像我生活在蛋壳上一样。也许有一天你必须打破它，你可能会意识到你不快乐，因为它从未到来。\n\n请欣赏由日常文章组成的同人志和商业文章。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

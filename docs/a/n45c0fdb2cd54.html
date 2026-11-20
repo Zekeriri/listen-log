@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选短篇随笔：因为脑子不好</title>
+<title>咬文精选：因为我脑子不好</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-09-24 23:11</p>
-  <h1>精选短篇随笔：因为脑子不好</h1>
+  <h1>咬文精选：因为我脑子不好</h1>
   <p class="ja-title">選り抜き一口エッセイ：頭の出来が悪いので</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 ※Twitterに連載していたエッセイからの抜粋です。↑で購入できますので、エッセイ集をぜひ読んでみてね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"咬文精选：因为我脑子不好\n\nIn reality, it's better and better to study and understand how society works, and I know that if you don't do that, you won't be able to become an adult.\n I went to a technical high school in Okinawa, where you could get into it just by rolling a pencil, and the only thing I learned at school was carving wood to make pillows.我不记得其他的事情了，我什至不记得现在如何制作那个枕头，所以我无法重现它。\n We were supposed to sell the wooden pillows we made in class to parents at the school festival, but my mother never came to the school festival, so my mother, who I didn't know, bought the wooden pillows I made as a souvenir. I thought he was a very kind person.\n Most of the tests were red points.有一次，一位老师给我讲课时差点哭了。 \"Do you hate school that much?\" I found it troublesome to explain that it was not because of the school, but because I didn't know how to study, so I apologized without any substance, saying, ``I'm sorry.'' What did I apologize for?\n Just like that, we graduated, and we all became adults without studying, so we didn't know what was right and what was left. I only have a little idea of ​​Gundam arcade game combos and pachinko strategies, but I have no idea about taxes, employment, equations, common sense, etc. People on the internet are so smart that I find it kind of scary.\n I admire people who can study.那是一个谎言。 Actually, I don't think it all matters.\n\n*这是 Twitter 上连载的一篇文章的摘录。可以在↑购买，所以一定要阅读散文集。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

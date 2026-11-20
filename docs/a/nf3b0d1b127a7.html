@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔: 魔法少女与巧克力</title>
+<title>短文：魔法少女与巧克力</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-05 04:39</p>
-  <h1>一口随笔: 魔法少女与巧克力</h1>
+  <h1>短文：魔法少女与巧克力</h1>
   <p class="ja-title">一口エッセイ: 魔法少女とチョコレゐト</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 匿名の攻撃に負けずに、毎日の日記や商業エッセイ集を頑張っています。みんな読んでね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：魔法少女与巧克力\n\n我认为匹诺曹豌豆的《魔法少女与巧克力》太精彩了，值得被列入活跃在SNS上的人的教科书里。\n 这首歌是一首悲伤的歌曲，其中一个目前作为魔法少女活跃的女孩厌倦了匿名的匿名评论，并透露了自己的真实感受，她说：“老实说，我想放弃当魔法少女。”匿名的不负责任......我永远不会容忍。\n\n「『其实是 〇〇 吧？』『说实话，是 〇〇 吧？』因为你这么想，所以你希望所有人都是 〇〇 吧？」\n\n我特别喜欢引用部分的歌词。这确实是每个人都说的。比如，“这真的是一门生意，不是吗？”和“说实话，都是为了钱/受欢迎，不是吗？”魔法少女的精神如此强大，当她回答说“这就是我想要的，对吧？”时，感觉很好。\n 其实，人类并没有那么简单，每一个动作都有很多复杂的含义。当然，进行创造性活动的一些原因包括想要钱和想要被钦佩。但我绝不会仅仅为了赌博而上网或发布我的作品。这样做还有一个可以拯救你灵魂的原因，如果你无法想象这一点，那么看起来你只是在给活动人士找理由，因为你希望他们成为坏人。这些感受用通俗易懂又可爱的音乐的形式概括出来，给我100分！\n\n我正在努力写日记和商业论文集，不屈服于匿名攻击。请大家阅读一下。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

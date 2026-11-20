@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>幾原邦彦的挂图</title>
+<title>几原邦彦海报</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-04-14 04:09</p>
-  <h1>幾原邦彦的挂图</h1>
+  <h1>几原邦彦海报</h1>
   <p class="ja-title">幾原邦彦のピンナップ</p>
 </header>
 <main>
@@ -35,10 +35,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"几原邦彦海报\n\n我在国立国会图书馆打印了当时动画杂志上刊登的与乌蒂娜有关的所有页面。到处还有石竹和转A。\n 每次读到《革命少女乌蒂娜》这部杰作，就是在这样的背景和制作环境下诞生的，我都会深深感动。毕竟几原导演独特的世界观很精彩。值得一读。当然，每次深入采访，我都会意识到这是一部由几原导演诞生的动画。导演脑子里总有一座玫瑰园，他让每个工作人员把它拍成电影。这种奢侈和责任的沉重，一定是动漫导演的业力负担。\n\n也许最有趣的文件是“导演日记”。正如标题所示，这是几原导演的日记系列，但有趣的是，每集都有一整页几原的海报。动漫杂志以“动漫导演”的海报为特色，而不是二维角色。这具有只有几原导演的审美水平才能达到的实力。\n 而且此时的几原邦彦实际上还不是导演。由于这是《美少女战士》结束后、《Utena》宣布之前的准备期，所以这实际上是一部关于即将执导某种动画的人的系列。甚至在他的原创作品播出之前，成为今天所有热爱动漫的人都知道的著名导演之前，他就已经这样做了，这使他成为一个伟大的人。\n 当然，内容也很有趣。她不确定自己的原创作品《乌蒂娜》是否会受到好评，但她正带着青春和活力向前冲。作为继乌蒂纳之后的“热门动画导演”，他说过无数的话，所以这篇实际上更有价值，更值得一读。接近原创作品时的期待、焦虑和满溢的自信。还有我年轻时恋爱失败的故事。他们都有自己独特的品味。\n 他无疑是当时最独特、最时尚的动漫导演之一。这就是为什么它是他自己的海报。从不带偏见的角度来看，她似乎是一个“有点自恋的奇怪的人”，但这种感性却是她创造了《乌蒂娜》这一杰作的最终证明。事实上，除非有人有这样的才华，否则负责三季原创动画就太疯狂了。这是一篇关于几原邦彦的文章，一位崭露头角的年轻导演，但他并不是后平德拉时代成熟的几原邦彦。这是非常美妙的。值得庆幸的是，庵野秀明主编的《逆夏同人志》中，只有一个人谈到了富野导演描绘的角色的少女感。脑子里有一个一致的世界的人很酷。\n\n↑有关反向字符书的信息，请参阅此处。\n\n顺便说一句，庵野导演是几原导演的朋友，在拍完《伊娃》后，在拍摄真人电影《Love & Pop》时，在主演们的簇拥下登上了《Animage》的封面。\n 这是一个非常激进的设计，但根据动画和吉卜力展览，这期的封面反响非常不好，让人愤怒。说实话，我觉得这个封面很危险。作为一部雄心勃勃的作品，这部作品本身有很多东西可以提供。尽管主题是关于女孩和补偿约会，但我喜欢他们在火车上的方式。\n\n爱情与流行 pic.twitter.com/vQtCwB8rR9 — Nyalra (@nyalra) 2022 年 6 月 25 日\n\n从某种意义上说，他们对待这两个角色的不同是一件好事，因为他们似乎是两个在不同方向工作的天才。多么一个时代啊。\n 这是一个关于动画导演的故事。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -58,7 +59,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

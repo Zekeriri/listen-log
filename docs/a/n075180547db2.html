@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔: PS版lain临摹</title>
+<title>速写：PS版lain copy</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-22 05:18</p>
-  <h1>一口随笔: PS版lain临摹</h1>
+  <h1>速写：PS版lain copy</h1>
   <p class="ja-title">一口エッセイ:PS版lain写経</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集買ってね。僕がここにいた証、受け取ってください。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"速写：PS版lain copy\n\n我抄了佛经。\n 抄经就是抄写佛经的行为，可惜我不是佛教徒，所以我抄的是PS版lain的全文，而不是《心经》。我总共花了大约20个小时，一次一点点地走。就训练而言，它仍然有点慢，但是通过这样做你可以学到很多东西。\n\n首先，既然我每天都有这样的日记，我就喜欢别人的日记和散文，所以追踪雷昂情绪的起伏很有趣。\n\n大家可能知道，PS版《lain》的封面在安倍芳俊自选画展上的标题是《我会在这里》。这就是为什么我的夹克上手指上有血，当我打开CD盒时，光盘表面有指纹。也就是说，雷因在这里的痕迹就是夹克和光盘表面的血迹和指纹。现实就在我的指尖。当然，游戏中的每一条文字都是她活过的证据。当我继续抄经时，我明白了这一点。\n 抄经是抄写经文并将佛经教义传播给他人的行为。通过这种方式传达造物主的意图，我的训练就完成了。有一天，当有人继承我的遗志时，我会把我复制这部经的Excel文件交给他们。作为我来过这里的证据。\n\n购买同人志和编辑每日日记的商业论文集。请接受我来过这里的证据。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

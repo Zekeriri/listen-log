@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔: 醉酒与动画MAD</title>
+<title>一篇短文：醉酒和动漫《MAD》</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-17 06:06</p>
-  <h1>一口随笔: 醉酒与动画MAD</h1>
+  <h1>一篇短文：醉酒和动漫《MAD》</h1>
   <p class="ja-title">一口エッセイ:酩酊とアニメMAD</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
  僕もいずれは、プリパラの好きなライブシーンとか繋ぎ合わせて編集し、自分がトリップして映像と音楽に酔うだけの最上の動画を用意しておきたい。全ては自分がまず納得して楽しむためであり、そしてその作品を最大限に愛するために。こうやってラリって文章書くような夜明けに、何もわからなくなって再生した時に指針となるような。自分の芯として最も尊ぶべき行為なのだ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇短文：醉酒和动漫《MAD》\n\n我吃了安眠药，在醉意的头脑中，一段时间以来我第一次直接从大脑中写出一些东西。\n 有时你的这种感觉很奇怪。我以这种方式牺牲生命的感觉是真实的，尽管我写得很清醒，条理清晰，但我感觉一切都是假的。我不知道，如果我回到清醒状态，我会像个白痴一样沉浸在这短暂的快乐中，甚至自己也分不清哪个是哪个。最终，我别无选择，只能接受清醒和醉酒作为真实的自己，并与之共存。\n 现在，当我是唯一一个在醉酒的孤独夜晚玩得开心的人时，我不可避免地要通过反复试验来让房间里发出一些声音，就我而言，我首先摆弄房间里的特效玩具，然后想，“哦，Evo！”“Ludriver是一个很棒的玩具。你一眼就能看出它是一个恶棍，只要转动它，它就会发出一种神秘的光芒，非常适合最终的老板，”他想，最后播放了他最喜欢的动漫和特效的视频。\n 对我来说，无论多么喜欢《Turn A高达》，我都喜欢它，每当我感到孤独时，我就会立即播放“Moon Cocoon”并想着戴安娜而哭泣，但他们不可能像押井守在《热气腾腾》和《攻壳机动队》中那样在动画中播放整首歌曲而只关注背景音乐。就算想看那样的东西，也只能看素人动画MAD了。不过，这部动漫MAD的文化确实很精彩。好吧，无非就是侵犯版权，所以权利人随时发怒也就不足为奇了。\n 我理解制作MAD的感觉。编辑你最喜欢的动漫，将其设置为一首你特别喜欢的歌曲，混入任何给你留下印象的场景，并尽力最大程度地传达该动漫或特效作品的魅力，或者编辑你认为美丽的内容。这项工作不可能不有趣。我也默默地满足了自己，选择并编辑了《Turn A高达》中我最喜欢的场景（为此我购买了Blu-ray BOX），并制作了将它们与“月茧”结合起来的视频。\n 这个动作感觉就像一幅宗教画。不管怎样，我想制作一个视频，让我们可以欣赏戴安娜的美丽。为此，我以逐帧运动的方式捕捉我最喜欢的场景，并根据我的喜好将它们拼接在一起。虽然不上传到视频网站，但动漫MAD的创作者们却这么做了，这也是他们对作品“信仰”的表现。由于它无法商业化，因此业余爱好者对其进行解读并创建 AMV。这是一种非常崇高的行为，就像从圣经中提取音乐和图片来发展文化一样。我年轻的情感在这里妨碍了我，我添加了不必要的视觉效果和标题。当然，我更喜欢接近原著、没有任何无关材料的书，所以我认为如果不包括“编辑的意图”会更好。\n 除非你喜欢这个编辑。就像庵野导演编辑的《加美拉》一样，它的偏见如此之大，以至于评论似乎褒贬不一。我喜欢“编者的用心”达到艺术的高度，可以从不同的角度去欣赏。\n 好吧，我做的事情不是为了钱，而是一个自我满足的世界。我认为上传视频并说“我要把这个场景与这部动画中的这首歌联系起来！”的行为很棒。\n 有一天，我想组合和编辑我最喜欢的 PriPara 现场场景，制作出最好的视频，让我陶醉在图像和音乐中。我所做的一切都是为了让自己理解并享受工作，进而全身心地热爱工作。在这样写的初期，当我什么都不懂并重温它时，它就成为了指南。这是一个最应该受到尊重的行为的核心。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

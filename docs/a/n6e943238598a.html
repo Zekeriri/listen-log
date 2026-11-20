@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：成长还是随遇而安</title>
+<title>短文：成长还是阳光？</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-03-19 01:10</p>
-  <h1>一口随笔：成长还是随遇而安</h1>
+  <h1>短文：成长还是阳光？</h1>
   <p class="ja-title">一口エッセイ:成長か日和りか</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：成长还是阳光？\n\n最近，我变得非常不愿意看到八卦和网络新闻，人们对批评或揭露某些事情感到兴奋，以至于我完全拒绝了我不认识的人对引起争议的事情的看法。不要让你的思想习惯这种环境。\n 然而，我感到很反感，因为这看起来像是一个无聊的成年人的举动。 “一个不能接受不谦虚或不当行为的优等生。”也可以看出你处于守势。他们对那些令人讨厌的事情保持沉默，因为他们有地位和关系需要保护。首先，它是一个网，一个充满酸甜之物的黑暗火锅，它还应该具有让你以轻松的方式缓解压力的功能。一个只做正确事情的地方不可能诞生任何新事物。\n 可以说他“长大了”，也可以说他“融化了”，也可以说他只是天气变好了。对于有权势的人来说，保持冷静，不要无谓的争斗，肯定是更好的选择。这就是为什么成年人开始用关于严肃和美丽的谎言来掩饰自己。因为从表面上看，“我没有错”才是最重要的。这是我小时候最讨厌的事情，但也许人就是这样。好吧，我不喜欢在我三十多岁的时候，我的人生目标就是攻击别人。这绝对比那更好。\n 我开始担心发生了什么，并开始越来越多地思考善良。变得防御性、不再看肮脏的东西真的“好吗”？话虽如此，我确实对那些习惯于网上私刑的人感到恼火，而当我年轻时，我只明白“这就是互联网的样子。”每个人只是出于条件反射而大笑和取乐，在行动或说话之前没有思考任何事情。有一种“一时的势头”，年轻人到处警告同龄人“不要恶作剧！”是不自然的，如果我们能做的就是为自己的话负责，有尊严地说话，那将是社会的末日。我正为这个矛盾而烦恼。\n 但我是真心实意的。看到简单的诽谤和嘲笑就让人心痛。对自己的感受撒谎也不好。于是，我决定珍惜这段感情。我想我现在会继续这样做，直到我改变我的思维方式。\n 再说了，我还是懂得孤独的。这也是我开始一个人旅行的原因。事实上，随着年龄的增长，我发现自己在房间里感到更加孤独。孩子们可以看到对方的孤独，所以即使对方是成年人，他们也会向你敞开心扉。所以我喜欢深夜独自在房间里写作的日子。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

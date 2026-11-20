@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：明信片战士</title>
+<title>一点文章：明信片战士</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-06 03:14</p>
-  <h1>一口随笔：明信片战士</h1>
+  <h1>一点文章：明信片战士</h1>
   <p class="ja-title">一口エッセイ:ハガキ戦士</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 商業エッセイ集もよろしくね。所詮、あるあるbot不採用な人間の書く文章ですが……。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一点文章：明信片战士\n\n《明信片战士》真的很酷。他是一个非常有才华的人，因为他能够用他简短、超现实和前卫的感觉来激发读者和听众的兴趣。从某种意义上说，发推文也就像一场发帖竞赛。分享我们都听不懂但又能让我们发笑的短句是很有趣的。我觉得这是一个比较好的利用SNS的方式。\n 在《Momotetsu》的开发过程中，佐久间晃通过与“Jump广播电台”的关系，把一位优秀的明信片战士叫到自己的办公室，让他和一个知道如何吸引“Jump读者”大众的孩子一起试玩，似乎如果他玩得开心，那就是成功，如果他遇到麻烦，那就是失败，所以他试图通过反复试验来平衡游戏。您将明信片战士解读为“一般乐趣”的代表。当然，多亏了这样的判断，《桃越》才能成为即使在令和时代也大受欢迎的超长内容。然而，将读者投稿区留给出治子的《周刊少年》冠军，再次陷入危险。\n\n虽然现在已经有几万粉丝了，但我还是决定挑战成为一名明信片战士，不依靠人数的力量，所以我给“Aru Aru Bot”发了一条DM。他满怀信心地发了一篇模仿“[我偶然走进的居酒屋]“天气很冷……！””的论文，但被拒绝了。从那时起，我一次又一次地尝试，如果不被录用，我就退休！ （他根本就没有出道），“[推特上的一些妈妈]倾向于用年级来称呼孩子，‘二年级’”这个话题也被淘汰了。当我像这样重新阅读它时，它一点也不有趣。那些日子，我只是因为没有寄明信片的意识而感到沮丧。\n\n即使我没有被某个机器人录取，我每天都会努力写论文，所以我希望你会喜欢我整理的同人志。\n\n我期待着阅读您的商业论文集。毕竟，这是某个不被接受为机器人的人写的文字……"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口随笔：电波男与超人计划</title>
+<title>论文选：《无线电人和超人计划》</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-14 16:45</p>
-  <h1>精选一口随笔：电波男与超人计划</h1>
+  <h1>论文选：《无线电人和超人计划》</h1>
   <p class="ja-title">選り抜き一口エッセイ:電波男と超人計画</p>
 </header>
 <main>
@@ -22,10 +22,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくお願いします♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"论文选：《无线电人和超人计划》\n\n小时候，御宅族的概念随着电视剧《电煞男》的改编而迅速传播到世界各地。当时御宅族还不被理解，经常受到批评，但在这种情况下，本田彻的书《电波男》出版了，敢于将御宅族主义推到风口浪尖。我很喜欢《电波男》和《欢迎来到NHK！》的泷本先生写的怪人文集《超人计画》。尤其是《超人计画》的封面，“美少女角色的象征绫波从肮脏的御宅族房间的壁橱里探出头来”，让我感到麻木。我认为这件作品有一个非常美丽的概念。\n\n当发现他们是御宅族的时候，在一个被社会排斥的环境中，两位老师无畏的态度给我留下了深刻的印象，他们大声宣称：“我是一个如此粗俗且不受欢迎的御宅族！”这就是为什么当他比任何人都更喜欢二维角色的强硬发言时，我感到真正的爱。\n 时代已经过去，在现代，御宅族不再是一种负担。御宅族文化和主流文化通过社交网站和深夜动漫融合在一起，不再有人嘲笑那些渴望成为无线电波或超人的年轻御宅族。因此，我担心现在阅读这两本书时可能很难传达出它们的乐趣。因此，请阅读本文的人记住这一点。御宅族们敬佩的酷炫御宅族前辈的存在。\n\n感谢大家对日记总结和商文集同人志的支持♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：承太郎的幸福</title>
+<title>一篇文章：承太郎的幸福</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-05 01:22</p>
-  <h1>一口随笔：承太郎的幸福</h1>
+  <h1>一篇文章：承太郎的幸福</h1>
   <p class="ja-title">一口エッセイ:承太郎の幸せ</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 商業エッセイ集もよろしくお願いします。父親の話はないけど、義父への複雑な思いがたくさん載っていてキショい。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇文章：承太郎的幸福\n\n我喜欢每周观看《Jojo Part 6》动画。蔡依林很可爱。现在，当我第一次阅读《游戏王》的《Jump》时，《Jojo》已经到了第六部分的结尾，这是一部危险的漫画，发生了一些非常可怕的事情。当然，作为一个孩子，我除了“棒极了”之外无法理解任何东西，但我经历了压倒性的最后一集，甚至哭了，因为我不明白为什么。\n 对于从第六部加入JoJo的我来说，我认为承太郎是“主角的父亲”和“一个话不多、气氛很糟糕的人”。我合法地阅读了Jojo，并惊讶地发现他是一个非常受欢迎的主角，支持了第三部的转折点。\n 如果是这样的话，我对第三部的第一印象将是“我很高兴承太郎看起来很开心！”承太郎不再是第4部中那个“冷静的成年人”，而是变得更加自私、爱笑、爱玩，符合他的年龄。我的同伴是一个性格最差的老人，一个是泼妇的同学，一个过于开朗的法国人，一个丑陋的男人，还有一条狗，所以我完全不用担心。这是一段艰难的旅程，有很多失去，但他在青春期与最好的朋友一起度过的时光绝对是一笔财富，也可能是他一生中最快乐的时光。\n 在第六部中，承太郎是一位人类父母，他和孩子们之间的关系很糟糕，他们终于能够通过故事和解，所以当你想到承太郎在那之前是多么笨拙时，你会为他感到难过。这也是沉默者自己的错。我以为他们想像第三部分那样一起笑，但现在我长大了，看动画了，我改变了主意，我认为也许他们只是看着一个年轻的家庭长大就真的很高兴，我自己也对此感到惊讶。但请多和我女儿说话！\n\n摊位上出售编写每日文章的同人志。一本危险的日记来了！\n\n我期待着阅读您的商业论文集。虽然没有关于父亲的故事，但对继父却有很多复杂的感情，很搞笑。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

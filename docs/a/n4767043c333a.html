@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：无法完成作品的高中生的烦恼</title>
+<title>短文：高中生无法完成作业的烦恼</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-02 07:18</p>
-  <h1>一口随笔：无法完成作品的高中生的烦恼</h1>
+  <h1>短文：高中生无法完成作业的烦恼</h1>
   <p class="ja-title">一口エッセイ:作品を完成させられない高校生の悩み</p>
 </header>
 <main>
@@ -28,10 +28,11 @@
 若き日の長文エッセイをまとめた商業エッセイ集もよろしくね。こうしてエッセイを書いておかないと、誰にも見つけてもらえなかったから……。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：高中生无法完成作业的烦恼\n\n我已经有一段时间没有阅读你的问题了。说到回答问题，就是无敌系统，即使你在上面说话，也不会让你抱怨，感觉很好……\n 为了简化这个问题，他说：“我是一名高中生，想成为一名漫画家，也有一些我想画的东西，但我觉得无论如何都是不可能的，而且我无法动笔。我怎样才能把自己的作品画到底呢？”\n 我明白了……。在这一点上，他比我优越得多，所以我不能说什么。当我还是一名高中生时，我从未有过为未来的梦想采取行动或受苦的经历，哪怕是片刻。首先，根本就没有梦想。就像法伊兹一样。我开始写作是因为我独自搬到东京，没有朋友或熟人，我觉得如果我继续这样，我会孤独地死去，所以我开了一个博客。我还没有达到我的梦想或我想写的水平，我只能说：“看看我！”\n 很高兴你从这么大的年纪就开始担心这个问题。即使他无法完成漫画，他也可能正在练习绘画。尽管他目前还没有做出任何成果，但他在某种程度上比那些专横的家伙要好。而且，还有一些我想画的东西。你真令人钦佩！然而，“完成一件作品”是一项极其困难的任务。我在《Nidiga》上默默地工作了大约两年，但每天都充满焦虑，想知道“我真的能完成这个吗？即使我完成了，这会是一个有趣的游戏吗？”如果你这样想的话，一件大型作品一旦完成就非常有价值。大多数项目最终都会在半空中被分解，或者如果我是唯一一个参与这些项目的人，我就会把它们扔掉并结束它们。\n 因此，“完成”的体验就显得极其重要。即使世人不欣赏它，它也会作为经验值累积起来。大多数人甚至无法体验到成品不受欢迎的“挫败感”。事实上，他们过着正常的生活，做白日梦，“如果我完成了它，我的生活就会不同。”也许这让我高兴。生活并不总是必须要取得某些成就。\n 即使“不可能”，经验点的质量也会根据挫折的不同而不同，所以值得尝试。它也可以是一个关于你的失败的故事，你可以告诉别人。每个人都有兴趣听到这样的故事，“我完成了它，但没有成功。”只要申请，你就会受到尊重。那一刻会有一些满足感。\n 话虽如此，我有相当多的规划经验，所以我想在写提案时我已经知道什么是好的、什么是坏的。无论发生什么情况，如果项目在撰写提案时尚未完成，则很可能不会成形。另一方面，如果我能说服自己这个提议真的很有趣，我就会很兴奋并开始自己移动我的手臂。\n 既然提出问题的人已经找到了他想要画的东西，那么从用字母来安排故事的结构开始，如果可能的话，甚至剪掉名字，并将其作为一个项目来建立，怎么样？如果你能够获得信心并思考“这非常有趣，对吧？”那么你也许能够继续你的写作。没关系，因为将你认为好的进展排列起来并将各个点连接起来很有趣。如果我似乎做不到......好吧，我会微笑并假装有一天我可以做到！\n\n包含日常日记的同人志现已在摊位上出售。每天能继续下去真是太好了！我想快点戒掉。\n\n另请查看我的商业论文集，其中汇集了我年轻时的长文。如果我不写这样的文章，没人会发现它......"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选短篇随笔：与平行世界的交流</title>
+<title>短文精选：与平行世界的沟通</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-09-27 19:50</p>
-  <h1>精选短篇随笔：与平行世界的交流</h1>
+  <h1>短文精选：与平行世界的沟通</h1>
   <p class="ja-title">選り抜き一口エッセイ：パラレルワールドとの交信</p>
 </header>
 <main>
@@ -22,10 +22,11 @@
 ※Twitterに連載していたエッセイからの抜粋です。↑で購入できますので、エッセイ集をぜひ読んでみてね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文精选：与平行世界的沟通\n\n根据《慕月刊》的自助栏目，为了有明确的目标，最好“向平行世界的自己寻求建议”。我想一开始我可能很难与平行世界的自己沟通。我是这么想的，但是Mu说“这非常容易做到”，所以我有了信心。\n 我立即将左手放在耳边，尝试向未来的自己发送无线电波。拨号音响起后，几秒钟后，未来的我回应道：“喂？”当我问他未来的自己是什么样的时候，他似乎已经40岁了，继续孤独地打工，不与其他人交往。当我继续问他是否有什么建议时，他大喊：“你真烦人！无论如何都不要相信别人，”然后挂断了我的电话。\n 让我们再次跳转到另一个未来的自己。我遇到的第二个人，就是像我一样失去了精神，在一家小公司做普通员工的人。当我向他请教时，他面无表情地回答：“死了肯定比工作好。我连死的心都没有了……”\n 当我这样做的时候，我收到了来自过去的自己的无线电波。我作为接收器的左臂逐渐颤抖。现在轮到我给自己一些建议了。我告诉他们，“停止使用互联网。”另外，不要再相信别人了。你应该停止工作。”如果他接受了这个事实，他会有什么样的未来呢？\n\n*这是 Twitter 上连载的一篇文章的摘录。可以在↑购买，所以一定要阅读散文集。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

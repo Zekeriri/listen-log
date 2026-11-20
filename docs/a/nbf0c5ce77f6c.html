@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口散文：北野武、电视与不伤害他人的笑声</title>
+<title>一篇短文：武、电视和不伤害任何人的笑声</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-20 07:43</p>
-  <h1>一口散文：北野武、电视与不伤害他人的笑声</h1>
+  <h1>一篇短文：武、电视和不伤害任何人的笑声</h1>
   <p class="ja-title">一口エッセイ:たけしとテレビと誰も傷つけない笑い</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 今月末には、商業エッセイ集も発売します。読み返してみると、他者というより自分で自分を傷つけている内容だらけですね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇短文：武、电视和不伤害任何人的笑声\n\n《M-1大奖赛》播出，大家都在谈论喜剧。我对喜剧演员一无所知。我唯一知道的就是“Beat Takeshi”。有一段时间，我迷上了武志的电影。我算了一下北野武导演的电影有14部。如果你这样想的话，我很喜欢它。\n\n我跟着读了武志的一些文章。虽然他也是一名喜剧演员，但他有着优秀的艺术背景和审美意识，最重要的是，他有勇气。在《喜剧演员与影子》中，他坦白了反社会势力与娱乐业的关系，在《杀死武志武的原因》中，他也谈到了自己对电影的看法以及对自己作品的思考。他利用广泛的活动和知识，从敏锐的角度和经验来审视一切。\n 其中《电视上不能说》非常有趣。正如标题所示，这是一场充满侮辱和黄色笑话的风暴，在当今先进的法规下，这是绝对不可能说出来的。同样令人惊奇的是，它们如何被升华为笑料，以免引起厌恶。如果你嘲笑不恰当的材料，你就输了。即使这些内容在道德上是错误的，但一旦别人笑了，它就会变成一个笑话。在互联网上，人们日夜继续在不道德和恶作剧之间徘徊。\n 武志对“善良的小伪善者”在电视上使用的素材越来越多感到愤怒，并表示笑的本质并不“好”。当我播放年轻时的新闻发布会视频时，有人评论说：“武志不向别人喷毒真是太神奇了！”，而另一些人则笑着说：“你总是取笑老女人，你太美化她们了”哈哈。”事实上，我在我的论文中仍然这样做。发表这种误导性评论的人在Takeshi眼中也可能表现为“伪君子”。\n\n包含日常文章的同人志现在正在展位上出售。我想写多少就写多少，所以可能会有一些伤害我感情的句子。\n\n商业论文集也将于本月底出版。当我重读它时，我发现它充满了人们伤害自己而不是他人的内容！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

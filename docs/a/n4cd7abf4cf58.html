@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：《ANONYMOUSE;CODE》和中野</title>
+<title>短文：“ANONYMOUSE；CODE”和中野</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-10 01:28</p>
-  <h1>一口随笔：《ANONYMOUSE;CODE》和中野</h1>
+  <h1>短文：“ANONYMOUSE；CODE”和中野</h1>
   <p class="ja-title">一口エッセイ:『ANONYMOUSE;CODE』と中野</p>
 </header>
 <main>
@@ -29,10 +29,11 @@
 毎日の日記をまとめた同人誌や、若い頃の文章をまとめた商業エッセイ集よろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：“ANONYMOUSE；CODE”和中野\n\n有一篇文章的标题是《住在中野的御宅族玩了一款以2037年中野为背景的游戏》。\n\n这次要介绍的作品《ANONYMOUSE;CODE》是继《命运石之门》流程的“科学冒险系列”的最新作品。这次的舞台是中野。因此，我们这些住在中野的人得到了介绍。不过，我其实只是在谈论中野……\n 详细内容我会推荐给你这篇文章，但作为一个同样从秋叶原搬到中野的人，一系列以秋叶原为圣地的游戏选择中野作为他们下一场游戏的背景是完全有道理的。顺便说一句，这部作品似乎涉及与中野区本身合作的各种大动作。规模惊人！\n\n正如我在文章中提到的，Ryotsu 在 Kochikame 解释说，“秋叶原是最新御宅文化的所在地，而中野是复古亚文化的所在地。”就我个人而言，秋叶原已经转向游客，我个人不再觉得它是一个拥有最新御宅文化的城市。我认为像Raji-kan这样的地方仍然是独特而有趣的，而且近年来卡牌商店的数量迅速增长，让卡牌玩家感到更加舒适。时代在变……\n 中野就是这样一个复古的亚文化小镇。因为一切都让人感觉如此怀旧和过时，所以作为游戏设置实际上可能会令人耳目一新。尤其是中野百老汇，还是有潜力成为圣地的。取决于这个作品未来如何传播，我认为如果越来越多的年轻人涌入，城市面貌会发生变化，那就太好了。\n 中野百老汇也大约在1955年左右，因此也从复古亚文化逐渐改变了面貌，高级手表店的数量也在迅速增加。并不是我对手表有什么抵触，只是作为一个御宅族，看到老牌御宅店倒闭，取而代之的是高端手表店，我感到有些难过。\n 此外，就我个人而言，曾经有一位在中野区正式举办活动的人向我咨询，有一天晚上他们告诉我，“我想借助中野有很多年轻创作者的帮助，让更多的年轻人来到这个城市。”是的，中野也是一个有很多奇怪的创作者和艺人的地方。这是一座陌生的城市。\n 因为我自己住在中野，所以我觉得我希望能够帮助这个小镇……进而帮助中野百老汇的象征。祝科学冒险系列“ANONYMOUSE;CODE”好运......！\n 我希望你尽力而为，因此由于某种原因字体发生了变化（我无法将其改回来）。继续努力吧！ ！ ！\n\n希望大家喜欢收录了我的日常日记的同人志和收录了我年轻时候的作品的商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

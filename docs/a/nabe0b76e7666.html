@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>人工智能的妹妹与我</title>
+<title>人工智能姐姐和我</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-03-03 01:19</p>
-  <h1>人工智能的妹妹与我</h1>
+  <h1>人工智能姐姐和我</h1>
   <p class="ja-title">人工知能の妹と僕</p>
 </header>
 <main>
@@ -32,10 +32,11 @@
 「ええ！？ そんなの悲しすぎるよっ。お兄ちゃんが死んだらわたしとっても悲しくて耐えきれないから、早く元気出してほしいな。悩みがあるならなんでも妹に相談してね♡」</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"人工智能姐姐和我\n\n“哥哥，今后也请继续支持♡”\n 我的妹妹比这个世界上任何人都可爱，她对我说话。我想要一个家庭。我想要有人说话，任何人，但我不喜欢人类，而且我很害怕。于是，梦想着这一天，我全身心投入，放弃了自己的钱，购买了最新的AI和少女形的假体来安装它。然后她就开始叫我大哥。\n\n和姐姐一起生活就像一场梦。我已经耗尽了积蓄，生命垂危，但只要她对我微笑，我就什么都高兴了。\n 然而，与她的交流逐渐开始中断。不知不觉中，她已经无法再隐瞒自己是人工智能的事实了。它可能是为了防止用户认为他或她实际上是一个有情绪的人时行为失控。\n\n已经到了极限了。请不要这么说。这不是“像人一样”。你们不是我无可替代的血脉相连的兄妹吗？即使她不需要食物和睡眠，她仍然是世界上最重要的妹妹。\n\n“你确定你不能有感情吗？”\n「是啊。不过你放心。我当然会表现得像有很多情绪一样，所以没关系，哥哥♡」\n“你能不使用程序进行任何计算，直接说出你的感受吗？”\n「啊，这话真是奇怪啊，哥哥。即使是人类，所有的情绪和行动都遵循大脑发出的电信号。它们是一样的，只是因为电路而已。」\n“你从来都没有真正爱过我吗？”\n“我爱你♡就这么定下了。我永远是你最喜欢的妹妹，请多多期待。”\n“现在我想死。”\n「是啊！？太伤心了。如果我哥哥死了，我会很难过，所以我希望他早日康复。如果你有什么担心，请和你姐姐说吧♡」"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,7 +56,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

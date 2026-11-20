@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口短文：藤子不二雄A老师</title>
+<title>短文：藤子不二雄先生A</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-08 02:43</p>
-  <h1>一口短文：藤子不二雄A老师</h1>
+  <h1>短文：藤子不二雄先生A</h1>
   <p class="ja-title">一口エッセイ:藤子不二雄A先生</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 商業エッセイ集もよろしくお願いします。こっちは、ブラックだらけや。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：藤子不二雄先生A\n\n藤子不二雄 A 教授去世。 88岁。 A先生的很多作品都给我留下了深刻的印象，他多次帮助我在不知所措的时候增强了自信。我喜欢《漫画道》和《忍者服部君》等光明的作品，但阿老师无情地描绘黑暗的方式令人惊叹。\n 特别是我觉得《笑卖家》是一部很棒的作品。我想说这完全是低俗的，甚至是明目张胆的……正如我之前所写的，茂黑福藏经常被误解为一个“惩罚违反规则的愚蠢之人”的角色，但实际上，他更简单的是一个“邪恶”。他强行提取和平温和的人的欲望，甚至模仿那些不能轻易放弃而陷入陷阱的人也没有问题。最重要的是，当对方违背承诺的那一刻，“轰！”这种无奈也好啊！\n 令人惊讶的是，人们对美和道德等事物的关注如此之少。如果把本黑福藏和又太郎这样描绘成“好”的话，结果就会完全不同。他们的行为更多是出于好奇或个人恩怨，而不是惩罚坏人（尽管有时）。有很多关于肮脏的人与肮脏的人一起玩耍的故事。这与 Terra 完全相反。这是F老师所没有的大胆，他的故事总是有美丽的妙语（即使是黑色的）。我真的很喜欢那个。人类还没有完美到仅仅做正确的事就能感到焕然一新。\n 尽管它是黑色的，但它却被允许如此有趣，这一事实可能拯救了像马塔罗这样的扭曲小子的心，包括我。我想我会尝试更多地出于个人恩怨行事。我应该不管它吗？\n\n我们正在出售编辑日常文章的同人志。我希望你喜欢偶尔的黑暗情节。\n\n我期待着阅读您的商业论文集。这个全是黑色的。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

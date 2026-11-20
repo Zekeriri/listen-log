@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：在日记中感受他人的思考</title>
+<title>一篇快速文章：在日记中了解别人的想法</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-26 06:28</p>
-  <h1>一口随笔：在日记中感受他人的思考</h1>
+  <h1>一篇快速文章：在日记中了解别人的想法</h1>
   <p class="ja-title">一口エッセイ:日記で他者の思考を浴びる</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 毎日の日記をまとめた同人誌（新刊出たばかりだよ）や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇快速文章：在日记中了解别人的想法\n\n我的日记已经进入第三个年头了。我已经不间断地发表了700多篇文章。编撰我的日记的同人志现在已经出到第五卷了。如果您喜欢的话，请前往 BOOTH 尝试一下。\n 不管怎样，Yu Shinada……在 Twitter 上，我收到了达芬奇·奥索雷赞 (Da Vinci Osorezan) 赠送的一本新书，名为《闪电击中长颈鹿时该怎么办：我每天都在想这件事》。非常感谢♪\n\n这本书是在Daily Note上连载的Osorezan日记的合集，虽然我每天都会发这样的日记，但我还是第一次有阅读同龄人日记的体验，所以我很高兴马上就读完了。毕竟，我喜欢研究别人的自言自语、情绪和想法。人只要写下每天的所思所想，就能变得如此有趣。精彩的。\n 每个人都应该继续表达自己的想法和感受。它可以是一幅插图或一篇文章，可以是一个大型的创意故事，也可以是一条最多 140 个字符的推文。敏感度是如此重要，以至于因人而异，所以青少年尤其应该保留他们不可替代的青春情感，即使它是以一条愚蠢的推文的形式。 10年后可能就会消失。\n 在当今网络形势和舆论瞬息万变的时代，在受到他人影响之前写下“自己的观点和印象”尤为重要，这样才能在自我中扎根。如果你沉浸在互联网的洪流中而失去了自我意识，你的思想、言语和行为就会变成一个摘要网站的思想、言语和行为。我觉得这已经很接近游戏结束了，所以我有意识地避免查看匿名意见和公告板。我认为真正了解自我的人应该是自己和周围的人。\n 不管怎样，奥索雷赞先生的日记中最让我产生共鸣的部分是：“在社交媒体上，有一些信息推荐一种不寄予他人期望的生活方式，但这难道不是一种开悟的状态，不是普通人能做到的吗？”（平行翻译）。每当我看到一条推文时，我都有同样的感觉：“生活的秘诀就是不要对任何人抱有任何期望。”如果不需要“他人”或超人的存在，你不可能如此轻易地获得启蒙！如果普通人都那么强大的话，就不需要宗教和哲学了！夏尔，你是在假装对他人、对人类如此绝望吗？奥索雷赞先生喜欢维特根斯坦，似乎对“他者”的概念有着浓厚的兴趣，对此也许有一些思考。\n ……别人日记的魅力就在于你可以感同身受，发现自己没有的思维方式。我对互联网的力量还是抱有很大希望的，所以我很期待看到社交网站的贫民窟中出现神秘的人，比如我们这些在Twitter上发帖然后成为作家、出书的人。\n\n请看一下编辑日常日记的同人志（新版刚刚出版）和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

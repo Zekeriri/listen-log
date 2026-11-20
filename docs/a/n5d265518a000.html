@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>超艺术汤玛森</title>
+<title>超级艺术托马森</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-24 00:00</p>
-  <h1>超艺术汤玛森</h1>
+  <h1>超级艺术托马森</h1>
   <p class="ja-title">超芸術トマソン</p>
 </header>
 <main>
@@ -28,10 +28,11 @@
 ちなみに本日から商業エッセイ集も購入できるようになりました。こちらは商業らしく、多少の意味が含まれています。たまには意味があってもいいよね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"超级艺术托马森\n\n我家附近有一家托马森，所以我的人生目标就是指着来拜访的人说：“那是托马森。”根据我的经验，可以理解为“托马森”的击球率约为 20%。\n\n托马森位于我家附近，是一扇从墙上伸出的门。虽然它安装在大楼的二楼，但一打开它，它就直接掉到了地上。根据托马森的分类，这种图案被称为“高处”，指的是正常但由于位于高处而感觉奇怪的结构。这可能是一扇毫无意义的门，因为安装在那里的楼梯被拆除了。\n 换句话说，托马森是一种没有实际用途的结构。此外，您还可以从他们身上感受到艺术。 “托马森”这个词的由来，是因为生活在过去的棒球运动员加里·托马森虽然是四号击球手，但他连续两年都在吹气，而他被放在四号位上炫耀吹气的形象，与那些毫无意义地保存下来的神秘结构一样具有艺术性。\n\n在20世纪80年代的街头观察热潮中，托马森的概念获得了小众的欢迎，甚至还出版了一本书，名为《超级艺术托马森》。您可以阅读具有特殊爱好的作家的轻松愉快的作品，他们很乐意介绍来自全国各地的托马森。这真是一本很棒的书。\n 顺便说一句，他在书中将托马森的无意义比作一具尸体，并解释说他对托马森的兴趣也与这次“死亡”有关。对死亡的恐惧变成了好奇心，这使得专家们开始寻找托马森……寻找尸体。\n 今天，我们继续钦佩托马森的艺术才华，以便理解最终不可避免的死亡。\n\n就像今天的文章一样，BOOTH 正在出售一本由日常句子组成的没有太多意义的同人志。希望你能在这种无意义中感受到艺术性。\n\n顺便说一句，从今天起您还可以购买商业论文集。这是商业性的，有一定的意义。有时有意义是件好事。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

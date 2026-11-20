@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：对抗汗水</title>
+<title>快速文章：VS 汗水</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-07-11 03:30</p>
-  <h1>一口随笔：对抗汗水</h1>
+  <h1>快速文章：VS 汗水</h1>
   <p class="ja-title">一口エッセイ:VS汗</p>
 </header>
 <main>
@@ -22,10 +22,11 @@
  僕は幻覚の世界へ誘う紙や液体は大歓迎だが、決して覚醒してバリバリ動き回る粉なんか求めていない。いや、どうせ同じ症状なんだからむしろ覚醒してくれた方が得なのだが。「僕はシャブ中じゃないんです！ 信じて！」と汗を飛ばしながら訴える様子が、危ない薬物中毒者じゃなければなんなのだと自分でも笑ってしまう。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"快速文章：VS 汗水\n\n最近，我的自主神经系统受到严重干扰，即使我什么都不做也会出汗。即使在空调店里，我也是满身大汗，全身湿透，即使在夏天，空调也冷得我开始发抖。如果从侧面看的话，看起来十分可疑。\n 而且，由于我没有嗅觉，所以我非常害怕自己的“气味”。没有办法知道你散发出什么样的气味。因此，当我发现自己处于可能出汗的情况时，我会不自觉地试图与他人保持距离。更重要的是，突然出汗的时机通常会伴随着心悸和头晕，所以这一系列不自然的行为很可能只是服用存根的戒断症状。\n 我身体不太舒服，制片人再也见不到我了，试图给我带一些礼物，但因为我可以去便利店，所以这不是问题。这段时间我的食量急剧减少，所以我的体重现在已经降到了40公斤左右。看得出来，他的身体和精神状态都不好。严格来说，副交感神经系统不起作用，而交感神经系统不断兴奋，导致难以入睡、感到头晕。帮帮我吧~\n 今天，我坐在椅子上感觉很累，又开始大汗淋漓，于是我试着放松一下，以为我的汗腺出问题了，没想到下一刻就全都干了。回想起来，我发现自己已经累得昏过去了，立刻就做了一个满头大汗的梦。他非常害怕出汗，以致产生出汗妄想。你的精神彻底被摧毁了。\n 曾几何时，当真正的涮锅玩家来到合租的房子里玩时，居民们都很困惑，因为无论我教他们多少次规则，他们都不会记住并正确玩纸牌游戏，而且他们仍然想参加。到现在，一出汗，我就惊慌失措，说不出话来，而且，即使体温正常，我还是大汗淋漓，几乎和洗澡时一样。如果是朋友就好了，但一想到这发生在会议上，我的大脑就更加悸动。我讨厌夏天。\n 我非常喜欢纸和液体，它们能带我进入一个幻觉的世界，但我绝对不是在寻找能让我醒来并四处走动的粉末。不行，反正症状都一样，还是醒过来比较好。 ” “我没有在存根上！相信我！”如果他不是一个危险的吸毒者，我忍不住嘲笑他流汗和恳求的方式。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

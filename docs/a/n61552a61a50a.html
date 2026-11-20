@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：洗脑·剥削·虎之卷</title>
+<title>速文：洗脑、剥削和备忘单</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-11-24 04:53</p>
-  <h1>一口随笔：洗脑·剥削·虎之卷</h1>
+  <h1>速文：洗脑、剥削和备忘单</h1>
   <p class="ja-title">一口エッセイ: 洗脳・搾取・虎の巻</p>
 </header>
 <main>
@@ -21,10 +21,11 @@
  こんな「信仰」の強さもあるのでしょう。これも全員が幸せな関係なのだ。その証拠に、神＝偶像に合わせてコールする愚民＝オタクの様子はこんなにも嬉しそうなのだから。マンソンもキリストでなくMOSAIC.WAVなら信用してくれるかもしれません。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"速文：洗脑、剥削和备忘单\n\n继续昨天，我要讲的是“信仰”。日记进入第二年之后，内容突然变得更有灵性、更有力量。我对信仰的认识是从玛丽莲·曼森开始的，在看到他出于对强迫基督教的社会的仇恨而唱起《反基督巨星》后，我开始思考信仰。\n 然后，当他上初中时，广播歌曲热潮开始了，像往常一样，尼亚拉整天听“MOSAIC.WAV”。给我印象特别深刻的是《洗脑、剥削和备忘单》的歌词。 “对于愚蠢的人来说，教育和人。愚蠢的人，教育，为了明天。”偶像方面坚称这是为了人民和明天，并描述了他们如何通过称他们为愚蠢的人来给粉丝洗脑，并宣称这是为了“如果你希望持久和平，只有一个方法。”的伟大目的。\n 乍一看，这似乎是从无知的宅男那里榨取金钱的偶像文化的地狱缩影，但偶像的观点却显得傲慢又善良：“请将你无辜的眼睛留给上帝”，“如果无知的人是佛，那么只有上帝知道知道的痛苦。”你不觉得这样好吗？”看起来既傲慢又善良。\n 总之，偶像确实不断地给愚蠢的人们洗脑，但他们却默默地接受着掌控安全、政治、社会的艰辛，这些是超出了这些愚蠢的人们的想象，仿佛他们是神一样。而知道这一点的痛苦只需要上帝知道=偶像。\n 这大概就是这种“信仰”的力量吧。这对每个人来说也是一种幸福的关系。作为证明，那些称呼神（偶像）的白痴（御宅族）是多么幸福。曼森也可能相信 MOSAIC.WAV 而不是基督。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -44,7 +45,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

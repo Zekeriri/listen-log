@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：糖果的内心</title>
+<title>一篇短文：Ame-chan的内心生活</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-14 03:39</p>
-  <h1>一口随笔：糖果的内心</h1>
+  <h1>一篇短文：Ame-chan的内心生活</h1>
   <p class="ja-title">一口エッセイ:あめちゃんの内面</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 僕の同人誌や商業エッセイ集の方も、手に取ってもらえると嬉しいなーって……。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇短文：Ame-chan的内心生活\n\n今天的 Comiket 采访 https://t.co/V081CsWQ2q pic.twitter.com/Oobt9LhU4U — Nyalra Saturday East 20a (@nyalra) 2022 年 8 月 13 日\n\n我们在 Comiket 上分发了 Nidiga 员工书籍。我一直很欣赏员工手册。我很高兴看到参与我最喜欢的作品的人们做他们想做的事。我想这次我们能够创作出这样一本书。\n\n这本工作簿里我最花心思的部分是新写的短篇小说《圣母怜子》。除了难得的诚实写小说之外，还描绘了游戏版中几乎看不到的小阿梅的内心生活。在游戏中，Ame-chan 与她交谈，但由你来决定她是真诚的还是只是一个笑话或夸张。这取决于你们在一起度过了什么样的日子。我写的是Ame-chan的真实心理。还有她是如何对待虚假的“超级十酱”的……当我读评论时，看到这么多快乐的评论，我感到很欣慰♪我想我可能会在网上出售它，因为我有库存，但负责的是版权所有者，而不是我，所以如果你能等待公告会很有帮助。\n\n那么，从这次漫画开始到结束，我一直在展位里，发东西、签名。结果我累极了，但我没有休息只是因为我想休息。我只是想认识尽可能多的 Nidiga 粉丝，这就是我的真实感受。谢谢大家。\n\n如果人们也能拿起我的同人志和商业论文集，我会很高兴......"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

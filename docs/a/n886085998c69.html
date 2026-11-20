@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：合租屋独特的氛围</title>
+<title>短文：合租屋的独特氛围</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-10 13:01</p>
-  <h1>一口随笔：合租屋独特的氛围</h1>
+  <h1>短文：合租屋的独特氛围</h1>
   <p class="ja-title">一口エッセイ:シェアハウス独特の空気</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 商業エッセイ集もよろしくね。シェアハウスに居た時代に書いたものもあり、混沌とした愉快な一冊です。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：合租屋的独特氛围\n\n我去了中野的合租屋。\n 我以前在合租屋里住过好几年了，所以我已经很久没有感觉到一大群人聚集在一个房间里了。大约6男3女的比例是他们第一次见面的人数。\n 就像一场集体聚会（我从来没有真正参加过集体聚会，所以我只能想象），每个人都一一自我介绍，开会的都是平时不会见到的人，比如学习地理、写儿童读物的人，还有写短歌、收录在日语教科书中的人。\n 这种“感觉”非常令人怀念。它是混乱的，因为一切都被曝光，每个人都按照自己的喜好发展故事，同时探索每个人的道德、情绪、爱好和品味。有些人提出地下话题，同时仔细衡量色情和怪诞故事的受欢迎程度，而其他人（比如我）则解释辛奥特曼原作的元素。前面我提到了团体聚会，但与可以“找到合适的伴侣”的团体聚会不同，合租房屋只不过是混乱的，空间里充满了御宅族和亚文化导向的人。然而，这种千载难逢的盛会却有着无法重演的愉快气氛。无论如何，每个人明天都会忘记大部分事情。也许合租屋的魅力就在于你可以接触到微妙的人际关系，可以是友善的，也可以是冷酷的，就像丢掉了旅行的耻辱一样。\n\n包含每日日记的同人志正在 BOOTH 发售！请领取新版本。\n\n我期待着阅读您的商业论文集。这是一本混乱而有趣的书，其中一些是我住在合租屋期间写的。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔: 乘电车旅行度过早晨</title>
+<title>短文：在电车旅行中度过一个早晨</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-04-26 07:00</p>
-  <h1>一口随笔: 乘电车旅行度过早晨</h1>
+  <h1>短文：在电车旅行中度过一个早晨</h1>
   <p class="ja-title">一口エッセイ:トラムの旅で朝を乗り切る</p>
 </header>
 <main>
@@ -29,10 +29,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：在电车旅行中度过一个早晨\n\n现在，我们应该做什么？\n 我已经养成了每天早上开玩笑地在推特上抱怨早晨的习惯，但事实是我真的很讨厌早晨。首先，当我开始听到外界声音时，我就开始感到沮丧。仿佛在说：“好吧，让我们开始今天的一天吧！”附近的商店和办公室打开百叶窗的声音回荡着，透过墙壁也能听到其他居民在走廊里行走和交谈的声音。每次听到他们的声音我都会感到沮丧。\n 作为对策，我认为最好录制并播放NHK从深夜到凌晨播放的轻松节目，在房间里营造出仍然是深夜到凌晨的错觉。\n\n这就是您运行它时发生的情况。\n 虽然时间显示在左上角，感觉与实际时间相差几个小时有点奇怪，但是在没有人声的情况下直播节目还是很平静的。 《欧洲电车之旅》我已经看了100多遍了，所以场景我记得很清楚。我还在阿马普拉完成了两圈“来自世界之窗”的比赛。好吧，没关系，因为它也不“无聊”。\n 如果您犯了轻微错误，您将在切换到录制的节目之前看到早间节目。然后播音员念出政治、体育、事件（最近经常有AI语音念，这样就让我想起了缓慢，心里稍稍松了口气），让观众着急。有很多信息。欧洲的电车旅途中没有人声。从深夜到凌晨，不需要“信息”。\n\n不过播放录音也不过是消遣而已，可该死的太阳已经升起来了，外面的天色也越来越亮，网络上也陆续出现了起床的人，随着人数的增加，当天的新闻和事件也必然会开始公布。这让我意识到平静的一个月已经结束了。\n 我真的很讨厌这个时候，无法控制，但抱怨地球自转是没有意义的。无论发生什么，早晨总会到来。人们醒来，我去睡觉。当我醒来时，我接到了很多早上和下午开始工作的人的电话。虽然这也是没办法的事。这与欧洲有轨电车旅行完全相反。尽管有人类活动的反映，电车旅程却出奇的安静。事实上，如此安静的程序并不多。 NHK也在深夜展示山脉和动物生态（很少见），但很安静，很自然，因为这是大自然。电车之旅之所以美妙，是因为有无穷无尽的人和城市的队伍，但却没有人声。从世界的车窗里说话。其他节目展示人物和城市并提供评论。当然，这很重要，但它并不能满足只在深夜到清晨才会产生的小众欲望：“我想感受人们生活的安静而有感觉。”\n 由于电车旅行，我几乎无法熬过早上。顺便说一句，NHK有时间播放漂浮城市中的族群的镜头（非常罕见），这是最好的时间，所以我想下次录制它。就这样，我总算熬过了那个“运动”的早晨。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

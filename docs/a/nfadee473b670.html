@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>圣死与死亡信仰</title>
+<title>死亡圣神与死亡信仰</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-19 14:12</p>
-  <h1>圣死与死亡信仰</h1>
+  <h1>死亡圣神与死亡信仰</h1>
   <p class="ja-title">サンタ・ムエルテと死の信仰</p>
 </header>
 <main>
@@ -28,10 +28,11 @@
 商業エッセイ集もよろしくお願いします。この頃は、死への意識もブレンドされている。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"死亡圣神与死亡信仰\n\n互联网上充斥着无穷无尽的“我想死”的信息。尽管对死亡的渴望多种多样，从彻底毁容的死亡念头到偶然的忧郁，许多人选择忍受对“死亡”绝对概念的恐惧，并以某种方式继续生活在今天的这个世界上。世界上有一些宗教崇拜这种“死亡”。死亡圣神崇拜象征死亡的骷髅女神。\n 死亡圣神主要是一种墨西哥文化，受到许多人的崇拜，包括贩毒集团、警察、穷人和罪犯。这是墨西哥所特有的，这里距离死亡已经很近了。死亡圣神接受任何类型的人，这就是为什么连社会上被视为邪恶的贩毒组织和犯罪分子也相信他，这是一个令人惊奇的故事。而她的愿望，无论是好是坏，她都会实现。就像“死亡”一样，对于每个人来说都是平等的。\n\n你是否有过因为想太多死后会发生的事情而无法入睡的夜晚？如果有天堂、地狱或来世这样的东西，那就会有救赎，但我认为大多数不熟悉宗教的日本人想象的是死亡之外的“虚无”。没有灵魂，只有一团血肉，其身体机能已经停止慢慢回归地球。 “虚无”的状态令人恐惧，我感到无能为力的焦虑感。\n 我有时认为生命的目的就是通过信仰和知识接受对死亡的恐惧。如果目标是摆脱死亡，那么相信死亡本身就很有吸引力。当您想死时，考虑一下您对死亡的信念可能是个好主意。\n\n当我阅读有关死亡圣神的资料时，似乎有一些信徒喜欢把死亡圣像装扮成洋娃娃。定制如此可爱的“死亡拟人化”并对其充满信心真是太好了 https://t.co/j0uSZpRlLq pic.twitter.com/Pxub1rDeUJ — Nyalra (@nyalra) 2021 年 12 月 15 日\n\n包含每日日记的新同人志现已发售！\n 阅读别人的日记可能会分散注意力。\n\n我期待着阅读您的商业论文集。如今，对死亡的认识也融入其中。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

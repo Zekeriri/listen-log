@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口随笔：关于感质的故事</title>
+<title>短文精选：感受性的故事</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-10 20:22</p>
-  <h1>精选一口随笔：关于感质的故事</h1>
+  <h1>短文精选：感受性的故事</h1>
   <p class="ja-title">選り抜き一口エッセイ:クオリアの話</p>
 </header>
 <main>
@@ -28,10 +28,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文精选：感受性的故事\n\n有一个关于感受性的思想实验，名为“玛丽的房间”，在实验中，我们询问一个一生中从未走出过黑白房间的女孩，当她获得颜色信息，然后被带到外面并第一次遇到真实的颜色时，她会得到什么。这个思想实验也是“紫色感受性”的来源。\n\nMamoru Oshii 的风格感确实令人惊叹，因为他通过“在水族馆里独自看着一条鱼时，他的侧面的非人之美”表达了 Ram 是外星人的事实 pic.twitter.com/3uxJqJPejJ — Nyalra (@nyalra) 2019 年 12 月 11 日\n\n情况略有不同，但当我还是个孩子的时候，爱上了剧场版《福星小子2：美丽的梦想家》，我就被水族馆的美丽描绘所吸引。\n 然而，我在成年之前从未去过水族馆，所以当我搬到东京后第一次去水族馆时，我很失望地发现它很小而且很安静，不像我想象中的奇幻体验。我更喜欢押井守的蓝白色光幕。\n\n所以我就想，比如在《玛丽的房间》的一个应用中，如果一个从出生起就没有出门过的女孩，只给他看梵高的《星夜》，然后带到外面展示真实的夜空，我想知道她是否会对真实的夜空与一流的艺术品相比感到失望。\n 然而，我在开头提到的《紫色感受性》的作者说，一个在黑白房间里长大的女孩的处境是一个更大的问题，感受性不再相关。\n 这样想是没有意义的，所以与玛丽不同，我们可以随时了解外面的世界，所以故事以一句有教育意义的妙语结束：体验和感知各种事物很重要。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔: 视频·游戏·音乐</title>
+<title>短文：视频游戏音乐</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-04-18 06:48</p>
-  <h1>一口随笔: 视频·游戏·音乐</h1>
+  <h1>短文：视频游戏音乐</h1>
   <p class="ja-title">一口エッセイ:ビデオ・ゲーム・ミュージック</p>
 </header>
 <main>
@@ -30,10 +30,11 @@ BGMがわくわくさせすぎ #NintendoSwitch pic.twitter.com/C6vVxx0vp4— に
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：视频游戏音乐\n\n我正在玩“Rockman EXE Advanced Collection”。这是期待已久的 Rockman EXE Switch 端口。我讨厌将 Game Boy Advance 称为“高级”的感觉。\n 作为这类世代作品的移植合集，我买了同样来自洛克人系列的《洛克人零》和《梅达罗特》合集。令人钦佩的是，他沉迷于针对怀旧粉丝的复兴商业方法。 Medarot具有双速功能并且舒适。 Exe具有破坏性增强功能，但无论速度如何，仍然存在一些破坏平衡的阻力。\n 不管怎样，听《洛克人》和《梅达罗特》的Game Boy（高级）BGM感觉很平静。我对 Kraftwerk 和 YMO 的喜爱源于任天堂便携式游戏机独有的 pikopiko 声音。用少量的声音创造出酷炫的旋律，以某种方式刺激孩子们的独创性，就像昭和时代的techno所追求的游戏中心乐器一样。\n\n嘿，细野晴臣的《电子游戏音乐》是杰作。不仅是游戏中的BGM，连你正在玩的街机的环境音和音效都被解读为“音乐”，玩具盒般的有趣的皮皮皮皮基吉吉声音太舒服了。拥有 SE 让您感觉自己真的在玩游戏。令我感动的是，细野晴臣从红白机时代就已经给出了答案。我猜是游戏音乐，包括SE。尤其是在这个节奏游戏的时代。\n 感谢细野晴臣创作的《Xevious》，让我想起ZUN的东方音乐也受到了它的影响。东方的原创歌曲实际上应该与称为“Pichu”的弹幕声音结合在一起，因此您应该实际播放它们并将它们作为包括音效在内的“音乐”来欣赏。我想这不是那样的专辑。\n 回到主题，我来自 Game Boy Color/Advance 一代，所以我喜欢按下按钮并听到与简单动作直接相关的音效的感觉。当我玩复古游戏的移植版时，我意识到我喜欢 Kraftwerk 和流行音乐 YMO，它们作为器乐歌曲具有“游戏中心的感觉”。毕竟，这都是关于“童年”的。我的行为原则和爱好是什么？最近，我一直在听橘肇（一位与 YMO 关系密切的艺术家）的歌曲，这些歌曲有更多尖锐的街机成分。\n\nBGM 太刺激了 #NintendoSwitch pic.twitter.com/C6vVxx0vp4 — Nyalra (@nyalra) 2023 年 4 月 17 日\n\n无论如何，EXE 2 标题画面上的 BGM 很好听……当时 Switch 画面上播放的声音给我留下了深刻的印象，认为如此紧凑的设备可以准确地发出让孩子们兴奋的小学声音。\n 毕竟，在我们成为互联网用户之前，我们都是与洛克人等人一起在网络世界冒险的网络战士。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：和无业的朋友去领取生活保障吧！</title>
+<title>短文：和失业​​的朋友一起去领福利吧！</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-14 03:50</p>
-  <h1>一口随笔：和无业的朋友去领取生活保障吧！</h1>
+  <h1>短文：和失业​​的朋友一起去领福利吧！</h1>
   <p class="ja-title">一口エッセイ:無職の友人と生活保護にもらいにいこう！</p>
 </header>
 <main>
@@ -28,10 +28,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：和失业​​的朋友一起去领福利吧！\n\n我的一位来自冲绳的朋友因为未付房租而被赶出了他所居住的合租房屋，因此逃到了我家。我从来没有想过，在这个时代，我会有一个没有家的朋友……这就是冲绳。\n 这几天我只能过夜，但我又不想一直呆在家里，所以我决定在中野接受福利援助。他和我一样，都是从冲绳的一所底层技术高中毕业的，永远无法进入社会工作。和我一样，我的家庭也不可靠，我负债累累，包括拖欠房租。他绝对是一个值得福利的人。\n 所以昨天，我送他去区政府，但他在区政府走了一圈就回来了，说：“我感到有些压力，所以这次我就看看。”另外，我开始在 Switch 上玩《喷射战士 3》。失业了如图！在开始在 Salmon Run 赚钱之前先找到一份真正的兼职工作！嗯，我理解你的感受。因为我们根本就是垃圾。成年人……尤其是政府办公室的人是可怕的，敞开心扉玩游戏是合理的，因为试图道歉是没有意义的。我们就这样继续偏离社会。\n 然后，今天早上，他告诉我，他必须先与工作人员交谈才能进屋，并让他喝精神药物和白兰地来抑制焦虑。我不能不喝醉酒就活下去。\n 就这样，我回家了。结合您的钱包和储蓄\n当我向他展示我只有1101日元时，他轻松地通过福利给我寄了钱。他一开口，失业的一面自然就流露出来了。这就是冲绳的力量！\n\n由于我暂时没有地方住，所以我就收拾行李去免费住宿住一段时间。 “我住在中野区，所以我可以轻松地玩这个！”他充满活力地说道。他似乎根本不关心公众对他福利的批评，他能想到的只是他的住宿就像宿舍一样，与人的关系很麻烦。我暂时没钱买 Switch，所以我要回家尝试玩《Splatoon 3》。这就是为什么我很高兴自己作为一个失业者走到了这一步。看到他如此开放真是令人耳目一新，最重要的是，他不是因为不想工作而成为坏人，这很好。做一个“好人”，是乱世中的一个重要身份。\n 最近，我因为过度劳累而感到身体不适，但看到比我更危险的人出现在我面前，我的精神又得到了提升。我隔壁有一个朋友，没有房子，也没有积蓄，所以只要有一个房间我就很高兴了。\n 与他人进行过多的比较是没有意义的，但即使是这样的人在某种意义上也是幸福的，所以让我们都坚强地生活吧。他还在我面前晃动旋转器。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口短文：尊重自我解读</title>
+<title>短文精选：尊重自己的解释</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-15 13:04</p>
-  <h1>精选一口短文：尊重自我解读</h1>
+  <h1>短文精选：尊重自己的解释</h1>
   <p class="ja-title">選り抜き一口エッセイ: 自己の解釈の尊重</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 商業エッセイ集もよろしくね。わりと面白い筈ですよ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文精选：尊重自己的解释\n\n我的一位来自冲绳的朋友是一个根本不使用SNS的人，其原因是“当他在网上看到其他人的观点时，他害怕受到他们的影响，并将其与自己的观点和解释混合在一起。”\n 这是因为他学生时代就和我一起看过《革命少女乌蒂娜》，但看了一遍却无法掌握整个故事的脉络。于是我看了一遍又一遍，查阅了相关书籍，得出了自己的解读。看来，在这个接受的过程中，他很害怕听到家人之外的人的意见。相信通过《钢珠跑》大家都知道，“说服自己”胜过一切。我害怕自己的情绪变得不稳定。\n 也许正是从这样的经历中，他开始对“自我与他者”的区别产生了兴趣。具体来说，我研究了维特根斯坦（主要是关于事物如何出现）和感受性。他们关心其他人在多大程度上重视他们的观点和解释，以及自己与他人之间观点和价值观的差异。所以，作为一个朋友，我似乎尊重我在收集我喜欢的雕像和书籍时的自我和感性，相信我的直觉，它们是美妙的东西，并展示它们。这让我很高兴受到赞扬。\n 然而，在这个社交媒体时代，同​​侪压力和回声室效应横行，我尊重他不通过互联网而将自己的情感、个性和自我看得高于一切的态度。我认为他们互相尊重的方式作为“自我与他人”之间的关系很有趣。\n\n我们目前正在销售包含每日日记的同人志。至少，我的想法只是在泄露。\n\n我期待着阅读您的商业论文集。应该很有趣。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

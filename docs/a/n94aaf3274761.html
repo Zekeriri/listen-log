@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：“……真是的，为了看你们一喜一忧的样子，我也得动手了吧（笑着挠头）”</title>
+<title>短文：“……我想我会移动我的双手，只是为了看到你们快乐和悲伤（抓挠他的头）”</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-01-20 07:14</p>
-  <h1>一口随笔：“……真是的，为了看你们一喜一忧的样子，我也得动手了吧（笑着挠头）”</h1>
+  <h1>短文：“……我想我会移动我的双手，只是为了看到你们快乐和悲伤（抓挠他的头）”</h1>
   <p class="ja-title">一口エッセイ: 「……ったく、お前らが一喜一憂する姿を見るために、自分も手を動かしますかっと（やれやれと頭を掻く）」</p>
 </header>
 <main>
@@ -30,10 +30,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：“……我想我会移动我的双手，只是为了看到你们快乐和悲伤（抓挠他的头）”\n\n昨晚，我在日记中写道，“自从我推出了一款健康管理应用程序来改善我的抑郁症后，我对自己的健康状况感到害怕”，我收到了一条来自中国的非常高兴的信息。\n\n你说得对。\n 有光的地方就有阴影。即使我努力获得健康的身体，光鲜亮丽的背后也总会有阴影。世界上没有完全健康的人，每个人都生活在一定程度的“不健康”之中。这是显而易见的，但他尽力翻译和发送那些经常被忽视的东西。\n 我为自己感到羞耻。不，无论我走到哪里，我总是感到尴尬。尽管有粉丝给予我如此真诚的支持，但我还是感到很痛苦，因为我只是悲伤。好吧，虽然我在抱怨，但昨晚我需要做的工作我还是完成了。伟大的。我有责任感能够做到这一点。这一切都是因为有像我这样支持我的人的支持。\n 我不太喜欢向粉丝表达我的感激之情，当我试图用语言表达时，感觉很廉价。我真的不喜欢人们认为我只是为了避免让事情变得更糟而说一些话，所以我总是在寻找合适的时机说一些看起来不像社交姿态的话。就是现在。你得救有一个特定的原因。感谢您将其包括在内。我现在可以从心底表达我的感激之情。\n\n我也在阅读其他消息。\n 我也很高兴看到一封长长的感谢信写给我，尽管我还在学习日语。我觉得与其说是快乐，倒不如说是可爱。他写道：“有一天我想去秋叶原”，所以我真诚地希望他有一天能够来东京。为此，我们要努力练习日语。\n\n当然，我也很高兴收到日本人的留言。这并不真正关心我，但我只是认为这很好。教育背景并不代表一切，但它总是更好。继续努力吧！\n 现在，我的感觉是，“……我觉得我要做点什么，只是为了看到你们所有人快乐和悲伤（他挠了挠头）。”谢谢。既然你都说了这么多，那我也尽力吧。我会尽力而为，但首先我会好好休息。晚安。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口随笔：《奥特曼MAX》第24话“无人瞄准的城市”</title>
+<title>散文精选：麦克斯奥特曼第24集《不会成为目标的都市》</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-11 19:17</p>
-  <h1>精选一口随笔：《奥特曼MAX》第24话“无人瞄准的城市”</h1>
+  <h1>散文精选：麦克斯奥特曼第24集《不会成为目标的都市》</h1>
   <p class="ja-title">選り抜き一口エッセイ: ウルトラマンマックス第24話『狙われない街』</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 毎日の日記をまとめた同人誌をboothにて販売中です。アニメと特撮の話だらけ！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"散文精选：麦克斯奥特曼第24集《不会成为目标的都市》\n\n我喜欢麦克斯奥特曼第24集“不会成为目标的城市”。\n 当然，这一集是根据《超七》第8集《目标城镇》制作的，两集都是由实总寺昭夫执导的。 Jissoji导演执导了两部《麦克斯奥特曼》电影，两部都很棒，所以大家都应该加入Ultra Subscription来观看。\n 现在，出现在《目标城镇》和《非目标城镇》中的外星人都来自Alien Metron。这是一个奇幻的幻觉外星人，有着鲜艳的色彩和令人毛骨悚然的面部表情，其思想无法被解读。七时代Metron外星人的目的是在香烟中注入能让人类发狂的成分。\n人类互相争斗。\n 吸食梅特伦种植的香烟的人类变得疯狂，并按计划对城市造成了破坏。为了阻止这一切，丹进入了Metron外星人藏身的复古公寓……黄昏时分的日式房间和这里描绘的外星人之间的不匹配形象，使得这一集成为《七》中最受欢迎的剧集之一……时间越来越长了，所以我暂时停下来。看看 Metron 和七号之间的对决，因为各种因素也会影响 Eva。\n 平成的《不会成为目标的城镇》中对此进行了处理。现在手机已经普及，Metron外星人给出的答案就是什么也不做。是的，人类已经发展出了发达的文明，所以不再需要外星人来迷惑他们，自己去战斗。真是超赞又黑的妙语……100分！ ！ ！\n\n包含日常日记的同人志现已在摊位上出售。充满动漫和特效的故事！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

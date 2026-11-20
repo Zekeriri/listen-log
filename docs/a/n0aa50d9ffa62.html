@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：智齿剧痛地狱</title>
+<title>一点文章：智齿剧痛地狱</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-08 04:06</p>
-  <h1>一口随笔：智齿剧痛地狱</h1>
+  <h1>一点文章：智齿剧痛地狱</h1>
   <p class="ja-title">一口エッセイ:親知らず激痛地獄</p>
 </header>
 <main>
@@ -29,10 +29,11 @@
 商業エッセイ集の方もよろしくお願いします。買ってくれたり、Amazonレビューしてくれると苦痛も和らぐ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一点文章：智齿剧痛地狱\n\n我的牙齿被拔掉了。第二下智齿。\n\n当然，智齿手术的疼痛程度根据它的生长方式而有所不同，如果是听话的智齿，直长或者埋起来，都是无痛无痛的。它是如此无害，以至于它被单独留下。不过，这次我的智齿状况非常糟糕，而且它们被斜着放置，紧挨着埋着，也许很像宿主。好痛，好痛，好痛！ ！\n 因为它长在里面很深，麻醉似乎对它影响不大，当你试图把它拔出来时，你会感到剧烈的疼痛。尽管我忍受了全身脱毛和之前智齿的疼痛，但我做不到，所以我几次举手取消手术。每次都加麻醉药，让我有一段时间根本张不开嘴。看到在站立战斗中失去一半自己的脸感的经历很有趣。好痛，好痛，好痛！ ！\n 一个半小时后，我终于成功拔掉了逆向智齿，但过程中刮伤骨头、张开牙龈的疼痛却令人难以忍受。显然，当时由于麻醉的缘故，是无痛的。真正的恐怖来自第二天它开始膨胀的时候。从明天开始我将与剧烈的疼痛作斗争。已经痛得吃不下了。好痛，好痛，好痛！ ！\n\n然而，牙医却说：“但不会有比今天更地狱的了。”确实，如果手术比这更精细，病人会在全身麻醉下入睡，而在日常生活中，几乎不可能面对超过一个小时的疼痛和恐惧。现在想想，我的生活肯定像天堂一样，没有智齿手术的痛苦。谢谢您，老师。我会对这种健康的口腔环境感到满意。好痛，好痛，好痛！ ！\n\n拔智齿花了一个半小时，麻醉也很难，痛得要死，但牙医说：“但你的生活中没有比今天更地狱的了”，突然间我的不漏牙生活有了保障。 - Nyalra (@nyalra) 2022 年 3 月 7 日\n\n有一个整理日常文章的同人志。曾经有一段时间，我长出第一颗智齿时感到剧烈疼痛。\n\n我们也欢迎有关商业论文集的询问。如果你购买它或在亚马逊上留下评论，痛苦就会减轻。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口散文：适应</title>
+<title>一点文章：适应</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-01-02 04:25</p>
-  <h1>一口散文：适应</h1>
+  <h1>一点文章：适应</h1>
   <p class="ja-title">一口エッセイ:適応</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一点文章：适应\n\n我有一份工作没有取得任何进展，而最后期限是 1 月 4 日，这给我带来了很大的压力。作品的内容看起来是无机的，我不知道它会用来做什么，如何使用，以及谁会对它做出反应，所以它不值得做，也没有人会和我谈论它。无论如何，大家都会过年。最难的是客户毫无感情的工作，让我很心痛，因为我因为私人关系而无法拒绝。我不是在比喻，我的胸部和头部实际上因压力而抽痛。\n 想着这不是一个好主意，我决定在中野百老汇散步分散自己的注意力，但后来我看到今天是 Cosplay Day，Mandarake 的员工都穿着 Cosplay 服装走来走去。 BLACK SUN 的怪物角色扮演举着写有政治声明的标语四处走动，让我笑了。\n 与此同时，一位身穿超可爱服装的女店员正在走来走去，她被自己平时走路路线上突然出现的一个熟悉的角色吓到了，尽管她明白这是一个可以呼唤原作者的场景，但还是显得很可疑……现在想来，她就是原作者……而正当我开始担心时，她却消失了。伤心。然而，它非常闪亮而且很好。\n 当我回到家，因缺乏意志力而感到沮丧时，我最终想起了工作。当截止日期临近时，做任何事情都没有乐趣。这可能会导致不耐烦，心想：“也许我应该在这个特定的时间动笔。”但我不知道该写什么或如何写，而且我无法与任何人谈论它。新年伊始，房间里只有悲伤。\n 当我像这样感到沮丧时，我的头痛和心悸有着明显的联系。这是抑郁症或适应障碍的症状吗？我曾经患有适应障碍，不得不放弃一切，在床上躺了两个星期，我再也不想遇到那种情况了。那种无论做什么都无法清晰思考的感觉非常可怕。\n 显然，头痛和困倦也有关系，而且确实很难躺下。然而，当你睡觉的时候，最后期限就临近了。就这样，我在两个事实之间左右为难：“我必须休息一下”和“但如果我休息一下，我就会被即将到来的最后期限的压力压垮”，我在床上呻吟着，一天就结束了。\n 当我站起来时，我的胸部会痛。如果我在这痛苦的时期睡了一觉并恢复过来，事情还有可能变得容易一些。即使知道最优解，也很难实施。\n 我已经走到这一步了，不知道该向谁倾诉这种我自己无法移动的麻烦，就好像我被什么他妈的技巧击中了一样。 2023年看起来从一开始就很艰难。中野百老汇的超级十酱，请帮助我！\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

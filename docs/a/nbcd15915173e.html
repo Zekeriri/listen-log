@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：最游记</title>
+<title>短文：西游纪</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-07 03:18</p>
-  <h1>一口随笔：最游记</h1>
+  <h1>短文：西游纪</h1>
   <p class="ja-title">一口エッセイ:最遊記</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 表紙がオシャレと評判の商業エッセイ集もよろしくね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：西游纪\n\n新动画《最游记》从今天开始播出。我特别喜欢《最游记》，当我上一年级或二年级时，我妈妈就非常喜欢它。原作堆在桌子上，电视上继续播放着借来的DVD的动画版。乍一看，这似乎不是一部适合小孩子看的作品，但如果你看看“西游主题，帅哥杀怪”的元素，这就是让孩子们着迷的一大因素。顺便说一句，听到唱OP的德山先生的名字我感到非常兴奋，后来他以地狱兄弟最好的形式在《假面骑士兜帽》中与他重聚。\n\n当然，我从小就只能理解故事的一半意思，“我的爱人让怪物孩子怀孕，在我面前自杀”，而且我读不懂经常插入的诗的性含义（我特别喜欢“用你淫荡的嘴唇喝下爱和生死。”），但我确实理解了像我母亲这样的成年人所吸引的成人性吸引力。这就是所谓的“让成年女性羡慕的性感男人”。他们的一切都很时尚，我很惊讶他们即使只是打麻将也如此时尚。为什么这些家伙光是搅拌瓷砖就看起来如此性感？\n\n最令人震惊的部分是在神间篇中，当心智年轻、自称神明的最终boss问道：“有神吗？”临死前，主谋残酷地回答：“我想没有。”那一刻，神圣的彩色玻璃破碎了，给人一种强烈的否定上帝存在的印象。我跳起来说：“这就是‘方向’！”不知道是否有这样时尚的表达方式。我想要过这种很酷的生活。\n\n包含日常文章的同人志正在摊位上出售！仔细想想，西游记的影响可能还是和长发有关。\n\n请欣赏这本以时尚封面而闻名的商业论文集！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

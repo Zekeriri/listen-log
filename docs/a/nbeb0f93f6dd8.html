@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔:想辞职的谎言</title>
+<title>一次性文章：关于辞职的谎言</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-06-19 05:08</p>
-  <h1>一口随笔:想辞职的谎言</h1>
+  <h1>一次性文章：关于辞职的谎言</h1>
   <p class="ja-title">一口エッセイ:仕事を辞めようという嘘</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一次性文章：关于辞职的谎言\n\n这几天，只有一件事让我烦恼，那就是我对朋友说了一些无意的话。不，说实话，我说的是我当时的真实想法，但是从我大声说出来的那一刻起，我就感觉很奇怪，后来想一想，我才发现我说的并不是事实，而是一个愿望。\n 那是因为我遇到了一位有抱负的漫画家朋友，听说他正在努力工作，正在慢慢地写稿子，希望能连载，我说，“我认为你应该辞去工作，专注于漫画。”这并不意味着事情有那么严重。这本来是对劳动人民的一个玩笑，但我认为这是一个“事实”。事实上，既然我被指派了一位主管编辑，我认为集中精力在漫画上是个好主意。\n 不过，我想这就是我想辞职的原因。如果我的朋友大学毕业并找到了工作，最终画了有趣的漫画，那么我在世界上就没有立足之地了。不过他的漫画很有趣。这就是为什么我想让他们说，“我辞掉了工作，全力以赴，我才能够创作出一部优秀的漫画。”如果你以这种方式让你的创作变得高贵，那就有意义了，有意义了。我的另一个已经是漫画家的朋友也在场，由于他在漫画出版之前一直在打工，所以他同意我的说法，“我们退出吧。”他们可能都梦想着商业创作，认为这是“一个不放弃生命就无法到达的领域。”他只是迂回地自我夸奖，说“我之所以能完成游戏，是因为我走了一条不寻常的路。”\n 这不是重点。森博嗣在大学工作时写下了《一切都变成F》。辞职和让工作变得更有趣之间没有关系。结果，在很多情况下，人们之所以成功，是因为他们辞去了工作，专注于自己。但这仅仅意味着“因为他创作了一部好作品”，历史就被改变了，“他虽然辞去了工作，却全身心地投入到创作中”。事实上，如果他有那样的天赋和能力，或许也能一边努力一边写出杰作。只要有力量，环境就无关紧要，或者说，确实是“任何环境都可以转化为力量”。虽然我不承认。\n 这就是为什么我后悔说我相信“辞职会带来更好的工作”。我并没有真正思考过如此美好的事情。充其量，就是“这样可能性会更大”。我只是在寻找“我的朋友辞职了”的娱乐般的兴奋。正确的答案是，“如果连一本有趣的漫画都连载而没有辞职，我会非常失望！”你不可能在咖啡店里亲自说这样的话，我认为“让我们辞职吧”是在这种情况下合适的沟通方式。然而，我仍然担心我没有告诉他我的真实想法。\n 最终，历史会证明答案。我唯一能弥补的就是诚实地谈论当他的漫画在杂志上发表时让我感到“羞愧！”的画面和台词，而不是试图愚弄他。嗯，其实，你的作品发表了你就应该享受，如果你不发表，继续当上班族，你就可以有很多讨论，所以无论结果如何，都是一个很好的情况。毫无疑问，这是他努力的结果，帮助他实现了“负责任的编辑”的梦想。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

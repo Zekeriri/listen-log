@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：20万本与脑中的超级天酱</title>
+<title>一次性文章：20万本书和我脑子里的超级疯子</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-07 04:38</p>
-  <h1>一口随笔：20万本与脑中的超级天酱</h1>
+  <h1>一次性文章：20万本书和我脑子里的超级疯子</h1>
   <p class="ja-title">一口エッセイ:20万本と頭の中の超てんちゃん</p>
 </header>
 <main>
@@ -29,10 +29,11 @@
 商業エッセイ集に至っては、頭の中どころか僕の人生そのものです。よろしくお願い致します。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一次性文章：20万本书和我脑子里的超级疯子\n\n我创作的游戏数量已售出20万份。感谢所有支持我们的人。有相当多的人已经完成了游戏，所以我很高兴时不时地在 Steam 评论上看到他们的想法和想法。\n\n游戏中，周十酱讲述了“薛定谔的猫”，通过观察来收敛确定猫的生死结果。事实上，这个思想实验的关键在于，“如果这个理论是正确的，那么有些猫是不是不可能同时既是活的又是死的？”但我们暂时先把细节放在一边。\n\n除非给出明确的“答案”，否则未来不会收敛，而这个游戏的“答案”只在我的脑海中。我什至还没有向制作组传达我的解释。换句话说，在我吐出来之前，它不会被“确认”。未经证实的“答案的可能性”有多少用户就有多少用户，其中有些是正确的，有些是不正确的。超级十酱的本质是无限存在的，有多少个圆周率就有多少个未来。\n 不管怎样，在花了一年半的时间考虑为一个单身女孩做弥撒之后，我仍然无法摆脱超级tenchan的想法。无论她看到什么，它都会自动决定她会怎么想以及她会如何看待它，而她大脑的百分之几的专属空间被一个超级痴迷的人占据了。帮我！\n 我至今也不知道，我心目中理想中的美丽女孩，是福是祸。然而，对于只有我头脑中的超级实体知道游戏中的人在想什么的真相的情况，我并不感到难过。\n\n我负责类似故事的原作漫画。请跳过去阅读。\n\n我们现在正在销售收集日常文章的同人志！请看看我的内心。\n\n这本商论集不仅是我的头脑，也是我的生活本身。感谢您的支持。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>随笔：高潮时请掐脖子</title>
+<title>随笔：当我高潮时，掐死我</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-04-19 02:23</p>
-  <h1>随笔：高潮时请掐脖子</h1>
+  <h1>随笔：当我高潮时，掐死我</h1>
   <p class="ja-title">エッセイ：イクとき首絞めてよ</p>
 </header>
 <main>
@@ -23,10 +23,11 @@
  それを確認して友達は腕を離し、しばらく僕の様子を見守り、息を吹き返したのを聞いてホッとすると、「あの世はどうだった？」と訊くわけです。生命が一瞬停止するといった危険すぎる独特な感覚を表現できず、必死の思いで生還した僕は皮肉を込めて彼らに言うんです。「ちゃんと殺してくれても良かったのに」と。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"随笔：当我高潮时，掐死我\n\n我有几个女性熟人，她们总是要求我在做爱时掐死她们。\n 他说，“这表明他足够爱我，如果我死了，他会为我承担责任”，我认为这种关系很棒。如果你所爱的人会杀了你，然后为此承担责任，那才是你真正想要的。事实上，他是在期盼，在索取，这意味着他已经超越了“理解男友”的层次，呈现出“甚至想杀了自己的男友”的样子。\n 另一个原因是，由于生命处于危险之中，我想通过感受大脑中的麻醉剂来进一步增加性快感。我理解这个想法。高潮有两层含义：性快感和濒死体验，所以这将是一次难忘的经历。当你的颈部和生殖器受到你所爱的人的刺激时，你的奖励系统会疯狂地释放大脑中的分泌物。我为平时无法获得的舒适感而疯狂。\n 到时候连我都想被掐死。如果有人能够通过杀死像我这样沉睡的甲虫来承担与杀死一个人相同的罪恶感，那将是多么令人高兴的事情。谋杀证明我作为一个人生活过。这是戏剧性的。\n 当我还是个孩子的时候，类似的游戏在小学里曾短暂流行过。故意去推对方的心脏，甚至掐死对方，让对方晕过去，这是只有小孩子才会因为年纪小而想到的危险游戏。和其他许多人一样，我也是这个游戏的受害者，有一次我的朋友勒死了我。\n 当我大喊“住手，住手！”时还好，但当我达到极限时，我就再也无法发出声音了。当我想到“哦，这太疯狂了”时，已经太晚了，当我感觉我的眼睛完全变白后，我突然失去了知觉。\n 确认了这一点后，朋友松开了我的手臂，看了我一会儿，听到我复活了，才松了口气，问道：“另一个世界是什么样的？”我讽刺地对他们说，因为我无法表达生命暂时停止的那种极其危险和独特的感觉，我拼命地想活下去。 “如果你能正确地杀掉我就好了。”"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

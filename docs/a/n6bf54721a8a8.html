@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔: 对御宅大叔爱好的觉醒</title>
+<title>短文：我对宅男爱好的觉醒</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-04 03:54</p>
-  <h1>一口随笔: 对御宅大叔爱好的觉醒</h1>
+  <h1>短文：我对宅男爱好的觉醒</h1>
   <p class="ja-title">一口エッセイ:オタクのおっさん趣味に覚醒していく自分</p>
 </header>
 <main>
@@ -33,10 +33,11 @@
 商業エッセイ臭もよろしくね。この頃は若さに溢れている!</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：我对宅男爱好的觉醒\n\n最近，我对火车越来越感兴趣。在空闲时间，他喜欢在家里玩玩具火车车厢和铁路道口，并观看玩具火车在他的房间里旋转的视频。\n\n作为我天生的御宅族本性的一部分，我想我正在成为一名铁御宅族。我能理解“用照片和视频记录准时、固定构图的火车”的吸引力。“记录”个人让我很兴奋。\n 不过，我出生在冲绳，虽然小学时就开通了单轨电车，但我对所谓的“电车运行的风景”并不熟悉。这可能是我还没有真正接触它的原因，但现在我对Plarail和立体模型在我家周围运行的渴望与日俱增，无法阻止。我不喜欢火车上的人群，我也不觉得在东京运行的火车有什么吸引力。我认为带有一点侘寂的铁路与乡村风景相结合是非常性感的。\n 当然，现在网络上流行着骂铁书呆子的风潮，看到有人为了拍照而大喊大叫、作案固然很搞笑，但看到有人调侃自己竟然喜欢火车就更搞笑了！变成。御宅族方面会否认吗？喜欢。我想这部分是因为我喜欢特效（像《哥斯拉》和《庵野英明》这样的怪物电影……尤其是使用火车的《Love & Pop》的制作）。\n\n爱情与流行 pic.twitter.com/vQtCwB8rR9 — Nyalra (@nyalra) 2022 年 6 月 25 日\n\n最近，我对佛教变得很感兴趣，也许是因为我担心我的“很多事情”并寻求平静，我开始参观附近的寺庙，我发现在日本氛围中拍照让我感到平静。他喜欢玩具火车、逛寺庙、拍照……他是一个完美的“宅男老人”。我自己也很惊讶，但当我快到 30 岁的时候，我的身体开始寻找侘寂。\n\nArai Yakushi Baishoin pic.twitter.com/xqZJ6PnuIG — Nyalra (@nyalra) 2022 年 6 月 24 日\n\n我相信您不会造成任何麻烦，但不难想象您独自一人旅行，手里拿着相机，拍摄火车和田园诗般的乡村背景。同时，我参观寺庙和神社，阅读小镇的民俗，这让我很开心。当我还是个孩子的时候，我想知道寺庙和摄影有什么乐趣，但我很自豪地说，我的血管里流淌着这种自闭症御宅族的血液，而且随着年龄的增长，它开始觉醒。\n\n包含每日日记的同人志正在 BOOTH 发售！我不介意保留这样的日常记录。\n\n我希望你也喜欢这些商业论文。这些天我都充满了青春！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -56,7 +57,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

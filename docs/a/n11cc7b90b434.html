@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：合法让人快感的东西的可怕之处</title>
+<title>短文：对合法且能让你感觉良好的事物的恐惧</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-12 03:37</p>
-  <h1>一口随笔：合法让人快感的东西的可怕之处</h1>
+  <h1>短文：对合法且能让你感觉良好的事物的恐惧</h1>
   <p class="ja-title">一口エッセイ:合法で気持ち良くなれるものの怖さ</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 商業エッセイ集もよろしくね。こっちは全然ラリってるけど。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：对合法且能让你感觉良好的事物的恐惧\n\n世界上一直有一些东西是合法的、能让人感觉良好的，这一次也是因为有明星宣传而被人所熟知，国家也出手了，下周就要监管了。因此，我认识的一些人在法规生效之前一直感觉良好。\n 每次监管起来我就放心了。我害怕什么时候我会开始对它上瘾。我尝试过这个，感觉确实不错。我保持距离，因为这是一件好事。如果我手头上有数量，我会永远这样做。正如我之前提到的，总是有这样的产品在流通，因此几个月后，使用不受管制成分的类似产品可能会再次出现。\n 身体依赖性很好。说到这里，我觉得烟和酒更划算，也更危险。就我个人而言，我只在完成工作或社交时喝酒并服用安眠药，而且我根本不吸烟。问题是精神依赖。\n 基本上，人们努力工作一个月，然后用工资的一定比例来购买他们想要缓解压力并与未来联系的东西/体验。但如果有一种合法的商品能让你只花 2,000 日元就感觉更好呢？大多数人都会选择那样。在《弗兰肯弗兰》中有一个故事，如果在那里放置一个生物来满足他们的性欲，所有男孩都会爱上它，学校将不再运作。\n 人类无法抗拒快乐。渐渐地，如果我能轻松获得这种幸福感，我就不必努力工作/尝试了。这是冷漠综合症。我最担心的是我最终会想：“我不需要写任何麻烦的东西。”\n\n包含每日日记的同人志正在摊位上出售！\n 很高兴你每天都抽出时间来写，因为你害怕打扰这个日记……睡觉会感觉比这更好！\n\n我期待着阅读您的商业论文集。但这一点却一点也不放松。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

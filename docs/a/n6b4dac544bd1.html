@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：无价值循环</title>
+<title>短文：毫无价值的循环</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-26 05:55</p>
-  <h1>一口随笔：无价值循环</h1>
+  <h1>短文：毫无价值的循环</h1>
   <p class="ja-title">一口エッセイ:無価値ループ</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
  あー。寝ます。おやすみなさい。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：毫无价值的循环\n\n有没有时候，你会突然觉得自己一文不值，浑身发抖？不是有吗？如果它不在那儿就好了。我有。尤其是这几天深夜。首先，我想反驳一些我写这篇文章时肯定会说的话。我的大脑已经连上了网络，所以“敌人”就自动输出了。\n “尽管我有很多粉丝”“尽管我正在制作游戏并获得了很多关注”“由于过于自嘲，我希望人们告诉我事情不是那样的，对吧？”好吧，我想这就是全部内容。我在想，“哦，这太烦人了”，但我别无选择，只能接受这些事情，因为它们都是真的，但即便如此，我突然对未知感到隐隐约约的恐惧。 “即使我有追随者，”“如果比赛结束后我什么也做不了而感到无聊怎么办？”“我身边有没有人会告诉我事情不是那样的……”等等。\n 每天，我都在与“如果我不做某事我会感到无聊！”的强迫感觉作斗争，在我总是昏昏欲睡、无法动弹、什么也做不了的日子里，人们慢慢离开我的恐惧开始蔓延！现在想来，我不知道这个人是不是还在看我……我很害怕，于是我翻遍了对方的点赞区，发现他们根本没有点赞我的推文！要么我静音，要么我讨厌它！你可能会感到紧张。\n 害怕的！当我开始服用精神药物时，由于嗜睡的副作用，我再也不能动了。我被必须在某个地方打破这个循环的压力压垮了！每天都忍不住犯困、困倦。\n 毕竟，这个世界是优胜劣汰的世界。如果你努力，你会被赏识，但如果你不努力，你的存在就会慢慢消失。我只能为自己的存在价值感到焦虑，而自己的存在价值正在一天天减少。我想尖叫，“有人在我身边！”但我非常害怕向别人展示我不合时宜的一面，以至于我什至无法轻易地接触到他们。到最后，只剩下无谓增长的自觉骄傲。\n 另一方面，为什么不通过写作来赞美自己呢？当你想到这一点时，当周围有其他人时不感到不安是很酷的。不把自己的烦恼和痛苦转嫁到别人身上，这不是一种干净的生活方式吗？这样，我只在自己的日记中表达自己的感受（即使这会让读者不舒服，但我读起来更糟糕），而且我不会像我一个人在房间里呻吟那样打扰任何人。这绝对是很棒的。\n 然而，我不太喜欢“我很伟大，因为我不给别人带来麻烦。”因为我是个白痴，我一直在给别人带来麻烦而不自知。人活着，就有惹麻烦的时候，也有即使惹麻烦也想有所成就的时候。每一次成功的背后，都有无数无法达到目标的尸体。\n 故事变得扑朔迷离。基本上，我想说的是我有一些好的观点，所以让我们慢慢来。 ……好吧，世界就是这么残酷，我们渐渐开始忘记那些活得慢的人。我的思绪又绕了一圈。已经不行了这是一种他反思自己所有积极观点并否定它们的模式。啊。\n 啊。我要去睡觉。晚安。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

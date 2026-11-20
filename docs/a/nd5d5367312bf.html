@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：认真工作的公司职员</title>
+<title>短文：认真的上班族</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-15 05:55</p>
-  <h1>一口随笔：认真工作的公司职员</h1>
+  <h1>短文：认真的上班族</h1>
   <p class="ja-title">一口エッセイ:まじめな会社員</p>
 </header>
 <main>
@@ -29,10 +29,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：认真的上班族\n\n今年的《这漫画太棒了！ 2023”，我们有一个类似评审团的部分，选出了今年最好的五部作品。我这样做已经大约五年了。我很高兴。\n 我也在考虑写一篇关于今年我认为不错的漫画的文章。大约在年底的时候。\n 嗯，赠书收到的有点早，所以快速浏览了一下今年的获奖作品，看了几篇看起来很有趣的漫画。引起我注意的是《认真的上班族》，它在女性版中排名第三。这是一位作家，他关于约会应用程序的一次性故事已成为热门话题。\n\n这部漫画的主角是一位30岁的办公室女士，没有任何特殊技能或个性，她的日常生活以一种非常残酷和现实的方式继续。令人惊讶的是，“类似漫画”的事件很少。不管走多远，它交替描绘的悲伤和喜悦都是现实生活中可能发生的事情，所以你可以想象很多人实际上都处于这样的情况，这逐渐损害你的心灵，让你同情他们。\n\n真是一个黯淡无光的主角。在工作中，他非常小心，不树敌，不做任何麻烦事，甚至在工作之外的人际关系中，他也非常有自我意识，不断解读气氛，所以生活中他享受的时刻很少。我们喜欢的男人和女人生活在一个人人都有爱人的闪闪发光的世界里，他们毫无恶意地和我们谈论爱情，而我们每次都试图用友好的微笑来愚弄他们。而且，她对亚文化也有一定的了解，看不起不太懂小说或者电影的人。这是多么让你感觉身临其境的存在啊。\n 很多现实摆在她的面前，但如果你站在读者的上帝视角来看，你会发现她抹去了自己的个性，继续不读书，这大概是她自己的错。我无法停止翻页，这太可怕了。\n\n一路走来，主角试图成为一名作家，但这里的文章稿费也非常真实。作为一个流浪作家，我拿着几百日元的报酬来写一些根本没有乐趣的煽动性文章。当然，我的能力不大，也不能出卖自己的名字。他们不断地在网上发表大量的文章，编排着自己不感兴趣的类型的谎言。作为一个同样靠写作赚钱的人，我只能同意这样一个压倒性的现实：即使你在30岁的时候突然决定成为一名作家，如果你没有经验、没有素材可写，你也会落得这样的下场。在你的生活中，有没有什么是你一直想写的，比如《你能找到的 5 个兼职工作》？而且，如果按照自己的想象完成的话，只需要700日元。地狱。\n “创建一个可读且包含你自己名字的文本”并不是一朝一夕就能实现的事情……但是，我确信有很多人最终把这作为副业，因为他们对亚文化有一定的了解并想尝试一下。多么喜剧啊。这是一系列安静而有力的场景。确实，这部漫画太棒了！这一年也是我读了很多丰富作品的一年。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

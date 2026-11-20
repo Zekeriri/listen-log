@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口随笔:失败御宅的等级制度</title>
+<title>短文精选：无用御宅族的等级制度</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-15 16:00</p>
-  <h1>精选一口随笔:失败御宅的等级制度</h1>
+  <h1>短文精选：无用御宅族的等级制度</h1>
   <p class="ja-title">選り抜き一口エッセイ:ダメオタクのヒエラルキー</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 最近でた商業エッセイ集も、よろしくお願いします。いろんなダメさが詰まっている。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文精选：无用御宅族的等级制度\n\n大月健二和泷本龙彦的对话结束后（因篇幅限制，标题省略），大肯收到了一封信，信中写道：“泷本龙彦是一位成功的蛰居族，所以像我这样不优秀的蛰居族的人会感到沮丧，不想读它。”\n 对此，奥肯评论道：“我想知道蛰居族世界中是否也存在等级斗争。泷本君，太难了。” 蛰居族世界里的这种等级制度……总之，我可以清楚地看到，即使在无用的御宅族中，也存在着不善良的等级制度。事实上，在泷本女士成为作家后的签名会上，一名穿着女仆装的粉丝求她让他成为自己的情人。既然出了如此精彩的作品，自然会受到欢迎，但也有宅男对此不满意。\n 这个例子在互联网更加普及的今天就更加明显了，甚至在今天的社交媒体上，人们都在从下面拉人，说“这家伙装坏人，但他有男朋友”，“虽然他有很好的学术背景”，“他的脸也不坏”，当他们认为是朋友的人试图取得哪怕一点点的成功时，他们就开始像死人一样阻止他们。\n 尽管如此，成功的蛰居族的存在仍然是生活在阴影中的御宅族们的希望之源，也仍然深深地铭刻在包括我在内的粉丝的记忆中。 Oaken还说，“也许是因为它太难了，所以它比我卖得更好。”让我们完成一些超越死者尸体的事情，摆脱SNS这个瓶装地狱。\n\n包含日常文章的同人志现已在摊位发售！这么公开地揭露一切可以吗？\n\n我期待着阅读您最近出版的商业论文集。它充满了各种各样的缺陷。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

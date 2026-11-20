@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：梦想和诅咒是一样的</title>
+<title>短文：梦想就像诅咒</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-13 01:02</p>
-  <h1>一口随笔：梦想和诅咒是一样的</h1>
+  <h1>短文：梦想就像诅咒</h1>
   <p class="ja-title">一口エッセイ: 夢ってのは呪いと同じなんだ</p>
 </header>
 <main>
@@ -27,10 +27,11 @@
 商業エッセイ集もよろしくお願いします。なってしまったからには、闇の道も進まなければならない。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：梦想就像诅咒\n\n说到喜剧，我是个门外汉，所以我不知道这一点，但去年 M-1 的获胜者显然是 50 多岁。我认为这既是希望，也是诅咒。\n 假面骑士555里有句台词：“梦想和诅咒是一样的。”要打破诅咒，你必须实现你的梦想。然而，那些一路失败的人将永远受到诅咒。”\n 即使过了50岁，也能登上喜剧界的顶峰，成为努力工作的人中受欢迎的人物。有了这个先例和事实，喜剧演员即使到了 50 多岁也应该有希望。甚至到了30岁之后，大家都变得越来越稳定，或者到了40岁，身边的人开始把自己的梦想托付给孩子。如果你半途而废，你将永远受到诅咒。\n\n我们都是冲绳一所低级技术高中毕业的，所以没有人指望我们有一个美好的未来。只有少数人有梦想和希望。我害怕因为期待这样的事情而被诅咒。至少在这一点上，我已经偏离了以“学历”为基础的人生道路。要想从此走上辉煌的人生，唯一的出路就是不断追逐梦想，坚持不懈，直到成长为一名艺术家。就像我之前写到的一位朋友，他成为 Comiket 的商业作家并给了我一本书。\n 也就是说，这样的赌注一定是不正常的。因为你选择了被诅咒。如果他能早点放弃，减少伤害就好了，但他是一个勤奋的人，50岁就得到了回报，这一事实不允许他停下来。\n 哪怕是诅咒，心跳也是真实的。我永远不会再停止梦想。\n\n包含日常文章的同人志现在正在展位上出售。可以看到御宅族们悠闲地看动漫、看书、不顾梦想的日常生活。\n\n我期待着阅读您的商业论文集。既然已经发生了这种事，我们就必须继续沿着黑暗的道路走下去。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

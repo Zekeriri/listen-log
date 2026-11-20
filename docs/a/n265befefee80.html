@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口随笔：狼蛛</title>
+<title>精选咬文：狼蛛</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-09-29 22:35</p>
-  <h1>精选一口随笔：狼蛛</h1>
+  <h1>精选咬文：狼蛛</h1>
   <p class="ja-title">選り抜き一口エッセイ：タランチュラ</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 ※Twitterに連載していたエッセイからの抜粋です。↑で購入できますので、エッセイ集をぜひ読んでみてね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"精选咬文：狼蛛\n\n我曾经养过一只狼蛛。 “直到粉趾狼蛛”是一种生动的蜘蛛，呈粉红色和浅蓝色的混合色，有时被称为世界上最美丽的蜘蛛。実际、仆のアンティルピンクトゥーはとても绮丽で、践ど动かないですが眺望めているだけで全く饱きません。\n 蜘蛛って凄くカッコいいんです。 除了吃蟋蟀之外，它们一般不会离开巢穴，而且由于它们是昆虫，因此不会对人类产生依恋。尽管它们可能会爬上人类的怀抱，但它们却没有丝毫想要讨好人类或者与人类亲近的欲望。\n 我想，如果我要死的话，我宁愿死于这只狼蛛的毒。尽管我准备了这么多的食物和环境，那只毫无感情的蜘蛛却毫不犹豫地残酷地咬了我，并在我的全身散布了致命的毒素。\n 当然，蜘蛛侠的觉醒并没有什么英雄式的发展，他被他心爱的宠物背叛了，而从蜘蛛的角度来看，他并没有背叛他的意图，这只是他的本能，我认为他被这样一个生物的无情和残忍杀死是一件很美妙的事情。事实上，宠物狼蛛并没有那么毒。\n 我很兴奋，心想如果有一天世界上最美丽的蜘蛛杀了我，那将是一个美丽的结局，但后来我发现蜘蛛先死了。蟋蟀在尸体旁边悠闲地跳跃寻找食物。并没有想象中那么悲伤，我感觉自己就像一只虫子。\n\nむかし仆も教育していた、「世界で最も美しい」と形容されるタランチュラ、安ティル・ピンクトゥーを见て pic.twitter.com/sdAmVKGq68—にゃるら (@nyalra) 2021 年 8 月 29 日\n\n*这是 Twitter 上连载的一篇文章的摘录。可以在↑购买，所以一定要阅读散文集。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

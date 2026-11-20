@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口散文：科学的信仰与自杀</title>
+<title>短文：科学信仰与自杀</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-05-19 04:18</p>
-  <h1>一口散文：科学的信仰与自杀</h1>
+  <h1>短文：科学信仰与自杀</h1>
   <p class="ja-title">一口エッセイ:科学の信仰と自殺</p>
 </header>
 <main>
@@ -37,10 +37,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：科学信仰与自杀\n\n我意识到陀思妥耶夫斯基和宫泽贤治都写过相信“科学”等同于自杀。\n 这就是《卡拉马佐夫兄弟》中发生的事情。\n 科学中只有事物受制于人类的五种感官。老人说，他狭小的世界里只有奴役和自杀。即便如此，陀思妥耶夫斯基的所有人物都突然用长句谈论上帝，这是非常有力的。我认真地生活。\n\n宫泽贤治在《诗笔记本》中这样写道：\n\n“如果仅从今天的历史和地质史资料来讨论，\n从我们的祖先到我们\n看来所有的信仰和美德都只是源于误解。\n而且，科学仍然是黑暗的。\n它只能保证我们自杀和被遗弃。”\n\n两者的共同点是“信仰”。陀思妥耶夫斯基是上帝，宫泽贤治是佛。正如我多次写过的那样，我是一个无神论者。我对宗教的兴趣始于了解基督教文化，以便更深入地了解克苏鲁神话和玛丽莲·曼森的“恐怖”，剩下的主要来自押井守的作品和我学生时代接触佛教的经历，所以都是关于亚文化和文学。它不是“信仰的对象”。\n 不过，我确实有一个愿望。\n 正如我之前所写，大多数日本人不信仰任何特定宗教，如果我必须说出他们信仰什么，那就是科学。由于所有现象最终都可以用科学来解释，因此我们认识到不可能有神、佛或神秘。我可以理解，但如果你认为“科学”就是一切，那么生活在这个世界上还有什么意义呢？这就是问题所在。\n 从科学和逻辑上讲，人们认为获得幸福的最佳解决方案是药物或诚实的努力，但大多数人不会服用药物或做出真正的努力。我有一些佛教信仰，我觉得我们应该按照自己的节奏去思考“善”，但如果没有这样的“生活价值标准”，生命不就变得像动物一样，要么被社会带走，要么沉迷于享乐吗？我就是这么认为的。\n 毕竟，如果人们有“信仰”，那就更人性化了，但日本人倾向于嘲笑“对不存在的东西的信仰”，而那些愤世嫉俗的人则说“科学上不可能”。我相信科学。如果是这样的话，人们可能会选择超越善恶标准的方式来让自己感觉更好，但人们不会走上这种“邪恶”的道路。因为有适合社会的是非观和道德观。当然，这个论点是正确的，因为社会存在。但是，我绝对不想过一种对社会只有模糊的信仰和价值的生活。我感觉不到生活。\n 这种想法已经在我的脑海中扎根，所以陀思妥耶夫斯基和宫泽贤治都写过“只相信科学就是自杀”之类的东西，这对我来说一定是有道理的。我很可能只是无意识地受到了他们的影响。无论如何，我觉得对科学和社会的信仰生活是怪异的，如果没有上帝或佛教，我想这就像前田敬二一样，一个为自己的爱好而生活的“怪人”。\n 当然没有明确的答案。如果它很明显，那就是在死后。重要的是人死后或临死时所相信的东西是否能救人一命或带来圆满的死亡。一个虔诚的基督徒如果在临死前看到天使的幻象，他会很高兴；而一个佛教徒如果觉得自己即将解脱，也会很高兴。因此，如果一个御宅族最喜欢的漂亮女孩角色走进他的前门并牵着他的手去天堂，他会感到“高兴”。能否达到这一点取决于你的信仰，而你最后看到的就是科学和社会，对我来说，就是对暧昧生活的惩罚。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -60,7 +61,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

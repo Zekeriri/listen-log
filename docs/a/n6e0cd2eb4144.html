@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：你是谁？我心中的我</title>
+<title>一篇文章：你是谁？我内心的我</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-08 05:09</p>
-  <h1>一口随笔：你是谁？我心中的我</h1>
+  <h1>一篇文章：你是谁？我内心的我</h1>
   <p class="ja-title">一口エッセイ:お前は誰だ オレの中のオレ</p>
 </header>
 <main>
@@ -23,10 +23,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇文章：你是谁？我内心的我\n\n一名 40 多岁的失业男子自称“有人拿着刀……那就是我”，并告诉警方“我体内还有一个人拿着刀”，他因涉嫌违反《枪械和刀剑法》而被捕。\n 很酷，就像亚马逊人一样……据说这名男子处于醉酒状态，但当他失去知觉时，拿着刀的可能是他失去意识的自己。\n 草下伸也的《真实毒品报告》中，描述了一群朋友在愤怒中变得困惑，试图拿出刀，然后他们都怀疑自己是背叛自己的人，从而导致了对立的局面。当他的意识一片模糊时，他可能会在与自己发生冲突后发现自己无法相信任何事情并拿起武器。\n 事实上，曾经有一个朋友在感到困惑时向我坦白，“我想过杀死尼亚鲁拉桑”。他从躁狂抑郁症中进入了严重的躁狂状态，他的推理出现了错误，他开始相信，如果人立即死去，最终会更幸福，而且他似乎很想把与他关系密切的我从生命中解救出来。幸好我不会做饭，也没有刀，所以这件事没有发生。\n 人类是不知道什么触发因素会导致齿轮转变的生物。如果我体内“除了我之外”的东西醒来了，也不会奇怪。大多数谋杀和自杀都不是计划，而是冲动。能够勇敢地面对自己以外的人并报告这件事就是一件很棒的事情。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

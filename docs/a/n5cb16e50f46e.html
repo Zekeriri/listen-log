@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：超天酱团体，现身秋叶原</title>
+<title>速记：秋叶原出现了一群脾气暴躁的人</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-27 04:57</p>
-  <h1>一口随笔：超天酱团体，现身秋叶原</h1>
+  <h1>速记：秋叶原出现了一群脾气暴躁的人</h1>
   <p class="ja-title">一口エッセイ:超てんちゃん集団、秋葉原に現る</p>
 </header>
 <main>
@@ -34,10 +34,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"速记：秋叶原出现了一群脾气暴躁的人\n\nSwitch版《NEEDY GIRL OVERDOSE》今日发售♪\n为了纪念这一时刻，我们拍摄了宣传视频。\n大家请多多玩网络天使 pic.twitter.com/VfgRmuFMhv — Nyalra (@nyalra) 2022 年 10 月 26 日\n\nNidiga Switch 版本发布前夕将进行广播。\n 当时为了纪念，播出了新拍摄的网络版广告，内容是“当大量超十酱和阿米酱在秋叶原跳舞时，一名保安过来将他们驱散。”是的，这是当时秋叶原气氛的再现。\n\n既然要拍广告，我们就想创造一些有噱头的东西，而不仅仅是一个简单的介绍视频，经过一番周折，我们得出的结论是“秋叶原，从Hokoten活跃在TikTok和YouTube的时代开始，现在被视为‘美好的旧时光’，被年轻人视为情感。”我本能地觉得这很有趣，也是Nidiga的典型，所以我立即开始安排拍摄。曹天酱的主题曲已经在 TikTok 上流行起来，所以有趣的是，主要家庭也加入进来，通过在 TikTok 上发布这段秋叶原视频来宣传它。每个人在完成视频时都微笑着，这让人想起最初的 PlayStation 时代。嗯，这是Switch版的广告。\n\n然后十月的某一天。一群超十酱齐聚秋叶原开始拍摄，让不少路人大吃一惊。有趣的是，听到一个恰好路过的御宅族嘀咕：“秋叶原有很多超级十酱，他们是幻觉吗？”他看起来很威严，我不知道他在做什么。强烈的幻觉。\n 所以我在直播期间和之后将其发布在Twitter、YouTube、TikTok、Instagram等上，并收到了各种人的反应。我很高兴看到这么多像“真的是令和吗？”这样的惊喜。我很高兴它受到了我的目标人群的好评。\n 我想，随着秋叶原作为旅游胜地的快速发展，加上疫情，“宅男小镇”的概念逐渐变得越来越分散。这就是我从秋叶原搬到中野的原因，因为我确信中野百老汇是“我的御宅族梦想的残余”的最后堡垒。\n 当然，在Hokoten举办的节日最终非常糟糕，以至于警察介入，但也不难理解为什么年轻一代想要体验这种氛围。如果非要说强的话，我会说是在歌舞伎町，但那个地方比亚文化/御宅族文化更加地下。\n 这就是为什么我认为如果你能在这个视频中体验到“00年代的气味”那就太好了。既然这么受欢迎，我就说服制片人冒险一试，花了很多钱做广告，《超级天灿秋叶原杰克》就是这样拍出来的。感谢大家的合作。\n\n拍完照片后很高兴看到超级十酱互相玩耍。曾几何时，粉丝、反对者、创作者、辩手、影响者，无论老少，我们都想在秋叶原中心狂舞，将其打造成“萌”时代的最后一集。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,7 +58,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

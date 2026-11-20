@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口小随笔：大学生的污秽</title>
+<title>速记：大学生的不纯洁</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-02-09 06:39</p>
-  <h1>一口小随笔：大学生的污秽</h1>
+  <h1>速记：大学生的不纯洁</h1>
   <p class="ja-title">一口エッセイ:大学生の穢れ</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"速记：大学生的不纯洁\n\n当我打开空间时，我收到一个问题，“我四月开始上大学，但我很害怕，因为我作为一名大学生的存在似乎不干净。”\n 我理解这种感觉。即使在网络上，大学生们似乎每天晚上都在喧闹、得意忘形。六个月后我退学了，但这就是我在参加的短暂时间里的感受。我是一个谈恋爱的书呆子，吹嘘自己有多受欢迎，参加酒会，骑摩托车……我感受到了与初高中时不同的拒绝感。但现在想来，我觉得还是有必要的。\n 开始独居，在时间、金钱、喝酒、抽烟、时尚、爱情的复杂性等方面的自由度直线上升，而对于一些人来说，这与高考之痛的解脱感结合在一起，日子就在沉浸在暂缓的快乐中度过。好吧，我情不自禁地处于我一生中最好的状态。我放弃了，因为别人很难。总的来说，这可能是一段有趣的时期，也包括麻烦。\n 所以我就得意忘形，犯了很多错误。每当它出现在表面上，大学生的不适感就会增加。同样的事情也发生在我身上，但人是在犯错误中成长的，我觉得在大学期间在饮酒和时尚方面犯错误是一种必要的仪式，以避免让自己作为社会一员感到尴尬。当一个大学生把头发染成金色（这不适合他）和一个工作的成年人把头发染成金色时，痛苦是有区别的。在俱乐部发布会上大惊小怪和在公司酒会上使用暴力之间的不可逆转性是有区别的。\n 在您亲眼目睹之前，您不会学到这样的东西。我在毒品方面一次又一次失败，当谈到网上关系时，我常常感到后悔。当你将大学生活视为一个学习机构时，你会感觉这是一种不可避免的罪恶。当然，冒犯的事情就被冒犯了。\n 我认为这也与网上行为有关。他们在社交媒体上获得自我，采取倾斜立场并攻击受欢迎的人。他这样做，给人的印象是“我有不迎合大众的情感”，却没有意识到自己也是“普通的大学生网民”。随着年龄的增长，我会感到尴尬并想，“我想知道为什么我把这种毫无意义的抱怨和嫉妒误认为是急躁。”之后，即使你在网上看到激进的评论，你也可以忽略它们并想，“哦，他现在就处于那个阶段。”如果你二十多岁或者更老……那就太悲剧了。我什至都不敢看它。如果是这样的话，那么可以说，你还在大学的时候就应该体验一下玩世不恭的感觉。有些人从小就很有礼貌，没有做过这样的蠢事。善良。这绝对是最酷的。\n 当我告诉她这件事时，她似乎认为她会否认“大学生不洁”的想法，她害怕地说，“我想大学生毕竟是不洁的……我在发抖。”但后来我确信“即使失败我也会尽力”，所以就解决了。很好。我不想撒谎说“大学生出奇的正派。”我希望你尽力而为。还有，请不要忘记“害怕被不干净的大学生包围”的感受，这是你未来生活中最重要的感受。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

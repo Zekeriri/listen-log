@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：牙齿矫正与母亲的男朋友</title>
+<title>一篇简短的文章：正畸和我母亲的男朋友</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-16 04:09</p>
-  <h1>一口随笔：牙齿矫正与母亲的男朋友</h1>
+  <h1>一篇简短的文章：正畸和我母亲的男朋友</h1>
   <p class="ja-title">一口エッセイ:歯列矯正と母親の彼氏</p>
 </header>
 <main>
@@ -27,10 +27,11 @@
 商業エッセイ集の方もよろしくね。お母さんの話いっぱいあります。18年間、一緒に暮らしてきたからね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇简短的文章：正畸和我母亲的男朋友\n\n牙齿被咬住的感觉真恶心。今天我在牙医那里收到了一个牙套，显然我必须每天佩戴它两年。佩戴它时，它会自然地收紧我的牙齿排列，纠正我扭曲的排列。\n 当我记事的时候，我的牙齿已经排列得很糟糕，牙齿就长在我的牙齿后面。我多次请求妈妈纠正我的状况，但每次她都无奈地笑着对我说：“等我有钱了就行。”最后，过着换男朋友生活的妈妈始终赚不到钱，我就用自己的积蓄来换钱换健康。\n 去看牙医对我来说就像地狱一样，因为我无法通过鼻子呼吸。在手术过程中，口腔内的器械会发出很大的噪音，因此您无法通过嘴呼吸。他渐渐上气不接下气，有种快死的感觉，在昏过去之前，他举手打断。每次，我都会向老师道歉，并说：“我生来就无法用鼻子呼吸……我很抱歉让你停下来。”这个过程既麻烦又痛苦。今天我磨掉了牙齿以装上咬嘴，但我无法呼吸，感觉自己快要被淹死了，这是最糟糕的。没办法，但是困难的事情就是困难的。\n 一直抱怨是没有意义的，既然我这么做了，我就不后悔了。无论呼吸多么困难，你都不会死。每次去看牙医都让我心痛，而当我自己花了很多钱成功治疗后，更有效地说，我的生活中不再需要我的母亲了。虽然知道这一点，但还是很难过。\n 如果我母亲那些被撕碎和抛弃的前男友们给我找个男人，并支付我的牙齿矫正费用，我也许就能避免这种孤独感，让我母亲爱上我。不，是不是反过来呢？毕竟，我母亲和她男朋友很可能只是假装是恋人。只是为了填补一时的孤独而建立的关系，没有人有要娶我母亲的意思，如果我母亲能敬畏一会就好了。小时候不理解的感情，似乎从透明吹嘴的收紧中传了出来。\n 俗话说“爱情只是一场游戏”。如果我对母亲的爱是真诚的，我的男朋友就会支付我的治疗费用，这样他的儿子就会喜欢他。但那并没有发生，我和妈妈对此表示同意。这就是一切的意义。作为一个由单身女性抚养长大的独生子，我真的很爱我的母亲。\n\n每天写日记真是太好了！ ！ ！\n 如果你买了它，它将用来支付我的牙科治疗费用。\n\n我还想要一本商业论文集。关于我母亲的故事有很多。我们已经一起生活了18年。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

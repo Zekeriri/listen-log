@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：2023年春季动画喜欢的回</title>
+<title>短文：2023 年春季动画最喜欢的剧集</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-07-23 10:30</p>
-  <h1>一口随笔：2023年春季动画喜欢的回</h1>
+  <h1>短文：2023 年春季动画最喜欢的剧集</h1>
   <p class="ja-title">一口エッセイ:2023年春アニメの好きな回</p>
 </header>
 <main>
@@ -30,10 +30,11 @@
  今期もたくさんのアニメーションに楽しませてもらうぜ！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：2023 年春季动画最喜欢的剧集\n\n既然这一季的动画已经出来了，我们就来说说我最喜欢的上一季动画的剧集吧。顺便说一句，这一季的最爱是《我重生为自动售货机，在迷宫中漫步》。可能是因为我有一种技术愿望，想成为一台像自动售货机一样简单的机器。\n\n我听得最多的一集是U149的第四集。这是桃花的一集。我不玩社交游戏，所以不知道原作，但是这个女孩的设计和生活方式在第4集中完全被接管了。太棒了。我喜欢带有绿色高光和单调颜色的图画。\n 我喜欢这次主要角色的范围被极大缩小。主角是值班的桃花、帮助她成长的制作人，以及饰演制作人搭档的活泼角色立花爱丽丝。故事从这三个人的角度展开，桃花在每个人从各自的角度思考“偶像”时得出了答案。虽然其他几集有很多人在议论（这很好），但第四集特别安静，而且镜头位置很容易理解，所以我最终一遍又一遍地重播。\n\n我不知道原来的故事，所以我的印象是橘有栖仍然有点可怕，因为她有很强的刺，但我也很高兴看到她在被周围的人影响时以有趣的方式做出反应。在塑造桃花这个角色的过程中，橘爱丽丝的真正潜力得到了充分的展现，她说：“她想要成熟，但相对于她的年龄来说还很年轻，而且她实际上很有表现力。最重要的是，她也能很好地支持一个没有经验的制作人。”我也是在这里第一次爱上了橘花。动画的一大优点是它可以随意包含这样的笑脸。\n\n我也喜欢《江户前精灵》第三集B部分。 “夜”的表达很美，但又不过分描绘。结合BGM，这是一个瞬间衬托出作品魅力的精彩片段，场景立刻回到了去便利店的日常生活。引人注目的不是夜景，而是普通人走过安静住宅区的味道。\n\n我还想谈谈《异世界一回合杀姐姐》的ED。在观看片尾视频之前，请先观看本作品的一集。\n\n绘画和构图都是完美确定的。至于视频，这是我上半场最喜欢的。 《最强姐姐对弟弟的扭曲爱情》压缩在1分30秒的时间里。仅仅拥抱弟弟就打败敌人的方式给我留下了深刻的印象，因为这似乎抓住了这部动画的精髓。\n 主要故事本身是一个松散的奇幻故事，如果说有什么不同的话，那就是我喜欢它的人为老式，所以我每次都喜欢从那里到艺术ED的间隙。有时会发生这样的事情...\n 本季我们将用大量动画为您带来欢乐！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

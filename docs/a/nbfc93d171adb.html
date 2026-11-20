@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>《红猪》与创作者的自我</title>
+<title>“红猪”和创作者的自我</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-02-06 04:48</p>
-  <h1>《红猪》与创作者的自我</h1>
+  <h1>“红猪”和创作者的自我</h1>
   <p class="ja-title">『紅の豚』とクリエイターのエゴ</p>
 </header>
 <main>
@@ -27,10 +27,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"“红猪”和创作者的自我\n\n昨天，我写到我从一个喜欢吉卜力的朋友那里借了宫崎骏的蓝光BOX，所以我想我应该写一下我开始看作品的感受。让我们从“红猪”开始。\n\n至于为什么选择《红猪》，一位喜欢吉卜力的朋友说，“这太让人想起宫崎骏了”，所以我决定以极大的热情去玩它，以为我可以先认识宫先生（我的朋友戏谑地尊敬地称呼他）。\n 虽然我不是吉卜力的忠实粉丝，但我一眼就能看出这是宫崎骏。硬汉猪熟练操控战机，与岛上第一美女展开成人恋爱，同时也被开朗少女喜欢，少女惊叹“哦不……”。而且，这座城市的所有女性齐心协力创造了她们引以为傲的机器。这已经是宫崎骏的梦想了。一堆自我。这根本不是一个坏词。事实上，我认为这是一件非常准确的作品，因为没有自我就没有创作的意义。它很容易观看并且视觉上令人愉悦。不过，一位吉卜力御宅族朋友说：“看来他现在后悔做了这个。”毕竟，如果我表现出我的自我到这种程度，以后我会感到尴尬。不过，这绝对是一个作家人生中必经的过程，换句话说，这也是一部能让你感受到作为作家转折点的有吸引力的作品。事实上，后续作品的气氛完全改变了。\n\n就在前几天，我偶然在庵野秀明的同人志《逆夏知友之界》转售中发现了押井守提到红猪的页面。\n “如果你摘下猪的面具，你就会找到宫桑。”简而言之，他只是想向那些将他视为“又胖又幽默的猪”的观众隐藏自己的自我，而他足够聪明，只是开发出让他感觉良好的东西！说。庵野秀明也表示自己还没有完全脱下裤子，看来这是一部让宫弥身边的人都感触颇深的作品。\n 因此，作为押井守的一个例子，我向一位吉卜力粉丝朋友展示了押井守为《鲁邦》第六季编写的两集剧本。羽扇豆中的押井守太棒了。其中包括动摇其他人作品中世界观基础的故事（宫崎骏过去曾对卢平做过这样的事，这是因为下一部作品将被重置），而卢平和他的朋友们的对话充分展示了押井守的爱好。这都是错误的。那是押井守，不是卢平，我的朋友看到​​这一幕后惊讶地笑了。押井羽平绝对是赤裸着身子向我们走来。\n 著名导演都有很强的自我意识。这导致了让普通人惊讶和兴奋的作品。即便如此，动画界还是变得疯狂起来，因为庵野导演在此之后不仅会揭露伊娃的身体，还会揭露伊娃的灵魂。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

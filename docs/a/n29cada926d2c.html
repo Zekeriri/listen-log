@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口小随笔：才能与社交能力的天平</title>
+<title>一篇短文：天赋与社会无能之间的平衡</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-02-17 07:47</p>
-  <h1>一口小随笔：才能与社交能力的天平</h1>
+  <h1>一篇短文：天赋与社会无能之间的平衡</h1>
   <p class="ja-title">一口エッセイ:才能と社会性の無さの天秤</p>
 </header>
 <main>
@@ -22,10 +22,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇短文：天赋与社会无能之间的平衡\n\n社交技能的缺乏是无法改善的，只能通过创造性才能来克服。早上起不来，不能进行适当的交谈，不能按时完成任务，不擅长做一个女人……每个人都有不同的困难，但无法解决的事情你无法解决。事实上，有些情况下，这种无能与天赋直接相关，而这个人极其麻烦，但如果你改进了那个麻烦，你的创造能力就会消失！在某些情况下是这样的。\n 因此，我有很大的压力去创造一些足够好，给别人带来麻烦的东西，结果，我的能力提高了很多。如果你要迟到，你就必须做出比不迟到的人更好的东西，否则你就会被排除在外。\n 有些人可以过得去，我想这个世界上大多数有特殊才能的人都是瘾君子，他们更注重自我反思和自我表达，而不是社交技巧，但他们的才能逐渐枯萎的情况并不少见。如果发生这种情况，你就别无选择，只能掂量自己的不足和才干（能力），生怕有一天事情会向你的不足倾斜。当你意识到“这家伙不会与其他人沟通，而且他的工作质量很低！”这是一个多么残酷的世界时，就结束了。\n 这是我每天都在想的事情，也没有什么对策或者妙语。人们可能会继续担心自己的自我价值达不到周围人的期望。想这些只会让你感到沮丧，所以我们就假装什么都不知道吧。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

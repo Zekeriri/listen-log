@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>插画的订购与委托方的“眼光”</title>
+<title>订购插图和请求者的“眼睛”</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-06-12 04:04</p>
-  <h1>插画的订购与委托方的“眼光”</h1>
+  <h1>订购插图和请求者的“眼睛”</h1>
   <p class="ja-title">イラストの発注と依頼側の「目」</p>
 </header>
 <main>
@@ -37,10 +37,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"订购插图和请求者的“眼睛”\n\n继续昨天的制作故事。昨晚主要是关于心理学来激励自己。\n 当我创作一些东西时，除了键盘上敲击的文字之外，我基本上不能做任何事情，所以对于艺术方面，我从插画家那里订购。我以某种方式将脑海中的图像转化为文字，并问道：“请把它变成一幅画！”即使现在，我仍在委托不同的人在 Comiket 和其他项目上创作作品。\n 例如，对于Ame-chan的设计，我很久以来第一次从大冢先生那里得到了类似的想法。\n\n惊人的。当我向老师要设计的时候，我真的很高兴，说白了，就是那一刻我意识到我的想法是对的，这个人一定能创造出最好的角色。\n 抛开那一集不说，主要的话题不是这里，而是下一阶段。在“我想创作这样的角色或歌曲”、“我想请教一下这位艺术家！”等思考之后，下一步就是“选择一张将我的形象扩大数百倍的草稿”，这就是考验企划和文字方面的“鉴赏力”和感性的时候。即使现在，我也多次被迫做出这样的选择，每次我都会抽泣着说：“这个想法很好，但我真的很抱歉……”\n 具体例子可以参考前面提到的Ame-chan的4个提案。他们个个都很可爱，有一种独特的魅力，气氛压抑。然而，当然，为了在游戏中建立一个角色，必须将其减少到只有一个人。这不是艺术家的责任，而是客户的决定和工作。必须综合考虑是否与作品的外观相匹配、搬迁后的效果如何、未来的制作成本如何与其他因素相平衡等严重问题来做出决定。\n\n所以，对于Ame-chan，我要求“3种发型和2种衣服”。以这种方式组合在一起的设计是 Ame-chan，她是玩家的女朋友，在游戏中实际上与 Pi 住在一起。很可爱。\n 我觉得我做出了正确的选择，因为我已经习惯了看到它们，但1和4也非常可爱。也许有一个有着不同发型和衣服的阿梅酱。当然，有好几种想法，但每次我最终都会选择一种。插画家创造的孩子们回归土壤，作为基础。老实说，这也很有趣。因为破坏和创造就在那里。当我看到角色和插图创意时，我总是感到兴奋。虽然有点难过。\n 我每周都会为Comiket的作品和幕后项目做这样的工作，甚至对于制作人正在制作的其他游戏，我也只选择插画师来从事美术方面的工作。根据我与 Nidiga 的合作经验，制片人相信我的“眼睛”。我很高兴。这应该会在某个时候出现。敬请关注。\n\n它被接受为夏季漫画。\n“周日西区“A”24ab 区”。我得到了 2 个墙壁空间，所以队伍可能是可以管理的。快乐的。\n这次，我充分利用了自己的爱好，创造了一些可以追溯到美少女游戏爱好根源的东西。我正在努力工作，所以请支持我 ♪ pic.twitter.com/RVtfUnZshL — Nyalra (@nyalra) 2023 年 6 月 9 日\n\n也许对方会想：“我的想法很好，但没有任何意义。”但是，我们相信自己并下订单。我目前在 Comiket 制作的作品是该作品的延续，最近也颇有收获。谢谢丸野老师……（虽然官方只公布了粗略版本，但我写下这篇文章时还是充满了感激之情）。每当我根据老师给我的想法做出选择时，我都会有一种难以言表的遗憾和欣喜。我想我喜欢“绘画”，一种我永远无法表达自己的艺术形式。\n 如果我的眼睛和感受力变差，一切都会崩溃，我无法承受那样的压力。如果你不继续被认为是一个拥有自己的想法和世界观的御宅族，那么你将无法在制作过程中建立信任关系。为了实现这一目标，我必须沉浸在自己的情感和感觉中，并永远热爱它们。\n 插图和文本的三维表示给了我一种对我的生活的奖励感，我的大脑除了打字之外没有任何其他事情。我很幸运。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -60,7 +61,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

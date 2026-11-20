@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口小随笔：广告狂热</title>
+<title>快速文章：CM 狂热</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-02-11 04:30</p>
-  <h1>一口小随笔：广告狂热</h1>
+  <h1>快速文章：CM 狂热</h1>
   <p class="ja-title">一口エッセイ:CMマニア</p>
 </header>
 <main>
@@ -28,10 +28,11 @@ pic.twitter.com/s85E2quy3q— 中野ブロードウェイで見つけたもの (
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"快速文章：CM 狂热\n\n我一直在YouTube上看老广告，最后开始看海外广告。过去，我常常自我分析，我之所以有这个爱好，是因为我怀念互联网之前的时代的视频，但最近我开始认为，我是在寻找童年的痕迹，当我看到某个爱好或游戏的广告时所感到的兴奋。\n 例如，在90年代的广告集中，玩具和游戏有时会混入化妆品和偶像的广告中，广告的随意性营造出逼真的电视广播感觉。当我还是个孩子的时候，我会在看 CRT 时突然看到 PlayStation 或 64 的广告，这会让我想，“我想要那个！”一颗对美少女动漫广告感到兴奋的宅男心。不管怎样，我喜欢互联网诞生初期的广告。\n 商业收藏之所以成为可能，要归功于那些应该被称为“疯子”而不是御宅族的人的上传。他们只是从 VHS 中提取广告并按类型进行组织。尽管它不赚一日元，但他可能还是喜欢这份工作。我很好奇，查看了发布商业收藏的人的 Twitter 帐户，我发现他们正在随机招募他们在家里找到的 VHS。即使你在互联网上搜索，你也永远无法找到节目本身的录制片段，包括广告。我能做的就是收集普通人不小心留下的东西。这胆子真大。我真的很尊重他们。\n 当我还是个孩子的时候，我记得在镇上的一家小二手店里看到过“风之谷的录像”，小时候我就想，“卖录像而不是商业产品太蹩脚了！”相反，我认为我想要它。我觉得胶带上的手写贴纸“风之谷”可能很时尚。这是一种亚文化观念。不过我没买。如今，商业狂热似乎想要其中一些。\n 中野百老汇上，有一家专门将VHS素材翻录到光盘等的私人商店，每隔一段时间，如果你往里看，你会看到一位老人被大量的阴极射线管包围着，正在玩录像带。我相信这些人会保存当时的稀有镜头并将其作为资源上传，以帮助未来类似的御宅族感受到一些东西。多么棒的人们啊！\n 通过在播放时录制整个广告，你保存的不是作品本身，而是“当时的时间”本身，当你这样想时，录制的 VHS 似乎是一个非常浪漫的项目。\n\npic.twitter.com/s85E2quy3q — 我于 2022 年 10 月 21 日在中野百老汇 (@nyalra_uso) 发现的东西\n\n在中野百老汇发现的Beta磁带也是充满爱好者灵魂的梦想的一部分。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

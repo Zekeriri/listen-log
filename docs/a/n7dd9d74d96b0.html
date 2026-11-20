@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：喵拉拉 2022年最常听的歌曲与艺术家</title>
+<title>短文：2022 年 Nyalla 最受欢迎的歌曲和艺术家</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-19 05:06</p>
-  <h1>一口随笔：喵拉拉 2022年最常听的歌曲与艺术家</h1>
+  <h1>短文：2022 年 Nyalla 最受欢迎的歌曲和艺术家</h1>
   <p class="ja-title">一口エッセイ:にゃるらが2022年最も聴いた曲やアーティスト</p>
 </header>
 <main>
@@ -29,10 +29,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：2022 年 Nyalla 最受欢迎的歌曲和艺术家\n\nApple Music 允许你查找今年听得最多的歌曲和艺术家，所以当我查看时，我惊讶地发现有很多乐器。\n\n第六名是大森对甜心比赛的BGM。战斗画面和小提琴的结合令人着迷。这是一场很棒的比赛。\n 第五名《Oriental Dark Flight》是雾雨魔理沙的主题曲，副歌部分有一种愉快的漂浮感，让人感觉自己在夜空中飞翔。从恋色Master Spark活泼的形象到轻柔的BGM，你一定会被魔理沙内心世界的深度感动落泪。\n 第四名“佳能”。这不需要任何解释。这简直就是世间最美的祝福音乐。\n 第三名《Kaze no Scene》是一首著名的《Chrono Trigger》歌曲。无论时间过去多久，男孩们都不会忘记超级任天堂时代的角色扮演游戏。我的余生可能都会谈论《浪漫传奇》和《最终幻想 6》。\n 第二名：《夜空中的昆虫，无论你走到哪里》。 Kamatte-chan的歌词当然很精彩，但这首歌的魅力还在于，在无歌词的歌曲中，通过无声的声音传递出温柔的歌声。\n 只有第一名的歌曲有主唱，是《Made in Abyss》的OP。而且这只是一个术语。这是因为每次我感觉自己快要崩溃的时候，我都会重复那那智的话里的歌词，说道：“我的崇拜永远不会停止。”当我因游戏相关工作的忙碌而感到疲倦和疲倦时，我再次确认，就像那些在黑洞底部看着光的女孩一样，我无法停止对创造理想美少女游戏的渴望。就这样，我才能够平安的度过这一年。这就是爱，娜娜奇。\n 这是我今年听得最多的艺术家。\n\nKamatte-chan也主要重复播放《Yozora no Mushi to Dokomo》，所以都是器乐歌曲。当我听带有人声的歌曲时，我会情不自禁地思考歌词的含义，并耗尽我所有的精力。有时它会起作用。事实上，今年的歌曲和艺术家根本不包括在内。我确信我会一直谈论 ZUN、YMO、Joe Hisaishi 和 Kraftwerk（此处不包括），直到我死去。这看起来并不是什么糟糕的生活。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

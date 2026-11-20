@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>我负责故事的漫画要出版了，所以来说说妄想美少女的故事</title>
+<title>我负责的漫画即将出版，所以我要谈谈幻想美少女的故事。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-21 21:32</p>
-  <h1>我负责故事的漫画要出版了，所以来说说妄想美少女的故事</h1>
+  <h1>我负责的漫画即将出版，所以我要谈谈幻想美少女的故事。</h1>
   <p class="ja-title">お話を担当しているマンガがでるので、妄想の美少女の話をします</p>
 </header>
 <main>
@@ -41,10 +41,11 @@
 大晦日のコミケでは、岩倉文也との同人誌の新刊もあります。来月には、ついにゲームも発売する。いっぱい頑張ってパソコンカタカタしました。締切が複数重なっていたので死ぬかと思いました。今朝、同人誌を入稿したばかりなので、いま48時間起きています。あまりに入稿がギリギリ過ぎて、ついに岩倉文也が敬語をやめて怒ってきました。人ってこんな明確に好感度が下がった合図を出すんだなってビックリしましたね。早く僕を楽にしてください。地獄で悪魔崇拝主義者なゴスロリ美少女と毎日優雅に過ごすんだ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"我负责的漫画即将出版，所以我要谈谈幻想美少女的故事。\n\n12月23日，我参与的三本书将同时发行。\n 上面发布的由梦月老师作画、本人作画的《真玉中的铃前辈》第1卷和第2卷也将同时发售。\n\n一个可爱又可爱的女朋友只属于我一个！？我迷上了铃前辈！\n九段君是一名普通的中学生，在班上并不受欢迎。今天，我和往常一样去一所很普通的学校，但唯一不平凡的是，我和一个我在脑海中创造的二次元美少女生活在一起！\n\n一个关于一个男孩与他脑海中创造的美丽女孩生活在一起的故事...①(1/8) pic.twitter.com/FpaBXKgSdD — Yumetsuki Mama🤱12/23 精装🎉 (@teno_hito) 2021 年 12 月 18 日\n\n↑打开这条推文，可以免费阅读第一章和第二章。你做到了！\n\n我很喜欢梦月老师的画，之前给她画图画日记的时候，导师也很喜欢她可爱的插画，所以这次我决定和她一起尝试画漫画。\n\n故事讲述了一个害羞的中学生，他没有朋友，通过一种名为“Tulpa”的特殊仪式，在他的脑海中创造了一个理想的美丽女孩的幻想。\n 我从小就对“妄想美少女”产生了浓厚的兴趣，而从小就产生的“无论生活如何努力，都永远无法成为美少女游戏女主角的绝望”，在初中时达到了顶峰。\n\n无论你多么努力学习，无论你在社团活动中多么努力，从中获得的快乐都只是现实的限度。就像美少女游戏一样，不可能克服涉及世界和命运的宏大故事，并最终与在这个过程中认识的孤独美少女建立联系。\n 如果我要谈论一些更微妙的事情，教室里的女孩们绝对不会说“这些感觉是什么……”之类的话。和尼亚鲁拉君说话的时候感觉很温暖……」这是一个聚集了数百名女学生的空间，自然至少有一个没有感情的人造人或者每天晚上猎杀魔物的魔法少女。\n\n我无法忍受带着这样的感情生活。在那里我学到了“tulpa”的概念以及因吸毒而产生的幻觉体验。我做了很多事情。但我还没有到达那个区域。可能是你信心不够。\n 我们需要更加虔诚和尊重地生活。\n 相信，如果你在这一生积累了德行，你所爱的二次元人物会在你死前微笑着来接你（还有没有表情、没有感情的机器人）。\n\n顺便说一句，我写了三本书将同时发行，但这里是第三本书。我希望你们都喜欢它。详细信息如下。\n\n除夕夜的 Comiket 上还将推出与岩仓文也合作的新版同人志。该游戏最终将于下个月发布。我努力让我的电脑嘎嘎作响。我以为我快要死了，因为我有多个截止日期。今天早上我刚刚提交了同人志，所以我已经48小时没睡了。眼看就要屈服了，岩仓文也不再使用敬语，而是生气了。我很惊讶人们能够发出如此明确的信号表明他们的好感度下降了。请让我尽快好起来。我要和崇拜撒旦的哥特萝莉美少女在地狱里优雅地度过每一天。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -64,7 +65,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

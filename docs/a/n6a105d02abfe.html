@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：悠闲的互联网</title>
+<title>一篇快速文章：松散的互联网</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-15 02:27</p>
-  <h1>一口随笔：悠闲的互联网</h1>
+  <h1>一篇快速文章：松散的互联网</h1>
   <p class="ja-title">一口エッセイ:ゆるやかインターネット</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 商業エッセイ集もよろしくね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇快速文章：松散的互联网\n\n对藐视法庭行为的严厉惩罚已经开始。正如我之前提到的，我突然变得具有攻击性的可能性较小，所以这对我来说基本上是一个好处。有时候你会受到批评。互联网太干净了，这令人毛骨悚然，但如果它能让创作者更容易地完成他们的工作，那么我认为这简直是一件好事。\n 一位经历过大火的主播在推特上表示，“我一直在等待这个时机”，并宣布他将一次性举报他在大火中收到的所有诽谤。然后大家就慌了，纷纷开始引用、回复，说“不是侮辱，是批评”，或者“执行后处罚很重，即使回去起诉也不会改变。”就像虫子一样。好吧，不管他是否真的会被起诉，我认为他应该反思一下他以伤害与他无关的人为乐的事实（即使对方受到攻击，他们与事件无关），这真的很不体面。虽然我是一个比较温柔的人，但我还是很惊讶。\n 以前，我曾经回应一位前粉丝的所谓反粉丝，说：“这不是诽谤吗？”对方的回答是：“我没有钱，所以请不要起诉我。”首先，对于我造成的伤害，没有任何道歉或悔恨。对方关心的是要不要起诉，我所说的话是否构成诽谤，而我最重要的感受却被忽略了。我不想起诉他要钱，但我想告诉他，我很害怕，很伤心，很伤心，因为那个过去支持我的人日复一日地攻击我，而且行为明显很奇怪。\n 无论网络多么无法无天，我都不想牺牲我的正派。我以前也是这样，但是人都会长大，时代也会变。藐视法庭罪的标准不明确，尽管处罚更加严厉，但判决并没有放松。事实上，要阻止网上的诽谤，仍然需要花很大的力气，就像过去一样，90%的谩骂仍将是徒劳的。但，真正重要的是灵魂，而不是金钱，我们不得不相信，不做污染自己灵魂的言行，才是真正的幸福之路。\n 在这种情况下，人们自己认为自己是战胜邪恶的“正义”，至少可以说，他们之间是有平行线的。嗯，人类的精神受到我们周围的人和我们自己的话的影响，所以我认为和平行动不是更好。\n\n包含每日日记的同人志目前正在销售。拿起新书。\n\n我期待着阅读您的商业论文集。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

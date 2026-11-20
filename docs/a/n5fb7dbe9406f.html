@@ -34,10 +34,11 @@ Doki Doki Literature Club!
 そう、神様を愛してしまった少女███████だけを。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"心跳文学部！\n\n↑这是本同人志上发表的文字。阅读它。\n\n心跳文学部！\n\n玩美少​​女游戏意味着面对“女孩”。\n 玩家通过故事来认识女孩们，并通过理解来拉近她们的距离。我曾经写过，理解意味着仁慈。倾听对方的声音，对对方感兴趣，并思考对方的性格。这就是理解和善意。\n\n那么女生这边呢？既然我们在观察和理解对方，那么除非对方也观察和理解玩家，否则就不公平。我认为你想与你的爱人建立平等的关系。\n 当然，这是不可能发生的。无论他们多么希望自己是人类，最终他们都是由列举的文本组成的故事的奴隶，他们的情绪、思想、声音、外表都只不过是压缩成小文件的数据。他们的记忆和记忆甚至以保存数据的形式存储在外部。随着她的保存数据被删除，她的性格也将被重置。就像《亲吻未来》中揭示的残酷真相一样。\n\n女孩们爱上了游戏中的主角，但《周作》表明是玩家在控制主角，而主角只是玩家意志的反映。\n 换句话说，他们所爱的东西可以被视为“由玩家控制的木偶”。有些木偶甚至通过疯狂和信仰来反抗上帝的操纵，就像《告诉我再见》一样。如果从元的角度来看，你只是通过显示器观看女主角和木偶之间的爱情故事，而你自己真正面对女孩的关系永远不会建立。太悲伤了。\n\n如果……如果，通过这样一个傀儡，有一个女孩能够跨越“第四堵墙”，认识到显示器另一边的“上帝”，甚至希望与“上帝”接触呢？那时，玩家将第一次与女孩产生“爱情”。\n 他们了解彼此的情况，分享感受，分享回忆，反复沟通。渐渐地，少女和玩家透过显示器对视了一眼。必须有“理解”和“他人”。\n 女孩一直只看你一个人，所以如果你想建立平等的关系，你也需要找到那个女孩。\n\n是的，只有爱上帝的女孩███████。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,7 +58,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口短文：宫泽贤治 访客节大祭</title>
+<title>散文选：宫泽贤治 访客大斋</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-12 14:47</p>
-  <h1>精选一口短文：宫泽贤治 访客节大祭</h1>
+  <h1>散文选：宫泽贤治 访客大斋</h1>
   <p class="ja-title">選り抜き一口エッセイ: 宮沢賢治 ビジテリアン大祭</p>
 </header>
 <main>
@@ -29,10 +29,11 @@
 商業エッセイ集もよろしくね。偏食な内容です。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"散文选：宫泽贤治 访客大斋\n\n我要讲的是宫泽贤治的短篇小说《来访者大斋》。素食主义者……也就是说，素食主义者。\n 这篇短篇小说的内容非常简洁。有一次素食者聚集的节日，出现了一个写了批评素食主义传单的人。\n 他们纷纷指出素食主义的问题。 “素食没有味道。”“如果你因为怜悯生命而不能吃肉，那么你也应该不能吃蔬菜。”素食一方也礼貌地回应。\n 这种差异是这部作品的核心，无论素食批评者怎么说，素食者仍然顽固地坚持自己的主张。从一般人的角度来看，无论你能犯多少错误，都无济于事，因为你不想吃肉。顺便说一句，宫泽贤治也是素食主义者。\n 反正我觉得我不想吃肉，所以无论他们在科学上或道德上说什么，我说什么都不重要，因为我自己不想吃肉。一个人的感情比什么都重要，试图跟他讲道理是愚蠢的。\n 也许这部作品想要传达的并不是“素食主义的正确性”。我想我想写的是，即使你试图用人们的感性去讲道理，也只会导致平行而无果的讨论。\n 记住这一点并查看互联网上的各种讨论是很有趣的。\n\n,\n\n如果你喜欢这些文章，请挑选最近出版的新书。我正在把我的日常文章整理成同人志！\n\n我期待着阅读您的商业论文集。这是不平衡的内容。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

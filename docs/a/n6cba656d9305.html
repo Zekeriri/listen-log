@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>高中朋友首次出版单行本以及收到世嘉土星的回忆</title>
+<title>回忆我的高中朋友出版了他的第一本书并给我买了一台世嘉土星</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-07-20 09:34</p>
-  <h1>高中朋友首次出版单行本以及收到世嘉土星的回忆</h1>
+  <h1>回忆我的高中朋友出版了他的第一本书并给我买了一台世嘉土星</h1>
   <p class="ja-title">高校の友人が初の単行本を出したこととセガサターンを買ってもらった思い出</p>
 </header>
 <main>
@@ -28,10 +28,11 @@
  彼がエネルギッシュに原稿は向かい合っている間にも、僕はただぼけーっと神奈の立ち絵を眺め続けている。この儚げな90年代すぎる佇まいと表情、もはや奇跡だよね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"回忆我的高中朋友出版了他的第一本书并给我买了一台世嘉土星\n\n我听说我的高中朋友 Mon-chan（目前是一名色情漫画家）出版了他的第一本书，所以我收到了一本作为礼物。任何人都会很高兴收到一本捐赠的书，但如果这本书来自与他们在同一所学校上学的人，那就更有价值了。\n\n如果把山本直树这样的作家排除在外，我们首先应该以好坏来评价情色漫画，但当我想象小萌画它时，我高中时代的一切都联系在一起，太吵闹了，所以我无法做出这样的判断。是否喜欢其中的内容，请亲眼看看！顺便说一句，我关注的作者们经常会看到Mon-chan的插画被转发并称赞，从作者身上也能看出他们的能力。然而，这对我来说是不可能的，因为它太近了。\n 小萌作为成人作家越来越活跃，每次看到他为众多御宅族的自慰生活着色时，我都会感动地想：“像我们这样的低水平技术高中生怎么能对不特定的人有用呢？”我们几乎没有时间打开教科书。我记得那时候每次见到小蒙都会画一幅画。在一所任何人只要卷起一支铅笔就可以进入的高中里，认真一点是没有意义的。还不如抛开学业，把生活当作爱好来过。结果，十年后，他通过出版一本书获得了成为受欢迎作家的入场券。\n 因此，冲绳人的希望是……内南中，90%的人都会有“在学校获得某种资格，成为工厂或公司的齿轮，或者如果没有别的办法就加入自卫队”的道路，但会出现一个可以通过亚文化帮助许多人（自慰）的角色。我们可以被世界上的某个人发现，甚至受到赞扬，但我们并不是齿轮。太棒了。\n 高中的时候和现在相比，我是个古怪的人，只谈论机器人动画、特效和美少女游戏，所以我和小萌的关系不太好。我清楚地记得有一次我请他给我买一台世嘉土星，对此我至今仍心存感激。没有土星，我就不是现在的我。\n 因为在小学的时候，我看到朋友的哥哥在他的土星上玩辣妹游戏，表现得“很酷”，到了初中和高中，我就继续全心全意地玩移植辣妹游戏。主要针对PS2。我怀揣着有一天能回到世嘉土星的野心，便带着在酒吧打工赚来的零用钱前往附近的旧货店，但陈列柜里展示的世嘉土星（4000日元）对于我上一代的宅男们来说太神圣了，我没勇气向店员索要，只能在陈列柜和收银台之间来回走动。\n 当时具体内容我已经记不清了，但不知道为什么，附近的小萌替我跟店员说话了。这是正确的。与我不同，他没有任何无意义的执念，所以他就直接去商店买了一台游戏机。就这样我得到了我期待已久的世嘉土星，并成为一个迷恋只能在土星上玩的菅野博之作品的孩子（不完全是，但土星是最好的环境）！\n\n土星仍然安装在电视的正下方。由于是老游戏机，供电很困难，所以我感到有点遗憾，因为它从隔壁的 Switch 取电，侵犯了 SEGA 的尊严。从小萌的角度来看，这一定是他无法理解的事情，他想：“为什么这个家伙这么纠结于是否要购买面前的游戏机？”现在回想起来，我发现那一定是青春期。不，我不知道。\n 我仍然是一个被困在“世嘉土星氛围”中的人，时间已经停止，但我希望有未来的小梦通过她的第一本书的出版，迅速成为色情漫画界的明星。\n 当他拿着手稿精力充沛地坐在我对面时，我只是继续盯着加奈的肖像。这种转瞬即逝的 90 年代外观和表情简直就是一个奇迹。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

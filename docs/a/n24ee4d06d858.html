@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔:喵拉拉的诗意感受</title>
+<title>短文：尼亚鲁拉的诗意情感</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-15 06:10</p>
-  <h1>一口随笔:喵拉拉的诗意感受</h1>
+  <h1>短文：尼亚鲁拉的诗意情感</h1>
   <p class="ja-title">一口エッセイ:にゃるらの詩情的な感性</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 商業エッセイ集もよろしくお願いします。こんな文章を書く人間から、あの歌は生まれたんだなぁ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：尼亚鲁拉的诗意情感\n\n制作完游戏后，制作人首先称赞的就是我诗意的一面。我很惊讶自己竟然因为一些我完全不知道的事情而受到表扬！\n 这是因为在制作过程中，我第一次尝试为主题曲“INTERNET OVERDOSE”写歌词，我觉得我能如此轻松地写歌词真是令人震惊。玩过这首歌的人都知道，我试图将尽可能多的世界观和信息融入到这首歌的歌词中，能够将其融入音乐并一次表达出来绝对是一种天赋。艾欧巴恩回头一看，惊讶地说：“你和我的歌很配。”\n 有人告诉我，“能够将情感融入简短的句子中，这是尼亚拉真正的天赋。”如果有的话，我一直在集中精力并努力处理游戏中的文本和结局，而写歌词真的毫不费力，所以我明白这是原本更困难的部分，当他说“也许有一个作词家的职业”时，我很高兴。首先，为了优先考虑游戏特有的节奏，我们试图这部作品尽量减少文字，就连日常文章都有字数限制，推特一开始就是140字。想想看，我可能一直在无意识地不断训练自己“用短句抒发情感”。\n 很难知道哪个领域适合你。如果你说所有推文本身都是短诗，你可能会这么认为。如果没有那首主题曲，我想游戏的氛围和诠释会完全不同，而且我认为我在作品中投入最多的是我的诗意情感，而不是我的生活经历或网络观点。\n\n包含日常文章的同人志现在正在展位上出售。我能理解制作游戏的感受。\n\n我期待着阅读您的商业论文集。那首歌是由写这种文字的人诞生的。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

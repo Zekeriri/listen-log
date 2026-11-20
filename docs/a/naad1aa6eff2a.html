@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：Asuken 攻略</title>
+<title>快速文章：Asuken 策略</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-01-23 03:33</p>
-  <h1>一口随笔：Asuken 攻略</h1>
+  <h1>快速文章：Asuken 策略</h1>
   <p class="ja-title">一口エッセイ:あすけん 攻略</p>
 </header>
 <main>
@@ -28,10 +28,11 @@
 夕食。食塩無添加のトマトジュースが、野菜も摂れて便利です。塩分もないからデメリットも無し。あとは、筋トレのおともにお馴染み、カニカマバーやサラダチキン、枝豆やブロッコリーなどの代表的な食品を摂取。炭水化物が余ったので、脂質のない忍者めしで必要摂取量を埋めます。これで計算上、毎日少しずつ健康的になる。あんたと同じ真っ当な人生さ。以上、攻略情報でした。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"快速文章：Asuken 策略\n\n我已经开始掌握在 Asuken 获得 100 分的窍门，因此我将写下一些我相信会对少数人有所帮助的策略。当然，如果你每天得到100分，你的体脂率会逐渐下降，你会变得更健康（因为你选择了运动课程），并且伴随着你本来就瘦的事实，你的腹肌也开始增长。毕竟，看到外表的变化会增加动力。让我们每天都变得更可爱一点吧。\n\n首先，就我而言，我根据自己的体重和目标体重倒推计算，如果我的热量消耗至少是350大卡，那么每天合适的热量摄入量在1800大卡左右。如果您有点瘦并且正在锻炼，您可能最终会得到这样的数字，但请记住，不同的体型需要不同的策略。\n\n早晨。现在是早上 7 点，因为输入时间很痛苦，但我的早晨是在晚上左右。这天他大概也是下午四点左右醒的。\n 不管怎样，香蕉似乎是最好的早餐。事实上，吃香蕉可以增加 Asuken 的整体维生素状况。从功效上来说，香蕉还是很让人放心的，即使起床昏昏沉沉的时候也很容易吃。除此之外，我的生活方式似乎缺乏维生素C和锌，所以我补充了锌软糖和Oronamin C。Oronamin C中的微量咖啡因可能有助于提神。我还吞下奶酪和鸡蛋来获取一些蛋白质。我很高兴，因为当我吞下一个鸡蛋时，我感觉自己变成了龙骑或亚马逊人中的暴力角色。\n\n中午。虽然是白天，但在世人眼中却是夜晚。\n 我也容易缺钙，所以我喝牛奶。从沙拉中获取膳食纤维和营养物质，并用纳豆卷补充碳水化合物。纳豆也很好吃，因为它提供了多种营养成分。另一方面，饭团可以让您获得经常缺乏的碳水化合物。这是我获得一些能量并花一些时间在观看动漫的同时进行健身自行车和肌肉训练的地方。消耗大约400大卡后，我吃晚饭。\n 至于肌肉训练，我每天都会进行10分钟的肌肉锻炼和伸展运动来热身，如Kinni-kun的视频所示，然后做一些基本的动作，如深蹲、平板支撑和俯卧撑。燃烧的其余卡路里就像骑固定自行车一样。去健身房运动量不够，在家也能轻松完成。出去的时候太麻烦，坚持不下去，目的是为了改善抑郁症，而不是为了变得笨重。\n\n晚餐。不加盐的番茄汁是一种方便的蔬菜食用方式。没有盐，所以没有缺点。另外，吃一些伴随肌肉训练的典型食物，如蟹棒、沙拉鸡、毛豆和西兰花。因为我有额外的碳水化合物，所以我用脱脂忍者米来补充摄入量。这样，你每天都会变得更健康一点。我和你一样有真实的生活。以上是策略信息。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：喜欢吗？喜欢吗？非常喜欢？（原题: Do You Love Me?）</title>
+<title>短文：你喜欢吗？喜欢？真的喜欢吗？ （原标题：你爱我吗？）</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-24 05:04</p>
-  <h1>一口随笔：喜欢吗？喜欢吗？非常喜欢？（原题: Do You Love Me?）</h1>
+  <h1>短文：你喜欢吗？喜欢？真的喜欢吗？ （原标题：你爱我吗？）</h1>
   <p class="ja-title">一口エッセイ:好き？好き？大好き？　（原題: Do You Love Me?）</p>
 </header>
 <main>
@@ -27,10 +27,11 @@
 先月に発売した商業エッセイ集もよろしくお願いします。こちらはもっと融合係数が高くなると思います。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：你喜欢吗？喜欢？真的喜欢吗？ （原标题：你爱我吗？）\n\n继续昨天的话题，说说我喜欢的书。\n 主要与精神分裂症患者打交道的精神科医生R.D. Laing写的诗集《Do You Love Me？》在我这次制作的游戏中非常重要的部分被引用，所以如果购买游戏的人能够意识到这一点，我会很高兴。\n\nR.D. Laing的这本诗集影响很大，也是Reon Iwakura名字的由来，在游戏版本中，在咨询时引用了这首诗。这也是东川淳的代表曲的标题，也是著名美少女游戏的标题。我喜欢所有这些东西，这可能是因为作为它们来源的莱恩的诗很精彩。莱恩的诗是通过对精神疾病患者的咨询而编织的。这本诗集的灵感也来自于精神疾病患者对Rain所说的话。特别是标题故事“你喜欢吗？你喜欢吗？你喜欢吗？”太精彩了，我已经大声读了几百遍了。\n\n她反复问：“你喜欢吗？你喜欢吗？你喜欢吗？”每当我男朋友鹦鹉学舌地回答“我爱你，我爱你”时，我就会一遍又一遍地问她，“比全世界都爱你？”“你喜欢和我在一起吗？”“你真的喜欢我吗？”你喜欢我吗？你爱我吗？”我的男朋友一遍又一遍地重复同样的话，我们的关系非常疯狂。\n 这似乎是她试图完全认同她的男朋友，用她对他的爱覆盖他所有的想法。为了与自己这个世界上最可爱的人和解，我像越野收音机一样不断地检查我的爱情。她破碎的脑袋里唯一的东西就是认同她心爱的男朋友的终极爱情。\n\n包含日常日记的同人志现已在摊位上出售。通读我的想法并统一你的想法。\n\n也敬请期待上个月发布的商业论文集。我认为这样会有更高的融合系数。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

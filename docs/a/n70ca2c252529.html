@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：恶心！自我怜悯的家伙</title>
+<title>短文：令人毛骨悚然！自怜的混蛋</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-05-25 06:51</p>
-  <h1>一口随笔：恶心！自我怜悯的家伙</h1>
+  <h1>短文：令人毛骨悚然！自怜的混蛋</h1>
   <p class="ja-title">一口エッセイ:キモい！自己憐憫野郎</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：令人毛骨悚然！自怜的混蛋\n\n试图找到合适的词语来形容它是自怜、悲剧女英雄综合症或自我厌恶是没有意义的。问题要简单得多：我只是害怕“幸福”。我决定...\n 他们没有耐心诚实地享受幸福。当你变得快乐时，你就失去了存在的价值。 “尽管我很不快乐，但我仍在尽力”的自我认知形象变得扭曲。事实上，你只是看到自己的缺点和不安全感而感到不快乐。他通过敢于放弃幸福来维持自己的身份。\n 当你生活中的幸福水平提高并且你变得“正常”时，你将与其他人在同样的路线上竞争。我已经没有借口了。太可怕了。你不可能以“中等”的速度走上“正常”的路线并达到“体面”的目标！如果是这样的话，即使他跑错了方向或者缺席了，他也应该放弃比赛。否则，你就会被暴露。我不能忍受因为步伐失误而被嘲笑，落后一圈，筋疲力尽！\n 我尽量不去面对“幸福”，以此来避免到达起跑线。只是假装不面对而已。我还不够坚强，也不够疯狂，无法真正放弃幸福。我以自己的方式享受生活，我很幸运，而且我还活着。总而言之，他选择了最不体面的生活方式。这只是隐藏自己不想因为过于自嘲而受到攻击的部分的一种方式。我的自嘲并不像后悔或羞辱那样高尚，而只是一种自我保护的本能。这是一种反思。它只是出于习惯而泄漏，我不知道这意味着什么。\n 毕竟，阿玛酱是个胆小鬼。当我们幸福的时候，我们要承认它，当我们面对不幸的时候，我们要克服它。怎么样？每次不幸降临到我身上，我都庆幸自己可以以此为借口放松心情，可以无始无终地向前迈出一步。情况颠倒了。这就是说，祸也算是福，奢望这种事的人，还不如死了好。这是对那些努力过上体面生活的人的不尊重。他是个渣男，就该受到惩罚。\n 不过，受到这样的惩罚，我又感觉很好了。噢，多么不幸啊！稍微太多的自嘲就会导致类似的事情发生在你身上。贫穷的。独特的生活方式，不一样的精彩人生！\n ……荒谬的。我应该为自己打着“日记”的幌子向全世界传播这样的废话而感到羞耻，但我无法放弃这种形式的自残。当有人救你的时候感觉很好，当有人不救你的时候，你会为他们的残忍而感觉良好。这种愚蠢的生物肯定会幸福。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

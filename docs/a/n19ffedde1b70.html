@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口随笔：「犯罪」本身令人厌恶吗？</title>
+<title>短文精选：对“犯罪”本身是否有厌恶？</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-02 13:06</p>
-  <h1>精选一口随笔：「犯罪」本身令人厌恶吗？</h1>
+  <h1>短文精选：对“犯罪”本身是否有厌恶？</h1>
   <p class="ja-title">選り抜き一口エッセイ: 「犯罪」自体に嫌悪感があるのか？</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 こちらの新刊エッセイ集から、お気に入りを投稿です。良かったら買ってあげてね。どれから読んでも大丈夫です！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文精选：对“犯罪”本身是否有厌恶？\n\n一名 70 岁的 Youtuber 将气枪改装成可以致命的程度，现已被捕。这违反了《枪支和剑法》。\n 我看文章的时候，发现有人生气地说：“我爱他很久了，他竟然变成这样了！”这是最糟糕的！”这让我有点困扰。\n 这是因为，这位老人因为在YouTube上自豪地上传了改装气枪的视频而被捕，而他犯下这一罪行是因为他对自己这一代的枪手有着不可阻挡的崇拜，而他从一开始就是这样。当然，改装枪支是犯罪行为，应该受到相应的惩罚，但很明显，他向所有人展示他正在射击枪支的愿望已经失控。这样已经有一段时间了，如果你真的喜欢这个老人，当他成为罪犯的那一刻你会突然讨厌他吗？一个简单的问题出现了。\n\n获得芥川奖的《押，莫悠》描绘了一名女高中生在自己喜欢的偶像撞到女粉丝并起火时的复杂感受。如果您信任的人被捕，您会想了解原因和背景。因此，讨厌或不爱对方是很自然的，但有时你也会选择支持或捍卫对方。虽然故事突然热闹起来，但老人的罪行在那之前似乎一直是一致的。\n 当你所爱的人犯罪时，当他们成为罪犯时你开始憎恨他们，你就是在憎恨“犯罪”本身。当我这样想时，我觉得我对犯罪的厌恶取决于犯罪的原因、类型和规模，所以我并不讨厌犯罪本身。我不想说出原因或为其辩护，但无论如何我就是这么想的。\n\n发表这本新论文集中你最喜欢的文章。如果您喜欢请购买。无论您以哪种方式阅读它都没关系！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

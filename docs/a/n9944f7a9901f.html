@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：西成探访</title>
+<title>一篇简短的文章：参观西成</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-27 00:26</p>
-  <h1>一口随笔：西成探访</h1>
+  <h1>一篇简短的文章：参观西成</h1>
   <p class="ja-title">一口エッセイ:西成探訪</p>
 </header>
 <main>
@@ -34,10 +34,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇简短的文章：参观西成\n\n毫无目的地跟着爱欧铁路来到了关西。由于我没有任何我真正想要的活动或地方，我就前往西成拍摄复古风景作为我的爱好。\n\n欣赏西成的复古风景...... pic.twitter.com/rGTGgDeBDc — Nyalra (@nyalra) 2022 年 12 月 26 日\n\n西成是我最喜欢的城市。这是我第三次来这里，每次来大阪我都会去那里。我到处都看到人们在喝酒，当我与他们目光接触时，他们就会走到我身边和我说话，就好像他们是神奇宝贝训练师一样，这和我家乡冲绳一个特别混乱的小镇的气氛很相似。当我第一次参观Aiobahn时，我有点害怕，也有点犹豫。\n 也许是因为“正式会员”每天晚上下班后都会出去喝酒，所以当他们走过时，他们特别想和我这样的年轻外来者交谈，气氛友好。每个人都是孤独的。无论如何，我想与某人交谈并让他们听我的故事。而且我喜欢听别人讲有趣的故事。因为我们的兴趣一致，对方就更专心地和我说话，甚至说“谢谢你听我说话”，以示感谢。这是一座善良的城市。\n 今天，我和一位骑着自行车远道而来的老人聊天。他建议我们，“在这里要小心，因为有些 YouTube 博主会试图给我们拍照！”我相信你已经有过多次这样的经历，而且这很艰难。这种时候你应该微笑一下。这只是表明没有敌意。这样做的话，谈话自然会因为酒精的兴奋而变得更加热闹。\n\nSuper Tamade 的外部和商店内部都闪烁着霓虹灯，让您想起小时候看到的梦想。Pic.twitter.com/nBWvXMzZiP — Nyalra (@nyalra) 2022 年 12 月 26 日\n\n爷爷继续谈论政治。渐渐地，她被问到：“小哥哥，你知道在学校教什么最重要吗？”我自信地回答说：“我不知道！”并继续说：“很平静……”确实，与平静的重量相比，其他课程内容毫无价值。\n 有一天，他问我：“我其实是一位来自未来的预言家，如果世界上没有纸币和劳动力，那么大家一定会太平。不过，我在初中或高中的时候不会写汉字，所以我无法很好地交流。所以，当你回到东京时，我的兄弟，请告诉百合子这个预言！”这是一个多么重要的使命。 “是的！”我自信地回答，他笑着说“巴卡亚鲁！”并伸出了拳头，于是我们互相碰了碰拳头。这是建立友谊的时刻。\n 下一刻，一个年长的男人走到他面前，说：“你是个白痴！”并打了他的头。他笑得更厉害了，开始找借口：“嘿，老大！我和这家伙是好朋友。”那个被称为“大阪”的男人继续骂他：“你工作的时候就沉默寡言，偷懒，工作完了就这样玩耍，真是个白痴！”当然，两人的脸上都洋溢着灿烂的笑容。有点像凉津和经理。\n 师父还开始向我道歉，我就回答说：“不，不。”这是一次有趣的谈话，”然后就离开了。我和一直不在我身边的艾欧巴恩一起朝车站走去。回头一看，他们都端着酒杯聚集在一起，开始喝酒。一个你可以永远重复这种日常生活的地方。我喜欢这个城市。\n\n回来的路上，我在公园中央找到了一块地方，安装了一台CRT电视。我将通过这个显示器了解这个世界。如果我能将未来先知的计划告诉东京都知事，我会很高兴，这个城市的好消息将在整个公园中回响。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,7 +58,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

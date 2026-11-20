@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口小作文：随意的网络文章的自然魅力</title>
+<title>快速文章：休闲在线写作的自然魅力</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-04-07 05:53</p>
-  <h1>一口小作文：随意的网络文章的自然魅力</h1>
+  <h1>快速文章：休闲在线写作的自然魅力</h1>
   <p class="ja-title">一口エッセイ:何気ないネットの文章の自然体な魅力</p>
 </header>
 <main>
@@ -31,10 +31,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"快速文章：休闲在线写作的自然魅力\n\n正如我多次写过的那样，我是一个从小就喜欢文本网站的人。我喜欢回顾那些过时但已经开始过时的文本的兴衰。因此，通过每天在 Twitter 上发布黑底白字，我试图让这种文化的火焰保持活力，即使只是一点点。\n 也许是因为那个时期的强烈影响，我对业余爱好者悄悄在网上发表的文字很挑剔。虽然他没有意识到商业问题，但他创作的书可以被一些好奇的读者欣赏，他并没有给人一种成熟作家的印象。当我为了消磨时间而打开它时，我不禁注意到文笔多么好，多么令人耳目一新。\n 它与推特不同。推文必须概括在140个字符以内，可以用点赞、转发等易于理解的数字来表达，并且可以根据网友流行的情感或曝光度以任何方式表达，因此很难在博客等无数长句中创造出一个悄悄闪闪发光的句子。当然，推文具有只有短文本才能提供的光彩。\n 因此，在空闲时间，我会找到我不认识的人的博客并阅读它们。观察别人平淡的文字中稍显闪光的东西。\n 让我们举一个具体的例子。\n 我喜欢专门的利基网站。然而，需求量很小、难以商业化的产品尤其好。\n 有一天，我正在阅读有关全国各地当地汉堡店的所有博客。当地的汉堡很好吃。由于我也在冲绳，所以我的童年是在 Jef 和 A​​&W 等具有美国特色的神秘当地连锁店度过的。与知名连锁店相比难以形容的吉祥物形象、乡村特有的宽敞精致的室内设计、悠闲的氛围也许就是它的魅力所在。\n 当他参观全国各地当地的汉堡店时，我很喜欢跟随他，但遗憾的是他在发表了大约 20 篇文章后就停止更新了。没办法，但大多数博客都停留在这个数字上。继续是最困难的，因为它很简单。\n 不过这些文章里有一句话我很喜欢，所以想和大家分享一下。\n “价格便宜，但份量很大。尤其是鸡肉三明治，是大阪乃至日本最好吃的。这家餐厅的魅力在于，没有什么特别的，但表面上很随意。”\n 最后一句话太精彩了。 “这家餐厅的魅力在于，它没有提供任何特别的东西，但他们脸上的表情很随意。”这是一句无论我读多少遍都会继续产生共鸣的名言。\n 怎么说呢……这似乎是一个专业人士不会使用的准确表达方式。我觉得如果是商业作家的话，会短一点，表达会更吸引人一点。如果是一本要钱的书这可能是正确答案，但这是一小部分喜欢当地汉堡的爱好者的个人博客。如果是的话，这句话绝对是完整的一句话。最棒的是场景很容易想象。我敢肯定，当这个汉堡狂人点餐时，他很惊讶地发现鸡肉三明治比实际价值还要大，然后他很高兴看到服务员把三明治递给他的态度，就像平常的一天一样。因为对于当地商店的员工来说，鸡肉三明治是他们认为理所当然的东西。他捕捉并发布了在著名连锁餐厅无法体验到的瞬间喜悦。\n 当他对当地汉堡店的鸡肉三明治很满意并说：“就是这个！”时，当我看到表达这种交流的句子时，我也很兴奋，心想：“就是它！”这就是我想用这样的自然句子读到的内容。”可能有读者这次读了我的日记，抱臂地点点头，心想：“这就是尼亚拉的伟大之处。”这是一个嵌套的结构。我入睡时感到很满意，因为今晚我能够继续发表我笨拙的文章，认为这种轻松的无力感是互联网上写作的伟大之处。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +55,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔: 拍照点与等身大超天酱完成</title>
+<title>一篇简短的文章：完成了拍照地点和真人大小的超级十酱</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-04-29 03:06</p>
-  <h1>一口随笔: 拍照点与等身大超天酱完成</h1>
+  <h1>一篇简短的文章：完成了拍照地点和真人大小的超级十酱</h1>
   <p class="ja-title">一口エッセイ:フォトスポットと等身大超てんちゃん完成</p>
 </header>
 <main>
@@ -38,10 +38,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇简短的文章：完成了拍照地点和真人大小的超级十酱\n\n我们在幕张建造了一个真人大小的超级十酱人物和一个拍照点。我会在明天和后天的超级大会上收录，请大家欣赏。\n\n真人大小的超级十酱太大了！\n 如果你没有东西可以比较，它看起来就像是人物尺寸。她的双尾巴太大了，我希望她能小心点，和它们合影。\n 这一款与最近由 Good Smile 发货并交付给您的 POP UP PARADE Super Ten-chan 具有相同的设计。 Poppare Cho Ten-chan的预订量达到了非常非常高的数量，所以Good Smile也很乐意合作制作。此外，粘土人超级十酱也将上市。活动当天将展出未涂装的原型机，请务必看一看。我很喜欢三维物体（主要是特效玩具），所以我很高兴，感谢大家对Nidiga商品的尊重，三维物体的项目陆续诞生。 Poppare Cho Ten-chan和Good Smile的预订量绝对是微笑的。\n\n当然，你有一张好看的脸。很高兴周天酱的眼妆得到了准确的再现。事实上，今天在我准备的时候，我的老师时隔一段时间以来第一次过来，我很高兴她拍了一张我舔真人大小的超级十酱的照片。我相信老师绝对没有想到他设计的人物会变成真人大小。我也很惊讶。\n 我很高兴。\n\n我将成为你余生的记忆。\n🧬( ⁎ᵕᴗᵕ⁎ )🧬 pic.twitter.com/tw8O3AILK3 — 🎀超级可爱🎀天使酱 (@x_angelkawaii_x) 2023 年 4 月 28 日\n\n之前介绍过的拍照地点。工作人员从早上就非常努力地布置这个地方。这真是太神奇了。无论如何，这是一个强大的技能。这是一个很好意义上的“文化节”。我特别喜欢它没有公司的僵化感觉。我喜欢平成时代的骷髅物品，比如涂上各种东西来搭配颜色，寻找个人物品和稀有物品来重现世界观，所以我得到了很多人的合作，他们认为现在是合法大规模收集它们的唯一机会。\n 当然，你可以用任何你喜欢的方式来拍摄，但经过多次尝试，我喜欢这个稍微高一点的角度。如有疑问，请摄影师从这个角度拍照（如果您是独行顾客，也可以请摄影师拍照）。\n 物品散落各处，主要前提是创造一个“可爱”的空间，这是由插画家Egegu监督的，我相信这个展览的目的是为了让粉丝们能够享受摄影本身并享受拍照的感觉。自从江口老师在游戏发售前我们向我们共同的粉丝征集测试玩家时玩过游戏以来，我就一直以商品的形式与他合作。在大家的帮助下，超级十酱的“卡哇伊”将呈现给你。\n\n这衣服到底是什么……！ ？下次我会告诉你更多细节。这是一个拍照点，所以先睹为快。晚安。\n\n从这个角度拍摄真人大小的人物模型和拍照点会很漂亮♪\n太棒了，所以请尽情享受 pic.twitter.com/sYMKohmwDJ — Nyalra (@nyalra) 2023 年 4 月 28 日\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -61,7 +62,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

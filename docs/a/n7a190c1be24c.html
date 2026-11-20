@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>作为人生集大成的“墙”</title>
+<title>“墙”是生命的顶峰</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-26 04:04</p>
-  <h1>作为人生集大成的“墙”</h1>
+  <h1>“墙”是生命的顶峰</h1>
   <p class="ja-title">人生の集大成としての「壁」</p>
 </header>
 <main>
@@ -22,10 +22,11 @@
 毎日の日記をまとめた同人誌をよろしくね。若い頃に書いたエッセイで構成された商業本もよろしくお願いします♪ これらこそ、僕の生きた証そのものだから。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"“墙”是生命的顶峰\n\n我搬家了。因为我没有家人做担保人，所以花了一些时间，但当尼迪加的制作人成为担保人时，这个问题就解决了。非常感谢♪ 首先，首先展示的是大谷先生的《曾我白目》的巨幅插画。当我决定展示这幅画的那一天，即使需要借钱，我也能不放弃地过着自己的生活。在家里过着令人惊叹的美丽生活真是太棒了。\n 这个房间的有趣之处在于，天花板高约4米，虽然从照片上看不出来，但结构复杂，房间内有楼梯。由于其山峰性质，他们找不到合适的租户，所以我与他们达成协议，充分利用它，决定将墙改造成书架，展示4米高的雕像和书籍。\n\n我还在拆开这些物品的包装，但它看起来已经很壮观了，作为一个御宅族，我很幸运，我正在创造一个完美的空间，让我可以同时查看我的所有收藏品。一面巨大的“墙”，里面装满了我认为美丽、令人兴奋、有趣的书籍。这确实是我还活着的证明，所以我会花时间把这堵墙建成最好的。我感到一种欣喜若狂，仿佛我就是为了这个目的而生的，我意识到像这样展示这么多的雕像给我带来了最大的快乐，我高兴得翻腾，我很高兴我过着让我诚实做事的生活。\n\n请欣赏整理每日日记的同人志。我也很想要一本由我年轻时写的文章组成的商业书♪这些都是我生活的证明。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

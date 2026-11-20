@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：幻影旅团（蜘蛛）</title>
+<title>咬文：《幻影旅团（蜘蛛）》</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-22 03:05</p>
-  <h1>一口随笔：幻影旅团（蜘蛛）</h1>
+  <h1>咬文：《幻影旅团（蜘蛛）》</h1>
   <p class="ja-title">一口エッセイ:幻影旅団（クモ）</p>
 </header>
 <main>
@@ -32,10 +32,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"咬文：《幻影旅团（蜘蛛）》\n\n我的脑子里充满了震惊，猎人猎人系列已经被纳入了《幻影旅团》的过去章节中。至于多少钱...\n\n红野！！ ︎我！！ ︎我！！ ︎──────────────────────────────！ （沙尔纳克控制的黑手党）\n 首先，Jump更新的时候我就读了Hunter猎人，太好了，我赶紧重读了York Shin那一章，然后早上到了，我完全睡过头了，去开下午开始的会议。而且，想到帕库诺达的心情，泪水自然而然地流了下来，所以我就在会场附近等待着泪水干涸。对不起。不过，和我会面的编辑也很兴奋，谈到了约克辛弧线，所以很棒。\n 我喜欢我童年在大队的一切。秩序比我预想的要多，但流星镇的治安是最差的，这里的Phinx和长期使用武器的Phitan是好朋友。库洛洛（Chrollo）看起来像与佐尔戴克家族（Zoldyck family）战斗后一样无辜，信长（Nobunaga）是闪回的叙述者，但以前从未出现过，还有……帕库诺达（Pakunoda）。\n\n库洛洛大概是因为比流星区其他孩子高出一个数量级的智力和能力，以及表演和写剧本的能力，才决定为小镇的安全和规则“扮演领导者的角色”。\n 当旅行团组成时，玛奇惊讶道：“呃……库洛洛？”不只是因为他的外表，而是因为他的性格突然变成了一个冷酷的领袖？富坚义宏……太可怕了。\n 如果你认为这只是“领导为朋友做事”，那么幻影旅团是所谓的美国佬组织也是有道理的，比如旅里假装冷酷无情，但对自己的亲人却过于宽容，最终所有成员都依赖于领导者（虽然库洛洛认为他把团体本身看得比领导者更重要）。即使在制定了这样的规则之后，当库洛洛的一位朋友被杀时，他还是默默地感到愤怒。太好了....\n\n他们只是一群在贫民窟里喜欢看动漫和游戏的孩子，本质上都是坏孩子，连飞坦都擅长使用“Multi-Tap”这样的游戏设备。我们是一群连黑手党都没有的家庭成员，所以我们才是最强的。难怪他受到黑手党的钦佩，黑手党别无选择，只能作为政治棋子加入该组织。\n\n不仅如此，还有帕库诺达。他对库洛洛的感情可以从他们单独相处时他称呼库洛洛的方式以及剪辑的最后一帧中看出。富坚义宏……天才？仅仅因为这一集，我们就可以理解，在约克辛篇中，帕库诺达直到最后都是在想着“可爱的库酱，就像弟弟一样”时死去的。多么残酷而又美丽。富坚义博……漫画之神？\n 请帮助我，一想到如此精彩的漫画再次被暂停，我就疯了。猎人猎人太有趣了。这太有趣了，很难。事实上，绘图量不正常！虽然系列本身很小，但从细节的背景中就可以看出富坚老师对漫画的执着，可见他在短时间内投入了全部的心血，至今仍在不断提高的绘画技巧也弥足珍贵。我不介意牺牲我的生命。所以请永远保留它。这让我发疯！ ！ ！\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,7 +56,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

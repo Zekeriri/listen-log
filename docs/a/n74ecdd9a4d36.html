@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：宗教的狂喜</title>
+<title>位随笔：宗教狂喜</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-12 05:30</p>
-  <h1>一口随笔：宗教的狂喜</h1>
+  <h1>位随笔：宗教狂喜</h1>
   <p class="ja-title">一口エッセイ:宗教的エクスタシー</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 先月末には商業エッセイ集も出ました。祈りについて書いております。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"位随笔：宗教狂喜\n\n当我写一篇带有宗教或精神内容的日记时，我注意到读者的反应较少，但我从未灰心并继续谈论它。我的兴趣就在这个领域。让我们谈谈您为什么要研究宗教和精神故事。这只是因为我认为“宗教狂喜”是人类从大脑中麻醉剂的分泌中获得最大“快感”的状态。\n 旅行体验的成功取决于环境。出发前的状态和环境决定了通往灵界的旅程是最终的天堂还是地狱的化身。当然，一旦地狱之旅结束，感觉就像是一次很好的经历。\n 我认为最强设定的关键是“信仰”。通过对某事产生强烈的感受，这些感受就会成为路标，引导我们直达感知之门的深处。信仰的对象可以是音乐，也可以是动漫人物，但最有力的概念非“神”莫属。\n\n之前我写过打坐时被假神迷惑的“魔界”，但这是一个没有信仰的人的故事。如果一个经常向神的虔诚信徒绊倒，接触到真神和真理，体验到“宗教的狂喜”，那将是比常人所能体验到的幸福强烈数十亿倍的体验。我对此很嫉妒。\n 要达到这一点需要真正的信心。即使我完全走向了彼岸，那也不会是不快乐，而是认识到对方才是真正幸福的结果，无论我客观上有多疯狂，我希望人们会认识到我主观上比任何人都幸福。\n\n我们正在出售编辑日常文章的同人志。如果你读到它，我会很高兴！\n\n上月底还出版了商业论文集。我正在写关于祈祷的文章。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

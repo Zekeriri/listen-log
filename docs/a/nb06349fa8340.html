@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口散文：牙套矫正……差点失败</title>
+<title>一篇简短的文章：吹口校正......处于失败的边缘</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-05-21 10:21</p>
-  <h1>一口散文：牙套矫正……差点失败</h1>
+  <h1>一篇简短的文章：吹口校正......处于失败的边缘</h1>
   <p class="ja-title">一口エッセイ:マウスピース矯正……失敗寸前</p>
 </header>
 <main>
@@ -20,10 +20,11 @@
  周りに聞いてみると、同じ理由でマウスピースをサボった後、結局放置していても勝手に動いていくワイヤー矯正に乗り換えた方もいました。やっぱり怠けてしまうよね……。本来安くて見栄えもいいマウスピース矯正ですが、家で自分で嵌めなければならないという一点のみで、人によっては損をしてしまう寓話のようなオチなのでした。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇简短的文章：吹口校正......处于失败的边缘\n\n从去年开始，我一直在牙医处进行牙套正畸，这是一种方便的方法，通过安装透明牙套，无需将金属丝插入牙齿，就能以别人看不到的方式矫正牙齿。而且，它通常比电线便宜！你做到了。\n 我的牙齿确实歪得很厉害，小时候不被允许矫正（因为经济原因），所以我决心用你们给我游戏的钱最终矫正牙齿，但是……我最终偷懒了！现在，我懒得把牙套放进去，所以我被内疚和害怕医生问我“为什么我的牙齿不动？”所折磨。所以我不会再预约了。 ！ ！\n 而且，在咬嘴未就位的情况下，牙齿的排列会逐渐恢复正常，所以如果继续下去，那将是毫无意义的时间和金钱的浪费。然而，我太害怕了，不敢诚实地向牙医报告我一直在偷懒……这种困境永远不会结束。\n 当我四处询问时，有些人出于同样的原因停止使用咬嘴，并最终改用钢丝牙套，即使单独放置，钢丝牙套也会自行移动。我想我终究是越来越懒了……正畸牙套原本很便宜，而且看起来也不错，但唯一糟糕的是你必须自己在家戴上。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -43,7 +44,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

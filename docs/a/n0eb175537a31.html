@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口散文：不得不靠喜欢（擅长）的事物生活</title>
+<title>短文：我别无选择，只能靠做我喜欢（并且能）做的事情来生活。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-01-06 06:33</p>
-  <h1>一口散文：不得不靠喜欢（擅长）的事物生活</h1>
+  <h1>短文：我别无选择，只能靠做我喜欢（并且能）做的事情来生活。</h1>
   <p class="ja-title">一口エッセイ: 好きな（できる）ことで生きていかざるを得ない</p>
 </header>
 <main>
@@ -23,10 +23,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：我别无选择，只能靠做我喜欢（并且能）做的事情来生活。\n\n我最近意识到，我别无选择，只能选择自由职业这种不稳定的生活方式，不是因为“我想做我想做的事！”的积极原因，而是因为“我永远不能做我不能做的事情！”的消极原因。\n 不想做某事和想偷懒是有区别的。你能做和不能做的事情是如此极端，以至于不是“我不会做”而是“我不能做”。这和约克·辛篇中西索的回答是一样的，“不是我不会说，而是我不能说。”\n 然而，在社会上，由于人际关系和职位的原因，“我做不到”是很难沟通的，每次沟通，我的评价都会下降，最坏的情况是，我被评价为“一个无能的人，只想偷懒。”嗯，确实如此。不过，与其在仓库里整理纸箱，不如让大家在电脑前敲击键盘，说不定还能早点回家……！我相信这样的情况在公司里可能会发生。如此容易理解的情况可能很少见，但在很多情况下它显然效率很低。\n 对我来说，这样的情况给我带来了很大的压力，让我无法承受。你不能做的事，你就不能做。不可能做详细的工作。我什至无法与需要社交互动的人互动。换句话说，基本上我能做的就是摆弄键盘或鼠标，盯着显示器。只要这只是一份“工作”（赚钱的活动），走什么荆棘路都没关系。任何其他路线都是不可能的。所以，不可避免地，我别无选择，只能做自由职业。我并不是抱着“我会变成这样”的梦想行事，但实际上我只是在倒退以增加生存机会。\n 作为创造者我一定会成功！这根本不是一种模式，它更像是“我认为这是我继续这个问题的最佳解决方案......”。 “你别无选择，只能做你喜欢（并且能够）做的事。”这就是感觉，而不是做你喜欢做的事。我并不是完全不喜欢这样。令人惊讶的是，事实就是如此。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

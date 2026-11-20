@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：电被停了</title>
+<title>短文：停电了</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-01 12:26</p>
-  <h1>一口随笔：电被停了</h1>
+  <h1>短文：停电了</h1>
   <p class="ja-title">一口エッセイ:電気止められた</p>
 </header>
 <main>
@@ -23,10 +23,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪ 僕の電気代になります。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：停电了\n\n房间里出奇的热，当我醒来时，停电了。\n 由于我搬家时没有签订新合同就使用了，所以估计被判定为无偿。虽然当天就签下了合同，但要等几个小时才能通电，所以我只能在黑暗中打坐。屋里很热，外面更热，我半路就跳了起来，睡得不省人事。\n 回想起来，当我搬到东京并与朋友合住一个房间时，几乎每个月都会停电、燃气、水或网络。艰难的日子是通过聪明才智和毅力克服的，例如使用公园和洗冷水澡。\n 特别是经常停电，所以当电源恢复时，我很高兴看到家里所有的家用电器都同时亮起来，就像机器人动画的片头曲一样。由于电源无法打开，我无法取出PS3中的DVD，所以我被TSUTAYA收取了滞纳金。我能做的只是为了生存，但我认为每次遇到麻烦时和朋友们一起欢笑的时刻就是青春的时刻。\n 然而，即使是现在，当我被问到是否要继续为无法支付茑屋滞纳金而苦苦挣扎时，我绝对拒绝了。以前房间里没有空调，现在有电了，纳凉真好。我感到欣慰的是，与那时相比，我已经长大了，但当我想到这一点时，我也感到一种欣慰，因为自从我这个年纪断电以来，基本面没有改变。\n\n请欣赏我的日记和商业文章集的同人志♪这对我的电费有帮助。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

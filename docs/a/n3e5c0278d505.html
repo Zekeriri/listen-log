@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口短文：梦见碾人</title>
+<title>短文：梦见从别人身上碾过</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-15 06:57</p>
-  <h1>一口短文：梦见碾人</h1>
+  <h1>短文：梦见从别人身上碾过</h1>
   <p class="ja-title">一口エッセイ:人を轢く夢</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 商業エッセイ集もよろしくお願いします。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：梦见从别人身上碾过\n\n显然我最近感觉很累，我发现自己一段时间以来第一次睡着了。\n 当时我的梦想是我在开车，由于我没有驾照，我就上了车，在开车的过程中，我结果碾死了一个人。我对此无能为力，所以我惊慌地跳了起来。虽然他松了口气，因为这只是一个梦，但他还是被碾压别人的真实感觉所留下的痕迹所震惊。\n 事实上，我可能已经从别人身上碾过然后跳了起来，不只这一次，总共已经有十次了。而每次，司机总是会出现无驾照却得意忘形的情况。就像《疯狂的士》中一样，驾驶从来没有一次是令人兴奋和暴力的。我希望我能以一种很酷的方式驾驶汽车，就在我的梦想中。\n 当你撞倒某人的那一刻，“后悔自己以为自己能逃脱惩罚”的感觉是令人作呕的。我从来没有真正碾过别人，但有无数次我在梦中得意忘形，草率地做了某件事，以为自己没有执照就可以做，结果失败了。也许是因为我没有阅读说明就组装了它，所以我无法收回它。诸如此类的事情还有很多。\n 是否是出于本能的警告，如果结果是组装家具的错误，如果结果是无证驾驶，别人就会死？也许更简单的是我害怕自己开车。无论如何，他的生活似乎经常让他想起因得意忘形而失去别人生命的感觉，以及事后自己恐慌发作的可笑之处。\n\n我们目前正在销售包含每日日记的同人志。我刚睡醒，没有太多精力，所以没什么好说的。\n\n我期待着阅读您的商业论文集。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

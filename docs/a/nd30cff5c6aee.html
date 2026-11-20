@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：领取生活保障的朋友与已故父亲的手表</title>
+<title>短文：一个福利朋友和我已故父亲的手表</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-21 00:37</p>
-  <h1>一口随笔：领取生活保障的朋友与已故父亲的手表</h1>
+  <h1>短文：一个福利朋友和我已故父亲的手表</h1>
   <p class="ja-title">一口エッセイ:生活保護の友人と、亡き父の腕時計</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：一个福利朋友和我已故父亲的手表\n\n几天前我在日记中写下的合租屋被赶出的失业朋友现在住在我家。其实我本来打算住在中野区的一个免费住宿设施里，直到我能为领取福利的人找到一套公寓，但设施似乎时好时坏，有些地方说是免费的，但他们的大部分津贴都带走了。他的世界观与牛岛君相似。\n 我不喜欢这样，所以我提交了一份文件，说我会留在我的房子里，直到我找到新的地方，所以一个社会工作者（类似指导员的人）来到我家，检查我房子的状况并讨论未来。我讨厌我不认识的人（他们是严肃的公务员）来和我一起工作……但我无法控制。我是他失业的监护人。我没想到我会被当作高中同学的监护人。在生活中，你永远不知道会发生什么。\n\n前一天，我让他出去散步时帮我办点事，希望至少给他买点漫画，但他只有668日元，所以我放弃了。当他回来时，他迷上了《喷射战士 3》。这样的日子还在继续。暂时让他看牛岛君的《生活君版》，让他集中注意力。牛岛君最喜欢这一集。如果我能从中得到一些东西那就太好了。\n 今天，一位女社工来看望我，我请她照顾我，因为我失业了。他告诉她，他在人际关系上极其糟糕，只能打一些与他无关的兼职工作（比如Uber Eats），而且由于某种原因，夏天总会有两个月左右的时间不能动，他办理手续也平安无事。在剧集结束时，他抱怨耳朵疼痛，显然突然不得不与其他人交谈的压力导致他的耳朵不受控制地响起。它太硬。\n\n社工也离开了，如果一切顺利的话，他也将住在中野区适合福利人士的公寓（有专门的房产搜索网站）。他很高兴，左臂上戴着一只帕奇兽，这是他已故父亲托付给他的豪华手表。一块神秘的手表，上面标有“ARMANY”而不是ARMANI。更何况，她并不是喜欢父亲生前的样子，而是她穿着它似乎只是因为“远远看去，他就像一个工作的成年人”。只要当事人满意，那就是好事。\n 不管怎样，为了纪念他摆脱社会的束缚，我们两个去看了渡天的电影。全部用我的钱。我还没有收到一日元的回款，但当我在阿玛尼手表的昏暗灯光下看到他的笑脸时，我不禁想到，这样的生活是可能的。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口随笔：每写一次文章就会倒霉</title>
+<title>短文精选：每次写都觉得不开心</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-11-11 07:53</p>
-  <h1>精选一口随笔：每写一次文章就会倒霉</h1>
+  <h1>短文精选：每次写都觉得不开心</h1>
   <p class="ja-title">選り抜き一口エッセイ：文章を書くたびに不幸になる</p>
 </header>
 <main>
@@ -23,10 +23,11 @@
 ※Twitterに連載していたエッセイからの抜粋です。↑で購入できますので、エッセイ集をぜひ読んでみてね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文精选：每次写都觉得不开心\n\n游戏文本、漫画原作、笔记更新、日记……我感觉自己每天都在写某种文字，但我不喜欢写作本身。我只是喜欢被别人称赞，而且我写的东西也容易得到称赞。\n 正如我在笔记中所写，当我还是一名初中学生时，我唯一认真对待的事情就是写书评。那时，它已经完全被美少女游戏冲淡了，所以我决定写一篇关于赫尔曼·黑塞的《车轮之下》的评论，这是我从图书馆借来的，因为标题与《车轮之国，向日葵女孩》很相似，我想知道它是否是原作之一。\n 这得到了我的日语老师的高度赞扬，她说她以前从未得到过成年人的如此认可。在那之前，我学习得不好，当然没有机会受到表扬。\n 我开始看到了天赋，并认为如果我稍微重写一下，我也许可以瞄准国家队，并且我成为了天狗，这是我人生中第一次感到兴奋。我没有学过日语，所以我完全依靠我的直觉。具体内容我不记得了，但我没有任何专业知识，一味相信老师指出的内容，写的评论被选为某种奖项。这让我非常高兴。\n 当我把自闭症特有的思维混乱转化为文字并输出时，我的情感似乎变成了句子。除非你的大脑混乱，否则你无法使用这种技巧，因此除非你不高兴或沮丧，否则你无法写作。似乎只要我一直写下去，我就永远不会快乐。\n\n*这是 Twitter 上连载的一篇文章的摘录。可以在↑购买，所以一定要阅读散文集。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

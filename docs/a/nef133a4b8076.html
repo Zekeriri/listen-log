@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：夏天一定会抑郁的朋友</title>
+<title>短文：一个夏天总是郁闷的朋友</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-11 21:54</p>
-  <h1>一口随笔：夏天一定会抑郁的朋友</h1>
+  <h1>短文：一个夏天总是郁闷的朋友</h1>
   <p class="ja-title">一口エッセイ:夏に必ず鬱になる友人</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：一个夏天总是郁闷的朋友\n\n我的朋友每年夏天总是感到沮丧。\n 我从高中就开始出现这种情况，原因完全不明，但到了夏天，我的思绪变得模糊，无论对我说什么我都会生气，而且我懒得几乎动弹不得。看来即使是有点书呆子的申熙斗也找不到根本的解决办法。\n 这就是为什么直到上个月我才如此生气。我们已经做了十年的朋友，所以我已经习惯了，但初次接触的人会因为差距而感到惊讶并退缩。这就是为什么他没有很多朋友，一直担任 Uber Eats 优食送货员。有了 Uber，你可以在夏天休息一下，而且不必与任何特定的人沟通。\n 暑假我总是要休息一个月，所以我连正常的兼职工作都做不了。即使你这么说，人们也很少会相信你，所以劣势是巨大的。我最终的生活是我自己骑自行车的优步生活。\n 既然有这样的生活方式，我觉得我们只是机缘巧合才能够在一定程度上适应社会。我只是碰巧位于一个为大多数人类而调整的世界的大多数一侧。当然，其中也有很多优点和缺点。\n 这就是为什么它可以说是残酷的，也可以说是有趣的，因为它的个性，而这个问题是没有答案的。我想得越多，我就越投入，所以我就到此为止，现在我很高兴我的朋友随着夏天的结束而恢复了精力。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

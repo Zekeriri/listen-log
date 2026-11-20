@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：即使拥有神的视角，救不救皮克敏也是罪吗</title>
+<title>短文：即使从上帝的角度来看，不拯救皮克敏也是一种罪过吗？</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-08-09 07:06</p>
-  <h1>一口随笔：即使拥有神的视角，救不救皮克敏也是罪吗</h1>
+  <h1>短文：即使从上帝的角度来看，不拯救皮克敏也是一种罪过吗？</h1>
   <p class="ja-title">一口エッセイ:神の視点をもってしてもピクミンを救わないことは罪か</p>
 </header>
 <main>
@@ -30,10 +30,11 @@
 毎日の日記をまとめた同人誌（在庫復活しましたがもうわずかです）や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：即使从上帝的角度来看，不拯救皮克敏也是一种罪过吗？\n\n皮克敏死了。我肯定会死。你可能会死于火灾，你可能会死于溺水，你可能会死于电流，当然你也可能会死于被以皮克敏为食的掠食者吃掉。当你死了，你就死了。相反，皮克敏也会集体杀死生物，有时还会通过改变地形来破坏环境。不管你怎么看，这只是“自然”，在一个生死攸关的世界里，没有时间对每一种动物表示怜悯。\n\n我的一只红色皮克敏不小心接触到电流并因麻木而死亡。相反，他们了解到，具有抵抗力的黄色皮克敏可以阻止电流，从而开辟新的路径并扩大它们的活动范围，并增加皮克敏的数量、种类和范围。\n 皮克敏是活物。而且，他的智力也不是很高。它忠实地执行从中提取它的人形生物的指令。为什么？虽然故事中没有明确说明这一点，但我认为这是因为他们本能地直觉到，随着执行人类的命令，他们的数量增加这一事实很重要。\n 既然它们是生物，它们的目的就是作为一个物种生存下来，当它们按照人类的指示运输和建造东西时，皮克敏开始在整个星球上生长，随着它们作为生物变得越来越强大，不可避免地，其中一些会为此牺牲自己。就算有几个被原生生物吃掉，如果他们的盟友设法杀死他们，地球上就会布满原生生物的尸体，所以从整体上看，死亡并不可怕。\n 那样的话，玩家就不用关心皮克敏的死活了。相反，我们应该培养越来越多的星球，即使这需要一些牺牲，并在充满天敌的星球上提升皮克敏的等级。玩家不是神，所以他别无选择，只能继续前进，哪怕失去多少。我相信皮克敏作为一个物种，也会喜欢这个。\n\n……然而，这个前提在本作中被颠倒了。\n 令人惊讶的是，皮克敏4配备了“时间倒带”功能，如果你杀死了一个重要的皮克敏，你可以回到几分钟并改变因果律。通过重复这些步骤，您可以在不杀死任何皮克敏或感到内疚的情况下完成游戏。也就是说，玩家在本作中就是“神”。他们可以无视自然法则：吃或被吃，并单方面屠杀他们。每次朋友去世时，您都可以假装这件事从未发生过，并可以根据需要多次重新开始。只要玩家愿意，皮克敏就会永远繁殖。\n 以这种方式拯救皮克敏是“好事”吗？在不违反游戏规则的情况下接受死亡是否是一种罪过，即使你被问到，“如果事情继续这样下去，⚪︎皮克敏会死，但我应该继续这个故事吗？”到目前为止，我们别无选择，只能继续皮克敏短暂的牺牲。玩家也是人，所以只能尽可能地节省。然而玩家4却是可以干预时间轴的神。一个只要愿意就可以拯救皮克敏的神却让皮克敏死去，而一个人类接受了皮克敏的死亡却因为游戏而不得不继续前进，即使最终结果是一样的，哪一个是对的，对的还是错的？获得“力量”的神如果不继续充分利用这种能力做“善事”，会不会成为“恶人”？\n 如果把上帝视角交给我们这些随手拿起Switch打游戏缓解压力的人，那该是多么残酷？皮克敏一直教导我们自然界的残酷，现在他将尝试只有上帝才知道的痛苦。\n 无论玩家有什么样的道德观，无论他们用什么标准来衡量是非，皮克敏无论如何都会跟随你，为你服务，携带你，战斗，死亡，不管这种高层冲突。\n\n请看一下编辑日常日记（现在又进货了，但只剩下几本）和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

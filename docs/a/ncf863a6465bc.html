@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>随笔：只存在于脑中的美少女</title>
+<title>随笔：一个只存在于我脑海中的美丽女孩</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2020-11-08 01:41</p>
-  <h1>随笔：只存在于脑中的美少女</h1>
+  <h1>随笔：一个只存在于我脑海中的美丽女孩</h1>
   <p class="ja-title">エッセイ：脳内にだけ存在していた美少女</p>
 </header>
 <main>
@@ -37,10 +37,11 @@
  その共依存でバッド・トリップな生活の結末を、その手で体験して下さい。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"随笔：一个只存在于我脑海中的美丽女孩\n\n我们正在推出一款名为“NEEDY GIRL OVERDOSE”的游戏，在游戏中，你成为一个精神上有点弱且有强烈认可欲望的女孩的情人，并抚养她成为网络红人。\n我负责策划和场景。预定在Steam上以3种语言发行。\n详情和预订 ↓ https://t.co/bzmzu2OyDq pic.twitter.com/HwHPhp67F7 — Nyalra (@nyalra) 2020 年 11 月 7 日\n\n我会发布一个这样的游戏。明天我会写一篇关于细节的文章。\n\n现在，当我有自我意识时，我是一个出色的书呆子，但我的大脑总是充满了二维美丽的女孩。每当你闭上眼皮，你就能跳进便利美少女打造的后宫空间。我敢肯定，如果你仔细看的话，那就是地狱。\n 我喜欢过很多漂亮的女孩，包括木之本樱、星野瑠璃、佐村茜、Cure Mint、Vanilla。有时，她会像对待真正的女孩一样对待雕像和抱枕。没错，那个人就是我尊敬的天使。\n 然而，随着年龄的增长，我看的动漫中的主角们的年龄也越来越悬殊，我已经无法想象自己站在他们身边了。现实正在逼近。\n 毕竟，谁会爱上一个大学辍学生、沉迷于合法草药、什么都不做的人呢？还有一个女孩，有着完美的外貌，就像动漫人物一样。\n 不知不觉间，木之本樱、星野瑠璃、里村茜、Cure Mint、香草小姐都从我的脑海中消失了。即使你在虚幻的世界里试图抓住他们的手，他们也会像沙子一样散落消失。\n\n我无法再和脑海里那个美丽的女孩调情了。如果是这样的话，我至少想创造一个理想的美少女，呈现给世人。我希望它能受到不特定数量的御宅族的喜爱，而不仅仅是我。这是在策划这款美少女游戏时首先想到的情感。这是驱动力。\n\n我喜欢那些道德败坏、性格最差，但长得好看又可以被原谅的女孩。 Ame-chan有一张非常漂亮的脸。嗯，好久没看到老师的设计了，而且是Nennai的像素画，所以外观状态是MAX。无论从哪里看都是一个美丽的女孩。\n 她是最糟糕的一种女孩，在困难的时候求助于精神药物，试图在外表上严肃，并依靠生活来获得认可。那就是Ame-chan，一个超级可爱的女孩，已经成为网络天使。\n 她是一个自由奔放的女孩，不问房东的任何情况，就在我的脑海里住了下来，除了漂亮的外表之外，没有其他任何特殊的品质。\n 《贫困女孩过量》从你成为她的女朋友并同居开始。 Pi的真实身份可能是一名女性，因为她从未提及自己是她的男朋友。这是需要玩家思考的。这就是“pi”的意思。\n\n请代替你和这些女孩一起度过时而暴力又浪漫的日子。请和我去约会吧。请OD和我一起。无论如何，Ame-chan都会相信你并跟随你（基本上）。\n 亲自体验这种相互依赖和糟糕的旅行生活的后果。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -60,7 +61,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔:我思考模式的5左右的那个事情</title>
+<title>短文：关于我的思维模式的 5 件事</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-06-27 06:33</p>
-  <h1>一口随笔:我思考模式的5左右的那个事情</h1>
+  <h1>短文：关于我的思维模式的 5 件事</h1>
   <p class="ja-title">一口エッセイ:僕の思考パターンの5くらいのアレ</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
  おやすみなさい。ここ数日はできる限り人間関係を避けたいものですが、そんな時に巻き込まれる人的トラブルもまた面白い。気の持ちようですね。疲れるな、本当に。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：关于我的思维模式的 5 件事\n\n我经常感到焦虑，不过这可能是最近睡眠不足的缘故，等睡眠充足再想一想，问题也就不大了。我的大脑没有足够的营养，而且我的大脑太吵闹，以至于我最终花了太多时间去担心它。\n 如果是这样的话，另一方面，如果我的体力从大量的睡眠中恢复过来，那么如果我身体健康的话，我的担忧是否会消失。事实上，在某种程度上可能会如此。最后，我的日程和期限很多，也就是说，我被关系束缚着，不方便，所以到了时间我就不得不行动，即使我睡眠不足，这让我很痛苦。我越能断绝关系，变得孤独越好。\n 真有这么简单吗？既然如此，你所需要的只是你身边有几个相处融洽的人。我什至没有和那个朋友的计划。致力于通过 Discord 或 LINE 群组进行沟通。这才是最有效的生活方式。\n 然而，我对此并不满意，也没有足够的刺激，所以我在处理与人的关系时会考虑到疲劳和压力。重点可能是因为当由于高度随机的事件而突然发生某事时，我们会感到最大的快乐。意想不到的烦恼、运气、意想不到的经历，给生活增添色彩。它比规定的行为常规令人兴奋许多倍。人们马上就想要它。\n 那么，如果我们放弃自己的欲望呢？\n 扔掉所有不定期降临到你身上的快乐和不幸，去寻找你一定能得到的快乐，你想睡多少就睡多少，玩游戏玩多少，再睡觉等等，让自己尽可能多地充满快乐，尽管有一个限度。如果你添加你感兴趣的书籍和电影并将它们分配给新的体验，你会感到更加满足。不管你有多孤独。\n 所有这些都是正确的。人际关系带来的随机性和稳定、预定的惯例带来的幸福感各有利弊。前者更像是一场赌博，所以你能获得的最大兴奋感更强。\n 似乎最好多睡觉，每天都感觉神清气爽地进入人际关系……这是否很难，因为即使是生活时间的不规律也是生活乐趣的一部分？\n 思考这个问题没有任何意义。关键是，幸福和不幸福很容易根据你的视角而改变，而现在你已经非常疲惫，你的视野正在缩小，所以如果你不早点睡觉，你很快就会失去幸福的范围。\n 晚安。这几天我想尽量避免人际交往，但这段时间出现的人为烦恼也很有趣。看来你有一颗善良的心。别累了，真的。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

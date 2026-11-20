@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：《糖果子弹打不穿》和《像花束一样的恋爱》</title>
+<title>短文：“你无法发射糖弹”和“我的爱就像一束鲜花。”</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-02 02:45</p>
-  <h1>一口随笔：《糖果子弹打不穿》和《像花束一样的恋爱》</h1>
+  <h1>短文：“你无法发射糖弹”和“我的爱就像一束鲜花。”</h1>
   <p class="ja-title">一口エッセイ：「砂糖菓子の弾丸は撃ちぬけない」と「花束みたいな恋をした」</p>
 </header>
 <main>
@@ -26,10 +26,11 @@ BOOTHにて、毎日のエッセイをまとめた同人誌などが販売中で
 今月末には、長文エッセイと書き下ろしをたくさん詰め込んだ商業エッセイ集がでます。予約していただけると嬉しいです。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：“你无法发射糖弹”和“我的爱就像一束鲜花。”\n\n《你不能发射糖糖子弹》是一本你年轻时应该读的书。当人类最年轻的时候，换句话说，如果他们还没有读过，现在就读。这是一个关于“某物”日渐磨损的故事，所以每一秒都很重要。\n 如果粗略地解释一下，我明白这是一个“敏感度”和“社交性”的问题。这两者很难平衡，人在成长过程中会失去与生俱来的纯粹感性来换取社交能力。 《打不中糖弹》中，青春期少女过于美好的感性被称为“糖弹”，而成年人在现实中正常生活所使用的武器则被称为“实弹”。\n 日复一日，他们把糖果削掉，然后用实弹填充。这样，年轻人就能融入社会。这是一部描绘青春期少女感性的残酷与可贵的杰作。\n 另一方面，我觉得“我像花束一样坠入爱河”是完全相反的。这是一部你至少应该看一次的电影，因为它生动地描绘了对实弹的恐惧。\n 押井守因分娩逐渐失去光芒后开始约会的一对梦幻般的亚文化情侣。唤醒工作乐趣和对亚文化失去兴趣的过程被小心而淫秽地展现出来。顺便说一句，我去剧院是因为想看押井守。\n “活弹”对于生存来说是必不可少的，但为此而放弃“糖弹”是否正确呢？面对悬而未决的问题，年轻人将永远忧心忡忡。\n\nBOOTH 出售包含日常文章的同人志。买吧。\n\n本月底，一本包含长文和新作的商业论文集即将出版。如果您能预订，我会很高兴。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

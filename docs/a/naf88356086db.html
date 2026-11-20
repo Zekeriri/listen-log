@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：超越规则后的美学</title>
+<title>短文：超越规则的美学</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-19 03:05</p>
-  <h1>一口随笔：超越规则后的美学</h1>
+  <h1>短文：超越规则的美学</h1>
   <p class="ja-title">一口エッセイ:ルールを越えた先の美学</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 商業エッセイ集も、よろしくお願いします。Amazon評価も押していただけると、大変喜びます。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：超越规则的美学\n\n这是我一段时间以来第一次和我的朋友冈岛交谈。当被问到“现在游戏已经发布了，你接下来打算做什么？”我回答说，“我正在考虑研究宗教并参观附近的宗教设施。”我不喜欢强制正确的情况，例如规则，例如，我忍不住讨厌被迫按照学校的时间表行事。我也不喜欢必须按照课本学习。当他因为困难而逃学时，他了解了玛丽莲·曼森和克苏鲁神话。\n\n和我一样，曼森在学校成绩不好，反抗家人和周围虔诚的基督徒，并转向纹身和吸毒。成为音乐家后，他成为反基督超级巨星，并​​在表演中焚烧圣经。曼森认为跟随上帝并等待救赎的生活没有任何价值。他的摇滚生活方式向我灌输了超越规则的艺术美感，并强烈鼓励了我。\n 克苏鲁神话是一个关于“亵渎”的邪神的故事。亵渎……不太信教的日本人可能很难理解这一点。既然这是一种侵犯神圣存在的行为，除非你对上帝有信心，否则很难真正理解它的恐怖。将人们所信仰的上帝描绘成恐惧的创作自由对我来说也很有趣。\n 因此，我想更多地了解宗教，以便更深入地挖掘和热爱这两个给我勇气和自由的元素……当我告诉他这件事时，冈岛看着我，好像我是一个奇怪的人，所以如果其他人也这样看待他，我有信心继续用我不寻常的、古怪的想法进行创作。\n\n我们正在出售编辑日常文章的同人志。\n 很高兴您每天都遵循连载的规则。\n\n我期待着阅读您的商业论文集。如果您也能给我们在亚马逊上的评分，我们将非常高兴。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

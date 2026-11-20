@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：神也未必什么都禁止</title>
+<title>短文：上帝从不禁止任何事情。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-27 03:55</p>
-  <h1>一口随笔：神也未必什么都禁止</h1>
+  <h1>短文：上帝从不禁止任何事情。</h1>
   <p class="ja-title">一口エッセイ:神様はなにも禁止なんかしてないこともない</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：上帝从不禁止任何事情。\n\n当我半夜穿过公园时，我看到一个牌子，上面写着“法令禁止乱扔垃圾。”我以为这是一条法令......并在长凳上思考它（有空闲时间的人）。\n\n我不乱扔垃圾。这只是使灵魂不洁净的事情之一。更何况，我也不想养成这种无用的习惯，降低别人的评价。为了我自己的道德和尊严，我避免乱扔垃圾，但这个标志的原因是它是“法令禁止的”。\n 就我个人而言，我对该条例了解不多，也不关心。研究伊斯兰教的中田隆教授回答了一个简单的问题：“我们为什么不应该杀人？”“我们没有理由不应该杀人。”尽管已经决定“如果杀人，就会受到惩罚”，但每个人都有遵守与否的自由。然而，如果你信仰一神论的神，那么故事就不同了，宗教人士不应该杀人，因为神谴责杀戮。将谋杀判定为邪恶是上帝的职责。 “没有上帝，一切都会被原谅，”陀思妥耶夫斯基在《卡拉马佐夫兄弟》中写道。\n 那么，乱扔垃圾是人类的决定，人们应该有自由决定是否遵守……公园管理者不必担心这样的推理，所以这完全没问题。没有什么比美丽的公园更好的了。\n\n正当我陷入沉思准备回家时，我看到路前有一个牌子，上面写着：“不要跳出去！！”中间还有一个粗心的小孩，快要被车碾死了。这很容易理解。 “别跳出来！”是命令，而不是规定或道德。这是一个警告，如果你做出错误的举动，你的生命就会结束。简单而美妙。如果你读完这篇文章后仍然跳起来，那你绝对是个白痴。\n 好吧，我不会跑到路上或乱扔垃圾，所以这并不重要，我一边走回家一边想。不知不觉间，我已经在公园的长椅上躺了几十分钟了，全身都被蚊子咬了。即使你对本能的害虫说“不要咬人！”，它也不会听懂，而我对能够读懂符号的人类是理性生物这一事实感到感动。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

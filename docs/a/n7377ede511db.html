@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：地球的命运托付给三重县</title>
+<title>短文：地球的命运托付给三重县</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-07-13 06:55</p>
-  <h1>一口随笔：地球的命运托付给三重县</h1>
+  <h1>短文：地球的命运托付给三重县</h1>
   <p class="ja-title">一口エッセイ:地球の命運は三重県に託された</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
  それにしても本当に暑い。熱に対する注意なんて言っても仕方ないですが、みなさんも気をつけてください。僕も、「なんかまあ……大丈夫じゃないか？」と呑気に散歩していたら熱中症になった。日本中の人間が倒れているのに、なぜ自分だけ平気なのかと勘違いしてしまうところが人間だ。バイアスだ。太陽が本当に憎い。ちなみに、中野ブロードウェイは各店舗はともかく、建物自体に冷房がないのでマジで暑いから気をつけてください。おやすみなさい。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：地球的命运托付给三重县\n\n今天也很热。\n 由于身体疲惫加上中暑，我的身体还没有恢复，从早上就一直躺着，但我还得去看牙医。\n 更重要的是，由于某种原因，我去看牙医，那里距离酒店有 20 分钟的步行路程。牙医比便利店更近，所以我应该靠近一点，但我不知道过去的自己在想什么。果不其然，我要去看牙医（他正在进行正畸治疗），于是我拖着沉重的双腿，在烈日下走了40分钟来回，回到家时已经完全干燥了。今天我总共站立的时间可能不会超过 60 分钟。其中 40 分钟是旅行时间。太洋，请让我休息一下。\n 当这么热的时候，我就会想到全球变暖。现在是全世界团结起来，采取措施应对不断加速的气温上升的时候了。每个人都应该停止战斗，携起手来，共同对抗人类的敌人——烈日。拜托，请尽可能降低这个世界的温度……！\n 我自私地想了一下，但我确信一些聪明的人正在想出我不知道的对策。除此之外，面对自然的威胁，做一些不可能的事情不是不可能吗？好吧，我可以通过谷歌搜索一下或读一本书来做到这一点，但我太累了，无法做到这一点。\n 我确信世界各地的人们都处于同样的境地。所有人都热得崩溃了，没有人再有力气去面对太阳了。更何况，如果你不反抗，最后就会热气腾腾，所以开空调吧。结果，室外机散发出的闷热空气覆盖了水泥丛林，使室外温度进一步恶化。我们已经被困住了……有人真的应该讨厌夏天，但人类已经没有那种勇气了。它们的命运是，将无法承受逐年上升的气温，慢慢消亡。\n 它到底是什么样的？当我写这篇日记时，我开始感到越来越担心，所以当我搜索“应对全球变暖的对策”时，最上面出现的对策是“经常关空调，关掉发动机，减少看电视的时间。”这个人……他是谁？ ？我查了一下，是“三重县”。显然，在这个世界上，至少在谷歌的搜索引擎上，三重县是对全球变暖最警觉的县。\n\n三重县……可以毫不夸张地说，人类的生存就托付给你了。从现在开始，请给我们这些愚蠢的人们发出警告，比如“经常关灯，可以节省66度电”“冰箱里的东西要适量”。这样你就可以节省1584日元。各位，请...\n 不过确实很热。告诉人们要小心高温是没有用的，但每个人都应该小心。我在散步时也中暑了，心想：“我想我还好……”当日本其他人都崩溃时，我会想知道为什么我们是唯一还好的人，这是人类的天性。这是偏见。我真的很讨厌阳光。顺便说一句，中野百老汇大楼本身没有空调，所以请小心，因为天气会很热。晚安。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

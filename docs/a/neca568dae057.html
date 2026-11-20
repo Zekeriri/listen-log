@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：见惯网络风波的年轻人们</title>
+<title>短文：见惯火焰的年轻人</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-18 06:43</p>
-  <h1>一口随笔：见惯网络风波的年轻人们</h1>
+  <h1>短文：见惯火焰的年轻人</h1>
   <p class="ja-title">一口エッセイ:炎上を見慣れた若者たち</p>
 </header>
 <main>
@@ -22,10 +22,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：见惯火焰的年轻人\n\n现在的年轻人已经习惯了一年到头都被炒得沸沸扬扬的事情，所以当明星被骂的时候，很多人似乎都认为这不过是一件小事，令人兴奋。经过一段时间的欢笑、恶搞和担忧，我平静下来并说：“好吧，我们再试一次！”我觉得这是一件好事。\n 从某种意义上来说，这是一种善意。我被烧伤了，但对于观众来说，有人被烧伤是家常便饭，所以我只能在下一个挑战中弥补这一点。虽然他在成为热门话题时一度被削弱，但当他不放弃地康复后，我们认可他的斗志，再次支持他。或者从远处观看。有很多人就像妖精一样，总是在寻找火花，只要找到缝隙就能瞬间起火，所以另一方面，如果人们对火属性产生抗性，认为自己不在乎火，那么平衡就会改变。\n 作为人类，我们都会犯错误，所以因为一两个错误而失去一切是不值得的。如果我们不能阻止人们因“著名的税收”而受到不公平的批评，那么批评本身就应该变得过时。现在的年轻人可能不自觉地明白这一点。\n 互联网的美妙之处在于希望那些与社会或学校格格不入的人即使受到伤害和冲突也能继续前进，所以那些不屈服的人就会获胜。无论旁观者如何践踏，钻石都不会受到损坏。这样的时代将会到来。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

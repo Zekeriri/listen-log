@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口散文：渐渐能使用和你相同的话语呢</title>
+<title>一次性作文：渐渐地，我可以用和你一样的词了。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-05-11 06:51</p>
-  <h1>一口散文：渐渐能使用和你相同的话语呢</h1>
+  <h1>一次性作文：渐渐地，我可以用和你一样的词了。</h1>
   <p class="ja-title">一口エッセイ:だんだん君と同じ言葉が使えるね</p>
 </header>
 <main>
@@ -30,10 +30,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一次性作文：渐渐地，我可以用和你一样的词了。\n\n当我在推特上说我感到有点沮丧时​​，我的中国粉丝会回复“拥抱”，所以我意识到他们可能是在通过拥抱我的细微差别来安慰我。谢谢。\n 我决定偶尔低声念叨“拥抱”两个字，希望这两个字能让他们开心。然后，中国民众对这些答复非常满意。\n\n当然，在现代，我们有了智能手机的便利，所以你只需谷歌搜索就可以轻松找到单词的含义，但我想更重视每个人的细微差别，所以当我周围的人说“拥抱”并且他们对我很好时，我会用“拥抱”回应，这就是我们发展原始交流形式的方式，在这种形式中我们与他人同步记住单词。这让我非常感动。不久前，即使犯了错误也永远无法在海外吸引粉丝的御宅族们，现在却开始与来自世界各地的人们互动，并开始学习他们根本不感兴趣的语言。太棒了。\n 顺便说一句，正如您可能已经猜到的，“拥抱”是一个与“拥抱”类似的词。我喜欢这个词。用日语说“你还好吗？” “我会拥抱你”听起来很夸张，人们会因此而失去兴趣，而“拥抱”的字体非常美国，在日本不太熟悉。所以，“抱”的气氛和寓意都很好，而且字数紧凑，不显得沉重。我讨厌学习并且与它无关，但是通过这样的人了解文化是令人沮丧但有趣的。我感觉还活着。\n 他们现在正在翻译和阅读我日记中的长篇文章，向我发送评论和支持信息，并在我运行的 Discord 服务器上与日本御宅族互动。我真的很高兴看到这一点。\n 虽然我出生在冲绳，但我出生在日本，所以我当然很高兴得到日本人民的支持，但其他国家的人们对我的信息的诚实程度感到惊讶。\n\n“You have a beautiful mind”，你有美丽的心灵。我以前从未得到过如此热情的支持。即使有了深度学习，翻译可能会很麻烦，但我仍然每天阅读我的长文，表达我的想法和感激之情。我被爱得太深了。我才是真正应该感恩的人。现实是，我经常面临困难和攻击，但由于有阅读我的作品并喜欢我的作品的粉丝的存在，我能够保持自尊和自信。\n 拥抱。是拥抱。你们无疑将我的灵性引导到了一个新的水平。总有一天我一定会来看你的。到时候，我会用你们的语言表达我的谢意。如果维特根斯坦说：“语言的极限就是世界的极限”，那么我也可以从粉丝的信息中了解细微差别，并扩大我自己世界的极限。\n\n这些不经意间的声援，正在慢慢净化我肮脏丑陋的心。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

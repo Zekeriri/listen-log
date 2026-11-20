@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔:首次地面波播出与认同欲</title>
+<title>一篇短文：第一次地面广播和对批准的渴望</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-14 03:41</p>
-  <h1>一口随笔:首次地面波播出与认同欲</h1>
+  <h1>一篇短文：第一次地面广播和对批准的渴望</h1>
   <p class="ja-title">一口エッセイ:初地上波と承認欲求</p>
 </header>
 <main>
@@ -30,10 +30,11 @@
 商業エッセイ集の方は、今回のディレクターさんたちも楽しんでくれたようで嬉しかったです。めっちゃページに付箋貼ってくれていた！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇短文：第一次地面广播和对批准的渴望\n\n我作为嘉宾出现在一个名为“Mucomi VR”的广播节目中。这是她首次在地面亮相，周围有顶级男女偶像，如播音员吉田先生、ZOC 的西井先生和 CUBERS 的末吉先生。我还买了一个草莓。\n\n我要求他们不要谈论游戏，因为这会剧透，主题就变成了“想要认可”。两位当下最受欢迎的偶像的“渴望认可的观点”非常有帮助。\n 当然，作为两个因为“渴望得到认可”而选择职业的人，他们说，到了一定程度后，他们开始优先考虑“能够专业工作的幸福感”，而不是渴望得到认可，这是你在一般世界中永远不会听到的答案。凉爽的！\n 感谢智能手机，无论好坏，每个人都处于接收端，而我们生活在一个不断看到闪闪发光的美丽男女并将自己与他们进行比较的时代，这让我们感到恶心。无法访问互联网有其优点和缺点。让我们来处理我们的批准需求吧！我一直在谈论这样的事情。这很严重。\n\n今后，在日本放送的《Mucomi VR》中，我将与Yoshida aka Yoppi先生、ZOC的西井麻里奈、CUBERS的9太郎末吉对话！请询问您是否喜欢 pic.twitter.com/2SqFwZMDao — Nyalra (@nyalra) 2022 年 2 月 13 日\n\n当他们三个让我惊讶地说：“你看起来很平静。”我也很高兴。我通常是一个情绪低落的人，所以你不能仅从我的外表或行为来判断。他是那种不轻易表露自己情绪的书呆子。\n 内心深处，我能够轻松地做到这一点，并从心底里享受它。我唯一在意的就是选择了《进击的巨人》，这样当我被问到“这一季你最喜欢的动画是什么？”时，就更容易谈论它了！我也能读懂那样的气氛！我很高兴偶尔有这样的机会。\n\n包含日常日记的同人志现已在摊位上出售。很高兴见到你！\n\n我很高兴看到导演们似乎也很喜欢商业论文集。他们在页面上贴了便签！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

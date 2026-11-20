@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：语言与认知的故事</title>
+<title>一篇短文：一个关于语言和认知的故事</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-30 01:58</p>
-  <h1>一口随笔：语言与认知的故事</h1>
+  <h1>一篇短文：一个关于语言和认知的故事</h1>
   <p class="ja-title">一口エッセイ:言語と認識の話</p>
 </header>
 <main>
@@ -29,10 +29,11 @@ pic.twitter.com/YJh0Sp1eRn— にゃるら (@nyalra) January 28, 2022
 先月に発売した商業エッセイ集も、よろしくお願いします。いろんな感想があり、人の受け取り方の違いを感じます。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇短文：一个关于语言和认知的故事\n\n我开始在 Twitter 和 DM 上与海外我的游戏粉丝互动。我很高兴当我开始跨洋交流时，我的视野突然开阔了。\n 与其他国家的人交流最困难的方面之一是语言。幸亏我喜欢日本宅男内容，有勇气学日语，我蹩脚的翻译不知何故变成了对话。\n 现在，大脑中语言的“识别”是一个有趣的领域。例如，当我们看到一条河时，我们会想到“河”这个词，但对于美国人来说，这将是“河”。“川”字是一个直观的符号，它是一个情感的东西，从字形上可以理解其含义。另一方面，“River”具有能够使用25个字母的字母表来表达一切的便利性。我认为维特根斯坦写过一些有趣的东西，即使不同的人看到同一个物体，他们的头脑中也会有不同的字体。微弱的记忆。\n\npic.twitter.com/YJh0Sp1eRn — Nyalra (@nyalra) 2022 年 1 月 28 日\n\n还有一个故事是关于一个部落，当看到一张 12 种绿色的图片，其中一种颜色略有不同时，它可以立即回答，原因似乎是该部落对分隔两种绿色的颜色有一个名称。\n 即使是同一个人，也会有如此不同的感知，所以当你第一次看到某样东西时所感受到的……感受性，似乎是一个重要的个性。在SNS上，别人的想法和印象源源不断，因此你自己的感受性很可能会消失并被同化。从这个意义上说，“退出互联网”似乎是一个笑话，但也可能是真的。\n\n我们目前正在销售编写每日文章的同人志。还有一本新书专门讨论美少女游戏。就我而言\n你可以看到世界是什么样子的。\n\n另请欣赏上个月出版的商业论文集。我收到了很多不同的意见，我觉得人们的看法也不同。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

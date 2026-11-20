@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口小作文：奇迹般的弹唱爸爸</title>
+<title>短文：神奇的歌唱父亲</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-04-02 01:45</p>
-  <h1>一口小作文：奇迹般的弹唱爸爸</h1>
+  <h1>短文：神奇的歌唱父亲</h1>
   <p class="ja-title">一口エッセイ:奇跡の弾き語りお父さん</p>
 </header>
 <main>
@@ -28,10 +28,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：神奇的歌唱父亲\n\n当我碰巧打开NHK时，正在播放一个关于一个家庭饲养救援犬的纪录片节目。我全家一起养狗，这和我一个人住、对着电脑工作形成了鲜明的对比。当然，突然拥有一只宠物的行为并不那么容易，故事中也描绘了因狗的归属而产生的分歧。即使这样的景象对我来说也是令人羡慕的......\n 与救援犬一起的生活仍在继续，尽管经历了许多坎坷，但这只狗和家人一起成长。这真是一个“程序”般的程序啊。看到每个人都在战斗，这是如此真实且值得一看，因为他们认为自己是最关心他们的人。\n 高潮。她的父亲爱好吉他，开始弹唱一首关于救援犬的原创歌曲。我震惊得记不清了，但歌词是这样的：“谢谢你在我独自一人在山里的时候接我。”应该更抽象和诗意一点。\n 太神奇了。唱唱家庭主题歌曲！ ？作为老年人的爱好太理想了。除非你和一个非常友好、闹闹的家庭共度时光，否则你不可能想出这个主意。就算我的身边有一个出色的妻子，有一个厚脸皮但可爱的儿子和女儿，甚至我的家庭又多了一个新成员，一只搜救犬，我还有勇气唱出我和狗的互动吗？我确信如果他们向电视节目要钱，他们会犹豫不决。尽管如此，这位父亲似乎还是在晚上唱歌，想着他被救的狗。这是否意味着他是家里的经济支柱？\n 然后，我儿子开始说：“每次父亲演奏时，我都会哭。”父亲的演奏让我热泪盈眶！ ？我只有妈妈，所以我的感受可能会有所不同，但如果妈妈创作并演唱一首关于家庭的歌曲，我绝对不会哭。 “什么！？突然发生什么事了？？？是不是快死了？”我只能这么想。这个家庭有着深厚的亲情基础，让他们很容易接受父亲的唱歌和演奏。\n 当然，如果你说这样的东西是为了电视而剪辑的，那也没关系，但至少NHK在播放时会传达这样的信息：“有一个这样的家庭！！！”因此，这个家庭的情况很可能包含在“现实中可能发生的事情”的范围内。即使歌曲被剪辑成电视上更容易理解，但仍然会有父亲的人生目的是在家人面前演奏和唱歌。我其实是在玩的。不知道儿子听了有没有感动落泪……\n 这是一个令人惊奇的景象。就算你赚了几十上亿，你也永远不会有一个被你自己演奏打动的儿子。太神奇了。传播如此完美的幸福形式将是恐怖主义。\n 我很茫然，以为我刚刚看到了一些非常糟糕的东西，这时下一个角落介绍了一个关于一只狗的故事，它记住了毛绒动物的名字，并按照你所说的把它们带到你身边。如果这让我笑得这么开心，我完全可以理解。我从心底里想，“它是一只好狗。”\n 然而，一个父亲在创作主题曲时还想着增加一只救援犬的存在，实在是太奇幻了，让人害怕。诗人？他已经是浪漫传奇中的角色了。\n 如果这个场景是真实的，我对现实还不太了解。让我们仔细看看真实的风景。有几十分钟让我这么想。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：平成保护者3部曲展</title>
+<title>一篇短文：平成加美拉三部曲展览</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-23 04:05</p>
-  <h1>一口随笔：平成保护者3部曲展</h1>
+  <h1>一篇短文：平成加美拉三部曲展览</h1>
   <p class="ja-title">一口エッセイ: 平成ガメラ3部作展</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 毎日の日記をまとめた同人誌や、長文エッセイを収録した商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇短文：平成加美拉三部曲展览\n\n第一次来东京塔是为了看“特效DNA平成加美拉三部曲展”。\n 首先，东京塔被指定为平成加美拉展览的举办地，这真是太棒了。和在东京巨蛋举办的巴基展一样完美。 《加美拉：巨怪空战》中最令人难忘的场景是在残破的东京塔里，在落日的背景下，吉欧斯休息。当然，还展示了相关场景的立体模型，黄昏时闪闪发光的巨型怪物的美丽会让你热泪盈眶……\n\n所有的展品都充满了对像我这样喜欢平成伽美拉的人来说难以抗拒的物品，但我很高兴看到由特殊技能导演樋口真司创作的令人印象深刻的故事板。说到动画中的分镜，分镜的完成度直接关系到主线故事的质量，但这也说明了分镜时的力度和细节对于特效来说也很重要。乔奥斯抢火车的场景极其真实，令人兴奋。\n\n『特效DNA平成加美拉三部曲展』光是看到这套艾莉丝和加美拉就已经是一次很棒的展览了。我无法获得足够的险恶形式，值得被称为邪神 pic.twitter.com/UagDHSDh0X — Nyalra (@nyalra) 2022 年 8 月 22 日\n\n令人惊讶的是，甚至还有艾丽丝和加美拉之间的对抗场景的立体模型……这样高兴可以吗？能够如此近距离地感受到艾莉丝的凶猛，我心中感慨万千。 Gyaos、Legion、Iris……平成加美拉的敌人都拥有至高无上的设计。当然，背负着地球希望的加美拉大背也很酷。新乡寺的诞生是因为这只巨龟开创了一条现实路线。\n\n请欣赏由日常日记和长篇文章组成的商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

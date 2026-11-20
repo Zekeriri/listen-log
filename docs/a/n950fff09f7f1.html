@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：冲绳的混蛋（底层人）</title>
+<title>短文：冲绳最糟糕的混蛋（下）</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-04 03:59</p>
-  <h1>一口随笔：冲绳的混蛋（底层人）</h1>
+  <h1>短文：冲绳最糟糕的混蛋（下）</h1>
   <p class="ja-title">一口エッセイ:沖縄の最低野郎（ボトムズ）</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 若い頃のエッセイを収録した商業エッセイ集もよろしくお願いします。学生時代、本当にトラウマです。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：冲绳最糟糕的混蛋（下）\n\n我想以更高的分辨率拍摄我在中野散步时发现的人物和东西，而且我真的很想要这种绿色，所以我最终将我的 iPhone 升级到了最新的 iPhone 13...这款带有炮塔镜头的深绿色相机看起来像“装甲兵 Votoms”中出现的机甲“瞄准镜狗”。\n\n当我还是一名技术高中生时，我就爱上了 Votoms，并且非常迷恋它，甚至我自己完成了一款以 Votoms 为主角的超级机器人大战游戏。可见他对感情的投入有多深。\n 当我们上学的时候，我们这些低水平的技术高中生，换上不起眼的工作服，做一些焊接和切割加工木材，但并没有真正理解为什么。不仅毫无乐趣可言，而且即使你努力工作，你得到的薪水也比不上大学毕业生。甚至他结交的朋友也因为行为不良（辍学）而成为朋友。这里是冲绳下装的产地。我不知道未来会怎样。\n 在这样的环境下，OVA版的Votoms，那些钻工们纷纷被扔掉的地方，感觉就像我们一样。未来，我们在社会眼中将连人都不如。木工机器运转的声音和辍学的洋基队和书呆子敲击键盘的声音在整个学校空洞地回响，这是我们的摇篮曲。为了永远不会忘记那段过去，我决定使用这款没有外壳的深绿色智能手机。就像切子在战场上奔跑一样，不断地改变瞄准镜的码头。\n\n包含每日日记的同人志现已在 BOOTH 发售。一本新书刚刚出版。这是我在这个世界上的生活记录。\n\n我还想要一本商业论文集，其中包括我年轻时的论文。我的学生时代真的很痛苦。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

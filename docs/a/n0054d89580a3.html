@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：半睡半醒</title>
+<title>短文：沉睡</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-03-20 03:02</p>
-  <h1>一口随笔：半睡半醒</h1>
+  <h1>短文：沉睡</h1>
   <p class="ja-title">一口エッセイ:まどろみ</p>
 </header>
 <main>
@@ -20,10 +20,11 @@
  今までデエビゴの自然な眠気に頼っていたので、久々に本格的な睡眠薬での強制シャットダウンのような睡眠を体験している。この微睡は気持ちいい。どうせ急に意識が切れるので、それまで答えのないことを考えている。宇宙、善悪、人間、未来……一個人でなんか絶対に結論がでない話をぐるぐるぐるぐるしているうちに、どんどん深みに入っていくが、結局は強い眠気に襲われ無念ながらも気づけば数時間後だ。これが最近の楽しみですが、もしこの途中で本当に&quot;答え&quot;を見つけてしまったら……それでも寝て起きて忘れていたとしたらと想像すると少し怖くなる。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：沉睡\n\n虽然我又被开了Myslee，但我担心这是一个坏主意，因为我害怕太兴奋，但它非常适合在中午醒来。\n 所以，我的一个追随者教给我一个策略：“喝了适量的酒后，把剩下的放进一个盒子里，直到时间到来之前你不能拿出来。”我明白了。最近，亚马逊出售了一些盒子，可以防止智能手机在指定时间到达之前被取出，在极少数情况下，它们可以在严肃商人的房间里找到。当我去别人的办公室开会并看到那里的那个盒子时，我会说：“哇！”\n 因此，当我中午醒来时，我决定只服用一粒药，然后将其余的放入盒子中。正因为如此，“吃一颗药→睡不着、神志不清→得意忘形、喝得越来越多→不知不觉就成了灾难”的情况还没有发生。目前。\n 到目前为止，我一直依靠Deevigo的自然睡意，所以一段时间以来我第一次体验到像被迫使用安眠药来关闭睡眠的感觉。这一小睡感觉真好。无论如何，我突然失去了知觉，所以我正在思考那些直到那时我才得到答案的事情。宇宙、善恶、人类、未来……我一边讲着自己永远无法得出结论的故事，一边越陷越深，最后却被强烈的睡意征服，不知不觉已经过去了几个小时。这就是我这些天所期待的，但当我想到如果我真的一路上找到了答案怎么办……如果我醒来并忘记了这件事怎么办？"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -43,7 +44,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

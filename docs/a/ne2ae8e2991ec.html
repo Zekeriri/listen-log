@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>《终之空》</title>
+<title>天空的尽头</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-12 20:54</p>
-  <h1>《终之空》</h1>
+  <h1>天空的尽头</h1>
   <p class="ja-title">終ノ空</p>
 </header>
 <main>
@@ -34,10 +34,11 @@
 『終ノ空』では、第4章の主人公・間宮卓司が混沌と友達になる。這い寄る混沌は暗闇に忍び込む。間宮卓司の狂気は混沌を呼び寄せるのに十分な闇であった。混沌に取り憑かれた卓司は、やがて「終ノ空」を自称するようになる。予環的存在の至り、カラについえるモノ……終ノ空そのものに。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"天空的尽头\n\n发布我在这个同人志中写的内容之一......这是一本小众书，里面有 50 本书的关于顽皮游戏的故事，所以每个人都应该拿起它。\n\n■最后的天空\n\n（图片：图1）\n\n1999年，很难相信互联网已经普及的现代日本，但当时的日本却因诺查丹玛斯大预言而笼罩在混乱之中。\n 尽管当时我还没上幼儿园，但我清楚地记得那种奇怪的气氛。当我住院做鼻部手术时，我唯一期待的就是病房里安装的小型阴极射线管。由于我的一生都是在医院里完成的，我与外界的唯一联系就是通过老式电视。\n 无论你切换到哪个频道，正在播放的主题都是关于世界末日的。每个人都在进行严肃的神秘学般的讨论，再加上新世纪福音战士的余波，动画和电影继续令人沮丧。 1999年上映的《哥斯拉2000千年》的糟糕结局清楚地反映了当前的社会状况。故事以哥斯拉占领燃烧的城市时人类无助而告终。\n 整个日本都被无线电波包围了。照亮病房的电视和即将死去的老年病人的广播中，捕捉到了疯狂的有毒无线电波，上面写着“恐怖大王将于1999年7月到来。”接触电波大脑的日本人民对“恐惧大王”的真实身份充满了思考！环境问题、核武器、彗星……我们不知道是什么原因造成的，但地球无论如何都会被毁灭！ ！ ！\n 如今令和时代已经到来，人们因为蔓延到地球各地的疫情再次陷入混乱。这一次，不仅仅是日本，全世界都陷入了恐慌！\n 在 1999 年，仅仅依靠电视和广播可能会更安全。如今，每个人，无论年龄或性别，手中都拥有一部智能手机，这些长方形的小物体日夜不停地接收无线电波。有毒的无线电塔通过混乱社会的缝隙发出新鲜的有毒无线电波。当然，人类的大脑会受到智能手机传输的少量电流刺激的震动，但不幸的是，大多数人嘴上戴着口罩，但头上没有铝箔，所以这是一个真正的问题。这就是为什么我们至今无人关注，没有注意到逐渐攻击我们大脑的振动。\n 在幕后，人形爬虫人陆续取代了政府要员，然后又一下子消失，导致世界经济崩溃。人们对电子货币心存感激，却不知道自己的思想正在被植入的微芯片在睡觉时窃听！这也很明显为什么《哥斯拉大战金刚》的主角是一个阴谋论者。这无非是对缺乏主人翁意识的观众的一个警告。\n 所有这些事情都连接在一起的那一刻。毁灭的时刻很可能即将来临。\n 顺便说一句，在同人志中，岩仓文也写了翻拍自《秋之空》的《日日昴》，虽然列出了《埃里克·萨蒂》、《银河铁道之夜》、《西拉诺·德·贝杰拉克》、《野狼》等相关元素，但最值得关注的元素其实不是它们。\n 答案其实在本文开头就已经提到了。\n 比任何埃及神都古老，在人类面前受到崇拜，是带来疯狂和混乱的古老统治者之一。蠕动的混乱“尼亚拉托提普”。\n在《秋之空》中，第四章的主角间宫拓司与混沌成为了朋友。混乱蔓延至黑暗之中。间宫拓司的疯狂足以带来混乱。痴迷于混乱，拓司最终开始称自己为“周之空”。前循环存在的顶峰，附着在卡拉身上的东西……终结本身的天空。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,7 +58,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

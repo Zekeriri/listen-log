@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：在这里诞生的某些东西</title>
+<title>短文：这里诞生的东西</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-07-02 06:49</p>
-  <h1>一口随笔：在这里诞生的某些东西</h1>
+  <h1>短文：这里诞生的东西</h1>
   <p class="ja-title">一口エッセイ:ここで生まれる何か</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
  それ以上のことは無いし、住民同士の交流や発展性も敢えて少なくなるようにしていますが、たまに寂しくなったら覗いてみてください。眠れない夜なんてそんなものでいいのだ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：这里诞生的东西\n\nTwitter 的规范已经改变，我根本无法阅读时间线。嗯，正如我在日记中写的那样，这些天我花在打开它的时间越来越少，我更加专注于现实，所以即使事情没有变得更好，事情就是这样。\n 如果真是这样的话，现在的青少年从自己不理解的地方发挥才能的可能性就会减少一分，我觉得这是最可怜的事情。在 Twitter 上，存在过于关注数字并陷入获得认可的欲望的危险，但另一方面，业余爱好者掌握某些东西并做出正确努力让自己被看到的可能性很小。即使未来一片黑暗，“即使你发表激进的言论，你也会希望得到回应。”\n 该网站融合了专业人士和业余爱好者的魅力，是其他SNS无法轻易复制的。在 Twitter 上，您只能使用 140 个字符发送消息，而在 Instagram 和 TikTok 上，您可以发送图像和视频。创作的障碍从一开始就很高。当然，我觉得这两个地方有很大的潜力。\n 然而，推特可能是发现更沮丧的情绪出现和奇迹发生的时刻的最佳场所。你随便发布的涂鸦、照片、日常事件都会被某人评价，然后业余爱好者就被卷入互联网的浪潮中，00001%达到了一些东西。\n 我唯一遗憾的是失去了那一刻。然而，另一个地方可能要对混乱负责，不知何故，Twitter 的规范可能很快就会再次稳定下来。然而，我只是 Twitter 上的一个暴民动漫偶像 A，所以即使我处于足够好的位置来写笔记和创作东西，但如果我失去了只有业余爱好者才能到达的兴奋，我会很难过。\n ...即使抛开这一点，我更感兴趣的是，如果人们从 Twitter 上消失，互联网将如何变化。不是很好吗？十几年过去了，事情已经逐渐归于平静，所以即使我们要彻底改变，适应新的环境。这就是文化的意义所在。\n 顺便说一句，我运行了一个任何人都可以加入的 Discord 服务器，但这样做的主要目的是让像我这样睡不着觉的人在半夜呆在互联网的某个角落，以减少孤独感，其他的一切都只是一个门面。独自一人是孤独的。我相信有些人会因为有人在看他们深夜的嘀咕和愚蠢的独白而感到欣慰，即使他们没有回应。就像我一样，曾经依赖深夜的时间表。\n 仅此而已，我们有意限制居民之间的互动和发展潜力，但如果您时不时感到孤独，请看一下。晚上不眠之夜也没关系。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

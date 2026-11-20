@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>随笔：想快点成为人类！</title>
+<title>作文：我想快点成为一个正常人！</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2020-11-10 02:03</p>
-  <h1>随笔：想快点成为人类！</h1>
+  <h1>作文：我想快点成为一个正常人！</h1>
   <p class="ja-title">エッセイ：はやくにんげんになりたい！</p>
 </header>
 <main>
@@ -36,10 +36,11 @@
  それでは、深夜にこんな駄文を読んでいるあなたたちもご一緒に。はやくにんげんになりたい！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"作文：我想快点成为一个正常人！\n\n我们是隐藏在黑暗中的怪物人类。\n 这具身体就像是一头人类看不见的野兽。\n 我想快点成为一个正常人！\n\n《妖怪人间贝姆》是一部昭和时代的杰作动画，讲述了在黑暗的实验室中通过人造细胞分裂而诞生的人类妖怪，为了成为人类而拼命生活，同时隐藏其奇怪的形态。多么黑暗的环境啊！\n 我猜它是根据弗兰肯斯坦改编的。一个生来就长相丑陋的怪物寻求平静的生活……弗兰肯斯坦的怪物萌生了向创造他的维克多·弗兰肯斯坦报仇的欲望，但贝姆和他的朋友们甚至不知道该怪谁，他们相信只要做好事就会重生为人类，并在今晚继续与邪恶作斗争。\n\n“我想快点成为一个正常人！”我也是这么想的。我想成为人类。我太急于看别人的表情，我因为害怕被骂而过度逃避事物……摆脱黑暗的唯一方法是通过精神药物或过度睡眠。\n 最近，我一直在服用一种名为 Belsomra 的安眠药，我想我之前已经写过，这种药的副作用是做噩梦，但关键是它会延长你的快速眼动睡眠，所以你醒来时更有可能记得你的梦。我的心理医生就是这么说的。\n 当我告诉老师，“贝尔索姆拉让我做噩梦”时，他回答道，“但是这不是可以吗，因为我可以在互联网上拿它开玩笑？”是的。多么善解人意的老师啊！正如你所说，我诚实而快乐地写下我在贝尔索姆拉的噩梦经历！我们是互联网人。\n\n最近，我经常梦见有人给我讲道。他们为最近犯下的错误而无情地责备自己。我是一个非常阴暗和阴郁的人，所以每天的思考都会在我的脑海里不断地思考。如果你放松警惕，不好的记忆就会立即重重地敲入你的头骨。\n 我也无法理解别人言论的意图！早上我又起不来了，所以开会迟到了！你又放弃读难读的书了！你又在推特上说了一些不必要的话！我得意忘形，又打了一个有趣的电话！我又被逼到墙角，说了一个对我来说方便的谎言！还！还！还！\n 我的大脑因悔恨而剧烈颤抖。我无法承受来来去去的巨大反射波，我跳了起来，在寒冷的黑暗中尖叫着。我想快点成为一个正常人！\n\n如果我早上起床、晚上睡觉，如果三餐吃得饱，如果我适量运动，如果我养成听懂别人说话的习惯，如果我改掉快、片面说话的坏习惯，如果我改掉马上跑去睡觉的心态，如果我做好事，我不知道有一天我是否也会投生为人。\n 你真的想成为人类吗？你不是沉迷于哥特式的生活方式，与人类社会格格不入，生活在黑暗之中吗？您不想让您的房间充满洋娃娃和怪诞的怪物雕像，让自己迷失在神秘和美学中，远离现实吗？\n 弗兰肯斯坦的怪物有一个像他一样的女性怪物，他们试图和平相处。虽然贝姆和他的朋友们很奇怪，但这三个人类怪物总是团结在一起。\n 事实上，真正重要的不是成为一个人，而是结交朋友，进一步逃离现实。作为一个妖人，在月夜里狂吠可能是稳定心理的最好办法。\n 所以，所有在深夜阅读这篇废话的人，跟我一起吧。我想快点成为一个正常人！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -59,7 +60,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔: 海德拉</title>
+<title>一篇文章：希多拉</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-24 04:05</p>
-  <h1>一口随笔: 海德拉</h1>
+  <h1>一篇文章：希多拉</h1>
   <p class="ja-title">一口エッセイ:ヘドラ</p>
 </header>
 <main>
@@ -28,10 +28,11 @@
 毎日の日記をまとめた同人誌や、若い頃の文章を掲載した商業エッセイ集、ぜひ読んでみてね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇文章：希多拉\n\n我们正在继续为搬家收拾行李。我们来谈谈我最喜欢的 Hedorah 软乙烯基，它是我时隔很长时间才下架的。\n\n黑多拉是最受欢迎的哥斯拉怪物之一（只有少数），因此有可怕的软乙烯基版本，但这个色彩缤纷的巨型黑多拉让人一见钟情。在主线故事中，它更像是泥泞的污泥颜色。安排如此大胆大胆的配色方案是软乙烯基最好的部分。颜色太惊艳了，只能被视为“危险”！说到神奇宝贝，我喜欢粘性的，而说到数码宝贝，我喜欢稀有的怪物。 “丑”中也有美，不是吗？\n 这款 Hedorah 软胶在 Mandarake 专卖店的陈列柜里陈列了很长一段时间，我记得店员非常兴奋，我终于买了它，并问我：“你是专家吗？”我回答说：“不，我只是一个御宅族”，然后把它带回家。\n 现在，黑多拉是一个污染怪物，所以你应该注意的是它的眼睛除了对人类的仇恨之外什么也没有。他们是悲伤的生物，唯一的情感就是仇恨，唯一的行动原则就是杀死生物作为污染。在主要故事中，哥斯拉会夺走这些眼睛。\n 如果你按顺序看昭和哥斯拉电影，你会觉得自己陷入了困境，因为它们中途转向儿童路线，但在儿童版本达到高潮后，哥斯拉大战黑多拉作为一种强大的药物出现，以污染、怪诞和迷幻的方式攻击。这是一个惊人的差距，令人印象深刻。即使在《哥斯拉》中，人们也是在顶级阶层中死去的。不管成功与否，其中有很多以前的哥斯拉电影中从未见过的制作，这种雄心壮志很令人高兴。这是一部很长的哥斯拉系列，所以即使是恶趣味的方向，也因其力求独特的挑战精神而受到高度赞扬。\n 主题曲也很棒。\n “带回绿色植物，带回蓝天，带回，带回，带回，带回蓝色海洋，带回，带回，带回，带回，带回生命，带回阳光。”\n 怨气太多了...\n 事实上，当它发布时，它被批评为太令人震惊，但现在很多年过去了，我已经看完了整个哥斯拉系列，我已经沉迷于它的独特性和希多拉强大的设计。只不过是“最糟糕”和“灾难”的存在。人类创造的大量“业力”。哥斯拉怒视导致黑多拉诞生的人类的场景非常令人难忘。\n\n一定要看看收录了日常日记的同人志和囊括了年轻时候的作品的商业文集！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

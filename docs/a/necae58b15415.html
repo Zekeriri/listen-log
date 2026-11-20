@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口随笔：在动画播放中插入保险广告的疯狂行为</title>
+<title>精选文章：在动画中插入保险广告的令人发指的行为</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-06 19:52</p>
-  <h1>精选一口随笔：在动画播放中插入保险广告的疯狂行为</h1>
+  <h1>精选文章：在动画中插入保险广告的令人发指的行为</h1>
   <p class="ja-title">選り抜き一口エッセイ:アニメの最中に保険のCMを挟むとんでもない行為</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 先月は商業エッセイも出ました。こっちの方は更にドラッキーですね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"精选文章：在动画中插入保险广告的令人发指的行为\n\n我在看《Prichan》的录像时，看到插入了一个保险广告，我惊讶地发现像《Prichan》这样描绘梦想世界（尤其是虚拟世界、游乐园等具有强烈非平凡生活感）的动画电影和人们为自己的未来和储蓄而担忧的真人视频之间存在着巨大的差距。\n 通过保险，您可以在健康的情况下为内心的平静和日常生活付费，然后如果您生病或死亡，您将收到钱来满足您的日常生活。太棒了。 《猜火车》的最后一句是“安居乐业，数寿”，正是“数寿”的意思。\n 这太健康了！这个概念与像我这样被列入黑名单并且永远无法注册一部智能手机的人完全相反。我从来没有想过我的每一分钟健康都会得到回报，更不用说事后想想我的家人了。如果我有保险，我的命就可以换成几千万美元的钞票。看来钱会流向剩下的人。这有多有意义？我的生命变成一张钞票，扭转经济，为每个人的日常生活增光添彩。\n 没关系！多么可笑啊。请尽快观看Prichan。这才是对抗疾病最有效的方法。\n\n我们在 BOOTH 出售包含日常文章的同人志。内容相当激烈。\n\n上个月还发表了一篇商业文章。这个就更干了。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

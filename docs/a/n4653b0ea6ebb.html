@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：高效的生活方式</title>
+<title>一篇简短的文章：如何过上高效的生活</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-26 02:02</p>
-  <h1>一口随笔：高效的生活方式</h1>
+  <h1>一篇简短的文章：如何过上高效的生活</h1>
   <p class="ja-title">一口エッセイ:効率の良い生き方</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇简短的文章：如何过上高效的生活\n\n我收到了一位追随者的私信，他可能是一名初中生，向我寻求建议，他说：“我在 Discord 上警告我的朋友，他在未成年人喝酒，但他不会停止。”当时，她朋友的回应是这样的：“我认为我无法接受高等教育，所以我不在乎会发生什么。”我只想就这样死去。”\n 这对双方来说都是可以理解的。我们冲绳的初中生喜欢喝酒、入店行窃、打架、骑摩托车。如果你出生在冲绳的洋基队，即使你过着体面的生活，你也赚不到多少钱。既然如此，彻底过着坎坷的生活不是更有效率吗？大家都隐约有这样的感觉。这位未成年饮酒者可能也有同样的感觉。\n 除此之外，我也能理解你作为朋友想要制止你朋友的不良行为的愿望。当你十几岁的时候，很容易得意忘形，但一旦你能够关注自己，那就太好了。我告诉他，这个人感情很好，还有不错的人生，关注他，就已经尽到了“作为朋友的责任”，所以我就让他别去管他了，不要再追了。他说：“我相信这一点，并且会关注它。”这真是太好了，无法回复。\n 这是一个相当有趣的问题。说“过体面的生活！”很容易，但是，在很多环境下，过体面的生活并不是最好的选择。不是每个人都擅长学习，也有一些人，无论性格如何，都不适合找工作。用“正确”的尺度来衡量一个人是不明智的。即使你挣钱慢，把钱全部花在酒精或毒品上，从“欣快感”的角度来看，也是有效率的。如果健康或者未来状态没有成长的空间，那么这些东西的下降就不再是劣势了。从某种意义上说，能够选择“享受现在，因为我没有未来”这种短暂的方式是明智的。暂时会很有趣。\n\n《最穷的女孩》讲述了生活在东京的月入10万日元左右的女性的奋斗历程，同时也采访了虽然月入10万日元左右的女性，还是在家乡和朋友一起享受烧烤、去永旺店享受日常生活的女性。如果你看细节，你的观点可能会改变，但从你在书中读到的信息来看，后者享受家乡的女人似乎更幸福。\n 我也没有明确的答案，我只能说，“生活方式有很多种，所以我不干涉别人的生活方式。”如果有的话，我也是一个转瞬即逝的人。如果您对朋友感到厌恶，请与他们保持距离，如果没有，请像往常一样与他们互动。就是这样。我曾多次在日记中写下关于“幸福”的想法，但我始终无法给幸福下一个定义，而这也许是我临终前才会意识到的事情。\n 不过，小小年纪就能够对朋友的犯罪行为保持诚实和警觉的心态是一件值得骄傲的事情，而当你担心这些事情时能够向他人咨询的善良和判断力被认为是“好的”。我很羡慕这一点。人只要有心，就无法与真正的“善”相抗衡。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

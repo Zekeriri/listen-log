@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔: 剧本作家</title>
+<title>短文：情景作家</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-21 04:20</p>
-  <h1>一口随笔: 剧本作家</h1>
+  <h1>短文：情景作家</h1>
   <p class="ja-title">一口エッセイ:シナリオライター</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 商業エッセイ集もよろしくね!</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：情景作家\n\n我收到一条消息，比如“我对这个场景感兴趣！”我非常喜欢你，所以我想和你一起工作，尼亚鲁拉桑！有实习机会吗？” 有热情就好！一切都必须是这么直接。\n 然而，由于我不在公司工作，所以我没有实习的灵活性。这是一个仅由四个人制作的独立小型项目。 4人。虽然只有4个人，却能和《Elden Ring》、《阿尔宙斯》获得同样的奖项，是不是很神奇？\n 无论如何，谁发送场景就获胜。无论是书还是游戏场景。无论是提案还是成品，一写就发到你想去工作的地方！如果有趣，您就会被雇用！这才是真正的世界。我只是突然向制片人展示了这个提案。不需要额外的路线。漫画也是如此。不管怎样，就去做吧。无论名字或情节状况如何，如果他们认为有趣或有潜力，他们就会联系你，就是这样！\n 当然，积累各种经验和知识固然重要，但学术背景和修养都是次要的，只要有新鲜的刺激。我非常喜欢这个系统。毕竟，这个世界上，适者生存。无论您是业余爱好者还是专业人士，如果您准备了有趣的提案和名称，您就会获胜。简单明了吧？来吧，我们也来尝试一下。真正发挥才能的人中只有不到10%是赌徒。越疯狂，就越有趣……\n\n包含每日日记的同人志现已在 BOOTH 发售。这种踏踏实实的努力。希望有一天它能长成一朵大花……\n\n我期待阅读您的商业论文集！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：AI vs 创作者</title>
+<title>短文：人工智能与创造者</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-24 03:43</p>
-  <h1>一口随笔：AI vs 创作者</h1>
+  <h1>短文：人工智能与创造者</h1>
   <p class="ja-title">一口エッセイ:AI vs クリエイター</p>
 </header>
 <main>
@@ -22,10 +22,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：人工智能与创造者\n\n昨天，当我和一位游戏创作者（策划）交谈时，他已经在使用流行的AI绘制插画服务进行背景草图，我惊讶地发现文明有多么神奇，这就是我们开始谈论AI的原因。如您所知，最近网络上很多人都在关注人工智能绘制插图的精确度，而随着精确度似乎与日俱增，插画师的未来工作岌岌可危。那是一段美妙的时光。\n 所以，当我问创作者的作品是否会消失时，答案是，“从插图和文字中感知故事就像大脑中的错误，人工智能仍然无法理解人类的错误。”换句话说，即使人工智能可以输出与输入的文字相匹配的插图和句子，它仍然无法将“故事”融入其中。这是人类的一种“缺陷”，会自动被图片和风景所感动。\n\n只要我们有这个“bug=敏感度”，我们就不会达到被剥夺工作的阶段，直到AI无法理解为止。在假肢的使用不断进步的《攻壳机动队》的世界里，现实证明你唯一可以信任的就是对你低语的鬼魂（直觉）。随着科学的进步，人类，尤其是创造者，需要具备的就是“敏感性”。我觉得这很童话，很美妙。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

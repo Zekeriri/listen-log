@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口短文：继续与反对者作斗争的人们</title>
+<title>短文：那些与反派作斗争的人</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-06 02:40</p>
-  <h1>一口短文：继续与反对者作斗争的人们</h1>
+  <h1>短文：那些与反派作斗争的人</h1>
   <p class="ja-title">一口エッセイ：更にアンチと闘う者達</p>
 </header>
 <main>
@@ -30,10 +30,11 @@
 商業エッセイ集もよろしくお願いします。評価まで入れてもらえると、とても嬉しくなりますね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：那些与反派作斗争的人\n\nHikakin 和 Seikin 一起殴打 Anti 的视频让我一直笑。事实上，他们只是用收到的人形沙袋当反分子来打他们，但兄弟俩说的“确实是我们10年来每天都受到反分子的攻击”的样子让我们感到非常悲伤。\n 当Hikakin在现实生活中受到反派攻击时，想象Seikin像视频中那样拯救他并说“你对我兄弟做了什么！”，我的心感到温暖？我喜欢希卡金兄弟...\n 无独有偶，与此同时，惠奈子也开始了直播，驳斥雅虎上的仇恨者！评论。同步性。这是一段令人心酸的视频，直击雅虎评论者的误解，他们误读了文章标题和讲课粉丝的评论（很可能是记者捏造的），就好像它们是一样的。\n\n“最好忽视反粉丝”是一条黄金法则，但即使你忽视他们，他们仍然会无休无止地出现，所以我认为反击并将其回收到规划想法中是一件好事。我确信人们有时会抱怨，但由于他们不遗余力地在可以看到的地方发帖（包括雅虎评论和公告板），我认为让他们承担风险更有趣。我不认为反对反派的争论很不受欢迎。活动家最好能够自由地按照自己的意愿行事。当你生气的时候，你应该表现出你的愤怒。但我确信最好不要看雅虎！评论或公告板。\n 大多数情况下，仇恨和嫉妒先于情况，而且根本没有任何理由（就惠奈子同学而言，我读错了文章标题），所以即使她适当地对他生气也无济于事。正如我前几天在日记中写到的“对侮辱的严厉惩罚”，将其作为基石。在关键污点上。\n\n想想看，最近被antis攻击了，也习惯了，不过图标超级可爱。尽管他不喜欢我，但他似乎很喜欢我的工作。情况很复杂。也就是说，看到我创造的角色对我大喊大叫真的很难过。\n 当我读到他生气的原因时，他说：“不要因为做了一款游戏就得意忘形，尽管你的生产力很高。”经过长时间的写作过程，我终于得出了项目想法，并且花了更多的时间来创建游戏，所以意识到这只是一款游戏真是令人惊讶。我认为你可以成为一个偶像，因为你已经取得了适当的成果，但我一直认为你最终会厌倦它。\n 如果可能的话，如果他们要打我，我希望他们改变图标。你可能不会读这样的东西！这是无子嗣的尼亚拉的请求。\n\n包含日常文章的同人志正在摊位上出售！如果您在读完后能用您的感受来支持我，我会很高兴。\n\n我期待着阅读您的商业论文集。如果您能给我一个评价，我将非常高兴。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

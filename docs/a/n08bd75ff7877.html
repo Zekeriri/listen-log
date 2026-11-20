@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口随笔：作为“因为长得好看所以一切都被原谅的毁灭性性格女性”的典型，夜长姬与夜汽车先生的绘画能力</title>
+<title>短文精选：米长姫和横社老师的绘画技巧堪称“性格破坏性强的女人，因为有一张好脸蛋，一切都可以被原谅”的最佳典范。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-10-04 22:32</p>
-  <h1>精选一口随笔：作为“因为长得好看所以一切都被原谅的毁灭性性格女性”的典型，夜长姬与夜汽车先生的绘画能力</h1>
+  <h1>短文精选：米长姫和横社老师的绘画技巧堪称“性格破坏性强的女人，因为有一张好脸蛋，一切都可以被原谅”的最佳典范。</h1>
   <p class="ja-title">選り抜き一口エッセイ：「顔がいいから全てを許されている破滅的な性格の女」の最たる例としての夜長姫と夜汽車先生の画力</p>
 </header>
 <main>
@@ -23,10 +23,11 @@
 ※Twitterに連載していたエッセイからの抜粋です。↑で購入できますので、エッセイ集をぜひ読んでみてね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文精选：米长姫和横社老师的绘画技巧堪称“性格破坏性强的女人，因为有一张好脸蛋，一切都可以被原谅”的最佳典范。\n\n我说过很多次，我喜欢那些因为有一张好脸蛋而可以做任何事情的女人，但她们的性格确实非常糟糕。最好的例子是姬，也被称为米长姬，她出现在《与米长姬对咪咪》中，是一位天真地喜欢看着人们死去的迷人公主。\n 姬是一个极其变态的女孩，她在宅邸里跑来跑去，当有人死时告诉人们死亡，她最喜欢的就是从塔上看着村民们死于瘟疫。一个因为看到这么多人死去而嫉妒太阳的女孩。然而，人们被姬的美丽笑容所迷住，最终对她产生了恐惧，然后才讨厌她。\n 《米长姬与咪咪欧》是一个疯狂与美学的故事，是坂口安吾以优美的散文写成的短篇小说，但在乙女书架系列中，加入了横车老师的插图，使其成为一本视觉上有吸引力的书。\n 横车老师绘制的插画非常奇幻，完美地捕捉到了姬的妖娆外貌和疯狂。不管怎么看，这部作品都是关于姬的疯狂美丽的故事，所以负责这个工作是一个地狱般的工作。这大概是因为横车老师的绘画技巧非常出色，能够表现出姬的魅力吧。\n 坂口安吾写的每一句话，横社老师的每一张插图，这一切都是一本令人难以置信的美丽、神奇的书。\n\n*这是 Twitter 上连载的一篇文章的摘录。可以在↑购买，所以一定要阅读散文集。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

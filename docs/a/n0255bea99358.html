@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：药物依赖 VS 宗教依赖</title>
+<title>短文：药物依赖 VS 宗教依赖</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-15 06:38</p>
-  <h1>一口随笔：药物依赖 VS 宗教依赖</h1>
+  <h1>短文：药物依赖 VS 宗教依赖</h1>
   <p class="ja-title">一口エッセイ:薬物依存VS宗教依存</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 先月に発売した商業エッセイ集もよろしくお願いします。一緒に重い気分になりましょう。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：药物依赖 VS 宗教依赖\n\n今晚来这个空间的人很多，可能是因为深夜才营业的缘故。性别不安、同性恋、宗教二代、抑郁症、自杀念头、多动症、自闭症、拒绝分享班级……形形色色的人都来了，但宗教二代女孩的故事特别有趣。\n 虽然这个女孩显然是被父母强迫相信的，但她在此之前就已经染上了毒瘾，而她的父亲显然告诉她“要沉迷于宗教而不是沉迷于毒品！”情况太特殊了。\n 暂时来说，过一段时间我大概就可以自己生活了，我想如果我搬离家的话，拉客的次数也会稍微平静一些。你可以忽略LINE的电话和电话，如果他们来到你家，你可以报警。抛开宗教教唆不谈，毒瘾是你自己的问题，所以我认为你应该为所欲为。当我回答时，她很高兴并同意了。我从来没有想过我能够真正帮助我一生中的一个女孩。\n 即使这个问题解决了一次，这位父亲的说法也很有趣。 “沉迷于宗教而不是毒品！”如果你问我是否会因为某些事情而变得更快乐，服用过量的药物或我不相信的上帝，这当然很难。这是一个双重束缚，所以正确的答案可能是否定的。当然，我认为这个答案也不会那么有效。并不是说拿走一个依赖的对象就能让一个依赖的孩子突然高兴起来。\n 就医学而言，它损害健康；就宗教矫正而言，它损害精神。现在，在极度信仰上帝并达到宗教狂喜的状态下，和他们一起去旅行怎么样？没办法啊……希望你能找到好的调料。\n\n摊位上正在出售包含日常文章的同人志。每天阅读一点可能会分散你对瘾的注意力。\n\n也敬请期待上个月发布的商业论文集。让我们一起感受沉重吧。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

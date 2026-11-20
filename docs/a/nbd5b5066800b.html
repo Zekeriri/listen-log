@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口散文：突然出现“俺啊”的时候网络居民的反应</title>
+<title>短文：“Oidon”突然出现时网友的反应</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-01-14 03:19</p>
-  <h1>一口散文：突然出现“俺啊”的时候网络居民的反应</h1>
+  <h1>短文：“Oidon”突然出现时网友的反应</h1>
   <p class="ja-title">一口エッセイ:急に「おいどん」が現れた時のネット住民の反応</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：“Oidon”突然出现时网友的反应\n\n永远死守 Twitter 是没有意义的，所以偶尔查看一下匿名公告板吧！因此，我决定尝试在有关流行动漫的帖子中发帖。我传播残酷的网络新闻，因为它很可怕。\n 我很紧张，因为我一开始就很少匿名发布任何内容，但直接跳到这个话题是没有意义的，因为你可以在 Twitter 上做同样的事情。所以，我想知道匿名居民会如何对待第一人称漂浮的人，即使上下文是正确的。\n 为了避免细节，我几周前才试探性地尝试了这个作品，但例如，在聊天板上，有人问“今年你最喜欢的光之美少女是谁？”我回答说：“我认为Oi-don毕竟是Cure Finale。她的魅力之一是，即使她是一个额外的战士，她也不会陷入困境〜。” Kakiko。\n 你说的没有什么问题。我认为这个观点是你可以正确地感受到对PreCure的爱。这是真的。然而，第一个人是“Oidon”。老实说，没有什么比触摸更麻烦的了。在 Twitter 上，一旦有人收到类似“以防 Oidon...”这样的回复，你就会立即屏蔽某人。第一个人的力量就这么强。真的...？\n 令人惊讶的是，故事进展顺利，只经过了第一人称。话题在一种平静的同意气氛中进展，说道：“结局很棒。”每个人都不会那么简单，会特意取笑奇怪的第一人称陈述。相反，即使第一人称是“Oidon”，如果您能谈论光之美少女，我们也欢迎您。我们都是动漫御宅族女孩，所以我们之间没有墙。 “Oi-don”、“Oira”、“I”、“Ko-sho”和“My Monkey”都相处得很融洽，让我们一起来感受Cure Finale的魅力吧！我能感受到他们的热情。\n\n然而，如果我没有“Oi-don”，我就可以在 Twitter 上发推文，然后我意识到在这个时代我真的不需要匿名公告板（我真的不喜欢混入匿名的想法），所以我关闭了该帖子。现在想起来，这是我几年来的第一次。如果真是这样的话，我下次回复可能是几年后的事情了，也可能我这辈子都无法匿名说出任何话了。那样的话，我这辈子最后的回答就是“哎哟，毕竟Cure Finale是~”。这有点令人反感，但如今，多样性越来越被接受，即使有人突然出现，人们也会热情地接受他们。如果你单独思考这个事实，你就会情不自禁地看到一个充满核武器的世界。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

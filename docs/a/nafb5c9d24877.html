@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：绝不想秃头的强烈意愿</title>
+<title>短文：强烈的感觉，我不想秃头</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-14 06:52</p>
-  <h1>一口随笔：绝不想秃头的强烈意愿</h1>
+  <h1>短文：强烈的感觉，我不想秃头</h1>
   <p class="ja-title">一口エッセイ:絶対に禿げたくない強い気持ち</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 先月に出た商業エッセイ集も、商業らしい読み応えがあるので宜しくね。Amazonレビューまで書いてもらえると、さらに僕のストレスが減ります。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：强烈的感觉，我不想秃头\n\n我留头发已有十多年了，头发很长很长。最重要的是，她因多次染发而受到的伤害也就不足为奇了。我也意识到，由于游戏制作的严酷性，我感到压力很大。最重要的是，我不认识我的父亲，所以我无法确定秃头是否与遗传有关。\n 一旦焦躁起来，就停不下来。即使我自己不知道，当我想象我的头发实际上开始稀疏时，我也会感到害怕。于是，我到当地一家大型诊所进行免费咨询。然而，这非常可疑，当我进入房间时，辅导员就开始谈论金钱。他告诉我：“头部注射的美速疗法要花费 80 万日元。”所以我决定先看看我的头发，然后就回家了。我从一开始就隐约意识到了这一点，但免费获得鱼后，诀窍是让人们感到焦虑并让他们快速签订合同。嗯，世界就是这样。\n 于是我仔细研究了一下。基本上，除了服用“抑制男性荷尔蒙的药物”和“改善血液循环、促进毛发生长的药物”这两种药物以外，对抗脱发没有任何意义，而且事实证明，任何引进其他原创补充剂或中胚层疗法的医院都是值得怀疑的。\n 当我去写有这些信息的医院时，他们用显微镜进行了详细的检查。我必须支付咨询费，但这样我觉得更安全。最后，我没有秃头。一旦开始服药，就会产生耐受性，并且还会不断增加，所以目前还处于通过改善生活习惯来应对的阶段。你真善良！\n 当老师开玩笑说：“你应该先去看心理医生，因为担心秃头的压力可能会导致秃头，哈哈。”他神清气爽地回答道，“我已经在那里了！”然后就离开了。\n\n包含日常文章的同人志现在正在展位上出售。如果你买了，我做游戏的压力就减轻了！\n\n上个月出版的商业文集也值得一读，因为它是一本类似商业的书。如果你能写一篇亚马逊评论，我的压力会进一步减轻。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

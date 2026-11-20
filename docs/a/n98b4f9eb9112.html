@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：与互相关注者的微妙距离感</title>
+<title>短文：你和你共同的追随者之间有一种微妙的距离感。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-22 05:49</p>
-  <h1>一口随笔：与互相关注者的微妙距离感</h1>
+  <h1>短文：你和你共同的追随者之间有一种微妙的距离感。</h1>
   <p class="ja-title">一口エッセイ:相互フォロワーとの微妙な距離感ってありますよね</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：你和你共同的追随者之间有一种微妙的距离感。\n\n最近，Twitter 增加了“圈子功能”，允许只有你圈子里的人阅读你的推文。\n 幸运的是，有些人偶尔会把我纳入他们的圈子，每次我看到圈子的隐藏推文时，我都会有一种认可感，他们允许我存在。非常感谢。继续添加更多！我什至认为随时收到我认识的人发来的私信是可以的。顺便说一句，我根本不使用圆函数。\n 随着关注者数量的增加，推特上的自由度降低，因此逐渐每个人都被困在一个有亲密朋友的小群体中。因此，即使你最终确实相互关注了人们，他们基本上也只是发送有关他们活动的推文，所以你无法真正了解他们的个性，也没有机会与他们互动。我们俩仍然不参与其中，因为我们只是“在我们的时间线上看到它的人”。当我在极少数的情况下被人喜欢时，我会很高兴。\n 令人惊讶的是，如果我自己这么说的话，我是无害的。他不会说特别冒犯的话，脑子里基本都是动漫和书籍，对特定的人几乎没有恩怨和执着。我连自己都不回复。老实说，我是否在时间线中并没有什么区别。事实上，我只是很高兴参与其中。我一直一个人在家。相反，这种“难以捉摸的人”的感觉导致不需要特殊的替补来跟进。我是否在这里并不重要，所以用你喜欢的人组成的帐户来关注我是没有意义的。我通过我漫长的 Twitter 生活意识到了这一点。而且，他们主要只在深夜才出现。\n 另一方面，我应该更加开放，尝试参与或跟进小组，但这很痛苦。我曾经尝试过Kagaku，我只关注了几个人，但由于我每天都会写日记并倾诉我的想法，所以我不必特意向别人隐瞒它，所以我删除了它。我认为在网上偷偷地写下对别人的抱怨会污染灵魂（尽管我喜欢阅读别人的感受，因为我喜欢他们）。\n 换句话说，你自私地说，“我没有小组，我不能参与，但请把我纳入每个人的小组和圈子中！”信任是通过向彼此展示未来而产生的，所以如果我们只看一个人的钥匙，我们就不是平等的。然而天下没有不沾污的钥匙，所以这也是没办法的事。\n 我喜欢并观察互相关注的人，所以如果您读到这篇文章，请随时与我联系。如果你幸运的话，请秘密告诉我关键细节或邀请我打电话（我非常喜欢与我的关注者聊天）。虽然嘴上这么说，但他自己并没有做出任何举动，所以最终他很可能会停留在“不需要在这里的人”的位置，继续在深夜的时间线中悠闲地徘徊。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

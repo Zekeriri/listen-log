@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口短文：超级机器人大战爱好者的中学生</title>
+<title>短文精选：热爱超级机器人的初中生</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-11 14:09</p>
-  <h1>精选一口短文：超级机器人大战爱好者的中学生</h1>
+  <h1>短文精选：热爱超级机器人的初中生</h1>
   <p class="ja-title">選り抜き一口エッセイ:スパロボ大好き中学生</p>
 </header>
 <main>
@@ -26,10 +26,11 @@ boothにて、毎日のエッセイをまとめた同人誌を販売しており
 商業エッセイ集もよろしくお願いします。オタクの思い出がいっぱい。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文精选：热爱超级机器人的初中生\n\n由于现在就在《超级机器人30》的上映日期之前（*在写这篇日记时），并且因为这一季的动画奇怪地充满了机器人动画，所以我因为突然的机器人热而感到紧张。\n 当我上小学的时候，我经常看超级机器人阿尔法系列。在第一部α中了解了机器人作品，在α外传中对Turn A的独特性感到惊讶，在第二部α中对Brain Powered的组合技术感到兴奋，在第三部α中被Ideon的宏伟所感动，并观看了原作。换句话说，他是一个持续无意识地受到富野作品影响的孩子。\n 随着孩子年龄的增长，他们自动成为中学生。当我因为结识新朋友而感到兴奋时，我遇到了一位也喜欢《超级机器人大战》的御宅族。我们立即开始谈论我们最喜欢的作品，但我们还是初中生。没错，这就是中二病的鼎盛时期。\n 也许是受到初二震动的影响，朋友对机器人的看法扭曲了，他开始声称“爱和勇气都是垃圾​​。”“尤其是高盖加尔，太尴尬了，我看不下去，我不想让你参与！”我现在正处于一个倾向于对那些大声尖叫、打败敌人的作品抱有偏见的年纪。\n 他最喜欢的是大家都喜欢的《黑色莎丽娜》。中二真无法抗拒看到电影版中主角陷入黑暗。难得的参与超级机器人大战的时机也俘获了他的心。他夸口说，黑暗是机器人动画的精髓。故事比热血或者美少女更重要。\n 于是我说，“但是瑠璃瑠璃很萌”，她不好意思地承认，“嗯，瑠璃璃很可爱，不过……”这种诚实是典型的中学书呆子，我忍不住恨他这么偏执。\n\n摊位上出售包含日常文章的同人志。如果你喜欢它，就买吧。\n\n我期待着阅读您的商业论文集。满满的御宅族回忆。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>新桥大厦新探索</title>
+<title>探索新桥大厦</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-07-19 06:59</p>
-  <h1>新桥大厦新探索</h1>
+  <h1>探索新桥大厦</h1>
   <p class="ja-title">ニュー新橋ビル探訪</p>
 </header>
 <main>
@@ -31,10 +31,11 @@
 View this post on Instagram A post shared by にゃるら (@nyalra_)</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"探索新桥大厦\n\n难得有事要在新桥附近下车，所以我决定前往我一直感兴趣的新桥大厦。和中野百老汇一样，它是一座拥有50多年历史的多租户建筑，就像一座活生生的复古建筑。\n\n距离车站步行2.3分钟，虽然是老建筑，但一楼和地下一层都是酒吧和类似超市的商店，相当热闹。就这么多。有很多租户的百叶窗都关着，生意不能说很红火。这里给人的印象是疲惫的上班族下班回家后悠闲地在酒吧里闲逛的地方，偶尔也会有专门销售铁路和钓鱼设备之类的商店。然而，它基本上看起来像是一个时间停止的空间，昭和时代的老人可以在这里享受“时代的氛围”。\n 就像中野百老汇一样，越往上层楼就越混乱。如果说中野有亚文化的混乱，那么新桥就有上班族的混乱和悲伤。\n\n游戏中心在二楼。这是一家特意只安装了复古柜子的店，以让时间停止为理念而建，但令我惊讶的是它吸引的顾客数量。 50多岁、60多岁的人们穿着西装被吸引到店里，把硬币投入到《上海II》、脱衣麻将、怀旧射击游戏等游戏中。是中年人下班回家忘记家和工作，沉浸在“那些日子”的完美地点。需求和供给。这里是记录天皇历史的《游戏中心战记》中记载的“因为不是主要游戏中心而敢于设置新机箱以外的策略”的极端例子。我在冲绳的时候的拱廊也是这样的。每隔一段时间，当我观察它时，它就被彻底摧毁了。\n\n二楼、三楼有很多中式按摩店，坐在前面的女士总是不停地问：“兄弟，按摩一下怎么样？”\n 还有色情DVD店和其他充满“性”的商店，专门针对疲惫的上班族。偶尔会有咖啡馆和酒吧，店面充满怀旧气息，让您有宾至如归的感觉。这种不带任何青春气息的成熟和性感，大概就是新桥独有的东西吧。最重要的是，被百叶窗包围的悲惨感觉也很吸引人。岛上的按摩院门前，有很多店外的小姐姐在聊天（看到路人就很快招揽顾客），而且不管盈利与否，似乎都相处得很好，让我有点羡慕。我想，在这栋楼里悠闲地度过余生，也是一种幸福吧。\n\n四楼连按摩院都没有了，只剩下围棋、麻将沙龙。还有一家专门销售铁路商品的商店。和中野百老汇一样，只有一路走到这一层的商店才能生存下来。然而，年龄组绝大多数是老年人。\n 结合时常路过的酒吧氛围，我感觉这里就是《笑面推销员》中描绘的昭和上班族的欲望出口……女人、酒、麻将都集中在这里。昭和时代的人们所追逐的梦想的遗迹。\n 我还没有长大到可以跳入梦想而忘记现实的程度。我在地下一层的一个空荡荡的小酒吧里点了一杯啤酒。我确信，被这家餐厅提供的冰镇生啤酒拯救的工人们的幸福感已经深深地刻在了几十年前褪色的桌子上。\n\n在 Instagram 上查看此帖子 Nyalra (@nyalra_) 分享的帖子"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +55,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

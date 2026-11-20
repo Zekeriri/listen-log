@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口小随笔：前田庆次是骗子吗？</title>
+<title>短文：前田敬二是假人吗？</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-02-13 06:18</p>
-  <h1>一口小随笔：前田庆次是骗子吗？</h1>
+  <h1>短文：前田敬二是假人吗？</h1>
   <p class="ja-title">一口エッセイ:前田慶次はフェイク野郎なのか？</p>
 </header>
 <main>
@@ -33,10 +33,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：前田敬二是假人吗？\n\n由于我没有什么可写的，所以我决定看一下，看看是否可以在匿名消息服务上打开它。\n\n在写着“我爱尼亚鲁拉桑！”的快乐情书之间，还有一条信息说“你认为前田圭二是个假人吗？”我对这有多奇怪感到惊讶，心想，至少你是真正的交易。那么我们来谈谈前田敬二吧。\n\n这里提到的前田敬二出自《花之敬二》。嗯，真正的庆二是如此神秘，以至于当我们谈论前田庆二时，我们不可避免地会谈到花庆二。\n 前田敬二是男人们恋爱的主角。我在免费试用期间第一次读了《鸟子》，如果Jump的主角是一个喝酒、抽烟、暴力的成年男性主角，我会很高兴！ Cobra、Keiji、Toriko……Kenshin也是这样，但他的细线很酷。我希望在一本男孩杂志上有一个关于这种大胆而大胆的生活方式的故事。\n 现在，为什么发消息的人最终对庆二产生了复杂的感情？是的，庆二这个战国时代最古怪的人，花了很多时间宣扬如何过一种奉献于他人的生活，但故事的最后他却和一个女人一起退休，然后低着头安定下来。伴随着礼貌的旁白，“我再也没有跌倒过。”你……你曾经说过“我倾向于地狱的恶魔！”，但是当你累了的时候，你会满足于一般的幸福吗？你这个假混蛋！ ！ ！ ！\n 我能理解这种感觉。我第一次读的时候也很困惑。我很难承认，就连男人最后也终于平静下来，以至于我直到最近才只读了一遍最后的琉球章。在此之前，我已经重读了几十遍，每次都泪流满面！\n 但现在我已经长大了，我明白了一些。一个向往自由如浮云的人，一定会度过安宁的晚年。这对读者来说似乎是一个重要的信息。就目前而言，前田启司确实存在，所以如果你说他是这样生活的，那就这样了……漫画版……尤其是琉球版，很有创意，所以他们也能改变结局。\n 最终，那个比任何人都更有信心跑遍战场的大男人，和心爱的妻子静静地生活着。对于喜欢庆二的横冲直撞并读过它的读者来说，感觉像是一种低谷，但是……\n\n这就是我开始思考的。\n 事实上，会很累。尤其是庆二自称怪人，他必须甘心打一场必输的仗。越来越多的武将依赖他，时代也随着从秀吉到家康的流动而开始安定下来。我是个怪人迷，换句话说，我是个现代亚文化迷，所以除了战场之外，我还喜欢茶道、插花、茶具等等很多东西。事实上，Keiji也喜欢它们。我厌倦了一直打架。我没有像个疯子一样狂怒到最后，而是选择像一个懂得克制的成年人一样冷静。通过这种方式，他向读者展示了真正的幸福在于与爱人和平相处，无论这对读者来说有多复杂。这很酷。\n 我们不想看到一个老敬司最终出现在战场上。另一方面，“即使是一个老人，他也是无与伦比的”，这也太方便了。我认为敬司优雅地退出自己的行为也是敬司的一个特点。即使被批评为假混蛋，也要活在爱中。他是一个可以做出这样选择的人。\n 即使是像敬司这样的人也会在巅峰时期退休，所以我们在生活中休息一下是完全可以的。想到这样的结局，想到人类不可能的事情就是不可能的事实，我认为在少年漫画的浮华世界中描绘这一点是有意义的。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -56,7 +57,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

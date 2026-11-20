@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>水木茂的百鬼夜行与风景描写</title>
+<title>水木茂的百鬼八行与风景描写</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-17 03:20</p>
-  <h1>水木茂的百鬼夜行与风景描写</h1>
+  <h1>水木茂的百鬼八行与风景描写</h1>
   <p class="ja-title">水木しげるの百鬼夜行と風景描写</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 毎日の日記をまとめた同人誌や、若い頃の文章をまとめた商業エッセイ集よろしくね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"水木茂的百鬼八行与风景描写\n\n昨天去了六本木的爱丽丝展和水木茂展，昨晚聊了爱丽丝，所以今晚就聊聊“水木茂妖怪百鬼八行展”。两个都很棒，甚至可以在同一天参观，所以现在就去看看吧。\n\n现在，当你想到水木茂时，你通常会认为他是“鬼太郎的作者”，但更广泛地说，他是“妖怪的权威”。他继续通过鬼太郎等作品介绍妖怪。一辈子。本次展览中充满了水木老师根据以往的文献整理的怪物插画，其中压倒性的登场正是百鬼八行的形象。这是一项伟大的成就，因为他将自己的一生奉献给了妖怪。\n\n不过，水木老师的弟子柘植义晴也可以这么说，但我就是喜欢水木老师画的“精致的背景”。老师在背景的绘制上非常讲究，就是为了让怪物的力量和它们出现的情况更加清晰。作为一个有背景迷恋的人，我绝对喜欢它，而且我对这些复古的日式背景爱不释手。也就是说，在这次展览中，有多少怪物，就有多少美丽的背景。幸福。\n\n当然，像这样的单图背景很精彩，但我也很喜欢喜多郎原作的随意背景图。这幅作品有很多魅力，但最吸引我的元素是老师对风景的描绘。这是一个很棒的展览，让你意识到了这一点。\n\n我想看一本收录了我的日常日记的同人志，以及收录了我年轻时的作品的商文集。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

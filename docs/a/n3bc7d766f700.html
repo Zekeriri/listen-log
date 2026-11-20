@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：对二次元角色的祈祷</title>
+<title>短文：为二维人物祈祷</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-08 03:26</p>
-  <h1>一口随笔：对二次元角色的祈祷</h1>
+  <h1>短文：为二维人物祈祷</h1>
   <p class="ja-title">一口エッセイ:二次元キャラクターへの祈り</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：为二维人物祈祷\n\n我朋友的福利室变得非常酷。只有最低限度的必要条件。您只需要一台投影仪、一把椅子、一张桌子和一台电脑即可观看屏幕。显然，当他睡觉时，他会在地板上铺纸板。我刚刚在暗室里看了佩科拉的广播。我认为这几乎就像一个祈祷。作为朋友我很担心她，但现在她似乎是最幸福的。确实，如果你从不同的角度来看，你的行为已经被设定为你只是醒来，看看屏幕，然后去睡觉，所以你没有时间去思考任何不必要的事情。不过，只有祈求二次元美少女了。\n 现在，我要谈谈我个人的品味和喜好，但我很喜欢二维人物唱西方音乐的封面，尤其是复古歌曲。很难用语言来表达原因，但我感到很欣慰。接受神圣的形象。\n 于是，在寻找此类素材的过程中，我偶然发现了 Hololive 的海外声音 MAD。如果是日语MAD的话，就能听懂他们的语言，所以节奏会像搞笑一样，视频也会和Nico Nico Douga类似。这里有一个点让你发笑。\n 而外国人发出的MAD声音则更基础，用女孩子喜欢的乐器来配合音乐。音乐是主角，女孩们只是演奏节奏。我觉得这很接近，所以我和一个喜欢 Hololive 的朋友一起去寻找它。很难找到来自海外的视频，但多亏了它们，我能够了解不同的文化，这很有趣。我们最终会讨论这个问题。\n\n我最喜欢的作品之一是“佳能回忆（ft. Haato、Fubuki 和 Matsuri）”。\n Hololive成员将伴随着著名的Kanon的优美旋律演奏类似乐器的声音。首先，无论怎么组合，佳能本身都很棒，但这首歌的最后副歌部分是阿托唱的（事实上，他出道时似乎有一个视频只唱了一个短语）。它真的很美丽，它把你包裹在类似于圣母玛利亚的温柔之中。这是日本人很少想出的想法。不过，有女生伴奏住宿的音乐。这个视频看起来像是海外宅男们对二次元角色的祈祷。评论区也充满了他们的泪水。如果在为海外客人祈福的时候演奏这个花音和蜈蚣就好了。\n 我的朋友也继续盯着用投影仪投射到墙上的巨大二维角色。因为我知道，这才是真正的幸福，也是唯一的真理……\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

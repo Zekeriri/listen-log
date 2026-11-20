@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：人生中最毫无意义的景象</title>
+<title>一文：人生最有意义☆不为人知的场景</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-11 03:32</p>
-  <h1>一口随笔：人生中最毫无意义的景象</h1>
+  <h1>一文：人生最有意义☆不为人知的场景</h1>
   <p class="ja-title">一口エッセイ:人生で最も意味☆不明な光景</p>
 </header>
 <main>
@@ -23,10 +23,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一文：人生最有意义☆不为人知的场景\n\n中学时，NicoNico正处于鼎盛时期，尤其是二野木瓦美的人气，对教室里的御宅族产生了强烈的影响，大家都在喊着“御庭风……”和“贺东中☆爱神时代！”\n Meanwhile, there was a time when Otaku A playfully punched Otaku B on the shoulder, and at that time, he imitated \"Double Kiwami! Teyaaaaaaaaaaaa!!\"和“令人不快的泛黄！Peyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa！！”\n 然后，一个恰好在场的美国佬突然大笑起来，简直是笑哭了。\n 是的，洋基队不可能理解什么是笑话，从他的角度来看，这就像一个御宅族突然一边打御宅族一边大喊“Peyaaaaang!!”。如此不寻常的景象肯定会让你发笑。作弊bug之类的东西和只有日语之类的东西常见的平行世界是不可能理解的。仿佛突然之间，眼前的一切都变得模糊起来。\n 这难道不是他初中生活中最搞笑的一件事吗？我笑得很厉害。即使是十多年后的现在，我仍然无法忘记那句“Peyaaaang!!”，所以我想如果洋基队能记住它作为“初中最无意义的时刻”就好了。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

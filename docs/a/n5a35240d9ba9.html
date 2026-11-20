@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>七彩迷幻感知</title>
+<title>七色迷幻的感觉</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-04-30 05:42</p>
-  <h1>七彩迷幻感知</h1>
+  <h1>七色迷幻的感觉</h1>
   <p class="ja-title">七色サイケデリック感覚</p>
 </header>
 <main>
@@ -29,10 +29,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"七色迷幻的感觉\n\n我喜欢在夜间无人的情况下从拍照点远处拍摄的照片和真人大小的超级十酱人物空间。\n 没关系。原本应该是人满为患的空间里，没有人，却依然闪闪发光，给人一种有些阴森又梦幻的感觉。 另外，这个空间是迷幻的紫色，看起来就像是在做梦一样，挺好的。其实我就是想把这个状态展示给大家看。它是如此闪亮和闪亮，让我在没有人在场的情况下感到孤独，但我想要这种非凡的感觉，让我感觉自己身处一个与现实有点不同步的世界，但不幸的是，这个场景对我来说是独一无二的。\n 我喜欢这种感觉。\n 也许这是童年的经历。当我年轻的时候，我有时会在晚上骑着别人的车过一座桥，前往一个有一堆稍大建筑物的繁忙地区。我想知道那是谁的车。我母亲是家里唯一的人，而且我母亲不会开车，所以我确信她的一个朋友或男朋友正在开车。我不在乎这些，晚上出去就很兴奋，而且由于是在乡村，霓虹灯五光十色，耀眼夺目，建筑看起来就像一座城堡。现在想来，大概是情人旅馆或者弹珠机店吧。看到如此庸俗的夜灯，我兴奋不已，连小时候都忍不住想进去看看，看看那个奇怪的设施有没有问题。\n 然而，车停在了附近的一家大型超市，当我妈妈和别人在购物时，我把车停在了游戏角，快要关门了。但没关系。那是最好的。时间到了，所以周围没有人，但即使没有人，奖牌游戏柜也表现得很明亮，让屏幕忙碌地闪烁，我喜欢它不平衡的怪异。我喜欢的游戏是如此嘈杂，但我一个人，孤独但舒适，感觉就像在梦中一样。这本来应该是一个令人愉快的场景，但在梦中这不是隐隐约约的令人毛骨悚然吗？我有这样的感觉，我经常梦见那段时光，在梦中我经常独自一人在游戏中心，但我想我真的很喜欢它。也许连我小时候以为的记忆都只是梦。\n\n所以我有时会去农村，拍一些荒废的游戏场，沉浸在它的庄严之中，这让我感觉很好。我在岐阜当地的一家百货商店关门之前来到这里，感觉非常舒服。尽管这是现实，但感觉就像是在做梦。如果你有时间的话，你可以永远留在这里。\n\n旋转木马特别好。这就像一种幻觉，看到一个音乐盒在旋转，上面没有人，尽管它本质上是如此闪闪发光和不切实际。当我玩得开心的时候，这样的画面经常出现在我的眼皮底下。\n 所以，在这个拍照点和真人大小的角落，我能够用自己的作品感受到那种感觉，这让我很开心。我真的希望每个人都有同样的感觉。然而，超级会议是数万人的活动，所以环境与孤独和安静完全相反。如果你不感到孤独，你就看不到这美丽而闪亮的景象。\n 也许将来我会梦见自己一个人站在空荡荡的拍照点中央。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

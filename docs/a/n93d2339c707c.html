@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：成为作家的高中朋友与毕业典礼</title>
+<title>短文：与一位成为作家的高中朋友的毕业典礼</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-01 07:11</p>
-  <h1>一口随笔：成为作家的高中朋友与毕业典礼</h1>
+  <h1>短文：与一位成为作家的高中朋友的毕业典礼</h1>
   <p class="ja-title">一口エッセイ:作家になった高校の友達と卒業式</p>
 </header>
 <main>
@@ -31,10 +31,11 @@ boothにて、毎日のエッセイをまとめた同人誌を発売中です。
 今月は、長文エッセイを収録した商業本もでました！ 過去のろくでもない話がいっぱい載っています。よろしくね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：与一位成为作家的高中朋友的毕业典礼\n\n嘿！\n正当我准备布置的时候，突然听到一个不认识的人开始跟我说话，原来是我的高中同学！显然他是《失乐天》的一名作家。\n感谢您阅读 Aqua-sama 的日本性书，该书是由一位朋友 (@monchan_rev3) 撰写的，他和 Nyalla 一样，都是在冲绳一间简陋的教室里长大的。 pic.twitter.com/gx0tDjePAZ — Nyalra (@nyalra) 2021 年 12 月 31 日\n\n当我准备在Comiket成立时，一个奇怪的男人突然向我赠送了《Konosuba》的同人志。我想知道他是谁，但事实证明他实际上是我高中时的朋友。他拥有相当多的追随者，已经是失乐天的商业作家。我当然知道他在教室里画画的样子，所以我为朋友梦想成真后过来打招呼而感到自豪。真的很好。\n 我们就读于冲绳最低的技术高中，所以我们生活时不考虑未来，所以我们能够做我们想做的职业真是一个奇迹。你赢了，因为即使在简陋的教室里你也没有放弃画画的努力。\n\n当我一段时间以来第一次见到朋友时，我意识到我对高中生活的记忆很淡薄。部分是因为我母亲再婚而绝望，但更重要的是因为当我把头发染成红色时，我被告知要等我把头发改回黑色后才能去上学，之后我就没有去。图片是今年的，不过大致是这样的。本来我是长发、有耳洞的，但现在我只会因为红色而被骂，所以我吸取了教训，知道出现大问题时，小问题就被忽视了。\n 我被告知不能去学校，如果我不听话，我就不能参加毕业典礼。不知不觉中，我的母亲已经收到了我的毕业证书，因为我无法上学。想想吧，初中毕业典礼的时候我就在家睡觉。在《Jagged Heart》的摇篮曲中，他们唱道：“他们说这是一个毕业典礼，但他们从什么学校毕业？”，但就我而言，我什么都没有毕业。比昭和时代的不良少年还懒。所以我想我还是个孩子。啊，我不是要你明白，但这真的是我的错吗？\n\n我很高兴我的高中朋友成长为一名在失乐园上画顽皮漫画的作家。我认为对方会忍不住为他们的朋友是 Nyalra 感到难过...... — Nyalra (@nyalra) 2021 年 12 月 31 日\n\n包含日常文章的同人志目前正在展位上出售。请阅读并看看您是否喜欢。\n\n这个月，还有长文商业书出版！里面充满了过去的肮脏故事。很高兴见到你。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +55,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

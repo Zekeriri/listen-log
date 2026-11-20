@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：恋爱观</title>
+<title>一篇文章：爱情观</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-02 04:22</p>
-  <h1>一口随笔：恋爱观</h1>
+  <h1>一篇文章：爱情观</h1>
   <p class="ja-title">一口エッセイ:恋愛観</p>
 </header>
 <main>
@@ -28,10 +28,11 @@
 自分語りが9割を占める商業エッセイ集でも、恋愛の話は全然でてこない。なんだこの人生は。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇文章：爱情观\n\n偶尔，我会被问到关于浪漫的建议，但我认为你应该从一个男人每天嘀咕女人的账户上问这个问题，而不是从御宅族那里问，但我只会写我的想法。\n 当被问及人们为何坠入爱河时，似乎基本上是为了“大脑化学物质的愉悦”、“生活的稳定”或两者兼而有之。前者可能会被优先考虑，而与你喜欢的人保持价值观一致的感觉将是一切。\n 如果你认为它是由大脑中的化学物质引起的，那很容易理解，因为行为原理解释了这一点。写关于奖励系统的文章可能听起来像是一个瘾君子，但底线是，当你处于一段关系中时，你正在做一些让自己快乐的事情。这是可以理解的。没有人可以否认人类追求幸福生活的精神。\n\n第三帧中尼诺的表情、姿势、线条和背景都看起来像富坚，我喜欢它们 pic.twitter.com/efDHgK1Yym — Nyalra (@nyalra) 2019 年 6 月 9 日\n\n尼诺在《典型的五胞胎》中宣称，“我会坠入爱河，让自己幸福”，令人暖心。认识到这是本能比列出所有美丽的事物更令人耳目一新。当你这样想时，如果你更容易因为担心自己的爱情生活而感到沮丧或焦虑，那么你就本末倒置了，最好立即与他们分手。这种关系之所以存在，是因为双方都在追求幸福，所以如果这个前提崩塌了，那就没有任何意义，最终双方都会不幸福。\n 这是有道理的。或许，凭借爱这个情感大漩涡的力量，我们可以吹散上述无望的现实，用梦一般大的爱将一切与幸福连接起来。作为一个美少女游戏宅男，我想爱情就应该是这样的。\n\n我们现在正在销售收集日常文章的同人志！我根本不写爱情。\n\n即使是一本90%都是自言自语的商文集，也根本没有提到爱情。这是什么生活？"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

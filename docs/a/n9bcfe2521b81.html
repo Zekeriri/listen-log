@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：随笔集的第三本出版了</title>
+<title>海贼王散文集：散文集的第三本书现已上市。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-30 04:07</p>
-  <h1>一口随笔：随笔集的第三本出版了</h1>
+  <h1>海贼王散文集：散文集的第三本书现已上市。</h1>
   <p class="ja-title">一口エッセイ:エッセイ集の3冊目でた</p>
 </header>
 <main>
@@ -22,10 +22,11 @@
 商業エッセイ集の方も気に入ったらよろしくね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"海贼王散文集：散文集的第三本书现已上市。\n\n日常随笔集同人志第三卷已经出版。我希望每个人都读它！\n 现在，太空上的一位关注者问我，“你如何通过每日文章赚钱？”说实话，我并没有从中赚钱。当然，我把它做成同人志是为了赚钱，但最终它只是一本纯文本书（尽管老板的封面很可爱）。而且，虽然是新作，但由于是免费提供的，所以购买者数量有限。通过事件等多次向世人公开之后，终于变得有些积极了。然而，这还不如每天挤出材料和时间来得有利可图。如果我这段时间睡一觉就好千倍了。\n 所以，这篇文章除了“我会每天发帖，所以请不要抛弃我”之外没有任何意义。如果你喜欢它，如果你能订阅Note作为支持，我将不胜感激，但每月只有500日元。主要作用是吸引读者引导我们偶尔发布的商业书籍和游戏。如果您对我的写作和生活方式感兴趣，我会很高兴您能帮助我的创作。自古以来，你就用这种方法来吸引看到你的人。当我免费写作时，无论是在我的个人博客上还是在互联网上，我都会收到来自我不认识的人的大量批评！没有办法阻止这种情况，所以你只能习惯它。\n 正因为我背负着这样的艰辛，我非常感谢那些捡到这篇同人志的人，这是我想留下我的生活的实物证明的愿望的表达。谢谢你找到它。\n\n如果您喜欢商业论文集，请告诉我！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

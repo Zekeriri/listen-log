@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>论文：你身边的人谈论健康或成年后的各种烦恼</title>
+<title>随笔：当你周围的人长大后，你会谈论健康和戏剧。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2020-10-10 17:56</p>
-  <h1>论文：你身边的人谈论健康或成年后的各种烦恼</h1>
+  <h1>随笔：当你周围的人长大后，你会谈论健康和戏剧。</h1>
   <p class="ja-title">エッセイ：周りが大人になって健康とかドラマとかの話をする</p>
 </header>
 <main>
@@ -45,10 +45,11 @@
  ごちうさは最高！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"随笔：当你周围的人长大后，你会谈论健康和戏剧。\n\n当我的那些以前从未谈论过动漫的追随者成年后聚集在一起时，他们都开始谈论半泽直树的印象而不是动漫。我感到害怕，仿佛自己走进了一个常识不同步的平行世界。 - Nyalra (@nyalra) 2020 年 9 月 22 日\n\n我周围的人开始更多地谈论半泽直树而不是动漫。多么巨大的变化啊！\n 我不是反半泽直树或戏剧迷，但我惊讶地发现，这些随意谈论动漫的失业者和学生已经成为成年人和社会成员，现在期待会议和社交生活，而不是观看不切实际的动画。这绝对是一次可怕的经历。\n\n当我们在社交媒体上闲逛时，当时的成年人开始警告我们，说“别担心你的健康”之类的话。如果你的背受伤了，一切就都结束了。”或者“当你生病的时候你会后悔的。”当我年轻的时候，我觉得总是谈论健康太吵了。周围的环境一定是一样的。\n 我忙于动画、漫画和互联网，对未来或类似的事情没有任何想象力。我明白，所以我才能如此扭曲地度过迟来的青春。\n\n然而，这些曾经对大人眼睛长了肿块感到烦恼的人，现在担心加班和自己的健康，休息日更喜欢桑拿和看体育比赛，而不是看动漫。他们每天都穿着西装一样的成人衣服融入社会，只剩下我们一个人。别丢下我...\n\n前几天去旅行的冈岛君说了这样的话：“自从成为社会一员以来，大家都没有看过动画。”我是唯一一个认真尝试观看所有动漫的成年人吗？我疯了吗？”而他似乎就要明白真相了，所以我绝望地回到他身边，说道：“社会是错误的。”你说得对。观看所有动漫更酷、更快乐。”— Nyalra (@nyalra) 2019 年 9 月 29 日\n\n过去，患有OD的冈岛君情绪出了问题，变得有点坏人。他几乎失业，生活无压力，自诩很少有悲伤的时刻，但由于化学成分的影响带来的孤独感，他表达了自己的真实感受，他说：“人们不再看动漫了，真的很难过。”\n 那一刻，我为能和他成为朋友而感到自豪。并不是看动漫多了就伟大，而是欣赏动漫、重视活着的感觉的真诚，以及在还是个孩子、身体还在成长的时候承担起自己的罪孽的决心，引用Berserk的一句话，“那一刻，那个男人在我看来是美丽的、高贵的、绝对的。”\n 嗯，因为我也玩得很开心，所以我只是受到了奇怪的启发，客观来看，只是两个老人胡言乱语，不知为什么我被感动了。我想尽快成为人类。\n\n今后我们将迎来怎样的未来？\n\n我不会去想这么黑暗的事情。\n 这是因为《点的是兔子吗？BLOOM》将于今晚开始播出。\n 与Gochiusa播出的喜悦相比，我的未来以及与周围人的关系都是微不足道的！ ！ ！ ！\n\nGochiUsa的原创作品第三季确实令人惊叹。角色的笑点、情感和个性每次都浓缩在短短 8 页内。已经满屋子了。毫无疑问，这是一部民族作品。没有其他作品能像这幅作品一样美丽。\n Gochiusa确实是最棒的。请大家立即预约录音。并且请购买正版。\n\n框架的构图与 Gochiusa 最新一期的早期版本相同。为了不仅提高简单的绘画能力，而且为了在窄框架内更有效地展示，在最新一期中，它被优化为 4 框架框架，例如从框架突出，使裙子更长，使屏幕更闪亮。pic.twitter.com/CN4yqncdKX — Nyalra (@nyalra) 2016 年 11 月 13 日\n\n动画很美，但原作也正是因为是原创才有它的精彩。请体验锦鲤老师飞速发展的漫画和作画技巧。\n 戈丘萨是最棒的！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -68,7 +69,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

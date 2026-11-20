@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>“从现在的位置只能下落的游戏”这句歌词的温柔与糖果子弹</title>
+<title>温柔的歌词“只是从这里掉下来的游戏”和糖弹</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2020-11-29 20:07</p>
-  <h1>“从现在的位置只能下落的游戏”这句歌词的温柔与糖果子弹</h1>
+  <h1>温柔的歌词“只是从这里掉下来的游戏”和糖弹</h1>
   <p class="ja-title">「今いるここからは落ちていくだけのゲーム」という歌詞の優しさと砂糖菓子の弾丸</p>
 </header>
 <main>
@@ -46,10 +46,11 @@
  僕と彼が40代になってもルリルリについて熱く語り合えるおっさんになれることを願って、今日もアニメを視聴していきます。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"温柔的歌词“只是从这里掉下来的游戏”和糖弹\n\n有一首著名的歌曲叫做“当茜草的颜色燃烧时”。\n 这是冈格雷夫的ED。当我和一个朋友谈论这首歌的伟大时，他的解释很有趣，对我来说很有意义，所以我今天想谈谈它。\n\n“我现在所处的这个地方是一场让我疲惫不堪的游戏。”\n如果真是这样的话，我只要笑一笑就应该能赢了。\n\n“这是一款你从现在所在位置跌落的游戏。”\n如果真是这样的话，我光是跳舞就应该能赢了。\n\n第1节和第2节的歌词。虽然“疲倦”、“跌倒”、“只是跳舞”和“只是笑”之间有差异，但含义几乎相同。多么美丽的表情啊！充满力量的歌声和歌词相结合，让你感觉只要微笑就能获胜。\n\n另一方面，我和我的朋友们现在已经二十多岁了，我们开始达到身体的顶峰。这个时候，年轻时的鲁莽渐渐失去了效力，同学们的环境也越来越分化：勤奋的人、无所事事的人、懒惰的人、追求梦想的人。\n\n由于年龄的增长，好奇心和精力下降，加上社交活动占用了我的时间，我开始忽视御宅族的活动，越来越多的同学变得不那么御宅族，只谈论旧作品。\n 我的朋友认识到这种情况是，“我现在所处的这个地方只是一个磨损的游戏。”我认为我们会逐渐变得不那么敏感，对内容不那么感兴趣，最终成为社会的一部分而不是御宅族。\n 在我们共同语言《糖弹打不穿》的小说中，劳动等社会活动被比作“活弹”，而追求梦想、过上甜蜜的生活被比作“糖弹”。可悲的是，随着人类年龄的增长，糖弹被磨成了实弹。\n 当这样一场只会让你疲惫不堪的游戏举行时，你该怎么办？答案是“笑就能赢”、“跳舞就能赢”。无论你在别人眼中多么像个疯子，你都应该坚持自己。\n\n很抱歉谈论我自己，但我的朋友们说我一直是“糖弹”类型的人，他们羡慕我在继续写作和创作的同时也没有失去对宅男内容的兴趣。我觉得有点尴尬。\n 他对在Comiket会场看到的一群戴着鲁里利锡制徽章的40多岁的男人非常钦佩，并说：“即使他们长大了，尼亚鲁拉也会成为一个对动漫感到兴奋的人。你应该可以通过跳舞来获胜。说实话，我很害怕，因为我不知道我是否能够做到这一点。”\n 越来越多的朋友开始工作、结婚，他们都开始像真正的子弹一样生活。他目前是一名兼职工人，但他最担心的是，一旦找到合适的工作，他的“对糖弹的热情=御宅族内容”就会减弱，他会失去敏感度。\n\n然而，《当红红燃烧时》的歌词却足够温柔，可以驱散这种毫无根据的担忧。\n\n“这是一款你从现在所在位置跌落的游戏。”\n那样的话，大家光是跳舞就应该能够获胜了。\n\n没错，在第三节中，“我是”变成了“所有人”。当我的朋友听到这句话时，他意识到“也许连我也能赢”，并对歌词的温暖印象深刻。不仅是某些人，每个人都应该能够选择糖的子弹面。\n 如果我们两个像片尾视频那样一起跑出去就好了，但是我们没有力气这么做，所以我们一边说着推荐的书一边笑着，试图在这场磨人的游戏中超越对方。\n 今天我会继续看动漫，希望我和男朋友能成为40多岁还能热情谈论露露露的老人。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -69,7 +70,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

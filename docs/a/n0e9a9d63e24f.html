@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：Instagram的舒适感</title>
+<title>一篇短文：Instagram 的舒适度</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-23 06:23</p>
-  <h1>一口随笔：Instagram的舒适感</h1>
+  <h1>一篇短文：Instagram 的舒适度</h1>
   <p class="ja-title">一口エッセイ:Instagramの居心地</p>
 </header>
 <main>
@@ -22,10 +22,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくお願いします♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇短文：Instagram 的舒适度\n\n我在 Instagram 上发布了有关我的收藏和时尚的详细信息，Instagram 上的关注者数量已经增加到一定程度，最近我开始发布一些不值得在 Twitter 上写的故事的更新。慢慢地，你就会习惯的。看到海外粉丝对我发布的任何照片发表评论很有趣。\n\n我的日本粉丝也对这些故事发表了评论，我很高兴他们如此诚实。如果是关于某件事的公告，我会说：“我很期待！”或“谢谢！”如果是时尚，我会说：“你看起来棒极了！”或“这很酷！”如果是御宅族物品，我会说“那很好”或者“你在哪里买的？”它充满了善意……与 Twitter 不同，你不必担心陌生人找你麻烦。然而，只有当我以随意的方式发布照片时，我才会得到赞美。太神奇了……这就是SNS的真面目吗？另一方面，Twitter 是什么？为什么一年到头都有那么多打架斗殴事件？ Instagram 太温馨了。谢谢大家的回复。\n 我使用互联网并不是为了寻求安慰，所以我最终会查看 Twitter（反正我不会在 Instagram 上关注任何人），但我很惊讶地看到人们的态度和心理稳定性存在如此大的差异。互联网是巨大的。如今，我强烈地感觉到，答案取决于遥控器，无论它是好是坏，因为根据角度不同，事情看起来会很不同。\n\n感谢大家对日记总结和商文集同人志的支持♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

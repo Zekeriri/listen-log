@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>论文：重大脑力反思会议</title>
+<title>文章：伟大的大脑反思会议</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2020-09-29 00:12</p>
-  <h1>论文：重大脑力反思会议</h1>
+  <h1>文章：伟大的大脑反思会议</h1>
   <p class="ja-title">エッセイ：脳内大反省会</p>
 </header>
 <main>
@@ -38,10 +38,11 @@
  夢の中の自分が再び瓶を手にとったかは定かではない。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"文章：伟大的大脑反思会议\n\n当我读到一篇 DePass 瘾君子写的文章时，我知道，“每天睡觉前，我都会反思自己的生活”，我越来越被它吸引，一上床，我就开始在脑海中反思自己的生活。\n 我通常会服用药物来抑制自己的烦躁……记忆的烦躁等等，但当我上床睡觉时，连这些都已经过去了，我的大脑被大量的“如果我当时这样做就好了”和“我应该在这个时候这样做”的想法所震动。\n\n以前，我生活中唯一盼望的就是OD，我逃避眼前的欣快感和大脑中药物的释放，也因此而兴奋，给很多人带来了很多麻烦，有些人我再也联系不到了。对不起。深夜是为他们道歉和祈祷的时候。\n 我希望当时我能冷静一些。要是我能冷静行事就好了。时间残酷地前进，往事不可挽回，淡然累积。\n 漆黑的天篷床像棺材一样将我笼罩在黑暗中，我就这样不断地回放着青春的遗憾，耻辱、泪水、悔恨如急流般向我袭来。\n\nSaikin 喝完 Belsomra 后正在睡觉。\n 贝尔索姆拉的副作用是做噩梦，现在终于从评审会中释放出来，进入了梦境世界，这又给了我新的考验。\n 在我被邀请参加的噩梦中，我是一名学生，并在我的继父和母亲的婚礼上获得了一个特殊的席位，他们是世界上最令人讨厌的人。\n 我的母亲和继父满脸笑容地对我说：“从现在开始，让我们一起快乐地生活吧。”继父的手臂搂住了母亲的肩膀。我厌恶地跳了起来。\n\n全身都微微出了汗，这种不适感让这个孤独的夜晚感觉更加漫长。如果我就这样保持清醒的话，审查会议就会再次开始，所以我赶紧添加了仍然意识模糊的贝尔索姆拉。沉浸在悔恨的浪潮中，我因某种不知何故进入大脑的药物的作用而再次睡着了。\n 在我的下一个梦中，我在今天，我已经孤立的朋友在我面前微笑。朋友若无其事地走在我旁边，我们两个人游览了回忆的地方。\n 到了一半，或者说从一开始，我就意识到这很奇怪。因为我的朋友一定对我因为OD而造成的麻烦已经失去了感情，而且我相信他仍然对我怀恨在心。我敏锐地意识到这只是一个幻觉，但我别无选择，只能享受我们再次一起散步的时光。\n 如果我能说“对不起”就好了。然而梦境并没有那么顺利地展开，不知不觉间，我的朋友就消失了，不知不觉间，我已经在自己的房间里，分不清是梦境还是现实了。\n 我气喘吁吁地抓起智能手机，试图查看朋友的状态。当然，即使我不在身边，她也看起来很高兴。我不想现在联系她而破坏这份幸福。那么我应该做什么呢？一定有机会道歉。重复复习课程。\n\n不知不觉间，我又回到了我的下一个梦想世界，那是我以前和一个名叫冈岛君的朋友合住的简陋的木头公寓，桌子上有一瓶安司他明。\n 我经常和他一起服用Restamin，我们一起产生了幻觉。当我们喝完瓶子时，我们都被靠在墙上动弹不得，我们一边看着GochiUsa挂毯，一边互相说道：“每个图案里都有一只蜘蛛在爬行。”挂毯上画的可可酱和沙罗酱正在对我们微笑。\n 尽管我知道无论怎么看这对我的身体和大脑都不好，但我还是忍不住享受那些日子。记得我们两个人看《Code Geass》什么的时候，ED马赛克片段中播放的歌词“那个扭曲的东西看起来很美”，真的在我心里产生了共鸣。\n 我不确定我是否在梦中再次拿起了瓶子。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -61,7 +62,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

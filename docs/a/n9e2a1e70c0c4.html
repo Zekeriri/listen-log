@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：理想的恋人</title>
+<title>短文：理想的爱人</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-28 06:13</p>
-  <h1>一口随笔：理想的恋人</h1>
+  <h1>短文：理想的爱人</h1>
   <p class="ja-title">一口エッセイ:理想の恋人</p>
 </header>
 <main>
@@ -22,10 +22,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：理想的爱人\n\n我的一个朋友曾经这样评价他的理想情人，“一个能决定约会并像对待女神一样对待我的人”，而且由于他每周工作五天，所以我认为他看起来像是一个厌倦了现代生活的工人。\n 随着故事的发展，轮到我回答了，所以当我再想起来的时候，我并没有觉得自己想要被爱人拯救，而是想象着当我男朋友哭的时候，我跑到他身边，说“……你这个白痴，哭毁了一个美丽的女人，对吧？”然后拍拍她的头，拥抱她，说，“我看动漫的时候别让我这么担心。”他们牵着手，沿着边线说着什么。 “如果我迷路了，我也不会遇到麻烦。”我会说，“嘿，你总是很努力，所以你为什么不做点什么呢？”我会做一些事情，比如去参加约会课程或打扫你的房间。\n 仔细回忆一下，我和妈妈住在一起的时候，也是这样的状态。有时候，妈妈因为无法忍受单亲妈妈的孤独和严酷，半夜离家出走，每次我都恋恋不舍地去公园接她，并说：“一个大人打扰一个初中生有什么不好？”现在想想，我也觉得挺有趣的。\n 换句话说，这不是你想要的情人，而只是“你想成为的人”，而且，假定的模型是你的母亲。他是一个过于书呆子的书呆子，一个有母亲之心的自恋者，但我很喜欢他古怪的一面（因为他是一个自恋者）。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

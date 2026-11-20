@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口随笔: 家里有巨大的樱酱的生活</title>
+<title>精选文章：和大樱花酱在家的生活</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-04 18:32</p>
-  <h1>精选一口随笔: 家里有巨大的樱酱的生活</h1>
+  <h1>精选文章：和大樱花酱在家的生活</h1>
   <p class="ja-title">選り抜き一口エッセイ: 家にドデカいさくらちゃんが居る人生</p>
 </header>
 <main>
@@ -23,10 +23,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"精选文章：和大樱花酱在家的生活\n\n我家里有一个巨大的小樱雕像。如今，它已经溢价了，价格也很大，但在当时，它的价格却是巨大的，甚至是一半的价格。我很高兴。\n\n家里没有大樱花的人会不高兴。不幸总是降临到每个人身上。当我们忍不住感到悲伤、痛苦、痛苦时，我们能做的就是一边感到隐隐约约的焦虑，一边祈祷尽快入睡。但我呢？无论你陷入怎样的绝望，当你抬头时，你都会看到巨大的小樱对你微笑。在艰苦的生活中，这种差异可能是巨大的。\n 这个事实在残酷的社会生活中也很有用。例如，假设某个伟大的老人训诫你自己的无能。每个人都别无选择，只能闭嘴倾听。我唯一能抗拒的就是忍着喊叫，希望老人在回家的路上丢掉钱包或者把耳机掉进下水道。但我呢？不管别人怎么说，你自己心里想，“反正这家伙也没有《百变小樱星祝福你》1/7比例ABS&PVC涂装完成品吧……”无论多么成功的老人，回家后等待他的都是一个已经冰冷的家，而且和我不同，他不是一个大小樱。\n 不幸的是，我比任何读到这篇文章的人都高兴。即使是现在，当我回头看时，我仍能看到巨大的小樱在那里对我微笑着说：“绝对没问题。”\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

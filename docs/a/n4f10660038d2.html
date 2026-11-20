@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>随笔：幸福的总量</title>
+<title>作文：幸福的总量</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2020-10-29 04:07</p>
-  <h1>随笔：幸福的总量</h1>
+  <h1>作文：幸福的总量</h1>
   <p class="ja-title">エッセイ：幸福の総量</p>
 </header>
 <main>
@@ -34,10 +34,11 @@
  明日から急に家も貯金もフィギュアも本も全て処分してみようかな。なんて、できもしないのに考えてみちゃいますね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"作文：幸福的总量\n\n我觉得所有人的幸福总量都是一样的，而且我有一个习惯，就是不断地妄想，如果有幸福，就总会有不幸福和焦虑与之相伴。\n 事物越美好，我就越忍不住怀疑它会崩溃或变得不可持续。我不禁觉得自己越快乐，常识就越附着在自己身上，网络感就越少，离开我的人也就越多。\n 什么都没有，没有就幸福，越出众，木桩就越被砸。我觉得过一种与自己的社会地位相称的生活是最重要的，但当然每个人都想回头看看那些嘲笑他们的人。你越看不起自己，如果有一个地方能让你获得同情和赞扬，你就越愿意接受挑战。\n 我觉得我越不开心，我就能写得越好。好吧，我想我应该毁掉我现在拥有的一切，继续鞭策自己，但不幸的是我没有勇气这么做。太可怕了。对不起。\n 我越是着迷于这个想法，我就越想知道为什么我如此关心写作。我其实不太喜欢写作，也觉得写作一点乐趣都没有。有插画也有漫画，时代就是Youtube。这是一个视频。这是希卡金。所以，如果你想想我为什么写作，那是因为这是我所知道的发泄我臃肿的自我意识的唯一方式。哦，我讨厌它。我想知道如何才能摆脱执着的自我意识。\n 喜太郎的OP有歌词，“鬼魂没有学校或考试。”看起来会很有趣，而她实际上唱的是，“很有趣，很有趣。”这都是谎言。\n 如果你读过原著故事，就会发现总会有学校和考试。事实上，它比人类社会更严酷，因为它有一种不重视生命的世界观。鬼也有自己的辣味。他们被迫参加甲子园和运动会之类的活动，如果他们很弱，他们就会立即受到迫害。仅仅因为这个原因，像鼠人这样的半恶魔就被避开了。乍一看，似乎除了幸福什么都没有，但毕竟幸福和不幸福是并存的。\n 水木茂经常写下这样的话：“最好的生活方式就是不工作”，鬼太郎和他的朋友们基本上就是在这个前提下生活的，但水木茂自己却工作到死。并且用一只手臂。要收集他生前的全部作品，需要花费数十万日元。尽管我知道，过上正常的生活比什么都重要。你为这个矛盾承受了多少痛苦？\n Ningen Chair 有一首歌叫《Imushi》。有。这是《想作》的ED曲。美少女游戏可以教会你任何事情。这又是一首令人惊叹的歌词。\n\n我是毛毛虫，我只是毛毛虫，我是毛毛虫，我只是越来越胖了。\n在黑暗中翻滚，在黑暗中翻滚，一无所获，一无所获，一无所获……\n\n当我第一次听到它时，我有一种想象毛毛虫生活的阴郁感觉。你对此无能为力。一旦它变成毛毛虫，它就被卡住了。只会越来越胖的存在。它不断扩张，就像在互联网上培养的扭曲的自我意识一样。\n 但毛毛虫没有情感。他们甚至不认识不幸。我想这让我很高兴。现在我可以这样想了。\n 我曾经养过一只狼蛛。那会很酷。安的列斯群岛粉齿狼蛛据说是世界上最美丽的狼蛛。\n 无论你给予多少爱，狼蛛永远不会习惯人类，因为它们没有情感。那很好。很漂亮。很漂亮。\n 我想从明天开始我会突然扔掉我的房子、积蓄、雕像和书籍。虽然我做不到，但我还是一直在想。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,7 +58,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

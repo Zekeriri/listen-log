@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：幾原作品与从结构中的逃脱</title>
+<title>短文：几原的作品与结构的逃离</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-27 06:27</p>
-  <h1>一口随笔：幾原作品与从结构中的逃脱</h1>
+  <h1>短文：几原的作品与结构的逃离</h1>
   <p class="ja-title">一口エッセイ:幾原作品と構造からの脱出</p>
 </header>
 <main>
@@ -28,10 +28,11 @@
 若い頃の勢いに任せた文章で構成された、商業エッセイ集もよろしくお願いします。Amazon評価もしてもらえたら、とても嬉しいです♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：几原的作品与结构的逃离\n\n我们总是被置于一个“结构”内并在其中发挥作用。无论是互联网、社会还是许多其他形式，我们都会对自己所处的舒适环境感到自满，并害怕改变。\n 人们似乎不喜欢生活发生变化，很难鼓起勇气去接受新的挑战，即使这意味着地位、工资、人际关系和住房的扰乱。人越有权势，他们提高的生活水平就越难降低。如果发生这种情况，您将越来越拒绝摆脱固定结构的束缚。\n 当他们继续在一个小花园里像成年人一样行事时，他们的弱点最终会暴露出来，他们会被年轻的光芒打败。从某种意义上来说，可以说他履行了“一个成年人为年轻人挡路”的角色，履行了自己的职责。我现在能做的就是远远地看着这个年轻人冲破束缚，飞向自由。在这一切发生之前你应该独自离开，但也许生活就是这样一种在结束后适应角色的方式。人最终都会失去青春。\n\n几原导演的作品似乎总是在描绘脱离结构的故事。尽管根据作品的不同，呈现方式也会发生巨大变化，但角色们总是试图离开微型花园，而未能做到这一点的成年人将永远被困在里面。有很多精致的制作，让人感觉很复杂，但单看结果，它想要传达的信息似乎很简单，而这种清晰正是我特别喜欢生二作品的地方。\n 你不想余生都在网络上扮演王子。\n\n为了增加 Pindora 合集的兴奋度，我们将展示从动漫杂志中剪下的一系列泄露的 Utena 材料... pic.twitter.com/oxhhyFmTFU — Nyalra Bunfurito 39・40 (@nyalra) 2022 年 5 月 23 日\n\n包含每日日记的同人志现已在 BOOTH 发售。是否有一天，我们可以逃离这样的日常生活？\n\n我还想要一本商业论文集，其中的句子都是受我年轻时的动力启发而组成的。如果您能在亚马逊上给我评分，我会非常高兴。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

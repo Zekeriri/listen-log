@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：消失的周日早晨动画记忆</title>
+<title>短文：日朝消失的记忆</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-03-23 03:47</p>
-  <h1>一口随笔：消失的周日早晨动画记忆</h1>
+  <h1>短文：日朝消失的记忆</h1>
   <p class="ja-title">一口エッセイ:消えるニチアサの記憶</p>
 </header>
 <main>
@@ -22,10 +22,11 @@
 ちなみに毎週こんな感じになっている。この人の作中の名前もパッと出てこない。助けてくれ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：日朝消失的记忆\n\n我每周都期待着观看《假面骑士Geets》。新骑手和角色的数量不断增加，很高兴他们都有自己独特的个性并且很讨人喜欢。此外，虽然盟友骑手很迷人，但主角和敌方骑手的设计坦率地说很酷。\n 好吧，这次我不是在写我对《Geets》的看法，我只是在谈论我自己的悲伤，但令人惊讶的是，我根本记不起《Geets》中人物的名字。我不再想“有这么多人……！”当我能在一定程度上掌握脸型时停了下来。幸运的是，吉茨的角色有明显的面部差异，很容易区分，这很有帮助。在《亮剑》一开始，他们看起来真的都一样。\n 然而，这个名字仍然没有出现。每当我听到人们的印象时，我都会想：“这个人是谁？”甚至骑手的名字也很模糊，事实上，在《Revise》结束时，我开始很难记住骑手的名字。并不是我对它失去了兴趣或者它很无聊，而是我的记忆力或将名字与外表联系起来的能力完全下降了。故事里连主角的名字都被叫到了，我还是很惊讶，心想：“这就是他的名字。”嗯，这也是因为我经常被称为“Geets”。\n 最近实在是太难过了。如果他年纪大了，他会忘记他过去的骑手吗？现在每晚想起这件事我都会哭。\n\n顺便说一下，每周都是这样。这个人的名字甚至没有出现在故事​​中。请帮我。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

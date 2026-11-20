@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口散文：不要原谅我 即使憎恨也请记住我</title>
+<title>短文：不要原谅我，即使你恨我也要记住</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-01-09 06:35</p>
-  <h1>一口散文：不要原谅我 即使憎恨也请记住我</h1>
+  <h1>短文：不要原谅我，即使你恨我也要记住</h1>
   <p class="ja-title">一口エッセイ: 私を許さないで 憎んでも覚えてて</p>
 </header>
 <main>
@@ -22,10 +22,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくお願いします♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：不要原谅我，即使你恨我也要记住\n\n我喜欢中岛美雪的《Sora to Kimi no Mae ni》中的歌词：“不要因为恨我而永远束缚在那个人身上。”中岛美雪的所有歌词都很棒，但这些尤其好。 《别被束缚》的悲伤触动我的心。我无法前进，因为我因仇恨而保持清醒。你的价值不应该与那个人的水平挂钩。我想这是一种痴迷，因为即使我理解它，我仍然受到束缚。\n 现在，如果我们谈论了中岛美雪，我们就必须谈论松户谷由美。宥珉的《青春的遗憾》里，恰巧有歌词搭配那些被仇恨束缚的人，副歌是“不要原谅我，即使你恨我，也要记住。”被恨也没关系。相反，我希望你恨我而不原谅我。这证明对方还被你困住了。\n 我希望我能成为我所爱的人不可磨灭的伤疤，我希望我能成为他们难忘回忆的一部分。哪怕是仇恨，我也希望你能时刻想着我。多么美丽的歌词，简单而诗意地表达了这种扭曲的爱情。我想通过被讨厌的方式让对方一辈子都和我绑在一起。这也绝对是爱。副歌继续说道：“现在只有痛苦才是我真诚的剪影。”痛苦是唯一将两人维系在一起的东西，一段充满爱与恨的关系。\n 两位女王表达了“仇恨”背后的情感。这样的巧合实在是太可爱了。\n\n感谢大家对日记总结和商文集同人志的支持♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

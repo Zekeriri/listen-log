@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：最好不要想得太深</title>
+<title>短文：最好不要想得太深。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-22 04:03</p>
-  <h1>一口随笔：最好不要想得太深</h1>
+  <h1>短文：最好不要想得太深。</h1>
   <p class="ja-title">一口エッセイ:深く考えない方がいいですよ</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：最好不要想得太深。\n\n我很喜欢《游游白书》最终卷中轻松平静的氛围，而鞍马说的“最好不要想得太深”这句话从小就在我脑海里萦绕。毫不夸张地说，已经影响到了孩子的成长。\n\n从背景来看，许多妖怪实际上是被洗脑并被迫去做邪恶的事情，正当佑介开始怀疑他所击败的一些妖怪是否只是被洗脑时，鞍马让他平静下来，说道：“最好不要想得太深。”事实上，思考这个没有任何意义，佑介自己并没有击败邪恶的过错。鞍马建议，“最好不要去想它”，所以这是正确的答案。这一格在最后揭示了如此复杂的设定，给小读者留下了思考什么是正确的印象。精彩的。\n “停止思考”本身并不一定是一个消极的选择。当人们匆忙的时候，他们往往会想太多，采取不必要的行动，但我认为处理这种情况的最好方法通常是保持冷静、冷静、耐心等待。你还记得曾经后悔停下来的时候吗？或者，你可能会因为读得太多而变得不必要的焦虑。我有很多。\n 现在有无数的事情让你忍不住去思考。或者也许快速采取行动比思考要有效得多。我经常在回答别人的问题时说：“让我们多睡一会儿吧”，但我不鼓励他们以任何方式睡觉。这是因为我决定多睡觉并忘记/冷静下来很重要。当我睡完觉醒来时，意想不到的事情发生了。我通过睡觉来重置它。如果你醒来后没有任何反应，那么请考虑一下。好吧，无论如何，入睡比在半夜让你的思绪转来转去更容易。不过，正是因为他们担心自己是人类，所以才诞生了像仙水这样精致迷人的反派。\n 所以，鞍马的台词多次帮助了我。直到成年之后，我才能够用语言表达出以上这些，但从小学起，我就直觉地认识到“鞍马不会在意这些无用的东西。”比睿不会这么说，鞍马也不会想得太深。如果您在阅读本文时也发现自己在半夜感到隐隐约约的焦虑，那么最好将智能手机放在远处，然后上床睡觉，不要想太多。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

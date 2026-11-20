@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：对孩子叛逆期的担忧</title>
+<title>短文：孩子叛逆期的焦虑</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-30 02:55</p>
-  <h1>一口随笔：对孩子叛逆期的担忧</h1>
+  <h1>短文：孩子叛逆期的焦虑</h1>
   <p class="ja-title">一口エッセイ:子供の反抗期への不安</p>
 </header>
 <main>
@@ -22,10 +22,11 @@
 毎日の日記をまとめた同人誌をBOOTHにて販売中。商業エッセイ集もよろしくね。いつか、僕が生きた日々を子供が読む日がくるのかもしれません。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：孩子叛逆期的焦虑\n\n我未来的梦想是和我的孩子们一起享受Doasa Nichiasa。她和儿子一起对奥特曼和骑士感到兴奋，和女儿一起喜欢光之美少女。我一生都梦想着这样一天的到来。\n 然而，这里有一个问题：“孩子们最终会从日浅毕业”。当您的孩子适应小学时，他或她可能会比儿童节目更喜欢跳跃、女孩漫画和游戏。这是一件好事，但也有点悲伤。\n 不仅如此，当孩子们到了中学时，他们可能会开始觉得父母喜欢的东西很蹩脚。因为当我十几岁的时候，我清楚地记得我认为母亲喜欢的东西意味着闻起来像叔叔或阿姨。看起来她的父亲总是在收集软乙烯基 Ultra Monsters，并期待着光之美少女战士的加入，考虑到他的叛逆期，这无疑是最糟糕的。\n 健康的孩子会反抗他们的父母，所以我想看到我无休止地观看奥特曼并经历我所有的欢乐和悲伤是很蹩脚的。讨厌我的父亲没关系，但请不要讨厌奥特曼或银幕骑士。请跟我一起看第一代的哥斯拉吧。请告诉我您对平成加美拉的看法。你也想看看装甲魔斯拉，对吧？ ……他这样做的时候，彻底变成了一个渣爹。太可怕了……我现在一直有这样的幻想，尽管我没有结婚的打算，而且我也经历过很多个自己受伤的夜晚。\n\n包含每日日记的同人志现已在 BOOTH 发售。我期待着阅读您的商业论文集。有一天，一个孩子可能会读到我生活过的日子。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

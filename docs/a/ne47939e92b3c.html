@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口随笔：Tsuge Yoshiharu的蝾螈</title>
+<title>短文精选：柘植义晴的日本胡椒鱼</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-18 21:46</p>
-  <h1>精选一口随笔：Tsuge Yoshiharu的蝾螈</h1>
+  <h1>短文精选：柘植义晴的日本胡椒鱼</h1>
   <p class="ja-title">選り抜き一口エッセイ:つげ義春の山椒魚</p>
 </header>
 <main>
@@ -23,10 +23,11 @@
 毎日の日記をまとめた同人誌をBOOTHで販売中です。商業エッセイ集の方もよろしくね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文精选：柘植义晴的日本胡椒鱼\n\n我很喜欢水木茂，所以有一段时间，我会顺便读一下他的助手柘毛芳晴的作品。在柘毛芳晴的短篇小说中，读完后有一种独特的感觉，我特别喜欢《柘毛芳晴》。\n 这篇短篇小说《花椒鱼》是关于生活在下水道里的花椒鱼的独白，描写了他独自生活在污水中的心境变化。\n 起初，他对污水感到不舒服，但当他逐渐习惯了黏糊糊的污水时，他甚至开始感到愉悦。他每天都在观察人类扔掉的陌生垃圾，每天都乐在其中，不会感到无聊。最后，一个人类胎儿漂了过来，辣椒鱼恼怒了，不知道那是什么，就用头撞了它两三下，就不管它了，说：“一想到明天会发生什么，我就忍不住高兴。”\n 这似乎是出乎意料的，但互联网有时被比作信息的海洋，我牵强地认为一个充满辱骂性语言的社区就像是山椒鱼栖息的下水道。人们最终会在污水中感受到一种愉悦感，并会继续观察和检验已经流走的东西，并期待着明天会流走的东西。我什至不知道什么是胎儿...\n 当然，这部作品是在互联网之前的时代创作的，这种联想只是我脑海中的错觉，但我经常思考是什么让我与这条日本辣椒鱼不同。明天将会发布哪些信息？只是享受它...\n\n包含每日日记的同人志现已在 BOOTH 发售。我还想要一本商业论文集。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

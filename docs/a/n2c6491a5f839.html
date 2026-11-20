@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口短文：“行走在天空中的每个人……57亿的孤独……‼︎”</title>
+<title>短文：“每个在天空行走的人……57亿人都是孤独的……”</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-13 01:24</p>
-  <h1>一口短文：“行走在天空中的每个人……57亿的孤独……‼︎”</h1>
+  <h1>短文：“每个在天空行走的人……57亿人都是孤独的……”</h1>
   <p class="ja-title">一口エッセイ: 「天空を行く一人一人……57億の孤独……‼︎」</p>
 </header>
 <main>
@@ -30,10 +30,11 @@
 過去の長文エッセイをまとめた商業エッセイ集もよろしくお願いします。この頃は、まだ家族の話をしている。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：“每个在天空行走的人……57亿人都是孤独的……”\n\n今天我也会读你的问题......（因为很简单）。 “我总是在孤独的时候哭泣，但说实话，我不擅长与人交往。是什么让我感到孤独？我在2D和网络中寻找解脱，当我离开屏幕时，我就哭了。”\n 如果你精神不稳定，一离开屏幕就哭，那你就先去北澳妮欣熙道吧！ ？我们以它是一个比喻表达为前提来思考一下。\n 基本上，无论我们走多远，人类本质上都是孤独的。无论有家人还是朋友，都不可能真正了解另一个人。准确地向他人传达自己的感受是不可能的，维特根斯坦称理解他人的痛苦是“不负责任的概括”。即便如此，我仍然保持一个相互联系的身体，这很重要。\n 想到每个人都同样孤独，你不会感觉好一点吗？知道每个人都只是假装理解别人，我感觉好一点了。毕竟事情就是这样，我是单身，有时我希望自己有一个家庭，但即使我有一个家庭，“其他”的数量也只会增加。真正的孤独永远不会消失。在这种情况下，当您独自一人时有一些东西可以帮助您（二维内容/互联网）可能就足够了。\n\n就连Kaiji也说，“每个在天空中行走的人……有57亿人的孤独……”在当今世界，每一个使用互联网的人就是78亿人的孤独。他们独自生活，假装理解别人。\n\n请随意发送任何东西\n问题和咨询可以在笔记或文章中得到解答。\n https://t.co/DfWFGz0j2d — Nyalra (@nyalra) 2022 年 4 月 11 日\n\n我们正在出售编辑日常文章的同人志。如果有人读它，我就会感到不那么孤独。\n\n我们也希望您会喜欢我们的商业论文集，该论文集是过去长篇论文的汇编。这些天，我们仍在谈论我们的家庭。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

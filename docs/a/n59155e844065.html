@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口散文：岛本和彦老师与作为职业作家的生活方式</title>
+<title>短文：岛本和彦和他的职业作家生涯</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-06 07:27</p>
-  <h1>一口散文：岛本和彦老师与作为职业作家的生活方式</h1>
+  <h1>短文：岛本和彦和他的职业作家生涯</h1>
   <p class="ja-title">一口エッセイ：島本和彦先生とプロ作家としての生き方</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 長文エッセイをまとめた商業エッセイ本も月末に発売します。予約してね！ こっちは、書き下ろしのためにいっぱい精神削りました。つらいぜ！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：岛本和彦和他的职业作家生涯\n\n「专业」是修罗之道。\n 首先，让我们将专业人士定义为主要收入来自该活动的人。\n 如果那样的话，每天靠写文章拿工资的我也将成为一名专业人士。我不好意思这么称呼自己，所以我绝对不能。然而，我曾经被教导说“同时利用专业和业余职位来谋取利益的人是不好的”，我认为这是真的。如果您收到金钱，您需要采取相应的行为。\n 那么，作为一个专业人士，什么最重要？每个人可能都认为这是为了让粉丝高兴。我也是这么想的。然而，这是一种不了解现实的幼稚想法。岛本和彦在他的《萌叶笔系列》中多次传达过这样一个事实：“即使你知道它不够好，但在截止日期前提交的人才是专业人士。”这种赤裸裸、全力以赴的投稿感觉是岛本先生的典型。\n 比如我也每天发文章，还有其他的工作。为了及时完成所有事情而熬夜，耗尽了我的精力。专业人士的标志是权衡客户和读者之间的信任与质量，诚实地选择前者。连我自己都觉得“这不是很奇怪吗？”但是，它可能有令人惊讶的魅力！我告诉自己并提交了它，肚子咕咕叫。\n 事实上，恰恰相反，有时它很受欢迎，而有时，正如预期的那样，它营造出一种奇怪的气氛。然而，岛本先生描述了作为专业人士不放弃并继续到下一个截止日期的精神。只要你的工作能得到报酬，这种心态就永远不能忘记。这是一部杰作。\n\n包含日常文章的同人志现已在 BOOTH 出售。这是一本遵守一年365天“天天发”截止日期的深情散文集，请务必阅读。\n\n一本包含长文的商业散文集也将于月底发行。预约吧！为了写这篇文章，我花了很多脑力劳动。很难！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

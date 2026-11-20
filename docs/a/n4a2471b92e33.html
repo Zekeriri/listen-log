@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口随笔：死亡笔记中最喜欢的场景</title>
+<title>精选文章：《死亡笔记》中我最喜欢的场景</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-30 13:46</p>
-  <h1>精选一口随笔：死亡笔记中最喜欢的场景</h1>
+  <h1>精选文章：《死亡笔记》中我最喜欢的场景</h1>
   <p class="ja-title">選り抜き一口エッセイ：デスノートで一番好きなシーン</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 エッセイ集の最新刊が出たので、その中のお気に入りを投稿です。よかったら、エッセイ集の新刊を買ってみてくださいね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"精选文章：《死亡笔记》中我最喜欢的场景\n\n我的一个朋友问我《死亡笔记》中我最喜欢的场景是什么，我告诉她我喜欢米莎学习如何杀死死神的场景，并回答说：“这是一种很棒的杀人方式。”\n 大家都知道，《死亡笔记》前期的看点就是月和L之间的斗智斗勇，我继续悬疑地看着月巧妙地躲避L发起的高级心理战，有时还因为过于兴奋而乘机挑衅。这时，第二个基拉（Kira）出现了，名叫米萨·米萨（Misa Misa）……对他们俩来说都是完全不正常的。\n 她的一切都是一团糟，她的情绪也搅乱了两人的逻辑推论。从某种意义上说，爱的力量超越了Tsuki和L的高智商。当我还是个孩子的时候，看到一个愚蠢的女人用爱摧毁一切，我感到既恐惧又高兴。\n\n（图片：图1）\n\n雷姆教米莎如何杀死死神。那就是“让人类坠入爱河”。迄今为止，死神被描述为比人类更神秘、更优越的物种，但他的存在暴露了他唯一的弱点。我当时就震惊了，但是当米莎听到这句话时，她板着脸说道：“杀人的方式真是太棒了。”这确实给我留下了深刻的印象。\n 这个孩子与月和L完全相反，生活在“敏感”中，很可能最终会因为爱而杀死死神。月球可能会利用这一点。一场针对死神的叛乱在之前的剧情中是不可能发生的。而且，从米莎的角度来看，这是一种浪漫的、“很好的杀人方式”。这个场景很不错……\n\n我的论文集的最新版本已经出版，所以我将发布其中我最喜欢的文章。如果您喜欢，请购买新版散文集。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

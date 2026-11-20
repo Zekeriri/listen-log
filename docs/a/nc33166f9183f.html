@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NEEDY GIRL</title>
+<title>贫困女孩</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-05-10 06:10</p>
-  <h1>NEEDY GIRL</h1>
+  <h1>贫困女孩</h1>
   <p class="ja-title">NEEDY GIRL</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
  楽しいことたくさんあるよね。お母さんがオムライスを作ってくれる。友達が遊園地に誘ってくれる。読んでいた漫画がアニメになる。嫌いなやつらが車に轢かれる。お母さんが優しくなる。嫌いなやつらが海に溺れる。サイキックに目覚めて嫌いなやつらを爆殺できるようになる。本屋の中身がぜんぶ手に入る。嫌いなやつらが調子に乗って崖から落ちる。教室のやつらが、大人が………</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"贫困女孩\n\nhttps://t.co/U5nr4HQtHq pic.twitter.com/4eoalTRCvz — Nyalra (@nyalra) 2023 年 4 月 5 日\n\n我不想去上学。我不能和任何人说话。既是同学又是老师。每个人看起来都很傻。但是，我知道这种感觉是错误的，如果我真的很聪明，我应该能够适应周围的人。\n 换句话说，我不习惯。\n 我想知道是否是一种防御本能让你看不起周围的环境。如果你不这样做，事情就会出错。只是我的自尊心出奇的高，不……也许这就是我所谓的自尊心吧。他只是想让自己相信自己很愚蠢，并且他有与普通人不同的担忧......\n 当教室里的人通过谈论流行音乐和漫画来交流时，他们称之为“肤浅”。我觉得我只是通过在网上学习一些打发时间的小作品来获得个性和智慧。不过，老实说，我更喜欢黑暗电影。因为我能够同情不幸的人和贪图享乐的傻瓜。昨晚看了《梦之安魂曲》。因为毒品毁了你的生活真是垃圾，但我可以理解。除非喝醉，否则我觉得生活很无聊。这比俊男美女相爱最终在一起的故事要好理解一百万倍。\n 没有什么。我的生活简直就是一无所有。我想给“什么都没有”一个理由，不知何故，我最终觉得自己的成长和环境过于不幸，我逐渐开始将大脑中的便利妄想曲解为事实，这很可怕。课堂、父母、同学、智力、收入、社交媒体、接近自己的异性、炫耀的同性……我隐约担心，试图通过指责别人来保护自己，有一天会导致不可挽回的错误。那么，我必须认为这是我的错......取决于你如何看待它，我是罪魁祸首，因为我仍然是一个沉迷于智能手机的孤独学生，没有采取任何行动。我认为，如果我们放下错误的骄傲，承认流行音乐和漫画实际上很有趣，并尝试诚实地交谈并看着对方的眼睛而不将谈话称为“阿谀奉承”，那就更好了。\n 但我认为是这样。我真的有那么糟糕吗？大人不都是睁一只眼闭一只眼的吗？是教室里的那些家伙背叛了我吧？我我……我想死，但是如果我大声说“我想死”，它就会变得如此微弱，我就会死。如果我的感情被无处不在的“问题少女A”俘获，我实在无法忍受。健康老师拍拍我的肩膀说：“没事的。”生活中总会有美好的事情发生，所以让我们按照自己的节奏尽力而为！”\n 我同意。这是一件好事。让我们想一些有趣的事情。我相信他的生活中还会继续有很多“有趣的事情”。当你下班回家时，你的爱人可能会拥抱你。也许您会与朋友一起享用稍微豪华的晚餐。也许老师会在暗室里依靠精神药物醒来。不过既然是老师说会有好玩的事，那么好玩的事肯定还有很多。就好像我可以永远喝醉一样。\n 有很多有趣的事情可以做。妈妈做蛋包饭。一个朋友邀请我去游乐园。您正在阅读的漫画变成了动画。我讨厌的人被车撞了。妈妈变得更加和善了。我讨厌的人都淹死在海里了。你将能够以通灵者的身份醒来并赶走你不喜欢的人。书店里什么都可以买到。仇恨者得意忘形，从悬崖上掉下来。教室里的人，大人们……"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

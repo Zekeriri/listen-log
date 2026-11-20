@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口小随笔：多人旅行会变成“社交”</title>
+<title>一口エッセイ:复数人でのtorippuは「社交」になってしまう</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-02-20 03:08</p>
-  <h1>一口小随笔：多人旅行会变成“社交”</h1>
+  <h1>一口エッセイ:复数人でのtorippuは「社交」になってしまう</h1>
   <p class="ja-title">一口エッセイ:複数人でのトリップは「社交」になってしまう</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一口エッセイ:复数人でのtorippuは「社交」になってしまう\n\nしばらく一人旅をしてみることにしました。快点好起来。看完日浅，立马就去了新干线。単身で着替えや换、执笔用のiPadなどと少しの本をカバンに入れて名古屋へと向かいます。\n 另外に名古屋である理由はなく、とりあえず降りただけ。 如果有的话，我想去岐阜。比起旅游景点，我更想看看小镇悠闲的日常生活，所以我想去一个平时不去的县。如果没有这样的机会，我绝对不会踏足岐阜。直接新干线が止まらないので、曾经名古屋を経由したわけです。\n 不过，日浅之后我真的很困，所以今天决定留在名古屋。在酒店短暂休息后，我在 Instagram 故事中写道：“告诉我一些名古屋有趣的地方。”\n\n得知有一家名为“Kibonne”的居酒屋，就去外面看看。当然，我没有进去，只是匆匆看了一眼就回家了。こういう観光ガイドには决して载らない地元らしいスポットを教えてもらえると嬉しですい。我要搬家了。明天，所以我想了解一些关于岐阜的小事。所以我的生日就在看日朝和拍《Kibonne》的照片中结束了。这将是非常充实的一天。 Because people don't suddenly travel long distances just to see Kibonne.这可能是我在这个世界上做过的唯一一件事。\n 现在，独自旅行与多人旅行完全不同。虽然我认为与多个人一起旅行很好，但我仍然更喜欢独自旅行。首先，除非你独自一人，否则你无法如此自由地走动。因为前提是每个人都玩得开心，所以我不能去太喜欢的地方，而且因为我想看冷清的商店街、复古的建筑和楼梯，所以我的爱好就不涉及到别人。明天我还打算去岐阜的游戏中心看看平庸的旋转木马。我对各地游乐场之间的细微差别感到兴奋。这只有独自一人才能实现。\n 我的一个吸毒朋友曾经对我说：“我不和别人出去。如果我这样做了，那将更像是一种社交体验，而不是吸毒体验，”我现在完全同意这种观点。即使是旅行，当你和一群人一起去时，这也是社交。旅行有完全不同的含义，但它是一个不同的游戏，具体取决于你是单独玩还是多人玩。偶尔社交一下也不错。有时。\n 所以，我会在名古屋悠闲地散步。我晚上写稿子。旅行时看到他在酒店打字真是太酷了，就像他是一名作家一样。不过，要把旅行费用算作开支，看来旅行的经历必须要融入到工作中。如果我突然开始发表一部热情洋溢地谈论名古屋或岐阜后巷的作品，请批评我并说：“这家伙只是为了省钱而抄袭我！”\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

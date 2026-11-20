@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口散文：分享让人容易入睡的必杀小技巧……</title>
+<title>一篇简短的文章：分享一个可以让你更容易入睡的秘密技巧......</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-21 23:14</p>
-  <h1>一口散文：分享让人容易入睡的必杀小技巧……</h1>
+  <h1>一篇简短的文章：分享一个可以让你更容易入睡的秘密技巧......</h1>
   <p class="ja-title">一口エッセイ:どうにか眠りやすくなる必殺の裏技を共有……</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 明後日には、商業エッセイ集もでます。こちらもKindleがあるので、布団の中でも安心して読める。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇简短的文章：分享一个可以让你更容易入睡的秘密技巧......\n\n我已经习惯了上床睡觉，感觉就像是因为安眠药而被迫关机一样，现在药效已经过去了，我继续经历痛苦的失眠。我应该尽快去看精神科医生，但现在我已经搬家了，我需要找一位新医生，我忍不住讨厌向陌生人解释我是一个自闭症书呆子，喜欢在周日早上看特效和女孩动漫。我以前的医生写了一本关于自闭症的书，他的内容给我留下了深刻的印象，所以我去看了他，所以一切都很顺利。不管怎样，在寻找了一种入睡的方法之后，我决定分享我想出的方法......\n 我认为我睡不着的主要原因有两个：“安静时我感到隐隐约约的焦虑”和“我无法抗拒玩智能手机”。后者尤其常见，我有时会在半夜收到私信说：“我睡不着……”这只是因为智能手机上的灯让我的睡意减少了一半。你现在应该把手机收起来并闭上眼睛。为了避免因安眠药的副作用而感到头晕并避免看智能手机，我设计了“一次性蒸汽眼罩”。\n\n普通眼罩需要经常清洗，而且很容易丢失。另一方面，一次性用品装在大盒子里，所以你可以把它们放在桌子上。无需清洗。即使你在想，“即使我戴着眼罩，我也必须立即摘下它才能触摸我的智能手机”，不用担心，蒸汽的温暖会让你感觉冬天不想再摘下眼罩。安眠药之所以让你发疯，是因为你正在对抗睡意，所以如果你的视力被黑暗覆盖，你可以放心！我用这个方法已经很好了。受到推崇的。好吧，我对“模糊的焦虑”无能为力。我每天都感到焦虑和不安。\n\n如果你还睡不着，也请看一下这篇↑。\n\n我们正在出售编辑日常文章的同人志。还有电子版，所以如果你睡不着，也可以在智能手机上阅读。本末倒置。\n\n商文集也将于后天出版。我还有一台 Kindle，所以即使在我的蒲团下我也可以安全地阅读。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

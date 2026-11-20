@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口小作文：极限 帮助 Help</title>
+<title>短文：限制帮助帮助</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-04-11 05:05</p>
-  <h1>一口小作文：极限 帮助 Help</h1>
+  <h1>短文：限制帮助帮助</h1>
   <p class="ja-title">一口エッセイ:限界 助けて Help</p>
 </header>
 <main>
@@ -27,10 +27,11 @@
  まあ、昨晩がピークだっただけで、意外とどうにかなっていくかもしれませんね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：限制帮助帮助\n\n这是极限。连我都感到惊讶。\n 今晚又要开会了，正聊着各种事情，就接到了要开另一个项目的电话。我因为忙了一整天而惊慌失措，当场道歉，然后就冲出了商店回家了。我的直觉告诉我尽快回家休息，因为我的大脑已经超出了它的承受能力，我根本无法思考，我什至无法与面前的人进行对话。\n 目前，我们已经完成了会议中需要讨论的内容，我们只是聊天，所以这不是问题，但我担心他。回家后，我赶紧服用了一些精神类药物，平静下来后，我又联系各个办公室道歉。对不起……。\n 这不是任何人的错，但搬家是有压力的。我其实很喜欢在家写稿子，但是我被叫去各地监督和开会，最后这次让我过来，花两个小时来回讲20分钟。我这个月已经经历过三次类似的事情了！\n 一切都变得不可能了，我最终逃离了会议，但最后无奈只能自己处理，对方也会担心我联系迟了，所以我好歹在服用精神药物的小睡中回复了。真的很难，但这与我自己的工作有关，看到大家如此努力地完成我订购的东西，很有趣。但累就是累。没有人叫我出来骚扰我。\n 尽管如此，我还是试图和制作人谈谈被困在这么多不同的事情中间是多么困难，但他在那里似乎很忙，他告诉我，“我可以在 XX 月 XX 站和你聊 XX 小时。”。我很震惊地发现我们作为一个一起制作游戏的团队是否可以更容易被依赖。但我无能为力。事实上，当我在指定时间去见他时，他告诉我他在一小时后还有另一个约会，然后就结束了谈话。下次，我通过短信咨询他，但得到的只是一个标准的回复，类似于聊天GPT，说：“如果你有压力，最好通过伸展运动和肌肉训练来释放它，或者多休息一下。”对方也一定很忙。也就是说，有些游戏我自己做不了，所以我必须咨询他们。帮我……。\n 开始变得困难，所以我增加了服用精神药物的剂量，其副作用是嗜睡，这让我睡了一觉后感觉好一点。最终我无奈，只能全部做完，而且还需要大量我讨厌又讨厌的旅行。我希望有人至少能听我说话，但因为我很忙而被拒绝的创伤（这被视为生意）让我完全不敢依赖年长的人。我总是感觉自己快要窒息了，因为我感觉自己被四面八方堵住了。\n 然而，当我最近成为朋友的一位动画师邀请我去他的办公室和他一起看一些动画时，我很高兴。一起看动漫很有趣……也很高兴小编给了我一支钢笔。\n 我会继续一点一点地努力，相信一切并不都是坏事。但今晚我真的很惊讶。当我的思绪突然变得除了“我现在要回家”之外无法思考任何事情时，我仍然不敢相信我的身体处于自动驾驶状态。人体是很奇怪的。人们是否会无意识地保护自己？\n 如果你有什么事情可以分散自己的注意力或者有什么有趣的事情可以谈论，请邀请我。有人请听我说。现在，用这样的事情分散自己的注意力是一种解脱。\n 嗯，昨晚正是高峰期，所以事情的结果可能比预想的要好。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

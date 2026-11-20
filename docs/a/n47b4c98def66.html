@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>那时的增田康介剧场搞笑漫画家志向天和</title>
+<title>对于当时立志成为剧场搞笑漫画家的增田浩介来说，这是美好的一天。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-11 02:01</p>
-  <h1>那时的增田康介剧场搞笑漫画家志向天和</h1>
+  <h1>对于当时立志成为剧场搞笑漫画家的增田浩介来说，这是美好的一天。</h1>
   <p class="ja-title">あの頃の増田こうすけ劇場ギャグマンガ家めざし日和</p>
 </header>
 <main>
@@ -27,10 +27,11 @@
 他人の生涯に興味あるなら、僕の商業エッセイ集もよろしくお願いします。なんかキショい文章だらけでキショいですが。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"对于当时立志成为剧场搞笑漫画家的增田浩介来说，这是美好的一天。\n\n我读了《增田康介的那些时代戏剧搞笑漫画家的日子》。正如标题所示，这是《搞笑漫画日和》的作者增田浩介的散文漫画，描绘了他出道前的生活。\n\n关于他如何成为漫画家的自传无数，但他的故事却相当独特。没有描述重大挫折或麻烦。从入选赤冢奖到开始连载至今，他的排名一直在稳步上升。最大的问题是，“电梯厅在我公寓前面，所以我可以听到住户说话，这让我很烦恼。”你太粘人了！\n 这真是太神奇了。当我提交作品时，一个镜头被出版，并且决定了第一个连载（搞笑漫画Biyori），受到好评，直到今天仍然很受欢迎。既然“没什么可写的”，他的搞笑漫画天赋就那么高，只要他表现出来，我不认为有什么问题。我只能称之为召唤。\n 可怕的是，许多著名的搞笑漫画家逐渐厌倦了一种搞笑漫画并改变了风格，但他仍然继续连载搞笑漫画Biyori，没有放缓他的势头和节奏。另一方面，令我感动的是，一个年轻人被未来自制角色包围的场景，对于老师来说却变成了一幅超现实的画面。\n\n无论如何，我意识到自从该系列首次出版以来，我已经关注搞笑漫画的发行日期了大约 20 年。我真的无意有意识地遵循它，但是……也许是因为它总是恒定的，我从不感到“无聊”，因为没有下垂或松弛。那里有天才。\n\n我们目前正在销售一个编辑日常文章的同人志。新书刚出！我相信有一天我也能成为大人物......\n\n如果你对别人的生活感兴趣，请看看我的商业论文集。有点奇怪，因为里面充满了奇怪的句子。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

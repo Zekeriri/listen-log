@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：超天酱T卡要发售了</title>
+<title>简短的文章：您将收到一张超级十酱 T 卡。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-12 03:45</p>
-  <h1>一口随笔：超天酱T卡要发售了</h1>
+  <h1>简短的文章：您将收到一张超级十酱 T 卡。</h1>
   <p class="ja-title">一口エッセイ:超てんちゃんTカードが出るよ</p>
 </header>
 <main>
@@ -27,10 +27,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"简短的文章：您将收到一张超级十酱 T 卡。\n\n超级十酱将成为T积分卡！\n太可爱了，大家应该预购 9999999 张门票 https://t.co/I1SFy3Xy8A pic.twitter.com/8gbkO3wHhQ — 🎀超级可爱🎀Tenshi-chan (@x_angelkawaii_x) 2022 年 10 月 11 日\n\n超级十酱T卡的预约已经开始。\n 为什么要和T卡合作！ ？有几个人感到惊讶，但我这个原作者也感到惊讶。嗯，我对这个项目本身很满意。如果你获得更多这样的曝光，你会觉得自己变得更受欢迎，你会感觉更好。我想在更多地方见到超十酱！\n\n更令我惊讶的是，茑屋官方对长天酱的描述是“网络天使，阿梅酱，在广播中伪装的~”，这严格地解释了阿梅酱是主角。嗯，我感觉我作为主管已经把课文看过一遍了。反正我每天都在查或写一些东西，所以我什么都不记得了……顺便说一下，我选择了插图作为设计。这会很可爱。\n 现在，回到我一开始所说的，我认为人们唯一真正认识到一部作品“受欢迎”的时候是当他们从一个意想不到的地方遇到一部他们知道的作品时。您可能会突然看到一个广告，或者一个似乎对此不感兴趣的朋友可能正在谈论它。从这个意义上来说，你不觉得成为T卡很受欢迎吗？是的，有。\n 虽然忙于监督很累，但我会尽力看到人们的惊讶，比如“哦，有这么棒的一个人！”\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

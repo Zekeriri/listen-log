@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口短文：精神科医生的魔法</title>
+<title>短文精选：精神病医生的魔力</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-07 15:46</p>
-  <h1>精选一口短文：精神科医生的魔法</h1>
+  <h1>短文精选：精神病医生的魔力</h1>
   <p class="ja-title">選り抜き一口エッセイ:精神科医の魔法</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 商業エッセイ集もよろしくお願いします。精神の話もちょくちょくありますね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文精选：精神病医生的魔力\n\n基本上，精神科医生对患者的担忧提供巧妙的答案，以使患者放松。\n 例如，如果你说，“我最近睡得太多了”，你可能会说，“那是因为你平时工作比别人辛苦，或者生活比别人辛苦，所以你需要更多的休息是很自然的。”这样，你就很擅长让对方放松下来。\n 不管逻辑如何，从医生的角度坚定地说“你很好”，你就施展了让病人放松的咒语。病人也是病人，医生用负面魔法反击，说：“我还是个没用的人。”医生用强大的魔法回应，进一步包围了它。医疗可能是精神科医生和患者之间神奇的互动。\n 像往常一样，我会和我的老师交谈并说：“我有这些弱点和缺陷......”作为回应，我开始警告他们说：“但这就是伟大的作家。”\n 是的，老师坚持了一点，“我在写作”，并施展了他最强大的咒语：“伟大的作家都是有缺点的，所以你也是这样也没关系。”好吧，当然我不是一个伟大的作家什么的，但总而言之，我是说，“别担心一些麻烦，以你的作品和写作的质量取胜。”当我听到这句话时，我别无选择，只能同意。 “只要有力量，就能解决一切”，这是真理。这是一个超越魔法的“诅咒”，告诉你“成功”。梦就像诅咒。\n\n这是一本新编的日记文集的选集。如果您有兴趣，请收藏。\n\n我期待着阅读您的商业论文集。人们常常谈论精神。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

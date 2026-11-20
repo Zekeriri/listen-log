@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：乙女游戏与美少女游戏的性质差异</title>
+<title>短文：乙女游戏与美少女游戏本质上的差异</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-19 07:46</p>
-  <h1>一口随笔：乙女游戏与美少女游戏的性质差异</h1>
+  <h1>短文：乙女游戏与美少女游戏本质上的差异</h1>
   <p class="ja-title">一口エッセイ:乙女ゲームと美少女ゲームの性質の違い</p>
 </header>
 <main>
@@ -30,10 +30,11 @@
 若い頃に書いた長文エッセイが掲載されている商業エッセイ集もよろしくね。こんな汚い文章、読まなくてい。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：乙女游戏与美少女游戏本质上的差异\n\n我以一定的频率收到诸如“我希望尼亚鲁拉桑创造出前所未有的乙女游戏”之类的信息。不过看起来很有趣。如果有这样的工作出现，我会考虑，但目前我认为我自己不会计划。\n 要说乙女游戏的起源，就必须要说一下光荣的历史。大家可能知道，共同创立光荣的江川夫妇相继推出了《信长之野心》等热门游戏，业务迅速发展。与此同时，支持丈夫工作的惠子惠子发现，无论她打开什么游戏杂志，她看到的都是男性喜欢的战争和动作类型。从那部热门作品开始，少女游戏开始迅速增长，而光荣还参与了超人气的《火焰之纹章：三宫》的联合开发，或许正是因为这样的影响力，它在女性粉丝中也很受欢迎。更多内容请阅读“游戏提案①”！\n\n换句话说，乙女游戏这个概念本身就是一场革命，改变了业界的常识。目前，Switch和应用游戏的新游戏正在陆续制作中。我觉得Switch Lite以其可爱的颜色变化，是针对近年来不断增加的女性玩家群体的。\n 撇开琐事不谈，乙女游戏和美少女游戏是完全不同的。如果你试图抱着玩美少女游戏的想法进入游戏，那你肯定会失败。其实有很多厂家都犯过类似的错误。\n 我有几个朋友是乙女游戏作者，据我所知，男性和女性应该追求的方向和品质是完全不同的。这是我的理解，不过美少女游戏的重点似乎是“你能做多少梦”，而乙女游戏的重点是“你多久不能从梦中醒来”。\n 在乙女游戏中，主角会更加沉浸在女主角身上，如果女主角重复被用户误解的话语或动作，游戏体验的魔力就会立即被打破。太过于依赖男性角色而没有独立意识，或者太过于好女孩都是不好的，当然对坏女孩产生共情也是过分的。有朋友告诉我的一个例子是，当主角转生到另一个世界时，如果你不描述他如何对待他的头发以及之后如何打理他的头发，用户可能会担心而不再玩。这与一般的美少女游戏玩家完全相反，只要女孩可爱，基本上什么都可以。\n 我很高兴地说，有很多女粉丝喜欢我的游戏，这都要归功于长天酱太可爱了（很多人都说，“我很同情阿米酱！”非常感谢），但长天酱不仅仅是一个角色，而是大量男女角色的混合，保持故事的魔力变得更加困难。\n 我的兴趣是在某个领域（一切都是挑战），所以当我因为某种恶作剧的命运而面对少女时，我会尽我所能作为魔术师。\n\n包含每日日记的同人志正在摊位上出售！\n 当你读别人的日记时，看到那个人的想法与你融为一体，是不是感觉很神奇、很愉悦？\n\n我还想看一本商业论文集，其中包括我年轻时写的长文。我不需要读这些肮脏的文字。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

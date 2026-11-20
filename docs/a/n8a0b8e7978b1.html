@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：瓶装地狱</title>
+<title>一篇简短的文章：瓶装地狱</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-03-05 01:10</p>
-  <h1>一口随笔：瓶装地狱</h1>
+  <h1>一篇简短的文章：瓶装地狱</h1>
   <p class="ja-title">一口エッセイ:瓶詰地獄</p>
 </header>
 <main>
@@ -20,10 +20,11 @@
  理解なんてされなくていいと思っています。むしろ分かられて堪るものか。たまたま瓶が流れ着いた浜辺に居ただけの人間に、無人島での孤独が伝わるわけがない。「なにか気持ち悪いものを見てしまったなあ」と再び海に流してくれ。それを繰り返しているうちに、もしかしたら別の孤島へ辿り着くかもしれない。そこには別の孤独を抱えている人間が居て、瓶詰された地獄を読んで、自分の地獄と重ねたり比較したりする。けれども、それだけのことです。だからといってお互い海を渡れないのだから、物語はそこで終わる。ネットの海とはそうあるべきと感じます。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇简短的文章：瓶装地狱\n\n由于互联网的浩瀚，常常被比作“海洋”。这似乎不是一个适合这样诗意比喻的地方，但如果整个互联网是一片海洋，那么 Twitter 的时间线也将是一片海洋。\n 在这种情况下，我们的推文就变成了一种将文字放入瓶子并释放到海洋中的行为，祈祷它们能够到达至少一个人的手中。如果这只是一封来自远海孤岛的仇恨之信，那么这句嘀咕就会被封在地狱里。\n 既然他不辞辛劳地将自己的个人地狱困在瓶子里，他不应该轻易被同情或怜悯。不要贬低自己的痛苦。正常来说，应该是一种复杂而陌生的感觉，甚至无法用语言来形容。即便如此，瓶子还是空的，除非你在上面写下一些东西并盖上盖子，所以你对此无能为力。\n 我认为你不需要被理解。相反，它是可以理解和享受的东西。一个恰好在瓶子被冲上的海滩上的人不可能感受到荒岛上的孤独。 “我看到了一些恶心的东西，”然后又把它冲进了海里。如果你不断重复这个，你可能会落入另一个孤岛。还有一个人正遭受孤独之苦，他读了瓶装地狱的故事，并将其与自己的地狱重叠并进行比较。但仅此而已。这并不意味着他们不能跨越海洋，所以故事就到此结束。我觉得这就是互联网应该有的样子。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -43,7 +44,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

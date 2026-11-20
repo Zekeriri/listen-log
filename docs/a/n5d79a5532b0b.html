@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>不良少年的外观</title>
+<title>洋基视觉</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-01-25 05:55</p>
-  <h1>不良少年的外观</h1>
+  <h1>洋基视觉</h1>
   <p class="ja-title">ヤンキーのビジュアル</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"洋基视觉\n\n我住在冲绳的时候，左右两边都有很多洋基队，但他们的种姓越高，他们看起来就越好。来自冲绳的人天生皮肤黝黑，加上很多人天生面部特征就是深色的。最重要的是，这可能是因为在一个被人看到很重要的世界里，他们关心时尚。现在回想起来，我印象深刻的是，这是增加统计数据的一种非常合理的方式。\n 在青春期，仅凭一己之力很难对教育和财务做出重大改变。生长环境较差。那么没学历没钱的孩子怎么能争呢？这就是我们使用“视觉”的原因。\n 当然，有很多很酷/很可爱的人并不是不良少年，但如果你在学生时代就试图“浮夸”，你就会得意忘形。不过，如果是一开始就飘浮不定的不良分子，或者是越是独特就越被重视的不良分子，那么华而不实是没有问题的。你可以尽量不要看起来像孔雀，有些人可能会喜欢它，即使它太华丽了。我的强项是我从小就可以尝试穿孔和华丽的头发。东里部如此受欢迎的原因之一可能是洋基队的前卫时尚感，他们在过去和现在之间来回穿梭。\n\n我喜欢第24卷的摩登Mikey...人气投票的结果大多是靠脸！我是这么想的！\n 尤其是在这个因社交媒体的普及而外貌主义愈演愈烈的时代，从小就习惯了时尚的人可以转向夜世界和视频文化，并凭借自己的颜值获得成功。能够通过视觉的力量超越热爱学习的知识分子、蔑视不良少年，这种感觉一定很棒。我写这篇文章可能带有讽刺意味，但生活中应该有很多扭转局面的机会，所以教育背景和成长不是一切是件好事。嗯，这个世界上有超人，他们拥有所有的理智和敏捷的思维。人有亿万，自然也有天生地位最高的骗子。\n 但从根本上说，我们常人都缺乏某种地位，而且在这些方面我们往往比较薄弱，所以进步就慢。我喜欢怪物养殖，所以我不喜欢把时间浪费在生长不好的统计数据上。不要要求魔像聪明或躲闪。从某种意义上说，我觉得那些无意识地理解通过在现实中反映这种想法并关注视觉而不是学术能力或收入来确保在这个严酷的现代社会中获得地位的运动的人在某种意义上是聪明和高效的。如果你看起来不太僵硬，长得大就能获得坚强的个性。\n 无论如何，很高兴看到人们在可以轻松改进的领域进行竞争，而不必担心自己缺乏什么。战斗的方法有很多。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

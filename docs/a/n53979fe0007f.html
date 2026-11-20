@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：“光说酷的话 胃还是会变大哦”</title>
+<title>短文：“即使我说了所有很酷的事情，我的胃仍然表现出来。”</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-07 15:52</p>
-  <h1>一口随笔：“光说酷的话 胃还是会变大哦”</h1>
+  <h1>短文：“即使我说了所有很酷的事情，我的胃仍然表现出来。”</h1>
   <p class="ja-title">一口エッセイ: 「かっこいいことばかりいっても お腹が出てくるのよ」</p>
 </header>
 <main>
@@ -23,10 +23,11 @@
 毎日の日記をまとめた同人誌や、若い頃の文章をまとめたエッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：“即使我说了所有很酷的事情，我的胃仍然表现出来。”\n\n我一生中从未体重增加过。\n 由于我天生就没有嗅觉，所以我可能对做饭或吃饭没有兴趣，所以直到现在我还没有经历过一段时间的酗酒。然而，当我和一群人一起吃饭时，我觉得我手边没有太多东西，所以我倾向于伸手去拿那里的东西。然而，没有特别的体重问题。即使是现在。\n 然而，现在我快30了，吃完饭就开始感觉臃肿。我们来了，‘老’。这可能是因为我的腹部肌肉和内部肌肉由于没有运动的生活而减弱，饭后支撑胃的能力减弱了。\n 过着随性的生活是可以的，但是不合时宜的生活就不行了。没办法，除了原本开始骑固定自行车缓解失眠之外，我开始做一系列增强腹部肌肉的运动，不知怎的，吃完饭肚子也平坦了。结果，我感觉自己比20岁出头的时候更健康了！我必须每天继续做健身车和仰卧起坐直到我死吗？\n 盛高千里在她表现女性力量的名曲《即使我成为欧巴桑》中也说过，“即使你说所有很酷的话，你的肚子还是会出来。”对，对。盛高千里26岁时，在与42岁的人谈话时，谈到了被迫成为老太婆的恐惧。然而，现在她已经42岁了，庆祝出道25周年，盛高千里仍然有一个强烈的人物故事，通过展示她与全盛时期相媲美的美丽，让粉丝们兴奋不已。你到底为此付出了多少努力？她是一位非常坚强而高贵的女性，她唱着那首著名的歌曲。\n\n请欣赏收录了我的日常日记的同人志和收录了我年轻时的作品的散文集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

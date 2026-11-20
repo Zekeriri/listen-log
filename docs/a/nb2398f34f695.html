@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：虽然是美少女化的叔叔，但被真心喜欢很困扰</title>
+<title>短文：我是一个老人，变成了一个美丽的女孩，但我遇到了麻烦，因为我深深地爱着他。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-04 04:14</p>
-  <h1>一口随笔：虽然是美少女化的叔叔，但被真心喜欢很困扰</h1>
+  <h1>短文：我是一个老人，变成了一个美丽的女孩，但我遇到了麻烦，因为我深深地爱着他。</h1>
   <p class="ja-title">一口エッセイ: 美少女化したおじさんだけど、ガチ恋されて困ってます</p>
 </header>
 <main>
@@ -27,10 +27,11 @@
 先月発売した商業エッセイ集でも美少女ぶっている。中身はキモいオタクなのに……。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：我是一个老人，变成了一个美丽的女孩，但我遇到了麻烦，因为我深深地爱着他。\n\n我发表了一篇文章，其中我选择了2021年我最喜欢的15部漫画，我将更多地谈论我选择的那部《老人变成了一个美丽的女孩，但我因为真的爱上了他而遇到了麻烦。》这部作品是关于一个曾经是令人毛骨悚然的处女的中年男人突然变成美丽的女孩，以及他们如何以某种方式共同努力作为女孩生存的故事。\n\n我喜欢这部作品的地方在于，它把老人的粗俗描绘得淋漓尽致，TS前的角色无论是外表还是行为都像令人毛骨悚然的御宅族。他们不可能和异性进行正常的交谈，但变成美少女后跟着他们的老男人自然也让人恶心。\n 换句话说，他们在TS之前在工作场所给地下偶像和顾客带来的不适，现在又回到了他们身上。一个曾经追逐地下偶像的老男人得到了TS，成为了美少女偶像，但他的精神却不断被冒充男友的老男人粉丝所破坏。\n\n只表现出恶心的男人，美少女的相对可爱就凸显出来了。活成一个漂亮女孩的希望就是利用这种情况，尽可能地表现得可爱。世界上的美少女角色或许知道自己的可爱，但不可能从客观的角度充分利用它。因为她一开始就是“可爱”，所以我不明白其他的标准。\n 然而，从前的老人变成了美少女就不一样了。你可以释放你在沉闷的中年时期一直苦苦挣扎的性欲，你可以完全拥抱你几十年来建立起来的理想“可爱”。享受与可爱相反的老人创造的终极可爱。\n\n包含日常文章的同人志现在正在展位上出售。封面看起来就像一个美丽的女孩！\n\n即使在上个月发布的商业随笔集中，她也将自己描绘成一个美丽的女孩。虽然他的内心是一个令人毛骨悚然的宅男……"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

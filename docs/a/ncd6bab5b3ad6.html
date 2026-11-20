@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>自慰行为</title>
+<title>手淫</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-05 05:47</p>
-  <h1>自慰行为</h1>
+  <h1>手淫</h1>
   <p class="ja-title">自慰行為</p>
 </header>
 <main>
@@ -27,10 +27,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"手淫\n\n一位粉丝带着一丝自嘲的语气回答说：“我唯一能对任何人说的就是推特和自慰。”但我觉得他的立场真的很酷，所以我回答说：“够了。”因为我希望你能昂首挺胸地生活。\n 好吧，不管推特如何，我意识到生活就是一场伟大的自慰行为。不管走多远，最终面对自己的只是自慰。毕竟，性是与另一个人的交流。当然，与他人互动很重要并且感觉良好，但人类本质上是孤独的。即使你有爱人或结婚对象，也只是两个孤独的人并肩而行。想要真正与他人融为一体是不可能的。\n 自慰意味着安慰自己。这是一件好事。治愈你自己的孤独和悲伤。这是令人钦佩的。能够独自完成这件事真是太好了。这个人很酷，因为他们可以说他们一直在这样做。对我来说，手淫的次数明显减少了。已经快30了。当我十几岁到二十岁出头的时候，我感觉自己的性欲永远不会耗尽，但逐渐平静下来，我只是每周在DLsite闲逛几次。我全盛时期很喜欢催眠，所以就用自己喜欢的纯爱故事的插画来营造催眠的情境，并在上面加上台词。现在，如果你问我是否愿意经历这些麻烦来自慰，我会说不。\n 我不知道是不是因为上帝命令我们“生养众多，遍满地面”，但我们人类本能地追求生殖活动。由于“繁殖”是生物的一切，因此被称为性欲的生命能量减少是一个问题。就连岛耕作也随着性欲的提升而提升。即使是那些在学校或工作中烦人的家伙，回家后也会手淫。因为那是你生活正常的证明。充分享受生活并没有什么错。上帝批准了。\n\n作者稻垣Azuho对于自慰的思考是最精彩的。 “说到快乐，ONANI是世界上最好的。它是免费的，可以做任何复杂的事情。它可以转化为哲学或文学。柏拉图的哲学，歌德的浮士德，这就是ONANI。”“你是对的。哲学和文学也是用来安慰自己、说服自己的。这很复杂，但底线是手淫。顺便说一句，在稻垣安穗和野坂秋则的谈话结束时，他们说：“那么我们接吻吧。”\n故事以他们的嘴唇突然碰触而告终。这就是真正酷的人的生活方式。\n\n我们需要越来越多地自慰。确认自己是唯一能安慰自己的人，狠狠地咬了咬牙。我尊重那些能够告诉别人自己一直在自慰的人，我也不会嘲笑蓝色档案馆里那些粗暴地自慰的书呆子。你们是最酷的，比任何人都更喜欢哲学和文学。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

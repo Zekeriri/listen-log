@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：黑暗英雄</title>
+<title>一篇简短的文章：黑暗英雄</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-08-10 08:37</p>
-  <h1>一口随笔：黑暗英雄</h1>
+  <h1>一篇简短的文章：黑暗英雄</h1>
   <p class="ja-title">一口エッセイ:ダークヒーロー</p>
 </header>
 <main>
@@ -29,10 +29,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇简短的文章：黑暗英雄\n\n虽然我有收集特效玩具、雕像和软胶的爱好，但我喜欢“奇怪的形式”，所以我通常喜欢敌人和怪物的设计，而不是英雄。这就是正义，酷的东西就是酷的！我目前很迷恋奥特曼开拓者的红光和蓝光。\n\n或许正是那份忧伤、悲伤、清凉，让人一眼就看出它与人类格格不入。另一个原因是她的肤色偏向于黑色和紫色。小时候很喜欢《邪恶迪迦》和《假面骑士Ohja》。\n 我不记得具体是什么时候，但大约在我三年级的时候，我意识到无论如何，我都不会再站在正义一边了。部分是因为我喜欢的角色，我对什么是正确的不感兴趣。我第一次意识到这一点是当我一段时间以来第一次被送去学校时，当时我不再上学了。那天正好是学校演出的日子，我在体育馆里排队，对舞蹈一无所知。当然我根本不会跳舞，所以我跳到一半就害怕了，蹲了下来。\n 老师什么也看不见，在歌曲间隙把我拉到一边，让我离开。我很惊讶他对我大喊：“你为什么不跳舞？”他忘记了我已经有一段时间第一次来学校了。当我借口说我不会跳我不知道的舞蹈时，了解情况的老师很快改变了态度并道歉。作为一个孩子，我发现很难感觉到他不想把它变成一个大问题。但是，如果老师总是处于正确的位置，我坚信我将来绝对不会处于正义的位置。\n 之后，我在《数码宝贝驯兽师》中看到了别西卜兽，这真的拯救了我的心。\n\n我的心立刻就被这个朋克风格的数码兽迷住了，它以黑暗英雄的身份出现，不是主角的完全盟友，而是一个扭曲的人和病毒种。孩子托付给他的玩具枪变身为特殊攻击的设定也不错。别西卜兽只为自己的信仰而行动，因此，他有时会成为对手，有时会成为盟友。并不是说我想轻易成为英雄，而是因为利益的契合而站在主角一边（不过，既然是儿童动画，内心还是善良的）。\n 我隐隐约约地认为这是最好的。像黑多拉一样，像怪物一样对所有人造成真正的伤害是可以的，但有时也有拯救别人的一面……不过，我幻想这不是出于道德或虚伪，而是坚持邪恶审美的结果……在《金肉人》中，全身伤痕累累的亚特兰蒂斯，一边回应孩子们的欢呼，一边打着“你的脚后跟”，给我留下了深刻的印象。当然，在社会上，他并不是所有有道德的人都能容忍的，但如果只有一个人能够理解他的生活方式，那就好了。\n 虽然我一生都没有机会像这样一个邪恶的人一样生活，但我的日记和其他创作作品经常因为缺乏道德感和社交技能而受到批评。我并不特别在乎是否每个人都理解我或同情我，但每次我看到有人不遗余力地列出我的问题，就像他们试图摆脱恶魔的头一样，我都会回想起他们强迫我去学校跳舞时的感受。\n 我的意思是，我想那很好。我跳舞跳得不好，只好蹲在原地，老师必须把任何碍事的人都移走，以免扰乱学生的圈子。如果不这样做，我们就活不下去，双方都有各自的立场。我总是写我的生活方式，我的作品是扭曲的，我取笑我的同学，他们在练习和表演学校教的舞蹈时感到快乐和团结。既然无论如何都无法混在一起，那么，会跳舞的就应该活在舞台上，而那些忍不住嫉妒的就应该活在幕后的不同世界里。\n\n请欣赏整理日常日记和商业随笔集的同人志。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

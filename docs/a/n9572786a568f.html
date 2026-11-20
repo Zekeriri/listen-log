@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔:《杀戮尖塔》和衰老</title>
+<title>一篇简短的文章：杀戮尖塔和衰老</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-06-15 04:46</p>
-  <h1>一口随笔:《杀戮尖塔》和衰老</h1>
+  <h1>一篇简短的文章：杀戮尖塔和衰老</h1>
   <p class="ja-title">一口エッセイ: Slay the Spireと加齢</p>
 </header>
 <main>
@@ -33,10 +33,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇简短的文章：杀戮尖塔和衰老\n\n我沉迷于一款名为“Slay the Spire”的游戏，最近我遇到了麻烦，因为如果我不擅长它，我最终会玩得太过努力，以至于毁掉我的一整天。 Roguelike太容易上瘾了！\n 不过，我还是设法清除了它。\n 虽然说通关了，但这只是彻底玩下去的开始，不过首先我要打败最终boss——心脏。虽然我对自己的牌组构图不太有信心，但结果却出奇的好，而且随机数是个奇怪的东西。\n\n很难解释这是一款什么样的游戏。穿过随机配置的地下城并\n\n收集卡牌并挑战老板。你可以称它为《神秘地牢》的卡牌游戏版本。也许有更好的表达方式，但重要的是随机性。每次玩的时候，你都会从头开始收集卡牌，所以在脑海中慢慢勾勒出一幅完整的图画并思考“这次我应该使用什么样的牌组？”是很有趣的。\n 它的感觉类似于《暗影之诗》和《炉石传说》中也使用的单人版本的选秀战斗，你一张一张地挑选卡牌，然后使用你当场创建的牌组相互对战。我喜欢那个选秀匹配系统。您将测试您的应用技能，而不是从头开始彻底开发套牌的乐趣。确实，“我们别无选择，只能与手中的牌作斗争。”\n 不幸的是，每次玩牌时牌组都会重置，因此您收集的牌是千载难逢的机会。无论组合有多强大，下次你都需要绘制一幅完全不同的图画。由于你获得的卡牌是随机的，因此你必须相应地决定关注哪张卡牌。诀窍是压缩你的牌组以抽出一张杀手牌。抽牌和牌组中的牌张数。从经验中可以看出，少用弱牌比多用强牌效率更高。\n 我喜欢的角色沉默，是一个以招数来竞争的角色，是一种抽签、快速连续攻击的类型。弄清楚如何从各种各样的选择中获得最大的伤害是很有趣的。我曾经在《游戏王》中使用过“移除小工具”，感觉也很相似。因为你不可能用完牌，所以只有几个回合你的行动受到限制。\n\n顺便说一句，我玩这个游戏的原因是因为hancho们玩得很开心。事实上，我感觉自己变老了。他们的大脑中已经形成了一种逻辑：“老年人喜欢它，所以我可能也会喜欢它。”事情就这样发生了。在我这个年纪，跟随 Hanchos 比接触最新的、奇怪的令人兴奋的内容更令人兴奋。\n\n当然，我从十几岁起就开始玩《神秘地下城》和《炉石传说》，甚至在我睡觉的时候（甚至我妈妈也疯狂地玩《Torneko》），所以无论我多大，我都会喜欢它们。我认为受到汉乔的启发使我发生了变化。\n 和黑衣人、债主一起打游戏、喝酒，难道比幻想年轻人去大冒险更刺激吗？尽管这令人沮丧，但接受它并与之共存实际上很有趣。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -56,7 +57,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

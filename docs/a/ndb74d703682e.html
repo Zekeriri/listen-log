@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔: 江户川乱步与恋上美少女角色的异常者</title>
+<title>短文：江户川乱步与爱上美少女角色的变态者</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-04-27 04:36</p>
-  <h1>一口随笔: 江户川乱步与恋上美少女角色的异常者</h1>
+  <h1>短文：江户川乱步与爱上美少女角色的变态者</h1>
   <p class="ja-title">一口エッセイ:江戸川乱歩と美少女キャラクターに恋する異常者</p>
 </header>
 <main>
@@ -29,10 +29,11 @@
  僕は、なんだかそんな乱歩作品の男たちが酷く羨ましくなつてしまつた。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：江户川乱步与爱上美少女角色的变态者\n\n我的一个朋友告诉我，他开始迷恋京极夏彦，所以我受到启发，重读了《Ukatori no Natsu》和《Mouryou no Hako》。\n 3000字最多也太短了，不足以表达我学生时代受京极夏彦，尤其是《梦阳之箱》的影响有多大，所以这里就省略了。尼亚拉初中和高中时的读书伙伴是洛夫克拉夫特、京极夏彦和小林泰三。\n 读完《Mouryou no Hako》和玩《Atrak-Nakua》后，我彻底爱上了“审美女学生之间的哥特式世界观和恐怖”，至今无法回头。\n 不过，这次我要说的是对京极夏彦影响很大的江户川乱步的《与押江旅行的男人》和《人梨之恋》。\n\n当我几年后第一次重读《Mouryou no Hako》时，我非常兴奋，决定在一段时间内第一次读《押江与旅人》，但我发现它出版在我最喜欢的《乙女书架》系列中​​，所以我立即买了它。\n 这个系列对我来说是一本梦想书，因为它结合了文学作品和美学插画。感谢你的存在。\n 江户川乱步有时会用恐怖来创造出看起来超凡脱俗的美丽女孩。我经常在网络上看到讽刺的说法，“恐怖和搞笑只是一线之隔”，但我个人认为更重要的是要记住“恐怖和美丽是密切相关的。”“哥特”流派本身被认为是从巨大的黑暗中提取美丽的过程，这也是前面提到的“Mourou no Hako”和“Atrak Naqua”的共同点。\n 恐怖片的魅力之一在于，它能以超凡脱俗的美感和“黄色”等表情，令人信服地描绘出美男美女。乱步的《与押江旅行的男人》和《人无恋》准确地抓住了这一点。\n 总而言之，《押江与旅行的男人》是一个关于一个年轻人爱上一个二维女人的故事。一个男人被画中的美丽女人迷住了，由于对画中女人的痴迷，他的愿望实现了，他进入了同样的画。兰波在这里所做的善意之处在于，他没有将画中选择与美丽女子永远生活的男人描绘成“糟糕的结局”。事实上，无论几十年过去了，画中的男人似乎都很幸福。这种咸李子是无法抗拒的。正如标题所示，《人偶之恋》讲述了一个男人爱上了非人类的东西……也就是说，一个美丽的人偶，但他和美丽的人偶在一起的日子却被描绘成幸福的故事。\n\n多么充满希望啊！与二次元角色一起生活，与美少女人物对话，即使对于现代御宅族来说也是长久以来的梦想。兰波以文学的形式预见到了这一点，并将其描述为“幸福”。曾经有过这样的温暖吗？当然，从叙述者这个普通人的角度来看，他可能显得不正常。从自己的主观角度来看快乐比从别人的客观角度来看快乐更重要。江户川乱步，这位生活在遥远过去的文学大人物，对于二次元世界的热爱早已有了定论。这让我非常高兴。\n 出于某种原因，我对兰波笔下的男人感到非常嫉妒。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

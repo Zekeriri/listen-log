@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：这样的角色可能有顺序</title>
+<title>快速文章：这些角色可能有一定的顺序。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-03-21 02:46</p>
-  <h1>一口随笔：这样的角色可能有顺序</h1>
+  <h1>快速文章：这些角色可能有一定的顺序。</h1>
   <p class="ja-title">一口エッセイ: こういう役には多分順番がある</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"快速文章：这些角色可能有一定的顺序。\n\n我经常被嘲笑为“假人”。当然。尽管我抱怨社会，郁闷地写自己有多没用，但还是有读者玩游戏支持我。好吧，如果是相反的话，我也会觉得我是假的。\n 不过，我是推特新手，所以这是我第一次创建帐户，而且我不仅仅是一个比喻，我实际上是一个失业未成年人，我的教育背景垫底，而且我逃离了我的父母，所以我连家都没有。无可否认，这是事实，20岁出头的他吸毒、发疯，毁掉了一切。过去讨厌我的人有很多。这可能是真的。没有任何借口，都是我的错。\n 所以，如果你问我当时有没有装，我可以说没有。当时我其实很讨厌那些大学毕业找到工作的动漫偶像，尽管他们抱怨着，我也承认他们是假的。即使现在，当他们中的一些人把我视为冒牌货时，我也会想，“你是通过攻击别人找到工作的！”\n 《进击的巨人》中有一句台词是“也许这些角色是有秩序的……”正义一方和邪恶一方轮流的场景中的爆发。我想这就是这个意思。一个曾经对特权阶层怀恨在心的失业男孩，现在发现自己被激进的年轻人所憎恨。\n 这是命令。我曾经讨厌的人，也许原本都是穷人。很大的可能，他只是幸运地长大了，一生一无所有。我想也是如此。如果我不写任何文章，我就会永远成为互联网上的巨魔。这是一条很好的线。因为他有恩怨和仇恨作为动力，所以他才能以嫉妒为跳板，坚持下去。但一旦你跳上舞台，就轮到你被下面的质问了。毕竟这是命令。\n 尽管如此，我的生活还要继续，既然我还活着，我就必须接受新的挑战。因此，我有时会感到沮丧并发布阴郁的帖子。当然，这会激怒其他人。 “别表现出你很沮丧的样子，你这个假混蛋！”我无能为力。我别无选择，只能接受命令。然而，当我写日记时，我不会撒谎我的感受。不幸的是，就像你一样，我也很痛苦。接下来，就轮到你被讨厌了。到时候你就知道了。这是命令。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

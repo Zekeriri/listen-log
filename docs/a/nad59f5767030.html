@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：变成S+了</title>
+<title>短文：我得到了S+</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-25 04:55</p>
-  <h1>一口随笔：变成S+了</h1>
+  <h1>短文：我得到了S+</h1>
   <p class="ja-title">一口エッセイ:S＋になったよ</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：我得到了S+\n\n最后，《喷射战士 3》的 Udemae 已晋升为 S+。这只是真正的高级玩家的一个起点，但我很高兴我第一次开始玩 Splatoon 时就达到了目标。请尽可能多地邀请你们共同的关注者♪（到现在为止，我没有任何信心，也没有和其他人做任何事情。）\n\n该武器是可变滚轮。原因是它是像F91的Vesbar一样的可变武器。 Vesvar是（Valiable Speed Beam Rifle）的缩写。能够进行光束攻击，输出力如此之强，让飞行员西博克惊讶道：“太强大了！”\n 想必很多人都喜欢《超级机器人大战》和《VS》系列。我喜欢从薄薄的F91中发出像女人一样粗壮的光束的间隙。超级机器人的燃油效率很差。\n 可变滚筒也是一种棘手的武器，它像 Vesvar 一样使用不同的墨水输出。它的战斗方式是立即决定是使用距离远但速度慢的攻击，还是使用距离近但速度快的攻击。你可以做任何事，但如果你不能掌握它，一切都是向后兼容的。潜艇也有诱捕的习惯。特别是一种极其强大的多导弹。我喜欢这个！\n 通过远程射击开辟出一条路径后，你可以立即潜入敌方阵线并快速将其射杀。当您能够正确移动时，您就可以像 F91 一样平稳、灵巧地移动。起初我没有勇气跳入敌营，但当我逐渐发现了摧毁敌营并回家的乐趣后，我惊讶于自己竟然能这么快就达到S+。考虑到垂直和水平拍摄的速度差异，能够立即决定选择哪一个并取得成功的感觉很棒。还有最后的第三种选择，就是向前冲过去，以滚轮的方式将其击杀。一路上，我好几次都差点放弃了，“如果我选择一个普通的射手不是会更快吗？”，但我还是做到了。\n 我仍然不擅长动作游戏，但即使是热门游戏我也能竞争，这一事实给了我信心。你做到了。能够理解时间线上每个人在说什么是很有趣的。下次我会清除神奇宝贝的。任天堂推出了太多有趣的游戏，令人恐惧。这太可怕了。\n 我不知道当 Udemae X 实施时我是否会再次投入数十个小时......\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

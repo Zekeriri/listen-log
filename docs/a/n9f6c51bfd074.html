@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：试着胡闹一下吧</title>
+<title>快速文章：尝试废话。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-03 03:21</p>
-  <h1>一口随笔：试着胡闹一下吧</h1>
+  <h1>快速文章：尝试废话。</h1>
   <p class="ja-title">一口エッセイ:でたらめをやってごらん</p>
 </header>
 <main>
@@ -28,10 +28,11 @@
 商業エッセイ集もよろしくね！ 若さゆえの毒が出まくり！！！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"快速文章：尝试废话。\n\n由于我是 Nidiga 的创建者，我可以更频繁地咨询经销商。其实今天也是一样。\n 首先，在网络人数增多、内容饱和的今天，我相信即使在常识范围内行动也不会有结果。换句话说，借用冈本太郎的话，我不得不说，“尝试一些废话。”当然，实际上我会尽可能给出更详细的建议，但这只是我可以抽象概括的内容。如果你想了解更多创作者之道，请阅读冈本太郎的文章《你自己有毒》！\n\n这只是引用冈本太郎的话，给大家举个例子，有一个大型活动，独立游戏提案竞逐，如果赢了，就可以得到支持金，所以很拥挤，但一个项目说“我想做一款经典游戏！”这样的话，很可能会立即被拒绝。\n 这是因为，王道是冠军已经走过的路，有趣的是，它是由大公司创建的，如果一个小团队走王道，它只会向后兼容大公司。\n 就求婚来说，最困难的就是在写剧情的时候突然意识到“○○不是很好吗？”这不是第二版的△△吗？”\n 只有当你克服了这种挫折，经过反复试验，将随机性组合起来，并将其升华成具有自己独特风格的原创作品时，你才能创造出有价值的东西。我为自己如此专横而道歉，但我明白这就是这个意思。\n 我有越来越多的机会谈论这一点，并且感谢塔罗曼的名言，我可以轻松地说服他。谢谢你，塔罗曼！但是，Taloman不允许自模仿重复已经做过的事情，所以下次我将无法使用这种方法进行解释！冈本太郎太强了！ ！ ！\n\n包含每日日记的同人志正在 BOOTH 发售！有时我写的东西几乎相同，但我希望你保持安静。\n\n我期待阅读您的商业论文集！青春之毒全出来了！ ！ ！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

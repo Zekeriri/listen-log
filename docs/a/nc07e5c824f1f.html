@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：打喷嚏大魔王与家庭的关系</title>
+<title>短文：白圣大魔王与家人的关系</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-06-09 14:14</p>
-  <h1>一口随笔：打喷嚏大魔王与家庭的关系</h1>
+  <h1>短文：白圣大魔王与家人的关系</h1>
   <p class="ja-title">一口エッセイ:ハクション大魔王と家族の関係</p>
 </header>
 <main>
@@ -33,10 +33,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♫</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：白圣大魔王与家人的关系\n\n我又睡着了，于是我把日记写到了中午。哦，我不喜欢它。即使我白天不发任何东西，也已经充满了信息。\n 反正我觉得睡不着的原因之一就是疲劳（我很快就会公布我正在努力的事情，敬请关注），但实际上，我最近一直在跳过北澳新心平，所以我没有Deevigo，而是服用精神药物，所以我经常发现自己还没来得及写日记就陷入了深度睡眠。睡一觉就好了。\n\n由于药物的影响，我变得非常迟钝，以至于我不太记得睡前做了什么。今天早上醒来时，有迹象表明正在播放《白书大魔王》，所以我因精神药物的作用而变得模糊的大脑，可能正在寻找龙之子制作公司的无忧无虑的氛围。\n 事实上（我没有什么可隐瞒的），当我试图在白山大魔王之前观看姆明时，有尝试和错误的痕迹。然而，不幸的是，“有趣的姆明家族”似乎无法订阅。在姆明谷看着巨魔的生活入睡的经历似乎很愉快，但是……\n 我下意识地重温的动画可能是白书大魔王。这是因为我小时候看过白书大魔王的所有剧集，平成时代的《阿库比酱》衍生剧和令和时代的翻拍版我也看过。说实话，我还是挺喜欢魔王这个存在的。\n 当我想到自己喜欢的东西时，除了不安全感之外什么也没有。白山大魔王周围的人物性格确实不太好。他无论如何都不是坏人，但他也不是儿童动漫中常见的那种可以说是好人、不放手的角色。\n\n例如，就服部君和哆啦A梦而言，他们的父母很友善，因为他们的白手起家的人，如忍者和机器人，很有用（在教育孩子们关于他们的情感方面）。他们就像你的家人一样给你爱。当然，有时这很艰难。\n\n健一的母亲甚至对服部感到愤怒，因为服部试图把他当作陌生人，而不是只是“付饭钱”的家庭成员。他是一个多么好的人啊。想到这里，就连曾经扼杀了他心的年轻忍者也泪流满面。\n 另一方面，Kan-chan的父母（这个孩子本质上是白山大魔王的主人）很糟糕。首先，他认为魔王是“一个打喷嚏就听话的人”。如果魔王突然打喷嚏，魔王从锅里出来，那么让他做家务是个好主意。爸爸会用命令的语气让我把剃须刀和牙刷带到卫生间。我不需要任何魔法，所以我想我应该自己做。当然，她也使用魔法来整修花园。\n 白山大魔王本人应该“倾听打喷嚏的人的声音”，所以他有一部分是无能为力的，但如果他不这样做，他只是一个不必要的大而迟钝的中年男人。与服部君不同，这里住着一个半裸的中年男子，所以他被迫过着奴隶般的生活也是有道理的。暂时来说，如果有另一个人在锅边打喷嚏，而魔王招待的是一个不认识的人，他会想办法把锅收回来。\n 然而魔王本人却极其笨拙，经常恶作剧，以至于害死了自己的女儿阿库比酱，所以最终魔王带来的麻烦比他的祝福还多。不过，小坎之所以和魔王玩耍，只是因为她对这个神秘的半裸中年男人有一种“友谊”的感觉。还有，这难道是阿库比娘的淡淡的爱吗？我想我喜欢这种关系，因为它有一种其他儿童动画中很少描述的严肃性。\n 服部君和哆啦A梦圆圆可爱，所以大家都接受。然而，白山大魔王是一个非常愚蠢的老人，他很少用魔法解决问题。连小学生 Kanchan 都觉得他在“照顾魔王”。而他的父母则计划“至少要利用这个靠近他们儿子的奇怪老人。”即便如此，他们之间还是产生了一点友谊和爱情。因为它是人类。感觉很温暖，有很大的空间可以让人掉进去。\n\n请欣赏由每日日记编成的同人志和商业文集♫"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -56,7 +57,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

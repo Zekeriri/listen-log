@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：《忒修斯之船》与我的幽灵</title>
+<title>短文：《忒修斯之船》和我的幽灵</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-08 02:03</p>
-  <h1>一口随笔：《忒修斯之船》与我的幽灵</h1>
+  <h1>短文：《忒修斯之船》和我的幽灵</h1>
   <p class="ja-title">一口エッセイ:「テセウスの船」と私のゴースト</p>
 </header>
 <main>
@@ -30,10 +30,11 @@
 商業エッセイ集の方もよろしくね。あんまり明るい話じゃないよ！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：《忒修斯之船》和我的幽灵\n\n昨晚，当我在日记中写到《薛定谔的猫》时，一位外国读者要求“下次告诉我有关忒修斯之船的事”，所以我决定不再悠哉地解释了！考虑到这一点，如果有人问我，我会谈论它。\n 给大家粗略地解释一下《忒修斯之船》，为了修理这艘船，一点一点地更换零件，当一路上所有的零件都被更换时，这能称为“同一艘船”吗？这是一个悖论。忒修斯是希腊神话中的人物。\n\n押井守说过类似的话，“电影机动警察的合唱团绕着市中心转”，同样，在《攻壳机动队》中，最令人兴奋的场景是那些清晰地描绘出这种充满生活感的混乱世界观的场景 pic.twitter.com/tjVZuci0QM — Nyalra (@nyalra) 2021 年 8 月 29 日\n\n第一次想到《忒修斯之船》是在看到押井守版的《攻壳机动队》时。在那个世界里，“假体”正在进步，人体除了大脑和基本神经以外的部分都可以被替换。如果人体没有任何身份证明的意义，那么“自我”又该如何定义呢？主题已描绘。研究完这个哲学问题后，我来到了“忒修斯之船”。\n 你怎么认为？首先，人体的细胞都有一个更新的时间，这样想的话，你可以说我和十几年前是一个不同的人了。但实际情况并非如此。我的自我和记忆是连续的。我的朋友实际上可能不在我拍的照片中，只是因为我认为他们是连续的！\n 我无法忍受草薙元子少校针对这个问题得出的结论。无论形式如何变化，进入我们意识的“直觉”是我们是谁的唯一证明。当你失去自我时，你所要做的就是相信在你大脑中回响的“直觉”的声音。我的鬼魂就是这么说的……\n\n我认为《攻壳机动队》的主题是“在一个存在伪记忆和假肢的世界里，是什么让一个人成为人类？”令人惊奇的是，如何有效地使用让人感觉“人类”的民族和精神音乐 https://t.co/wIfjtjpDJb — Nyalra (@nyalra) 2021 年 8 月 29 日\n\n包含日常文章的同人志现在正在展位上出售。这句话证明了我是谁。\n\n我还想要一本商业论文集。这不是一个非常光明的故事！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

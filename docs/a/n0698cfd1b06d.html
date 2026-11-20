@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：深夜公园回响的非洲鼓</title>
+<title>短文：深夜公园里响起非洲鼓的回声</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-08-07 07:45</p>
-  <h1>一口随笔：深夜公园回响的非洲鼓</h1>
+  <h1>短文：深夜公园里响起非洲鼓的回声</h1>
   <p class="ja-title">一口エッセイ:深夜の公園に響くジャンベ</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：深夜公园里响起非洲鼓的回声\n\n穿过中野向北口直走，经过荒井药师就会发现一个大公园。此外，在街中央的长凳上，有一群尼泊尔人（可能）继续打非洲鼓、喝酒、唱歌直到早上。\n 它位于一个大公园的中心，所以不会打扰邻居。当我深夜散步经过一个公园时，我开始听到不知从哪里传来欢快的节奏和歌声，当我顺着声音的方向漫步时，我到达了一个尼泊尔聚会。\n 这也根本没有停止。因为它是一门外语，所以我不知道界限，所以我最终敲着非洲鼓，连续唱了几个小时，却不知道它何时循环。我根本没有休息过。我不知道这是否是同一首歌，但深夜有空闲时间在公园里散步的人们，被这声音所吸引，自然而然地将自己包围起来，随着歌曲的节奏拍手。这是一个多么奇怪的空间。\n 在这样的时候，我意识到我是自闭症。我不明白与声音统一的行为，同步的动作，可以让你感觉良好。他们无法将集体唱歌、跳舞或听音乐视为“乐趣”。我喜欢音乐，但我认为最好呆在家里独自听。我只去过几次俱乐部社交，也只去过一次现场表演，当时是试运行桃井晴子的现场表演。我不知道“一大群人的动作同步，移动身体，发出声音”有什么好玩的。我并不反对喜欢它的人。 Kraftwerk 是今天唯一一位我想去现场观看的还活着的艺术家。\n 然而，作为一个原则，“通过声音统一”对于人类交流来说是必要的，这是显而易见的。在宗教意义上，在文化意义上，以及在更基本的友情意义上。对于一群从大洋彼岸来到日本的人来说，和朋友们一起唱歌、跳舞、喝酒，吵闹到天亮，这一定是非常有趣的一天。事实上，以如此易于理解的方式释放压力似乎表明正在做正确的事情。令人惊讶的是，西成的许多日工似乎都喜欢他们的生活方式。这是因为你可以把当天工作赚的钱花在酒会上，和大家玩得很开心，然后回去工作，当晚再喝酒，重复这个过程，而不必考虑任何不必要的事情。\n 尼泊尔人举办这些聚会的频率似乎相当高。另一个公园里有尼泊尔表演者的表演。可能感觉每个人都在下午工作，以便晚上可以唱歌跳舞。如果是这样，这个想法就有道理了。你活着的目的很明确，心里也有既定的方针，所以你要做的就是全力以赴。如果你不断地敲击非洲鼓并提高声音，小细节就会在轻快的节奏中消失。那挺好的。\n 我在附近的长凳上看了大约20分钟。他们注意到有一些访客，包括我，但他们没有注意他们并继续唱歌。由于音乐永不停息，游客没有机会互相交流。观看的人可以自由地跳舞或鼓掌。既不欢迎也不拒绝。但我们只是继续唱歌。\n 太棒了。我很嫉妒。如果我参加俱乐部或现场音乐会并随着音乐尖叫和跳跃，我会感到高兴吗？我实在无法想象自己是这样的。事实上，您可能没有时间在 Kraftwerk 音乐会上跳来跳去。事实上，当我和艾奥巴恩等人去俱乐部时，我只是靠着墙站在那里。很高兴看到观众为我写的歌曲而疯狂，但这与团聚的感觉不同。我想买一把非洲鼓，深夜独自在公园里玩。也许我看起来像个纸团并没有那么糟糕。毕竟，深夜外出的人想要排解孤独，只需要通过吵闹的方式知道有人在附近就可以了。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

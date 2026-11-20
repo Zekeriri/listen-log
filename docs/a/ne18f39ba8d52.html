@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：今天仍然不能变得普通</title>
+<title>短文：我今天还不能正常。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-30 22:42</p>
-  <h1>一口随笔：今天仍然不能变得普通</h1>
+  <h1>短文：我今天还不能正常。</h1>
   <p class="ja-title">一口エッセイ: 今日はまだフツーになれない</p>
 </header>
 <main>
@@ -27,10 +27,11 @@
 今月発売した商業エッセイ集もよろしくお願いします。どうして、こんな27歳になってしまったのかが分かります。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：我今天还不能正常。\n\n今年好漫画我懒得整理了，没能及时完成，就先介绍一部吧。 2021 年我最喜欢的描写女性关系的作品是《今天我还不能正常》。\n\n两位主角高桥和山下（均为 27 岁）不可能像标题所暗示的那样“正常”。高桥喜欢可爱的东西，在女仆咖啡厅做兼职，而山下是个精致的男人，无法解读周围的气氛并适应周围的环境，是一位崭露头角的漫画家。他们的同学通过工作和结婚过着“正常”的生活，而他们两个人仍然感到自己与社会格格不入。\n\n作为一名漫画家的山下还算不错，但生活唯一目的就是可爱的高桥就更糟糕了。我是单位里年龄最大的人，参加同学聚会时，我发现我是唯一一个自称“可爱发色（粉红色）”的人。就连我那些曾经轻浮的腐女朋友也变得正常了。我喜欢她认为粉红色的头发“太可爱了”。既然有这么可爱的答案，自己穿也是理所当然的。\n 高桥的漫画也在一次活动中受到了老作家们的称赞，但他自己却从来不知道爱情和工作，尽管他放弃了漫画并结婚了，并且有过很多经历。然而，我觉得很奇怪，我成为了一名漫画家，经验应该很重要。\n 作品中描绘了这种“正常”的现实，并表达了两人对此的立场。从读者的角度来看，我希望他们永远保持不变，但社会总是希望他们“正常”。人们在不知道什么是正确答案的情况下继续生活。\n\n包含日常文章的同人志现已在 BOOTH 出售。你可以窥见另一位27岁宅男的平庸生活。\n\n我期待阅读您本月发布的商业论文集。我明白为什么我27岁的时候会变成这样。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

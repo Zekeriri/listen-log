@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：NEEDY GIRL OVERDOSE 与我的病一起奔跑</title>
+<title>短文：需要帮助的女孩服药过量，带着我的病人跑步</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-03-29 03:47</p>
-  <h1>一口随笔：NEEDY GIRL OVERDOSE 与我的病一起奔跑</h1>
+  <h1>短文：需要帮助的女孩服药过量，带着我的病人跑步</h1>
   <p class="ja-title">一口エッセイ: NEEDY GIRL OVERDOSE RUN WITH MY SICK</p>
 </header>
 <main>
@@ -27,10 +27,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：需要帮助的女孩服药过量，带着我的病人跑步\n\n不久前，尼迪加的漫画版《NEEDY GIRL OVERDOSE RUN WITH MY SICK》开始连载。你可以在Manga Cross上阅读，所以赶快行动吧！顺便说一下，下一篇文章将于4月4日发表。\n 现在，我也以游戏策划和原作作家的身份监督这个系列，但故事是由原漫画作者 Bonnoki 老师编写的。我很感激吸力动画也做得很好。当我的老师联系我并说“我希望你根据这部作品创作一部漫画！”时，我感到非常惊讶，这让我震惊不已。 Nidiga 受到了创作者的好评。我很自豪能够创作出一部能引起这么多人共鸣的作品。另外，Nata先生所画的插图的触感也非常美妙。我担心我会因为赞扬我所参与的工作而被责骂，但即使只有我，Nata老师的Ame-chan也有一张非常好的脸……如果没有Couten-chan/Ame-chan的颜值力量，Nidiga是不可能的。谢谢阿梅独特的可爱但又无法隐藏的阴暗表情。\n 当我们联系我连载这本书并在秋田书店见面时，我并不热衷于将其改编成漫画。首先，在本作中，有多少个用户就有多少个Ame-chan，每个人都有自己的故事。小阿梅的内心生活和背景还有很多方面是我刻意选择不透露的，很难把这种调整留给别人。\n 所以我告诉他我很担心。我想澄清这一点。尽管如此，Bonnoki先生的热情还是很强烈，他甚至说，“我喜欢这个作品，所以我真的很想让你做它”，他给我起的名字非常适合他的阴暗面和搞笑风格，使它作为漫画很有趣。最后，他提出了强调“这只是漫画版本的世界线”的想法，我同意了，认为用户有可能接受它。\n 这是漫画版的世界，不是你生活在游戏中的Ame-chan，游戏中的Pi是用户，但漫画中的Pi是故事中的角色。我要求他们进行反复试验，以确保清楚地传达这一点。我对Pi的设计、行为、Ame-chan的线条等做了很小的调整。剩下的绝对是Bonnoki老师的原创作品，而好看的脸是Nata老师画的结果。\n 以这种方式让我的工作脱离我的手的经历是复杂的。我的心情既激动又焦虑，就像我自己的女儿刚刚开始上小学一样。然而，有像老师和编辑这样很棒的人在照顾我，所以我所要做的就是相信他们。作为读者，我每次都期待着它。你可以比其他人更快地阅读其余部分。没关系，对吧？\n\n顺便说一句，Choboraunyopomi老师的Nidiga已经连载了，但它的一切都太神奇了，我不在乎圆周率或一致性......我只是每次都感到惊讶。另一方面，有时朝房老师会评论结局如何与游戏中的 ED 一致，我笑了，意识到他对此非常关心。很高兴看到 Pi 和 Ame-chan 一起玩得很开心。那是因为这种搞笑格式似乎是唯一的方法。谢谢乔博先生。\n Nidiga 已经有 870,000 份。也许，只是也许，Chotenchan会成为一个被百万人喜爱的女人。在那之前，我会尽力而为。好吧，我确信一旦我真正达到 100 万，我会更加忙碌！长天先生，真是一个罪孽深重的角色啊。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

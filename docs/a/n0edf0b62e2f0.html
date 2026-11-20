@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SL银河 最后的运行</title>
+<title>SL Galaxy 最后一次旅行</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-06-04 12:59</p>
-  <h1>SL银河 最后的运行</h1>
+  <h1>SL Galaxy 最后一次旅行</h1>
   <p class="ja-title">SL銀河 最後の運行</p>
 </header>
 <main>
@@ -29,10 +29,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"SL Galaxy 最后一次旅行\n\n我在花卷乘坐了SL Ginga。本周最后一次跑步。这是受宫泽贤治故乡银河特快列车启发而设计的列车的最后一次勇敢亮相。\n\n火车太棒了。开车时，烟雾从车窗飘进来，景色显得朦胧。有一种气氛。知道这一点后，坐在我旁边的一个看起来是当地人、铁书呆子的小学生告诉我什么时候应该打开和关闭窗户以防止烟雾。他将来可能会成为一名伟大的铁路医生。\n\n窗外，充满自然气息的花卷风景铺展开来，这一天，来自全城各地的人们走出家门，高兴地向我招手。花卷各地都有与贤治相关的著名景点，所以我想让大家都出来看看SL Ginga的结局。任何时候，窗外都会有大量拿着相机挥舞的当地人和铁书呆子。多么宝贵的经历啊。\n 之前新闻里就报道过，但在明确禁止擅自闯入的山里铁轨附近，却有几个忍者般的铁甲书呆子拿着三脚架拍照。多么痴迷啊。近距离观看“Junky Railway Otaku”可能是您永远不会再有的体验。 SL Ginga将承载着当地人、铁人以及宫泽贤治粉丝的梦想和感激之情，穿越岩手县。\n 很多人骑着自行车全速行驶，在车窗外挥手致意，让你感觉这座城市充满了活力。我是第一次来东北，所以没有什么特别的感觉。有点尴尬。\n\n车内的制作和展品都很精彩。 《银河快车之夜》的精确复制手稿、通往天堂的门票以及彩色玻璃内饰。最好的部分是天文馆，在车内的一个隔离空间中放映电影。光是看到这个就值得一游了。\n 尽管该列车是基于银河特快列车，但只在早上运行，而且列车已经订满。外面有很多微笑的祖父母，所以这不是银河快车活动，而是“城镇”节日。这就是宫泽贤治的读者（以及更多铁书呆子）遇到的障碍。\n 然而，天文馆完全是为了《银河铁道之夜》而设计的，星星和太空出现在只有少数人能触摸到的黑暗房间里，再现了乔瓦尼和坎帕内拉所看到的场景。如果这只是一场放映是一回事，但由于火车实际上正在运行，震动和声音自然会重叠作为效果。这种身临其境的感觉只有 SL Galaxy 才能重现。我在这个天文馆度过的十分钟绝对是“银河快车之夜”。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

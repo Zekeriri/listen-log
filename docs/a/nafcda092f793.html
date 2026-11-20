@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔:安眠药的舒适与恐怖</title>
+<title>短文：安眠药的轻松与恐惧</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-13 08:11</p>
-  <h1>一口随笔:安眠药的舒适与恐怖</h1>
+  <h1>短文：安眠药的轻松与恐惧</h1>
   <p class="ja-title">一口エッセイ:睡眠薬の楽さと怖さ</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 去年の年末に発売した、商業エッセイ集もよろしくお願いします。睡眠薬でラリった勢いで書いた文章がたくさんある！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：安眠药的轻松与恐惧\n\n这几天我一直睡眠不足，所以当我翻开药箱时，我找到了一种强力抗抑郁药，服用了25毫克的色醇，也很有效，我居然睡了一整天。\n 即使服用24小时后，我仍然感到困倦和头晕，我能感受到第一代的抗抑郁力量，毫不犹豫地发挥作用。科学的力量是惊人的，一颗小小的药丸就能影响体积大数百倍的人体。\n 有一段时间以来，我第一次感觉像被安眠药强迫关闭一样舒服地入睡，而且我已经习惯了，我再也不能在不吃任何药物的情况下慢慢地闭上眼睛等待睡眠了。\n 只服用一两粒药丸要容易得多，当你意识到 10 个小时已经过去时，这比试图睡在被子里并对抗模糊的焦虑要容易得多，但两小时后你认为自己失去了知觉时才醒来。\n 一旦人类认识到便利的好处，就很难摆脱它们，而且药物提供的暂时缓解越多，药效消失后的反应就会越大。正因为如此，我的大脑就像一台永远不会关闭并持续过热的电脑。\n 我认为最可怕的不是药物的不健康副作用，而是我们的大脑记住“舒适”并寻找它。例如，当谈到吸毒和非法药物时，我认为真正可怕的是，在了解吸毒和非法药物的“乐趣”之后，大脑不自觉地认为这就是生活的全部，而不是副作用造成的健康损害。这是一个很好的平衡调整。\n\n我们目前正在销售包含每日日记的同人志。谢谢。\n\n还请大家期待去年年底推出的商业随笔集。很多句子都是我吃安眠药兴奋的时候写的！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

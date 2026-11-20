@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：时机</title>
+<title>短文：时机</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-29 15:31</p>
-  <h1>一口随笔：时机</h1>
+  <h1>短文：时机</h1>
   <p class="ja-title">一口エッセイ:タイミング</p>
 </header>
 <main>
@@ -21,10 +21,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：时机\n\n早上。吃着安眠药入睡后，我恰巧同时收到了来自四面八方的信息，其中有一些让我感到难过，于是我的思绪一下子变得混乱起来。对于打电话的人来说，早上起床开始工作的时候很活跃，这是很自然的，而对于我来说，情况恰恰相反，我这个时候服用安眠药，正处于睡意最浓的时候。但这不是任何人的错。\n 果然无法抗拒药物带来的睡意，所以决定睡醒后写日记，所以就在中午发了。早上我很惊慌，但经过几个小时的睡眠和头脑清醒的阅读后，我能够毫无问题地回复每条消息。尽管那一刻你感到莫名的悲伤，但一旦冷静下来，它就变得微不足道了。人类是很难的。\n 当你这样想时，人类肯定有波浪，所以我想这都是关于时间的。 Black Biscuits 的《Timing》也是一首以此为主题的著名歌曲。如果你在“美好时光”联系他们，你会感到兴奋，你的好感度也会增加；如果您在“困难时期”联系他们，您可能会受到伤害或被回避。像这样的事情完全是随机的，如果你通过网络交流，你无法真正读懂对方的心情，所以这只是运气。歌词是：“人、城市、宇宙，都在不同的时间转动。”可能很难太同意他们的观点。”这句话太对了。想得太深是没有意义的。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -44,7 +45,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

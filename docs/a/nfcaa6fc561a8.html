@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：中午发帖</title>
+<title>短文：中午提交</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-06-07 12:58</p>
-  <h1>一口随笔：中午发帖</h1>
+  <h1>短文：中午提交</h1>
   <p class="ja-title">一口エッセイ:昼に投稿する</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：中午提交\n\n当你去旅行时，你会因为酒店退房时间而被迫早起，这导致你回家后的日常生活节奏会被打乱一段时间。所以这周我比平时起得早一点。\n 我醒得很早，或者更确切地说，我在深夜开始感到困倦，当我在我有时间写日记之前躺下小睡时，我意识到更多时候是白天。旅途中我没睡多少觉，几乎彻夜未眠，所以皱纹让我睡得很困。从周一到周二，除了开会之外，我大部分时间都在睡觉。\n 没关系。再过几天，我的生命周期又会被打乱，早上早睡，晚上起床，但不管怎么说，我就这样睡着了，下午决定发点东西的时候，我又担心内容的气氛会受到限制。\n 毕竟白天天很亮。当然，因为令人讨厌的太阳正在高高地升起。而且，由于我已经小睡不止了，所以我的头脑有些清醒。如果发生这种情况，输出字符串也会变亮。如果你在深夜或凌晨发帖还好，但即使有人在中午阅读，也不是这样的。当我在深夜读到一些关于极度抑郁的内容时，我可能会说，“我明白了一些事情......”，但白天，我会把它当作一个“('_ゝ`)粉丝，但最终我必须尽力而为。”\n 嗯，最终还是要努力，这并没有什么错。世界各地白天发布大量信息，因此令人遗憾的是，这些信息被学生和上班族视为“其中的一员”。就这一点而言，对于无法入睡的人来说，深夜发短信可能是一种“短暂的消磨时间”。如果能缓解一下夜晚的孤独，哪怕只是一点点，那就值得所有的废话了。\n 12:00到0:00的文字有一种“信息”或内容的感觉。但这很重要。如果没有严肃的信息和积极的故事，世界就无法继续下去。那时你甚至可以发出信息。不过，我真正想要的，是能够稍微舒缓一下深夜的寂静。\n 我起得很早，所以我要睡一会。晚安。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

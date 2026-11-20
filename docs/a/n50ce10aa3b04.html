@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口随笔：伏龙凤雏</title>
+<title>短文选：福龙雏</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-26 19:39</p>
-  <h1>精选一口随笔：伏龙凤雏</h1>
+  <h1>短文选：福龙雏</h1>
   <p class="ja-title">選り抜き一口エッセイ:伏竜鳳雛</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 長文エッセイをまとめた商業エッセイ集もよろしくお願いします。Amazon評価も入れてくれたら最高！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文选：福龙雏\n\n有一个词叫做“Fushiryuhohina”。这很神奇，因为它的措辞非常酷，但含义也非常酷。 “伏龙”代表诸葛亮，“丰子”则指庞统。两人都是《三国演义》中重要且能干的军事将领。\n “藏龙凤”犹如龙凤雏卧，比喻拥有超凡能力却隐于世间，尚未被发现的大型生物。每个人都会钦佩盖普，他比任何人都更有才华，但却躲藏起来而没有充分利用。\n 不管我隐藏什么，当我从大学退学失业时，我就沉浸在自己是“卧龙”的错觉之中。他们只是还没有做任何事情，但他们认为，如果给他们一些事情做，他们也许能够做得出奇的好。当然，他心里清楚，自己不是孔明，刘备不可能三度到他家求情。相反，他们只收到了停电停水的通知。\n 尽管如此，我想我可以利用在网上获得的知识来帮助人们，即使因为停电和停水而必须支付账单。他自诩为军事家，抱有很高的期望和自豪感，但在这一点上他比公明更接近阿Q。阿Q是个骄傲自满的傻子，用“精神胜利法”给别人制造麻烦，心里自以为“他比我强”，但自己却无能为力。\n 然而阿Q虽然是个白痴，却依然在工作。换句话说，我并不比中国的白痴代表阿Q好多少。有一个无助的年轻人，自以为是一条藏龙，一直把自己锁在房间里。\n\n我们正在出售编辑日常文章的同人志。欢迎来到新出版物！\n\n我还想要一本由长篇文章组成的商业论文集。如果您也可以留下亚马逊评级，那就太好了！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

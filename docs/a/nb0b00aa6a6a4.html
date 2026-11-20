@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>从“睡眠不足”中感受到的奇怪恐惧感的真相</title>
+<title>关于“缺水”引起的奇怪恐惧感的真实本质</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2020-05-02 22:10</p>
-  <h1>从“睡眠不足”中感受到的奇怪恐惧感的真相</h1>
+  <h1>关于“缺水”引起的奇怪恐惧感的真实本质</h1>
   <p class="ja-title">「すいみん不足」から感じる妙な恐怖感の正体について</p>
 </header>
 <main>
@@ -74,10 +74,11 @@
 今回もどうでもいい記事でした。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"关于“缺水”引起的奇怪恐惧感的真实本质\n\n今天我和往常一样失眠。我的身体开始泛红。\n 说实话，我因为安眠药的副作用而感到困倦和疲劳，不是睡不够，而是睡太多。\n\n我试着睡觉，但睡不着，浪费了几个小时，最后我吃了很多安眠药，导致我睡过头，浪费了十多个小时。即使醒来，我仍然感到困倦，肌肉放松，我无法让自己做任何事情，所以我又浪费了几个小时……我的生活重复着这一点。\n\n最近我主要服用Belsomra，这个药物副作用的解释很有趣。\n\n嗜睡 (4.7%)\n头痛 (3.9%)\n疲劳 (2.4%)\n噩梦 (1.2%)\n异常的梦 (0.8%)\n\n分别有“恶梦”和“异常梦”。总共有2%的几率会做危险的梦，所以每次都可以带着在嘎查中瞄准稀有的感觉去睡觉！\n 我做了一个不寻常的梦。\n\n我不在乎自己的睡眠状况，但当我想到自己睡眠不足时，这就是奇特列百科全书的OP，而这个OP在很多方面都令人惊叹。\n\n（图片：图1）\n\n基本上歌词都是负面的。讲的是一个人睡眠不足的故事，一旦静下来，你就不明白为什么这是一部儿童动画的片头曲。即使从照片上看，奇手烈和小助也在天空中飞翔，看起来很开心，说：“这让我很头疼。”\n 完整听一遍，开头的钟声、后半段缓慢的副歌，以及与动画版不相符的视觉效果，让人感觉像是《Tell Me Goodbye》一样疯狂。\n\n（图片：图2）\n\n藤子F老师的只有F是红色的奇怪作品也很可怕。如果Kiteretsu Encyclopedia 为Shaft 做这样的OP，我就会遇到麻烦。\n\n而且，奇捷列百科全书中播放的这首歌曲的版本实际上是根据动画调整歌词的版本，原曲的歌词带有相当政治性的摇滚歌词。\n\n社会困扰我\n那个女孩让我烦恼\n政治困扰着每个人\n每个人都心碎\n\n阳光如此明媚\n为什么人的影子那么薄？\n\n以正确形式存在的《奇捷列百科全书》比不存在的都市传说《哆啦A梦》要黑暗得多。\n\n在动画版中，由于睡眠不足，给周围的人带来麻烦，每个人都受到伤害，但在原曲中，每个人都受到社会的伤害。我喜欢前者，因为它更现实。\n\n剩下的就简单了\n\n（图片：图3）\n\n（图片：图4）\n\n（图片：图5）\n\n（图片：图6）\n\n看到鬼手烈的反应，以为是在向自己招手，结果发现其实是在向自己身后的女学生招手，并装作不在乎的样子来欺骗自己，然后就郁闷了。这种假装没事的举动也显得异常真实。\n 经历过好几次这样的误会，看到这一幕，我忍不住流泪。\n 首先，在客厅以欢快的语气播放“大家都受伤了~”等歌词的反常令人惊叹。\n\n强行改编成动画的社会讽刺性很强的歌曲的歌词、歌手不自然的欢快感和动画般的分镜，完美地平衡了这首神奇的OP。\n\n这也是一篇好文章。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -97,7 +98,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

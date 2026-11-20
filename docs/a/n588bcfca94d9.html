@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：在咖啡馆的各种事</title>
+<title>一篇简短的文章：在咖啡店可以做的事情</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-25 04:58</p>
-  <h1>一口随笔：在咖啡馆的各种事</h1>
+  <h1>一篇简短的文章：在咖啡店可以做的事情</h1>
   <p class="ja-title">一口エッセイ:喫茶店でのあれこれ</p>
 </header>
 <main>
@@ -31,10 +31,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇简短的文章：在咖啡店可以做的事情\n\n我的日常（除了周六周日人多的时候）就是在中野百老汇走走，然后去咖啡店看书，所以每周去咖啡店3到5次。\n 咖啡店是一个独特的地方，大量“陌生人”聚集在一起度过时光。这次，我就给大家讲一个关于这样一家咖啡店的小故事。\n 今天，我从妙妮辛Heedo回家的路上顺便路过一家咖啡店，看了制作人推荐的一本叫《游戏与人性》的书。这是一本解释“玩”概念的书，显然游戏公司要求其员工阅读它。一开始，“玩耍是一种与社会完全相反的行为”这样的句子突然出现在我的脑海里，每次我玩的时候我都会想，“这是一种与社会完全相反的行为。”我不想过那样的生活。\n\n就在这时，该男子的智能手机开始响了起来，他开始通过扬声器大声说话。如果仅此而已的话，他们正在争论“女孩的经营……”，所以无论怎么看，他们都在谈论“夜晚”。\n 我真的不在乎，因为我戴着耳机，但我很惊讶他有多么勇敢，能够在咖啡店中间大声谈论“夜晚”。随后，该男子离开店内时，礼貌地对工作人员说：“谢谢你们送餐！”令我印象深刻的是，这一定是体育俱乐部的教训。确实，最后表现出一些“礼貌”，她对这个她并不在意的男人的感情变得稍微积极了一些。\n 有一天，我面前坐着三个人，两男一女，两个男人开始兴奋起来，说：“下次，我们来做一首像YMO那样的歌吧！”我意识到这些人是乐队或作曲家，这两个老男人一演奏这首歌，他们就提供了它，一个看起来像地下偶像的华丽女孩是主唱。\n 两个男人在谈论 YMO 时变得很兴奋，Kraftwerk 这个名字在他们的谈话中出现了很多次，我很感兴趣，所以我听了，“让我们坐在中间，谈谈技术……”当我听的时候，女孩忽略了谈话，全神贯注于她的智能手机。\n 好吧，你对老头子的YMO演讲不感兴趣也是没办法的事，但既然很可能是你唱的，那你就得认真听啊！ ？我是这么想的，但既然与此事无关，我就一直在背后默默地担心着。但令人惊讶的是，这种关系可能会创造出杰作。\n 之前我一个人看书的时候，听到旁边两个男人说：“尼迪加嘎~，尼亚鲁拉嘎~”，我就专心听着，看样子他们是业内人士，于是我就和他们攀谈起来，没想到他们竟然是一家大型动漫公司的导演兼动画总监。\n 更重要的是，动画导演是前田吉夫，他指导了我最喜欢的女孩的动画，或者更确切地说，为 Nidiga 制作了音乐录影带。我真的很惊讶。显然，两人正在轻松地谈论着对尼迪加的印象，然后出乎意料的是，那个男人本人出现了。随后，我们三人聊起了动漫，兴奋地回家了。如果这能带来工作那就是命运。\n 《银与金》里有一集，他在一个独特小镇的咖啡店里待了一天，听谈话，以获得意想不到的信息并赚钱，我觉得他真的可以做到这一点。中野是一座有趣的城市。当你走进咖啡店时，你总会发现创作者和亚文化人士正在进行奇怪的对话。我无法告诉你有多少次我看到漫画家和编辑们为名字而苦恼。\n 至少有一次，每个人都应该尝试在陌生城镇的咖啡店里度过一整天，听陌生顾客的谈话。这有时会带来灵感，这就是为什么世界充满了神秘。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +55,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

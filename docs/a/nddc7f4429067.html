@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：Nidiga Switch版发售决定</title>
+<title>快速文章：Nidiga Switch 版本即将发布</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-22 07:00</p>
-  <h1>一口随笔：Nidiga Switch版发售决定</h1>
+  <h1>快速文章：Nidiga Switch 版本即将发布</h1>
   <p class="ja-title">一口エッセイ:ニディガSwitch版発売決定</p>
 </header>
 <main>
@@ -33,10 +33,11 @@ pic.twitter.com/mlSzZPrLLX— 🎀超絶最かわ🎀てんしちゃん (@x_ange
 商業エッセイ集もよろしくお願いします。この時代があったから、今のニディガにも繋がったのですね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"快速文章：Nidiga Switch 版本即将发布\n\n《NEEDY GIRL OVERDOSE》即将登陆 Switch！ ！ ！ ！\n很高兴见到你 pic.twitter.com/llAqIZIFME — Nyalra (@nyalra) 2022 年 5 月 21 日\n\n我的作品《NEEDY GIRL OVERDOSE》的Switch版已经发布。你做到了！虽然才发布了四个月，但感觉速度很快。一开始，我们设定了一个宽松的目标“几个月内发行10万份”。对于一款独立游戏来说，即使发行10万份也已经是大热门了，但Nidiga实现了“两个月内发行20万份”。目前超过45万份。超级十酱，绝对可怕。\n 由于粉丝数量的增加和速度的加快，制作团队陷入了疯狂。一旦我们达到了这一点，我们就与越来越多的重要成年人举行了一系列会议，他们希望使 100 万本书成为现实。不管是什么样的会议，我都会不寒而栗地想着如果有情况我这个原作者可以接管桌子，但实际上他平静地做自己的事情，不会像一个顽固的父亲那样生气，说：“不要取笑超级十酱！”（不过，推出超级十酱太方便了，每次我都坚持考虑在幕后生病的阿梅酱的感受。）很难，我想休息一下……我现在比做游戏时还忙。请有人带我在小阿米之前去米青加藤加藤！\n\n现在，我正忙于为其他元素编写和设计新路线。嗯，这很好，因为这是我想做的。能够发布 Switch 版本让我松了口气，但在那之前我每天都会被问到，“你接下来要做什么？”“你现在在做什么？”“为什么卖得很好，但你却过得很艰难？”这仍然对我的精神造成了打击。我不能对我不认识的人说，“我要通过添加我的爱好的额外元素来给我的粉丝带来惊喜！”最终，你会发现自己说，“如果你按照我说的去做，你会卖得更多。”然后猜猜你是不是原创！ ！ ！他们也只是要求你借钱给我。就算卖出100万本，也不可能突然以30万日元的价格借给自己的追随者吧！ ！\n 另外，每当我看到一篇分析热门（！？）背后因素的文章，但没有提到针对女孩的动漫时，我就会笑，因为我忽略了“可爱”这个过于简单和重要的因素。我的创作者朋友们也开始向我询问他们的创作活动的建议（抱歉我得意忘形了！），但女孩动画仍然走在可爱的最前沿。如果人们能通过观看《光之美少女》或《Primaji》来理解这一点，我会很高兴。\n 考虑到这一点，我相信庵野英明（一个只想代表制片人感情的坏宅男）对《新奥特曼》的上映感到惊讶，因为它揭示了这样一个事实：即使在几十年后，仍然有少数伊娃粉丝观看奥特曼，尽管伊娃非常受欢迎。\n\npic.twitter.com/mlSzZPrLLX — 🎀超级可爱🎀Tenshi-chan (@x_angelkawaii_x) 2022 年 5 月 21 日\n\n嗯，由于各种各样的事情，我压力很大，120，但我会尽力而为。确实，我很高兴有这么多人支持我、期待我。谢谢。最重要的是，我想看到一个超级可爱的女孩变成百万根头发的女人的那一刻。不知道当赵天酱获得时代时，阿米酱会不会哭呢？\n\n包含每日日记的同人志现已在 BOOTH 发售。请享受 Nidiga 发布的整个过程。\n\n我期待着阅读您的商业论文集。这个时代导致了现在的尼迪加。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -56,7 +57,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

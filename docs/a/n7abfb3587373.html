@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：随身带三部手机的无业者</title>
+<title>短文：携带三部智能手机的失业者</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-02 06:22</p>
-  <h1>一口随笔：随身带三部手机的无业者</h1>
+  <h1>短文：携带三部智能手机的失业者</h1>
   <p class="ja-title">一口エッセイ:スマホを３つ持ち歩く無職</p>
 </header>
 <main>
@@ -23,10 +23,11 @@
 毎日の日記をまとめた同人誌や、若い頃の文章をまとめた商業エッセイ集、よろしくお願いします♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：携带三部智能手机的失业者\n\n我的朋友原本只做兼职，现在决定申请福利，首先他要去医生办公室做诊断，以便申请过程更容易。所以，为了通过诊断明确我是一个米姑娘，无法融入社会，他们让我告诉我，我和一般人有什么不同，所以我立即指出，“虽然我失业了，但我带着三部智能手机！”\n\n出于某种原因，他总是随身携带三部智能手机，一部用于上网，一部用于通讯，一部用于音乐。勤奋的读者都知道，一台设备基本上就可以满足您的互联网、通信和音乐需求。然而，他觉得“智能手机太方便了”，除非你限制它们的使用，否则他会感到困惑。令人惊讶的是，即使是医生也是单一任务者，所以当他们可以做所有事情时，他们最终会惊慌失措而无能为力。所以我随身携带了三个。\n 而且，直到有人向我指出，我才意识到这很奇怪。这绝对是《北青你神何道》里值得谈论的话题。这实在是太极端了。\n 不过，这样做有一个好处：我只在智能手机上使用 LINE 进行交流，所以当我上网或听音乐时，我永远不会收到其他人的任何联系。正因为如此，他只在很短的时间内与其他人接触，也许正因为如此，他的人际关系问题较少。不管是否有必要这么彻底，请考虑到这一点，因为这表明有些人以如此野蛮的方式生活。\n\n我希望有一本收录了我的日常日记的同人志，或者收录了我年轻时的作品的商文集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

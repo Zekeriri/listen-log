@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：融入小镇</title>
+<title>短文：习惯这个城市</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-28 03:58</p>
-  <h1>一口随笔：融入小镇</h1>
+  <h1>短文：习惯这个城市</h1>
   <p class="ja-title">一口エッセイ:町に馴染む</p>
 </header>
 <main>
@@ -30,10 +30,11 @@
 若い頃に書いた商業エッセイ集もよろしくね。この頃は、秋葉原に住んでいました。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：习惯这个城市\n\n每个人都至少曾经崇拜过龟有两津勘吉这样的人。当你走到外面时，购物区的人们会和你说话，当你去公园时，你会和邻居的孩子们一起玩耍。熟悉社区、充满人性的镇上受欢迎的人物。\n 每天，当我沿着中野百老汇购物时，我偶尔会开始与商店工作人员交谈。例如，四楼有一家书店，出售有关宗教和精神世界的书籍，当我在那里浏览宗教书籍时，有时会有店员热情地对我说：“我有一本有关XX（邪教）的书！”在中野百老汇，店员向我推荐一本有关邪教的书，这是一次很棒的经历。\n\n当我在看陈列柜时，中野百老汇的一位店员知道了我们的存在，走过来对我说：“我们有小说版的《钟楼 2》（Premier）！”我很自豪，因为他被视为“如果我和他交谈，他可能会购买小说版《钟楼 2》的御宅族。” — Nyalra Fumifurito 39・40 (@nyalra) May 26, 2022年\n\n就在那天，我在三楼一家书店看展柜时，店员（我知道他的名字，因为我之前买过展柜里的书）对我说：“我们有小说版的《钟楼2》！”当然，我从来没有和他深入谈论过他对钟楼的喜爱（虽然我确实买了很多稀有的恐怖漫画）。我很自豪，因为我被认为是一个书呆子，如果我和他交谈，他会对小说版的《钟楼 2》产生兴趣……\n\n我刚买的我最喜欢的书 pic.twitter.com/x4qMpimEnV — Nyalra Bunfurito 39・40 (@nyalra) 2022 年 5 月 26 日\n\n最后，那天我买了MOTHER2和Parodius的书。当时店员高兴地说：“可惜没有那么多游戏相关的漫画”，我觉得能有这样的互动真是太好了。成为中野百老汇的一部分的感觉真好。问题是他只是“一个失业的、危险的宅男A，每天都走在中野百老汇。”\n\n包含日常日记的同人文章集现已在 BOOTH 发售！当我遇到困难时，我会立即谈论中野百老汇。\n\n也请你看看我年轻时写的商言文集。这时，我住在秋叶原。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

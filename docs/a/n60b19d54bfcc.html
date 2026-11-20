@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口随笔: 关于“成为某人”的愿望</title>
+<title>论文选：关于某人的愿望</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-23 16:41</p>
-  <h1>精选一口随笔: 关于“成为某人”的愿望</h1>
+  <h1>论文选：关于某人的愿望</h1>
   <p class="ja-title">選り抜き一口エッセイ:何者か願望について</p>
 </header>
 <main>
@@ -27,10 +27,11 @@
 商業エッセイ集もよろしくね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"论文选：关于某人的愿望\n\n在互联网上，你经常可以听到人们喊着“我想成为某个人。”是因为SNS让我们感觉更接近插画家、作家和音乐家等创作者吗？类似祈祷的帖子，我不想最终成为互联网上流传的一个帐户，它们正在我的时间线上传播并无情地散落。\n 我也偶尔会收到私信询问，“我怎样才能成为互联网上的某个人？”有一段时间，我无法对这个问题给出合适的答案。我不想给出“努力”这样无聊的答案。\n\n天濑诗织的漫画《这就是道德开始的地方》，一位不想被普通人包围、想成为某个人的学生，突然跳到马路上受伤了。他责备自己因为这种担心而表现得很奇怪，但主角老师引用了 J.S. 的话来安慰他。密尔说过：“更像是一个陷入困境的苏格拉底，而不是一头陷入困境的猪。”\n\n既然你生而为人，那就让我们继续担心吧，因为这是只有人类才能做到的特殊事情。\n 我一直很喜欢这部作品，但这个故事让人大开眼界，让我更加喜欢它。当你想知道你是谁时，我认为“特别”是一个很好的答案。这是一件很美好的事情，但我个人觉得很合适。最后，采取一些行动是必要的，但我认为，只要认识到一些人的麻烦是重要和特殊的，他们就可以得到帮助。\n\n我们正在出售编辑日常文章的同人志。我每天都在努力的工作，就是为了离一个人更近一些。\n\n我期待阅读您的商业论文集！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

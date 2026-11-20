@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>花卷与宫泽贤治与素食主义</title>
+<title>花卷、宫泽贤治与素食主义</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-06-02 01:24</p>
-  <h1>花卷与宫泽贤治与素食主义</h1>
+  <h1>花卷、宫泽贤治与素食主义</h1>
   <p class="ja-title">花巻と宮沢賢治と菜食主義</p>
 </header>
 <main>
@@ -36,10 +36,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪ 同人誌は新刊でたばかり。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"花卷、宫泽贤治与素食主义\n\n我在岩手县花卷市。\n 银河铁道的夜间主题列车「SL银河」似乎将在本周末结束运行，所以我在千里迢迢地乘坐新干线后第一次来到东北，最后一次乘坐它。骑行本身是在周六和周日，所以今天和明天只是观光。\n 之所以晚上会有银河铁道主题的列车，是因为花卷是宫泽贤治寻找的区域。所以今天我决定去参观一些与贤治有关的地方。\n\n这是宫泽贤治的家。\n 虽然从照片角度看不出来，但长凳上刻着 Galaxy Express，确实很酷。健二梦想、写作并相信这个地方。贤治的宗教信仰和禁欲主义尤为强烈，以至于他与家人对佛教的看法发生了冲突，而素食导致的营养不良是他早逝的主要原因。健二对生活的承诺以及描写他与妹妹敏的日子以及失去她的悲伤的《春与修罗》都诞生于此。看来现在有亲戚住在那里，我赶紧离开，免得惹出什么麻烦。\n\n小镇各处都散布着一些与贤治有关的景点，但除此之外，这里也是一个很棒的地方。一片寂静。四周环绕着大自然，空气清澈见底，夕阳将荒凉骑楼的波纹铁板照得呈茜红色。安静就好。\n 不幸的是，我们被告知台风即将来临，所以我们不得不放弃参观小岩井农场，健二将小岩井农场用作他的诗的标题，他可能多次访问过这里并写下了他的诗句。相反，让我们集中精力登上 SL Galaxy。\n 我选择入住健二小说中出现过的带温泉的设施，但我惊讶地发现，这个空间是如此“文艺”。这里是沉迷于 Kenji 为银河快车做准备的诗集的绝佳场所。\n\n日式房间不错。在榻榻米上，您可以只专注于阅读器和茶。有一种感觉，一个人的贪婪正在远离喧嚣的世界和社会。\n 现在，正如我在开头简要提到的，健二是一名素食主义者。无论普通人如何争论吃肉更健康，或者即使不吃蔬菜，人类仍然在捕杀生物，对“吃生物”的厌恶感是不合逻辑的，而短篇小说《游客节》描绘了他们永远不会相互交流。这是一部充满思考和讽刺的杰作，我强烈推荐你阅读它。\n\n至于我，吃鱼吃肉都可以，不用担心，但我感觉我比一般人没有感情。这是因为我生来就没有嗅觉，所以闻不到生物的气味。因此，我从来没有感觉到它有“鱼腥味”，即使不抑制气味，也可以毫无问题地将其放入口中。老实说，我不关心食物。\n\n但另一方面，如果你的嗅觉恢复并且能够闻到动物的味道怎么办？将牛和猪制成的物体放入口中，您可以通过鼻道体验到活着的感觉。那时我会有什么感觉？不知为何，今天当我谈到健二的故乡时，我就是这么想的。虽然直到我第一次获得嗅觉的那一天我才会知道答案。\n 除此之外，中野百老汇实际上有一家已有50年历史的餐厅，由于其宗教观点，只提供天然食品和佛教菜肴。它被一些人称赞为一家不使用任何肉类或奶制品的商店，当你作为顾客进入时，店主是一位老妇人，会告诉你她的信仰。当有一天我开始厌恶肉类时，我会继续光顾这家餐厅。\n\n敬请期待收录了日常日记和商业随笔集的同人志♪ 同人志刚刚出版。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -59,7 +60,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

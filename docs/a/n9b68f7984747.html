@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口散文：大家都是朋友！大家都是宅！</title>
+<title>短文：大家都是朋友！每个人都是宅男！</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-23 01:28</p>
-  <h1>一口散文：大家都是朋友！大家都是宅！</h1>
+  <h1>短文：大家都是朋友！每个人都是宅男！</h1>
   <p class="ja-title">一口エッセイ：み～んなトモダチ！み～んなオタク！</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 ちょうど今日、長文エッセイが収録された商業エッセイ集が発売されました。書き下ろしたっぷりで、読み応えたっぷり！ 感覚のみで書かれた、まったくロジカルでない文章をお楽しみください。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：大家都是朋友！每个人都是宅男！\n\n我是一名文科学生。事实上，我并没有学到什么特别的东西，所以我什至都没有能够站在可以正确划分为人文和科学的立场上。\n 这就是为什么，虽然我尊重科学以逻辑方式解决问题的科学，但我也感到敬畏，因为这是一个我不理解的领域。所以，今天我想，“我希望 Alexa Echo Show 成为永远直播 Pretty Series 的最佳机器！”所以我邀请了我的男性和女性工程师熟人到我家。\n 那个男人在附近经营一间合租屋，我还是第一次见到他带来的女人。当我问他“我想循环播放我最喜欢的视频”时，他向我解释道，“首先，我把技能打包放在服务器上……构建等等。”但是，由于大量的生词，我什么也听不懂，所以我想这应该能传达我的热情，我鼓起勇气说：“不管怎样，如果我能按一个按钮无限地、随机地播放啦啦的现场表演，我会很高兴的。”没有知识，没有理解，我们拥有的只是“愿望”。\n 就在我为自己的御宅族愿望突然暴露而感到紧张时，那个女人告诉我，“三年前，当我向 Alexa 喊出“谁是棱镜王？”时，我建立了一种可以与速水宏做出反应的技能！”虽然我们的大脑结构不同，但我们都对同一个棱镜着迷。\n 既然如此，你应该已经明白我的意图了。啦啦说：“只要我们喜欢的东西一样，无论什么时候，我们都是朋友。”我们之间有一些在《漂亮》系列中不存在的回忆。多亏了你，一切都很顺利。谢谢拉拉，谢谢宏大人。\n\n包含日常文章的同人志现已在 BOOTH 出售。当我重读它时，我很惊讶地看到了这么多关于女孩动漫的故事。\n\n就在今天，一本包含长文的商业论文集出版了。很多新的写作和大量的阅读！请欣赏仅凭感觉写出的完全没有逻辑的句子。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

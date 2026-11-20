@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：久未见面产生的“似乎被讨厌的感觉”</title>
+<title>短文：“一段时间见不到你，我感觉自己被人讨厌了”</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-23 04:18</p>
-  <h1>一口随笔：久未见面产生的“似乎被讨厌的感觉”</h1>
+  <h1>短文：“一段时间见不到你，我感觉自己被人讨厌了”</h1>
   <p class="ja-title">一口エッセイ:しばらく会わないと発生する「うっすら嫌われてる感覚」</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：“一段时间见不到你，我感觉自己被人讨厌了”\n\n我遇到了一个几个月没见的朋友，我们聊天，有趣的是我们都笑着说：“不知为什么，我感觉对方有点讨厌我。”当然，我内心深处明白事实并非如此。毕竟，焦虑就是焦虑。\n 事实上，他也无法承受自己与对方的牵连逐渐减少，关系日趋淡化的恐惧，所以许久以来第一次联系对方出去玩。这是多么美妙而光荣的举动啊。就我而言，我最终会想，“我想知道他们对我的看法……我想知道他们是否会问我为什么现在联系他们……我相信他们会在那里玩得很开心，”而我最终没有联系他们。我也不讨厌他（事实上，我喜欢他到关心他的地步），所以我相信他对我也没有什么不好的感觉……我相信，静静地等待我们某个时候见面的时间。当然，这样的时刻可能永远不会再发生。\n 这很重要。偶尔鼓起勇气说：“你愿意一段时间以来第一次和我说话吗？”尤其是当我们在浏览社交媒体并且对彼此在做什么有一个模糊的了解时，问“你好吗？”往往会感觉很奇怪。您可能认为只需查看帐户即可判断自己是否表现良好。\n 不过，我确实害怕突然的接触。对涉及的任何麻烦或金钱保持警惕是很自然的。这种感觉本身就很重要。如果突然联系某人时没有明确说明业务，我想80%的情况都会变得可疑。也许90%。当涉及到不看对方如何反应就不能写的事情时，通常会导致你的损失。我不能突然说“你能借我点钱吗？”，所以我只会打个招呼，看看事情进展如何。我觉得这样会更可疑，但是当人们处于紧要关头时，他们的判断力就会下降。\n 然而，写“我担心人们可能会稍微不喜欢我”太诚实和困难。正确的答案是简单地表达你对他的兴趣，说：“我想在一段时间内第一次见到你并与你交谈！”因为这真的没有什么不可告人的动机。我很高兴听到这个消息。今天你意识到了这一点。当他们联系我并说：“好久不见，我们一起玩吧！”这很好，但发送此内容的障碍比纸上显示的要高时，我感到非常高兴。当你被拒绝时，也会造成伤害。所以，我认为我的朋友几个月来第一次发来这条消息真的很酷。\n 我并不是说我在SNS上撒谎，但有些感情是仅通过SNS无法看到的，而这些有时是最重要的。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

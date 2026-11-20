@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：只为不断夸自己提升自我肯定感的一章</title>
+<title>一篇短文：一段赞美自己并增强自信心的插曲。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-16 01:29</p>
-  <h1>一口随笔：只为不断夸自己提升自我肯定感的一章</h1>
+  <h1>一篇短文：一段赞美自己并增强自信心的插曲。</h1>
   <p class="ja-title">一口エッセイ:自分を褒めまくって自己肯定感を上げるだけの回</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇短文：一段赞美自己并增强自信心的插曲。\n\n由于我的精神障碍无法写稿子，所以正如我昨晚在日记中所写的那样，正在海外出差的制片人接到电话并支持我，直到我写完稿子。\n 果然，给别人带来麻烦的分量很重，当我决定不得不做点什么时，我的写作比我想象的顺利，感觉还不错。制片人对我赞不绝口，我自己也觉得表演得很好。稍后会以某种形式公布，敬请期待。毕竟，除非被迫，否则人类无法移动自己的身体。我真的很抱歉。永远保持抑郁状态是很糟糕的。现在正是充满活力的时候！\n 当我写到黑暗的事情时，我会感到沮丧，所以今天我要多多表扬自己，以增强自我肯定。如果您愿意，请支持尼亚拉。\n 首先，能够默默地做游戏两年，感觉非常棒。通常，这是您第一次制作游戏，并且您是作为独立开发者工作，因此您不会达到完成游戏的程度。更重要的是，该作已经售出了60万份，而随着Switch版本的发售，这个数字还会进一步增加。我们赢得了很多游戏奖项，这真的很了不起。除此之外，无论多忙，我都保持了两年来每天发日记的习惯。得益于此，读者数量日益增加，这可能比制作游戏还要困难。能够公开表达我的感受和经历真是太好了。不知何故，我能够写出每个人都能读懂的句子。虽然经历了很多坎坷，但这么多年的发帖还是值得的。多亏了他，他在全世界都有粉丝。他已经成为一位受到世界各地御宅族回复的全球达人。另外，我不断输入书籍、动漫和电影，这真是太好了。我能够输出很多它们作为我的日记和创作的材料。这绝对是生命的基础。更重要的是，她非常爱护她的书籍和雕像，客人们都称赞她的房间干净整洁。当我的房间干净时我很高兴，所以每天打扫房间一点也不困扰我。我一个人也能正常生活了。这可能是因为他们不需要太多食物。能够缩小你的兴趣范围真是太好了。拒绝做自己不擅长的事情，专注于自己喜欢的事情。自闭症患者特有的做出选择的能力也可以被视为一种优势。我想这几年我对别人变得更加友善了。在克服了各种困难之后，我获得了内心的平静，我觉得我已经能够像自闭症患者一样理解别人的挣扎和担忧了。在别人看来，我们可能还有很长的路要走，但作为自我意识，我们每天都在逐渐变得善良，这就是一件好事。此外，尽管我抱怨，但我还是参加了所有的会议和监督。所以，虽然有一些让他精神崩溃的场面，但他一定已经开始产生了责任感。在所有情况下，我都是为自己的创作编写文本。这将是“骄傲”。我也有想要守护的东西。最后，我们对待互联网存在与否的方式也发生了变化。过去，我经常对网上的人感到恼火，但现在我减少了看智能手机的时间，我把注意力转移到阅读或看动漫上，我不会特意提及无关的事件，而且我也不再那么咄咄逼人。无论好坏，我对他们有一种距离感，因为“毕竟这是互联网。”这绝对是一个巨大的增长。您还可以管理包含数千人的 Discord 服务器。\n 哈哈……我可能说得太多了。沉迷于此是危险的。缺点远多于优点。如果我把所有这些都列出来，我会感到更加沮丧，所以今天我会感觉好一些。很长一段时间以来我第一次要早点睡觉（两点钟）。你会很健康的。\n 晚安。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

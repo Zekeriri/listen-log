@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：信任大人的瞬间</title>
+<title>短文：当你信任一个成年人的那一刻</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-07 03:52</p>
-  <h1>一口随笔：信任大人的瞬间</h1>
+  <h1>短文：当你信任一个成年人的那一刻</h1>
   <p class="ja-title">一口エッセイ:大人を信頼する瞬間</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね。ぜひ、あなたの本棚に並べてもらえると嬉しいです。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：当你信任一个成年人的那一刻\n\n一位制片人曾经告诉我，现在的年轻人需要找到他们可以信任的成年人。\n 今天，我们生活在一个连青少年都可以在网上大受欢迎的世界，更不用说 20 多岁了。然而，一个人能做的事情是有限的，所以早期成功的年轻人需要成年人来引导他们进入下一阶段。然而，这个世界上有无数的成年人是坏成年人和大人。在他们当中很难找到值得信赖的人。想到这里，我真的很高兴能够见到现任的制作人，他全力支持尼迪加的制作。嗯，Switch版本发布后，我担心游戏会被放弃，所以我发疯了（很高兴我能把它变成一个笑话）。\n 抱着这样的想法，今晚我去某公司开会，惊讶地发现办公室的书架上摆着《勇者斗恶龙4-科玛剧场》。还有藤原可梦威的画集。\n 这是完全的信任。因为是办公室，所以只能存放经过精心挑选的资料，但手边总有四张《勇者斗恶龙》的面板，当他担心的时候，他可能会阅读江藤博之和柴田亚美的笑话来寻求情感支持。\n 这样的人不可能是坏人。乍一看可能听起来很愚蠢，但我认为这就是本质。信任来自于从未瞄准。有些公司的办公室里只摆放着热门漫画和相关资料，有些公司在附近就设有《勇者斗恶龙 4-koma》影院。无论怎么看，后者都会产生一种熟悉感和安全感。\n 大人为了讨年轻人（再过几年我就30岁了）的喜欢，说很多谎话、做作、甜言蜜语。然而，不可能产生随机时间揭示的本质。这就是为什么他们把《勇者斗恶龙》四屏影院排在书架上，当他们找到它时，看起来既高兴又害羞。我真的很高兴。事实上，那些有感情并会终生珍惜《勇者斗恶龙4-koma》的人都喜欢它。\n 我相信“信任”是由这样的小事日积月累而成的。我们永远不会错过智能手机上看到的各种壁纸和钥匙扣，或者放在桌子上的书籍和雕像。对方无意识的行为和手势比 100 句话更真实。无论你如何用逻辑来武装自己，你都无法用你天生的情感的核心来武装自己。\n 我不知道这是否会变成工作，但我确信我会和今晚要见的人沟通很多次。这是因为，无论地位或金钱如何，他们都对他们有好感，以此证明他们对“喜爱勇者斗恶龙四屏影院的成年人”的信任。\n\n请欣赏整理日常日记和商业随笔集的同人志。如果您能将它展示在书架上，我会很高兴。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

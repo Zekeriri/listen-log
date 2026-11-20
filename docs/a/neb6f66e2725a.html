@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：抑郁时的异常行为与Afro田中</title>
+<title>一篇短文：抑郁期间的异常行为和爆炸头田中</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-08 03:12</p>
-  <h1>一口随笔：抑郁时的异常行为与Afro田中</h1>
+  <h1>一篇短文：抑郁期间的异常行为和爆炸头田中</h1>
   <p class="ja-title">一口エッセイ:鬱時の異常行動とアフロ田中</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇短文：抑郁期间的异常行为和爆炸头田中\n\n我的身心健康状况差得惊人，我有预感，这样静静地躺在床上会很糟糕。为了分散自己的注意力，我想在智能手机上看漫画。我心悸，头疼不已，所以我很难去创作故事情节复杂的作品。另一方面，美少女兴奋的作品太过耀眼，实际上对心理健康不利。经过反复试验，找出可以满足我需求的读物后，我发现自己在几天内读完了《非洲田中》的所有卷......\n\n这确实很不寻常。爆炸头田中很有趣。非常有趣，用几十卷的篇幅细致地描绘了高中生田中从少年到成年……再到老人的故事。而且，与岛耕作不同，没有过于戏剧化的事件。有点傻的田中的日常生活仍在继续。当然，作为一个适合他这个年龄的“男人”，也有肮脏和悲伤的一面。很少有一部作品能如此密切地关注“人”。这绝对是一件杰作。\n 不过，我感觉田中爆炸头读起来很慢很慢。我会在公共浴室的漫画角或其他地方看到它，这是我一段时间以来第一次阅读它！这一集很有趣。你不会说，“哇！我无法停止翻页！”\n 但我就是这样。\n 只要稍微动一下，或者闭上眼睛，我就会感到头晕、困倦，突然感到疲倦。当我读到非洲田中并试图掩饰这一点时，它变得相对容易。不管它是否比爆炸头田中更难或毒性不太大都没关系。 《非洲田中》是对现实的一种令人惊讶的逃避，我以为我要读几本书，但在我意识到之前，我已经读完了所有的书。那是60本书。即使是《Jojo》，我也是从头读完，第五部分即将读完。横山三国志也完成了。除了战斗漫画之外，我还一口气读了60本日常生活书籍。他的精神状态显然不稳定。当然，《爆炸头田中》很有趣，也很感人，值得一口气读完。即使是小亲，如果你尝试读 60 本书，你可能会在这个过程中多次感到无聊。\n 嗯，我知道我因为游戏策划的压力而有点沮丧，但我的异常行为是“狂读田中爆炸头”。这种事情在正常情况下永远不会发生，而且我惊讶地发现，当人们开始疯狂时，他们的行为方式并不是你可以预测的，他们显然是“疯狂”的，而是朝着完全意想不到的方向。\n 不，但田中很了不起。尽管我有时会在生活中感到迷失，但我仍然继续正常工作并维持人际关系。我永远不会忘记重温田中生活的那些日子。我的头还很痛，全身都懒洋洋的。田中，我该怎么办？请帮助我，田中……留在我身边，田中。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

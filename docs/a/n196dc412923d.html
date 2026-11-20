@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：殴杀天使的骷髅酱</title>
+<title>快速文章：骷髅天使 Dokuro-chan</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-17 05:22</p>
-  <h1>一口随笔：殴杀天使的骷髅酱</h1>
+  <h1>快速文章：骷髅天使 Dokuro-chan</h1>
   <p class="ja-title">一口エッセイ:撲殺天使のドクロちゃん</p>
 </header>
 <main>
@@ -23,10 +23,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"快速文章：骷髅天使 Dokuro-chan\n\n半夜里，我有时会收到长篇大论的信息，这些信息来自服用安眠药的人或因失眠而精神抑郁的人。\n 模式有很多种，但大多数句子都以一封粉丝来信结尾，上面写着“我支持你！”或“我爱你，尼亚鲁拉桑！”，我认为他们不要求回复真是太好了，所以有时我只是加一颗心或不加一颗心。我不能每次都回复我不认识的人，而且我也不认为我对一个我不认识的人有片刻的假装理解是一种不道德的行为。让我们带着这种距离感去吧。\n 与此同时，当我一段时间以来第一次打开我的私信时，我收到了一条来自已经消失的帐户的长消息。果然，上面写着他是用安眠药的力量寄来的，当他继续读下去时，他认为这是一件很难做到的事情，因为它列出了他对社会的怨恨，它突然说：“我的初恋，小独郎，大棒天使。”\n\n这很好。非常好。这是一个美丽的句子，因为它是如此语无伦次，以至于它出来是因为它是如此令人兴奋。不幸的是，我还没有天真到同情陌生人的不幸，但我写初恋的方式确实触动了我的心。尽管我的思绪在模糊的脑海中加速，但我确实想传达我对独郎酱的爱。太棒了。现在你的帐户消失了，我无法回复或善待我不认识的人，但我会让我的读者知道你留下的句子是多么精彩。不管你对此有何感受。但这就是我的爱。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

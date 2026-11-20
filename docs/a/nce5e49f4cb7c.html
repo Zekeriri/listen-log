@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：信件与网络上的角色</title>
+<title>一篇快速文章：信件和网络人物</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-15 03:40</p>
-  <h1>一口随笔：信件与网络上的角色</h1>
+  <h1>一篇快速文章：信件和网络人物</h1>
   <p class="ja-title">一口エッセイ:お手紙とネット上のキャラクター</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね。いつも読んでくれてありがとうございます。感謝。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇快速文章：信件和网络人物\n\n我在 Comiket 收到了几封信。我很高兴。\n 它充满了我对创造力和写作的热爱，光是阅读它就令人鼓舞。谢谢你的可爱的来信。\n\n特别是，我对其中一封信中的一句话很感兴趣：“只有互联网上的尼亚鲁拉桑才能做到这一点。”我明白你想表达的意思。正如奥肯在歌词中所说，“也许我只是为了工作”，网络角色有可能成为表演。当我什至不知道一个人的真实性格时，我可以说我喜欢一个人吗？\n 总而言之，我的情况很特殊，因为我通过每天的日记一遍又一遍地描述和记录自己的事情，所以“尼亚拉”和我自己的自我几乎是融为一体的。当然，有些东西我不能写在网上，但我到死都不会告诉任何人，所以就我的形象而言，我的文字和创作才是最重要的。有时我会感到一种模板般的心碎，比如“没有人知道我到底是谁……”，但这对每个人来说都是出乎意料的，这是因为我对全人类有感觉，包括现实生活中的人际关系。\n 首先，即使网络活动是表演，也是自我决定了“我想作为这样表演的角色而生活。”为了更容易理解，我用自己的作品来比喻：长天酱和阿梅酱。他们所说的既是他们的真实感受，也是他们的表演，因为人类的心理那么复杂，两者都是他们自己，又不是他们自己。如果是这样的话，你只需自豪地说：“我爱我所看到的你的那一部分”，而不用考虑任何困难，对方就会感到高兴。\n ......然而，这个世界上有一些非常可怕的人，还有一些人将他们在互联网上所说的一切都视为生意。嗯，这种东西很少出现在像我这样喜欢读诗意的、毛茸茸的白痴的怪人面前。\n 就这样，我会尽力把幕后的事情写好、策划好，让你们今天不会感到无聊。这就是我的全部生活。但如果有人读到这篇文章喜欢它，甚至给我写信，我会很高兴。\n\n请欣赏整理日常日记和商业随笔集的同人志。感谢您一直以来的阅读。谢谢。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

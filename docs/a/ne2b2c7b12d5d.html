@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：艺术化妆</title>
+<title>位文：永久化妆</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-17 01:00</p>
-  <h1>一口随笔：艺术化妆</h1>
+  <h1>位文：永久化妆</h1>
   <p class="ja-title">一口エッセイ:アートメイク</p>
 </header>
 <main>
@@ -32,10 +32,11 @@
 商業エッセイ集の方まで買ってくれたら、なおお目目がぱっちりします。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"位文：永久化妆\n\n这张照片泄露了，睫毛太长 pic.twitter.com/l24s2FPSqC — Nyalra (@nyalra) 2022 年 6 月 11 日\n\n有了纹眉，我再也不用担心修眉毛的问题了。看起来你的眉毛可以保持一个形状好几年，这对于笨手笨脚的人来说非常有帮助。\n\n我做了永久化妆（一种将眉毛像纹身一样雕刻和着色并保持相同形状和颜色数年的程序），让我的眼睛看起来更锐利！\n警察现在从后面跟踪我。帮我！ ！ ！ ！ ！ ！ pic.twitter.com/Q3BUP09YPn — Nyalra (@nyalra) 2022 年 6 月 16 日\n\n其原理是将颜色嵌入到皮肤中……换句话说，它是浅纹身。在眉毛上纹身，让它们看起来像眉毛。当我写这篇文章时，我倾向于想知道，“真的可以在没有任何不适的情况下完成吗？”，但你会惊讶于结果是多么自然。唯一的问题是，你最终会在几天内看到李洛克的火辣眉毛，直到颜色融为一体。现在对我来说也是如此。\n 针既然扎入皮肤，自然就会疼痛。不过，它确实让我离我理想中的可爱更近了，说实话，和我最近做的脱毛拔牙相比，这根本不算什么。既然我愿意在这样的VIO上忍受被激光烧伤的恐惧，我就不会陷入“痛苦”（坚强的性格）。\n\n嗯，其实，挺痛苦的，挺痛苦的。只有当你忍受痛苦时，真正的美丽才会出现。现在我故意穿高跟鞋，每次走路腿都疼。不过，通过了解美丽和健康的痛苦，我能够画出更真实的女性角色，甚至自己变得更可爱，所以这是幸福的哭泣。\n 比起真的很可爱，更重要的是感觉自己每天都变得更可爱一点。我会过我的生活，不会忘记这一点。\n\n包含每日日记的同人志正在 BOOTH 发售！欢迎来到新书。\n\n如果有人买商业散文集，我的眼睛就更亮了。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,7 +56,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

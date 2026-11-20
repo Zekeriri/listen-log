@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：《机动战士高达F91》</title>
+<title>快速文章：机动战士高达 F91</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-17 02:10</p>
-  <h1>一口随笔：《机动战士高达F91》</h1>
+  <h1>快速文章：机动战士高达 F91</h1>
   <p class="ja-title">一口エッセイ:機動戦士ガンダムF91</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 商業エッセイ集もよろしくお願いします。みんな星入れてあげてね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"快速文章：机动战士高达 F91\n\n3月16日显然是《机动战士高达F91》发售的日子。 F91的伟大之处在于，它突然引入了一个未知的概念，叫做“宇宙贵族”。宇宙中不仅突然涌现出一个贵族，而且内部似乎有些混乱。之所以这么“穷”，是因为这部作品强行将宏大的计划浓缩成一部电影，所以展开得极快，而且对历史背景的剪裁也很多，给人一种强烈的落伍感。尽管如此，主题曲、F91精致的设计、光束表现的美丽以及令人耳目一新的结局都让它非常值得一看。我的第一印象是，“我不太明白，但它很漂亮。”\n 当你顺着故事追到小说版的时候，你终于可以看到整个故事的全貌，你可以看到旧货店的生意如何走向成功并最终成为一家巨大的公司，以及它如何觉醒到贵族的爱好。换句话说，这部作品是一个关于“存在于太空的贵族的繁荣与衰落”的故事。读读这个庞大的世家到底走向何方，你就会明白F91的悲剧。\n 不过，虽然我看不到那个场景，但我觉得它是一部杰作，正是因为它没有在电影中描绘。虽然背景中肯定有浮夸贵族的历史和灭亡，但它与主角Seabook无关。一个刚刚陷入故事的普通主角为了他的朋友而战，并通过创造一个被称为“带有质量的残像”的奇迹赢得了她的爱，这在银幕上非常美丽。\n 在敏感男女的爱情面前，贪婪的贵族内部情况并不重要，这样的东西灭亡也是理所当然的。幸好，一个庞大组织的悲惨结局只是西布科和塞西莉青春的另一页。\n\n包含日常日记的同人志现已在摊位上出售。很高兴见到你。\n\n我期待着阅读您的商业论文集。请给大家一颗星。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：交流量表</title>
+<title>快速文章：交流表</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-09 02:58</p>
-  <h1>一口随笔：交流量表</h1>
+  <h1>快速文章：交流表</h1>
   <p class="ja-title">一口エッセイ:交流ゲージ</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 先月末に出た商業エッセイ集も宜しくお願いします。こちらは内容重め。最近、レビューが書き込まれていて嬉しい。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"快速文章：交流表\n\n昨天，当我沿着中野百老汇散步时，突然看到一个人向我走来，我感到很惊讶，但当我走近一看，我发现这是一个我以前见过几次面的人。认识他已经有一年多了，聊了一会儿，他问我：“你愿意和我一起出去吃饭吗？”果然，对方也很惊讶。\n 怎么说呢……不是我在开玩笑，也不是我不喜欢，而是我的“与人交往标准”还没有建立起来，突然就遇到了她，所以闲聊了一会儿之后，我与人交往的标准就完全用完了。正因为如此，我回家时感觉“哦，我不能再这样做了。”几乎是无意识的。\n 当我必须与某个有承诺的人见面时，我会提前填满我的交换表并说：“我们见面吧！”然后做好准备就出去。你难道没见过那些抑郁的人在玩耍时被告知他们很正常吗？大概是因为在家里我已经筋疲力尽了，但是当我精力充沛地出去的时候，我就会鼓起全部的精力，专心致志地玩。即使他和你玩的时候是发自内心的开心，但当他的计量表用完时，他就死在自己的房间里了。\n 所以，我的大脑立即决定，如果我强迫自己回家，将这件事保留为“只是碰巧遇到了我认识的人”，而不是坐在这里吃一顿不令人兴奋的饭菜，这对我们俩都更好。确实没有恶意。\n 于是，我就成了最差劲的在网上间接道歉、找借口的宅男。\n\n我正在把自己在家里默默写下的散文集整理成同人志。如果您喜欢，请阅读。\n\n还请大家期待上月底出版的商业论文集。这一篇内容很重。我很高兴看到最近写了评论。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

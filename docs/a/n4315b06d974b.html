@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：遇到帅气哥哥的那次</title>
+<title>短文：遇见酷哥哥的那次</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-29 04:03</p>
-  <h1>一口随笔：遇到帅气哥哥的那次</h1>
+  <h1>短文：遇见酷哥哥的那次</h1>
   <p class="ja-title">一口エッセイ:カッコいいお兄さんに会った回</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 毎日の日記をまとめた同人誌や、若い頃のエッセイをまとめた商業本をよろしくね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：遇见酷哥哥的那次\n\n像往常一样，我沿着中野百老汇散步，在咖啡店看书，但当我回到家打开浴室洗手时，水突然溢出，把浴室弄得湿漉漉的。\n 正好今天看的书是最新版的《加智锦鲤粘兽》和《明日女友》，心里一惊，心想：“终于有人知道我的地址了，还来破坏我吗！？”三天后就搬家了！ ？和。\n 当然，事实并非如此，如果你仔细观察，你会发现洗衣机里有水溢出。我赶紧用毛巾擦掉，但不知道为什么水还是流回来了。慌乱中，我搜索了“水的麻烦”，并决定去一家出现的公司。\n 调查的结果是，下水道被之前的住户堵塞了，然后我被告知“不要告诉他们我在这里，而是打电话给与管理公司合作的24小时支持团队，告诉他们我要说的话。”如果你跟着打电话给他们，他们会免费修理！\n “那你大老远过来，不拿工资可以吗？”我问他，他说，“我这样就可以了，”然后很快就离开了。凉爽的……。\n 后来来的支持小伙子很快就修复了问题，一切都解决了，但我却爱上了先来的小伙子的冷静，开始感觉良好，所以结果证明是因祸得福（难得的诚实日记）。\n\n我希望有一本收录了我的日常日记的同人志，或者一本收录了我年轻时的随笔的商业书籍！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>「泄漏」拯救网络的故事</title>
+<title>“泄密”拯救互联网的故事</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-31 13:26</p>
-  <h1>「泄漏」拯救网络的故事</h1>
+  <h1>“泄密”拯救互联网的故事</h1>
   <p class="ja-title">「漏れ」がネットを救う話</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
  漏れは、このヌクモリティ精神が、今の煮詰まったネットに平穏をもたらすと信じております。ぽまえらも一度ﾏﾀｰﾘ汁！！！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"“泄密”拯救互联网的故事\n\n↑最喜欢的AA\n\n最近，我一直在增加使用第一人称“泄漏”的推文数量。这种轻松的感觉很可爱。是的，前一段时间网络俚语的整体形象是软萌的。\n Kibonne、Noble Gas、Omaira、Hakudou...即使话题很黑暗或极具政治性，如果回应使用诸如“Omaira~”或“Saucekibonne”之类的俚语，人们也会被迫软化。从某种程度上来说，它有一种傻乎乎的可爱感。\n 每年这个时候，互联网上都会充斥着沉重的话题。人民当然有必要发出声音、提出主张和反对。然而，仅仅这样做，只会让大家疲惫不堪。在这种情况下，如果将第一人称改为“leak”或将另一个人称为“pomaera”怎么办？\n 当这样一句话：“我同意这个观点！”这是来自反大众人士（ﾟДﾟ）GOL!!!'的反驳，虽然内容的本质很严厉，但还是令人感到安慰。我的心已经筋疲力尽了。\n 现在智能手机已经成为主流，AA文化已经过时了。莫纳尔和小樱的AA突然出现在任何话题的帖子中，这让我感到安慰。即使你不能在 Twitter 上使用 AA，你也应该能够使用 Leaks 和 Pomaera。\n 我们相信，这种努库莫里蒂精神将为当前混乱的互联网带来和平。 Pomaera还有一次Matari汤！ ！ ！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

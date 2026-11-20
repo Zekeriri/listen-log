@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口散文：大家都在崩坏</title>
+<title>短文：每个人都崩溃了。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-27 07:17</p>
-  <h1>一口散文：大家都在崩坏</h1>
+  <h1>短文：每个人都崩溃了。</h1>
   <p class="ja-title">一口エッセイ:みんな壊れている</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 今月は商業エッセイ集もでました！ いろんな書店に僕の恥が流通しております。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：每个人都崩溃了。\n\n我要讲一个我暗暗期待的节目，《警察24小时关门》。昨天的直播一如往常，是一场警察与罪犯之间的激烈战斗。酒驾、超速、吸毒、盗窃……接二连三的犯罪行为被警方调查和电视台镜头跟踪。\n 大多数人在被警察逮捕时，首先否认犯罪。不管怎么看，你心情很好，但你却马虎地隐藏了你的毒品和酒精，你把超速违规归咎于汽车导航系统，你在别人都这样做的时候却说为什么只有你这样做。他严厉训诫并逮捕这些罪犯。\n 我理解你的感受。即使明明是你的错，但如果警察突然出现，你一定会惊慌失措，编出无用的谎言和借口。体验在自己的身体中想象它的快感。如果只去掉逮捕时的恐慌，那真是可笑又可悲，但既然正义肯定站在警察一边，电视台就可以以铲除犯罪为借口，骄傲地播放一个弱者的节目。这是一个精心制作的系统。如果你在节目播出时查看直播推文，你会惊讶地发现有如此多的谩骂。诸如“不要再进入社会”和“我希望所有这些垃圾都会消失”之类的话。\n 我记得很久以前，当我的追随者的合租屋在电视上播出时，有一个愤怒的账户说：“这些人纳税正常吗？”尽管我付钱给他们，但他们似乎比我玩得更开心。我很生气。当你不向政府纳税时，不要使用公园和类似的地方！！”\n 你可能会对罪犯和穷人感到愤怒，但毕竟他们是其他人。在电视另一边过度辱骂别人的人似乎也病得很厉害。每个人都破碎了。\n\n我们正在出售编辑日常文章的同人志。阅读我的生活并随心所欲地滥用它。\n\n这个月我们还有商科论文集！ 《我的尴尬》在各个书店都有发行。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：小小的药</title>
+<title>小作文：小药</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-29 03:52</p>
-  <h1>一口随笔：小小的药</h1>
+  <h1>小作文：小药</h1>
   <p class="ja-title">一口エッセイ:ちいさなくすり</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 若い頃の長文エッセイをまとめた商業エッセイもよろしくね。評価やレビューまでしてもらえるなら、さらに喜びで狂い悶える。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"小作文：小药\n\n人体虽然如此庞大、强壮，但一粒米粒大小的药丸，却能控制人的神志和睡意，这是很可怕的。\n 如果你吞下一颗白色的圆形小药丸，几分钟后你的肌肉就会放松，大脑中化学物质的分泌就会得到控制，缓解你的焦虑和紧张。我对模糊未来的焦虑消失了，我可以安然入睡了。这是一个非常非常小的颗粒。很奇怪，不是吗？\n 如果是医院开的药还算正常，但如果这是安全性没有保障的有问题的药，如果你口服、吸食、用舌头舔，你的常识就会被冲走，大脑就会陷入恐慌。大约是人体大小的十分之一。这就是我们心理结构的范围。\n 这样，只要将一滴或一小口液体放入你的胃中，里面的成分就会分布到你的全身，控制你的精神状态。最终，随着研究的进展，我们将能够更有效地调整我们的思想。以不依赖身体的方式刺激奖励系统可能成为可能。如果发生这种情况，即使是“努力”和“善行”的假设也将变得毫无意义。\n 由于医学可以调整它，人类将能够将其控制在几种错误模式之内。从那里开始，如果你连接到虚拟世界，外表的差异将不再重要，你甚至会忘记重要的情结。为什么我们这么担心呢？如果我们什么都不做就能享受天堂般的现实，那么死后我们会去哪里呢？\n\n包含每日日记的同人志正在 BOOTH 发售！当有人购买时，我的奖励系统就会受到刺激。\n\n还请写一篇商业文章，该文章是您年轻时长篇文章的汇编。如果您能给我评分或评论，我会更加兴奋和痛苦。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

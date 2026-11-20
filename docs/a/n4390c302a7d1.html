@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：失眠与世界的看法</title>
+<title>短文：失眠与如何看待世界</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-11 05:04</p>
-  <h1>一口随笔：失眠与世界的看法</h1>
+  <h1>短文：失眠与如何看待世界</h1>
   <p class="ja-title">一口エッセイ:不眠と世界の見え方</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 うおお商業エッセイ集も読んでね。暗い話が多くて、もっと眠れなくなるかも。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：失眠与如何看待世界\n\n游戏发售已经有半个多月了，一开始的成就感和欣喜感已经褪去，感觉一切都恢复了正常。\n 习惯了周围人的联系和回应、玩家的评价、销量等不寻常的感觉，当情况回到发售前时，就会出现失眠的情况。我在游戏开发和发布的最后阶段克服的焦虑和失眠尚未解决，当然它们会随着我的日常生活而回归。\n 无法入睡是非常困难的。我对许多问题的回答是，“让我们多睡一会儿”，因为我相信睡眠可以整理大脑的碎片。即使你醒来后有一系列负面想法，你只会感到疲倦，但如果你在那段时间多睡一秒钟，你的大脑会自行调整状态，这将是有益的。你可以稍后再考虑。\n 相反，当你睡不着、无法逃脱时，它就变成了一个地狱，自我厌恶、创伤和未来的焦虑在你的大脑中重演。今天，我很长一段时间以来第一次严重失眠，突然别人最轻微的言语和行为都让我感到害怕，我忍不住发推文“对不起”。我立刻注意到了这一点，然后把它关掉了，但我很长一段时间都忘记了这种感觉。我创建了一个系统，其中“随着游戏中压力的增加，互联网变得更加可怕”，最终我自己正确地复制了它。互联网总是这样，但它的外观会根据您的疲劳程度而变化。啊，这种感觉很重要。世界可以变得美好，也可以变得残酷，取决于他人的认可和感受性。这就是人们因感性不同而无法真正理解彼此的答案。\n\n包含日常文章的同人志现在正在展位上出售。试着在晚上睡不着的时候一点一点地读。\n\n哇，商文集也看一下。有很多黑暗的故事，所以我可能会更难以入睡。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

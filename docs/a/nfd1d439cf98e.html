@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口小作文：深夜广播</title>
+<title>一篇简短的文章：深夜广播</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-04-01 04:42</p>
-  <h1>一口小作文：深夜广播</h1>
+  <h1>一篇简短的文章：深夜广播</h1>
   <p class="ja-title">一口エッセイ:深夜ラジオ</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇简短的文章：深夜广播\n\n半夜突然开始一个空间。无需提前通知或安排时间。没关系，因为它突然开始。希望对于那些睡不着觉、熬夜的追随者来说，这是一个短暂的消磨时间。夜色静谧美好，但我却忍不住感到孤独。\n 以前Twitter很小，所以大家从深夜到凌晨都在时间轴上讨论。你不会相信的。由于 Twitter 上的大多数帐户之间都有模糊的联系，因此我们可以谈论对每个人来说都不重要的事情。所以即使在这种时候，身边还有人在，就有一种安全感。\n 然而，如今的时间线却没有这样的统一感。在这种时候，如果有人打开空间，你就能在半夜体验到一种团聚的感觉，哪怕只是片刻。这就是我喜欢的。说话没有任何意义，也没有什么收获。我认为这很好。夜晚的特别感觉就是能够感受到平淡的日常生活中的平静。可以对抗白天和晚上的信息涌动，享受宁静。\n 如果在深夜打开“突然的空间”时聚集的人们也有这样的感觉，我会很高兴。深夜电台那种愚蠢的、有点地下化的亚文化氛围是我喜欢的文化。所有严肃的人都睡着了。在这个时候，您可以愉快地谈论对成年人来说秘密的令人兴奋的话题。没有留下任何档案也很好。无论它变得多么奇迹般令人兴奋，这都只是一夜的梦想。\n 今晚我唯一谈论的是我看了《小精灵》，并被它的美国风格所震惊。如果是日本特效怪物的话，主题会更侧重于怪物的悲伤和人类的愚蠢。然而，《小魔怪》是一部更关心可爱怪物对城市造成严重破坏的艺术享受，而不是这些细节。我并不是说一个比另一个更好，而是说看到民族特征如此明显的差异很有趣。\n 没有必要也没有必要去听我这种微不足道的想法。不过深夜也没关系。事实上，这样更好。我相信有些听众明白这一点，而这几十个不会被记录下来的愚蠢故事的一些内容可能会留在你的脑海中，并对你的生活产生轻微的影响。没关系。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

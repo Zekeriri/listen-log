@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔: 贫穷者的幸福</title>
+<title>短文：穷人的幸福</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-04-28 03:23</p>
-  <h1>一口随笔: 贫穷者的幸福</h1>
+  <h1>短文：穷人的幸福</h1>
   <p class="ja-title">一口エッセイ:貧乏者の幸福</p>
 </header>
 <main>
@@ -27,10 +27,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：穷人的幸福\n\n住在附近的一个朋友从冲绳开始就和我是朋友，目前福利自给自足，深夜来找我借钱。显然，有一个我很想看的景点，但我连火车票都没有。\n “按照时间表，我以为27号就可以转账，但仔细一看，这是去年的时间表。”我能做错什么？\n 当我接到电话时，我告诉他们，“如果有急事，我会转一些钱”，但他们说，“如果把钱存到我的账户上，就违反福利条款了”，所以我决定直接来。\n 他告诉我他想要立即去他想去的景点的火车票，但付款日期还很远，所以我试图给他一些钱包里的硬币，但他拒绝了，说：“我不喜欢带硬币，因为它们又大又烦人。”你......你一定有麻烦了，因为你连千日元的钞票都没有，更不用说零钱了......！我想说这个，但我就是这样的人。她对某些事情很固执，除此之外，她对很多事情都很敏感。他不仅每次工作都会给别人带来麻烦，而且他还有一种神秘的体质，让他每年夏天都会发脾气一个多月。\n 夏天的时候，无论我对她说什么，她总是咬我，去年还发生过一次，当我给她寄一张沙米子邮票时，她还生气了，说：“你是在说我穷吗？”因为他是一个破坏性很强的人，他唯一的生存方式就是靠福利。他开始在 Uber Eats 工作，以为自己可以做一份兼职工作，尽量不与其他人互动，但他显然遇到了一系列麻烦。\n 他千里迢迢跑来借钱，是看到自己想看的场景，所以一定很着急。没办法，我就深夜和他一起去了一家便利店，取了钱，递给了他几千日元。后来他在我家玩了一会Switch就回家了。我家里没有游戏机，所以只能在家里玩。\n 尽管如此，他仍然可以自豪地说，他现在很幸福。这是因为在国家的支持下，承诺他们只需与其他人进行最低限度的互动。对于无论如何都无法与人沟通的他来说，能够在最少的人际关系中生存下来就是最幸福的事情。\n 我不再购买 Switch 或偶尔吃饭，而是在日记中写下我的生活。在他看来，互联网太遥远了，根本不需要关心。与其这样，更重要的是吃掉我擅自从冰箱里拿出来的毛豆。\n 老实说，我很嫉妒。了解你生活中的幸福所在并意识到它。有一种生活方式是这样的。顺便说一句，他想看的风景似乎是他最近在看的一本诗集的背景。我登上第一班火车去看它。攥着我借给他的几千日元。他是我认识的最有诗意的朋友。我很幸运有好朋友。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

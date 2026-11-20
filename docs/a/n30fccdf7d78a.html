@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>染发这件事</title>
+<title>染头发</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-13 06:03</p>
-  <h1>染发这件事</h1>
+  <h1>染头发</h1>
   <p class="ja-title">髪を染めるということ</p>
 </header>
 <main>
@@ -27,10 +27,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"染头发\n\n自从我剪掉我的头发已经有一年了，我的头发已经长出来并染成了多种不同的颜色，然后又变回黑色。与留长发的日子相比，我也给人一种平静的感觉。不管是好是坏。我觉得活泼比安静要好。不过我现在有点累了，所以这样也好。\n 我第一次染头发是在我高三的时候。\n 我的母亲再嫁给了一个理发师，所以后来成为我岳父的那个人在他自己的店里给我剪头发，以给我留下深刻的印象。内心深处，我并不在意。我不禁讨厌看到妈妈和一个不认识的男人开心地说话，我想尽快逃离这里，把这里搞得一团糟。于是，我决定搞砸，让岳父把我的头发染成红色。当然，我的母亲和继父都反对，我觉得他们说的话几乎是说教的话，但我还是坚持了下来。再婚后父母关系就已经恶化，再加上她也多次离家出走、拒绝上学，所以现在快要毕业了，她可能已经决定，这比陷入困境要好。\n 头发染成鲜红色的第二天，我的高中生很自然地告诉我，除非我再把头发染成黑色，否则不要回来。那是一所从一开始就很愚蠢的高中，所以只有不良学生和书呆子，但我记得很高兴我是唯一一个甚至被告知不要来的人。岩石。 “别担心，我不会再去了，”我想，事实上，从那以后我就没有上过学了。没关系。无论如何，我都希望父母和老师从我的视线中消失，所以仅仅靠红头发就能实现这一点，这就是我的愿望实现了。我所要做的就是坚持几个月，搬到东京上大学，退学，与父母断绝关系，一切就都结束了。\n 因为我们是不良学生而试图让我们毕业的老师告诉我们，“如果你还红，就不要来参加毕业典礼”，所以我们实际上没有参加。此后，当他让我来拿文凭时，我没有理睬他。大人忍不住出声，告诉他们要不要来学校，或者告诉他们不要毕业。 “他们说这是毕业典礼，但他们毕业的是什么？”跳棋乐队的歌曲触动了我的心。\n 渐渐地，公公送她的红发颜色褪色，渐渐变成了棕色。我很高兴，因为每次洗澡，我对岳父的记忆似乎就消失了。在我退学的大学里，我唯一参加的宗教学习班是一次留在寺庙学习佛教的活动，也是我唯一一次把头发喷回黑色。我染发是对社会和成人的反叛行为，但我热爱佛陀。我喜欢这个过程变得如此简单，每个人都可以通过念诵“南无阿弥陀佛”来得救，并将其传播给更多的人，但我仍然觉得“拯救任何人”的愿望是值得尊重的。我以为佛陀会听我的故事。\n 从那时起，我就开始染头发并留长头发。我永远不会顺应社会。告诉自己，这就是你的生活方式。\n 随着年龄的增长，我很高兴地说我的粉丝数量有所增加。每次他们发现我的写作很有趣或者向我提出建议时，我都觉得我变得更加成熟。不知不觉中，我的发色和长度已经自然地固定成了现在的样子。\n 现在，很多人都在听我说话。我创造了像你一样正在阅读这本日记的读者。也许这就是为什么我喜欢染头发和有很多穿孔的人。因为这是对成年人的反抗。如果可以的话，我也会做同样的事情，但我想我会成为一个像佛陀一样平静地倾听尽可能多的人的人。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

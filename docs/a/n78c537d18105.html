@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>拍照</title>
+<title>拍张照片</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-05-29 03:11</p>
-  <h1>拍照</h1>
+  <h1>拍张照片</h1>
   <p class="ja-title">写真を撮る</p>
 </header>
 <main>
@@ -36,10 +36,11 @@ View this post on Instagram A post shared by にゃるら (@nyalra_)
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"拍张照片\n\n事实上，我不久前将 iPhone 更新到了最新版本，所以我开始专注于日常摄影，以充分利用相机。我之所以买新手机，是因为一个靠福利的朋友因为穷把手机卖掉了，我联系不上他，只好把我的旧手机给了他。这是一个很好的机会。\n 安藤忠雄的建筑照片在淡路岛拍摄。那会很酷。\n\n嗯，这只是因为安藤忠雄著名的建筑令人惊叹。我思考各种角度和饱和度，通过反复试验，我尝试用图像来表达让我感觉良好的夜晚、光线和结构。我还想将这些信息用于未来的规划。简而言之，因为我有空闲时间，所以我又培养了另一个爱好。\n\n这也给了我去看建筑的动力。经过更多的培训，我去荷兰参观了里特费尔德的施罗德故居，亲眼感受了蒙德里安。\n 想想看，我并不想拍摄人或自然。我想他是想找到最好的角度和光线来诠释自己对人类双手创造的艺术的诠释。更重要的是，我总是像特效迷一样思考，我想挑战自己，让玩具和背景看起来很酷。\n 这是特别喜欢的。雨后的秋叶原。这张照片是在Good Smile监督粘土人超级十酱回来的路上拍摄的。\n\n“东京休闲乐园”是秋叶原最喜欢的景点之一。这座僻静的建筑坐落在僻静的区域，霓虹灯的配色让人眼花缭乱，让人以为这是一个游戏中心。再加上恰巧经过的汽车灯光，画面捕捉到了我在“夜晚的秋叶原”中寻找的兴奋。\n 照片的存在就是为了传达这种只能通过照片来表达的感受。灯光昏暗的小镇中出现的兴奋和不道德，以及机器发出的光的可疑魅力。这就是我住在秋叶原的原因。虽然中野就是中野，但“建筑物内却弥漫着一种孤独感”。\n 前几天，我和朋友在即将关门的迪士尼乐园玩。我觉得旋转木马是“梦想”的象征，只有木马和不切实际的城堡装饰的灯光照亮了充分享受梦想之地的人们。\n 梦境的尽头，幻想与现实之间。\n\n我希望它离旋转木马本身更近一点，或者可能有点太暗了？还有很多值得反思的地方。我暂时不再阅读任何有关摄影的书籍或文章。现在，我正处于一个阶段，我很高兴能够捕捉并观看我想在屏幕上捕捉的时刻。\n 人类可以通过诗歌、绘画、照片、视频永远留下闪闪发光、美丽的东西。\n\n在 Instagram 上查看此帖子 Nyalra (@nyalra_) 分享的帖子\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -59,7 +60,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

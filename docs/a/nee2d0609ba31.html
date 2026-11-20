@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔:《烏龍派出所》全卷女孩子的单相思</title>
+<title>一次性文章：小知龟完整故事：一个女人的单相思</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-06-20 06:33</p>
-  <h1>一口随笔:《烏龍派出所》全卷女孩子的单相思</h1>
+  <h1>一次性文章：小知龟完整故事：一个女人的单相思</h1>
   <p class="ja-title">一口エッセイ:こち亀全巻女の片想い</p>
 </header>
 <main>
@@ -27,10 +27,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一次性文章：小知龟完整故事：一个女人的单相思\n\n首先，请看一下这个DM。我被允许这样做不是为了取笑它，而是为了以后赞扬它，所以请不要仅仅将其视为第一印象。\n\n来自我不认识的追随者的私信。正如他自己所说，这是一个模板爱情烦恼。我不关心别人的感情生活，所以我只是从心底里感到难过，所以我几乎不再阅读或回复它。然而，这个女人在陷入爱情危机之前发给我的DM非常有趣。\n\n三个月前，这个人突然把他读过的所有小知龟书里的推荐剧集发给我。惊人的。我以前读过所有的卷，而且我写过关于两津和本田转变为御宅族的文章，所以我认为他们可能知道这个人会明白这一点，但即便如此，我突然收到对小亲龟整卷的评论还是很有趣。这时候我只是加了个邮票，并没有真正回复（她完美得让我无话可说），但心里却很高兴，觉得她是个“搞笑女孩”。谢谢。\n 几个月后，当我完全忘记了这条DM时，我收到了关于一个单相思的女孩的非常模板化的开场白。在“如果我喜欢的人不回头看我怎么办？”这句话的上方，像收据一样显示了Kochikame整个系列的推荐剧集。有趣的。于是，我乖乖地征求了同意，说道：“我可以把它写在日记里吗？因为我喜欢《河内龟》所有卷之间的间隙，那里有一个我从心底里不太在意的爱情故事。”看来他自己也意识到爱情部分是无法用语言表达的。也许这就是爱，因为你认真对待别人不关心的事情。\n 我随意跳过，所以我对她现在的感情生活一无所知，但我希望她能利用这个小知龟，坚持走有趣的女性路线。好吧，如果有人在爱情游戏中告诉他们“我已经读完了《Kochikame》的所有书籍……”，90% 的男人都会感到害怕。另一方面，我希望她足够坚强，能够选择一个能够追随小知龟所有故事的男人。我与 Kankichi Ryotsu 的经历，跨越 200 卷，无疑给了我比大多数人更多的力量和知识。\n 为了防止她的努力白费，我们将在她的私信中留下的推荐剧集全文发布。我现在能做的就是为她做这件事……\n 看蓝天白云。我确信事情最终会解决（Yoshimi Tendo）。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

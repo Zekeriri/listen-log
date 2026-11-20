@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：请观看战国收藏</title>
+<title>快速文章：观看战国收藏</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-10 01:42</p>
-  <h1>一口随笔：请观看战国收藏</h1>
+  <h1>快速文章：观看战国收藏</h1>
   <p class="ja-title">一口エッセイ:戦国コレクションを観なさい</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 こっちは人生の話が多めの商業エッセイ集。最近Amazonレビューが増え始めていて嬉しい！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"快速文章：观看战国收藏\n\n前几天的日记里，我写到我根本不玩社交游戏，但是当动漫播出时我就会看。我也很喜欢一些基于社交游戏的动漫，其中之一是《战国集》。\n 是什么让 Senkore 成为如此出色的作品？首先，它是单集，而且每一集都有不同的类型和风格（人物几乎完全不同），所以无论你看哪一集，每次都有不同的精彩。\n 在一部作品中，你以为只是三个女孩在房间里闲逛，但突然间，幼儿园里发生了一场戏仿《银河英雄传说》的故事，有的情节确实感人，有的却突然变得科幻。每个故事中成为主角的女主角都是不同的（传送到现代的战国武将），他们之间的关系随着变得越来越松散而变得不可抗拒。\n 所有剧集都是单集短篇小说，每一集都有经典电影作为主题。这次是“巴格达咖啡馆”还是这是“幻影湖”？欣赏电影的方式多种多样，获得了影迷的高度评价。有两季有如此冒险的内容（与原版相去甚远）。仅仅关注作为来源的 26 部电影就很有趣。随时随地都可以观看的事实也使其与其他基本上遵循故事和角色的社交游戏动漫区分开来。\n\n特别推荐的是第18集，背景画有梵高的风格，阴郁，与阴沉的大谷义嗣很相配。本集的主题是“黑暗中的舞者”。事实上，它是根据那部电影改编的，这意味着这个故事当然是……我希望每个人都能亲眼看看接下来会发生什么。\n\n包含日常文章的同人志现已发售。我们也谈论了很多关于动漫的事情。\n\n这是一本商业散文集，里面有很多生活故事。我很高兴看到亚马逊评论最近开始增加！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

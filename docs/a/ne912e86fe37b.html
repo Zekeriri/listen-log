@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口散文：耳环</title>
+<title>精选咬文：皮尔斯</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-17 13:38</p>
-  <h1>精选一口散文：耳环</h1>
+  <h1>精选咬文：皮尔斯</h1>
   <p class="ja-title">選り抜き一口エッセイ:ピアス</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 今月末には、商業エッセイ集もでます。いっぱい書き下ろしもあって楽しいです。やったね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"精选咬文：皮尔斯\n\n我初中的时候就打了耳洞，其中有很多矛盾和原因。\n 首先，我对学校有一种反叛感，我讨厌这种感觉。在一个连黑色T恤都会遭到愤怒的世界里，打耳洞是一种令人愤慨的行为。我的成绩将会下降很多，以至于我将无法进入正规的高中。所以我打开了它。\n 摆脱生活的束缚，优先考虑你认为很酷的事情。这是对那些为你强加光明未来的成年人的反抗的证据。身体改造是一种哥特式的行为，由于我对玛丽莲·曼森的钦佩，我认为这是最酷的事情。我想证明我不仅仅是一个遵守校规的傀儡。\n 当然，我也仔细考虑过缺点。伤害身体到引起疼痛的程度。结果，他在学校被视为不良学生，被网民嘲笑为高猴子，职业道路也受到严重限制。我幻想过这些事情，但我认为让珠宝在我耳边闪闪发光比这更重要。\n 将又长又细的针放在耳朵附近，然后一次性刺穿。比我想象的要少一些痛苦。仔细消毒并插入您的第一个耳环。我惊恐地发现自己再也走不到“好学生”的道路了，我同时因恐惧和骄傲而颤抖。那一刻我优先考虑时尚和美学而不是纪律和痛苦。当我看到镜子里反射出的小光时，我感觉自己第一次变成了一个成年人。\n\n我们正在出售编辑日常文章的同人志。阅读它。\n\n商业论文集也将于本月底出版。有很多新的写作很有趣。你做到了。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

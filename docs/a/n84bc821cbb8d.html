@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：通过打工积攒对社会的怨念力量！</title>
+<title>短文：通过打工聚集怨恨社会的力量！</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-12 05:17</p>
-  <h1>一口随笔：通过打工积攒对社会的怨念力量！</h1>
+  <h1>短文：通过打工聚集怨恨社会的力量！</h1>
   <p class="ja-title">一口エッセイ:アルバイトで社会への恨みパワーを溜めろ！</p>
 </header>
 <main>
@@ -22,10 +22,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：通过打工聚集怨恨社会的力量！\n\n如果您觉得自己太年轻，我们建议您尝试一份兼职工作，一份看起来要求尽可能高的工作。有些东西让你讨厌工作，讨厌社会的一切。\n 也就是说，大多数时薪不错的兼职工作都是如此。我也尝试过在便利店打夜班，在旅游区的酒吧打工，搬家，在工厂打工，在呼叫中心打工等等（大部分是白天的工作），但我真的很讨厌他们，而且忍不住讨厌他们。每天，我只想着逃避，我对自己发誓，我绝对不会按时上班去看老板在做什么。正因为如此，无论多么不稳定，我都能毫不犹豫地继续以自由职业者的身份工作。过着不稳定的生活比被你不认识的成年人包围并每天做你不喜欢的事情要好一亿倍。\n 这是一份疯狂的工作量，每小时工资只有1000日元多一点，但责任很大，而且还涉及社区的人际关系。说实话，这就是地狱。除了一点钱和“对资本主义的仇恨”之外，我什么也得不到。我也不是一个正常人，但我坚信这个世界更疯狂。那真是一个巨大的收获。当然，如果我能做得好的话，可能会很有趣，并会带来未来的成功，但不幸的是，我很笨拙，所以一切都不顺利，结果我在工作和人际关系中都被骂了。我工作的每一分钟都是一种压力。\n 我确信正是因为这份怨恨，我才能够体会到日夜滋长的对社会的反叛情绪。当我看到大雄的父亲说“你应该为你年轻时的艰辛付出代价”的那句话时，我心想，“这真是一个可怕的父亲。”不过，这并不是什么损失，因为你要支付你的兼职工作，而且它让你有能力怨恨社会并赚取小时工资，所以你想一想，当你年轻时，这是一个有效的选择吗？我也想一想。即使是《假面骑士兜》中的角色，只要解释“我摔倒了，看到了地狱”，就可以被超强化并复活，无需详细说明。从现在开始，我们将在地狱般的现实中生存下来。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

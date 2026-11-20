@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口随笔：也许只是工作而已</title>
+<title>简短文章精选：也许我只是为了工作而这样做。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-11 13:38</p>
-  <h1>精选一口随笔：也许只是工作而已</h1>
+  <h1>简短文章精选：也许我只是为了工作而这样做。</h1>
   <p class="ja-title">選り抜き一口エッセイ: お仕事でやってるだけかもよ</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 商業エッセイ集の方もよろしくね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"简短文章精选：也许我只是为了工作而这样做。\n\n当我第一次听到“Ringo Mogire Beam！”时，我记得我真的被歌词吓到了，“也许我只是为了工作而这么做。”\n 从那以后我读了相当多的奥肯的文章，我知道除了歌词之外，这些文章都是关于原始情感的，但他有可能只是为了工作而这样做吗？我陷入了怀疑的状态。\n 事实上，奥肯在一篇文章中写道，疯狂的粉丝之所以来到他身边，是因为他们被他令人沮丧的歌词和写作所吸引。户川淳还表示，他收到了所谓的“伏木酱”的来信，而他拒绝这些信件的方式可能是因为他“只是在做他的工作”。\n 这位艺术家将如此残酷的事实融入歌词中的令人难以置信的幽默感给我留下了深刻的印象。毕竟，我了解到，当你能够将自我意识升华到你的工作中时，你就是真实的。\n 现在我继续这样写，我更加意识到我可能只是为了工作而这样做。我觉得有时候我必须为了这个角色而写，尽管我因为工作而必须写它。我隐隐约约地认为，专业人士的关键在于他们如何正确地使用它，以及他们能够混淆它到什么程度。\n 正是这个职业向粉丝展示了他们的梦想，让对方平静下来，并说：“也许我只是为了工作。”有了如此惊人的话语和咒骂，我确信当你听到这些歌词时，你已经输了。太神奇了....\n\n我们目前正在销售包含每日日记的同人志。最新版本刚刚发布，所以赶快购买吧。\n\n也欢迎收看商业论文集！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

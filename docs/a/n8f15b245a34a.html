@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔: 如果在法庭上出现一个拥有超凡美貌的存在，自己能否庄严地追究其罪责</title>
+<title>短文：如果一个拥有非人美貌的人出现在法庭上，你能郑重质问其罪行吗？</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-16 08:37</p>
-  <h1>一口随笔: 如果在法庭上出现一个拥有超凡美貌的存在，自己能否庄严地追究其罪责</h1>
+  <h1>短文：如果一个拥有非人美貌的人出现在法庭上，你能郑重质问其罪行吗？</h1>
   <p class="ja-title">一口エッセイ:もし法廷の場に人間離れした美貌を持つ存在が現れたら、自分は厳粛に罪を問えるか</p>
 </header>
 <main>
@@ -28,10 +28,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：如果一个拥有非人美貌的人出现在法庭上，你能郑重质问其罪行吗？\n\n我很喜欢上周播出的《Pekora Usada》的试播，并且看了一遍又一遍。我并没有特别关注她的活动，但我被上图右上角的法庭画所吸引并打开了它。这个图像是错误的。有趣的是，以一贯的广播风格与佩科拉小姐并肩站在一起，现实就变成了“可爱的滤镜被移除”。事实上，我们委托了一位在法庭上实际工作的法庭画家，这提供了独特的观看体验。\n 顺便说一句，广播的内容是读出佩科拉小姐实际可能犯下的犯罪路线，由观众来判断她有罪还是无罪。例如，他通过众筹向粉丝筹集了去月球旅行的钱，并说：“佩科酱是一只兔子，所以我要去月球！”然后逃跑，过着名人的生活。另一方面，系统允许你在听完 Peko-chan 的发言后进行投票。探索一系列可能的指控是很有趣的。我认为这是一个非常好的项目，但我喜欢这个发行版还有另一个原因。\n\n最重要的是，法庭画家绘制的法庭画的质量令人惊叹。正如我在开头提到的，画风令人震惊，仿佛去掉了“可爱的二维滤镜”，尤其喜欢“佩科拉，美得令人难以置信”的形象。\n 例如，假设 Pekora 确实犯罪并出庭。当然，法庭必须是庄严、公正的，法庭画家根据真实情况进行绘画。万一到时候，出现了一个这样貌美如花的女孩子呢？白色的大兔子耳朵，透明的河水般的淡蓝色辫子，可爱的褶边服装，脖子上还挂着吉祥物。尽管以“公平”的方式描绘了这样一个奇怪的人物，但她仍然非常美丽。这位二维美女站在法庭上，头上插着一根胡萝卜。\n 如果我是评委，我一定会对她坚强的性格和美丽感到惊讶。到那时，你将无法再做出正确的决定。他不在乎人类定义的有罪与无罪、善与恶的细小界限，只是着迷于她的美丽。你可能会在压力下咬紧牙关，想知道在与偶像这样的高级人物打交道时，是否可以用人类的尺度来衡量罪恶。我就是这么感觉的。\n\n看到如此逼真的佩科拉跪在地上又在众人面前被举起来，我的心因看到了她不应该看到的东西而感到不道德。这不是同人画，而是真实的法庭画师，而且是经过长时间准备才完成的分发，所以威力很大。正如预期的那样，顶级主播的表现令人惊叹。这是一个很棒的项目，它让我意识到，如果我在现实生活中看到一个美丽得可笑的女孩头上插着一根胡萝卜，我的心就会被夺走，我的大脑在那一刻就会停止运作。\n\n昨晚在Pekora Usada的现场表演中，我画了很多可怕的画面，比如跪倒的场景和悬挂的人物，所以今天我尝试画一张她微笑的正常画面。 #Pekoraibu #Pekoraat pic.twitter.com/pkjhX4FTP6 — Yoshitaka Enomoto (@YoshitakaWorks) 2022 年 11 月 9 日\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

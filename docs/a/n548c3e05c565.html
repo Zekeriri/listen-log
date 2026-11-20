@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：获得2.0的视力，满怀期待地去个展……</title>
+<title>短文：我有了2.0的视野，去看了个展……</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-03 05:22</p>
-  <h1>一口随笔：获得2.0的视力，满怀期待地去个展……</h1>
+  <h1>短文：我有了2.0的视野，去看了个展……</h1>
   <p class="ja-title">一口エッセイ:2.0の視力を手に入れ、満を持して個展へ……</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 商業エッセイ集もよろしくお願いします。こちらの表紙は、塚本穴骨先生。繊細なタッチが良いよね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：我有了2.0的视野，去看了个展……\n\n距离我接受 ICL 手术并变成改造人并在眼睛中植入隐形眼镜已经一周了。于是我就去医院进行了后续检查。我顺利地达到了2.0的视力，没有任何问题。为了珍惜生命中视力最好的这一刻，我将和负责《尼迪加》角色设计的老师，可以说是曹天酱的父母一起，去参加时隔多年的个人画展。\n 我也认识负责接待的策划人员，她是我的粉丝好几年了，我找工作时也和她聊过。我很高兴听到有人说“我很欣赏你的策划风格。”现在我第一次担任策划个展的职位，我觉得我作为一个人已经成长了。\n 当然，展出的插图非常精彩。我很高兴因为这个原因做了眼科手术。这是一场视觉盛宴，因为您将被您最喜欢的插画家绘制的高分辨率图画所包围。\n 在策划Nidiga的时候，为了确立超十酱的存在，必须要有让所有人相信她有一张好脸蛋的能力，所以我委托了一位我个人认为绘画技巧最出色的年轻插画师，我已经有一段时间没有见到他了。这是一个怀旧的记忆。在她的自愿同意下，超级十酱诞生了，凭借她令人惊叹的面孔，她现在已经成为销量超过40万张的女人。再看一遍，人物设计堪称完美。我为能够与如此出色且才华横溢的人一起工作而感到非常自豪。\n 假期里请大家一定要来看个展。在我看来，他是年轻艺术家的巅峰之作。我们充满信心地推荐它。我们也把我的视力修改到2.0吧！\n\n我们正在出售编辑日常文章的同人志。我也很喜欢负责这个封面的老板的照片。\n\n我期待着阅读您的商业论文集。本封面由冢本穴越教授创作。这是一种很好的细腻的触感。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

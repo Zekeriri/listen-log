@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>随笔：即使我变成非御宅的某物</title>
+<title>随笔：即使我成为御宅族以外的人</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2020-03-07 21:17</p>
-  <h1>随笔：即使我变成非御宅的某物</h1>
+  <h1>随笔：即使我成为御宅族以外的人</h1>
   <p class="ja-title">エッセイ：私がオタクでない何かになっても</p>
 </header>
 <main>
@@ -40,10 +40,11 @@
 なので、打ち合わせが終わった後に「ここでずっと一緒に働いてみたりしないか」と訊かれる度に、メンヘラ女性の試し行動のような質問を投げるしかないんです。「僕がオタクじゃない何かになっても？」って。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"随笔：即使我成为御宅族以外的人\n\n我喜欢森高千里的《即使我变成了欧巴桑》。不仅她当年的现场表演很可爱，而且令人惊奇的是，即使在她唱歌的视频中，当她已经到了被称为老太太的年纪时，她仍然像任何年轻女孩一样美丽。\n\n（图片：图1）\n\n像往常一样，我发现这首歌是因为宁宁在翻唱专辑《Utaru♪Love Plus》中唱了这首歌，我向那些想到让皆口优子演唱这首歌的策划者致以敬意。让小木曾由希奈翻唱《Akujo》的人是个天才。\n 我也喜欢同一张专辑中的《孤独的热带鱼》和《微妙地爱你》。\n\n都很好，但是《即使我变成了欧巴桑》的歌词让我觉得，随着年龄的增长，我担心我的男朋友会转向更年轻的女人，而这首歌的欢快本身就是青春和可爱。\n\n我以前写过一篇这样的文章。我已经20多岁了，周围的宅男已经放弃了追随内容，而我也开始成为宅男以外的东西。除此之外，我写道，即使一个令人毛骨悚然的御宅族不再是御宅族并变得“恶心”，那恶心的部分也会被社会漂白，并且不会再有任何令人毛骨悚然的东西了。御宅族的“粗”就是青春和热情。每个人都会变得理智。\n\n由于只靠网络、动画和漫画生活，从二十岁出头开始，我就开始接受与此相关的写作任务，并以顾问的身份参加策划会议，解释趋势和御宅族内容。从这个意义上说，我实际上可能比大多数人更早进入社会。\n\n例如，当我在为某个项目进行角色设计时，负责人会说：“我想在这个角色上系一条丝带”，他会解释说，“现在的趋势是辉夜大人和五胞胎，人物都用这样的大丝带装饰......”，另一个人会回答，“丝带看起来像凉宫春日吗？”，我会说， “哇……”这确实是最糟糕的互动方式。\n 然后是 SNS 策略。只需继续浏览互联网，并按原样输出您的想法或您最喜欢的帐户即可轻松解决此问题。\n\n这个位置取决于输入量和感觉，这两者都会随着年龄的增长而磨损。当我二十岁出头的时候，我能够凭自己的感性回答15岁到20岁这一代人的品味和趋势，但从上个月开始我已经进入了二十多岁，现在我需要收集一定的数据。\n 最近，我一直在观察小学生和初中生在 YouTube 上观看的内容。大多数中小学生都没有Twitter，无法创建账户，因此他们需要查看Youtube上的评论区和社区，了解自己的现状。每天我们都会认真争论哪个角色最可爱/最酷，以及这个描述是否太性感，我永远不会厌倦看他们。\n\n这是可能的，因为我还年轻，有时间看很多动漫和漫画，所以当然，如果我被告知每周工作五天，或者早上起床去上班，而不是看深夜动漫，那么我就跟不上内容，时间就会停止。\n 当然，也有一些人能够平衡两者。我绝对做不到。首先，我什至一天都不能在特定的时间起床并出去。\n 即使你不工作，你最终也会拒绝，所以这也很可怕。我希望能够以年轻人的身份永远玩网络，而不用考虑困难的事情。\n\n所以，每次会后有人问我是否愿意永久与您合作时，我都别无选择，只能像menhera女人的感言一样问这个问题。 “如果我成为御宅族以外的人怎么办？”"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -63,7 +64,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

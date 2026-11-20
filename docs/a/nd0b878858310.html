@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口散文：三十三间堂</title>
+<title>短文：三十三间堂</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-12-28 05:16</p>
-  <h1>一口散文：三十三间堂</h1>
+  <h1>短文：三十三间堂</h1>
   <p class="ja-title">一口エッセイ:三十三間堂</p>
 </header>
 <main>
@@ -22,10 +22,11 @@
  良いものを見た。千体の仏像の前で邪念を払ったことがある。そんな思い出が貴重な体験となり、いつか救いとなるのでしょう。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：三十三间堂\n\n我去了京都的三十三间堂。这里陈列着1000尊佛像，即使是没有多少信仰的人面对这个数字也会不知所措。毕竟，即使在宗教世界中，基础也是数量和规模。如果我有困难，我就造一座大佛。伟大的事情是无条件相信的。\n\n里面不让拍照，所以请欣赏外面广告的氛围。我就是为了这个目的才去京都的，被1000尊佛像包围的经历有一种难以体会的深刻的情感深度。\n 有趣的是每尊佛像的随意解释。某尊佛像的描述是：“这是佛像的杰作”，令我惊讶的是，在一座神圣的寺庙里会出现“杰作”这个词。此外，采用液晶面板的“佛像搜索系统”也很齐全，各个地点的计费要素也很完善。\n 这就是佛教的精髓，它降低了传播的门槛，广为传播，变得通俗易懂，只要念诵南无阿弥陀佛，就能救度众生。我爱上了佛教的轻松理解和博大精深，它最终成为拯救人类的体系。我觉得三十三间堂的海苔就是一个很好的例子。\n 我看到了一些好东西。我曾经在一千尊佛像前发过邪念。像这样的记忆将成为宝贵的经历，有一天会拯救我们。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

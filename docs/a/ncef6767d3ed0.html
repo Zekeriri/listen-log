@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口散文：比这更重要的是注意交通事故</title>
+<title>短文：多加小心交通事故</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-21 08:23</p>
-  <h1>一口散文：比这更重要的是注意交通事故</h1>
+  <h1>短文：多加小心交通事故</h1>
   <p class="ja-title">一口エッセイ:それより交通事故に気をつけろ</p>
 </header>
 <main>
@@ -26,10 +26,11 @@ boothにて、毎日のエッセイをまとめた同人誌を販売中です。
 明後日には、商業エッセイ集もついに発売！ 寄生生物だって飛び跳ねる面白さ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：多加小心交通事故\n\n在《寄生虫》的结尾，美木警告害怕接触剩下的寄生虫的新一“要更加小心交通事故”。这种冷静的举止是米吉的典型特征。\n 首先，人类常年奔跑的巨大铁块，比更容易遇到的寄生虫还要危险。担心在街上遭到异常人的袭击是没有用的。现实中，人类面对面的次数是有限的，其中混入凶手级异常者的几率是数十万分之一。\n 然而，这是一个现实世界的故事，而在无限多人相连的互联网上，有一些人在极其接近的地方等待却永远不会与你互动，而SNS现在每天都处于意外状态！\n 例如，我曾多次假装自己是一个不习惯网络的女人发推文，所以她就发表一些漫不经心的评论来炫耀。只需添加“嗯”和“(;;)”。当然，这样的恶作剧，90%的人都不会在意，但随着它们通过RT传播，很快就成为“一群想向已经露出破绽的弱者说教的渣男”针对的目标。\n 垃圾邮件一一发送诸如“这是你的错”和“你是个白痴”之类的辱骂性评论。除非你准备好走出自己的关注者范围，否则你将无法在 SNS 上生存！然而，当我更仔细地思考时，我可以说，我扮演一个没有目标的女人角色的爱好比向别人说教更没有意义和更可怕，这是对我人生目标的浪费。\n 也许我就是潜伏在SNS上的不正常“寄生虫”。\n\n摊位上出售包含日常文章的同人志。你可以通过阅读来了解人。\n\n商言文集后天终于要发售了！即使是寄生虫也能跳来跳去。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

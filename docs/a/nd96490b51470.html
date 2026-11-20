@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：尼迪加展的准备</title>
+<title>快速文章：Nidiga 展览的准备</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-07-29 10:41</p>
-  <h1>一口随笔：尼迪加展的准备</h1>
+  <h1>快速文章：Nidiga 展览的准备</h1>
   <p class="ja-title">一口エッセイ:ニディガ展の準備</p>
 </header>
 <main>
@@ -30,10 +30,11 @@
 3ヶ月ぶりに対面…… pic.twitter.com/nGqsWVqsQM— にゃるら (@nyalra) July 28, 2023</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"快速文章：Nidiga 展览的准备\n\n至于日期，Nidiga展览将从今天起在涩谷莫迪举办。已经开始了。直到几个小时前，我还在现场观看设置，甚至提供了一些帮助。首先，我要感谢全体员工的辛勤工作。\n 深夜能进入大型商业设施，很有趣。建筑的背面出奇地质朴，虽然大人们到处做着卑微的工作，但早上你会发现时尚的商店和充满梦想的活动。浮华的事物背后，总有踏踏实实的努力。\n\n之所以在涩谷举办活动，是因为虽然我们一直专注于服装相关商品，但我们特意选择了一个不是御宅族很多的地方。如果那些不太了解但看到入口附近的弹出窗口和拍照点并被设计所吸引的人，或者只从TikTok或YouTube上知道周天酱的脸的人可以走进来并了解到这种游戏的存在，那将是很有趣的。\n\n照片是在清理之前拍摄的，所以前景里有一些纸箱，但衬衫陈列在外墙上，大冢先生画的阿梅酱和小天酱很可爱，如果涩谷的路人停下来看看就好了。到目前为止，负责商品的人一直致力于服装和配饰的设计，所以我希望他们能够接触到尽可能多的人。如果发生这种情况我会很高兴。\n 感谢所有走过涩谷的男女。感谢所有长途跋涉来到涩谷的粉丝们，涩谷给人的印象有点恐怖。周六和周日预计人潮众多，但请注意保持水分。另外，像这样的活动总是如此，说实话，就人数而言，最好在工作日来，所以不要太多......\n\n在真人大小的建造之前。盒子里的超级十酱。总体来说，这是自超会议首次亮相以来的第二次展出，但实际上是在Good Smile当时参加的手办活动中安装的，因此可能是第三次投入使用。下次我会站起来一周。加油吧，超十酱……！就我个人而言，我想把它放在一个用棉布包裹的盒子里展示。难道真的没有什么好处吗？\n 现在监工结束，回到家，我却彻底崩溃了。我自己也确实很惊讶。我没有洗脸，也没有换衣服，当时我以为我要躺到床上了，结果我就陷入了沉睡，然后就醒了。所以我的日记写得晚了。一段时间以来，我第一次以一种很容易理解的方式感到疲惫。一声巨响！我以为我可以刷牙。\n 监展之前，我开小说的会议，而且现在已经是月底了，所有的截止日期都快到了，所以我就一直在想一些事情，工作到了深夜。而且，由于是在商店关门后，我在没有空调的湿热空间里待了5.6个小时，耗费了我很多精力。好吧，如果我能为展览提供一些帮助，我将感到荣幸。我不喜欢炎热的天气。我什至无法对抗比我工作十亿倍的建筑人员。我真希望我能多谢他们一些，但看到原作者到处说谢谢的话一定很恶心，所以我只是打了个招呼就很快离开了。而且，我连说话的机会都没有了，所以我已经到了极限了！\n 所以现在我先去睡一会儿。如果可以的话我想去那里，但如果可以的话，我可能会在工作日去。你怎么认为？我什么都没想，但反正我现在要睡得像泥巴一样了。晚安。\n\n三个月来首次会议... pic.twitter.com/nGqsWVqsQM — Nyalra (@nyalra) 2023 年 7 月 28 日"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

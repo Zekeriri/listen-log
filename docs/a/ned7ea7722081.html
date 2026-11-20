@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：押井守版桃太郎</title>
+<title>一篇短文：押井守版本的桃太郎</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-03 01:13</p>
-  <h1>一口随笔：押井守版桃太郎</h1>
+  <h1>一篇短文：押井守版本的桃太郎</h1>
   <p class="ja-title">一口エッセイ:押井守版桃太郎</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 商業エッセイ集の方もよろしくお願いします。漫画やアニメの蘊蓄だらけだな！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇短文：押井守版本的桃太郎\n\n人们倾向于认为“个性是能够做别人以前没有做过的事情”，但我认为“个性是即使某人做了同样的事情也能认出某人”更适合创作。如果宫崎骏、富野由之、押井守、庵野秀明来给桃太郎拍照的话，一切都会不一样。 — Natsuya Semikawa (@osaka_seventeen) 2022 年 3 月 1 日\n\n轻小说作家半川夏也表示：“人们往往认为个性是能够做别人以前没有做过的事情，但我认为‘个性是即使某人做了同样的事情也能认出某人’”更适合创意写作。如果宫崎骏、富野由之、押井守和庵野英明给桃太郎拍一张照片，一切都会不同，”很有趣，我在想押井守版本的桃太郎。\n 当我得到《鲁邦三世》的工作时，我首先想出了一个让鲁邦偷小说的故事，当我真正负责《鲁邦六部》的剧本时，我写了鲁邦和吉根谈论海明威的一集，以及不二子似乎因高级存在而陷入时间循环的一集。它确实展示了你的个性。\n 就桃太郎而言，气氛与以搞笑为主的电视版《桃太郎》完全不同（电视版有大量复古游戏模仿和老妇人电影），屏幕继续以暗淡的群青色为主，随着河合贤治的音乐曲调描绘鬼岛的风景。随后，恶魔们在鬼岛上讨论政治问题，一个聪明的恶魔在苍白的显示器的照射下谈论“战争的意义”。同时，拿起桃子的老夫妇引用《银翼杀手》的说法，声称这是他们可以作为人类而不是恶魔生活的证据，而在故事的结尾，桃太郎最终进入岛上并消灭了恶魔。最后，当狗对着虚空狂吠的时候，不禁让人思考“桃太郎难道不是人类扭曲正义所创造的虚构作品吗？”希望原作粉丝们的评价褒贬不一。如果是他，说不定会比我详细一千倍。能够把这些特点列出来，我觉得著名导演的个性是很了不起的。\n\n我们正在出售编辑日常文章的同人志。如果你读了这些，你就能掌握我糟糕的写作习惯了！\n\n我们也欢迎有关商业论文集的询问。里面充满了漫画和动漫的东西！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

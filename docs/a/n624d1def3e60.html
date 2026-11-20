@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：《まいまいまいごえん》和创造“可爱”的人们</title>
+<title>一篇短文：“Maimai Maigoen”和创造“卡哇伊”的人们</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-08 01:50</p>
-  <h1>一口随笔：《まいまいまいごえん》和创造“可爱”的人们</h1>
+  <h1>一篇短文：“Maimai Maigoen”和创造“卡哇伊”的人们</h1>
   <p class="ja-title">一口エッセイ:『まいまいまいごえん』と「かわいい」を作る人たち</p>
 </header>
 <main>
@@ -23,10 +23,11 @@
 毎日の日記をまとめた同人誌や、若い頃に書いた文章を掲載した商業エッセイ集をよろしくお願いします♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇短文：“Maimai Maigoen”和创造“卡哇伊”的人们\n\n我收到了我心爱的三丽鸥赠送的《舞舞舞御苑》。 《舞舞舞园》以应用游戏为基础，主题是三丽鸥少见的“疯狂”和“恐惧”。这是一部以老师和孩子们之间的死亡游戏般残酷的游戏展开的雄心勃勃的作品。为了让人们了解三丽鸥面临的挑战，我给了我一个漫画，我是一个仍然倾向于在周日早上开着电视，幻想着有三丽鸥动漫老虎机的人，结果却看不相关的高尔夫节目。请享受三丽鸥在恐惧中融入“可爱”的新可能性。\n\n为此，我前几天去了三丽鸥，不仅公司里到处都是可爱的吉祥物，而且所有的员工都认真地对待“可爱”，而且作为一个追了大半辈子动漫的人，每个人都认真对待我的“可爱”想法。当然，即使是我们的男性员工也很认真地考虑如何让世界其他地方的人觉得三丽鸥角色更“可爱”，他们作为粉丝向我提出各种各样的问题。老实说我很高兴。\n\n我很高兴我非常喜欢 My Melo、Jewelpet、Rilu Rilu Fairilu 和 Muckle Dreamy，所以我每周都会一起玩 Mukle Rainbow。一位即将年满 30 岁的御宅族将在幕后支持三丽鸥，让三丽鸥继续在日本各地传播“卡哇伊”风采。\n\n我想看一本包含我日常日记的同人志和一本包含我年轻时写的文章的商文集。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

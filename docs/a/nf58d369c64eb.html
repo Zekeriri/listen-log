@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>随笔：爱哭鬼弱虫诸葛孔明</title>
+<title>随笔：爱哭鬼和懦弱的诸葛亮</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-22 05:07</p>
-  <h1>随笔：爱哭鬼弱虫诸葛孔明</h1>
+  <h1>随笔：爱哭鬼和懦弱的诸葛亮</h1>
   <p class="ja-title">エッセイ:泣き虫弱虫諸葛孔明</p>
 </header>
 <main>
@@ -31,10 +31,11 @@
 若い頃の長文エッセイをまとめた商業エッセイ集もよろしくお願いします。まだ青臭くて、いろんな人にたくさん迷惑をかけていた頃です。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"随笔：爱哭鬼和懦弱的诸葛亮\n\n在这一季的动画中，我特别喜欢《Paripi Komei》。 《Paripi Komei》讲述了公明在现代日本转世的故事，他瞬间了解了转世地的文化，并且与转世前所拥有的知识无可比拟的场景，以强烈的信念感描绘出来，没有因为他是军事家而讽刺，看到公明和相信他的天真女孩即使在俱乐部的战场上也能扬名立万，真是令人兴奋。\n\n之前我写过一个关于“福龙雏”的故事。这个四字成语出自著名军事家孔明、庞统之手，代表“有才华，但没有得到机会，尚未表现出能力的人”，很酷。所有御宅族都佩服他。得到了上级的感谢后，天才战术家终于伸出了手，道：“来了……”\n 像往常一样，当我在初中和高中时，我非常喜欢横山三国志。在幕后，我也对《恋姬无双》和《一骑当千》中淘气的军阀感到兴奋，但我不会详细说明。再加上“孔明陷阱”模因的酷炫，我对战术家比强大的军事指挥官更感兴趣。\n 匿名公告板和SNS上有很多“网络战略家”。他们都傲慢地严厉批评社会和名人，说：“这就是我会做的”，但当回答是“不，你是谁？”时，当然很快就会结束。尖锐的观点需要有记录来支持他们的说服力。当我上初中时，仅凭在互联网上获得的知识，我就相信自己是一名优秀的战术家。\n\n我就是这么一个白痴，却对孔明这个真正的战术大师产生了敬畏，于是《爱哭鬼诸葛亮》这本书就出现了。这是多么好的说法啊。正如标题所示，故事揭示了“被世人称赞的光美，其实是一个坏人！”小时候，我想，“你逆向思维！”，但越读越有趣。得益于作者坂见健一快节奏且有趣的写作风格，您可以欣赏到公明的古怪行为和令人惊讶的人性弱点的故事。这是一部杰作。\n 还没出什么成绩，科明就变得非常傲慢，看不起别人，一连几个小时向亲戚们讲自己的知识，惹恼了他们，而他一开始赚钱，他的姐姐就迷上了时尚。光看这一部分，他看上去就像是一个傻乎乎的角色，虽然很高兴，但他很自豪自己比周围的人读了几十倍的书，而且他的聪明才智是真实的，因为他能够执行比任何人都更精确的虚假信息计划（他写的听起来不错，但本质上只是一个谎言）和策略。\n 一个人再伟大，如果深入挖掘，灰尘也会出来，指出这一点并沾沾自喜感觉不合时宜，但我改变了主意，意识到爱一个人，即使是用奇怪的方式去爱也不错。因为我们都是同一个人，所以有时我们会因为想受人欢迎而得意忘形，有时又会因为想显得聪明而变得懒惰。然而，更重要的是，拥有使这些方面变得有吸引力的天赋和能力是很酷的！每个人都有过去的错误，所以不要一直提供细节！\n 如果你在这个过程中犯了错误或者造成了麻烦，那也是没有办法的。即便如此，尼亚拉这个自称互联网战术家的年轻人认为重要的是有一天他会取得如此巨大的成功，以至于他可以嘲笑它，后来以此为借口立即从大学退学。\n\n包含每日日记的同人志现已发售！\n 请欣赏我浅薄的想法，直到你讨厌它。\n\n我还想看一本商言文集，里面收录了我年轻时的长文。那些年我还很天真，给很多人带来了很多麻烦。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +55,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

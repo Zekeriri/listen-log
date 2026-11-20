@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：自室与精神</title>
+<title>一篇简短的文章：我的房间和我的思想</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-27 05:56</p>
-  <h1>一口随笔：自室与精神</h1>
+  <h1>一篇简短的文章：我的房间和我的思想</h1>
   <p class="ja-title">一口エッセイ:自室と精神</p>
 </header>
 <main>
@@ -23,10 +23,11 @@
 毎日の日記をまとめた同人誌や、若い頃の長文をまとめた商業エッセイ集をよろしくね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇简短的文章：我的房间和我的思想\n\n搬家工作逐渐接近尾声，前几天搭建的“墙”也越来越完整。这次我只是简单地整理了一下人物，但仅此一点就足以让我满意了。其实照片上虽然被剪掉了，但还是高了一级。我需要一个梯子！\n 现在，我已经多次写道，我认为我的房间是“我思想的体现”，本身就是一座“城堡”，但这种解释是在读了《游戏王》后我才想到的！当我年轻的时候。\n 在《游戏王》的早期，沙迪使用千年物品窥视他人的内心，因此每个人的内心都有自己独特的空间。而暗游戏的房间就是一个复杂的迷宫，真是太酷了！当男孩尼亚拉看到这一幕时，他意识到心灵和房间是相连的，而他的房间就像一面镜子，映照出他自己的内心！这就是我的感受。\n 尤其是我和妈妈住在一个单间里十几年了，没有隐私，也没有所谓“自己的房间”的空间，我想这也是我向往的一部分。作为对此的回应，自从我开始独居以来，我一直关注如何在我的房间里表达自己，而这面墙也是我自我表达的结果。\n 虽然我认为这是一种自闭症爱好，但我是那种最喜欢呆在室内，玩我最喜欢的特效玩具，周围都是我喜欢的东西的人。\n\n请欣赏我的日常日记的同人志和我年轻时长篇文章的商业随笔集！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

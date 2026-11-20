@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔:游戏厅战记与电子音乐</title>
+<title>一篇简短的文章：游戏中心战争故事和技术</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-06-24 06:55</p>
-  <h1>一口随笔:游戏厅战记与电子音乐</h1>
+  <h1>一篇简短的文章：游戏中心战争故事和技术</h1>
   <p class="ja-title">一口エッセイ:ゲーセン戦記とテクノ</p>
 </header>
 <main>
@@ -30,10 +30,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♫ 最近、既刊を値下げしたので覗いてみてね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇简短的文章：游戏中心战争故事和技术\n\n我读了《游戏战记》。这是一本在格斗游戏爱好者中享有盛誉的高田马场御门店长所写的一本有价值的书，讲述了经营游戏中心的艰辛和欢乐，以及街机游戏的历史。\n 虽然游戏玩家和爱好者写的书很多，但由游戏中心经理写的书却很少见。高中的时候主要迷恋高达的VS系列，偶尔也会迷上KOF2002（02在冲绳甚至是突击霸王4时代就很流行）、LOV（因为和浪漫传奇、FF4合作），尤其迷恋VS系列，甚至一听说有强者就去实地考察。在国际通一角的小拱廊里，他与其他不知道名字的高达宅男们展开了激烈的战斗。由于游戏的规格，对手有时会成为盟友也很令人兴奋。我的青春期被艾库巴扼杀了。这很有趣。\n\n如今，人们在家中进行在线比赛。即使是非常流行的《Strike Fighter 6》也可以在 PC 上玩。然而，在网上与一个又一个不认识的人竞争的乐趣与一次又一次面对面只面对特定的人的乐趣是完全不同的。事实上，我的一个朋友非常喜欢《Strike 6》，他不遗余力地参加现实生活中的竞技活动。下次我们会在我家举办比赛。这就是通过控制角色互相拳头碰撞的乐趣所在。\n 本书讲述了游戏中心文化的现实故事，除了大玩家外，都因新冠病毒的影响而逐年崩溃，以及他们如何通过举办以游戏中心闻名的比赛、刻意引入受鉴赏家欢迎的复古平台等方式，展示出大玩家无法做到的小型游戏中心的个性，从而克服冠状病毒并仍然顺利运营。\n 自VR2全盛时期以来，大型卡牌游戏机开始流行，UFO捕手收入稳定，奖牌游戏机陷入困境，令人惊讶的是，《上海2》的收入率如此之高，只要放在机器上就能赚钱。厂家和商店的试错很有趣。现在主要的商场里都充满了不明飞行物捕手。不过，除了Mikado之外，还有其他一些商店，比如中野百老汇的Nakano TRF，都是建立在小众竞技需求之上的，而其中肯定有一种需求，只能通过在那些灯光昏暗的街机柜里竞技才能满足。我有时会在中野 TRF 中从后面观看 Tinkle Star Sprites。\n\n书中我最喜欢的场景是商店经理说的场景：“我喜欢黑暗、声音和反射在屏幕上的荧光灯，这是拱廊的典型特征。”是的。游戏厅好是因为有很多活泼的游戏背景音乐、音效、操作声加上玩家的尖叫声，弄得乱七八糟。我很惊讶地看到CAPCOM在Switch上发布的街机系列包括屏幕上的柜子和街机外观。我经常玩《Strider Hiryu》。和X一样，但是贴在墙上很酷。\n\n另一方面，我觉得这个游戏机的“嘎嘎”感觉才是它如此“科技”的原因。在细野晴臣的专辑《Video Game Music》中，“音乐”不仅包括Xevious和Mappy的主题，还包括游戏过程中的操作声音和音效。我真的很喜欢这张专辑。光是听着就让人感觉自己走进了游戏中心。\n 甚至 Kraftwerk 也将计算器和电脑操作的声音升华为音乐。歌曲应包含演奏时发出的声音。它充满了这样的本质，我们可以理解从Kraftwerk到YMO（Haruomi Hosono）再到ZUN的谱系。顺便说一句，坂本龙一也推荐专辑《B-2 UNIT》，因为它的感觉很好。\n 我觉得技术的终极就在这里，所以我个人希望销售复古游戏的商店能够永远存在。希望只有这里才能找到的黑暗青春和电子氛围音乐永远延续下去。\n\n请看一下整理日常日记和商业随笔集的同人志♫ 最近我们对现有出版物进行了降价，请看一下。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

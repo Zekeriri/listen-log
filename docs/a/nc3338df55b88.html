@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：日曜早晨动画的渔夫</title>
+<title>短文：日朝渔夫</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-29 04:26</p>
-  <h1>一口随笔：日曜早晨动画的渔夫</h1>
+  <h1>短文：日朝渔夫</h1>
   <p class="ja-title">一口エッセイ:ニチアサ漁師</p>
 </header>
 <main>
@@ -23,10 +23,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：日朝渔夫\n\n《假面骑士Revise》的最后一集播出后，“Don Brothers”从一开始就观看了Revise的最后一集，在思考“这真是一个很好的最后一集……”之后，他们提出了一个尖锐的元笑话，“让这成为Don Brothers的最后一集吧”，我被这个意想不到的恶作剧的好感所感动，就像银河天使一样。\n\n前段时间，一个朋友来我家住，她看到我八点三十分就起床开始看《日朝》，她就问我“日朝有趣吗？”我回答说：“不是有趣不有趣，而是我只是把它看成一种习惯”，她很惊讶地说：“你看起来像个渔夫……”\n 是的，即使这次收获微乎其微，渔民们还是会再次出海。而且，无论收获多少，下次我一定会出海。相信总有一天会有伟大的收获。 Nichiasa 的观看可能与此类似。\n 当然，我也觉得有些时候没有得到足够的好评，也有一些作品没有真正留在我心里而感到遗憾。不过，追了一年了，无论故事如何，对角色都有一种依恋感，每部作品的关键时刻都有精彩的制作。我可能一直看早间节目只是为了捕捉这些英雄、怪物和女英雄的闪光时刻。这和那些早起去钓鱼的男人一样的精神，只是为了生活的目的而笔直划船。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -46,7 +47,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

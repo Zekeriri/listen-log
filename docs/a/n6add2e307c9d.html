@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：被吐槽‘像游戏版的lain啊！’</title>
+<title>短文：“就像游戏版的Lain！”津小见</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-27 03:38</p>
-  <h1>一口随笔：被吐槽‘像游戏版的lain啊！’</h1>
+  <h1>短文：“就像游戏版的Lain！”津小见</h1>
   <p class="ja-title">一口エッセイ:「ゲーム版lainみたいだな！」というツッコミ</p>
 </header>
 <main>
@@ -19,10 +19,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：“就像游戏版的Lain！”津小见\n\n很久以前，我和朋友介绍给我的一位女士交换了联系方式。就像我的推文一样。然后，她是一个比较不寻常的女孩，每天晚上都会在LINE上用图片报道“今天和男朋友出去吃饭☆”之类的事情，如果她有男朋友，她不会让另一个男人照顾她，或者更确切地说，如果她突然向我展示几乎别人的日常生活，她会怎么做？如果你想和一个人相处，你的好感度应该一点点积累，不要突然达到100！正当我这么想的时候，她也有说谎的倾向，突然出现了一个运气不好的女孩，说：“我得癌症快要死了。”这更像是一个骗局，让对方爱上你！从一开始就设定得太高了。我告诉她为什么我不应该担心一个刚认识的有男朋友的女人的生活，不理她，但下次她打电话给我时，我直接告诉她，“撒谎不好，如果你有男朋友，你应该和他谈谈。”正如我所料，她发脾气并开始哭泣，所以我以为我们只有在发生关系后才开始哭泣，所以我拉黑了她，然后我拉黑了她，她把和我的谈话录了下来。当我害怕他的技术就像一个专业的美人计时，我给朋友发了一份《Nyarula Said to Me.mp3》，当他看到它时，他笑着说：“就像游戏版的Lain，发送碎片音频文件！”，所以我说：“就像游戏版的Lain！”，我很高兴它不会在其他时候使用。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -42,7 +43,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

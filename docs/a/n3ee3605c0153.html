@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：帮助</title>
+<title>短文：帮助</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-23 07:46</p>
-  <h1>一口随笔：帮助</h1>
+  <h1>短文：帮助</h1>
   <p class="ja-title">一口エッセイ:ヘルプ</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：帮助\n\n我上个月刚搬家，现在我陷入了必须再次搬家的危机。\n 显然，现在的房间是在我租用之前装修过的，但当时承包商把排水管连接得不周全。结果我冲水的时候，水很快就溢出来了。我连洗澡都不敢！\n 由于改造是两年前的事情，看来我们需要和当时改造的承包商进行几个阶段的讨论，而改造的承包商很快就说：“排水管本身需要修复，所以这是一个大工程，需要几周的时间。”也就是说，我们被鼓励绕道而行。\n 这很令人不安。这是一个布局不规则的房间，已经两年没有人租了，但我热情地签了合同，充分利用了它，而且我还为这个布局不规则的房间布置了家具。最重要的是，移动工作会损害您的体力。\n 也就是说，这并不是房地产的罪魁祸首，我也不是说我在责怪任何人。如果我决定搬家，我很想把钱盖住，但这种时候我没有勇气索要费用，我已经感到郁闷了。\n 我很担心遇到这样的情况该怎么办，但我没有答案。人生就是这样一系列的事情。我想快点洗澡。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：龙珠GT中喜欢的场景与御宅族</title>
+<title>短文：龙珠GT和御宅族最喜欢的场景</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-31 02:47</p>
-  <h1>一口随笔：龙珠GT中喜欢的场景与御宅族</h1>
+  <h1>短文：龙珠GT和御宅族最喜欢的场景</h1>
   <p class="ja-title">一口エッセイ:ドラゴンボールGTの好きなシーンとオタク</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 毎日の日記をまとめた同人誌や、若い頃の文章をまとめた商業エッセイ集をよろしくね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：龙珠GT和御宅族最喜欢的场景\n\n自从d动漫商店里有龙珠相关的作品之后，我想我又开始看GT了，因为我感到怀旧。然后，我旁边的朋友说：“GT 不好玩，是吗？”\n 嗯，当我看视频时，悟空突然变得虚弱并走上了冒险路线，小时候我觉得由于动画的公然延伸而导致这种情况是成人的，但我仍然喜欢主题曲和最后一集的场景（我稍后会解释），有时我可以原谅这一切。顺便说一句，著名的OP《DANDAN Kokoro Mikareteku》是酒井泉作词的，当你听酒井演唱的版本时，你会感动并想“哦，这也是一首ZARD歌曲”，所以我推荐它。\n 现在，我喜欢GT最后一集的是悟空在一切结束后去找克林并向他索要组手的场景。\n\n啊，悟空最后和他最好的朋友克林一起玩，他最看重的是在大师罗什大师的训练下进行的训练。这太棒了，我很高兴我在看GT。\n 当我告诉我的朋友这件事时，他称赞我说：“御宅族真是太好了。”他接着说：“我认为塞林格是这么说的，但似乎有商人气质的人可以欣赏完美程度高的诗歌，但他们不能赞美完美程度低的诗歌。不过，这真是一个释义。”\n 换句话说，那些以商业为导向的人，或者继续仅根据高收视率做出判断的人，无法看到即使是停产的漫画也可能有一些优点。所以，对于一部普遍被负面对待的作品，你必须是一个御宅族才能说“但这部分很好”，而且他似乎也被这个方向所感动。\n 我觉得你能这样赞扬他真是太棒了，但我想记住这个关于塞林格的故事（它很模糊，所以可能是黑塞）。很高兴看到年轻的悟空对老克林天真地微笑……\n\n请欣赏我的日常日记的同人志和我年轻时的作品的商业随笔集！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

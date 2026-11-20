@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔: 对他人创作物不感兴趣类型的朋友</title>
+<title>短文：对别人的创作不感兴趣的朋友类型</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-05 06:49</p>
-  <h1>一口随笔: 对他人创作物不感兴趣类型的朋友</h1>
+  <h1>短文：对别人的创作不感兴趣的朋友类型</h1>
   <p class="ja-title">一口エッセイ:相手の創作物に興味のないタイプの友人</p>
 </header>
 <main>
@@ -27,10 +27,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：对别人的创作不感兴趣的朋友类型\n\n``当地最好的！我的一个朋友，usagi，画了一幅非常可爱的漫画，他在推特上写道：“当我的一个好朋友告诉我你画的漫画不有趣时，我很高兴”，所以我在心里点点头说：“我明白了......！”是的，我很高兴听到朋友直言不讳的观点。\n 只要我们传播我们的作品，粉丝的数量就会随着作品的普及而增加。粉丝们称赞我的作品，因为他们喜欢它。但我的朋友们呢？当然，也有善良的人喜欢别人的创作并欣赏和支持。但是，当然，也有很多类型的人不关心别人的创作。无论他们富有创造力的朋友多么认真，他们表现得好像他们并不真正关心。那挺好的！\n 换句话说，只要我们关系好，就像朋友一样，就已经建立了一种“我对你的创作不感兴趣/我觉得它们很无聊，但除此之外，我喜欢你这个朋友，所以我会和你一起玩”的关系。他们对我的关注超过了我所创造的东西。这是粉丝做不到的。当然，也有粉丝“喜欢作者本人”，但那个“作者形象”是可以通过账号看到的虚拟形象。我朋友直接感觉到了。\n 与年长的人沟通就像他们年轻一样，与年轻人沟通就像他们年长一样，这是有技巧的。当大人与他们随意交谈时，他们会感到高兴，说：“也许我是年轻人中的一员？”当孩子们受到尊重时，他们会感觉很好，说：“也许我比你想象的更有尊严。”一个人越漂亮或英俊，你就越会赞美他们除了脸之外的其他方面，而对于创作者来说，更多地赞美他们的个性而不是他们的工作可能是一个好主意。\n\n另一方面，我实际上正在玩 Splatoon 3。我不擅长动作游戏，但与朋友一起休闲玩它们很有趣。\n 那天，我很高兴在广场上看到鱿鱼酱打扮成“发条橙”。想想看，那部电影也是四个人压倒敌方队伍的。\n 不管怎样，当我一边玩一边和朋友聊天时，有几场比赛我自然会发现自己在犹豫。那时，我的朋友们会取笑我，说“啊，都是你的错”，“我成了战犯”。这很恶心，但这就是这些天给我带来的快乐。\n 你一定很高兴。网络上的粉丝无拘无束地夸我/崇拜我，周围的大人们鼓励我要体贴，让我的工作顺利进行。然而，我的老朋友对我的创作或工作不感兴趣，每次我犯错时，他都会平静地取笑我。另一方面，当他们犯错误时，我会鼓励他们。您可以与朋友一起享受游戏的乐趣，而不必担心在线可视化的所有数字的涨跌。没有什么比这更幸福的事了。谢谢。不过，我希望您至少对我的活动有一点兴趣！\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

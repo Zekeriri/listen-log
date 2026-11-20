@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>梵高展的老人的故事</title>
+<title>梵高展览中老人的故事</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-25 14:42</p>
-  <h1>梵高展的老人的故事</h1>
+  <h1>梵高展览中老人的故事</h1>
   <p class="ja-title">ゴッホ展の老人の話</p>
 </header>
 <main>
@@ -29,10 +29,11 @@
 商業エッセイ集もよろしくお願いします。Amazon評価も押してみてね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"梵高展览中老人的故事\n\n最近，我似乎严重缺乏睡眠，昨天竟然睡着了，这真是难得。由于睡了大半天，没什么可写的，就说说我的回忆吧。\n 前段时间，我一个人去看了梵高的展览。因为我想看《星夜》。\n 博物馆门前排队的人很多，队伍外围有一位老人举着一张纸，上面写着：“请给我一张梵高展的门票。”他的长发全白了，我分不清他是男是女。\n 过了一会儿，轮到我了，看完所有的展品，我看到了主展品《柏树和星星的路》。我不知怎么地决定数一下有多少顾客会看这幅画，所以我远离人群，站在一个只能看到顾客而看不到画的位置。\n\n大多数人观看30秒，一对在排队时全神贯注于《智龙迷城》的情侣看了10秒，穿着西装的上班族看了大约5秒就离开了。就在这时候，刚才在楼前看到的那位老人来到了柏树前，显然是想办法拿到了票。\n 老者站在柏树前一动不动，即使被人群冲走，他的目光却始终没有离开柏树。我继续欣赏这棵柏树大约1分20秒，直到它最终被卷走，再也看不到它了。\n 我不认为这完全是因为观看时间长，但那天我开始明白，梵高是一位伟大的人，他受到那些没有能力进入博物馆的老年人的喜爱，但一旦进入博物馆，他们就比任何人都更被这些画所迷住。\n\n包含每日日记的同人志正在 BOOTH 发售！\n 很高兴见到你。\n\n我期待着阅读您的商业论文集。另请查看亚马逊评级。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

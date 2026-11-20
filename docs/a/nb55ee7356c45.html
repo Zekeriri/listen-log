@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：《猜火车》</title>
+<title>短文：火车发现</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-13 00:41</p>
-  <h1>一口随笔：《猜火车》</h1>
+  <h1>短文：火车发现</h1>
   <p class="ja-title">一口エッセイ:トレイン・スポッティング</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 商業エッセイ集もよろしくね。ろくでもない人生が読めて、今回のエッセイと合わせると感慨深いかもしれません。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：火车发现\n\n纳税申报表已完成。这一切都归功于我的税务会计师。今年，游戏销售将开始增加，因此我将继续遵循税务会计师的有用建议并开始准备纳税。\n 我的钱的最佳用途是为了我的健康，这个月和下个月我将接受眼睛、鼻子和牙齿的手术和正畸。我全身的脱毛​​进展顺利，我也很快变得更健康。\n 随着身体的健康，我想起了《猜火车》。这部电影的主角是一个吸食海洛因的无助青年，他满脑子想的都是毒品，但当他意外收到一大笔钱时，他表达了自己对“升职、家庭、洗衣机、汽车、身体健康、低胆固醇、抵押贷款、时尚、养老金、税收减免……”的渴望，并告诉无忧无虑的观众，“我和他们一样的生活”你。”\n\n最酷的场景。当我们欣赏并钦佩那些以颓废的年轻黑帮寻求非凡刺激的电影时，年轻黑帮却透露出他们和观众一样渴望平静的生活。不过看过这部作品的观众都知道这一点。我没有考虑职业发展和税收，而是意识到，如果我按照他们想要的方式生活，那将会更加戏剧化。这很讽刺。事实上，即使在续作《T2》中，主角过着平静生活的描写也并不多。这是一种随处可见的没有任何戏剧性的生活。\n 从现在开始，我会变得健康并开始节税。我更喜欢时尚，甚至可能会为参加活动买一套西装。最终，他将年满30岁，继续自己的生活。渐渐忘记了看《猜火车》的震撼，我数着自己的寿命。\n\n包含日常日记的同人志现已在摊位上出售。看看别人的生活并选择正确的未来。\n\n我期待着阅读您的商业论文集。你可以读到一段并不美好的生活，当你把它和这篇文章结合起来时，可能会很感人。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

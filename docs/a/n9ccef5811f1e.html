@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：银河天使的故事</title>
+<title>短文：银河天使的故事</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-02 02:56</p>
-  <h1>一口随笔：银河天使的故事</h1>
+  <h1>短文：银河天使的故事</h1>
   <p class="ja-title">一口エッセイ:ギャラクシーエンジェルの話</p>
 </header>
 <main>
@@ -30,10 +30,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：银河天使的故事\n\n我一生中最喜欢的 5 部动画之一的《银河天使》已经来到了 d Anime Store，所以我一直在流着怀旧的泪水观看它。我很惊讶我仍然记得大部分内容。\n GA也是在复杂的情况下创造出来的奇迹，所以我稍微解释一下。\n\n首先是动画第一季。本作以“魔卡少女樱工作人员为您带来的美少女动画”为主题在Animax上播出。由于不是地面广播，所以有点黯淡，给人的感觉是加速器还没有发挥出全部潜力，但你可以体验到赛璐珞动画特有的怀旧之情，以及还被视为新人的田村由佳里和泽代美雪的成长速度。\n 原本计划继续《The Gal Game》游戏版的故事，但由于制作原因，游戏版的设定没有交付，反而是工作人员无视原著故事而横冲直撞，动漫GA的传奇就此开始。从太狂野的动漫版进入游戏的宅男们，一定会因为两者之间的巨大差距而兴奋不已。井上俊树决定告诉他的员工“做你想做的事！”……他到底是谁？ ？好在唐兄弟继承了这种暴力精神……当你在GA中看到这样的场景时，即使是一个搞笑场景，也会让你热泪盈眶。\n 巧合的是，《银河天使Z》第二季于周日上午播出。转向数字绘图。\n 早上，每个角色的曝光度都减少了，笑料也变得更加针对儿童，导致每周都会出现暴力动画，最终以混乱收场。搞笑的节奏和模仿感都很强，第4集的B部分“文登蛋糕组合特辑”展现了早间动画的独特性。五个主角中，有三个已经成长到为了​​金钱而杀死朋友的程度（？），剩下的两个则是因为本性而最邪恶的主角，以及沉迷于邪教的神秘孩子。顺便说一下，我最喜欢第4集的A部分，尽管有点平淡。\n\n第三季《银河天使A/AA》持续时间最长。每一集都充满了油腻的内容，无论剪到哪里，都能欣赏到剧本和导演的莽撞。 “签名是肉汤”和“念珠与面条相连”是强有力的GA式笑料，因为“主角的性格一半以上都是垃圾”而成为可能。就我个人而言，我对第14集“Pyurrik神奇牛排/焦虑年轮蛋糕”着迷，它成为我永远不会忘记的作品。如果您遇到困难，请尝试随机玩第三季，您将能够享受GA的乐趣。\n\n《银河天使X》第四季。这是GA的最后一季，移至午夜，由于是最终作品，所以也是最混乱的一季。它充满了深夜老虎机特有的成人导向的模仿（例如，上图来自《Tokimemo Parody》剧集），我重看第四季的次数最多，但如果你从现在开始看它，你可能会因为它的激烈程度而感到胃灼热。这是对追完第一季到第三季的宅男们的奖励的形象。新加入的女主人公乌丸千岁又是个好角色……虽然是个可怜的角色，但他有很好的平衡感，让角色变得可笑又不会太可怜。\n 《悲伤、憎恨、冷冻豆腐》、《成里秋竹》、《爱大米》……充满了精彩的情节，虽然是荒诞的笑点，但当它可爱得恰到好处时，这是一个获得满分的可爱间隙。如果它成真，我会很想在余生中看到天使小队的行动……如果你有令和银河天使，请也给我看令和银河天使。井上俊树的状态依然很好！我每天晚上继续祈祷。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

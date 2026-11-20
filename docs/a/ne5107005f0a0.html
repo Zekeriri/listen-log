@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口随笔：电子工艺与Da Capo</title>
+<title>论文选：Kraftwerk 和 Da Capo</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-20 19:00</p>
-  <h1>精选一口随笔：电子工艺与Da Capo</h1>
+  <h1>论文选：Kraftwerk 和 Da Capo</h1>
   <p class="ja-title">選り抜き一口エッセイ:クラフトワークとダ・カーポ</p>
 </header>
 <main>
@@ -29,10 +29,11 @@
 商業エッセイ集もよろしくね！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"论文选：Kraftwerk 和 Da Capo\n\nDentaku 是一首非常酷的歌曲，所以请听一下。当你在黑暗中戴着耳机聆听时，你可以体验到与电子设备世界越来越融合的感觉 https://t.co/TsarQuXyxB — Nyalra (@nyalra) 2021 年 8 月 1 日\n\n我喜欢发电厂。\n 当我从东方原创歌曲到 YMO 再到 Super Xevious 的音乐中，我意识到我喜欢那些声音较少且笨重的歌曲，就像复古街机游戏一样。您希望被电子 SE 包围。当时，我偶然看到了Kraftwerk的歌曲，作为一个热爱Pico Pico的小男孩，我感到很震惊。\n 首先，这首歌的名字就很棒。由类似计算器的嘟嘟声和叮当声组成的“Dentaku”传达了只要手中有计算器，任何人都可以成为音乐家的信息，而“Computer World”和“Computer Love”则传达了Kraftwerk对电脑的热爱......\n 尤其是歌名《电脑之恋》让人惊叹不已。甚至在歌词中，“电脑之爱”这句话也被一遍又一遍地重复。尽管如此，我还是情不自禁地感受到了过去描绘的计算机的模糊未来主义观点。不知道是否还有人如此热爱电子音乐并通过音乐来表达......\n\n有一张美少女游戏的编曲专辑（出于某种原因）模仿了 Kraftwerk 的专辑，该作品名为 Da Capo。\n 为什么马戏团突然想把 Da Capo 的歌曲改编成 Kraftwerk 风格？我不知道他们是否是故意的，但缺乏背景确实传达了工作人员对 Kraftwerk 的热爱，我很高兴看到这种精神，所以我买了它。我们都是电脑爱好者，热爱同一个电脑世界。\n\n包含每日日记的同人志正在 BOOTH 发售！谢谢。\n\n我期待阅读您的商业论文集！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

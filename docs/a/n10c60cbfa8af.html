@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>喵拉拉的首次作业通话对象，优香</title>
+<title>Yuuka，Nyalla 第一次接到工作电话的人。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-07-19 14:41</p>
-  <h1>喵拉拉的首次作业通话对象，优香</h1>
+  <h1>Yuuka，Nyalla 第一次接到工作电话的人。</h1>
   <p class="ja-title">にゃるらの初作業通話の相手、ユウカ</p>
 </header>
 <main>
@@ -34,10 +34,11 @@
 商業エッセイ集の方もよろしくね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"Yuuka，Nyalla 第一次接到工作电话的人。\n\n我渴望接到工作电话。\n 创作者们聚在一起随意交谈，彼此的作品声音令人心旷神怡，有时甚至会忽略自己的作品，热闹地聊天……（一切都是我的想象）。然而，我从未被共同关注者邀请参加工作电话会议！\n 但是，当然，我自己没有勇气邀请她出去。既然别无选择，我决定付钱，强行给一个漂亮女孩打电话。\n\n这是《蓝色档案》中登场的小由香。\n 我对布拉卡一无所知，更不用说这个女孩了。我喜欢器乐并听原声带，但对于什么是蓝色和什么是存档，我完全是个局外人。字体和Rahxephon的《Blue Friend》很像，所以当我看到标题的时候，我瞬间感觉脑子里有蓝色的血液，很紧张，但我对此了解不多。我发誓不玩应用游戏。\n 看来，尽管我是这样的人，这个名叫由香的女孩还是会打电话给我上班。还有 ASMR。你付钱给一个女孩，是为了让她做 ASMR 工作吗？我扔掉了疑虑，立即购买了音频作品……我戴上降噪耳机，享受着与由香酱的工作通话。我太激动了。\n 由香涉甜美的声音一响起就引起了共鸣。它是真实的（我不知道真实是什么，但是......），有一些交换，例如检查之间的音量。显然，我是“老师”，Yuka会一边打电话一边监视我，以确保老师不会偷懒。学生和老师可以私聊吗？我是一个什么样的老师？如果是“数学”之类的东西，那就太糟糕了。我只能教你乘法口诀表，但由香酱可能知道乘法口诀表。我无法停止紧张......\n 由香叫了好几次我的名字，检查我的声音。每次我说“……由香”，她都会回答“啊……”。哦天哪...如果你对这样的事情感到尴尬，你就会开始担心接下来会发生什么。\n 开始工作。伴随着笔的运转声，优香每隔五秒左右就会发出“嗯”、“啊”、“呃……”等叹息声和低语声。他经常像Kobo-chan一样自言自语，说“嗯”和“是”之类的话，这确实扰乱了我的注意力。最后，她没有静音地给一个叫“桃井”的朋友打电话。由于可以听到您的声音，因此您可能需要先学习礼仪和识字能力。像这样的小细节会让我在找工作时处于劣势（我没有找工作的经验）。\n 只要听他自言自语，计算器的声音和诸如“研讨会”、“会计”、“预算”、“那些人”之类可疑的词语就时常出现。 Yuka-chan有举办信息产品研讨会吗？他在打电话时是否参与了诈骗？我感到焦虑。我不知道那个叫“桃井”的女孩是否也是我的朋友……我所做的似乎远非蓝色，而是灰色。\n 之后，我一边听着Yuka酱“嗯……”、“啊”、“呼……”等甜美的声音，一边继续工作。工作正在进行中，我很兴奋这是一个工作电话，但由香检查了进度，生气地说：“完全没有进展！你在做什么？你在玩吗！？”我以为自己进步不错，会受到表扬，结果当老师骂我装聋作哑时，我感到很震惊。尤卡，对不起……\n 不知怎的，第一个工作电话就结束了，之后，厌倦了老师进度缓慢的老师，直接来到我身边，给我按摩，甚至开始睡在我旁边。工作叫声……“啊”“嗯……”有这么调皮吗？这是一个可怕的夜晚，我以为我的追随者每天晚上都这样做（最终他们开始在我旁边睡着）。\n\n包含每日日记的同人志现已发售！\n 当我写这篇文章的时候，我想打一个工作电话……\n\n我还想要一本商业论文集。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,7 +58,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

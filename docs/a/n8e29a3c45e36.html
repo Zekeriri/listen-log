@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：最近对Prismmy心情无法抑制的御宅族</title>
+<title>短文：对最近的Primaji无法控制自己感情的宅男</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-04-28 05:54</p>
-  <h1>一口随笔：最近对Prismmy心情无法抑制的御宅族</h1>
+  <h1>短文：对最近的Primaji无法控制自己感情的宅男</h1>
   <p class="ja-title">一口エッセイ:最近のプリマジに気持ちが抑えられないオタク</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 商業エッセイ集もよろしくね。Amazon評価もしてくれたら、とても嬉しいです。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：对最近的Primaji无法控制自己感情的宅男\n\n我无法抗拒谈论最新 Primaji 的冲动。 Myukle结束后，我担心这个没有三丽鸥动漫槽的国家的未来会怎样，但我被上周潮湿的气氛彻底打败了。我们来谈谈普里玛吉吧！ ！ ！\n 就新OP而言，在接下来的开发中，有让每个角色成为二人组的举措。祭酱和阿鲁，雏前辈和天音大人，还有……天音美月托雷门先生。\n\nMiruki 和 Lemon 的搭配堪称满分。 《第一次接触》中，对偶像 Miruki 感到害怕的宅男 Lemon 先生假装安全地告诉他“谈论天气是 Miruki 不关心的三件事之一”，但当他们在一起时，他们慢慢开始向彼此敞开心扉，尽管没有什么特别的原因，但当他背靠背看到新的 OP 时，他突然大声叫了起来。很高兴看到充满爱心的 Miruki 和难以与他人沟通但尊重他们的 Lemon 先生如何认识到彼此的个性，尽管他们不完美，并成为朋友。正如OP所说，当我们成为一对时，我不确定我是否能够处理好它。我可能会死。\n\n另一方面，在上周的《Avan》中，描绘了祭酱和妙木的夜晚，两人的关系已经成熟，甚至没有试图隐藏他们的谦逊。一场火热的调情展开了，我几乎要疯了，想知道这是否是官方的。我不禁想知道今天早上我是否可以看到这种互动。我最终露出了令人沮丧的、令人毛骨悚然的御宅族笑容。这个国家的未来将得到 Primaji 和在那里长大的女孩们的支持。\n\n包含日常文章的同人志现在正在展位上出售。在我意识到之前，我只是在谈论日朝。\n\n我期待着阅读您的商业论文集。如果您能在亚马逊上对其进行评分，我将非常高兴。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

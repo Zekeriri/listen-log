@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔: NIDIGA五十万本与总监修喵拉拉</title>
+<title>快速文章：Nidiga 500,000 份和总体监督 Nyalla</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-24 04:32</p>
-  <h1>一口随笔: NIDIGA五十万本与总监修喵拉拉</h1>
+  <h1>快速文章：Nidiga 500,000 份和总体监督 Nyalla</h1>
   <p class="ja-title">一口エッセイ:ニディガ50万本と総監修にゃるら</p>
 </header>
 <main>
@@ -39,10 +39,11 @@ There is also an English translation#超てんちゃんのはいしん pic.twitt
 商業エッセイ集もよろしくお願いします♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"快速文章：Nidiga 500,000 份和总体监督 Nyalla\n\n由于我的作品《Nidiga》销量超过50万册，我们举办了纪念广播。准备和计划花了很多功夫，但我很欣慰，结果证明这是值得的。\n 成为热门意味着需要更多的工作，最近我一直忙于思考与 Nidiga 有关的一切。我每天都会开一些会议，同时也在为 Switch 版本开发额外的功能，多亏了这些努力，我被授予了“总主管”的称号。\n “一般监督/规划/场景 Nyalla”，我对此感到非常高兴。当我看《新奥特曼》时，我看到担任工作人员角色的“总监督庵野英明”，心想：“啊！！！这个职位就是作弊！”我很佩服他。是不是很酷？\n\n我的辛勤工作得到了认可，除了规划和文本职责之外，我还被任命为“总主管”这个很酷的职位...... pic.twitter.com/pZL4ovSp0P — Nyalra (@nyalra) 2022 年 6 月 14 日\n\n现在我就给大家介绍一下总督最重要的工作。我在 Nidiga 所做的小心翼翼的事情就是“尽可能去除公司气味”，我强调奇怪的创作者自由地做事、享受乐趣的感觉，而不是成年人把东西紧密地组合在一起的感觉。随着规模的增大，人数增加，因此参与生产过程的成年人逐渐增多。那样的话，一切都会小心谨慎地进行，不需要“确认”。但我不喜欢这样。\n 今天直播的摘要部分也贴了很多指南、游戏说明和链接，所以我让他们把它削减到“超级十酱说话”的水平。用这种信息和成人的情况来轰炸那些随意来看Couten酱的人是没有帮助的。我负责修复这些事情的总体监督。\n\n我们收到了很多公司的询问，但最终我们决定自己生产。这样，你就可以不受限制地做你喜欢的东西，而且你可以对质量很挑剔。不过也正因为如此，价格有点高。对不起。已经好多了，所以请期待它的到来。定价是下一个挑战。但我不想为了低价而在质量上妥协……“我们已经推出了一些我们认为会卖得很好的商品！”是一种企业气味……只是一群披着谎言的“成年人”。\n 无论如何，我很抱歉在片场如此吵闹，但我会继续做出这样的小调整。我不想看到一个超级临时工因为成人的情况而被迫做无聊的广告。而且制作组包括制片人都认可这个想法，所以我的“总监督”这个职位非常有用。我真的很感激。从现在开始，我希望我能继续以“人们认为我善良、美丽吗？”为优先考虑。在我的活动中。\n 50万份，感谢大家的支持！我要印一百万份...我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我能，我可以，我可以，我可以，我可以，我可以！ ！\n\n感谢您提供超级十酱！\n这一次，所有热爱网络天使的宅男们也齐聚一堂，共同努力传播。再次感谢您的 500,000 份 ♪ https://t.co/CeDHrok3Wq pic.twitter.com/eeWhzMBXJz — Nyalra (@nyalra) 2022 年 6 月 23 日\n\n我写了纪念50万份的留言♪\n中文翻译一份\n还有英文翻译#Super Tenchan no Haishin pic.twitter.com/cSe6LLZGOI — Nyalra (@nyalra) 2022 年 6 月 23 日\n\n包含每日日记的同人志正在 BOOTH 发售！如果有人买了，总督的压力就小了。\n\n感谢您的商业论文集！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -62,7 +63,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

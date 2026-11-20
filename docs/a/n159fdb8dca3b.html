@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口小作文：鹤的一声</title>
+<title>一点文章：鹤的声音</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-04-10 04:42</p>
-  <h1>一口小作文：鹤的一声</h1>
+  <h1>一点文章：鹤的声音</h1>
   <p class="ja-title">一口エッセイ:鶴の一声</p>
 </header>
 <main>
@@ -29,10 +29,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一点文章：鹤的声音\n\n我和朋友们去一个叫昭和记念公园的地方散步。很多郁金香都在盛开。便利店甚至还有间谍级软糖。\n——这样最好了。\n 好吧，不管怎样，这次我和一些很熟的朋友一起住在同一间房子里，第一个目的就是去看樱花。现在是四月，所以这是一个聚会的合理理由。\n 但由于下雨，大家的日程不协调，所以很难调整日程。今天4月8日可以去，但是樱花还没盛开就来不及了。 5. 当我们在六个人之间协调日程的复杂性时，一个人说：“樱花不开也没关系。”\n 只有起重机的声音。\n 这是正确的。我们并不是真的想看樱花。首先，如果你真的想找花，你应该亲自去看看。只要我们能聚在一起，边散步边聊天，什么都好。虽然我们并不需要樱花，但我们还是把樱花作为相聚的前提。我完全忘记了自己的真正目的。\n 好的。结果，我们都在这个大公园里闲逛了几个小时，偶尔坐下来，玩得很开心。没关系。最后，只要我的朋友们在我面前有说有笑，什么都好。\n 之后我就无缘无故地逛了宜家，不过还蛮好玩的。和其他人一起去宜家真是太有趣了。现在它是一个主题公园。这是快乐的一天，我一边在公园和宜家散步，一边和朋友们聊天。\n 想想看，当我离开互联网一天时，那种神秘的负罪感，比如“我为互联网上的人感到难过”，已经消失了。我想你已经准备好迎接普遍的幸福和健康了。那挺好的。我想这很好。晚安。\n 作为奖励，我会给你一张宜家仓库的照片。因为宜家的仓库是最好的。\n 那是一个宜家仓库。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

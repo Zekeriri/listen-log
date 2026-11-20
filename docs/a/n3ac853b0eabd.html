@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔: 动物与人类的区别</title>
+<title>短文：动物与人类的区别</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-04-16 04:03</p>
-  <h1>一口随笔: 动物与人类的区别</h1>
+  <h1>短文：动物与人类的区别</h1>
   <p class="ja-title">一口エッセイ:動物と人間の違い</p>
 </header>
 <main>
@@ -32,10 +32,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：动物与人类的区别\n\n我目前正在亚马逊 Prime 上观看一个名为“间谍相机图画书”的动物节目。该程序将一个看起来与拍摄对象一模一样的间谍相机发送到一群动物中，使我们能够看到通常不可能看到的镜头。例如，在上图中，我们有一个螃蟹相机，它与一群螃蟹融为一体。看到螃蟹相机在螃蟹迁徙时拼命追赶它们，真是很有趣。\n\n顺便说一句，这只螃蟹几个月来第一次从土里出来，它很饿，所以连他的朋友和螃蟹相机都开始吃它......自然世界太可怕了。\n\n当你近距离看到它时，它看起来很酷。和小时候想象中的震撼机甲一模一样，刺激刺激。\n 现在，当谈到用这种间谍相机拍摄的动物生态时，它们大多是在交配。发情且具有攻击性的动物可能是被拍摄最多的动物，但生物的目的是繁殖。他们的行动原则是按照上帝的命令“生养众多，繁衍生息，遍满大地”，因此他们尽可能将自己的基因留给下一代。\n 有些动物认出间谍相机是真实的，然后发情。大多数时候，它们会通过气味意识到这是假货，然后走开，但在交配季节，每个人都感到绝望。比如节目中出现一只考拉，雄性考拉为了争夺雌性考拉而展开打斗。经过一番殊死搏斗，其中一只雄性考拉终于击退了对手，但他却被打得精疲力尽，在雌性考拉面前睡着了！这有点误解，但我认为他能够做到。\n 围绕生育有很多争斗和冲突。每次，我最后都会说一个共同的想法：“我们都是一样的，只是形状不同……”我确信，在人类社会中，女性如此专注于互相争斗而忽略了交配，这种情况并不少见。雄性四处寻找更具吸引力的雌性，而雌性则耐心等待更强大的雄性选择。人类根本没有改变，只是因为有情感而变得更加复杂……连小学生大概都有这样的想法。\n 没关系，但人类常被说成是破坏环境的邪恶生物，但如果你看看动物的生活，就会发现，如果它们的天敌消失了，它们像人类一样处于食物链的顶端，它们就会立即自行破坏环境。为了扩大自己的巢穴，它们逐渐征服和改变着这个地区。这和人类是一样的，虽然规模不同。它们只是碰巧在那里有某种理性创造的秩序，毕竟，它们是生物，应该传承更好的基因。\n 然而，人类与其他动物之间的关键区别在于亚文化。动物不读书或看电影。这是人类的特权，与繁衍没有必然关系。那么，为了体现我们作为人的真正价值，我们难道不应该热爱文化吗？书籍、动漫、电影、体育、音乐……这些娱乐就是我们区别于只关心繁殖和进食的动物的答案！\n 我也是这么想的，但很快我就改变了主意，觉得如果他们像动物一样就好了。令人惊讶的是，这可能是正确的答案，因为对于“生物”来说，主要以繁殖为目的是最正确的。前提是我们也是生物，或许没有必要强迫自己成为“人”。\n 我不知道什么让我快乐。然而，动物简单的生态和行为原理，“繁殖”与明确的幸福直接相关，并为实现这一目标而竭尽全力，这是即使我们变得过于复杂的人也应该效仿的。\n\n顺便说一句，大量的螃蟹来到了大海上，表演了疯狂的舞蹈。让我们摆脱网络，成群结队地去看大海吧。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,7 +56,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

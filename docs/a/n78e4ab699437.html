@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口散文：珠宝宠物阳光的震撼</title>
+<title>一篇简短的文章：《Jewelpet Sunshine》的影响</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-13 07:19</p>
-  <h1>一口散文：珠宝宠物阳光的震撼</h1>
+  <h1>一篇简短的文章：《Jewelpet Sunshine》的影响</h1>
   <p class="ja-title">一口エッセイ:ジュエルペットサンシャインの衝撃</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 今月末には、長文エッセイをまとめた商業エッセイ集もでます。こっちも読んでもらえると嬉しいぜ。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇简短的文章：《Jewelpet Sunshine》的影响\n\n当我在《假面骑士Revise》中看到可爱的吉祥物说着“渣”和“爱”时，让我想起了《宝石宠物阳光》中的爱，让我感到怀念。\n 尽管女孩动漫世界很普遍，但《阳光》的影响永远不会被忘记。人气超高的《珠宝宠物叮当☆》已经迎来最后一集，在下一部作品的预告中，一个有着黑色长发和公主发型的角色脱颖而出。她是一个霸道的大小姐，无论是外表还是行为，性格都不好，我本能地想，“下次我们会遇到这样的敌人。我相信，接近尾声时，她向主角敞开心扉，表现出她笨拙的善良的感人一幕。”\n 然而，《阳光》并不是一件容易的事。令人惊讶的是，一眼就能看出的女敌角色加音大人，竟然是主角！更重要的是，他没有你所期望的主角的那种性格；他就像他表面上表现的那样容易被冲昏头脑，并且不会因背叛、不公正和虐待而感到困扰。双方都有爪牙，宝石宠物被当作奴隶对待。在前作中，明里酱是典型的少女动画中典型的诚实主角，而她则完全相反。\n\n加隆大人太渣了，连可爱的宝石宠物都说“渣男配渣渣”。正如我对曲线球主角的期待一样，这是一系列混乱的情节，每周我都非常喜欢。加隆大人在最后还做了一些主角特有的事情，真是令人感动。这是一部很好的动漫。但他的性格确实很不好。我想让大家看看加隆大人的性格有多糟糕。这也是色情的。\n\n收录了土浅日浅回忆的散文集现已在展位发售。阅读一位每周早起的极客的回忆。\n\n本月底，包含长文的商业论文集也将出版。如果你也能读到这篇文章，我会很高兴。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

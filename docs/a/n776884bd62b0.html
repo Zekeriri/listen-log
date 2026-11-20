@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔: 减少人际关系会更接近幸福吗？</title>
+<title>短文：减少人际关系会让我们更接近幸福吗？</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-14 06:54</p>
-  <h1>一口随笔: 减少人际关系会更接近幸福吗？</h1>
+  <h1>短文：减少人际关系会让我们更接近幸福吗？</h1>
   <p class="ja-title">一口エッセイ:人間関係を減らしていけば幸せに近づくのか？</p>
 </header>
 <main>
@@ -22,10 +22,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：减少人际关系会让我们更接近幸福吗？\n\n大多数问题都源于人际关系。伊壁鸠鲁意识到幸福在于没有忧虑，那么，如果人们尽可能减少与他人的关系，不就离幸福更近了吗？首先，尝试将智能手机放在远处。您将摆脱通过 SNS 和联系工具与不特定数量的人建立联系的环境。人类不应该一直与这么多人保持联系。\n 我每次都会想到这一点，但我仍然放不下我的智能手机，没有人回应我会感到孤独。最后，我再次打开社交媒体发布一些愚蠢的事情并查看工作和联系人。当其他人通过 DM 或 LINE 与我交谈时，我感到很高兴。然而，这些东西日积月累，就变成了“人伦”，最终发展成了“烦恼”。那时，我重复了后悔的过程，说道：“我想我还是一个人过得更好……”\n 我尝试过思考“即使独自一人也不会感到孤独的力量”和“在人际关系中享受烦恼而不感到无聊的力量”，哪一个才是真正的幸福，或者哪一个更适合我，但我不太能得出答案。首先，没有任何风风雨雨的生活是否会是真正的幸福是值得怀疑的。仅仅因为很久以前就有一位哲学家宣称过这一点，并不意味着它就是真的。\n 好吧，思考这个没有意义。忧虑适量，享受适量，并带着适量的幸福死去。人们可能会活几十年来衡量自己的“节制”程度。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

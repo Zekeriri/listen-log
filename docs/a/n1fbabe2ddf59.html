@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口散文：想整成“ゆあてゃ”的女性们</title>
+<title>短文：想通过整容让自己看起来“尤特娅”的女性</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-10 02:02</p>
-  <h1>一口散文：想整成“ゆあてゃ”的女性们</h1>
+  <h1>短文：想通过整容让自己看起来“尤特娅”的女性</h1>
   <p class="ja-title">一口エッセイ:「ゆあてゃ」に整形したい女性たち</p>
 </header>
 <main>
@@ -31,10 +31,11 @@
 今月末には、長文エッセイと書き下ろしを掲載した商業エッセイ集もでます。こちらの表紙もめちゃくちゃかわいい。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：想通过整容让自己看起来“尤特娅”的女性\n\nnyalra 宣布了她目前喜欢的漫画和她最喜欢的页面... pic.twitter.com/HdIU0kPmpo — Nyalra (@nyalra) 2021 年 4 月 3 日\n\n我看了高须社长的“说实话，越来越多的人想通过整形手术成为尤特亚，这让我感到困扰。”我对这个标题笑得很开心，我很满意。这是一个非常好的视频。即使你忽略了整体的超现实性。\n “Yuateya”是出现在“明天，我是某人的女朋友”中的角色。她有着典型的地雷外表，是个hosu狂，在menhera的性行业工作，以前有过风险。歌舞伎町年轻女性的完美象征。最重要的是，她有一张非常漂亮的脸。由于卡纳明日香以过于现实的方式描绘现代女性，因此与尤特也有亲近感并希望成为她那样的人可能会迅速增加。\n 当我提到汤泰屋时，高须诊所挤满了前来寻找的顾客。你可以看到他努力传达这样一个现实：他无论如何都无法成为漫画人物。他们说彼此之间很难沟通。\n 在视频中，高须社长反复解释了与想成为漫画人物的幻想顾客面对现实是多么困难。有些人生气地说：“所以我不能成为Yuateya！”并写下诽谤性的评论。有时有些孩子只想谈论Yuateya而不是整容手术。该视频还涉及边缘型人格障碍，并讨论了如何接近一个欣赏你女朋友的女人，使其成为一个值得观看的视频。\n 就我个人而言，我想支持我所信仰的追求“可爱”的精神，说实话，看到高须社长因此而衰弱是很有趣的。事实上，高须社长最终成为最热情地谈论汤泰屋并表现出理解的人，这一点至关重要。我们都努力表现得可爱一点，不要给别人带来麻烦。\n\n“这部漫画太棒了！2022”将公布 5 部作品 + 1 部由 Nyalra 选择的作品... pic.twitter.com/LGtZAWpqLF — Nyalra (@nyalra) 2021 年 12 月 9 日\n\n顺便说一句，这也是我在《这漫画太棒了！2022》中推荐的漫画，所以如果你有兴趣的话，请看一下。您可以重温现代女性的激烈生活。\n\n包含日常随笔集的同人志现已在展位上出售。封面非常可爱。\n\n本月底，包含长文和新作的商业散文集也将出版。这个封面也真的很可爱。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +55,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

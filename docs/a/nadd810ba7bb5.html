@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：游戏系统与文本的和谐及《YU-NO》</title>
+<title>短文：游戏系统、文字与《YU-NO》的和谐</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-22 03:33</p>
-  <h1>一口随笔：游戏系统与文本的和谐及《YU-NO》</h1>
+  <h1>短文：游戏系统、文字与《YU-NO》的和谐</h1>
   <p class="ja-title">一口エッセイ:ゲームシステムとテキストの調和と『YU-NO』</p>
 </header>
 <main>
@@ -32,10 +32,11 @@ YU-NOの素晴らしい点は、これだけではない。軽薄ながらキメ
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：游戏系统、文字与《YU-NO》的和谐\n\n距离我的作品《NEEDY GIRL OVERDOSE》的 Switch 版本以及附带的 Steam 版本更新发布还有不到一周的时间，所以我想谈谈这个游戏。\n 首先，我是一个有点喜欢读书的男孩，所以很自然地就接触了小说游戏作为它的一个分支，然后我就迷上了美少女与文学结合的“美少女游戏”这一类型，可以说我把自己的青春奉献给了它。\n 当他成为一名狂战士，不断征服众多女英雄，将她们撕碎、扔掉的时候，他开始了高中生的第一份兼职工作，并最终买了一台世嘉土星，以迎接创造更多杰作的挑战。之后，我花了很多时间在 Book Off 上寻找 Saturn 的经典女孩游戏，并试图击败它们。\n “在世界的尽头歌唱爱的少女YU-NO”“EVE爆裂错误”“哀嚎与……”\n比如《野野村医院的人们》，你不是直接点击文字，每一篇都有一种难以跟上的“游戏”感觉，对于我这种一直看文字的人来说，觉得挺有新意的。从时代来看，它是一款土星→00年代的文字游戏。\n\n尤其是YU-NO的游戏系统让我惊得像青蛙一样翻了个身。\n 多个结局中的路线分支被可视化为地图，除此之外，还有“意义”和“原因”，让玩家能够从“上帝的视角”看到自己在场景中的位置。例如，有很多作品都有可以在游戏中引用的场景图表，但图表几乎没有“理由”可见。目前，我只是出于善意添加它，以使策略更加有效。然而，在《YU-NO》中，这个系统本身就构成了游戏设定的基础。\n 换句话说，“征服美少女的乐趣”和“文字推进的文学性”与“有吸引力且独特的游戏系统”完美地融合在一起。我觉得这就是终极的美少女游戏，这是形式上最美丽的小说游戏。\n\n这并不是 YU-NO 唯一的优点。除了轻浮妖艳的理想女孩游戏主角和轻松愉快的文字之外，像素艺术图形的美感也很重要。尤其是加奈的肖像，一个90年代感觉的神秘女孩。我觉得这种转瞬即逝的氛围是由点的生动性所独有的。首先，当目标是将游戏玩法和文本结合起来时，点图形过于准确，无法让人们意识到这是一个“游戏”而不仅仅是阅读文本。嗯，我想这部分是由于我的怀旧口味。\n 被灌输了这些价值观后，我确信，如果有一天我要策划一款游戏（当然，当我在高中时，我从未想过会有这样的一天），游戏系统和像素艺术是必不可少的要求，大约10年后，在26岁的时候，我终于将其实现为对Nidiga的提案。\n 想想看，带有少女动漫“可爱”元素的超级十酱的诞生似乎是我生命中不可避免的事情。最终，人们仍然坚持他们小时候喜欢的观念。顺便说一句，我真的很喜欢晚上在城市里闲逛，根据自己的意愿（命令选择）与《YU-NO》和《EVE》中的可疑人物互动的兴奋感。您无需点击文本，而是按下按钮并跳入夜之城。这对小时候的我来说感觉非常成熟和有吸引力。如果我能在自己的作品中表达这种感觉，我会很高兴。\n 由于这些原因，我仍然保留我的世嘉土星并将其连接到我的电视，但 HDMI 转换器实际上是由 Switch 的 USB 供电。将任天堂最新型号的电力传递给世嘉的复古游戏的行为在某种程度上是不道德的，让我感到不寒而栗。这是一个关于书呆子的古老故事。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,7 +56,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

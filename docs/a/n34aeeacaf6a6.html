@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口散文：粉丝酱</title>
+<title>短文精选：Follower-chan</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-16 00:24</p>
-  <h1>精选一口散文：粉丝酱</h1>
+  <h1>短文精选：Follower-chan</h1>
   <p class="ja-title">選り抜き一口エッセイ:フォロワーちゃん</p>
 </header>
 <main>
@@ -42,10 +42,11 @@ pic.twitter.com/0avOeDP0cG— 2（ツー） (@nyalra_copy) October 18, 2021
 今月末には、長文エッセイをまとめた商業エッセイ集もでます。書き下ろしもいっぱいあるよ、フォロワーちゃん。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文精选：Follower-chan\n\npic.twitter.com/YLRInZlP3c — 2 (@nyalra_copy) 2021 年 10 月 22 日\n\n我曾经认真考虑过称呼我的粉丝为“Follower-chan”。我最喜欢的美少女游戏的儿时朋友女主角称主角为“○○酱”。\n 如果一个追随者发表了过于严厉的言论，我希望他们感到害怕并说，“你今天的推文......有点可怕”，并反思这一事实，这是一个如此辱骂性的事情，它甚至吓到了我认识很长时间的儿时朋友。\n 如果追随者说了一些让他们感到沮丧的话，我会假装什么都不知道并说“追随者，我们去吃冻糕吧”，以使他们感觉好一点。\n 当我在雨中哭泣时，我轻轻地撑起伞，叫她“跟班”，但我没有问她任何其他事情。就待在我身边吧。\n\npic.twitter.com/0avOeDP0cG — 2 (@nyalra_copy) 2021 年 10 月 18 日\n\n工作日，她想对粉丝说：“醒醒吧！”当她得知自己和异性交往时，看上去有些难过，然后善意地微笑着说：“很高兴你结识了新朋友。”\n 随着这些日子的继续，追随者最终变得比她儿时的朋友更专注于她的工作，并且忘记了她对此是多么感激。下雨天，当我忘记带伞的时候，我忘记了是谁一直为我放伞，是谁对我无微不至的照顾，也忘记了为什么那个孩子每天早上都会来叫醒我。即便如此，我一直在等你，当你厌倦了一切，扔掉它时，我会轻轻地从背后为你撑起一把伞，微笑着呼唤你。\n “追随者，你没事吧？”\n\n各位，我带了伞。\n////\n ＿n＿\n ／//|ヾ＼//\n ⌒⌒|⌒⌒\n/ |∧_∧ //\n |･ω･`)\n /O 和 )//\n 石J｡｡｡｡ — 2 (@nyalra_copy) 2021年11月30日\n\n包含日常文章的同人志现在正在展位上出售。追随者们，也请阅读这篇文章。\n\n本月底，包含长文的商业论文集也将出版。有很多新的写作，追随者。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -65,7 +66,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

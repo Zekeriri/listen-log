@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>精选一口随笔: 治抑郁症有效的《瓦里奥制造》</title>
+<title>论文选：瓦里奥制造对抑郁症有效</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-21 21:06</p>
-  <h1>精选一口随笔: 治抑郁症有效的《瓦里奥制造》</h1>
+  <h1>论文选：瓦里奥制造对抑郁症有效</h1>
   <p class="ja-title">選り抜き一口エッセイ：うつ病にはメイドインワリオが効く</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 商業エッセイ集を手に取ってもらえると……さらに嬉しい！</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"论文选：瓦里奥制造对抑郁症有效\n\n我经常被问到这样的问题：“我很痛苦，却无能为力。我该怎么办？”每个人都有这样的时候。无论我做什么，创伤和焦虑都会浮现在脑海中，而我却无能为力。\n 在这种状态下，你越想越陷入恶性循环，所以我告诉他们，“我们尽力去睡吧。”做什么都太痛苦了，所以我别无选择，只能强迫自己睡觉。\n 然而，实际上还有另一种策略。有一个，但是可信度不高，而且就算告诉他们也不会执行，所以我就守口如瓶。做到这一点的方法就是专注于瓦里奥制造。\n 无论如何，读到这篇文章的人也都持怀疑态度。我想我是在开玩笑。你们总是这样，把事情搞得一团糟。那么瓦里奥呢？这家伙只是贪婪而诚实。他是一个因为不死的诚实愿望而成为不朽的人。当他继续过着自己喜欢的生活时，人们聚集在他周围，在他的最新作品中，他成为了公司的总裁。每个人都应该效仿瓦里奥的大胆精神。\n 话虽这么说，“简单的工作”可以有效缓解疼痛。通过不假思索地玩小游戏，你的注意力会转移到屏幕和手指上，你不必考虑任何不好的事情。如果这是一场困难的比赛那就不好了。因为当你思考这个问题时，你就会走向消极的方向。最好的游戏是那些任务一个接一个地出现的游戏。益智游戏固然不错，但我喜欢瓦里奥的原因就如我前面提到的，将瓦里奥的性格称为“抑郁”的反义词也不为过。如果我遇到麻烦，我会玩《瓦里奥制造》。相信我，瓦里奥。\n\n包含每日日记的同人志正在 BOOTH 发售！\n 如果喜欢的话可以购买的话我会很开心♪\n\n如果有人捡到我的商论集我就更开心了！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

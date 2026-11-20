@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：关于尝试行为</title>
+<title>短文：关于审判法</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-05-26 06:04</p>
-  <h1>一口随笔：关于尝试行为</h1>
+  <h1>短文：关于审判法</h1>
   <p class="ja-title">一口エッセイ:試し行為について</p>
 </header>
 <main>
@@ -29,10 +29,11 @@
 商業エッセイ集もよろしくね。Amazon評価していただけると、なお嬉しいです♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：关于审判法\n\n另外，您愿意通过回答收到的问题做一些让您感觉更好的事情吗？建议很有趣。\n “伤害自己和让爱人担心我的感觉太棒了，我无法停止。我该怎么办？”\n 这就是所谓的“审判行为”。这是指一个人为了确认自己被爱的程度和获得快感而故意给爱人或朋友制造麻烦，然后测试对方是否还会帮助自己的行为。在严重的情况下，你可能会说，“我现在就要死了！”或“我要和你分手。”当然，两者都在等待被阻止。\n 我无法理解你的感受。我一直担心自己有多少需要。老实说，我的脑海里闪现出这个人可能是任何人。然后，一股阴暗的焦虑感袭上我的心头，我害怕那些朋友、那些熟人并不真正关心我，而外面还有很多更重要的朋友。也有这样的夜晚。\n 然而，如果你在这里尝试一下，你真的会讨厌它。事实上，在大多数情况下，如果你不去尝试，你们的关系实际上会保持良好。冷静想一想，哪怕被“考验”一次，你也会觉得不好受。如果做了那就亏了。如果你还想这么做，你就需要做好在某个时候被对方严重斩断的准备。我想那个时候我不会后悔。只有在可爱的偶像团体的歌曲中，你才能问“我们被灰熊袭击了，所以请穿上睡衣来帮助我们。”\n\n请随意发送任何东西\n问题和咨询可以在笔记或文章中得到解答。\n https://t.co/DfWFGz0j2d — Nyalra (@nyalra) 2022 年 4 月 11 日\n\n包含每日日记的同人志现已在 BOOTH 发售。如果你能买的话我会很高兴♪\n\n我期待着阅读您的商业论文集。如果您能在亚马逊上给我们评分，我们会更高兴♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -52,7 +53,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

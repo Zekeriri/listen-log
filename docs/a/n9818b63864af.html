@@ -47,10 +47,11 @@
 これからもたくさんのアリスが登場し、冒険していくのでしょう。世界が金髪碧眼の少女に囚われ続けている限り、理想のアリス探しは終えられませんね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"寻找理想的爱丽丝\n\n我从一位追随者那里收到了一个非常可爱的爱丽丝雕像，所以我想我应该谈谈爱丽丝。\n 和大多数人一样，曾经有一段时间我对爱丽丝的存在充满热情，现在仍然如此，但这一切都始于美少女游戏界的王者爱丽丝·软特。爱丽丝似乎是美少女游戏的象征，甚至是美少女本身的象征。\n\n我特别喜欢《青蛙Nyopanyon》中的爱丽丝。金发碧眼的女孩，天真无邪，拥有与玩家对话的元存在。任何人都会喜欢它。\n 然后我就疯狂购物，购买了与爱丽丝相关的书籍和以爱丽丝为主题的作品。\n\n我喜欢这本书的一点是\n\n东秀夫的短篇小说集《心跳爱丽丝》。爱丽丝这样神秘、自私、可爱的女孩所创造的毛茸茸的科幻世界，读后给人一种耳目一新的感觉。\n\n我还被小说版的《高达前哨》震惊了，它给高达中安装的AI起了一个像“爱丽丝”这样的书呆子名字。 《哨兵》本身就是一部非常前卫的作品，但除此之外，它还是《爱丽丝》。这已经是一件大事了。\n\n正如标题所示，《女孩爱丽丝》收录了刘易斯·卡罗尔写给爱丽丝的信，是一本以爱丽丝梦游仙境为主题的写真集。爱丽丝世界观的再现程度令人惊叹。每一页都是一本美丽的书。我是在打折的时候买的，现在已经很贵了。绝对价值数万美元。\n\n其中，我最喜欢的是 Jan Švankmajer 的电影《爱丽丝》。这是一部非常安静的电影，所以有一段时间我一直在播放它，这可能是我一生中看次数最多的真人电影。\n\n除了复古少女风的画风外，最值得称赞的还是扮演爱丽丝的克里斯蒂娜·科胡托娃（Kristina Kohoutová）的可爱。从各方面来说，她都是完美的爱丽丝。\n\n非常奇幻、狰狞的制作和布局，强调了一种如梦似幻的诡异感觉，黑暗与美丽的金发女孩的对比很美。\n\n通过遇见这个爱丽丝，我对理想爱丽丝的追求暂时平静下来。这就是正确答案。\n\n然后，Okama设计的平装版《爱丽丝》出版了，\n\n爱丽丝在她的祖国也有类似日本美少女作品的设计……我有美好的回忆，我用有限的英语知识尽力阅读了这一切。\n\n随后，小林泰三先生又开发了将爱丽丝与推理相结合的《童话谋杀案系列》，而第一部作品《爱丽丝谋杀案》对于我这个既是爱丽丝粉丝又是小林泰三粉丝的人来说，是难以抗拒的兴奋。\n\n在美少女游戏领域，以柴郡猫为原型的角色内藤麻亚出现在以“幸福的噩梦”为主题的名作《幸福梦魇》中，而以《爱丽丝梦游仙境》为背景的作品则探讨了爱丽丝以外的角色的魅力。自然，我也爱上了她……\n\n我相信未来还会有更多的爱丽丝出现并展开冒险。只要世界继续被金发蓝眼的女孩所俘获，对理想爱丽丝的追寻就永远不会结束。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -70,7 +71,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

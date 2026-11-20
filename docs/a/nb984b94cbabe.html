@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：压抑与解放的宣泄</title>
+<title>短文：压抑与解放的宣泄</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-31 06:20</p>
-  <h1>一口随笔：压抑与解放的宣泄</h1>
+  <h1>短文：压抑与解放的宣泄</h1>
   <p class="ja-title">一口エッセイ:抑圧と解放のカタルシス</p>
 </header>
 <main>
@@ -22,10 +22,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：压抑与解放的宣泄\n\n我去了爱王街和中野百老汇，在韩国忍受了几年之后，我很高兴第一次看到日本的御宅族文化，看到人们如此有趣地挖掘细胞图片和特效玩具。\n 环境的压制和限制似乎是人类力量积累的重要因素。\n 对我来说，这是对我在冲绳生活的18年里没有深夜动画播放这一事实的反应，而当我搬到东京后，我非常感激和感激动画只在深夜播放，所以无论它是否有趣，我都准备看它，因为它是在深夜播放。生活在秋叶原、中野等与御宅族文化和亚文化直接相关的地方，大概是冲绳时代的释放，当时连一点御宅族的内容都没有。我为此付出了努力。\n 不过，我不喜欢“我愿意为青春的艰辛付出代价”这样的想法，因为这太运动化了。没有什么比平静的生活更好的了。如果是这样，就像《杀手1》中的受虐狂角色寻求“不可避免的暴力”一样，也许“不可避免的镇压”在生活中也是必要的。青春的挫折与折射，成为最强劲的泉水。如果我牢记这一点，无论情况多么困难，我都能想象当我从中解脱出来时会发生的宣泄和成长，我会感觉好一点。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -45,7 +46,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

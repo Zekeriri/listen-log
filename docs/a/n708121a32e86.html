@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：彼岸花</title>
+<title>快速文章：彼岸花</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-09-14 04:47</p>
-  <h1>一口随笔：彼岸花</h1>
+  <h1>快速文章：彼岸花</h1>
   <p class="ja-title">一口エッセイ:彼岸花</p>
 </header>
 <main>
@@ -36,10 +36,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"快速文章：彼岸花\n\n“触及时事和网络话题会缩短你的账户的寿命”，这是我已故父亲留给我的一句话。谢谢你，爸爸。如果你看看你周围的账户，你就可以清楚地看到这是真的。我什至不认识他的脸。\n 然而，一段时间以来我第一次打破了禁令，谈论了互联网话题。不幸的是，我积累了业力点，直接下地狱了。除非你积累更多的德（arete）并到达天堂，否则你将无法与死去的父亲团聚。不对，地狱里还有连儿子的脸都看不到的父母吗？任何一个都可以。\n 我谈到了什么话题？这是动画《甘草反冲》中的一个引人注目的作品，其中的插图是女孩们像香烟一样把蜘蛛百合花含在嘴里。\n\n是时候投降了。投降。\n 那簇孤挺花在烟雾的包围下闪烁着红色，或许是在暗示着两人即将到来的“死亡”。这些有品位的图画在电视广播中流行起来，占据了深夜看动画的御宅族的显示器。我对此感到非常兴奋。乍一看，我想，“啊，那很好。”\n\n此前，《小新》里突然插入了北野武电影的戏仿剪辑，即使考虑到原著中北野武的审美观非常出众，我还是被满屏的“花”和“美少女”迷住了。人类对于花与人的结合有一个弱点。\n 无论是动漫还是电影，如果你突然看到这样的剪辑，你会很庆幸自己看了。 《甘草反冲》的吸睛度也非常好，给我留下了深刻的印象。\n 然后。当晚结束后，他首先在推特上警告cosplayer们，“透明的红蜘蛛百合有毒，所以coser们不要添加它们！”，随后又发表了诸如“如果它像蜘蛛百合一样有毒，你可以应付的”，“有一个白痴连花的毒都没有学过吗？”和“你总是小心点，不要太挑剔”之类的评论。\n 一定是绝望。没关系，没关系。我意识到这个引人注目的东西有多么伟大，突然之间就是平常的上网/班会了。双方互相取笑对方的无知和无端恐惧，渐渐偏离了本质。\n\n如果能死的时候嘴里含着一朵红蜘蛛百合，那就最好了。 - Nyalra (@nyalra) 2022 年 9 月 13 日\n\n不知不觉间，我已经发了一条推文：“如果我能嘴里含着蜘蛛百合死去，那就最好了。”凭着无意识中流露出的真实感受，我应该抛开所有不必要的争论，谈谈《甘草甘草》这个作品是如何创造出这种以蜘蛛百合为主题的强烈吸睛的作品，以及我是如何Cosplay这种转瞬即逝的美丽的。如果亚被俘，他愿意服毒来接近那一刻，因为他的目标之一就是以美丽、年轻的方式被埋葬，被蜘蛛百合花的毒液包围，而不是因为意外或疾病而丑陋地死去。\n 也许是 3.4 年前。我和朋友去埼玉看红蜘蛛百合。当我看到周围盛开的红色时，我意识到“游玄”这个词指的是这样的场景。两个穿着哥特洛丽塔的女人以一簇孤挺花为背景互相拍照，我觉得这就是这些人的结局。\n 首先，据说吃了这种花的人除了“彼岸”（死亡）之外什么都不会经历。如果被一朵美丽的花的毒所强奸会导致符合花的意义的结局，那么最好把它含在嘴里，穿越到彼岸。事情应该是这样的。\n 啊，我提到了很多网络话题。每次打字时，您都会注意到智能手机变黑，就像带有黑色芯片的洛克人电影一样。这绝对是下地狱了。无论如何，如果我要死的话，我希望死的时候看起来很酷。人类并不因死亡而完整。然后我就会含着红蜘蛛百合死去。我将留下我的名字，作为一个无视互联网警告并死亡的白痴。但我会带着微笑死去。之后，我去地狱里告诉我的父亲：“父亲是对的。”然后，佛陀会长出桂花的茎，这次他会用那朵残忍的花来救我。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -59,7 +60,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

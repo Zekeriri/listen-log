@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔:反对早睡早起</title>
+<title>快速文章：反对早睡早起</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-02-25 07:41</p>
-  <h1>一口随笔:反对早睡早起</h1>
+  <h1>快速文章：反对早睡早起</h1>
   <p class="ja-title">一口エッセイ:アンチ早寝早起き</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 商業エッセイ集もよろしくね。こちらは内容がわりと暗めと評判ですので、できれば眠れない深夜とかに読んでみてね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"快速文章：反对早睡早起\n\n我刚醒。现在是早上七点，街道上开始挤满了孩子和上班族，阳光灿烂地照耀着天空，越来越多的商店开门营业，一天即将开始。\n 像我这样的人，晚上能睡个好觉，早上又能醒来，这是极其罕见的。至少今年是第一次。 Doasa和Nichiasa也醒着，但那是因为他们通过熬夜或短时间睡眠来强迫自己进行调整。\n 我渐渐明白，早睡早起、丰富的饮食、适量的运动、洗澡是无敌的。一点损失都没有。只要养成这些习惯，您的健康和压力水平就会改变。早起的感觉特别好。每日循环很容易理解。从现在开始，我会悠闲地准备和吃晚饭，然后中午去商店转一圈，然后做一些工作，然后晚上再睡觉……以适合社会的方式度过时间，你的生活会变得轻松很多。世界就是这样设置的，我自己也能理解为什么精神科医生会一大早把过度抑郁的病人送到医院，并鼓励他们早睡早起。\n 事实上，如果你的日常生活节奏与城市的功能不同步，你会醒来发现商店都关门了，你会感觉自己被世界其他地方抛在了后面。也就是说，我今年第一次成功地早睡了（虽然这只是日夜反复颠倒的结果），现在我第一次跟上了社会的节奏。\n 于是，我又回去睡觉了，并改变了我的节奏。我明白蓝天下产生的血清素让我拥有了健康的心灵，我的嫉妒、叛逆、扭曲的认可欲得到了彻底的纠正，我要珍惜因变得正常而失去的自我意识。\n\n包含日常文章的同人志现在正在展位上出售。我感觉我已经写过好几次不喜欢早上的事情了，所以这次的内容可能有些相似。有关系吗？\n\n我期待着阅读您的商业论文集。这本书以比较黑暗而闻名，所以如果可能的话，请在深夜睡不着的时候阅读它。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔: 人生思考围栏</title>
+<title>一篇文章：人生感想</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-04-17 06:46</p>
-  <h1>一口随笔: 人生思考围栏</h1>
+  <h1>一篇文章：人生感想</h1>
   <p class="ja-title">一口エッセイ:人生思考囲い</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇文章：人生感想\n\n我被邀请作为嘉宾庆祝由阿拉巴基先生、中野得一先生和皮埃尔·手冢先生主持的网络广播节目《生活生活》六周年纪念日。我很高兴。他们连续六年持续进行常规活动是一项伟大的成就，我可以感受到在聊天部分发来信和评论的粉丝们的高度热情，我想，“那太好了......”\n\n《Life Thinking Seize》的三位主要成员对漫画的了解特别深，从委员作家到商业作家，衍生出很多与动漫、电影、网络文化相关的话题，但我觉得古老而疯狂的漫画话题和创作理论很吸引人，粉丝群也发来信期待这样的东西，所以我感觉主题更有深度。这次，我也谈到了梅津一雄的漫画装订的力量、我最喜欢的作者未收录在书中的故事、我对成人版《光之美少女》的发布的想法，以及我对 90 年代广播剧 CD 的回忆，所以我猜表演者和观众都在寻找一种怀旧的御宅族谈话氛围。我对网络广播的真实面目感到非常感动。\n 首先，我是阿拉巴基先生的朋友，我们两个人大约每个月都会去中野百老汇逛一次，寻找便宜货并谈论它们。前几天，我看着阿拉巴基先生找到一张《超车雷电》主题曲的CD，正在考虑要不要买。我对《超级雷电》的印象是，这是一部很棒的动漫。从各个方面来说，这都像是90年代末。我们的另一个共同点是我们都喜欢消费女孩游戏的独特氛围。阿拉巴基先生是一位非常喜欢“竞技运动员运动会”的人。我想我至少应该让我的声音飞扬起来。\n 本来，阿拉巴基先生第一次来找我的原因显然是因为他很同情我写的文章，“对PreCure最让我兴奋的事情是当我听到5GoGo的OP时。”这很好......除了第一部之外的其他Precure系列都是在一年内结束，所以有某种类型的开场视频，但5GoGo利用了第二年的事实，免费提供了第一部的升级版当年，无论是在视觉上还是在音乐上，都因此有着独特的光彩。\n\n无论如何，像这样一个只谈论旧御宅族故事的媒体能持续几年，真是令人惊奇。谈论现代御宅族的地方有很多，但在一个专门回忆悠闲老人的空间里，很多听众会感到宾至如归。最重要的是，商业作家特有的敏锐的创作理论和处理事物的方式时不时地出现，这是一个很好的强调。这个广播应该持续到有人去世为止。这是一种应该有人传承并留下的文化。\n 这不是社会评论，这真的很有趣。我感到一种安全感，因为至少有一种应该存在的东西存在于互联网上。祝贺你们成立六周年。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

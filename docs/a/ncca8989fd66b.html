@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：降落在单人旅行的雪</title>
+<title>短文：一个人旅行下雪</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-02-22 01:21</p>
-  <h1>一口随笔：降落在单人旅行的雪</h1>
+  <h1>短文：一个人旅行下雪</h1>
   <p class="ja-title">一口エッセイ:一人旅に降る雪</p>
 </header>
 <main>
@@ -37,10 +37,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：一个人旅行下雪\n\n独自旅行的第三天。今天我们将前往位于岐阜县乡村深处的养老山。\n 从岐阜站出发约1小时。岐阜站仍然有很多商业设施，但从那里开始就有了很多绿化。或者回家，回家，回家。当我到达养老站时，除了绿树和房屋之外什么也没有。真是算错了，我们连吃饭的地方都找不到。步行不远就能找到便利店或餐馆的常识在这里并不适用。\n\n沿着山路继续前行，只偶尔有车经过，但放眼望去，除了我，没有人。好像各设施都碰巧休息了一天。也因此，我有幸看到了难得一见的无人游乐园的景象。停了下来的摩天轮真是太棒了。 《尼尔：机械纪元》的世界观。\n\n顺便说一句，“养老乐园”曾被网络新闻报道为“我梦中看到的游戏中心”。它是如此永恒，以至于它已经成为日本人民的典型景观。复古自然的产品已经成为“小时候去过的游戏厅”的概念。我想去那里，但目前只在节假日开放。如果我们能看到一个无人居住的地方就好了。\n 对了，山里藏着地藏菩萨像和宗教设施，我去看的时候，发现当地的老人在聊天，我就觉得，“啊？”你是谁？！”这很痛苦。宗教也发挥着地方社区的作用。我觉得山里的人稍微有点灵性是有好处的。它与自然合而为一。\n\n当我向山深处走去，往客栈走去的时候，遇到了一片小住宅区。每个人的房子都很大，有可爱的昭和时代流行气味。这对我这个大脑已经被有毒网波侵蚀的人来说很难，但在日本可以选择在山上盖房子，和家人一起悠闲地生活。\n\n旅馆。我很兴奋，因为当我在这个空间里写手稿时，我感觉自己是一名作家。阳台上有露天浴池真是太好了。\n\n一个只有泄漏的世界已经到来！ pic.twitter.com/33l7NcEyae — Nyalra (@nyalra) 2023 年 2 月 21 日\n\n我自己租了一间旅馆来积累经验，但一切都是为两个或两个以上的人准备的，独自一人在对一个人来说太大的日式房间里，或者在通常用于一群人聊天的餐厅里，很孤独。当然，这个价格是两个人的价格。如果我的稿子能有进展就好了，但由于爬山和退房时间，我因睡眠不足而疲惫不堪。我发现自己其实不太喜欢观察大自然的体验（我喜欢人类对神和美的觉醒的建筑和艺术品），而且我感到沮丧，因为我一个人去旅馆还太早了……\n\n我在露天浴池洗澡时下雪了。\n\n我忍不住惊呼：“这是情色游戏吗？”大自然中的露天浴池和雪，真是太文艺了。如果我能看到这一幕，即使一个人花了几万日元，我也会觉得这是一次很好的体验。顺便说一句，我在浴缸里睡着了，在露天浴池里呆了大约5个小时。死。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -60,7 +61,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

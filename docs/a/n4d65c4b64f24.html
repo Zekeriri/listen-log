@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口散文：总是大人吵架的神秘SNS</title>
+<title>短文：大人总是吵架的神秘SNS</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-12 04:31</p>
-  <h1>一口散文：总是大人吵架的神秘SNS</h1>
+  <h1>短文：大人总是吵架的神秘SNS</h1>
   <p class="ja-title">一口エッセイ: いつも大人が喧嘩ばかりしている謎のSNS</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 今月末には、長文エッセイと書き下ろしをたっぷり含めた商業エッセイがでます。書評でなくとも、じゃんじゃん感想や宣伝していただけると嬉しいです。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：大人总是吵架的神秘SNS\n\n我一直在思考“对于年轻人来说，Twitter 似乎是一个神秘的社交网站，成年人总是在其中争吵。”\n 前几天，一位60岁的书评人对一位在TikTok上推荐图书而受欢迎的年轻人发表了激进的评论，比如“在TikTok这样的地方不小心介绍图书有什么意义吗？”这人还能写书评吗？”引发热议。我觉得这就是大人们总是在战斗的神秘SNS这一事实的缩影。\n 当年轻人在 TikTok 上玩得很开心时，Twitter 上的成年人却对他们提出了质疑，问道：“你能写一篇书评吗？”无论哪一个是正确的，如果人们认为 Twitter 是成年人打架的地方，那就不足为奇了。\n 这就是我在 Discord 上运营社区时注意到的。每个人都在谈论自己喜欢的内容，玩得很开心，但如果你去他们的推特账户，你会发现大多数时候他们只是在收集信息，或者只是每隔几天发一次推文。我觉得关注我最喜欢的内容和发行商是第一位的。换句话说，人们使用 Twitter 来浏览小社区，并与具有相似兴趣的人进行社交。这是因为大人不会突然问你：“你能写一篇书评吗？”\n 这并不是说我对试图改变每个人对 Twitter 的看法有任何高尚的感情，只是让我悲伤地想象有一天，我也会受到这个供成年人战斗的 SNS 的影响，并且我可能会阻碍年轻人的文化。\n\n包含日常日记的同人文章集现已在摊位上出售。我不会写书评，但我每天都能写论文。\n\n这个月底，我将写一篇长文和一篇商业论文，其中有很多新的写作。即使这不是书评，如果您能给我您的印象和宣传，我也会很高兴。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

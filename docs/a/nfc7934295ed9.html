@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>过于小众的岐阜复古独自旅行</title>
+<title>Niche岐阜复古独行之旅</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-02-21 03:39</p>
-  <h1>过于小众的岐阜复古独自旅行</h1>
+  <h1>Niche岐阜复古独行之旅</h1>
   <p class="ja-title">ニッチすぎる岐阜レトロ一人旅</p>
 </header>
 <main>
@@ -40,10 +40,11 @@ View this post on Instagram A post shared by にゃるら (@nyalra_)
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"Niche岐阜复古独行之旅\n\n昨晚我开始独自旅行。昨天刚刚去了一家叫“Kibonne”的居酒屋，拍了一些照片，所以真正的旅行就要开始了。一起去看看复古的风景吧。\n\n奥苏购物区 pic.twitter.com/AedN9ZfCqR — Nyalra (@nyalra) 2023 年 2 月 20 日\n\n首先是名古屋的大须商店街。这里林立着老式商店，其中包括一家充满昭和时代氛围的玩具店。我很惊讶在这家店里看到了这么多最新的美少女动漫商品。这条商店街还有很多御宅族商店和女仆咖啡厅，因此也有御宅族街区的风范。不管怎样，这是一个散步的有趣地方。然而，主要城市不是名古屋。\n\n是的。完全的复古风格在城市中并不存在。我想去岐阜。于是，我们从名古屋出发，几分钟后就到达了岐阜，从那里乘坐了两个小时的巴士，来到了深山里的游戏中心“岐阜复古博物馆”。看看这完美！被全国各地复古爱好者评为顶级的至尊空间。事实上，后面还有第一代吸血鬼等的柜子，所以你可以像复古的平成时代一样享受它。\n\n最好的部分是这个复古的弹珠机角。其实你可以打的。由于地处大山深处，在该地区有空闲时间的人们都会来这里享受怀旧热潮，直至关门。我从小就很喜欢古老的游戏场（冲绳时代的原始风景），所以我很享受呼吸这种气氛，直到它们关门为止。精彩的！ ……但还有另一个目的，不只是在这里！\n\n在 Instagram 上查看此帖子 Nyalra (@nyalra_) 分享的帖子\n\n终于到达了我梦中看到的拱廊... pic.twitter.com/GUtsfQeouC — Nyalra (@nyalra) 2023 年 2 月 20 日\n\n是的，这就是千里迢迢来到岐阜的真正目的。岐阜大型百货商店“玛莎21”内的游戏中心里有旋转木马！\n\n在岐阜的百货店“玛莎21”，拍到了拱廊内的旋转木马，我觉得最美的漏了……\n我对这种没有人的怪异感觉感到非常满意，尽管它是一个巨大的游戏中心和儿童玩具般的背景 https://t.co/U5aQltjP7l pic.twitter.com/R6v9Hu4nXm — Nyalra (@nyalra) 2023 年 2 月 20 日\n\n太棒了。尽管有这么大的游戏中心和城堡般的背景来娱乐孩子们，但根本没有顾客，因为它位于乡村，这给人一种有限空间的感觉。这是在城市里永远不会发生的事情。我翻遍了很多旋转木马的视频，但《玛莎21》可能是唯一一个展示这种神奇情况的视频。我就是来看这个的！灯光明亮，就像孩子的梦境，但那里空无一人。多么美丽的景象啊！一个人的旅行，拍出非常小众的照片。没有人会处理这样的事情。这就是为什么我有时间对自己感到满意。这是我送给你的生日礼物。我现在真的很开心。\n\n在 Instagram 上查看此帖子 Nyalra (@nyalra_) 分享的帖子\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -63,7 +64,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

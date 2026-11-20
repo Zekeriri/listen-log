@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口散文：不是变得幸福而是减少不幸</title>
+<title>短文：减少不快乐而不是变得快乐</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-05-14 07:39</p>
-  <h1>一口散文：不是变得幸福而是减少不幸</h1>
+  <h1>短文：减少不快乐而不是变得快乐</h1>
   <p class="ja-title">一口エッセイ:幸せになるのではなく不幸を減らす</p>
 </header>
 <main>
@@ -19,10 +19,11 @@
  が、たまに「眠っても状況は変わらない！幸せになれない！」とは反論されることがある。それもごもっともではあるが……でも「早く寝た方がいい」くらいのことしか言えない……と悩んでいたところに、冒頭の教授の解説があったおかげで、「眠っても幸せになるわけじゃないが少なくとも今背負っている不幸が軽くなる」と説明できます。幸福の大半ば自身から動かないかぎり訪れないし、とてもつらいときは行動できなくて雁字搦めですけど、たっぷり眠ることならいついかなる時でも理論上可能なので、まずはたくさん眠って精神のダメージを和らげる。もう眠って眠って眠りまくることで、自然と悩みも解決しているかもしれない。それは約束できないが、少なくともあなたをいまも苦しめている漠然とした不安は、上質な睡眠で確実に減少されています。今朝もニチアサ観たらたっぷり眠ろうね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：减少不快乐而不是变得快乐\n\n在一段视频中，一位哈佛大学教授回答了“如何快乐”的问题，他说，“睡得太多不会让你快乐，但它会让你不那么快乐”，这很有道理，让我感动。\n 失眠一直是我生活中最大的担忧之一，所以我总是向有困难的人推荐睡眠。即使你不知道对方的具体情况或心理状态，但等你睡着了，感觉神清气爽之后再做，肯定比现在你脑子里一片混乱、思绪打转的时候做更有效率。睡得安稳与否并不重要。\n 然而，有时人们会争论：“即使你睡了，情况也不会改变！”你不会幸福的！”这可以理解……但我担心我只能说：“你应该早点睡觉。”多亏教授一开始的解释，我才能够解释“睡觉不会让你幸福，但至少会减轻你目前的不幸福。”除非你自己采取行动，否则最大程度的幸福不会到来，而当你处于非常困难的情况时，你无法采取行动，也无法采取行动。不过，理论上任何时候都可以得到充足的睡眠，所以第一步就是要充足的睡眠，以缓解对心灵的伤害。睡、睡、睡，烦恼自然就解决了。我不能保证这一点，但至少通过睡个好觉肯定会减少仍然困扰着你的模糊焦虑。今天早上再看一次《日朝》，我就能睡个好觉了。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -42,7 +43,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

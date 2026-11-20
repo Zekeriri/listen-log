@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：旋转木马</title>
+<title>短文：旋转木马</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-30 03:07</p>
-  <h1>一口随笔：旋转木马</h1>
+  <h1>短文：旋转木马</h1>
   <p class="ja-title">一口エッセイ:メリーゴーランド</p>
 </header>
 <main>
@@ -28,10 +28,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：旋转木马\n\n尼亚拉水豚 Aiobahn\n↑通常的三个 pic.twitter.com/1kPOSaje9v — Nyalra (@nyalra) 2022 年 8 月 29 日\n\n我的朋友Aiobahn来日本旅游，所以我们一起坐旋转木马。\n 我真的很喜欢旋转木马的概念。既然是出去玩，我们追求的就是“非同凡响”的体验，尤其是旋转木马，即使在游乐设施之中，也能给我们一种“梦幻”般的漂浮感。\n\n华丽闪亮的服装、摇摇晃晃的木马和起落的马车，还有欢快的音乐。视觉、触觉和听觉都以一种非凡的方式被覆盖，感觉几乎是迷幻的。即便如此，空荡荡的旋转木马停下来时所散发出来的孤独感还是难以抗拒。一个无人操作、无法运转的装置，里面挤满了人和发光的灯光，充满了颓废的魅力。\n 尤其是我这次乘坐的横滨旋转木马，靠近大海，根据角度的不同，会有一种漂浮在水面上的感觉，更加神奇。\n\n如果可以的话，我想永远骑着旋转木马，保持梦幻，但游乐园总有尽头。当你从非凡回到平凡的那一刻确实是怪诞的。没有什么比当你从梦中醒来，游乐设施停止，从迷幻的色彩空间回到熟悉的灰色道路的那一刻更悲伤的了。如果来世有一个地方叫天堂，我希望那是一个像旋转木马一样永远旋转的世界。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -51,7 +52,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

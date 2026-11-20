@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口散文：幸福、不幸与中道</title>
+<title>短文：幸福、不幸和中道</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-28 03:35</p>
-  <h1>一口散文：幸福、不幸与中道</h1>
+  <h1>短文：幸福、不幸和中道</h1>
   <p class="ja-title">一口エッセイ:幸福と不幸と中道</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 めちゃくちゃ暗いと評判の商業エッセイ集も出ました。暗いってことは不幸を背負っているので、良い文章ということです。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：幸福、不幸和中道\n\n我收到这样的问题。 “我想有时候我必须更加不快乐......我觉得我必须如此不幸才能变得沮丧。”\n 我明白了。我也明白这一点。其实我也觉得只有在郁闷的时候才能写出有说服力的句子。当你沮丧时，你就会获得动力。不管怎么看，用精神药物上瘾的头脑打出的一串字符，带着“为所欲为”的感觉，更有力量。首先，当我满意的时候，我不想特意去写长句子。\n\n而且，大脑中的化学物质只有在克服困难后才会分泌，所以当事情进展顺利时，几乎没有成就感。不过，有一些方法可以强迫自己通过药物感觉好一些。然而，心甘情愿地沐浴在不幸中是否会是一种美好的经历，这是值得怀疑的。\n 佛陀的教义中有一个概念，叫做“中道”。它告诉我们不要走极端，而要走中间路线；光靠苦行是不会开悟的，也是徒劳的，当然我们也不应该沉迷于世俗的欲望。以平衡的方式前进是证悟的捷径。我个人非常相信这个理论。走投无路、继续选择不快乐的状态，基本上就是放弃思考的捷径。\n 另外，佛陀说：“一切生命都充满痛苦。”痛苦是活着就来的，所以我认为享受短暂的快乐是可以的。反正过了一段时间，问题就会出现。如果你能克服这个低谷，就会有更大的幸福，但也会有更多的不幸。人们会重复这样的事情，直到死去。\n\n我们在摊位上出售编写每日文章的同人志。幸福与不幸都写得明明白白！\n\n还有一本被称赞极其黑暗的商业论文集。黑暗意味着你背负着不快乐，所以这是一个很好的句子。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

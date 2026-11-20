@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔: 小说写作与迂回、未来的梦想</title>
+<title>短文：小说写作，走的弯路，以及对未来的梦想</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-06-23 03:20</p>
-  <h1>一口随笔: 小说写作与迂回、未来的梦想</h1>
+  <h1>短文：小说写作，走的弯路，以及对未来的梦想</h1>
   <p class="ja-title">一口エッセイ:小説執筆と遠回り、将来の夢</p>
 </header>
 <main>
@@ -30,10 +30,11 @@
  レビューや評価、めちゃくちゃ嬉しいし励みになるよ!</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：小说写作，走的弯路，以及对未来的梦想\n\n自从我写并发布短篇小说以来已经有一段时间了。这是一个关于一个情人和他的伴侣杀死并埋葬对方父亲的故事，我试图以自己的方式融入很多关于幸福的东西。如果您有兴趣，请阅读！\n 不管我的作品质量如何，我真的很喜欢写小说。我一时兴起发布 Gochiusa 同人小说，但我已经好几年没有认真写过任何东西了。有一段时间我对尼迪加的写作很着迷。这是一次新的、有趣的体验。我很高兴地说我收到了相当多的回复，并且我想继续定期发布。\n 嗯，在我20岁左右的时候，我曾想尽办法用10万日元写自己的轻小说，但没有成功。这真是太糟糕了。我把它寄给了MF文库，因为即使我拒绝它，他们也会对它进行评分，但我什至无法在上面做标记。我年轻时就完整地写完了，仅此而已。这只是一堆废话，没有其他值得注意的优点。\n 虽然受到了一点挫折，但我的博客继续稳步增长，我的写作得到了越来越多的赞扬。虽然我深信世界上有相容性，我可能更适合写散文类的文章，但我仍然对自己的作家身份抱有一种隐秘的执着。\n 幸运的是，我开始通过博客获得很多工作，随着我从事各种各样的写作活动，从原创漫画到写作、直播脚本、书籍和游戏场景，我逐渐获得了信心。每天写论文，字就顺手写出来了，这个小故事我也能轻松地写出来，我很喜欢。\n 那时正值游戏宣布销量超过 50 万份的时候，所以我想我的下一个目标是出版一本小说。人生苦短，所以你应该尝试各种各样的事情。当我做出这个决定后，我忙碌而郁闷的精神开始振奋起来。我意识到，“哇，我现在很享受生活。”对新事物和复仇充满兴趣。\n 尽管游戏很受欢迎，但我还是忍不住想下次写一本小说。接下来，他可能会说他想拍一部真人电影。我想，如果生活能像这样蜿蜒曲折，会更有趣。\n 顺便说一句，我最终想策划一部动画作品……要做到这一点，需要大量的经验和知识，我相信涉足各种类型，少走这样的弯路，是进入动画行业的最短路径。总有一天，作家、项目、剧本、小说等所有的经验都会汇聚到动画上，创造出理想的作品。在那一天到来之前，我会继续走弯路。\n\n包含每日日记的同人志现已发售！\n 如果你买了它，我可能会更接近实现我的梦想。\n\n祝你的商业论文好运！\n 评论和评价真的很好，很鼓舞人心！"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

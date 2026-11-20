@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：“但毕竟是朋友嘛 没办法哦”——烟猫</title>
+<title>短文：“但我们是朋友，所以这是没办法的事，”雅尼内科说。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-07-30 04:12</p>
-  <h1>一口随笔：“但毕竟是朋友嘛 没办法哦”——烟猫</h1>
+  <h1>短文：“但我们是朋友，所以这是没办法的事，”雅尼内科说。</h1>
   <p class="ja-title">一口エッセイ:「でも友達だもんな しょうがないよ」とヤニねこ</p>
 </header>
 <main>
@@ -34,10 +34,11 @@
 毎日のエッセイをまとめた同人誌（さいきん在庫が復活しました）と商業エッセイ集もよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：“但我们是朋友，所以这是没办法的事，”雅尼内科说。\n\n为了纪念第一卷的发售，《Yani Neko》全集都是免费的，所以我一直在稳定地阅读它们。\n\n它不仅具有年轻杂志的精神，展示了非常非常肮脏和恶心的描述，而且每次出现的角色数量都在增加，他们在小公寓里度过的时光（尽管充满了尼古丁和毒品的味道）就像读《一国之家》的闹剧喜剧部分一样令人满意。\n 人人都是穷人，人人都是傻子，人人都是累赘，这才过上了幸福的生活。虽然看起来脏得很危险，但我还是忍不住有些羡慕。这是一部好漫画。\n\n《Yani Neko》中让我笑出声来的场景是对《猜火车》的模仿。这是一个美妙的流程，如此自然地再现了著名的场景，并且肮脏的协同作用完美地融合在一起。\n 如果你仔细看这一集，你会发现副标题“End of Smoke”也很酷……\n 无论如何，在Yani Neko的中间，出现了一个名为“Yaku Neko”的疯狂角色，从某种意义上说，他比尼古丁成瘾者和不卫生的Yani Neko还要危险，但房东也与其他角色是朋友。为这个世界上的小事而担心是没有用的。从某种意义上来说，可以说是一部平和、闪闪发光的日常漫画。\n 我喜欢这种“我们只是朋友”的关系，我们不关心小细节！\n 现在，我们来谈谈上一页《猜火车》的原著故事。《猜火车》以各种年轻的匪徒为主角，但其中最危险的是贝格比，他是唯一一个从不吸毒的人。他很容易生气，跟谁打架，简直就是暴躁暴力。他是一个令人讨厌的人，他的狡猾伎俩正在加速，他造成的事件的规模正在迅速扩大。然而，剧中的每个人都继续与贝格比互动。原因很简单，就是预告片中出现的这句台词。\n\n“但我们是朋友，所以我无能为力。”\n 多好的线路呀！即使他是个酒鬼、打架者、残暴的麻烦制造者，我们仍然会继续一起出去玩，因为我们是朋友。这是没办法的事。如果他们都没有伟大的品格，那么他们就是与贝格比不同级别的垃圾。有渣男才有的信任和友情。这句话很酷，因为它用一句话清楚地表达了洋基文化的核心。令人麻木。\n 即使在我住的合租屋里，也经常有人不知为何从不洗澡。作为一个没有嗅觉的人，我并不介意这种气味，但有些居民自然会对这种气味感到愤怒或不舒服。尽管我有时会指出“请洗澡！”之类的话，但我们通常还是在客厅一起玩游戏、聊天。\n 通常情况下，人们都会与这个完美的“讨厌洗澡的书呆子”保持距离，但直到最后，都没有禁止或回避他。嗯，我还是觉得出去之前先洗个澡比较好……我想那是因为他们是朋友。\n 这就是全部内容。我周围的人都是混蛋，包括我自己，不知不觉间，我就接到了一些麻烦的电话，有时我会因为压力而生气，但我们仍然相处得很好。这是没办法的事，因为他们是朋友。它们只是一堆奇怪的前提，所以我想细节并不重要。\n\n还请大家期待日文集（现已补货）和商文集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -57,7 +58,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

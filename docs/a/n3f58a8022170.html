@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：十年从未吵过架的朋友</title>
+<title>短文：10年没吵架的朋友</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-05-27 04:47</p>
-  <h1>一口随笔：十年从未吵过架的朋友</h1>
+  <h1>短文：10年没吵架的朋友</h1>
   <p class="ja-title">一口エッセイ:10年喧嘩したことない友達</p>
 </header>
 <main>
@@ -31,10 +31,11 @@ pic.twitter.com/0Dc4UZkFxQ— にゃるら (@nyalra) May 26, 2023
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：10年没吵架的朋友\n\n我去了迪士尼乐园。四个人，我认识十多年的朋友。我去迪士尼并不是有什么特别的目的，但过去10年里我一直在随机聚集并去某个地方散步，所以我想偶尔去一下游乐园也许是个好主意。\n\n我将省略我对迪士尼乐园的印象。我对迪士尼了解不多，都是和熟识的朋友一起逛的，所以都很有趣。老实说，我并不关心细节。当我们大家聚在一起时很有趣，所以我们做什么并不重要。\n 如果我不得不说的话，《小小世界》很好。我第一次骑了它，第二次甚至重复了它。没有其他地方如此具有视觉和音乐上的迷幻感，并且拥有一种感觉就像梦想成真的世界观。我只是被一种不寻常的“快乐”感轰炸着。那种感觉非常舒服。\n\n嗯，这样的人有四个。我和他们每个人都认识很久了，尤其是冈岛，我和他在一个房间和一个房子里住了大约五年，我花了很多时间在一起。我们每个月仍然在一起玩大约 1.2 次，有时住在一起，有时在一起。如果这就是全部，那么他就是我们特别亲近的人之一，我认为有些读者应该得到这样的职位，但冈岛和我在我们的关系中有一个特殊的因素。嗯，其实，虽然我们一起玩了十年，而且有一半时间住在同一屋檐下，但我们两个从来没有吵过架。\n 我们从来没有吵架，没有争吵，更没有因为误会或者误会而感到别扭。有时候，我付不起电话费，停电了，后来冈岛失业了，我不得不为他付饭钱，但我们从来没有因为钱或任何事情而遇到任何麻烦。当然，我们也遇到过很多困难，但我们都设法克服了。尽管今天我们在迪士尼犯了很多我们不习惯的错误，但每个人都做得很好。总的来说，这是一次有趣的回忆。太棒了。\n\npic.twitter.com/0Dc4UZkFxQ — Nyalra (@nyalra) 2023 年 5 月 26 日\n\n我还有其他几个朋友，我们一起玩了快十年了，虽然我们遇到过一两次麻烦，但我们都设法克服了它们，现在我们相处得很好。经过多年的沟通，有时吵架更健康。不过，我和冈岛还真没有什么鸡毛蒜皮的争吵。如果发生了什么事情，我只会笑一笑，然后去睡觉，然后忘记它。我们的爱好或性格并不那么兼容。他们的生活方式、爱好和品味完全不同。很奇怪...\n 从“友谊”的形象来看，他们似乎是朋友，因为他们一起经历了磨难和欢乐，有时他们在冲突中成长，但事实并非如此。这大概是我们俩都没有深入思考事情的结果。如果你真的对每件事都感到不安，你就不会真正关心整件事，也不会打架。他们俩都具有相同的（某种意义上是宽容的）心态，当电力或煤气被切断时，他们就会大声笑起来并欺骗人们。我再一次觉得这是一件很神奇的事情。然而，即使在那之后，我也没有感受到任何奇怪的友谊或情感。这是因为，虽然我们经常玩耍，但我们并不真正关心彼此的情况或微妙之处。\n 他们和其他两人之间也有类似的距离感。当人们在一起度过很多年时，他们会达到这样的程度：对方看起来高兴或悲伤都没关系。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +55,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

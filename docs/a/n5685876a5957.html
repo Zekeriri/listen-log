@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：我喜欢的互联网故事</title>
+<title>短文：最喜欢的网络故事</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-22 04:30</p>
-  <h1>一口随笔：我喜欢的互联网故事</h1>
+  <h1>短文：最喜欢的网络故事</h1>
   <p class="ja-title">一口エッセイ:好きなインターネットの話</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
 毎日のエッセイをまとめた同人誌を販売中です。僕の日記も、ネットを覚えたての方の救いになっていたりするのでしょうか。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：最喜欢的网络故事\n\n我做了一个以互联网为主题的游戏，所以我要谈谈我最喜欢的关于互联网的事情。\n 我第一次上网是在小学低年级的时候，当时《假面骑士龙骑》的恶搞作品在Funny Flash上​​风靡一时。当然，空我和阿吉托很酷，但是“最终弯曲”的机械声音与龙树的必杀技一起演奏的元素太具有革命性，无法刺激孩子们的思维。\n\n骑手极客已经在网络上猖獗，他的大朋友们对骑手被杀感到兴奋，这应该是正义的。没想到竟然有12位车手出现。更重要的是，大约在同一时期流行的Syspuri还有12个妹妹。龙骑和西斯普里到处都是，两者结合的帕罗也被淹没了。\n 这是一个惊喜。成年人对动漫和特效变得如此认真，以至于他们像孩子在教室里吵闹一样互相交谈。现在的网民，有时候比小学生还脏话。那时我只知道成年人是老师和母亲，所以这是一个巨大的震惊。\n “成年人对动漫和特效感到兴奋是可以的！”的兴奋是我在网上观看时的原始体验。我的理解是，上帝在一台小电脑里为那些在现实世界中压抑书呆子气的大朋友们创造了一个秘密天堂。\n 所以，无论我走多远，我都不希望人们打破他们喜欢谈论漫画和动漫的前提。无论事情变得多么粗暴或疯狂，都无济于事。因为它是人类。不过，我希望每个人在谈论自己喜欢的作品时都能以友好的方式互相交谈。无论我在互联网上看到什么，这就是我真正想要的。\n\n我们正在出售编辑日常文章的同人志。我想知道我的日记对那些刚刚学习如何使用互联网的人是否有帮助。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

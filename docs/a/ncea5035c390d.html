@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：狂战士</title>
+<title>短文：狂战士</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-07-21 10:01</p>
-  <h1>一口随笔：狂战士</h1>
+  <h1>短文：狂战士</h1>
   <p class="ja-title">一口エッセイ:狂戦士</p>
 </header>
 <main>
@@ -25,10 +25,11 @@
  アニメ『るろうに剣心 －明治剣客浪漫譚－』、絶賛放送中。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：狂战士\n\n有一天，我看到一个账号说：“我喜欢生气，所以当我发现有什么可批评的时候我就会生气。”我很震惊。干净的。\n 当然，如果一个人总是因为某件事而生气，类似的人就会聚集在他周围，使他们更加有偏见。事实上，既然他们说的是“我强迫自己生气！”这样的话，这个人所说的一切可能会被解释为“因为他生气并且想要感觉好一点而散布谣言”......但是，你诚实地写下这篇文章这一事实很有趣，让我感到自豪。\n 那些总是在网上生气、抱怨某件事的人，并不被认为是“只是为了让自己好受而生气和抨击”，因此，通过他们的日常评论和偶尔的粉丝活动，他们往往会得出这样的态度：“这个世界太愚蠢和糟糕，所以我是聪明人，别无选择，只能纠正它。”天哪……”表面上看，他大概想成为一个聪明、能闯社会的“路人A”。从那里开始，如果你把人们聚集在一起，追随者的数量增加，它可能会演变成一个“意见团体”。无论如何，根据个人的精神，可能存在一个模糊的“正确”核心。\n 他坚持放弃这种幼稚的想法，追求狂战士的道路，一个不断战斗的人，甚至寻找他不喜欢的东西，甚至不再喜欢的东西，就像一把赤裸的刀子一样吸引他的注意。当你疯狂的时候，感觉会很好。我不知道是他还是她，但只要我挥舞着大剑，反复战斗，我的肾上腺素就会激增，有时是敌人的盟友也会加入战斗，所以我相信会很充实。毕竟，你不太可能有在现实世界中与巨大敌人战斗的经历。我选择生活在梦想的世界里。它伤害了它所触及的一切。\n 即使你过着体面的生活，找到适当幸福的机会也很小，所以屈服于愤怒并走向毁灭将是另一种生活。也许还有比以奇怪的方式生活更好的生活方式。无论如何，这与我无关，我抱着双臂，心想有这样的人真是太神奇了。\n 然而，当我过了一段时间偶然看到她的账号时，我发现她是一个20岁出头的女性，而且和粉丝相处得很好，谈论动漫和游戏，每天的推文也增加了。我不再需要对抗任何东西，我一边享受 FPS，一边期待任天堂的新游戏。几周之内，我彻底生气了。愤怒量表被消耗，恢复为纯白色。如果可以挽回面子，即使是武士也希望避免不必要的杀戮。\n 祖尔~！我也这么觉得。继续战斗的宣言很酷，但如果你不用战斗就能交到朋友，你就不再需要玩狂战士，也不需要有人照顾你了。现在我拥有了不可替代的追随者。我要守护这份和平。我不知道他是否认为他不想被视为一个奇怪的人，因为他总是因为某件事而生气，但他那种尖锐的表现，“我会把看到的一切都咬掉！”是他生病期间夸张的性格发展的失败，他并没有真正的意思。大概吧。和朋友一起玩游戏，边聊天边抱怨是健康的，客观上也是快乐的。它绝对是在朝着正确的方向发展。\n 那么，当你生气时，你该如何对那些被你砍倒的对手做出补偿呢？嗯，外人指责他就奇怪了，而且他本来就是人，我觉得这只是网络上的常见场景，但如果他选择活着来弥补，他认为那真是太酷了，他突然对拔刀斋产生了深深的敬意，意识到这就是剑心的意义。\n 动画《浪客剑心明治武侠浪漫物语》正在热播中。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -48,7 +49,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

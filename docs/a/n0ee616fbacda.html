@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：深夜的孤独与冥想</title>
+<title>短文：深夜的孤独与冥想</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-04 04:34</p>
-  <h1>一口随笔：深夜的孤独与冥想</h1>
+  <h1>短文：深夜的孤独与冥想</h1>
   <p class="ja-title">一口エッセイ:深夜の孤独と瞑想</p>
 </header>
 <main>
@@ -27,10 +27,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくお願いします。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：深夜的孤独与冥想\n\n最终，无论你如何努力，你都无法克服利用深夜孤独时刻产生的模糊焦虑。\n 当你发布这样的内容时，你通常可以看到网上那些喋喋不休的人的反应。 “我比你更不幸。”“尽管我处在一个有福气的环境中。”我通常会这样从底部重复安装。尽管我正在经历如此愚蠢的螺旋。真的很吵。我已经能预测到了，所以我在脑子里以幻听的形式反复思考。当我继续受苦时，夜幕降临了。\n 我无法摆脱笼罩在我身上的隐隐约约的焦虑，所以我别无选择，只能冥想。无论如何，抛开一切邪恶的思想和尘世的欲望，投入到你的内心世界中。有一次，当我在寺庙里坐禅时，一名警察拍了拍我的肩膀，但那只是咔嚓的声音，其实一点也不痛。这是一个巨大的打击，我感到一种危机感，我的愿望不会在如此极度的痛苦中消失。最后，我意识到，这种残酷必须靠自己去理解，而不是靠别人来理解。\n 自从我开始在晚上思考佛像后，佛像逐渐变得更加坚强、无畏和感恩，所以我一直在收集和整理很酷的佛像动作玩偶。念诵《心经》或心咒，看着刚陀利妙王和阿修罗的雕像，心中自然会生起“空”。\n\n简而言之，我是一个喜欢雕像的自闭症书呆子，我通过观看雕像形式的偶像来崇拜它们。到目前为止，它们是小樱等漂亮的女孩人物，以及哥斯拉和加美拉等软塑料怪物，但现在它们已成为佛教雕像。无论好坏，我都是一个御宅族，不崇拜偶像就活不下去，这在许多宗教中都是被禁止的。\n 根据佛教教义，你必须放弃你的执着，所以如果你真的想达到开悟的境界，你需要扔掉你收集的藏长天和木目天，以及你家里的佛像。无论我走多远，我所做的都是模仿冥想。然而，如果这意味着摆脱深夜的焦虑，我别无选择，只能坚持下去。\n 我喜欢佛教的原因之一是我对佛陀巨大慈悲的钦佩。佛陀是无限仁慈的，无论你是罪人还是过着绝望的御宅族生活的无宗教人士，他都会回应你的祈祷。即使我被所有人抛弃，无论是在网络上还是在现实生活中，并被真正的孤独所震撼，我仍然会因为我的祈祷而得到治愈。\n 最终，任何人都有可能背叛我，但佛陀仍然看到我。这让我非常高兴，如果可以的话，我也想这么做。当他继续冥想时，他不断说坏话的幻觉逐渐消失，随着安眠药的作用，他安静地睡着了。\n\n我非常感谢您对日常日记的同人志摘要和商业论文集的帮助。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

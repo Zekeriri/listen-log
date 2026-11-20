@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：十万本纪念与真善美</title>
+<title>速文：十万册纪念与真善美</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-01-29 04:47</p>
-  <h1>一口随笔：十万本纪念与真善美</h1>
+  <h1>速文：十万册纪念与真善美</h1>
   <p class="ja-title">一口エッセイ:10万本記念と真善美</p>
 </header>
 <main>
@@ -31,10 +31,11 @@ boothにて、毎日のエッセイをまとめた同人誌を販売中です。
 先月末に発売した商業エッセイ集もよろしくね。ゲームが気に入ってくれたら、こちらも手に取ってもらえると嬉しい。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"速文：十万册纪念与真善美\n\n《NEEDYGIRL OVERDOSE》发行一周内销量突破10万张！谢谢你，我很高兴。\n我将制作 LINE 邮票来纪念这一时刻，收到了很多请求，所以如果您有任何想法，请回复。\n这些照片是我特别喜欢泄露的作品 pic.twitter.com/bRZpD9kwza — Nyalra (@nyalra) 2022 年 1 月 28 日\n\n我制作的游戏在发行后一周内就售出了超过 100,000 份。我无法感谢所有购买它并支持我的人。我很高兴。\n 这次我想写一下我对独立游戏的看法。我不喜欢太狂妄地谈论创世论，但现在是十万周年纪念日，希望大家见谅。没有剧透。\n 哲学和佛教中有一个术语叫“真善美”，意思是真善美三个概念各自存在的状态是理想的，但我认为在创作中需要考虑这三个概念的重点在哪里。\n 一般来说，日本人喜欢真（正确的认知）和善（正确的道德），而在海外我的印象是他们更注重美（美），所以我同意北野武的电影在海外比在日本更受重视的批评，因为它们完全专注于美。\n 对于这次的游戏，我将美观放在首位。游戏中没有真、善、美之说，但如果非要我这么说的话，我会强迫自己假设游戏玩法是真实的，令人耳目一新的故事是好的。我猜你有意识地提高艺术分数而不仅仅是游戏的乐趣。也许这就是它如此受欢迎以至于风靡海外的原因。\n 换句话说，对于极少数游戏制作的独立游戏来说，很难与诚实的游戏玩法竞争。在合法的乐趣方面你无法与大品牌竞争，你基本上必须在艺术性上竞争，我觉得独立游戏是在价格和规模上允许这样做的地方。\n 如果您将 Steam 视为那些选择美丽而不是真理和善良的创作者的战场，那么它是一个非常独特的地方。\n\n摊位上出售包含日常文章的同人志。还有一些谈论美少女游戏的书籍。\n\n还请大家期待上月底发布的商业论文集。如果你喜欢这个游戏，如果你也选择它，我会很高兴。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -54,7 +55,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>《我变成了喵拉拉》商业散文集即将出版</title>
+<title>一本名为《我已成为尼亚拉》的商业散文集即将出版。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-12-14 23:57</p>
-  <h1>《我变成了喵拉拉》商业散文集即将出版</h1>
+  <h1>一本名为《我已成为尼亚拉》的商业散文集即将出版。</h1>
   <p class="ja-title">「僕はにゃるらになってしまった」という商業エッセイ集がでます</p>
 </header>
 <main>
@@ -41,10 +41,11 @@ Kindle版もあります。Amazonで購入すると特典もあります。特�
 BOOTHでも同人誌版のエッセイ集も発売中です。今回の商業エッセイ集の前に、こちらを読んでみると、さらにオタクの自我を知ることができます。ぜひ僕の思考を脳味噌に混入させてください。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一本名为《我已成为尼亚拉》的商业散文集即将出版。\n\n我变成了奈亚鲁拉\n\n尼亚拉的散文集终于出版了。角川正在出版一本书，它将我的生活浓缩成一个浓缩版本，并添加了一些新写的材料，让我感觉更加自我意识。与BOOTH同人志版本的内容没有重叠，请随意挑选。\n 将于12月23日发售。这不是你在神圣之夜之前读的那种书。事实上，也许在吉祥的日子之前瞥见绝望的生活方式会让这一活动变得更加愉快。\n\n还有 Kindle 版本。从亚马逊购买还有特别优惠。我也尽力写了奖金文本。当我终于完成游戏并认为我可以休息一下时，我的编辑写了这封信给我。\n\n至于标题，有一次网上出现了“我成不了尼亚拉”这句话，有编辑看到后说：“那你最后就成了尼亚拉。”感觉很奇怪，所以就定了这个标题。能像阿吉托那样真是太好了。\n 我认为不认识Nyalla的人不太可能接受这个标题，这很好，它充满了新潮的御宅族感觉，而且看起来也很幽默，这是Nyalla的典型特征。\n\n内容等\n\n尼亚拉的历史。基于此，我写下我在每个点的所想所感，沉迷于什么样的内容，以及我如何在网络上生活。\n\n分为生活、网络、宅男、旅行四个章节。生活是追踪生活中发生的事件，互联网是我在网上看到的东西，御宅族只是我喜欢的内容，尼亚鲁拉对御宅族的看法，旅行是关于兴奋或沮丧。\n\n冢本穴月的插画非常精彩。仅此一点就值得购买。文字是一个奖励。\n\n像这样的东西有190页。阅读它。只要1000日元就能看到一个人的真实生活和情感，非常划算。\n\n奖金\n\n你可以在本月的 Kindle 促销上以半价阅读我去年写的《渴望认可的女性图鉴》。它还适用于 Kindle Unlimited，因此如果您订阅 Unlimited，则可以免费阅读。也就是说，如果你加入Unlimited，你就可以用一本书的价格阅读《想要认可的女性百科全书》等书籍。亚马逊太棒了。\n\n该文集的同人志版本也在 BOOTH 出售。如果你在阅读这本商言文集之前读过这篇文章，你将会更加了解御宅族的自我。请随意将我的想法融入到你的大脑中。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -64,7 +65,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：浅睡的早睡早起VS充分睡眠的昼夜颠倒</title>
+<title>短文：浅睡、早睡、早起VS充足睡眠、昼夜颠倒</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-03-07 10:10</p>
-  <h1>一口随笔：浅睡的早睡早起VS充分睡眠的昼夜颠倒</h1>
+  <h1>短文：浅睡、早睡、早起VS充足睡眠、昼夜颠倒</h1>
   <p class="ja-title">一口エッセイ:睡眠が浅い早寝早起きVSたっぷり眠る昼夜逆転</p>
 </header>
 <main>
@@ -20,10 +20,11 @@
  さて、それはもう早寝早起きが叶ったボーナスタイムを諦め、そろそろたっぷり夕方まで眠る生活に戻ることで解決するとして、「睡眠時間が少ないけど早寝早起き」と「昼夜逆転しているけどたっぷり寝ている」場合、どちらが健康なのかと気になる。いま自分は前者ですが今までの後者の時の方が頭が回る。気になってチャットAIに訊いてみたら一般的には前者らしい。じゃあこれでいいのか。珍しくまったく普通の日記でした。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：浅睡、早睡、早起VS充足睡眠、昼夜颠倒\n\n那天我一个人旅行的时候，因为酒店退房时间，我不得不强迫自己早睡早起，所以我就能够跟上，在家里节奏稍微好一点。\n 然而，我的睡眠时间却大大减少了。现在我的昼夜反转越来越好了，我要保持这个状态！由于我的贪婪，我最终每天睡 4.5 小时，以便早上 8 点 9 分起床。\n 一两天睡眠不足还没有问题，但昨晚，在睡眠不足近一周后，我的睡眠不足达到了顶峰，从晚上九点左右开始，我全身都感到刺痛，特别是头部，这显然是一种缩短我寿命的头痛。具体来说，我时不时地会感到一阵剧痛，感觉就像有电流流过我的身体，每次我的身体都会跳动。然而，当我发现《犬屋敷》是免费的时，我非常担心接下来会发生什么，以至于我最终熬夜直到读完它(;;)\n 现在，解决这个问题的方法是放弃早睡早起和深夜继续睡觉所带来的额外时间，但我想知道哪一个更健康：“我睡眠不多，但我早睡早起”或“我的昼夜颠倒，但我睡得很多。”我目前属于前一类，但到目前为止，当我睡得很晚时，我会更加警觉。属于后一类。我很好奇，问了聊AI，看来一般都是前者。那么这样可以吗？这是一本不寻常而又完全正常的日记。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -43,7 +44,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

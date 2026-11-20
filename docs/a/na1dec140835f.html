@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：“衰老”不是半夜醒来的表现吗</title>
+<title>短文：“老年”不就是中途觉醒吗？</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2023-02-26 06:00</p>
-  <h1>一口随笔：“衰老”不是半夜醒来的表现吗</h1>
+  <h1>短文：“老年”不就是中途觉醒吗？</h1>
   <p class="ja-title">一口エッセイ:「老い」とは中途覚醒じゃないか</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 毎日の日記をまとめた同人誌や商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：“老年”不就是中途觉醒吗？\n\n我开始明白，“衰老”意味着中午醒来的次数加速增加，而正常睡眠的时间减少。随着睡眠时间的减少，你的体力不会恢复，头脑也不会感到清爽。随着碎片整理时间的减少，身体也会变弱。随着年龄的增长，我们开始习惯于中午起床和清晨起床。我正在思考这样一个假设。\n\n“当你真的很累的时候，就很难入睡，”我曾经听草下伸也说过，几年前他曾多次请我吃饭。我现在越来越认识到这个事实。有一种形象，累了的时候也能睡得很香，但这只是因为你还年轻才有可能，而当你成年后，如果你连入睡的力气都没有，你会惊讶地发现很难入睡，半夜醒来。例如，这周我独自旅行，不得不走很多路，所以我尝试使用应用程序来管理我的睡眠时间，但这是一场灾难。\n\n我通常只睡不到4.5小时。今晚，我觉得我为了《唐兄弟》的最后一集睡了很多，但实际上我只睡了三个多小时。那也是他上床的时间，看来他睡了两个小时。感谢睡眠管理应用程序，我发现我的睡眠质量比我想象的要浅。嗯，这是我旅行时的一个不寻常的时间（我今天刚回来），所以这可能不适合正常时间的参考。\n 虽然在引入“Asuken”后我的饮食和运动变得更健康，但除非我纠正昼夜颠倒和中午醒来，否则我的身体仍然无法正常运作。身体疾病也会拖累精神。未来的挑战将是中途觉醒的对策。深度睡眠对我来说很困难，因为我无法通过鼻子呼吸。不过，放弃是没有意义的，所以我会尽力调整我的自主神经系统，尽可能提高我的睡眠分数。如果进展顺利的话我会通知你的。如果不顺利的话……那也是凡人的宿命，叫做晚年。\n\n请欣赏由每日日记组成的同人志和商业随笔集♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

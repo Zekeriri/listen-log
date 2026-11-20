@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔: 歌舞伎町的独自夜晚</title>
+<title>短文：歌舞伎町的一个人的夜晚</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-10-31 06:44</p>
-  <h1>一口随笔: 歌舞伎町的独自夜晚</h1>
+  <h1>短文：歌舞伎町的一个人的夜晚</h1>
   <p class="ja-title">一口エッセイ:歌舞伎町で一人の夜</p>
 </header>
 <main>
@@ -32,10 +32,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：歌舞伎町的一个人的夜晚\n\n今天我醒来的时候，我的心跳得很快。我现在已经习惯了，心跳带来的刺激感让我决定快步走一走，直到平静下来。已经是半夜了。\n 晚上无人的时候在中野百老汇散步。这种诡异感常常被比作“女神转生”。沿着垂直路径前进的感觉就像SFC时代的Mega Ten。\n 我喜欢这种空虚，但我厌倦了一遍又一遍地跑圈，所以我就走到外面，继续朝着人们的方向走。我的头很痛，可能是因为我的心在拉着我。我走了一个小时，什么也没想。不知不觉就到了新宿，决定去歌舞伎町看看。在这座城市你永远不会感到孤独。\n\n深夜的歌舞伎町一如既往的垃圾。\n 我以为即使在歌舞伎町也有很多奇怪的服装，但后来我注意到有男人和女人在角色扮演中游行，显然是受到万圣节的启发。好吧，碰巧我在城里过万圣节。装扮成安雅和东里部角色的年轻人幸福地走过。他们看似很开朗的人，但每天深夜都特意聚集在一个地方，可能只是为了分散他们的孤独感。\n 走了一会儿，一个长着电锯男头的女人出现了，头上只戴了一块看起来像电锯男的布，穿着号称地雷型的衣服。在我看来，角色头部不平衡的电锯和带有褶边的矿用服装看起来既陌生又是一个很好的设计。全城的人都在向她欢呼：“是电锯侠！”我的心依然无法平静。我要把它献给魔鬼吗？\n 就这样，我在新宿逛了大约两个小时。幸运的是，今晚是万圣节，所以有很多穿着有趣服装的人，所以并不无聊。虽然没人能看到我。\n 一路上，我多次目睹老人在公园里与妇女交谈，与她们“谈判”。现在流行这种东西。这很方便，因为你不需要通过应用程序什么的，你可以看着那个人的脸并直接与他们交谈。我站在等待交谈的女性队列的末尾大约 10 分钟，希望有人能跟我说话，但当然我很伤心没有人愿意跟我说话。相反，我听到了谈判的细节，所以我能够知道市场价格，没有任何意义。好吧，没关系。没有理由告诉你不认识的人“照顾好自己！”最重要的是，我不重视自己。\n 我走得太累了，一个女孩酒吧或咖啡馆的女人抓住了我，所以我就跟着她。我从没想过能够坐在椅子上我会如此高兴。不过，我的心在狂跳，无法正常思考，所以我打算稍微休息一下，然后快速离开商店。\n\n显然商店正在搞万圣节活动，当我抽奖时，我最终得到了五瓶凯鹏华盈，所以我一个人把它们都喝了，女孩们非常惊讶，我开始想，“我做了什么吗？”我出生在冲绳，所以在这个水平上我根本不会喝醉。这就是为什么我转向毒品而不是酒精。顺便说一句，这个女孩似乎是《漂亮》系列的忠实粉丝，并展示了她在街机中使用的角色。可爱的。虽然中间有很多曲折，但这是一个美好的夜晚，因为我们能够谈论拉拉。\n 与人交谈时，我的心平静下来，走累了，就打车回家。他所做的一切都是一团糟，但这就是你心碎时的样子。今天是工作日，所以我会预约咨询。我希望我的心理健康一点点改善。\n 但在喧嚣的城市中有一个夜晚面对自己的孤独也不算太糟糕。我连店名都不记得了，所以我想我们不会再见面了，但我希望喜欢PriPara的姐姐的歌舞伎生活是幸福的。晚安。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -55,7 +56,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

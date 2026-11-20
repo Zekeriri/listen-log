@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：只有在争议期间才能看到的糖果子弹</title>
+<title>一篇简短的文章：一颗只有在燃烧时才能看到的糖弹。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-11 02:10</p>
-  <h1>一口随笔：只有在争议期间才能看到的糖果子弹</h1>
+  <h1>一篇简短的文章：一颗只有在燃烧时才能看到的糖弹。</h1>
   <p class="ja-title">一口エッセイ:炎上時にだけ見ることができる砂糖菓子の弾丸</p>
 </header>
 <main>
@@ -26,10 +26,11 @@
 商業エッセイ集もよろしくお願いします。ラリって書いた文のところは、まさしく感性が剥き出し。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"一篇简短的文章：一颗只有在燃烧时才能看到的糖弹。\n\n我喜欢那些我可以继续我的情感的时刻，即使我必须放弃我的地位和人际关系。人性最闪耀的时刻。无论是耀眼的白光，还是混乱的黑芒。无论哪种方式都是美丽的。我喜欢这样的场景，所以每当我看到有人因行为浮夸而在网上不断受到批评时，我就开始越来越喜欢他们。\n 互联网的流动有时感觉就像蔚蓝中法夫纳的敌人 Festum。 Festum利用“同化现象”将人类与Festum联合起来。人们在网上攻击那些根据自己的情绪行事的人，但这有时看起来像是试图将“接收端的人”与像他们一样的“普通人”同化。\n 最近，“专业”这个词随处可见，它被用来批评某人因情绪而自私，想让粉丝失望。我理解为什么你必须对观众诚实，因为你得到了报酬，但当我支持某人而他们变得情绪化并且表现得不专业时，我很高兴。我意识到这个人是同一个人，我很高兴看到他将自己的情感磨砺到了流露真情的地步。这是终极的粉丝服务，人们采取了一般公众难以想象的极端行为。我喜欢田村由香莉在深夜在推特上发表的许多恶心评论。\n 那一刻我扔掉了工作的子弹，发射了糖果子弹。敏感性优先于理性，这是一种无法被自我压抑的沸腾的本我。互联网的有趣之处之一是，尽管周围有很多谩骂和谩骂，但像我这样的人还是不少的。\n\n每当网络上有人批评某个人出于情感而做出的事情时，总会有一定数量的人越来越喜欢这个人的蛮横，所以我觉得无论如何都不要放弃，继续努力。 - Nyalra (@nyalra) 2022 年 3 月 9 日\n\n包含日常日记的同人志现已在摊位上出售。有时我会情绪激动。\n\n我期待着阅读您的商业论文集。你写“Rari”的部分确实体现了你的感性。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -49,7 +50,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

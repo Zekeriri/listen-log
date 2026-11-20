@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：“魔境”与沉浸于药物的神</title>
+<title>短文：“魔界”和被下药的神</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2021-11-27 06:17</p>
-  <h1>一口随笔：“魔境”与沉浸于药物的神</h1>
+  <h1>短文：“魔界”和被下药的神</h1>
   <p class="ja-title">一口エッセイ:「魔境」と薬物漬けの神</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 このような毎日のエッセイを纏めた同人誌をboothにて販売しております。最近、2巻が出ました。良ければ読んでみてくださいね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：“魔界”和被下药的神\n\n有时，人们在服用致幻剂或过量服用时会产生神秘的体验。你感受到高级存在和阿卡什记录的存在，你接触到“真理”。在大脑过度分泌麻醉剂的同时，体验一种精神上的感觉，一定是一种非常优质的体验。但亲近神真的那么容易吗？\n 不管你是不是一个狂热信仰上帝的纯粹信徒，上帝都没有便宜到可以拜访刚刚尝试幻觉的普通人。这是一个由大脑化学物质创造的被麻醉的假神。人们可能会误入歧途，因为他们错误地相信这是真理。\n 我经常听到人们说“神就是佛”，所以我很好奇，就去查了一下。这种欺骗一定是有原因的。我在那里学到的最接近的概念是“makyo”。\n 对于这种现象，有“禅修时佛如来现，用枪刺之”、“见佛杀佛”等教义，是为了防止禅修时与神合一，使自我膨胀，“入魔界”。换句话说，如果黑帮在旅途中谈论“上帝”，就意味着如果他们是佛教徒，他们就进入了魔界。当你遇到佛的时候，重要的是要有阿修罗的感觉，要杀佛。欲了解更多信息，请阅读京极夏彦的《铁鼠笼》。\n 萨满在仪式中使用它，因此也许可以通过药物来接近上帝。但这是普通信仰的结果。不要成为那种被冒充上帝并接近你的魔鬼所误导的人。\n在那里找不到真正的真相。\n\n我们在摊位上出售包含此类日常文章的同人志。第 2 卷最近已发布。如果您喜欢，请阅读。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

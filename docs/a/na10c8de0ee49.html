@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：《暴太郎战队Donbrothers》和《银河天使》</title>
+<title>快速文章：Bustaro Sentai Don Brothers 和 Galaxy Angel</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-03-07 03:06</p>
-  <h1>一口随笔：《暴太郎战队Donbrothers》和《银河天使》</h1>
+  <h1>快速文章：Bustaro Sentai Don Brothers 和 Galaxy Angel</h1>
   <p class="ja-title">一口エッセイ: 暴太郎戦隊ドンブラザーズとギャラクシーエンジェル</p>
 </header>
 <main>
@@ -30,10 +30,11 @@
 商業エッセイ集もよろしくお願いします。これで僕と縁ができたな。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"快速文章：Bustaro Sentai Don Brothers 和 Galaxy Angel\n\n想象一下，再过 20 年，看着唐兄弟长大的孩子们将支持社会，真是令人惊奇。日本正在严重成为一个危险的国家 — Nyalra (@nyalra) 2022 年 3 月 6 日\n\n超级战队的新作《波塔罗战队唐兄弟》开始了。剧本由时隔一段时间首次在《日朝》中担任主角的井上俊树撰写。即使在《Zi-O》中，我也负责了一些令人惊叹的情节，从某种意义上说，这些情节是木场的典型特征。\n 由于井上俊树在日朝，有一些人的风格和姿势类似于1999年时代的沉重，但实际上，它像以前的声誉一样明亮……我感觉是《银河天使》中的井上俊树，节奏太好了，已经到了混乱的地步。当然，他们可能会逐渐引入一些离谱的重磅炸弹，但剧集却充满了笑点和刺激，一连串的离谱气势让你非常兴奋。\n\n《银河天使》的井上敏树回来了…… — Nyalra (@nyalra) 2022 年 3 月 6 日\n\n我很喜欢动画版的《银河天使》，但这部作品的结构很独特。虽然有被称为游戏版的严肃原作，但由于延迟和无法共享设定，动画版完全由角色组成的笑点。换句话说，主要的神奇宝贝故事和Giepi之间的关系。\n 在游戏版中，天使们与男主的关系很认真，但在动漫中，他们却变成了一群风吹草动、冒着生命危险的喜剧演员。井上俊树在《GA》和《Champselion》中磨练出来的犀利、高速的笑点得到了充分的展现，唐兄弟非常满意。\n 顺便说一句，我喜欢GA的最大原因是女主角们实在是太贪婪了，而且太过激进，只要能赚钱就愿意杀死自己的盟友。在《唐兄弟》中，女主角头部被残忍踢的场景让我跳了起来，说：“就是这样，就是这样！”我很高兴他今年发疯了！\n\n包含日常日记的同人志现已在摊位上出售。虽然叫日记，但都是动漫和特效啊！\n\n我期待着阅读您的商业论文集。现在我和你有联系了。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -53,7 +54,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

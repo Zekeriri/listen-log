@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔：从未找过工作……</title>
+<title>短文：我从来没有找过工作......</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-08-12 21:55</p>
-  <h1>一口随笔：从未找过工作……</h1>
+  <h1>短文：我从来没有找过工作......</h1>
   <p class="ja-title">一口エッセイ:就活したことなし……</p>
 </header>
 <main>
@@ -24,10 +24,11 @@
 毎日書いている文章、本の形でも手にとってね。</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：我从来没有找过工作......\n\n也许现在正是时候，但情书（一种可以提出问题并提供支持的服务）和空间充满了对找工作有多困难的担忧。她说，每次收到未通过考试的通知时，她都会感到难过，因为感觉自己被告知社会不再需要她了。\n ......但对此我不能说太多。只是因为我从来没有找过工作。其实我大学还没有上一年呢！所以，我能给的唯一建议是，“如果很难，放弃也没关系。”支持你以前从未做过的事情是不负责任的......\n 不过，我觉得除了找工作，我还可以做点什么。比如出版我书的编辑，在学生时代就兼职编辑，后来转为全职员工，在亚文化和内容行业，成就和知识优先于学术背景。当你厌倦了正确的学习时，为什么不在你感兴趣的一些亚文化中开始一份独特的兼职工作，并利用你在那里获得的经验和知识呢？例如，即使您没有兼职工作，我认为视频内容正在迅速增加，因此成为音频 MAD 创作者将非常有用。即使您只是通过 MAD 学习视频编辑获得乐趣，也有很多公司希望您能够立即使用它。我在很多不同的地方都看到过这种情况......！如果您有一些关于分发的知识那就更好了！您很有可能最终会讨厌您曾经喜欢的主播。\n 成为一名兼职工人或失业一段时间，将暂停期投入到您的爱好中，并利用该爱好的力量来找到工作或找到工作！至少我认为我会这么做。我可以用一个实际的例子来说明这一点，因为我从大学退学后就一直在写作。我有不少朋友也走着类似的路线。\n 嗯，这当然是一条荆棘之路。下一步是进入一个仅以你的能力而不是你的学术背景来衡量你的世界。嗯，很难决定一个人在社会中处于什么位置是幸福的，因为这真的取决于人！你可能担心失去新的毕业生卡，或者放弃找工作后人际关系可能出现问题。我是那种不在乎别人怎么看我的人。\n 我对正常的找工作一无所知，所以我只是说，肯定有一条路可以让你对自己喜欢的东西充满热情，然后把它变成一份工作。大家每天都发文章，和我一样肩负同样的痛苦吧！\n\n拿起你每天写的文字，即使是以书的形式。"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -47,7 +48,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);

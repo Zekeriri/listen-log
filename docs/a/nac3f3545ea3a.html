@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>一口随笔: 教你在怀疑是讽刺时的应对方法</title>
+<title>短文：教当你担心自己是否在讽刺时该怎么做。</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">返回目录</a>
   <p class="date">2022-11-06 04:53</p>
-  <h1>一口随笔: 教你在怀疑是讽刺时的应对方法</h1>
+  <h1>短文：教当你担心自己是否在讽刺时该怎么做。</h1>
   <p class="ja-title">一口エッセイ:皮肉かどうか悩んだ時の対処法を教える</p>
 </header>
 <main>
@@ -27,10 +27,11 @@
 毎日の日記をまとめた同人誌や、商業エッセイ集をよろしくね♪</article>
   <textarea id="manual" readonly></textarea>
 </main>
-<div class="bar"><button id="copy" type="button">复制标题和全文</button></div>
+<div class="bar"><button id="copy" type="button">复制译文</button></div>
 <div class="toast" id="toast"></div>
+<script id="zh-copy" type="application/json">"短文：教当你担心自己是否在讽刺时该怎么做。\n\n让我们花点时间回答您的问题。那是因为这太容易了...\n 粗略地说，这个问题是“因为我患有自闭症谱系障碍，所以我认真对待社交礼仪和礼貌。”\n\n这种痛苦的感觉是可以理解的。当你认为自己受到表扬时，结果发现这是一种“成人社交问候”，或者你重复这种模式太多，以至于即使你认为自己实际上受到表扬，你最终也会感到讽刺。当有人说“太棒了！”时，我将其视为讽刺并回答“你真的这么认为吗？”，然后气氛就变成了“嗯？”。那很艰难。\n 在网上互动时尤其如此，因为很难从对方的面部表情和动作来判断他们的情绪。即使我们在一般性的交流中，我们也往往会因为对方所说的小事而感到紧张，认为他们实际上可能内心生气。\n 然而，实际上有一个万无一失的方法可以克服“认真对待它”的问题。那就是……“快乐地接受这个词，不怀疑它。”\n 是的，你不再需要浪费时间去揣摩对方的心理，当别人说“太棒了！”时，你就乖乖地说：“对啊！”并表现得快乐。即使你犯了一个错误，你的老板以一种相当贬义的态度来找你，比如“哇，你太棒了”，你也会回答“谢谢你！”如果你这样做，你的对手很可能会被吓到。在某些情况下，你周围的人甚至可能会想：“这个人真是被夸奖了。”\n 万一对方以明显的讽刺回应，这仍然是一种“认真对待讽刺”的笑话，通过炫耀自己的天真，可以让故意讽刺的人变成坏人。如果你在社交媒体上交流，你可以营造一种让对方感觉自己被抢劫的氛围。既然你无法判断这是否是一个玩笑，那么“全盘接受并纯粹地回应。”这是一个无与伦比的方法。 Yami Yami no Mi 的基础知识。\n 当然，一个人继续以这种方式交流是很危险的，但是当你因为自闭症而担心如何接收某人的话时，记住认真对待对方的话并做出回应的技巧也没什么坏处。\n\n请欣赏整理日常日记和商业随笔集的同人志♪"</script>
 <script>
-const text = document.querySelector(".ja-title").textContent.trim() + "\n\n" + document.querySelector("article.body").textContent.trim();
+const text = JSON.parse(document.getElementById("zh-copy").textContent);
 const toast = document.getElementById("toast");
 const box = document.getElementById("manual");
 function selectPack() {
@@ -50,7 +51,7 @@ async function copyText() {
   }
   if (!ok) selectPack();
   else box.style.display = "none";
-  toast.textContent = ok ? "已复制标题和全文" : "没有自动复制。下面的文字已选中，请长按后复制";
+  toast.textContent = ok ? "已复制译文" : "没有自动复制。下面的文字已选中，请长按后复制";
   toast.style.display = "block";
   clearTimeout(copyText._t);
   copyText._t = setTimeout(() => { toast.style.display = "none"; }, 2500);
