@@ -82,7 +82,7 @@ li a.has-zh.copied .date::after { content: " · 译文 · 已复制"; }
 .title { display: block; font-size: 22px; font-weight: 700; }
 .ja, .ja-title { display: block; color: var(--muted); font-size: 16px; margin-top: 4px; }
 .ja-title { font-size: 20px; margin: 8px 0 16px; }
-article { padding-bottom: 120px; }
+body:has(.bar) article { padding-bottom: 120px; }
 article h1 { font-size: 32px; }
 .ja-title { font-size: 20px; color: var(--muted); margin: 8px 0 16px; }
 .body, h1, .ja-title, .date { user-select: text; -webkit-user-select: text; }
@@ -100,12 +100,11 @@ article h1 { font-size: 32px; }
   border-radius: 12px;
   padding: 12px;
 }
-.copy-row { margin: 0 0 16px; }
-.copy-row button {
-  width: 100%;
-  background: var(--btn);
-  color: var(--btnfg);
-  border: 0;
+.copy-end { margin: 20px 0 8px; }
+.copy-end button {
+  min-height: 40px;
+  padding: 6px 12px;
+  font-size: 16px;
 }
 .bar {
   position: fixed;
@@ -127,7 +126,7 @@ article h1 { font-size: 32px; }
 .toast {
   position: fixed;
   left: 50%;
-  bottom: 96px;
+  bottom: 24px;
   transform: translateX(-50%);
   background: var(--accent);
   color: #1a1714;
@@ -140,3 +139,4 @@ article h1 { font-size: 32px; }
   text-align: center;
   z-index: 3;
 }
+body:has(.bar) .toast { bottom: 96px; }
