@@ -33,6 +33,9 @@ jobs:
           path: docs
           include-hidden-files: true
 
+      - name: Wait for artifact
+        run: sleep 20
+
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v5
