@@ -100,6 +100,13 @@ article h1 { font-size: 32px; }
   border-radius: 12px;
   padding: 12px;
 }
+.copy-row { margin: 0 0 16px; }
+.copy-row button {
+  width: 100%;
+  background: var(--btn);
+  color: var(--btnfg);
+  border: 0;
+}
 .bar {
   position: fixed;
   left: 0; right: 0; bottom: 0;

@@ -9,7 +9,7 @@
 <body>
 <header>
   <h1>nyalra 的日记</h1>
-  <p class="sub">点一下标题就复制整篇，不会打开文章。复制的是日文原文标题和正文；中文标题只是机翻，不会放进剪贴板。标了「译文」的文章，复制的是上传的中文译文。</p>
+  <p class="sub">标了「译文」的文章可以点进去阅读，页面里有「复制整篇文章」。还没译文的，点一下标题就复制日文原文，不会打开。只是机翻的中文标题不会放进剪贴板。</p>
   <input id="q" type="search" placeholder="搜索标题" enterkeyhint="search">
   <div class="chips" id="years"><button class="chip on" type="button" data-year="all">全部</button><button class="chip" type="button" data-year="2026">2026</button><button class="chip" type="button" data-year="2025">2025</button><button class="chip" type="button" data-year="2024">2024</button><button class="chip" type="button" data-year="2023">2023</button><button class="chip" type="button" data-year="2022">2022</button><button class="chip" type="button" data-year="2021">2021</button><button class="chip" type="button" data-year="2020">2020</button><button class="chip" type="button" data-year="2019">2019</button><button class="chip" type="button" data-year="2018">2018</button></div>
   <div class="chips" id="months" hidden></div>
@@ -146,6 +146,7 @@ async function loadPack(href) {
 document.getElementById("list").addEventListener("click", async (e) => {
   const a = e.target.closest("a");
   if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+  if (a.classList.contains("has-zh")) return;
   e.preventDefault();
   const href = a.getAttribute("href");
   a.classList.add("busy");
